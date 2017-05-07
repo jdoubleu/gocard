@@ -1,2 +1,2 @@
-# LernZ
-LernZ is an interactive learning web application.
+# GoCard
+GoCard is an interactive learning web application.
