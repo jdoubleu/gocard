@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+    php:
+        build:
+            context: .docker/Development/
+            dockerfile: Dockerfile-php
+        depends_on:
+            - apache
+            - mysql
+            - redis
+        volumes:
+            - ./:/var/www/html
+
+    apache:
+        build:
+            context: .docker/Development/
+            dockerfile: Dockerfile-httpd
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - 80:80
+
+    mysql:
+        image: mariadb
+        environment:
+            - MYSQL_ROOT_PASSWORD=jFaa6D4JJPB3sNY8RRwjUF5e
+            - MYSQL_DATABASE=flow
+        volumes:
+            - database:/var/lib/mysql
+
+    redis:
+        image: redis
+        volumes:
+            - database:/data
+
+volumes:
+  database:
