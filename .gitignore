@@ -11,6 +11,7 @@
 /Packages/*
 !/Packages/Application/
 /Packages/Application/*
+!/Packages/Application/GoCardTeam.GoCard/
 /Web/*
 !/Web/.htaccess
 !/Web/_Resources/
