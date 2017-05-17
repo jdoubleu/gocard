@@ -1,0 +1,18 @@
+{
+  "name": "gocard",
+  "version": "0.1.0",
+  "description": "GoCard is an interactive learning web application",
+  "main": "index.js",
+  "author": "GoCard Team",
+  "license": "Unlicense",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.18.11",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-cli": "^1.3.0",
+    "gulp-webpack": "^1.5.0",
+    "webpack-dev-middleware": "^1.10.2",
+    "webpack-hot-middleware": "^2.18.0"
+  }
+}
