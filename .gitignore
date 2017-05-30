@@ -12,7 +12,6 @@
 !/Packages/Application/
 /Packages/Application/*
 !/Packages/Application/GoCardTeam.GoCard/
-/Packages/Application/GoCardTeam.GoCard/Resources/Public/
 /Web/*
 !/Web/.htaccess
 !/Web/_Resources/
@@ -23,4 +22,3 @@
 /Upgrading.rst
 /flow
 /flow.bat
-/node_modules/
