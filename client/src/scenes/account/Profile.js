@@ -1,11 +1,11 @@
 import * as React from "react";
-class Dashboard extends React.Component{
+class Profile extends React.Component{
     render() {
         return (
             <div>
-              Dashboard
+              Profile
             </div>
         );
     }
 }
-export default Dashboard;
+export default Profile;

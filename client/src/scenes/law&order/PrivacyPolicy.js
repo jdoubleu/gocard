@@ -1,11 +1,11 @@
 import * as React from "react";
-class Dashboard extends React.Component{
+class PrivacyPolicy extends React.Component{
     render() {
         return (
             <div>
-              Dashboard
+              PrivacyPolicy
             </div>
         );
     }
 }
-export default Dashboard;
+export default PrivacyPolicy;

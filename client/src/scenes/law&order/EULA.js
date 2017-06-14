@@ -1,3 +1,11 @@
-/**
- * Created by Philipp on 11.06.2017.
- */
+import * as React from "react";
+class EULA extends React.Component{
+    render() {
+        return (
+            <div>
+              EULA
+            </div>
+        );
+    }
+}
+export default EULA;

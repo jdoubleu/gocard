@@ -1,11 +1,11 @@
 import * as React from "react";
-class Dashboard extends React.Component{
+class License extends React.Component{
     render() {
         return (
             <div>
-              Dashboard
+              License
             </div>
         );
     }
 }
-export default Dashboard;
+export default License;

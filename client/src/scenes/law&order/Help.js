@@ -1,3 +1,11 @@
-/**
- * Created by Philipp on 11.06.2017.
- */
+import * as React from "react";
+class Help extends React.Component{
+    render() {
+        return (
+            <div>
+              Help
+            </div>
+        );
+    }
+}
+export default Help;

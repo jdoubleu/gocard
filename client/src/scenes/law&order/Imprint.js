@@ -1,11 +1,11 @@
 import * as React from "react";
-class Dashboard extends React.Component{
+class Imprint extends React.Component{
     render() {
         return (
             <div>
-              Dashboard
+              Imprint
             </div>
         );
     }
 }
-export default Dashboard;
+export default Imprint;

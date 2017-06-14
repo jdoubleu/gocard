@@ -1,23 +1,18 @@
 import * as React from "react";
+import Breadcrumb from "./Breadcrumb";
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
-
-
     render(){
-
         return (
-          <div>
-              <img id = "cardsLogo" src={Header.defaultProps.logo}/>
-                  test
-                  Zippi ist geil
-              <img id = "profilePic" src={Header.defaultProps.logo}/>
+          <div class="Header">
+              <Link to="/dashboard"><img src="" alt="Home"/></Link>
+              <Link to="/profile">Profil</Link>
+              {/* {currentPage} */}
+              <Breadcrumb />
           </div>
         );
     }
-
-
 }
-Header.defaultProps = {
-    logo: "../logo.svg"
-};
+
 export default Header;
