@@ -1,23 +1,26 @@
 import React, {Component} from 'react';
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
+import Footer from './components/shared/footer';
+import Header from './components/shared/header';
 import Dashboard from './scenes/Dashboard';
 import Profile from './scenes/account/Profile';
-import Help from './scenes/law&order/Help';
-import Imprint from './scenes/law&order/Imprint';
-import EULA from './scenes/law&order/EULA';
-import PrivacyPolicy from './scenes/law&order/PrivacyPolicy';
-import License from './scenes/law&order/License';
+import Login from './scenes/account/Login';
+import Help from './scenes/legal/Help';
+import Imprint from './scenes/legal/Imprint';
+import EULA from './scenes/legal/EULA';
+import PrivacyPolicy from './scenes/legal/PrivacyPolicy';
+import License from './scenes/legal/License';
 import NotFound from './scenes/errors/NotFound';
 import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div class="App">
+      <div className="App">
           <Header />
           <Switch>
+            <Route path='/login' component={Login}/>
+
             <Route path='/dashboard' component={Dashboard}/>
             <Route path='/profile' component={Profile}/>
 
