@@ -14,18 +14,18 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Card', 'model/MultipleValidationResponse', 'model/Register', 'model/ValidationResponse'], factory);
+    define(['ApiClient', 'model/Card', 'model/Member', 'model/MultipleValidationResponse', 'model/Register', 'model/ValidationResponse'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'), require('../model/Card'), require('../model/MultipleValidationResponse'), require('../model/Register'), require('../model/ValidationResponse'));
+    module.exports = factory(require('../ApiClient'), require('../model/Card'), require('../model/Member'), require('../model/MultipleValidationResponse'), require('../model/Register'), require('../model/ValidationResponse'));
   } else {
     // Browser globals (root is window)
     if (!root.GoCardApi) {
       root.GoCardApi = {};
     }
-    root.GoCardApi.RegistersApi = factory(root.GoCardApi.ApiClient, root.GoCardApi.Card, root.GoCardApi.MultipleValidationResponse, root.GoCardApi.Register, root.GoCardApi.ValidationResponse);
+    root.GoCardApi.RegistersApi = factory(root.GoCardApi.ApiClient, root.GoCardApi.Card, root.GoCardApi.Member, root.GoCardApi.MultipleValidationResponse, root.GoCardApi.Register, root.GoCardApi.ValidationResponse);
   }
-}(this, function(ApiClient, Card, MultipleValidationResponse, Register, ValidationResponse) {
+}(this, function(ApiClient, Card, Member, MultipleValidationResponse, Register, ValidationResponse) {
   'use strict';
 
   /**
@@ -182,6 +182,52 @@
     }
 
     /**
+     * Callback function to receive the result of the getMembersOfRegister operation.
+     * @callback module:api/RegistersApi~getMembersOfRegisterCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/Member>} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Get all members of this register
+     * Returns all members of the given register
+     * @param {Number} registerId ID of the register
+     * @param {module:api/RegistersApi~getMembersOfRegisterCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Array.<module:model/Member>}
+     */
+    this.getMembersOfRegister = function(registerId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling getMembersOfRegister");
+      }
+
+
+      var pathParams = {
+        'registerId': registerId
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = [Member];
+
+      return this.apiClient.callApi(
+        '/registers/{registerId}/members/', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the getRegisterById operation.
      * @callback module:api/RegistersApi~getRegisterByIdCallback
      * @param {String} error Error message, if any.
@@ -274,6 +320,211 @@
 
       return this.apiClient.callApi(
         '/registers/{registerId}/cards/', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the registersRegisterIdMembersMemberIdDelete operation.
+     * @callback module:api/RegistersApi~registersRegisterIdMembersMemberIdDeleteCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Remove a member from this register
+     * Removes a member from a register
+     * @param {Number} registerId ID of the register
+     * @param {Number} memberId ID of the member which should be removed
+     * @param {module:api/RegistersApi~registersRegisterIdMembersMemberIdDeleteCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.registersRegisterIdMembersMemberIdDelete = function(registerId, memberId, callback) {
+      var postBody = null;
+
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling registersRegisterIdMembersMemberIdDelete");
+      }
+
+      // verify the required parameter 'memberId' is set
+      if (memberId == undefined || memberId == null) {
+        throw new Error("Missing the required parameter 'memberId' when calling registersRegisterIdMembersMemberIdDelete");
+      }
+
+
+      var pathParams = {
+        'registerId': registerId,
+        'memberId': memberId
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/registers/{registerId}/members/{memberId}', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the registersRegisterIdMembersMemberIdPost operation.
+     * @callback module:api/RegistersApi~registersRegisterIdMembersMemberIdPostCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update member of a register
+     * Updates a specific member of a register
+     * @param {Number} registerId ID of the register
+     * @param {module:model/Member} member Member to be updated
+     * @param {module:api/RegistersApi~registersRegisterIdMembersMemberIdPostCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.registersRegisterIdMembersMemberIdPost = function(registerId, member, callback) {
+      var postBody = member;
+
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling registersRegisterIdMembersMemberIdPost");
+      }
+
+      // verify the required parameter 'member' is set
+      if (member == undefined || member == null) {
+        throw new Error("Missing the required parameter 'member' when calling registersRegisterIdMembersMemberIdPost");
+      }
+
+
+      var pathParams = {
+        'registerId': registerId
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/registers/{registerId}/members/{memberId}', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the registersRegisterIdMembersPost operation.
+     * @callback module:api/RegistersApi~registersRegisterIdMembersPostCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Add member to this register
+     * Adds a new member to this register
+     * @param {Number} registerId ID of the register
+     * @param {module:model/Member} member Member to be added
+     * @param {module:api/RegistersApi~registersRegisterIdMembersPostCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.registersRegisterIdMembersPost = function(registerId, member, callback) {
+      var postBody = member;
+
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling registersRegisterIdMembersPost");
+      }
+
+      // verify the required parameter 'member' is set
+      if (member == undefined || member == null) {
+        throw new Error("Missing the required parameter 'member' when calling registersRegisterIdMembersPost");
+      }
+
+
+      var pathParams = {
+        'registerId': registerId
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/registers/{registerId}/members/', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the registersRegisterIdMembersPut operation.
+     * @callback module:api/RegistersApi~registersRegisterIdMembersPutCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Update members of this register
+     * Updates all members with their permission of this register
+     * @param {Number} registerId ID of the register
+     * @param {Array.<module:model/Member>} members Members to be updated
+     * @param {module:api/RegistersApi~registersRegisterIdMembersPutCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.registersRegisterIdMembersPut = function(registerId, members, callback) {
+      var postBody = members;
+
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling registersRegisterIdMembersPut");
+      }
+
+      // verify the required parameter 'members' is set
+      if (members == undefined || members == null) {
+        throw new Error("Missing the required parameter 'members' when calling registersRegisterIdMembersPut");
+      }
+
+
+      var pathParams = {
+        'registerId': registerId
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/registers/{registerId}/members/', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

@@ -11,6 +11,8 @@ tags:
     description: Single cards containing questions
   - name: users
     description: Operations about user
+  - name: members
+    description: Members are users having access to registers
 schemes:
   - http
 securityDefinitions:
@@ -207,6 +209,175 @@ paths:
           description: Not allowed to create cards in this register
         '404':
           description: Register not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/members/':
+    get:
+      tags:
+        - registers
+        - members
+      summary: Get all members of this register
+      description: Returns all members of the given register
+      operationId: getMembersOfRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid ID supplied
+        '403':
+          description: Not allowed to view members of this register
+        '404':
+          description: Register with this ID not found
+      security:
+        - api_key: []
+    put:
+      tags:
+        - registers
+        - members
+      summary: Update members of this register
+      description: Updates all members with their permission of this register
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: members
+          in: body
+          description: Members to be updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated members
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update members of this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+    post:
+      tags:
+        - registers
+        - members
+      summary: Add member to this register
+      description: Adds a new member to this register
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: member
+          in: body
+          description: Member to be added
+          schema:
+            $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully added member
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to add member to this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/members/{memberId}':
+    post:
+      tags:
+        - registers
+        - members
+      summary: Update member of a register
+      description: Updates a specific member of a register
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: member
+          in: body
+          description: Member to be updated
+          schema:
+            $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated member
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to update member
+        '404':
+          description: Register or member not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - registers
+        - members
+      summary: Remove a member from this register
+      description: Removes a member from a register
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: memberId
+          in: path
+          description: ID of the member which should be removed
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successfully removed member
+        '400':
+          description: Invalid ID supplied
+        '403':
+          description: Not allowed to remove this member
+        '404':
+          description: Register or member not found
       security:
         - api_key: []
   /cards/:
@@ -556,6 +727,22 @@ definitions:
         enum:
           - local
           - extern
+  Member:
+    type: object
+    properties:
+      userid:
+        type: integer
+        format: int64
+        description: ID of the user
+      scope:
+        type: array
+        items:
+          type: string
+          enum:
+            - read
+            - write
+            - update
+      uniqueItems: true
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid

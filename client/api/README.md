@@ -88,11 +88,21 @@ Class | Method | HTTP request | Description
 *GoCardApi.CardsApi* | [**getCard**](docs/CardsApi.md#getCard) | **GET** /cards/{cardId} | Get a card by ID
 *GoCardApi.CardsApi* | [**getCardsOfRegister**](docs/CardsApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
 *GoCardApi.CardsApi* | [**registersRegisterIdCardsPost**](docs/CardsApi.md#registersRegisterIdCardsPost) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+*GoCardApi.MembersApi* | [**getMembersOfRegister**](docs/MembersApi.md#getMembersOfRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
+*GoCardApi.MembersApi* | [**registersRegisterIdMembersMemberIdDelete**](docs/MembersApi.md#registersRegisterIdMembersMemberIdDelete) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
+*GoCardApi.MembersApi* | [**registersRegisterIdMembersMemberIdPost**](docs/MembersApi.md#registersRegisterIdMembersMemberIdPost) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
+*GoCardApi.MembersApi* | [**registersRegisterIdMembersPost**](docs/MembersApi.md#registersRegisterIdMembersPost) | **POST** /registers/{registerId}/members/ | Add member to this register
+*GoCardApi.MembersApi* | [**registersRegisterIdMembersPut**](docs/MembersApi.md#registersRegisterIdMembersPut) | **PUT** /registers/{registerId}/members/ | Update members of this register
 *GoCardApi.RegistersApi* | [**addRegister**](docs/RegistersApi.md#addRegister) | **POST** /registers | Add a new register
 *GoCardApi.RegistersApi* | [**deleteRegister**](docs/RegistersApi.md#deleteRegister) | **DELETE** /registers/{registerId} | Delete a register
 *GoCardApi.RegistersApi* | [**getCardsOfRegister**](docs/RegistersApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
+*GoCardApi.RegistersApi* | [**getMembersOfRegister**](docs/RegistersApi.md#getMembersOfRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
 *GoCardApi.RegistersApi* | [**getRegisterById**](docs/RegistersApi.md#getRegisterById) | **GET** /registers/{registerId} | Find register by ID
 *GoCardApi.RegistersApi* | [**registersRegisterIdCardsPost**](docs/RegistersApi.md#registersRegisterIdCardsPost) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+*GoCardApi.RegistersApi* | [**registersRegisterIdMembersMemberIdDelete**](docs/RegistersApi.md#registersRegisterIdMembersMemberIdDelete) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
+*GoCardApi.RegistersApi* | [**registersRegisterIdMembersMemberIdPost**](docs/RegistersApi.md#registersRegisterIdMembersMemberIdPost) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
+*GoCardApi.RegistersApi* | [**registersRegisterIdMembersPost**](docs/RegistersApi.md#registersRegisterIdMembersPost) | **POST** /registers/{registerId}/members/ | Add member to this register
+*GoCardApi.RegistersApi* | [**registersRegisterIdMembersPut**](docs/RegistersApi.md#registersRegisterIdMembersPut) | **PUT** /registers/{registerId}/members/ | Update members of this register
 *GoCardApi.RegistersApi* | [**updateRegisterWithForm**](docs/RegistersApi.md#updateRegisterWithForm) | **POST** /registers/{registerId} | Update a register by ID
 *GoCardApi.UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users | Create a user
 *GoCardApi.UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /users/{userId} | Delete user
@@ -105,6 +115,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [GoCardApi.Card](docs/Card.md)
+ - [GoCardApi.Member](docs/Member.md)
  - [GoCardApi.MultipleValidationResponse](docs/MultipleValidationResponse.md)
  - [GoCardApi.MultipleValidationResponseItems](docs/MultipleValidationResponseItems.md)
  - [GoCardApi.Register](docs/Register.md)
