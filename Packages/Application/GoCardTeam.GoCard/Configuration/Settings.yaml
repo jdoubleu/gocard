@@ -4,4 +4,5 @@ Neos:
       authentication:
         providers:
           'LocalAuthenticationProvider':
-            provider: '\GoCardTeam\GoCard\Security\Authentication\Provider\Api\v1\PersistedEmailPasswordProvider'
+            provider: 'PersistedUsernamePasswordProvider'
+            token: '\GoCardTeam\GoCard\Security\Authentication\Token\Api\v1\EmailPassword
