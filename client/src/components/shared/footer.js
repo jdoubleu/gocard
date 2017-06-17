@@ -5,7 +5,7 @@ class Footer extends React.Component {
 
     render(){
         return (
-            <div class="Footer">
+            <div className="text-center">
                 <Container>
                     <hr />
                     <Link to="/help">Hilfe</Link>
