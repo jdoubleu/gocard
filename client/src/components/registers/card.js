@@ -1,28 +1,28 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import Icon from '../shared/user/icon'
-import { Button } from 'reactstrap';
+import { Button, Card, CardTitle, CardText, Col } from 'reactstrap';
 
-class Card extends React.Component{
+class RegCard extends React.Component{
 
     render() {
         return (
-            <div>
-              <h2>{this.props.title}</h2>
-              <div>
-                {this.props.members.map((member) => <Icon name={member} />)}
-              </div>
-              <div>
-                {/* Graph component */}
-              </div>
-              <Button>Öffnen</Button>
-            </div>
+            <Col md="4">
+              <Card>
+                <CardTitle>{this.props.title}</CardTitle>
+                <CardText>
+                  {/* Graph component */}
+                  {this.props.members.map((member) => <Icon name={member} />)}
+                </CardText>
+                <Button outline color="primary">Öffnen</Button>
+              </Card>
+            </Col>
         );
     }
 }
 
-Card.propTypes = {
+RegCard.propTypes = {
   member: PropTypes.array.isRequired,
 };
 
-export default Card;
+export default RegCard;
