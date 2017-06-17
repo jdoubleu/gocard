@@ -48,50 +48,50 @@
   }
 
   describe('MembersApi', function() {
-    describe('getMembersOfRegister', function() {
-      it('should call getMembersOfRegister successfully', function(done) {
-        //uncomment below and update the code to test getMembersOfRegister
-        //instance.getMembersOfRegister(function(error) {
+    describe('addMembersToRegister', function() {
+      it('should call addMembersToRegister successfully', function(done) {
+        //uncomment below and update the code to test addMembersToRegister
+        //instance.addMembersToRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('registersRegisterIdMembersMemberIdDelete', function() {
-      it('should call registersRegisterIdMembersMemberIdDelete successfully', function(done) {
-        //uncomment below and update the code to test registersRegisterIdMembersMemberIdDelete
-        //instance.registersRegisterIdMembersMemberIdDelete(function(error) {
+    describe('deleteMemberOfRegister', function() {
+      it('should call deleteMemberOfRegister successfully', function(done) {
+        //uncomment below and update the code to test deleteMemberOfRegister
+        //instance.deleteMemberOfRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('registersRegisterIdMembersMemberIdPost', function() {
-      it('should call registersRegisterIdMembersMemberIdPost successfully', function(done) {
-        //uncomment below and update the code to test registersRegisterIdMembersMemberIdPost
-        //instance.registersRegisterIdMembersMemberIdPost(function(error) {
+    describe('findMembersByRegister', function() {
+      it('should call findMembersByRegister successfully', function(done) {
+        //uncomment below and update the code to test findMembersByRegister
+        //instance.findMembersByRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('registersRegisterIdMembersPost', function() {
-      it('should call registersRegisterIdMembersPost successfully', function(done) {
-        //uncomment below and update the code to test registersRegisterIdMembersPost
-        //instance.registersRegisterIdMembersPost(function(error) {
+    describe('getMemberByRegister', function() {
+      it('should call getMemberByRegister successfully', function(done) {
+        //uncomment below and update the code to test getMemberByRegister
+        //instance.getMemberByRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('registersRegisterIdMembersPut', function() {
-      it('should call registersRegisterIdMembersPut successfully', function(done) {
-        //uncomment below and update the code to test registersRegisterIdMembersPut
-        //instance.registersRegisterIdMembersPut(function(error) {
+    describe('updateMembersOfRegister', function() {
+      it('should call updateMembersOfRegister successfully', function(done) {
+        //uncomment below and update the code to test updateMembersOfRegister
+        //instance.updateMembersOfRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

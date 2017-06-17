@@ -48,10 +48,10 @@
   }
 
   describe('UsersApi', function() {
-    describe('createUser', function() {
-      it('should call createUser successfully', function(done) {
-        //uncomment below and update the code to test createUser
-        //instance.createUser(function(error) {
+    describe('addUser', function() {
+      it('should call addUser successfully', function(done) {
+        //uncomment below and update the code to test addUser
+        //instance.addUser(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -92,6 +92,36 @@
       it('should call logoutUser successfully', function(done) {
         //uncomment below and update the code to test logoutUser
         //instance.logoutUser(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('requestPasswordReset', function() {
+      it('should call requestPasswordReset successfully', function(done) {
+        //uncomment below and update the code to test requestPasswordReset
+        //instance.requestPasswordReset(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('requestPasswordResetToken', function() {
+      it('should call requestPasswordResetToken successfully', function(done) {
+        //uncomment below and update the code to test requestPasswordResetToken
+        //instance.requestPasswordResetToken(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('updatePassword', function() {
+      it('should call updatePassword successfully', function(done) {
+        //uncomment below and update the code to test updatePassword
+        //instance.updatePassword(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

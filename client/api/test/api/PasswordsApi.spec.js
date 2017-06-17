@@ -48,30 +48,30 @@
   }
 
   describe('PasswordsApi', function() {
-    describe('changePassword', function() {
-      it('should call changePassword successfully', function(done) {
-        //uncomment below and update the code to test changePassword
-        //instance.changePassword(function(error) {
+    describe('requestPasswordReset', function() {
+      it('should call requestPasswordReset successfully', function(done) {
+        //uncomment below and update the code to test requestPasswordReset
+        //instance.requestPasswordReset(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('requestResetToken', function() {
-      it('should call requestResetToken successfully', function(done) {
-        //uncomment below and update the code to test requestResetToken
-        //instance.requestResetToken(function(error) {
+    describe('requestPasswordResetToken', function() {
+      it('should call requestPasswordResetToken successfully', function(done) {
+        //uncomment below and update the code to test requestPasswordResetToken
+        //instance.requestPasswordResetToken(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('requestResetTokenForUser', function() {
-      it('should call requestResetTokenForUser successfully', function(done) {
-        //uncomment below and update the code to test requestResetTokenForUser
-        //instance.requestResetTokenForUser(function(error) {
+    describe('updatePassword', function() {
+      it('should call updatePassword successfully', function(done) {
+        //uncomment below and update the code to test updatePassword
+        //instance.updatePassword(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

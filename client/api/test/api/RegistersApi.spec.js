@@ -48,10 +48,40 @@
   }
 
   describe('RegistersApi', function() {
+    describe('addCardsToRegister', function() {
+      it('should call addCardsToRegister successfully', function(done) {
+        //uncomment below and update the code to test addCardsToRegister
+        //instance.addCardsToRegister(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('addMembersToRegister', function() {
+      it('should call addMembersToRegister successfully', function(done) {
+        //uncomment below and update the code to test addMembersToRegister
+        //instance.addMembersToRegister(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('addRegister', function() {
       it('should call addRegister successfully', function(done) {
         //uncomment below and update the code to test addRegister
         //instance.addRegister(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('deleteMemberOfRegister', function() {
+      it('should call deleteMemberOfRegister successfully', function(done) {
+        //uncomment below and update the code to test deleteMemberOfRegister
+        //instance.deleteMemberOfRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -68,40 +98,70 @@
         done();
       });
     });
-    describe('getCardsOfRegister', function() {
-      it('should call getCardsOfRegister successfully', function(done) {
-        //uncomment below and update the code to test getCardsOfRegister
-        //instance.getCardsOfRegister(function(error) {
+    describe('findAllRegisters', function() {
+      it('should call findAllRegisters successfully', function(done) {
+        //uncomment below and update the code to test findAllRegisters
+        //instance.findAllRegisters(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('getRegisterById', function() {
-      it('should call getRegisterById successfully', function(done) {
-        //uncomment below and update the code to test getRegisterById
-        //instance.getRegisterById(function(error) {
+    describe('findByCardsByRegister', function() {
+      it('should call findByCardsByRegister successfully', function(done) {
+        //uncomment below and update the code to test findByCardsByRegister
+        //instance.findByCardsByRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('registersRegisterIdCardsPost', function() {
-      it('should call registersRegisterIdCardsPost successfully', function(done) {
-        //uncomment below and update the code to test registersRegisterIdCardsPost
-        //instance.registersRegisterIdCardsPost(function(error) {
+    describe('findByRegisterById', function() {
+      it('should call findByRegisterById successfully', function(done) {
+        //uncomment below and update the code to test findByRegisterById
+        //instance.findByRegisterById(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('updateRegisterWithForm', function() {
-      it('should call updateRegisterWithForm successfully', function(done) {
-        //uncomment below and update the code to test updateRegisterWithForm
-        //instance.updateRegisterWithForm(function(error) {
+    describe('findMembersByRegister', function() {
+      it('should call findMembersByRegister successfully', function(done) {
+        //uncomment below and update the code to test findMembersByRegister
+        //instance.findMembersByRegister(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('getMemberByRegister', function() {
+      it('should call getMemberByRegister successfully', function(done) {
+        //uncomment below and update the code to test getMemberByRegister
+        //instance.getMemberByRegister(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('updateMembersOfRegister', function() {
+      it('should call updateMembersOfRegister successfully', function(done) {
+        //uncomment below and update the code to test updateMembersOfRegister
+        //instance.updateMembersOfRegister(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('updateRegister', function() {
+      it('should call updateRegister successfully', function(done) {
+        //uncomment below and update the code to test updateRegister
+        //instance.updateRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
