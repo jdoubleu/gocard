@@ -12,26 +12,29 @@ import PrivacyPolicy from './scenes/legal/PrivacyPolicy';
 import License from './scenes/legal/License';
 import NotFound from './scenes/errors/NotFound';
 import { Switch, Route } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
           <Header />
-          <Switch>
-            <Route path='/login' component={Login}/>
+          <Container>
+              <Switch>
+                <Route path='/login' component={Login}/>
 
-            <Route path='/dashboard' component={Dashboard}/>
-            <Route path='/profile' component={Profile}/>
+                <Route path='/dashboard' component={Dashboard}/>
+                <Route path='/profile' component={Profile}/>
 
-            {/* Footer links */}
-            <Route path='/help' component={Help}/>
-            <Route path='/imprint' component={Imprint}/>
-            <Route path='/eula' component={EULA}/>
-            <Route path='/privacy-policy' component={PrivacyPolicy}/>
-            <Route path='/license' component={License}/>
-            <Route component={NotFound}/>
-          </Switch>
+                {/* Footer links */}
+                <Route path='/help' component={Help}/>
+                <Route path='/imprint' component={Imprint}/>
+                <Route path='/eula' component={EULA}/>
+                <Route path='/privacy-policy' component={PrivacyPolicy}/>
+                <Route path='/license' component={License}/>
+                <Route component={NotFound}/>
+              </Switch>
+          </Container>
           <Footer />
       </div>
     );
