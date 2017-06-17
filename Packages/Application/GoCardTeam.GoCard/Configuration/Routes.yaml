@@ -1,0 +1,20 @@
+-
+  name: 'Application Entrypoint'
+  uriPattern: ''
+  defaults:
+    '@package':    'GoCardTeam.GoCard'
+    '@controller': 'Standard'
+    '@action':     'index'
+    '@format':     'html'
+
+-
+  name: 'API routes'
+  uriPattern: 'api/v1/<APISubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCard'
+    '@controller': 'Product'
+    '@format':     'json'
+  subRoutes:
+    'APISubroutes':
+      package: 'GoCardTeam.GoCard'
+      suffix:  'Api'
