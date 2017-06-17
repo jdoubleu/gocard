@@ -15,6 +15,12 @@ class AccessTokenProvider extends AbstractProvider
 {
 
     /**
+     * Default Provider for local account.
+     * This will be overwritten by this Provider's `localAccountProviderName` option.
+     */
+    const LocalAccountProviderName = 'PersistedUsernamePasswordProvider';
+
+    /**
      * @var AccountRepository
      * @Flow\Inject
      */
@@ -87,7 +93,7 @@ class AccessTokenProvider extends AbstractProvider
             return;
         }
 
-        $account = $accountRepository->findActiveByAccountIdentifierAndAuthenticationProviderName($accessToken->getCredentialsSource(), 'PersistedUsernamePasswordProvider');
+        $account = $accountRepository->findActiveByAccountIdentifierAndAuthenticationProviderName($accessToken->getCredentialsSource(), $this->options['localAccountProviderName'] ?? self::LocalAccountProviderName);
 
         if($account === null) {
             $accessToken->authenticationAttempted(TokenInterface::WRONG_CREDENTIALS);
