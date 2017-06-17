@@ -1,0 +1,8 @@
+-
+  name: 'Application Entrypoint'
+  uriPattern: ''
+  defaults:
+    '@package':    'GoCardTeam.GoCard'
+    '@controller': 'Standard'
+    '@action':     'index'
+    '@format':     'html'
