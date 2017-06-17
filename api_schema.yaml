@@ -520,8 +520,8 @@ paths:
     get:
       tags:
         - users
-      summary: Logs in the user
-      description: ''
+      summary: Log in the user
+      description: If the credentials are valid it will return an access token for api calls
       operationId: loginUser
       produces:
         - application/json
@@ -557,8 +557,8 @@ paths:
     get:
       tags:
         - users
-      summary: Logs out the current user
-      description: ''
+      summary: Log out the current user
+      description: Invalidates the access token
       operationId: logoutUser
       produces:
         - application/json
@@ -600,7 +600,7 @@ paths:
     put:
       tags:
         - users
-      summary: Updated user
+      summary: Update user
       description: Updates the user data
       operationId: updateUser
       produces:
@@ -742,7 +742,7 @@ definitions:
             - read
             - write
             - update
-      uniqueItems: true
+        uniqueItems: true
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid
