@@ -1,0 +1,7 @@
+Neos:
+  Flow:
+    security:
+      authentication:
+        providers:
+          'LocalAuthenticationProvider':
+            provider: '\GoCardTeam\GoCard\Security\Authentication\Provider\Api\v1\PersistedEmailPasswordProvider'
