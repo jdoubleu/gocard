@@ -6,3 +6,5 @@ Neos:
           'LocalAuthenticationProvider':
             provider: 'PersistedUsernamePasswordProvider'
             token: '\GoCardTeam\GoCard\Security\Authentication\Token\Api\v1\EmailPassword
+          'AccessTokenAuthenticationProvider':
+            provider: '\GoCardTeam\GoCard\Security\Authentication\Provider\Api\v1\AccessTokenProvider'
