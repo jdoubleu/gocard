@@ -1,5 +1,6 @@
 import React from "react";
-import Icon from '../components/shared/user/icon'
+import Icon from '../components/shared/user/icon';
+import BlankCard from '../components/registers/blankCard';
 class Dashboard extends React.Component{
     render() {
         return (
@@ -16,6 +17,8 @@ class Dashboard extends React.Component{
   <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#b1c94e" strokeWidth="3" strokeDasharray="20 80" strokeDashoffset="85"></circle>
   <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#377bbc" strokeWidth="3" strokeDasharray="30 70" strokeDashoffset="65"></circle>
 </svg>
+            <BlankCard/>
+
             </div>
         );
     }
