@@ -41,13 +41,16 @@
    * Constructs a new <code>Body</code>.
    * @alias module:model/Body
    * @class
+   * @param oldPassword {String} The old password
+   * @param newPassword {String} New password
+   * @param newPasswordRepeated {String} Repeat the new password
    */
-  var exports = function() {
+  var exports = function(oldPassword, newPassword, newPasswordRepeated) {
     var _this = this;
 
-
-
-
+    _this['oldPassword'] = oldPassword;
+    _this['newPassword'] = newPassword;
+    _this['newPasswordRepeated'] = newPasswordRepeated;
   };
 
   /**

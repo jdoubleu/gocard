@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Number** |  | [optional] 
-**displayName** | **String** |  | [optional] 
-**email** | **String** |  | [optional] 
+**id** | **Number** |  | 
+**displayName** | **String** |  | 
+**email** | **String** |  | 
 **status** | **String** |  | [optional] 
 
 

@@ -612,7 +612,7 @@ null (empty response body)
 
 <a name="updateRegisterWithForm"></a>
 # **updateRegisterWithForm**
-> updateRegisterWithForm(registerId, opts)
+> updateRegisterWithForm(registerId, name)
 
 Update a register by ID
 
@@ -633,9 +633,8 @@ var apiInstance = new GoCardApi.RegistersApi();
 
 var registerId = 789; // Number | ID of register that needs to be updated
 
-var opts = { 
-  'name': new GoCardApi.Register() // Register | Updated name of the pet
-};
+var name = new GoCardApi.Register(); // Register | Updated name of the pet
+
 
 var callback = function(error, data, response) {
   if (error) {
@@ -644,7 +643,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.updateRegisterWithForm(registerId, opts, callback);
+apiInstance.updateRegisterWithForm(registerId, name, callback);
 ```
 
 ### Parameters
@@ -652,7 +651,7 @@ apiInstance.updateRegisterWithForm(registerId, opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **registerId** | **Number**| ID of register that needs to be updated | 
- **name** | [**Register**](Register.md)| Updated name of the pet | [optional] 
+ **name** | [**Register**](Register.md)| Updated name of the pet | 
 
 ### Return type
 

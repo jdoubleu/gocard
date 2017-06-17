@@ -121,7 +121,7 @@ paths:
         - name: name
           in: body
           description: Updated name of the pet
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/Register'
       responses:
@@ -758,6 +758,10 @@ paths:
               newPasswordRepeated:
                 type: string
                 description: Repeat the new password
+            required:
+              - oldPassword
+              - newPassword
+              - newPasswordRepeated
       responses:
         '200':
           description: Successfully changed password
@@ -785,6 +789,11 @@ definitions:
       description:
         type: string
         description: register description
+    required:
+      - id
+      - owner
+      - title
+      - description
   Card:
     type: object
     properties:
@@ -816,6 +825,12 @@ definitions:
       content:
         type: object
         description: Anser content of this card depending of the type
+    required:
+      - id
+      - author
+      - question
+      - type
+      - content
   User:
     type: object
     properties:
@@ -831,6 +846,11 @@ definitions:
         enum:
           - local
           - extern
+        readOnly: true
+    required:
+      - id
+      - email
+      - displayName
   Member:
     type: object
     properties:
@@ -847,6 +867,9 @@ definitions:
             - write
             - update
         uniqueItems: true
+    required:
+      - userid
+      - scope
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid
@@ -863,6 +886,7 @@ definitions:
             message:
               type: string
               description: Error message belonging this field
+        readOnly: true
   MultipleValidationResponse:
     type: object
     description: Same as ValidationResponse but for multiple elements
@@ -877,3 +901,4 @@ definitions:
               description: ID of referenced element
             errors:
               $ref: '#/definitions/ValidationResponse'
+        readOnly: true

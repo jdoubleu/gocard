@@ -41,13 +41,16 @@
    * Constructs a new <code>User</code>.
    * @alias module:model/User
    * @class
+   * @param id {Number} 
+   * @param displayName {String} 
+   * @param email {String} 
    */
-  var exports = function() {
+  var exports = function(id, displayName, email) {
     var _this = this;
 
-
-
-
+    _this['id'] = id;
+    _this['displayName'] = displayName;
+    _this['email'] = email;
 
   };
 

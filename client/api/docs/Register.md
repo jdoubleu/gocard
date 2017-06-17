@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Number** |  | [optional] 
-**owner** | **Number** |  | [optional] 
+**id** | **Number** |  | 
+**owner** | **Number** |  | 
 **crdate** | **Date** |  | [optional] 
-**title** | **String** |  | [optional] 
-**description** | **String** | register description | [optional] 
+**title** | **String** |  | 
+**description** | **String** | register description | 
 
 

@@ -41,12 +41,14 @@
    * Constructs a new <code>Member</code>.
    * @alias module:model/Member
    * @class
+   * @param userid {Number} ID of the user
+   * @param scope {Array.<module:model/Member.ScopeEnum>} 
    */
-  var exports = function() {
+  var exports = function(userid, scope) {
     var _this = this;
 
-
-
+    _this['userid'] = userid;
+    _this['scope'] = scope;
   };
 
   /**

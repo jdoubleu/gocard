@@ -581,17 +581,20 @@
      * Update a register by ID
      * 
      * @param {Number} registerId ID of register that needs to be updated
-     * @param {Object} opts Optional parameters
-     * @param {module:model/Register} opts.name Updated name of the pet
+     * @param {module:model/Register} name Updated name of the pet
      * @param {module:api/RegistersApi~updateRegisterWithFormCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.updateRegisterWithForm = function(registerId, opts, callback) {
-      opts = opts || {};
-      var postBody = opts['name'];
+    this.updateRegisterWithForm = function(registerId, name, callback) {
+      var postBody = name;
 
       // verify the required parameter 'registerId' is set
       if (registerId == undefined || registerId == null) {
         throw new Error("Missing the required parameter 'registerId' when calling updateRegisterWithForm");
+      }
+
+      // verify the required parameter 'name' is set
+      if (name == undefined || name == null) {
+        throw new Error("Missing the required parameter 'name' when calling updateRegisterWithForm");
       }
 
 

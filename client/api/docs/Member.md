@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**userid** | **Number** | ID of the user | [optional] 
-**scope** | **[String]** |  | [optional] 
+**userid** | **Number** | ID of the user | 
+**scope** | **[String]** |  | 
 
 
 <a name="[ScopeEnum]"></a>
