@@ -6,7 +6,7 @@ class New extends React.Component {
   
     render(){
         return (
-          <div class="New">
+          <div className="New">
               <Form>
                 <FormGroup>
                   <Label for="title">Titel</Label>

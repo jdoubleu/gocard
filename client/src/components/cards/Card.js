@@ -2,7 +2,7 @@ import React from "react";
 class Card extends React.Component {
     render(){
         return (
-            <div class="Card">
+            <div className="Card">
                 Oh eine karte!!
             </div>
         );

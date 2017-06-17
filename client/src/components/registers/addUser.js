@@ -1,5 +1,5 @@
 import React from "react";
-import {Input, Label, Button} from 'reactstrap';
+import {Input, Button} from 'reactstrap';
 import Icon from '../shared/user/icon';
 import dummy from '../../dummyUser.json';
 

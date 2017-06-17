@@ -29,7 +29,7 @@ class Header extends React.Component {
     }
     render(){
         return (
-          <div class="Header">
+          <div className="Header">
               <Navbar color="faded" light toggleable>
                   <NavbarToggler right onClick={this.toggleNavbar} />
                   <NavbarBrand href="/dashboard">GoCard</NavbarBrand>

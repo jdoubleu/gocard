@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Breadcrumb extends React.Component {
     render(){
         return (
-          <div class="Breadcrumb">
+          <div className="Breadcrumb">
               Breadcrumb
           </div>
         );
