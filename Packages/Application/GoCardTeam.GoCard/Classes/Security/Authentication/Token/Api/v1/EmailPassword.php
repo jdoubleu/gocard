@@ -4,7 +4,6 @@ namespace GoCardTeam\GoCard\Security\Authentication\Token\Api\v1;
 
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Token\UsernamePassword;
-use Neos\Utility\ObjectAccess;
 
 /**
  * Class EmailPassword
@@ -24,9 +23,8 @@ class EmailPassword extends UsernamePassword
             return;
         }
 
-        $arguments = $actionRequest->getInternalArguments();
-        $email = ObjectAccess::getPropertyPath($arguments, 'email');
-        $password = ObjectAccess::getPropertyPath($arguments, 'password');
+        $email = $actionRequest->getArgument('email');
+        $password = $actionRequest->getArgument('password');
 
         if (!empty($username) && !empty($password)) {
             $this->credentials['username'] = $email;
