@@ -6,12 +6,18 @@ use GoCardTeam\GoCard\Security\Api\v1\AccountFactory;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Http\Response;
 use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\View\JsonView;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 
 class LocalAccountAuthenticationController extends AbstractAuthenticationController
 {
+
+    /**
+     * @var string
+     */
+    protected $defaultViewObjectName = JsonView::class;
 
     /**
      * @var AccountFactory
