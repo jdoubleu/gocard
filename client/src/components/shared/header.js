@@ -32,7 +32,7 @@ class Header extends React.Component {
           <div class="Header">
               <Navbar color="faded" light toggleable>
                   <NavbarToggler right onClick={this.toggleNavbar} />
-                  <NavbarBrand href="/">GoCard</NavbarBrand>
+                  <NavbarBrand href="/dashboard">GoCard</NavbarBrand>
                   <Collapse isOpen={this.state.isOpen} navbar>
                       <Nav className="ml-auto" navbar>
                           <NavDropdown isOpen={this.state.dropdownOpen} toggle={this.toggleProfileDropdown}>
