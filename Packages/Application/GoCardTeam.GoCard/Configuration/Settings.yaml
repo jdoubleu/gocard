@@ -1,5 +1,10 @@
 Neos:
   Flow:
+    mvc:
+      routes:
+        'GoCardTeam.GoCard':
+          position: 'start'
+
     security:
       authentication:
         providers:
