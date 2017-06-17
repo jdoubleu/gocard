@@ -46,8 +46,60 @@
 
 
     /**
-     * Callback function to receive the result of the cardsCardIdDelete operation.
-     * @callback module:api/CardsApi~cardsCardIdDeleteCallback
+     * Callback function to receive the result of the addCardsToRegister operation.
+     * @callback module:api/CardsApi~addCardsToRegisterCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/Card>} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Create multiple new cards
+     * Creates multiple new cards and adds them to a register
+     * @param {Number} registerId ID register the cards should be added to
+     * @param {Array.<module:model/Card>} cards Cards to be created
+     * @param {module:api/CardsApi~addCardsToRegisterCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Array.<module:model/Card>}
+     */
+    this.addCardsToRegister = function(registerId, cards, callback) {
+      var postBody = cards;
+
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling addCardsToRegister");
+      }
+
+      // verify the required parameter 'cards' is set
+      if (cards == undefined || cards == null) {
+        throw new Error("Missing the required parameter 'cards' when calling addCardsToRegister");
+      }
+
+
+      var pathParams = {
+        'registerId': registerId
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = [Card];
+
+      return this.apiClient.callApi(
+        '/registers/{registerId}/cards/', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the deleteCard operation.
+     * @callback module:api/CardsApi~deleteCardCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -57,14 +109,14 @@
      * Delete a card
      * Deletes a card and removes it from the register
      * @param {Number} cardId ID of the card which should be deleted
-     * @param {module:api/CardsApi~cardsCardIdDeleteCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/CardsApi~deleteCardCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.cardsCardIdDelete = function(cardId, callback) {
+    this.deleteCard = function(cardId, callback) {
       var postBody = null;
 
       // verify the required parameter 'cardId' is set
       if (cardId == undefined || cardId == null) {
-        throw new Error("Missing the required parameter 'cardId' when calling cardsCardIdDelete");
+        throw new Error("Missing the required parameter 'cardId' when calling deleteCard");
       }
 
 
@@ -91,30 +143,31 @@
     }
 
     /**
-     * Callback function to receive the result of the cardsCardIdPost operation.
-     * @callback module:api/CardsApi~cardsCardIdPostCallback
+     * Callback function to receive the result of the findByCardsByRegister operation.
+     * @callback module:api/CardsApi~findByCardsByRegisterCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {Array.<module:model/Card>} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Update a card
-     * Updates a card by given id
-     * @param {Number} cardId ID of the card which needs to be updated
-     * @param {module:api/CardsApi~cardsCardIdPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * Get all cards of this register
+     * Returns all cards of the given register
+     * @param {Number} registerId ID of register which cards to get
+     * @param {module:api/CardsApi~findByCardsByRegisterCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Array.<module:model/Card>}
      */
-    this.cardsCardIdPost = function(cardId, callback) {
+    this.findByCardsByRegister = function(registerId, callback) {
       var postBody = null;
 
-      // verify the required parameter 'cardId' is set
-      if (cardId == undefined || cardId == null) {
-        throw new Error("Missing the required parameter 'cardId' when calling cardsCardIdPost");
+      // verify the required parameter 'registerId' is set
+      if (registerId == undefined || registerId == null) {
+        throw new Error("Missing the required parameter 'registerId' when calling findByCardsByRegister");
       }
 
 
       var pathParams = {
-        'cardId': cardId
+        'registerId': registerId
       };
       var queryParams = {
       };
@@ -126,54 +179,10 @@
       var authNames = ['api_key'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = null;
+      var returnType = [Card];
 
       return this.apiClient.callApi(
-        '/cards/{cardId}', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the cardsPut operation.
-     * @callback module:api/CardsApi~cardsPutCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Update multiple cards
-     * Updates multiple cards
-     * @param {Array.<module:model/Card>} cards Cards to be updated
-     * @param {module:api/CardsApi~cardsPutCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    this.cardsPut = function(cards, callback) {
-      var postBody = cards;
-
-      // verify the required parameter 'cards' is set
-      if (cards == undefined || cards == null) {
-        throw new Error("Missing the required parameter 'cards' when calling cardsPut");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = ['api_key'];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        '/cards/', 'PUT',
+        '/registers/{registerId}/cards/', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
@@ -226,31 +235,30 @@
     }
 
     /**
-     * Callback function to receive the result of the getCardsOfRegister operation.
-     * @callback module:api/CardsApi~getCardsOfRegisterCallback
+     * Callback function to receive the result of the updateCard operation.
+     * @callback module:api/CardsApi~updateCardCallback
      * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Card>} data The data returned by the service call.
+     * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Get all cards of this register
-     * Returns all cards of the given register
-     * @param {Number} registerId ID of register which cards to get
-     * @param {module:api/CardsApi~getCardsOfRegisterCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Card>}
+     * Update a card
+     * Updates a card by given id
+     * @param {Number} cardId ID of the card which needs to be updated
+     * @param {module:api/CardsApi~updateCardCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.getCardsOfRegister = function(registerId, callback) {
+    this.updateCard = function(cardId, callback) {
       var postBody = null;
 
-      // verify the required parameter 'registerId' is set
-      if (registerId == undefined || registerId == null) {
-        throw new Error("Missing the required parameter 'registerId' when calling getCardsOfRegister");
+      // verify the required parameter 'cardId' is set
+      if (cardId == undefined || cardId == null) {
+        throw new Error("Missing the required parameter 'cardId' when calling updateCard");
       }
 
 
       var pathParams = {
-        'registerId': registerId
+        'cardId': cardId
       };
       var queryParams = {
       };
@@ -262,47 +270,39 @@
       var authNames = ['api_key'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = [Card];
+      var returnType = null;
 
       return this.apiClient.callApi(
-        '/registers/{registerId}/cards/', 'GET',
+        '/cards/{cardId}', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );
     }
 
     /**
-     * Callback function to receive the result of the registersRegisterIdCardsPost operation.
-     * @callback module:api/CardsApi~registersRegisterIdCardsPostCallback
+     * Callback function to receive the result of the updateCards operation.
+     * @callback module:api/CardsApi~updateCardsCallback
      * @param {String} error Error message, if any.
-     * @param {Array.<module:model/Card>} data The data returned by the service call.
+     * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
      */
 
     /**
-     * Create multiple new cards
-     * Creates multiple new cards and adds them to a register
-     * @param {Number} registerId ID register the cards should be added to
-     * @param {Array.<module:model/Card>} cards Cards to be created
-     * @param {module:api/CardsApi~registersRegisterIdCardsPostCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/Card>}
+     * Update multiple cards
+     * Updates multiple cards
+     * @param {Array.<module:model/Card>} cards Cards to be updated
+     * @param {module:api/CardsApi~updateCardsCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.registersRegisterIdCardsPost = function(registerId, cards, callback) {
+    this.updateCards = function(cards, callback) {
       var postBody = cards;
-
-      // verify the required parameter 'registerId' is set
-      if (registerId == undefined || registerId == null) {
-        throw new Error("Missing the required parameter 'registerId' when calling registersRegisterIdCardsPost");
-      }
 
       // verify the required parameter 'cards' is set
       if (cards == undefined || cards == null) {
-        throw new Error("Missing the required parameter 'cards' when calling registersRegisterIdCardsPost");
+        throw new Error("Missing the required parameter 'cards' when calling updateCards");
       }
 
 
       var pathParams = {
-        'registerId': registerId
       };
       var queryParams = {
       };
@@ -314,10 +314,10 @@
       var authNames = ['api_key'];
       var contentTypes = [];
       var accepts = ['application/json'];
-      var returnType = [Card];
+      var returnType = null;
 
       return this.apiClient.callApi(
-        '/registers/{registerId}/cards/', 'POST',
+        '/cards/', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

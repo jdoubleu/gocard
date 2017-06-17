@@ -46,59 +46,8 @@
 
 
     /**
-     * Callback function to receive the result of the changePassword operation.
-     * @callback module:api/UsersApi~changePasswordCallback
-     * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
-     * @param {String} response The complete HTTP response.
-     */
-
-    /**
-     * Change user&#39;s password
-     * Updates the user&#39;s password  You need to get a resetToken first 
-     * @param {Number} resetToken Token to change a password
-     * @param {module:model/Body} body Password data
-     * @param {module:api/UsersApi~changePasswordCallback} callback The callback function, accepting three arguments: error, data, response
-     */
-    this.changePassword = function(resetToken, body, callback) {
-      var postBody = body;
-
-      // verify the required parameter 'resetToken' is set
-      if (resetToken == undefined || resetToken == null) {
-        throw new Error("Missing the required parameter 'resetToken' when calling changePassword");
-      }
-
-      // verify the required parameter 'body' is set
-      if (body == undefined || body == null) {
-        throw new Error("Missing the required parameter 'body' when calling changePassword");
-      }
-
-
-      var pathParams = {
-      };
-      var queryParams = {
-        'resetToken': resetToken
-      };
-      var headerParams = {
-      };
-      var formParams = {
-      };
-
-      var authNames = [];
-      var contentTypes = [];
-      var accepts = ['application/json'];
-      var returnType = null;
-
-      return this.apiClient.callApi(
-        '/users/password', 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType, callback
-      );
-    }
-
-    /**
-     * Callback function to receive the result of the createUser operation.
-     * @callback module:api/UsersApi~createUserCallback
+     * Callback function to receive the result of the addUser operation.
+     * @callback module:api/UsersApi~addUserCallback
      * @param {String} error Error message, if any.
      * @param {module:model/User} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -108,15 +57,15 @@
      * Create a user
      * Create a new user
      * @param {module:model/User} body Created user object
-     * @param {module:api/UsersApi~createUserCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UsersApi~addUserCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/User}
      */
-    this.createUser = function(body, callback) {
+    this.addUser = function(body, callback) {
       var postBody = body;
 
       // verify the required parameter 'body' is set
       if (body == undefined || body == null) {
-        throw new Error("Missing the required parameter 'body' when calling createUser");
+        throw new Error("Missing the required parameter 'body' when calling addUser");
       }
 
 
@@ -324,8 +273,8 @@
     }
 
     /**
-     * Callback function to receive the result of the requestResetToken operation.
-     * @callback module:api/UsersApi~requestResetTokenCallback
+     * Callback function to receive the result of the requestPasswordReset operation.
+     * @callback module:api/UsersApi~requestPasswordResetCallback
      * @param {String} error Error message, if any.
      * @param data This operation does not return a value.
      * @param {String} response The complete HTTP response.
@@ -335,14 +284,14 @@
      * Request a password reset token
      * Generates a link with a temporary reset token which will be send to the users email address. 
      * @param {String} username Username of user
-     * @param {module:api/UsersApi~requestResetTokenCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UsersApi~requestPasswordResetCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.requestResetToken = function(username, callback) {
+    this.requestPasswordReset = function(username, callback) {
       var postBody = null;
 
       // verify the required parameter 'username' is set
       if (username == undefined || username == null) {
-        throw new Error("Missing the required parameter 'username' when calling requestResetToken");
+        throw new Error("Missing the required parameter 'username' when calling requestPasswordReset");
       }
 
 
@@ -369,8 +318,8 @@
     }
 
     /**
-     * Callback function to receive the result of the requestResetTokenForUser operation.
-     * @callback module:api/UsersApi~requestResetTokenForUserCallback
+     * Callback function to receive the result of the requestPasswordResetToken operation.
+     * @callback module:api/UsersApi~requestPasswordResetTokenCallback
      * @param {String} error Error message, if any.
      * @param {'String'} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -379,10 +328,10 @@
     /**
      * Request a password reset token for the current user
      * Generates a password reset token for the current logged in user
-     * @param {module:api/UsersApi~requestResetTokenForUserCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/UsersApi~requestPasswordResetTokenCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link 'String'}
      */
-    this.requestResetTokenForUser = function(callback) {
+    this.requestPasswordResetToken = function(callback) {
       var postBody = null;
 
 
@@ -402,6 +351,57 @@
 
       return this.apiClient.callApi(
         '/users/password', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the updatePassword operation.
+     * @callback module:api/UsersApi~updatePasswordCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Change user&#39;s password
+     * Updates the user&#39;s password  You need to get a resetToken first 
+     * @param {Number} resetToken Token to change a password
+     * @param {module:model/Body} body Password data
+     * @param {module:api/UsersApi~updatePasswordCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    this.updatePassword = function(resetToken, body, callback) {
+      var postBody = body;
+
+      // verify the required parameter 'resetToken' is set
+      if (resetToken == undefined || resetToken == null) {
+        throw new Error("Missing the required parameter 'resetToken' when calling updatePassword");
+      }
+
+      // verify the required parameter 'body' is set
+      if (body == undefined || body == null) {
+        throw new Error("Missing the required parameter 'body' when calling updatePassword");
+      }
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+        'resetToken': resetToken
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = [];
+      var contentTypes = [];
+      var accepts = ['application/json'];
+      var returnType = null;
+
+      return this.apiClient.callApi(
+        '/users/password', 'PUT',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, callback
       );

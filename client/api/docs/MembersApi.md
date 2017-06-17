@@ -4,181 +4,16 @@ All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMembersOfRegister**](MembersApi.md#getMembersOfRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
-[**registersRegisterIdMembersMemberIdDelete**](MembersApi.md#registersRegisterIdMembersMemberIdDelete) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
-[**registersRegisterIdMembersMemberIdPost**](MembersApi.md#registersRegisterIdMembersMemberIdPost) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
-[**registersRegisterIdMembersPost**](MembersApi.md#registersRegisterIdMembersPost) | **POST** /registers/{registerId}/members/ | Add member to this register
-[**registersRegisterIdMembersPut**](MembersApi.md#registersRegisterIdMembersPut) | **PUT** /registers/{registerId}/members/ | Update members of this register
+[**addMembersToRegister**](MembersApi.md#addMembersToRegister) | **POST** /registers/{registerId}/members/ | Add member to this register
+[**deleteMemberOfRegister**](MembersApi.md#deleteMemberOfRegister) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
+[**findMembersByRegister**](MembersApi.md#findMembersByRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
+[**getMemberByRegister**](MembersApi.md#getMemberByRegister) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
+[**updateMembersOfRegister**](MembersApi.md#updateMembersOfRegister) | **PUT** /registers/{registerId}/members/ | Update members of this register
 
 
-<a name="getMembersOfRegister"></a>
-# **getMembersOfRegister**
-> [Member] getMembersOfRegister(registerId)
-
-Get all members of this register
-
-Returns all members of the given register
-
-### Example
-```javascript
-var GoCardApi = require('go_card_api');
-var defaultClient = GoCardApi.ApiClient.default;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new GoCardApi.MembersApi();
-
-var registerId = 789; // Number | ID of the register
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-};
-apiInstance.getMembersOfRegister(registerId, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **registerId** | **Number**| ID of the register | 
-
-### Return type
-
-[**[Member]**](Member.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="registersRegisterIdMembersMemberIdDelete"></a>
-# **registersRegisterIdMembersMemberIdDelete**
-> registersRegisterIdMembersMemberIdDelete(registerId, memberId)
-
-Remove a member from this register
-
-Removes a member from a register
-
-### Example
-```javascript
-var GoCardApi = require('go_card_api');
-var defaultClient = GoCardApi.ApiClient.default;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new GoCardApi.MembersApi();
-
-var registerId = 789; // Number | ID of the register
-
-var memberId = 789; // Number | ID of the member which should be removed
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.registersRegisterIdMembersMemberIdDelete(registerId, memberId, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **registerId** | **Number**| ID of the register | 
- **memberId** | **Number**| ID of the member which should be removed | 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="registersRegisterIdMembersMemberIdPost"></a>
-# **registersRegisterIdMembersMemberIdPost**
-> registersRegisterIdMembersMemberIdPost(registerId, member)
-
-Update member of a register
-
-Updates a specific member of a register
-
-### Example
-```javascript
-var GoCardApi = require('go_card_api');
-var defaultClient = GoCardApi.ApiClient.default;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new GoCardApi.MembersApi();
-
-var registerId = 789; // Number | ID of the register
-
-var member = new GoCardApi.Member(); // Member | Member to be updated
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.registersRegisterIdMembersMemberIdPost(registerId, member, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **registerId** | **Number**| ID of the register | 
- **member** | [**Member**](Member.md)| Member to be updated | 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="registersRegisterIdMembersPost"></a>
-# **registersRegisterIdMembersPost**
-> registersRegisterIdMembersPost(registerId, member)
+<a name="addMembersToRegister"></a>
+# **addMembersToRegister**
+> addMembersToRegister(registerId, member)
 
 Add member to this register
 
@@ -209,7 +44,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.registersRegisterIdMembersPost(registerId, member, callback);
+apiInstance.addMembersToRegister(registerId, member, callback);
 ```
 
 ### Parameters
@@ -232,9 +67,174 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="registersRegisterIdMembersPut"></a>
-# **registersRegisterIdMembersPut**
-> registersRegisterIdMembersPut(registerId, members)
+<a name="deleteMemberOfRegister"></a>
+# **deleteMemberOfRegister**
+> deleteMemberOfRegister(registerId, memberId)
+
+Remove a member from this register
+
+Removes a member from a register
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+var defaultClient = GoCardApi.ApiClient.default;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new GoCardApi.MembersApi();
+
+var registerId = 789; // Number | ID of the register
+
+var memberId = 789; // Number | ID of the member which should be removed
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.deleteMemberOfRegister(registerId, memberId, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerId** | **Number**| ID of the register | 
+ **memberId** | **Number**| ID of the member which should be removed | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="findMembersByRegister"></a>
+# **findMembersByRegister**
+> [Member] findMembersByRegister(registerId)
+
+Get all members of this register
+
+Returns all members of the given register
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+var defaultClient = GoCardApi.ApiClient.default;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new GoCardApi.MembersApi();
+
+var registerId = 789; // Number | ID of the register
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.findMembersByRegister(registerId, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerId** | **Number**| ID of the register | 
+
+### Return type
+
+[**[Member]**](Member.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getMemberByRegister"></a>
+# **getMemberByRegister**
+> getMemberByRegister(registerId, member)
+
+Update member of a register
+
+Updates a specific member of a register
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+var defaultClient = GoCardApi.ApiClient.default;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new GoCardApi.MembersApi();
+
+var registerId = 789; // Number | ID of the register
+
+var member = new GoCardApi.Member(); // Member | Member to be updated
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.getMemberByRegister(registerId, member, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerId** | **Number**| ID of the register | 
+ **member** | [**Member**](Member.md)| Member to be updated | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateMembersOfRegister"></a>
+# **updateMembersOfRegister**
+> updateMembersOfRegister(registerId, members)
 
 Update members of this register
 
@@ -265,7 +265,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.registersRegisterIdMembersPut(registerId, members, callback);
+apiInstance.updateMembersOfRegister(registerId, members, callback);
 ```
 
 ### Parameters

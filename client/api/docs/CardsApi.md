@@ -4,17 +4,73 @@ All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cardsCardIdDelete**](CardsApi.md#cardsCardIdDelete) | **DELETE** /cards/{cardId} | Delete a card
-[**cardsCardIdPost**](CardsApi.md#cardsCardIdPost) | **POST** /cards/{cardId} | Update a card
-[**cardsPut**](CardsApi.md#cardsPut) | **PUT** /cards/ | Update multiple cards
+[**addCardsToRegister**](CardsApi.md#addCardsToRegister) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+[**deleteCard**](CardsApi.md#deleteCard) | **DELETE** /cards/{cardId} | Delete a card
+[**findByCardsByRegister**](CardsApi.md#findByCardsByRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
 [**getCard**](CardsApi.md#getCard) | **GET** /cards/{cardId} | Get a card by ID
-[**getCardsOfRegister**](CardsApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
-[**registersRegisterIdCardsPost**](CardsApi.md#registersRegisterIdCardsPost) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+[**updateCard**](CardsApi.md#updateCard) | **POST** /cards/{cardId} | Update a card
+[**updateCards**](CardsApi.md#updateCards) | **PUT** /cards/ | Update multiple cards
 
 
-<a name="cardsCardIdDelete"></a>
-# **cardsCardIdDelete**
-> cardsCardIdDelete(cardId)
+<a name="addCardsToRegister"></a>
+# **addCardsToRegister**
+> [Card] addCardsToRegister(registerId, cards)
+
+Create multiple new cards
+
+Creates multiple new cards and adds them to a register
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+var defaultClient = GoCardApi.ApiClient.default;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new GoCardApi.CardsApi();
+
+var registerId = 789; // Number | ID register the cards should be added to
+
+var cards = [new GoCardApi.Card()]; // [Card] | Cards to be created
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.addCardsToRegister(registerId, cards, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerId** | **Number**| ID register the cards should be added to | 
+ **cards** | [**[Card]**](Card.md)| Cards to be created | 
+
+### Return type
+
+[**[Card]**](Card.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="deleteCard"></a>
+# **deleteCard**
+> deleteCard(cardId)
 
 Delete a card
 
@@ -43,7 +99,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.cardsCardIdDelete(cardId, callback);
+apiInstance.deleteCard(cardId, callback);
 ```
 
 ### Parameters
@@ -65,66 +121,13 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="cardsCardIdPost"></a>
-# **cardsCardIdPost**
-> cardsCardIdPost(cardId)
+<a name="findByCardsByRegister"></a>
+# **findByCardsByRegister**
+> [Card] findByCardsByRegister(registerId)
 
-Update a card
+Get all cards of this register
 
-Updates a card by given id
-
-### Example
-```javascript
-var GoCardApi = require('go_card_api');
-var defaultClient = GoCardApi.ApiClient.default;
-
-// Configure API key authorization: api_key
-var api_key = defaultClient.authentications['api_key'];
-api_key.apiKey = 'YOUR API KEY';
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//api_key.apiKeyPrefix = 'Token';
-
-var apiInstance = new GoCardApi.CardsApi();
-
-var cardId = 789; // Number | ID of the card which needs to be updated
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.cardsCardIdPost(cardId, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **cardId** | **Number**| ID of the card which needs to be updated | 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="cardsPut"></a>
-# **cardsPut**
-> cardsPut(cards)
-
-Update multiple cards
-
-Updates multiple cards
+Returns all cards of the given register
 
 ### Example
 ```javascript
@@ -139,28 +142,28 @@ api_key.apiKey = 'YOUR API KEY';
 
 var apiInstance = new GoCardApi.CardsApi();
 
-var cards = [new GoCardApi.Card()]; // [Card] | Cards to be updated
+var registerId = 789; // Number | ID of register which cards to get
 
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.cardsPut(cards, callback);
+apiInstance.findByCardsByRegister(registerId, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cards** | [**[Card]**](Card.md)| Cards to be updated | 
+ **registerId** | **Number**| ID of register which cards to get | 
 
 ### Return type
 
-null (empty response body)
+[**[Card]**](Card.md)
 
 ### Authorization
 
@@ -224,13 +227,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getCardsOfRegister"></a>
-# **getCardsOfRegister**
-> [Card] getCardsOfRegister(registerId)
+<a name="updateCard"></a>
+# **updateCard**
+> updateCard(cardId)
 
-Get all cards of this register
+Update a card
 
-Returns all cards of the given register
+Updates a card by given id
 
 ### Example
 ```javascript
@@ -245,28 +248,28 @@ api_key.apiKey = 'YOUR API KEY';
 
 var apiInstance = new GoCardApi.CardsApi();
 
-var registerId = 789; // Number | ID of register which cards to get
+var cardId = 789; // Number | ID of the card which needs to be updated
 
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 };
-apiInstance.getCardsOfRegister(registerId, callback);
+apiInstance.updateCard(cardId, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **registerId** | **Number**| ID of register which cards to get | 
+ **cardId** | **Number**| ID of the card which needs to be updated | 
 
 ### Return type
 
-[**[Card]**](Card.md)
+null (empty response body)
 
 ### Authorization
 
@@ -277,13 +280,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="registersRegisterIdCardsPost"></a>
-# **registersRegisterIdCardsPost**
-> [Card] registersRegisterIdCardsPost(registerId, cards)
+<a name="updateCards"></a>
+# **updateCards**
+> updateCards(cards)
 
-Create multiple new cards
+Update multiple cards
 
-Creates multiple new cards and adds them to a register
+Updates multiple cards
 
 ### Example
 ```javascript
@@ -298,31 +301,28 @@ api_key.apiKey = 'YOUR API KEY';
 
 var apiInstance = new GoCardApi.CardsApi();
 
-var registerId = 789; // Number | ID register the cards should be added to
-
-var cards = [new GoCardApi.Card()]; // [Card] | Cards to be created
+var cards = [new GoCardApi.Card()]; // [Card] | Cards to be updated
 
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 };
-apiInstance.registersRegisterIdCardsPost(registerId, cards, callback);
+apiInstance.updateCards(cards, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **registerId** | **Number**| ID register the cards should be added to | 
- **cards** | [**[Card]**](Card.md)| Cards to be created | 
+ **cards** | [**[Card]**](Card.md)| Cards to be updated | 
 
 ### Return type
 
-[**[Card]**](Card.md)
+null (empty response body)
 
 ### Authorization
 

@@ -4,69 +4,20 @@ All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**changePassword**](UsersApi.md#changePassword) | **PUT** /users/password | Change user&#39;s password
-[**createUser**](UsersApi.md#createUser) | **POST** /users | Create a user
+[**addUser**](UsersApi.md#addUser) | **POST** /users | Create a user
 [**deleteUser**](UsersApi.md#deleteUser) | **DELETE** /users/{userId} | Delete user
 [**getUserById**](UsersApi.md#getUserById) | **GET** /users/{userId} | Get user by user id
 [**loginUser**](UsersApi.md#loginUser) | **GET** /users/login | Log in the user
 [**logoutUser**](UsersApi.md#logoutUser) | **GET** /users/logout | Log out the current user
-[**requestResetToken**](UsersApi.md#requestResetToken) | **POST** /users/password | Request a password reset token
-[**requestResetTokenForUser**](UsersApi.md#requestResetTokenForUser) | **GET** /users/password | Request a password reset token for the current user
+[**requestPasswordReset**](UsersApi.md#requestPasswordReset) | **POST** /users/password | Request a password reset token
+[**requestPasswordResetToken**](UsersApi.md#requestPasswordResetToken) | **GET** /users/password | Request a password reset token for the current user
+[**updatePassword**](UsersApi.md#updatePassword) | **PUT** /users/password | Change user&#39;s password
 [**updateUser**](UsersApi.md#updateUser) | **PUT** /users/{userId} | Update user
 
 
-<a name="changePassword"></a>
-# **changePassword**
-> changePassword(resetToken, body)
-
-Change user&#39;s password
-
-Updates the user&#39;s password  You need to get a resetToken first 
-
-### Example
-```javascript
-var GoCardApi = require('go_card_api');
-
-var apiInstance = new GoCardApi.UsersApi();
-
-var resetToken = 789; // Number | Token to change a password
-
-var body = new GoCardApi.Body(); // Body | Password data
-
-
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-};
-apiInstance.changePassword(resetToken, body, callback);
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **resetToken** | **Number**| Token to change a password | 
- **body** | [**Body**](Body.md)| Password data | 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="createUser"></a>
-# **createUser**
-> User createUser(body)
+<a name="addUser"></a>
+# **addUser**
+> User addUser(body)
 
 Create a user
 
@@ -88,7 +39,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.createUser(body, callback);
+apiInstance.addUser(body, callback);
 ```
 
 ### Parameters
@@ -312,9 +263,9 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="requestResetToken"></a>
-# **requestResetToken**
-> requestResetToken(username)
+<a name="requestPasswordReset"></a>
+# **requestPasswordReset**
+> requestPasswordReset(username)
 
 Request a password reset token
 
@@ -336,7 +287,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.requestResetToken(username, callback);
+apiInstance.requestPasswordReset(username, callback);
 ```
 
 ### Parameters
@@ -358,9 +309,9 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="requestResetTokenForUser"></a>
-# **requestResetTokenForUser**
-> &#39;String&#39; requestResetTokenForUser()
+<a name="requestPasswordResetToken"></a>
+# **requestPasswordResetToken**
+> &#39;String&#39; requestPasswordResetToken()
 
 Request a password reset token for the current user
 
@@ -386,7 +337,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.requestResetTokenForUser(callback);
+apiInstance.requestPasswordResetToken(callback);
 ```
 
 ### Parameters
@@ -399,6 +350,55 @@ This endpoint does not need any parameter.
 ### Authorization
 
 [api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updatePassword"></a>
+# **updatePassword**
+> updatePassword(resetToken, body)
+
+Change user&#39;s password
+
+Updates the user&#39;s password  You need to get a resetToken first 
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+
+var apiInstance = new GoCardApi.UsersApi();
+
+var resetToken = 789; // Number | Token to change a password
+
+var body = new GoCardApi.Body(); // Body | Password data
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.updatePassword(resetToken, body, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resetToken** | **Number**| Token to change a password | 
+ **body** | [**Body**](Body.md)| Password data | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 
