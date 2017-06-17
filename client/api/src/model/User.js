@@ -41,14 +41,16 @@
    * Constructs a new <code>User</code>.
    * @alias module:model/User
    * @class
+   * @param id {Number} 
+   * @param displayName {String} 
+   * @param email {String} 
    */
-  var exports = function() {
+  var exports = function(id, displayName, email) {
     var _this = this;
 
-
-
-
-
+    _this['id'] = id;
+    _this['displayName'] = displayName;
+    _this['email'] = email;
 
   };
 
@@ -69,9 +71,6 @@
       if (data.hasOwnProperty('displayName')) {
         obj['displayName'] = ApiClient.convertToType(data['displayName'], 'String');
       }
-      if (data.hasOwnProperty('password')) {
-        obj['password'] = ApiClient.convertToType(data['password'], 'String');
-      }
       if (data.hasOwnProperty('email')) {
         obj['email'] = ApiClient.convertToType(data['email'], 'String');
       }
@@ -90,10 +89,6 @@
    * @member {String} displayName
    */
   exports.prototype['displayName'] = undefined;
-  /**
-   * @member {String} password
-   */
-  exports.prototype['password'] = undefined;
   /**
    * @member {String} email
    */

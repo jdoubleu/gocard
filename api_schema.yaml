@@ -11,6 +11,10 @@ tags:
     description: Single cards containing questions
   - name: users
     description: Operations about user
+  - name: passwords
+    description: Security Operations for changing a user's password
+  - name: members
+    description: Members are users having access to registers
 schemes:
   - http
 securityDefinitions:
@@ -21,6 +25,27 @@ securityDefinitions:
     in: query
 paths:
   /registers:
+    get:
+      tags:
+        - registers
+      summary: Gets all registers
+      description: This will list all registers a user is allowed to see
+      operationId: findAllRegisters
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Register'
+        '404':
+          description: No registers found
+      security:
+        - api_key: []
     post:
       tags:
         - registers
@@ -55,7 +80,7 @@ paths:
         - registers
       summary: Find register by ID
       description: Returns a single register
-      operationId: getRegisterById
+      operationId: findByRegisterById
       produces:
         - application/json
       parameters:
@@ -81,7 +106,7 @@ paths:
         - registers
       summary: Update a register by ID
       description: ''
-      operationId: updateRegisterWithForm
+      operationId: updateRegister
       consumes:
         - application/json
       produces:
@@ -96,7 +121,7 @@ paths:
         - name: name
           in: body
           description: Updated name of the pet
-          required: false
+          required: true
           schema:
             $ref: '#/definitions/Register'
       responses:
@@ -143,7 +168,7 @@ paths:
         - cards
       summary: Get all cards of this register
       description: Returns all cards of the given register
-      operationId: getCardsOfRegister
+      operationId: findByCardsByRegister
       produces:
         - application/json
       parameters:
@@ -174,6 +199,7 @@ paths:
         - cards
       summary: Create multiple new cards
       description: Creates multiple new cards and adds them to a register
+      operationId: addCardsToRegister
       produces:
         - application/json
       parameters:
@@ -209,12 +235,186 @@ paths:
           description: Register not found
       security:
         - api_key: []
+  '/registers/{registerId}/members/':
+    get:
+      tags:
+        - registers
+        - members
+      summary: Get all members of this register
+      description: Returns all members of the given register
+      operationId: findMembersByRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid ID supplied
+        '403':
+          description: Not allowed to view members of this register
+        '404':
+          description: Register with this ID not found
+      security:
+        - api_key: []
+    put:
+      tags:
+        - registers
+        - members
+      summary: Update members of this register
+      description: Updates all members with their permission of this register
+      operationId: updateMembersOfRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: members
+          in: body
+          description: Members to be updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated members
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update members of this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+    post:
+      tags:
+        - registers
+        - members
+      summary: Add member to this register
+      description: Adds a new member to this register
+      operationId: addMembersToRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: member
+          in: body
+          description: Member to be added
+          schema:
+            $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully added member
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to add member to this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/members/{memberId}':
+    post:
+      tags:
+        - registers
+        - members
+      summary: Update member of a register
+      description: Updates a specific member of a register
+      operationId: getMemberByRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: member
+          in: body
+          description: Member to be updated
+          schema:
+            $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated member
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to update member
+        '404':
+          description: Register or member not found
+      security:
+        - api_key: []
+    delete:
+      tags:
+        - registers
+        - members
+      summary: Remove a member from this register
+      description: Removes a member from a register
+      operationId: deleteMemberOfRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: memberId
+          in: path
+          description: ID of the member which should be removed
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successfully removed member
+        '400':
+          description: Invalid ID supplied
+        '403':
+          description: Not allowed to remove this member
+        '404':
+          description: Register or member not found
+      security:
+        - api_key: []
   /cards/:
     put:
       tags:
         - cards
       summary: Update multiple cards
       description: Updates multiple cards
+      operationId: updateCards
       produces:
         - application/json
       parameters:
@@ -273,6 +473,7 @@ paths:
         - cards
       summary: Update a card
       description: Updates a card by given id
+      operationId: updateCard
       produces:
         - application/json
       parameters:
@@ -300,6 +501,7 @@ paths:
         - cards
       summary: Delete a card
       description: Deletes a card and removes it from the register
+      operationId: deleteCard
       produces:
         - application/json
       parameters:
@@ -326,7 +528,7 @@ paths:
         - users
       summary: Create a user
       description: Create a new user
-      operationId: createUser
+      operationId: addUser
       produces:
         - application/json
       parameters:
@@ -349,8 +551,10 @@ paths:
     get:
       tags:
         - users
-      summary: Logs in the user
-      description: ''
+      summary: Log in the user
+      description: >-
+        If the credentials are valid it will return an access token for api
+        calls
       operationId: loginUser
       produces:
         - application/json
@@ -386,8 +590,8 @@ paths:
     get:
       tags:
         - users
-      summary: Logs out the current user
-      description: ''
+      summary: Log out the current user
+      description: Invalidates the access token
       operationId: logoutUser
       produces:
         - application/json
@@ -429,7 +633,7 @@ paths:
     put:
       tags:
         - users
-      summary: Updated user
+      summary: Update user
       description: Updates the user data
       operationId: updateUser
       produces:
@@ -489,6 +693,92 @@ paths:
           description: User not found
       security:
         - api_key: []
+  /users/password:
+    get:
+      tags:
+        - users
+        - passwords
+      summary: Request a password reset token for the current user
+      description: Generates a password reset token for the current logged in user
+      operationId: requestPasswordResetToken
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: string
+            description: Password resetToken which can be used to reset the user's password
+      security:
+        - api_key: []
+    post:
+      tags:
+        - users
+        - passwords
+      summary: Request a password reset token
+      description: |
+        Generates a link with a temporary reset token which will be send to
+        the users email address.
+      operationId: requestPasswordReset
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: query
+          description: Username of user
+          required: true
+          type: string
+      responses:
+        default:
+          description: Successful request
+    put:
+      tags:
+        - users
+        - passwords
+      summary: Change user's password
+      description: |
+        Updates the user's password
+
+        You need to get a resetToken first
+      operationId: updatePassword
+      produces:
+        - application/json
+      parameters:
+        - name: resetToken
+          in: query
+          description: Token to change a password
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Password data
+          required: true
+          schema:
+            type: object
+            properties:
+              oldPassword:
+                type: string
+                description: The old password
+              newPassword:
+                type: string
+                description: New password
+              newPasswordRepeated:
+                type: string
+                description: Repeat the new password
+            required:
+              - oldPassword
+              - newPassword
+              - newPasswordRepeated
+      responses:
+        '200':
+          description: Successfully changed password
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Invalid reset token
 definitions:
   Register:
     type: object
@@ -507,6 +797,11 @@ definitions:
       description:
         type: string
         description: register description
+    required:
+      - id
+      - owner
+      - title
+      - description
   Card:
     type: object
     properties:
@@ -538,6 +833,12 @@ definitions:
       content:
         type: object
         description: Anser content of this card depending of the type
+    required:
+      - id
+      - author
+      - question
+      - type
+      - content
   User:
     type: object
     properties:
@@ -546,9 +847,6 @@ definitions:
         format: int64
       displayName:
         type: string
-      password:
-        type: string
-        format: password
       email:
         type: string
       status:
@@ -556,6 +854,30 @@ definitions:
         enum:
           - local
           - extern
+        readOnly: true
+    required:
+      - id
+      - email
+      - displayName
+  Member:
+    type: object
+    properties:
+      userid:
+        type: integer
+        format: int64
+        description: ID of the user
+      scope:
+        type: array
+        items:
+          type: string
+          enum:
+            - read
+            - write
+            - update
+        uniqueItems: true
+    required:
+      - userid
+      - scope
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid
@@ -572,6 +894,7 @@ definitions:
             message:
               type: string
               description: Error message belonging this field
+        readOnly: true
   MultipleValidationResponse:
     type: object
     description: Same as ValidationResponse but for multiple elements
@@ -586,3 +909,4 @@ definitions:
               description: ID of referenced element
             errors:
               $ref: '#/definitions/ValidationResponse'
+        readOnly: true

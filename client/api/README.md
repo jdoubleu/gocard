@@ -62,17 +62,19 @@ api_key.apiKey = "YOUR API KEY"
 
 var api = new GoCardApi.CardsApi()
 
-var cardId = 789; // {Number} ID of the card which should be deleted
+var registerId = 789; // {Number} ID register the cards should be added to
+
+var cards = [new GoCardApi.Card()]; // {[Card]} Cards to be created
 
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.cardsCardIdDelete(cardId, callback);
+api.addCardsToRegister(registerId, cards, callback);
 
 ```
 
@@ -82,29 +84,48 @@ All URIs are relative to *http://localhost/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*GoCardApi.CardsApi* | [**cardsCardIdDelete**](docs/CardsApi.md#cardsCardIdDelete) | **DELETE** /cards/{cardId} | Delete a card
-*GoCardApi.CardsApi* | [**cardsCardIdPost**](docs/CardsApi.md#cardsCardIdPost) | **POST** /cards/{cardId} | Update a card
-*GoCardApi.CardsApi* | [**cardsPut**](docs/CardsApi.md#cardsPut) | **PUT** /cards/ | Update multiple cards
+*GoCardApi.CardsApi* | [**addCardsToRegister**](docs/CardsApi.md#addCardsToRegister) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+*GoCardApi.CardsApi* | [**deleteCard**](docs/CardsApi.md#deleteCard) | **DELETE** /cards/{cardId} | Delete a card
+*GoCardApi.CardsApi* | [**findByCardsByRegister**](docs/CardsApi.md#findByCardsByRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
 *GoCardApi.CardsApi* | [**getCard**](docs/CardsApi.md#getCard) | **GET** /cards/{cardId} | Get a card by ID
-*GoCardApi.CardsApi* | [**getCardsOfRegister**](docs/CardsApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
-*GoCardApi.CardsApi* | [**registersRegisterIdCardsPost**](docs/CardsApi.md#registersRegisterIdCardsPost) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+*GoCardApi.CardsApi* | [**updateCard**](docs/CardsApi.md#updateCard) | **POST** /cards/{cardId} | Update a card
+*GoCardApi.CardsApi* | [**updateCards**](docs/CardsApi.md#updateCards) | **PUT** /cards/ | Update multiple cards
+*GoCardApi.MembersApi* | [**addMembersToRegister**](docs/MembersApi.md#addMembersToRegister) | **POST** /registers/{registerId}/members/ | Add member to this register
+*GoCardApi.MembersApi* | [**deleteMemberOfRegister**](docs/MembersApi.md#deleteMemberOfRegister) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
+*GoCardApi.MembersApi* | [**findMembersByRegister**](docs/MembersApi.md#findMembersByRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
+*GoCardApi.MembersApi* | [**getMemberByRegister**](docs/MembersApi.md#getMemberByRegister) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
+*GoCardApi.MembersApi* | [**updateMembersOfRegister**](docs/MembersApi.md#updateMembersOfRegister) | **PUT** /registers/{registerId}/members/ | Update members of this register
+*GoCardApi.PasswordsApi* | [**requestPasswordReset**](docs/PasswordsApi.md#requestPasswordReset) | **POST** /users/password | Request a password reset token
+*GoCardApi.PasswordsApi* | [**requestPasswordResetToken**](docs/PasswordsApi.md#requestPasswordResetToken) | **GET** /users/password | Request a password reset token for the current user
+*GoCardApi.PasswordsApi* | [**updatePassword**](docs/PasswordsApi.md#updatePassword) | **PUT** /users/password | Change user&#39;s password
+*GoCardApi.RegistersApi* | [**addCardsToRegister**](docs/RegistersApi.md#addCardsToRegister) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
+*GoCardApi.RegistersApi* | [**addMembersToRegister**](docs/RegistersApi.md#addMembersToRegister) | **POST** /registers/{registerId}/members/ | Add member to this register
 *GoCardApi.RegistersApi* | [**addRegister**](docs/RegistersApi.md#addRegister) | **POST** /registers | Add a new register
+*GoCardApi.RegistersApi* | [**deleteMemberOfRegister**](docs/RegistersApi.md#deleteMemberOfRegister) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
 *GoCardApi.RegistersApi* | [**deleteRegister**](docs/RegistersApi.md#deleteRegister) | **DELETE** /registers/{registerId} | Delete a register
-*GoCardApi.RegistersApi* | [**getCardsOfRegister**](docs/RegistersApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
-*GoCardApi.RegistersApi* | [**getRegisterById**](docs/RegistersApi.md#getRegisterById) | **GET** /registers/{registerId} | Find register by ID
-*GoCardApi.RegistersApi* | [**registersRegisterIdCardsPost**](docs/RegistersApi.md#registersRegisterIdCardsPost) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
-*GoCardApi.RegistersApi* | [**updateRegisterWithForm**](docs/RegistersApi.md#updateRegisterWithForm) | **POST** /registers/{registerId} | Update a register by ID
-*GoCardApi.UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users | Create a user
+*GoCardApi.RegistersApi* | [**findAllRegisters**](docs/RegistersApi.md#findAllRegisters) | **GET** /registers | Gets all registers
+*GoCardApi.RegistersApi* | [**findByCardsByRegister**](docs/RegistersApi.md#findByCardsByRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
+*GoCardApi.RegistersApi* | [**findByRegisterById**](docs/RegistersApi.md#findByRegisterById) | **GET** /registers/{registerId} | Find register by ID
+*GoCardApi.RegistersApi* | [**findMembersByRegister**](docs/RegistersApi.md#findMembersByRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
+*GoCardApi.RegistersApi* | [**getMemberByRegister**](docs/RegistersApi.md#getMemberByRegister) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
+*GoCardApi.RegistersApi* | [**updateMembersOfRegister**](docs/RegistersApi.md#updateMembersOfRegister) | **PUT** /registers/{registerId}/members/ | Update members of this register
+*GoCardApi.RegistersApi* | [**updateRegister**](docs/RegistersApi.md#updateRegister) | **POST** /registers/{registerId} | Update a register by ID
+*GoCardApi.UsersApi* | [**addUser**](docs/UsersApi.md#addUser) | **POST** /users | Create a user
 *GoCardApi.UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /users/{userId} | Delete user
 *GoCardApi.UsersApi* | [**getUserById**](docs/UsersApi.md#getUserById) | **GET** /users/{userId} | Get user by user id
-*GoCardApi.UsersApi* | [**loginUser**](docs/UsersApi.md#loginUser) | **GET** /users/login | Logs in the user
-*GoCardApi.UsersApi* | [**logoutUser**](docs/UsersApi.md#logoutUser) | **GET** /users/logout | Logs out the current user
-*GoCardApi.UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PUT** /users/{userId} | Updated user
+*GoCardApi.UsersApi* | [**loginUser**](docs/UsersApi.md#loginUser) | **GET** /users/login | Log in the user
+*GoCardApi.UsersApi* | [**logoutUser**](docs/UsersApi.md#logoutUser) | **GET** /users/logout | Log out the current user
+*GoCardApi.UsersApi* | [**requestPasswordReset**](docs/UsersApi.md#requestPasswordReset) | **POST** /users/password | Request a password reset token
+*GoCardApi.UsersApi* | [**requestPasswordResetToken**](docs/UsersApi.md#requestPasswordResetToken) | **GET** /users/password | Request a password reset token for the current user
+*GoCardApi.UsersApi* | [**updatePassword**](docs/UsersApi.md#updatePassword) | **PUT** /users/password | Change user&#39;s password
+*GoCardApi.UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PUT** /users/{userId} | Update user
 
 
 ## Documentation for Models
 
+ - [GoCardApi.Body](docs/Body.md)
  - [GoCardApi.Card](docs/Card.md)
+ - [GoCardApi.Member](docs/Member.md)
  - [GoCardApi.MultipleValidationResponse](docs/MultipleValidationResponse.md)
  - [GoCardApi.MultipleValidationResponseItems](docs/MultipleValidationResponseItems.md)
  - [GoCardApi.Register](docs/Register.md)

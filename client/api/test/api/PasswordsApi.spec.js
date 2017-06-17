@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new GoCardApi.UsersApi();
+    instance = new GoCardApi.PasswordsApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,57 +47,7 @@
       object[property] = value;
   }
 
-  describe('UsersApi', function() {
-    describe('addUser', function() {
-      it('should call addUser successfully', function(done) {
-        //uncomment below and update the code to test addUser
-        //instance.addUser(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('deleteUser', function() {
-      it('should call deleteUser successfully', function(done) {
-        //uncomment below and update the code to test deleteUser
-        //instance.deleteUser(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('getUserById', function() {
-      it('should call getUserById successfully', function(done) {
-        //uncomment below and update the code to test getUserById
-        //instance.getUserById(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('loginUser', function() {
-      it('should call loginUser successfully', function(done) {
-        //uncomment below and update the code to test loginUser
-        //instance.loginUser(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('logoutUser', function() {
-      it('should call logoutUser successfully', function(done) {
-        //uncomment below and update the code to test logoutUser
-        //instance.logoutUser(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
+  describe('PasswordsApi', function() {
     describe('requestPasswordReset', function() {
       it('should call requestPasswordReset successfully', function(done) {
         //uncomment below and update the code to test requestPasswordReset
@@ -122,16 +72,6 @@
       it('should call updatePassword successfully', function(done) {
         //uncomment below and update the code to test updatePassword
         //instance.updatePassword(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('updateUser', function() {
-      it('should call updateUser successfully', function(done) {
-        //uncomment below and update the code to test updateUser
-        //instance.updateUser(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

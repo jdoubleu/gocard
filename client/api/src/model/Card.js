@@ -41,17 +41,22 @@
    * Constructs a new <code>Card</code>.
    * @alias module:model/Card
    * @class
+   * @param id {Number} 
+   * @param author {Number} id of user who created this card
+   * @param question {String} 
+   * @param type {module:model/Card.TypeEnum} Which type this card's content is
+   * @param content {Object} Anser content of this card depending of the type
    */
-  var exports = function() {
+  var exports = function(id, author, question, type, content) {
     var _this = this;
 
+    _this['id'] = id;
+    _this['author'] = author;
 
 
-
-
-
-
-
+    _this['question'] = question;
+    _this['type'] = type;
+    _this['content'] = content;
   };
 
   /**

@@ -41,15 +41,19 @@
    * Constructs a new <code>Register</code>.
    * @alias module:model/Register
    * @class
+   * @param id {Number} 
+   * @param owner {Number} 
+   * @param title {String} 
+   * @param description {String} register description
    */
-  var exports = function() {
+  var exports = function(id, owner, title, description) {
     var _this = this;
 
+    _this['id'] = id;
+    _this['owner'] = owner;
 
-
-
-
-
+    _this['title'] = title;
+    _this['description'] = description;
   };
 
   /**

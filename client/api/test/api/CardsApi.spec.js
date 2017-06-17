@@ -48,30 +48,30 @@
   }
 
   describe('CardsApi', function() {
-    describe('cardsCardIdDelete', function() {
-      it('should call cardsCardIdDelete successfully', function(done) {
-        //uncomment below and update the code to test cardsCardIdDelete
-        //instance.cardsCardIdDelete(function(error) {
+    describe('addCardsToRegister', function() {
+      it('should call addCardsToRegister successfully', function(done) {
+        //uncomment below and update the code to test addCardsToRegister
+        //instance.addCardsToRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('cardsCardIdPost', function() {
-      it('should call cardsCardIdPost successfully', function(done) {
-        //uncomment below and update the code to test cardsCardIdPost
-        //instance.cardsCardIdPost(function(error) {
+    describe('deleteCard', function() {
+      it('should call deleteCard successfully', function(done) {
+        //uncomment below and update the code to test deleteCard
+        //instance.deleteCard(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('cardsPut', function() {
-      it('should call cardsPut successfully', function(done) {
-        //uncomment below and update the code to test cardsPut
-        //instance.cardsPut(function(error) {
+    describe('findByCardsByRegister', function() {
+      it('should call findByCardsByRegister successfully', function(done) {
+        //uncomment below and update the code to test findByCardsByRegister
+        //instance.findByCardsByRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -88,20 +88,20 @@
         done();
       });
     });
-    describe('getCardsOfRegister', function() {
-      it('should call getCardsOfRegister successfully', function(done) {
-        //uncomment below and update the code to test getCardsOfRegister
-        //instance.getCardsOfRegister(function(error) {
+    describe('updateCard', function() {
+      it('should call updateCard successfully', function(done) {
+        //uncomment below and update the code to test updateCard
+        //instance.updateCard(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
         done();
       });
     });
-    describe('registersRegisterIdCardsPost', function() {
-      it('should call registersRegisterIdCardsPost successfully', function(done) {
-        //uncomment below and update the code to test registersRegisterIdCardsPost
-        //instance.registersRegisterIdCardsPost(function(error) {
+    describe('updateCards', function() {
+      it('should call updateCards successfully', function(done) {
+        //uncomment below and update the code to test updateCards
+        //instance.updateCards(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

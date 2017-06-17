@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new GoCardApi.User();
+    instance = new GoCardApi.Member();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,34 +47,22 @@
       object[property] = value;
   }
 
-  describe('User', function() {
-    it('should create an instance of User', function() {
-      // uncomment below and update the code to test User
-      //var instane = new GoCardApi.User();
-      //expect(instance).to.be.a(GoCardApi.User);
+  describe('Member', function() {
+    it('should create an instance of Member', function() {
+      // uncomment below and update the code to test Member
+      //var instane = new GoCardApi.Member();
+      //expect(instance).to.be.a(GoCardApi.Member);
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instane = new GoCardApi.User();
+    it('should have the property userid (base name: "userid")', function() {
+      // uncomment below and update the code to test the property userid
+      //var instane = new GoCardApi.Member();
       //expect(instance).to.be();
     });
 
-    it('should have the property displayName (base name: "displayName")', function() {
-      // uncomment below and update the code to test the property displayName
-      //var instane = new GoCardApi.User();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property email (base name: "email")', function() {
-      // uncomment below and update the code to test the property email
-      //var instane = new GoCardApi.User();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property status (base name: "status")', function() {
-      // uncomment below and update the code to test the property status
-      //var instane = new GoCardApi.User();
+    it('should have the property scope (base name: "scope")', function() {
+      // uncomment below and update the code to test the property scope
+      //var instane = new GoCardApi.Member();
       //expect(instance).to.be();
     });
 

@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new GoCardApi.RegistersApi();
+    instance = new GoCardApi.MembersApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,17 +47,7 @@
       object[property] = value;
   }
 
-  describe('RegistersApi', function() {
-    describe('addCardsToRegister', function() {
-      it('should call addCardsToRegister successfully', function(done) {
-        //uncomment below and update the code to test addCardsToRegister
-        //instance.addCardsToRegister(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
+  describe('MembersApi', function() {
     describe('addMembersToRegister', function() {
       it('should call addMembersToRegister successfully', function(done) {
         //uncomment below and update the code to test addMembersToRegister
@@ -68,60 +58,10 @@
         done();
       });
     });
-    describe('addRegister', function() {
-      it('should call addRegister successfully', function(done) {
-        //uncomment below and update the code to test addRegister
-        //instance.addRegister(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
     describe('deleteMemberOfRegister', function() {
       it('should call deleteMemberOfRegister successfully', function(done) {
         //uncomment below and update the code to test deleteMemberOfRegister
         //instance.deleteMemberOfRegister(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('deleteRegister', function() {
-      it('should call deleteRegister successfully', function(done) {
-        //uncomment below and update the code to test deleteRegister
-        //instance.deleteRegister(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('findAllRegisters', function() {
-      it('should call findAllRegisters successfully', function(done) {
-        //uncomment below and update the code to test findAllRegisters
-        //instance.findAllRegisters(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('findByCardsByRegister', function() {
-      it('should call findByCardsByRegister successfully', function(done) {
-        //uncomment below and update the code to test findByCardsByRegister
-        //instance.findByCardsByRegister(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('findByRegisterById', function() {
-      it('should call findByRegisterById successfully', function(done) {
-        //uncomment below and update the code to test findByRegisterById
-        //instance.findByRegisterById(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});
@@ -152,16 +92,6 @@
       it('should call updateMembersOfRegister successfully', function(done) {
         //uncomment below and update the code to test updateMembersOfRegister
         //instance.updateMembersOfRegister(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
-    });
-    describe('updateRegister', function() {
-      it('should call updateRegister successfully', function(done) {
-        //uncomment below and update the code to test updateRegister
-        //instance.updateRegister(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

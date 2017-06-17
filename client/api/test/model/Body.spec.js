@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new GoCardApi.User();
+    instance = new GoCardApi.Body();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,34 +47,28 @@
       object[property] = value;
   }
 
-  describe('User', function() {
-    it('should create an instance of User', function() {
-      // uncomment below and update the code to test User
-      //var instane = new GoCardApi.User();
-      //expect(instance).to.be.a(GoCardApi.User);
+  describe('Body', function() {
+    it('should create an instance of Body', function() {
+      // uncomment below and update the code to test Body
+      //var instane = new GoCardApi.Body();
+      //expect(instance).to.be.a(GoCardApi.Body);
     });
 
-    it('should have the property id (base name: "id")', function() {
-      // uncomment below and update the code to test the property id
-      //var instane = new GoCardApi.User();
+    it('should have the property oldPassword (base name: "oldPassword")', function() {
+      // uncomment below and update the code to test the property oldPassword
+      //var instane = new GoCardApi.Body();
       //expect(instance).to.be();
     });
 
-    it('should have the property displayName (base name: "displayName")', function() {
-      // uncomment below and update the code to test the property displayName
-      //var instane = new GoCardApi.User();
+    it('should have the property newPassword (base name: "newPassword")', function() {
+      // uncomment below and update the code to test the property newPassword
+      //var instane = new GoCardApi.Body();
       //expect(instance).to.be();
     });
 
-    it('should have the property email (base name: "email")', function() {
-      // uncomment below and update the code to test the property email
-      //var instane = new GoCardApi.User();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property status (base name: "status")', function() {
-      // uncomment below and update the code to test the property status
-      //var instane = new GoCardApi.User();
+    it('should have the property newPasswordRepeated (base name: "newPasswordRepeated")', function() {
+      // uncomment below and update the code to test the property newPasswordRepeated
+      //var instane = new GoCardApi.Body();
       //expect(instance).to.be();
     });
 
