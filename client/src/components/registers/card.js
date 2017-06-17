@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import Icon from '../shared/user/icon'
-import {Button, Card as StrapCard, CardTitle, CardText, Col} from 'reactstrap';
+import PropTypes from "prop-types";
+import Icon from "../shared/user/icon";
+import {Button, Card as StrapCard, CardText, CardTitle, Col} from "reactstrap";
 
 class Card extends React.Component {
     render() {

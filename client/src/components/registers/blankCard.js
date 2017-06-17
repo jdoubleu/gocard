@@ -1,6 +1,6 @@
 import React from "react";
-import {Card, CardTitle, CardText, Col} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Card, CardText, CardTitle, Col} from "reactstrap";
+import {Link} from "react-router-dom";
 
 class BlankCard extends React.Component {
     render() {

@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 
 class Breadcrumb extends React.Component {
-    render(){
+    render() {
         return (
-          <div className="Breadcrumb">
-              Breadcrumb
-          </div>
+            <div className="Breadcrumb">
+                Breadcrumb
+            </div>
         );
     }
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import {Link} from "react-router-dom";
+import {Container} from "reactstrap";
 class Footer extends React.Component {
 
-    render(){
+    render() {
         return (
             <div className="text-center">
                 <Container>

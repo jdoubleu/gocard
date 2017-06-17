@@ -1,9 +1,9 @@
 import React from "react";
-class License extends React.Component{
+class License extends React.Component {
     render() {
         return (
             <div>
-              License
+                License
             </div>
         );
     }

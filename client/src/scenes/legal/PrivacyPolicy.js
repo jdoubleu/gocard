@@ -1,9 +1,9 @@
 import React from "react";
-class PrivacyPolicy extends React.Component{
+class PrivacyPolicy extends React.Component {
     render() {
         return (
             <div>
-              PrivacyPolicy
+                PrivacyPolicy
             </div>
         );
     }

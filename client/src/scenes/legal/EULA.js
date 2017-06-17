@@ -1,9 +1,9 @@
 import React from "react";
-class EULA extends React.Component{
+class EULA extends React.Component {
     render() {
         return (
             <div>
-              EULA
+                EULA
             </div>
         );
     }
