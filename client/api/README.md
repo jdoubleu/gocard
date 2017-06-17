@@ -93,6 +93,9 @@ Class | Method | HTTP request | Description
 *GoCardApi.MembersApi* | [**registersRegisterIdMembersMemberIdPost**](docs/MembersApi.md#registersRegisterIdMembersMemberIdPost) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
 *GoCardApi.MembersApi* | [**registersRegisterIdMembersPost**](docs/MembersApi.md#registersRegisterIdMembersPost) | **POST** /registers/{registerId}/members/ | Add member to this register
 *GoCardApi.MembersApi* | [**registersRegisterIdMembersPut**](docs/MembersApi.md#registersRegisterIdMembersPut) | **PUT** /registers/{registerId}/members/ | Update members of this register
+*GoCardApi.PasswordsApi* | [**changePassword**](docs/PasswordsApi.md#changePassword) | **PUT** /users/password | Change user&#39;s password
+*GoCardApi.PasswordsApi* | [**requestResetToken**](docs/PasswordsApi.md#requestResetToken) | **POST** /users/password | Request a password reset token
+*GoCardApi.PasswordsApi* | [**requestResetTokenForUser**](docs/PasswordsApi.md#requestResetTokenForUser) | **GET** /users/password | Request a password reset token for the current user
 *GoCardApi.RegistersApi* | [**addRegister**](docs/RegistersApi.md#addRegister) | **POST** /registers | Add a new register
 *GoCardApi.RegistersApi* | [**deleteRegister**](docs/RegistersApi.md#deleteRegister) | **DELETE** /registers/{registerId} | Delete a register
 *GoCardApi.RegistersApi* | [**getCardsOfRegister**](docs/RegistersApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
@@ -104,16 +107,20 @@ Class | Method | HTTP request | Description
 *GoCardApi.RegistersApi* | [**registersRegisterIdMembersPost**](docs/RegistersApi.md#registersRegisterIdMembersPost) | **POST** /registers/{registerId}/members/ | Add member to this register
 *GoCardApi.RegistersApi* | [**registersRegisterIdMembersPut**](docs/RegistersApi.md#registersRegisterIdMembersPut) | **PUT** /registers/{registerId}/members/ | Update members of this register
 *GoCardApi.RegistersApi* | [**updateRegisterWithForm**](docs/RegistersApi.md#updateRegisterWithForm) | **POST** /registers/{registerId} | Update a register by ID
+*GoCardApi.UsersApi* | [**changePassword**](docs/UsersApi.md#changePassword) | **PUT** /users/password | Change user&#39;s password
 *GoCardApi.UsersApi* | [**createUser**](docs/UsersApi.md#createUser) | **POST** /users | Create a user
 *GoCardApi.UsersApi* | [**deleteUser**](docs/UsersApi.md#deleteUser) | **DELETE** /users/{userId} | Delete user
 *GoCardApi.UsersApi* | [**getUserById**](docs/UsersApi.md#getUserById) | **GET** /users/{userId} | Get user by user id
-*GoCardApi.UsersApi* | [**loginUser**](docs/UsersApi.md#loginUser) | **GET** /users/login | Logs in the user
-*GoCardApi.UsersApi* | [**logoutUser**](docs/UsersApi.md#logoutUser) | **GET** /users/logout | Logs out the current user
-*GoCardApi.UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PUT** /users/{userId} | Updated user
+*GoCardApi.UsersApi* | [**loginUser**](docs/UsersApi.md#loginUser) | **GET** /users/login | Log in the user
+*GoCardApi.UsersApi* | [**logoutUser**](docs/UsersApi.md#logoutUser) | **GET** /users/logout | Log out the current user
+*GoCardApi.UsersApi* | [**requestResetToken**](docs/UsersApi.md#requestResetToken) | **POST** /users/password | Request a password reset token
+*GoCardApi.UsersApi* | [**requestResetTokenForUser**](docs/UsersApi.md#requestResetTokenForUser) | **GET** /users/password | Request a password reset token for the current user
+*GoCardApi.UsersApi* | [**updateUser**](docs/UsersApi.md#updateUser) | **PUT** /users/{userId} | Update user
 
 
 ## Documentation for Models
 
+ - [GoCardApi.Body](docs/Body.md)
  - [GoCardApi.Card](docs/Card.md)
  - [GoCardApi.Member](docs/Member.md)
  - [GoCardApi.MultipleValidationResponse](docs/MultipleValidationResponse.md)

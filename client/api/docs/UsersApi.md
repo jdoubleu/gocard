@@ -4,13 +4,65 @@ All URIs are relative to *http://localhost/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**changePassword**](UsersApi.md#changePassword) | **PUT** /users/password | Change user&#39;s password
 [**createUser**](UsersApi.md#createUser) | **POST** /users | Create a user
 [**deleteUser**](UsersApi.md#deleteUser) | **DELETE** /users/{userId} | Delete user
 [**getUserById**](UsersApi.md#getUserById) | **GET** /users/{userId} | Get user by user id
-[**loginUser**](UsersApi.md#loginUser) | **GET** /users/login | Logs in the user
-[**logoutUser**](UsersApi.md#logoutUser) | **GET** /users/logout | Logs out the current user
-[**updateUser**](UsersApi.md#updateUser) | **PUT** /users/{userId} | Updated user
+[**loginUser**](UsersApi.md#loginUser) | **GET** /users/login | Log in the user
+[**logoutUser**](UsersApi.md#logoutUser) | **GET** /users/logout | Log out the current user
+[**requestResetToken**](UsersApi.md#requestResetToken) | **POST** /users/password | Request a password reset token
+[**requestResetTokenForUser**](UsersApi.md#requestResetTokenForUser) | **GET** /users/password | Request a password reset token for the current user
+[**updateUser**](UsersApi.md#updateUser) | **PUT** /users/{userId} | Update user
 
+
+<a name="changePassword"></a>
+# **changePassword**
+> changePassword(resetToken, body)
+
+Change user&#39;s password
+
+Updates the user&#39;s password  You need to get a resetToken first 
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+
+var apiInstance = new GoCardApi.UsersApi();
+
+var resetToken = 789; // Number | Token to change a password
+
+var body = new GoCardApi.Body(); // Body | Password data
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.changePassword(resetToken, body, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **resetToken** | **Number**| Token to change a password | 
+ **body** | [**Body**](Body.md)| Password data | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 <a name="createUser"></a>
 # **createUser**
@@ -168,9 +220,9 @@ Name | Type | Description  | Notes
 # **loginUser**
 > &#39;String&#39; loginUser(username, password)
 
-Logs in the user
+Log in the user
 
-
+If the credentials are valid it will return an access token for api calls
 
 ### Example
 ```javascript
@@ -217,9 +269,9 @@ No authorization required
 # **logoutUser**
 > logoutUser()
 
-Logs out the current user
+Log out the current user
 
-
+Invalidates the access token
 
 ### Example
 ```javascript
@@ -260,11 +312,104 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="requestResetToken"></a>
+# **requestResetToken**
+> requestResetToken(username)
+
+Request a password reset token
+
+Generates a link with a temporary reset token which will be send to the users email address. 
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+
+var apiInstance = new GoCardApi.UsersApi();
+
+var username = "username_example"; // String | Username of user
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+apiInstance.requestResetToken(username, callback);
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **String**| Username of user | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="requestResetTokenForUser"></a>
+# **requestResetTokenForUser**
+> &#39;String&#39; requestResetTokenForUser()
+
+Request a password reset token for the current user
+
+Generates a password reset token for the current logged in user
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+var defaultClient = GoCardApi.ApiClient.default;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new GoCardApi.UsersApi();
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.requestResetTokenForUser(callback);
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**&#39;String&#39;**
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="updateUser"></a>
 # **updateUser**
 > updateUser(userId, body)
 
-Updated user
+Update user
 
 Updates the user data
 

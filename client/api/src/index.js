@@ -14,12 +14,12 @@
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Card', 'model/Member', 'model/MultipleValidationResponse', 'model/MultipleValidationResponseItems', 'model/Register', 'model/User', 'model/ValidationResponse', 'model/ValidationResponseErrors', 'api/CardsApi', 'api/MembersApi', 'api/RegistersApi', 'api/UsersApi'], factory);
+    define(['ApiClient', 'model/Body', 'model/Card', 'model/Member', 'model/MultipleValidationResponse', 'model/MultipleValidationResponseItems', 'model/Register', 'model/User', 'model/ValidationResponse', 'model/ValidationResponseErrors', 'api/CardsApi', 'api/MembersApi', 'api/PasswordsApi', 'api/RegistersApi', 'api/UsersApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Card'), require('./model/Member'), require('./model/MultipleValidationResponse'), require('./model/MultipleValidationResponseItems'), require('./model/Register'), require('./model/User'), require('./model/ValidationResponse'), require('./model/ValidationResponseErrors'), require('./api/CardsApi'), require('./api/MembersApi'), require('./api/RegistersApi'), require('./api/UsersApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Body'), require('./model/Card'), require('./model/Member'), require('./model/MultipleValidationResponse'), require('./model/MultipleValidationResponseItems'), require('./model/Register'), require('./model/User'), require('./model/ValidationResponse'), require('./model/ValidationResponseErrors'), require('./api/CardsApi'), require('./api/MembersApi'), require('./api/PasswordsApi'), require('./api/RegistersApi'), require('./api/UsersApi'));
   }
-}(function(ApiClient, Card, Member, MultipleValidationResponse, MultipleValidationResponseItems, Register, User, ValidationResponse, ValidationResponseErrors, CardsApi, MembersApi, RegistersApi, UsersApi) {
+}(function(ApiClient, Body, Card, Member, MultipleValidationResponse, MultipleValidationResponseItems, Register, User, ValidationResponse, ValidationResponseErrors, CardsApi, MembersApi, PasswordsApi, RegistersApi, UsersApi) {
   'use strict';
 
   /**
@@ -59,6 +59,11 @@
      * @property {module:ApiClient}
      */
     ApiClient: ApiClient,
+    /**
+     * The Body model constructor.
+     * @property {module:model/Body}
+     */
+    Body: Body,
     /**
      * The Card model constructor.
      * @property {module:model/Card}
@@ -109,6 +114,11 @@
      * @property {module:api/MembersApi}
      */
     MembersApi: MembersApi,
+    /**
+     * The PasswordsApi service constructor.
+     * @property {module:api/PasswordsApi}
+     */
+    PasswordsApi: PasswordsApi,
     /**
      * The RegistersApi service constructor.
      * @property {module:api/RegistersApi}

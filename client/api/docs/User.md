@@ -5,7 +5,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Number** |  | [optional] 
 **displayName** | **String** |  | [optional] 
-**password** | **String** |  | [optional] 
 **email** | **String** |  | [optional] 
 **status** | **String** |  | [optional] 
 
