@@ -63,7 +63,7 @@ class LocalAccountAuthenticationController extends AbstractAuthenticationControl
      */
     protected function errorAction()
     {
-        return null;
+        return '';
     }
 
 

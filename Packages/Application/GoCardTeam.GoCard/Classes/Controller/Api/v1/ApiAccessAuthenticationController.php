@@ -54,6 +54,6 @@ class ApiAccessAuthenticationController extends AbstractAuthenticationController
      */
     protected function errorAction()
     {
-        return null;
+        return '';
     }
 }
