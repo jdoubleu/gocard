@@ -20,7 +20,7 @@ class AccountFactory extends DefaultAccountFactory
     /**
      * Provider used for AccessTokens
      */
-    const AccessTokenProviderName = 'AccessTokenProvider';
+    const AccessTokenProviderName = 'AccessTokenAuthenticationProvider';
 
     /**
      * Default timeout TimeInterval for AccessTokens
