@@ -46,9 +46,9 @@ class Header extends React.Component {
                     <NavbarBrand href="/dashboard">GoCard</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
+                            <UserIcon name={this.state.username}/>
                             <NavDropdown isOpen={this.state.dropdownOpen} toggle={this.toggleProfileDropdown}>
                                 <DropdownToggle nav caret>
-                                    <UserIcon name={this.state.username}/>
                                     <span>{this.state.username}</span>
                                 </DropdownToggle>
                                 <DropdownMenu right>

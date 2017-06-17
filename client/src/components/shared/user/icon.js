@@ -15,15 +15,12 @@ class Icon extends React.Component {
 
     render() {
         return (
-            <span className="user-icon">
-              <svg height={this.props.diameter} width={this.props.diameter}>
-                  <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2}
-                          fill="gray"/>
-                  <text fontSize={this.props.diameter / 2.5} x={this.props.diameter / 2} y={this.props.diameter / 2}
-                        textAnchor="middle" alignmentBaseline="central"
-                        stroke="black">{this.getInitials(this.props)}</text>
-              </svg>
-            </span>
+            <svg height={this.props.diameter} width={this.props.diameter}>
+                <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2}
+                        fill="gray"/>
+                <text fontSize={this.props.diameter / 2.5} x={this.props.diameter / 2} y={this.props.diameter / 2}
+                      textAnchor="middle" alignmentBaseline="central" fill="white">{this.getInitials(this.props)}</text>
+            </svg>
         );
     }
 }
