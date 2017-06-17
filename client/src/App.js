@@ -12,6 +12,7 @@ import PrivacyPolicy from './scenes/legal/PrivacyPolicy';
 import License from './scenes/legal/License';
 import NotFound from './scenes/errors/NotFound';
 import { Switch, Route } from 'react-router-dom';
+import NewRegister from './scenes/register/New';
 
 class App extends Component {
   render() {
@@ -23,6 +24,8 @@ class App extends Component {
 
             <Route path='/dashboard' component={Dashboard}/>
             <Route path='/profile' component={Profile}/>
+            <Route path="/register/new" component={NewRegister}/>
+
 
             {/* Footer links */}
             <Route path='/help' component={Help}/>
