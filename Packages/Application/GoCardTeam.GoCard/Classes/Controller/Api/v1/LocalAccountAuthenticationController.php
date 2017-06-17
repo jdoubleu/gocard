@@ -48,4 +48,17 @@ class LocalAccountAuthenticationController extends AbstractAuthenticationControl
         $response = $this->controllerContext->getResponse();
         $response->setStatus(400, 'Invalid email/password supplied');
     }
+
+    /**
+     * Overwrite default error method to not return any output.
+     * The error is handled via status code in onAuthenticationFailure method
+     *
+     * @return string
+     */
+    protected function errorAction()
+    {
+        return null;
+    }
+
+
 }
