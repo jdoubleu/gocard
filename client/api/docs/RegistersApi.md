@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**getCardsOfRegister**](RegistersApi.md#getCardsOfRegister) | **GET** /registers/{registerId}/cards/ | Get all cards of this register
 [**getMembersOfRegister**](RegistersApi.md#getMembersOfRegister) | **GET** /registers/{registerId}/members/ | Get all members of this register
 [**getRegisterById**](RegistersApi.md#getRegisterById) | **GET** /registers/{registerId} | Find register by ID
+[**getRegisters**](RegistersApi.md#getRegisters) | **GET** /registers | Gets all registers
 [**registersRegisterIdCardsPost**](RegistersApi.md#registersRegisterIdCardsPost) | **POST** /registers/{registerId}/cards/ | Create multiple new cards
 [**registersRegisterIdMembersMemberIdDelete**](RegistersApi.md#registersRegisterIdMembersMemberIdDelete) | **DELETE** /registers/{registerId}/members/{memberId} | Remove a member from this register
 [**registersRegisterIdMembersMemberIdPost**](RegistersApi.md#registersRegisterIdMembersMemberIdPost) | **POST** /registers/{registerId}/members/{memberId} | Update member of a register
@@ -280,6 +281,53 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getRegisters"></a>
+# **getRegisters**
+> [Register] getRegisters()
+
+Gets all registers
+
+This will list all registers a user is allowed to see
+
+### Example
+```javascript
+var GoCardApi = require('go_card_api');
+var defaultClient = GoCardApi.ApiClient.default;
+
+// Configure API key authorization: api_key
+var api_key = defaultClient.authentications['api_key'];
+api_key.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//api_key.apiKeyPrefix = 'Token';
+
+var apiInstance = new GoCardApi.RegistersApi();
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+apiInstance.getRegisters(callback);
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[Register]**](Register.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="registersRegisterIdCardsPost"></a>

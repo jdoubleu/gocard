@@ -274,6 +274,45 @@
     }
 
     /**
+     * Callback function to receive the result of the getRegisters operation.
+     * @callback module:api/RegistersApi~getRegistersCallback
+     * @param {String} error Error message, if any.
+     * @param {Array.<module:model/Register>} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Gets all registers
+     * This will list all registers a user is allowed to see
+     * @param {module:api/RegistersApi~getRegistersCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link Array.<module:model/Register>}
+     */
+    this.getRegisters = function(callback) {
+      var postBody = null;
+
+
+      var pathParams = {
+      };
+      var queryParams = {
+      };
+      var headerParams = {
+      };
+      var formParams = {
+      };
+
+      var authNames = ['api_key'];
+      var contentTypes = ['application/json'];
+      var accepts = ['application/json'];
+      var returnType = [Register];
+
+      return this.apiClient.callApi(
+        '/registers', 'GET',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the registersRegisterIdCardsPost operation.
      * @callback module:api/RegistersApi~registersRegisterIdCardsPostCallback
      * @param {String} error Error message, if any.

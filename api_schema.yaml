@@ -25,6 +25,27 @@ securityDefinitions:
     in: query
 paths:
   /registers:
+    get:
+      tags:
+        - registers
+      summary: Gets all registers
+      description: This will list all registers a user is allowed to see
+      operationId: getRegisters
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Register'
+        '404':
+          description: No registers found
+      security:
+        - api_key: []
     post:
       tags:
         - registers
