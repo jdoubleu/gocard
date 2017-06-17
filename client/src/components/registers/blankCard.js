@@ -1,17 +1,18 @@
 import React from "react";
-import { Card, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import {Card, CardTitle, CardText, Col} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
-class BlankCard extends React.Component{
+class BlankCard extends React.Component {
     render() {
         return (
-          <Col md="4">
-              <Card className="text-center">
+            <Col xl="4" md="6" xs="12">
                 <Link to="/register/new">
-                  <p className="display-1">+</p>
-                  <p>Erstellen</p>
+                    <Card block className="text-center mb-2">
+                        <CardText className="display-1">+</CardText>
+                        <CardTitle>Erstellen</CardTitle>
+                    </Card>
+                    <hr/>
                 </Link>
-              </Card>
             </Col>
         );
     }
