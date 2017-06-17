@@ -7,7 +7,7 @@ Neos:
             provider: 'PersistedUsernamePasswordProvider'
             token: '\GoCardTeam\GoCard\Security\Authentication\Token\Api\v1\EmailPassword'
             requestPatterns:
-              'GoCardTeam.GoCard:ApiAccess':
+              'GoCardTeam.GoCard:ApiAccessRequest':
                 pattern: 'ControllerObjectName'
                 patternOptions:
                   'controllerObjectNamePattern': '\GoCardTeam\GoCard\Controller\Api\v1\LocalAccountAuthenticationController'
@@ -15,3 +15,8 @@ Neos:
             provider: '\GoCardTeam\GoCard\Security\Authentication\Provider\Api\v1\AccessTokenProvider'
             providerOptions:
               localAccountProviderName: 'PersistedUsernamePasswordProvider'
+            requestPatterns:
+              'GoCardTeam.GoCard:ApiAccess':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  'controllerObjectNamePattern': '\GoCardTeam\GoCard\Controller\Api\v1\Endpoint\.*'
