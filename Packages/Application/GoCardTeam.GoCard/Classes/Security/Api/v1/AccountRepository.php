@@ -4,6 +4,7 @@ namespace GoCardTeam\GoCard\Security\Api\v1;
 
 use Neos\Flow\Security\Account;
 use \Neos\Flow\Security\AccountRepository as DefaultAccountRepository;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Class AccountRepository

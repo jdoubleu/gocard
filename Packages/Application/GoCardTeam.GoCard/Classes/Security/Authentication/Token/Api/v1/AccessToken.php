@@ -6,6 +6,7 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Token\AbstractToken;
 use Neos\Flow\Security\Authentication\Token\SessionlessTokenInterface;
 use Neos\Utility\ObjectAccess;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Class AccessToken

@@ -10,6 +10,7 @@ use Neos\Flow\Security\Authentication\TokenInterface;
 use Neos\Flow\Security\Context;
 use Neos\Flow\Security\Cryptography\HashService;
 use Neos\Flow\Security\Exception\UnsupportedAuthenticationTokenException;
+use Neos\Flow\Annotations as Flow;
 
 class AccessTokenProvider extends AbstractProvider
 {

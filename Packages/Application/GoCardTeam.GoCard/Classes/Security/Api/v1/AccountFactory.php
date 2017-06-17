@@ -29,7 +29,7 @@ class AccountFactory extends DefaultAccountFactory
 
     /**
      * @var AccountRepository
-     * @Inject
+     * @Flow\Inject
      */
     protected $accountRepository;
 

@@ -15,7 +15,7 @@ class LocalAccountAuthenticationController extends AbstractAuthenticationControl
 
     /**
      * @var AccountFactory
-     * @Inject
+     * @Flow\Inject
      */
     protected $accountFactory;
 
