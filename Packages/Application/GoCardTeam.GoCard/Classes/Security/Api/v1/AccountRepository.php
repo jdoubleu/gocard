@@ -38,4 +38,24 @@ class AccountRepository extends DefaultAccountRepository
             )
         )->execute()->getFirst();
     }
+
+    /**
+     * Returns all expired AccessToken accounts for given authentication provider
+     *
+     * @param string $authenticationProviderName The authentication provider name
+     * @return Account[]|null AccessToken account or null if there aren't any expired
+     */
+    public function findExpiredAccessTokenByAuthenticationProviderName($authenticationProviderName)
+    {
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->logicalAnd(
+                $query->equals('authenticationProviderName', $authenticationProviderName),
+                $query->logicalOr(
+                    $query->equals('expirationDate', null),
+                    $query->lessThanOrEqual('expirationDate', new \DateTime())
+                )
+            )
+        )->execute()->toArray();
+    }
 }

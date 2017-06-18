@@ -89,6 +89,20 @@ class Apiv1AccountManageCommandController extends CommandController
     }
 
     /**
+     * Deletes all expired access tokens from the database
+     */
+    public function clearExpiredAccessTokensCommand()
+    {
+        /** @var QueryResultInterface $accounts */
+        $accounts = $this->accountRepository->findExpiredAccessTokenByAuthenticationProviderName(self::AccessTokenAuthenticationprovider);
+        $this->outputLine("Found %d expired access tokens. Removing them...", [count($accounts)]);
+        foreach ($accounts as $account) {
+            $this->accountRepository->remove($account);
+        }
+        $this->outputLine("Successfully removed expired access tokens.");
+    }
+
+    /**
      * Renders a list of accounts
      *
      * @param Account[] $accounts list of accounts
