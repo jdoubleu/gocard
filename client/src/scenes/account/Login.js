@@ -33,6 +33,7 @@ class Login extends React.Component {
                             <FormGroup>
                                 <Input type="password" name="password" id="password" placeholder="Passwort"/>
                             </FormGroup>
+                            <Link to="/reset">Passwort vergessen?</Link>
                             <Button outline block color="primary">Anmelden mit GoCard-Account</Button>
                         </Form>
                     </Card>

@@ -14,6 +14,8 @@ import NotFound from "./scenes/errors/NotFound";
 import {Route, Switch} from "react-router-dom";
 import NewRegister from "./scenes/register/New";
 import RegisterDetail from "./scenes/register/Detail";
+import Register from "./scenes/account/Register";
+import Reset from "./scenes/account/Reset";
 import {Container} from "reactstrap";
 
 class App extends Component {
@@ -24,6 +26,8 @@ class App extends Component {
                 <Container>
                     <Switch>
                         <Route path='/login' component={Login}/>
+                        <Route path='/registration' component={Register}/>
+                        <Route path='/reset' component={Reset}/>
                         <Route path='/dashboard' component={Dashboard}/>
                         <Route path='/profile' component={Profile}/>
 
