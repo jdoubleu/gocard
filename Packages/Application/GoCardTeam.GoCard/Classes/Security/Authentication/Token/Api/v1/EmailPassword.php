@@ -26,7 +26,7 @@ class EmailPassword extends UsernamePassword
         $email = $actionRequest->getArgument('email');
         $password = $actionRequest->getArgument('password');
 
-        if (!empty($username) && !empty($password)) {
+        if (!empty($email) && !empty($password)) {
             $this->credentials['username'] = $email;
             $this->credentials['password'] = $password;
             $this->setAuthenticationStatus(self::AUTHENTICATION_NEEDED);
