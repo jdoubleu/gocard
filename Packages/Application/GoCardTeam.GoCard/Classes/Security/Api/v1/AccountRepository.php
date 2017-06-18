@@ -29,7 +29,7 @@ class AccountRepository extends DefaultAccountRepository
         $query = $this->createQuery();
         return $query->matching(
             $query->logicalAnd(
-                $query->equals('credentialsSource', $account->getCredentialsSource()),
+                $query->equals('credentialsSource', $account->getAccountIdentifier()),
                 $query->equals('authenticationProviderName', $authenticationProviderName),
                 $query->logicalOr(
                     $query->equals('expirationDate', null),
