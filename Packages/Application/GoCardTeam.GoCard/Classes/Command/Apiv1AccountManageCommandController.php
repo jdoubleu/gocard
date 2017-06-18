@@ -9,6 +9,7 @@ use GoCardTeam\GoCard\Security\Api\v1\AccountFactory;
 use GoCardTeam\GoCard\Security\Api\v1\AccountRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
+use Neos\Flow\Persistence\QueryResultInterface;
 use Neos\Flow\Security\Account;
 
 /**
@@ -72,8 +73,9 @@ class Apiv1AccountManageCommandController extends CommandController
      */
     public function listAccountsCommand()
     {
+        /** @var QueryResultInterface $accounts */
         $accounts = $this->accountRepository->findByAuthenticationProviderName(self::LocalAccountAuthenticationProvider);
-        $this->generateAccountListOutput($accounts);
+        $this->generateAccountListOutput($accounts->toArray());
     }
 
     /**
@@ -81,8 +83,9 @@ class Apiv1AccountManageCommandController extends CommandController
      */
     public function listAccessTokensCommand()
     {
+        /** @var QueryResultInterface $accounts */
         $accounts = $this->accountRepository->findByAuthenticationProviderName(self::AccessTokenAuthenticationprovider);
-        $this->generateAccountListOutput($accounts);
+        $this->generateAccountListOutput($accounts->toArray());
     }
 
     /**
