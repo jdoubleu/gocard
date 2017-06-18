@@ -25,7 +25,7 @@ class AccountFactory extends DefaultAccountFactory
     /**
      * Default timeout TimeInterval for AccessTokens
      */
-    const AccessTokenExpiration = "P1H";
+    const AccessTokenExpiration = "PT1H";
 
     /**
      * @var AccountRepository
