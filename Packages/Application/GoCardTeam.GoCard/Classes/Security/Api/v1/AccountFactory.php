@@ -34,7 +34,9 @@ class AccountFactory extends DefaultAccountFactory
     protected $accountRepository;
 
     /**
-     * Creates an access_token for the given account
+     * Creates an access_token for the given account if there isn't any existing access token linked to the account, yet.
+     * The newly created access_token will be persisted.
+     *
      * @param Account $account
      * @return Account
      */
@@ -49,6 +51,9 @@ class AccountFactory extends DefaultAccountFactory
             $accessToken->setCredentialsSource($account->getAccountIdentifier());
             $accessToken->setAuthenticationProviderName(self::AccessTokenProviderName);
             $accessToken->setExpirationDate((new \DateTime())->add(new \DateInterval(self::AccessTokenExpiration)));
+
+            // Persist access token
+            $this->accountRepository->add($accessToken);
         }
 
         return $accessToken;
