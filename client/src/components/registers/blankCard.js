@@ -11,7 +11,6 @@ class BlankCard extends React.Component {
                         <CardText className="display-1">+</CardText>
                         <CardTitle>Erstellen</CardTitle>
                     </Card>
-                    <hr/>
                 </Link>
             </Col>
         );
