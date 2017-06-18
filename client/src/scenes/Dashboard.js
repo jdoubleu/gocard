@@ -1,6 +1,6 @@
 import React from "react";
 import BlankCard from "../components/registers/blankCard";
-import RegisterCard from "../components/registers/card";
+import RegisterCard from "../components/registers/registerCard";
 import {Row} from "reactstrap";
 
 class Dashboard extends React.Component {

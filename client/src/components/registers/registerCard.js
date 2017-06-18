@@ -4,7 +4,7 @@ import Icon from "../shared/user/icon";
 import {Button, Card as CardStrap, CardText, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
 
-class Card extends React.Component {
+class RegisterCard extends React.Component {
     render() {
         return (
             <Col xl="4" md="6" xs="12">
@@ -34,8 +34,8 @@ class Card extends React.Component {
     }
 }
 
-Card.propTypes = {
+RegisterCard.propTypes = {
     member: PropTypes.array,
 };
 
-export default Card;
+export default RegisterCard;
