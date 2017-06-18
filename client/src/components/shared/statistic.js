@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import chartjs from "chart.js";
 import {Doughnut} from 'react-chartjs-2';
 
 class Statistic extends React.Component {

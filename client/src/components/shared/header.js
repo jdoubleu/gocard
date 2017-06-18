@@ -1,8 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import UserIcon from "../shared/user/icon";
+import Logo from "./logo/logo";
 import {
     Collapse,
+    Container,
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
@@ -40,10 +42,12 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div className="Header">
-                <Navbar color="faded" light toggleable>
-                    <NavbarToggler right onClick={this.toggleNavbar}/>
-                    <NavbarBrand href="/dashboard">GoCard</NavbarBrand>
+            <Container className="header">
+                <Navbar light toggleable className="pb-4">
+                    <NavbarToggler className="border-0" right onClick={this.toggleNavbar}/>
+                    <NavbarBrand href="/dashboard">
+                        <Logo/>
+                    </NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <UserIcon name={this.state.username}/>
@@ -64,7 +68,7 @@ class Header extends React.Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
+            </Container>
         );
     }
 }
