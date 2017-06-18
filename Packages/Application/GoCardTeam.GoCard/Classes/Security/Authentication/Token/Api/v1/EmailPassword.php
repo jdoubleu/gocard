@@ -3,6 +3,7 @@
 namespace GoCardTeam\GoCard\Security\Authentication\Token\Api\v1;
 
 use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Security\Authentication\Token\SessionlessTokenInterface;
 use Neos\Flow\Security\Authentication\Token\UsernamePassword;
 
 /**
@@ -13,7 +14,7 @@ use Neos\Flow\Security\Authentication\Token\UsernamePassword;
  *
  * @package GoCardTeam\GoCard\Security\Authentication\Token\Api\v1
  */
-class EmailPassword extends UsernamePassword
+class EmailPassword extends UsernamePassword implements SessionlessTokenInterface
 {
 
     public function updateCredentials(ActionRequest $actionRequest)
