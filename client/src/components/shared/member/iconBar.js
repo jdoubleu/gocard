@@ -18,7 +18,7 @@ class IconBar extends React.Component {
       if(this.props.member.length > this.props.maxIcons) {
         let rest = this.props.member.length - this.props.maxIcons;
         if(rest > 99)
-          rest == 99
+          rest = 99
         view.push(
           <NumberIcon rest={rest} />
         )
