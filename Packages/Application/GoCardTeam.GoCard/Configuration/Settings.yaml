@@ -14,7 +14,7 @@ Neos:
               'GoCardTeam.GoCard:ApiAccessRequest':
                 pattern: 'ControllerObjectName'
                 patternOptions:
-                  'controllerObjectNamePattern': '\GoCardTeam\GoCard\Controller\Api\v1\LocalAccountAuthenticationController'
+                  'controllerObjectNamePattern': 'GoCardTeam\GoCard\Controller\Api\v1\LocalAccountAuthenticationController'
           'AccessTokenAuthenticationProvider':
             provider: '\GoCardTeam\GoCard\Security\Authentication\Provider\Api\v1\AccessTokenProvider'
             providerOptions:
@@ -23,4 +23,4 @@ Neos:
               'GoCardTeam.GoCard:ApiAccess':
                 pattern: 'ControllerObjectName'
                 patternOptions:
-                  'controllerObjectNamePattern': '\GoCardTeam\GoCard\Controller\Api\v1\Endpoint\.*'
+                  'controllerObjectNamePattern': 'GoCardTeam\GoCard\Controller\Api\v1\Endpoint\.*'
