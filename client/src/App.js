@@ -13,6 +13,7 @@ import License from "./scenes/legal/License";
 import NotFound from "./scenes/errors/NotFound";
 import {Route, Switch} from "react-router-dom";
 import NewRegister from "./scenes/register/New";
+import RegisterDetail from "./scenes/register/Detail";
 import {Container} from "reactstrap";
 
 class App extends Component {
@@ -25,9 +26,12 @@ class App extends Component {
                         <Route path='/login' component={Login}/>
                         <Route path='/dashboard' component={Dashboard}/>
                         <Route path='/profile' component={Profile}/>
-                        <Route path="/register/new" component={NewRegister}/>
 
-                        {/* Footer links */}
+                        {/* Register Routes */}
+                        <Route path="/register/new" component={NewRegister}/>
+                        <Route path="/register/detail" component={RegisterDetail}/>
+
+                        {/* Footer Routes */}
                         <Route path='/help' component={Help}/>
                         <Route path='/imprint' component={Imprint}/>
                         <Route path='/eula' component={EULA}/>
