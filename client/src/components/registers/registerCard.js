@@ -1,21 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Icon from "../shared/user/icon";
-import {Button, Card as CardStrap, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
+import IconBar from '../shared/member/iconBar';
 
 class RegisterCard extends React.Component {
     render() {
         return (
             <Col xl="4" md="6" xs="12">
-                <CardStrap block className="mb-2">
+                <Card block className="mb-2">
                     <CardTitle>{this.props.title}</CardTitle>
 
                     <Row>
                         <Col xs="6">
                             <CardText>
-                                {this.props.members.map((member) => <span className="pr-1"><Icon
-                                    name={member}/></span>)}
+                                <IconBar members={this.props.members} />
                             </CardText>
                         </Col>
                         <Col xs="6">
@@ -26,7 +25,7 @@ class RegisterCard extends React.Component {
                     </Row>
 
                     <Button outline color="primary">Öffnen</Button>
-                </CardStrap>
+                </Card>
 
             </Col>
 
@@ -35,7 +34,7 @@ class RegisterCard extends React.Component {
 }
 
 RegisterCard.propTypes = {
-    member: PropTypes.array,
+    members: PropTypes.array,
 };
 
 export default RegisterCard;

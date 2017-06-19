@@ -46,7 +46,7 @@ class Detail extends Component{
                   <CardText><Statistic /></CardText>
                   <CardTitle>Benutzer des Registers</CardTitle>
                   <CardText>
-                    <Iconbar member={["Lewis", "nicki lauder", "peter maffay", "Udo", "Dimo Bibbers", "Kurt Z Hose", "Kurt Z Hose", "Kurt Z Hose"]}/>
+                    <Iconbar members={["Lewis", "nicki lauder", "peter maffay", "Udo", "Dimo Bibbers", "Kurt Z Hose", "Kurt Z Hose", "Kurt Z Hose"]}/>
                   </CardText>
                 </Card>
               </CardGroup>
