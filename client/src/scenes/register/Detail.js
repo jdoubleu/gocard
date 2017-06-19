@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Button, ButtonGroup, Card, CardGroup, CardTitle, CardText, CardDeck, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Statistic from "../../components/shared/statistic";
-import RegisterCard from '../../components/cards/Card';
+import PreviewCard from '../../components/cards/previewCard';
 import Iconbar from '../../components/shared/member/iconBar';
 
 class Detail extends Component{
@@ -56,16 +56,16 @@ class Detail extends Component{
                 </Col>
               </Row>
               <CardDeck>
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Wir taversiert" />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Lorem ipsum dollor sias sa  amed " />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
-                <RegisterCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Lorem ipsum dollor sias sa  amed " />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
+                <PreviewCard question="Wir taversiert man durch einen Baum?" />
               </CardDeck>
             </div>
 

@@ -1,24 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card as CardStrap, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Button, Card, CardTitle, Col} from "reactstrap";
 
-class Card extends React.Component {
+class PreviewCard extends React.Component {
     render() {
         return (
             <Col xl="4" md="6" xs="12">
-                <CardStrap block className="mb-2">
+                <Card block className="mb-2">
                     <CardTitle>{this.props.question}</CardTitle>
                     <Button outline color="primary">Ansehen</Button>
-                </CardStrap>
-
+                </Card>
             </Col>
 
         );
     }
 }
 
-Card.propTypes = {
+PreviewCard.propTypes = {
     question: PropTypes.string.isRequired,
 };
 
-export default Card;
+export default PreviewCard;
