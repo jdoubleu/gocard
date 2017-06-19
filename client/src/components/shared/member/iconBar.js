@@ -11,12 +11,12 @@ class IconBar extends React.Component {
   }
 
     calculateIcon(){
-      let view = this.props.member.slice(0, this.props.maxIcons).map((member)=>
+      let view = this.props.member.slice(0, this.props.maxIcons-1).map((member)=>
       <span className="pr-1">
         <Icon name={member}/>
       </span>)
       if(this.props.member.length > this.props.maxIcons) {
-        let rest = this.props.member.length - this.props.maxIcons;
+        let rest = this.props.member.length - this.props.maxIcons+1;
         if(rest > 99)
           rest = 99
         view.push(
