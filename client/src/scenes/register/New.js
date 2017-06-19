@@ -1,12 +1,12 @@
 import React from "react";
-import {Form, FormGroup, Input, Label} from "reactstrap";
+import {Form, FormGroup, Input, Label, Card} from "reactstrap";
 import AddUser from "../../components/registers/addUser";
 
 class New extends React.Component {
 
     render() {
         return (
-            <div className="New">
+            <Card block className="New">
                 <Form>
                     <FormGroup>
                         <Label for="title">Titel</Label>
@@ -21,7 +21,7 @@ class New extends React.Component {
                         <AddUser />
                     </FormGroup>
                 </Form>
-            </div>
+            </Card>
         );
     }
 }
