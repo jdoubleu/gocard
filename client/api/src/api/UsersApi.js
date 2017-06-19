@@ -192,17 +192,17 @@
     /**
      * Log in the user
      * If the credentials are valid it will return an access token for api calls
-     * @param {String} username The user name for login
+     * @param {String} email The email address for login
      * @param {String} password The password for login in clear text
      * @param {module:api/UsersApi~loginUserCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link 'String'}
      */
-    this.loginUser = function(username, password, callback) {
+    this.loginUser = function(email, password, callback) {
       var postBody = null;
 
-      // verify the required parameter 'username' is set
-      if (username == undefined || username == null) {
-        throw new Error("Missing the required parameter 'username' when calling loginUser");
+      // verify the required parameter 'email' is set
+      if (email == undefined || email == null) {
+        throw new Error("Missing the required parameter 'email' when calling loginUser");
       }
 
       // verify the required parameter 'password' is set
@@ -214,7 +214,7 @@
       var pathParams = {
       };
       var queryParams = {
-        'username': username,
+        'email': email,
         'password': password
       };
       var headerParams = {
@@ -283,22 +283,22 @@
     /**
      * Request a password reset token
      * Generates a link with a temporary reset token which will be send to the users email address. 
-     * @param {String} username Username of user
+     * @param {String} email Email address of the user
      * @param {module:api/UsersApi~requestPasswordResetCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.requestPasswordReset = function(username, callback) {
+    this.requestPasswordReset = function(email, callback) {
       var postBody = null;
 
-      // verify the required parameter 'username' is set
-      if (username == undefined || username == null) {
-        throw new Error("Missing the required parameter 'username' when calling requestPasswordReset");
+      // verify the required parameter 'email' is set
+      if (email == undefined || email == null) {
+        throw new Error("Missing the required parameter 'email' when calling requestPasswordReset");
       }
 
 
       var pathParams = {
       };
       var queryParams = {
-        'username': username
+        'email': email
       };
       var headerParams = {
       };

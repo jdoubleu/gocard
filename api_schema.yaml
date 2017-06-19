@@ -559,9 +559,9 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: username
+        - name: email
           in: query
-          description: The user name for login
+          description: The email address for login
           required: true
           type: string
         - name: password
@@ -585,7 +585,7 @@ paths:
               format: date-time
               description: date in UTC when token expires
         '400':
-          description: Invalid username/password supplied
+          description: Invalid email/password supplied
   /users/logout:
     get:
       tags:
@@ -723,9 +723,9 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: username
+        - name: email
           in: query
-          description: Username of user
+          description: Email address of the user
           required: true
           type: string
       responses:

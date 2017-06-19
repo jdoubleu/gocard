@@ -12,7 +12,6 @@
   uriPattern: 'api/v1/<APISubroutes>'
   defaults:
     '@package':    'GoCardTeam.GoCard'
-    '@controller': 'Product'
     '@format':     'json'
   subRoutes:
     'APISubroutes':

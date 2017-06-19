@@ -56,22 +56,22 @@
     /**
      * Request a password reset token
      * Generates a link with a temporary reset token which will be send to the users email address. 
-     * @param {String} username Username of user
+     * @param {String} email Email address of the user
      * @param {module:api/PasswordsApi~requestPasswordResetCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    this.requestPasswordReset = function(username, callback) {
+    this.requestPasswordReset = function(email, callback) {
       var postBody = null;
 
-      // verify the required parameter 'username' is set
-      if (username == undefined || username == null) {
-        throw new Error("Missing the required parameter 'username' when calling requestPasswordReset");
+      // verify the required parameter 'email' is set
+      if (email == undefined || email == null) {
+        throw new Error("Missing the required parameter 'email' when calling requestPasswordReset");
       }
 
 
       var pathParams = {
       };
       var queryParams = {
-        'username': username
+        'email': email
       };
       var headerParams = {
       };
