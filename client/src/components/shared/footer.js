@@ -8,15 +8,15 @@ class Footer extends React.Component {
             <div className="text-center mb-3">
                 <Container>
                     <hr />
-                    <Link to="/help">Hilfe</Link>
+                    <Link to="/legal/help">Hilfe</Link>
                     <span> | </span>
-                    <Link to="/eula">EULA</Link>
+                    <Link to="/legal/eula">EULA</Link>
                     <span> | </span>
-                    <Link to="/privacy-policy">Datenschutzerklärung</Link>
+                    <Link to="/legal/privacy-policy">Datenschutzerklärung</Link>
                     <span> | </span>
-                    <Link to="/imprint">Impressum</Link>
+                    <Link to="/legal/imprint">Impressum</Link>
                     <span> | </span>
-                    <Link to="/license">Lizenz</Link>
+                    <Link to="/legal/license">Lizenz</Link>
                 </Container>
             </div>
 

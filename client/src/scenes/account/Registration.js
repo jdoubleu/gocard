@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Card, CardGroup, CardText, CardTitle, Form, FormGroup, Input} from "reactstrap";
 
-class Register extends React.Component {
+class Registration extends React.Component {
     constructor(props){
         super(props);
             this.state = {
@@ -80,4 +80,4 @@ class Register extends React.Component {
         );
     }
 }
-export default Register;
+export default Registration;

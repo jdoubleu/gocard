@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
 import IconBar from '../shared/member/iconBar';
@@ -24,7 +25,7 @@ class PreviewCard extends React.Component {
                         </Col>
                     </Row>
 
-                    <Button outline color="primary">Öffnen</Button>
+                    <Link className="btn btn-outline-primary" to="/register/3">Öffnen</Link>
                 </Card>
 
             </Col>

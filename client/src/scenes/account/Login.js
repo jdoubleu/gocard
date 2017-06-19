@@ -23,7 +23,7 @@ class Login extends React.Component {
                         <CardTitle>GoCard Account</CardTitle>
                         <CardText>
                             Möchtest du einen GoCard Account erstellen? <br/>
-                            <Link to="/register">GoCard Account erstellen</Link>
+                            <Link to="/registration">GoCard Account erstellen</Link>
                         </CardText>
 
                         <Form>
