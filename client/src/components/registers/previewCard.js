@@ -4,7 +4,7 @@ import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
 import IconBar from '../shared/member/iconBar';
 
-class RegisterCard extends React.Component {
+class PreviewCard extends React.Component {
     render() {
         return (
             <Col xl="4" md="6" xs="12">
@@ -33,8 +33,8 @@ class RegisterCard extends React.Component {
     }
 }
 
-RegisterCard.propTypes = {
+PreviewCard.propTypes = {
     members: PropTypes.array,
 };
 
-export default RegisterCard;
+export default PreviewCard;
