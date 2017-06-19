@@ -18,5 +18,7 @@ RUN set -xe \
 
 ### Configure xdebug
 RUN echo "xdebug.remote_enable = 1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-	  && echo "xdebug.remote_connect_back = 1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+	  && echo "xdebug.remote_connect_back = 0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+	  && echo "xdebug.remote_host = debugproxy" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+	  && echo "xdebug.remote_port = 9009" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
 	  && echo "xdebug.max_nesting_level = 500" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
