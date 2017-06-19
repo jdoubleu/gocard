@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import Icon from '../../components/shared/user/icon';
-import BlankCard from '../../components/registers/blankCard';
-//import Card from '../../components/registers/card';
 import { Button, ButtonGroup, Card, CardGroup, CardTitle, CardText, CardDeck, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Statistic from "../../components/shared/statistic";
