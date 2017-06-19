@@ -26,7 +26,7 @@ class App extends Component {
                 <Container>
                     <Switch>
                         <Route path='/login' component={Login}/>
-                        <Route path='/registration' component={Register}/>
+                        <Route path='/register' component={Register}/>
                         <Route path='/reset' component={Reset}/>
                         <Route path='/dashboard' component={Dashboard}/>
                         <Route path='/profile' component={Profile}/>
