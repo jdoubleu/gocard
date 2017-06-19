@@ -15,7 +15,7 @@ fi
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 PROJECT_ROOT=$(dirname "$SCRIPT_DIR")
 SCHEMA_FILE="$PROJECT_ROOT/api_schema.yaml"
-OUTPUT_DIR="$PROJECT_ROOT/client/api/"
+OUTPUT_DIR="$PROJECT_ROOT/client/src/api/"
 CODEGEN_JAR=$(tail -n1 "$CODEGEN_BIN" | awk '{ print $4 }')
 
 echo "Using jar: $CODEGEN_JAR"
