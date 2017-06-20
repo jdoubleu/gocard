@@ -18,15 +18,12 @@ class Profile extends React.Component {
                   {/* maybe zoom the icon */}
                   <UserIcon name='Frank N Stein'/>
                   {this.props.name}
-
-
                   <CardText>
 
                     <hr />
 
                     <Link to="+">Bearbeiten</Link>
                   </CardText>
-                  <CardText>Erfolge: <Statistic /></CardText>
                 </Card>
               </CardGroup>
             </div>
