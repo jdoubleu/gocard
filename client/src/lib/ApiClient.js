@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*jshint -W069 */
 /**
  * GoCard API
