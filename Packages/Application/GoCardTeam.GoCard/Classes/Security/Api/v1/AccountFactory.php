@@ -2,6 +2,7 @@
 
 namespace GoCardTeam\GoCard\Security\Api\v1;
 
+use GoCardTeam\GoCard\Utility\Api\v1\AuthUtility;
 use Neos\Flow\Security\Account;
 use \Neos\Flow\Security\AccountFactory as DefaultAccountFactory;
 use Neos\Flow\Annotations as Flow;
@@ -47,7 +48,7 @@ class AccountFactory extends DefaultAccountFactory
         if($accessToken === null) {
             // Create new access token
             $accessToken = new Account();
-            $accessToken->setAccountIdentifier(uniqid('', true));
+            $accessToken->setAccountIdentifier(AuthUtility::generateAccessToken());
             $accessToken->setCredentialsSource($account->getAccountIdentifier());
             $accessToken->setAuthenticationProviderName(self::AccessTokenProviderName);
             $accessToken->setExpirationDate((new \DateTime())->add(new \DateInterval(self::AccessTokenExpiration)));
