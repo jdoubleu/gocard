@@ -40,6 +40,8 @@ class LocalAccountAuthenticationController extends AbstractAuthenticationControl
         /** @var Response $response */
         $response = $this->controllerContext->getResponse();
         $response->setStatus(200, 'Successfully logged in');
+        $response->setHeader('X-Rate-Limit', '-1', true);
+        $response->setHeader('X-Expires-After', $accessToken->getExpirationDate(), true);
         return $accessToken->getAccountIdentifier();
     }
 
