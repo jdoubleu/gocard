@@ -8,6 +8,7 @@ services:
         volumes:
             - ./:/app
         command: composer install
+        user: $UID
 
     php:
         build:
@@ -51,6 +52,7 @@ services:
         command: /bin/bash -c "(yarn install || :) && yarn run start"
         ports:
             - 3000:3000
+        user: $UID
 
 volumes:
   database:
