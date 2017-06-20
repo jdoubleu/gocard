@@ -18,6 +18,14 @@ class ApiAccessAuthenticationController extends AbstractAuthenticationController
 {
 
     /**
+     * Override default supported types
+     * This API consumes application/json
+     *
+     * @var array
+     */
+    protected $supportedMediaTypes = ["application/json"];
+
+    /**
      * Continues the request if there is one, otherwise will throw a 400 status code
      *
      * @param ActionRequest $originalRequest The request that was intercepted by the security framework, NULL if there was none

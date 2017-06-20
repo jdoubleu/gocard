@@ -26,6 +26,14 @@ class LocalAccountAuthenticationController extends AbstractAuthenticationControl
     protected $accountFactory;
 
     /**
+     * Override default supported types
+     * This API consumes application/json
+     *
+     * @var array
+     */
+    protected $supportedMediaTypes = ["application/json"];
+
+    /**
      * Returns an access_token for api request with a 200 status
      *
      * @param ActionRequest $originalRequest
