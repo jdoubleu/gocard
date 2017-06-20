@@ -9,10 +9,10 @@ const CodeGen = require('swagger-js-codegen').CodeGen;
 const yaml = require('js-yaml');
 
 const specFile = path.resolve(__dirname, '../api_schema.yaml');
-const outputDir = path.resolve(__dirname, '../client/src/api/client.js');
+const outputDir = path.resolve(__dirname, '../client/src/lib/ApiClient.js');
 
 const spec = yaml.load(fs.readFileSync(specFile, 'UTF-8'));
 
 fs.writeFileSync(outputDir, CodeGen.getNodeCode({
-    className: 'Client', swagger: spec
+    className: 'ApiClient', swagger: spec
 }));
