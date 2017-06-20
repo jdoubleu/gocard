@@ -548,7 +548,7 @@ paths:
           schema:
             $ref: '#/definitions/ValidationResponse'
   /users/login:
-    get:
+    post:
       tags:
         - users
       summary: Log in the user
@@ -587,7 +587,7 @@ paths:
         '400':
           description: Invalid email/password supplied
   /users/logout:
-    get:
+    post:
       tags:
         - users
       summary: Log out the current user

@@ -810,7 +810,7 @@ var ApiClient = (function() {
 
         queryParameters = mergeQueryParams(parameters, queryParameters);
 
-        this.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+        this.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
         return deferred.promise;
     };
@@ -837,7 +837,7 @@ var ApiClient = (function() {
 
         queryParameters = mergeQueryParams(parameters, queryParameters);
 
-        this.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+        this.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
         return deferred.promise;
     };
