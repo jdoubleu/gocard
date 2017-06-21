@@ -21,6 +21,20 @@ services:
         volumes:
             - ./:/var/www/html
 
+    debugproxy:
+        build:
+            context: .docker/Development
+            dockerfile: Dockerfile-debugproxy
+        depends_on:
+            - php
+        environment:
+            - XDEBUG_PORT=9009
+            - IDE_ADDR=dockerhost
+        extra_hosts:
+            - "dockerhost:$DOCKER_HOST_IP"
+        volumes:
+            - ./:/var/www/html
+
     apache:
         build:
             context: .docker/Development/
