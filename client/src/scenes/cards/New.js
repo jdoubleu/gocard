@@ -29,11 +29,12 @@ class New extends React.Component {
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
         this.display = this.display.bind(this);
         this.newInput = this.newInput.bind(this);
+        this.newInputMultiple = this.newInputMultiple.bind(this);
         this.state = {
             inputs: [],
+            inputsMultiple: [],
             mode: 0,
             answer: 0,
-            plus: 0
         };
     }
 
@@ -49,6 +50,19 @@ class New extends React.Component {
         })
     }
 
+    newInputMultiple() {
+        this.setState({
+            inputsMultiple: this.state.inputsMultiple.concat(
+                <InputGroup className="mt-2">
+                    <InputGroupAddon>
+                        <Input addon type="checkbox" name="button"/>
+                    </InputGroupAddon>
+                    <Input type="text" id="answer" name="answer"/>
+
+                </InputGroup>
+            )
+        })
+    }
 
     newInput() {
         this.setState({
@@ -63,8 +77,6 @@ class New extends React.Component {
             )
         })
 
-
-
     }
 
     display(mode) {
@@ -72,63 +84,79 @@ class New extends React.Component {
         if (this.state.mode === 1) {
             return (
                 <div>
-                <FormGroup>
-                    <Label for="answer">Antwort</Label>
-                    <InputGroup>
-                        <InputGroupAddon>
-                            <Input addon type="radio" name="button"/>
-                        </InputGroupAddon>
-                        <Input type="text" id="answer" name="answer"/>
+                    <FormGroup>
+                        <Label for="answer">Antwort</Label>
+                        <InputGroup>
+                            <InputGroupAddon>
+                                <Input addon type="radio" name="button"/>
+                            </InputGroupAddon>
+                            <Input type="text" id="answer" name="answer"/>
 
-                    </InputGroup>
-                    {this.state.inputs.map((form)=> {
-                        return form
-                    })}
+                        </InputGroup>
+                        {this.state.inputs.map((form)=> {
+                            return form
+                        })}
                     </FormGroup>
                     <FormGroup>
-                      <Button block outline color="info" onClick={() => this.newInput(1)}
-                              active={this.state.plus === 1}>Weiter Antwort
-                      </Button>
+                        <Button block outline color="info" onClick={() => this.newInput(1)}
+                        >Weitere Antwort hinzufügen
+                        </Button>
                     </FormGroup>
                     <FormGroup>
-                      <TagForm />
+                        <TagForm />
                     </FormGroup>
-                    </div>
+                </div>
             )
-        //Multiplechoice
+            //Multiplechoice
         } else if (this.state.mode === 2) {
-            return(
-            <FormGroup>
-                <Label for="answer">Antwort</Label>
-                <InputGroup>
-                    <InputGroupAddon>
-                        <Input addon type="checkbox" name="button"/>
-                    </InputGroupAddon>
-                    <Input type="text" id="answer" name="answer"/>
-
-                </InputGroup>
-                <Button outline color="info" onClick={() => this.newInput()}
-                        active={this.state.plus === 1}>+</Button>
-
-            </FormGroup>
+            return (
+                <div>
+                    <FormGroup>
+                        <Label for="answer">Antwort</Label>
+                        <InputGroup>
+                            <InputGroupAddon>
+                                <Input addon type="checkbox" name="button"/>
+                            </InputGroupAddon>
+                            <Input type="text" id="answer" name="answer"/>
+                        </InputGroup>
+                        {this.state.inputsMultiple.map((form)=> {
+                            return form
+                        })}
+                    </FormGroup>
+                    <FormGroup>
+                        <Button outline color="info" onClick={() => this.newInputMultiple()}
+                        >Weitere Antwort hinzufügen</Button>
+                    </FormGroup>
+                    <FormGroup>
+                        <TagForm />
+                    </FormGroup>
+                </div>
             )
         } else if (this.state.mode === 3) {
             return (
-                <FormGroup >
-                    <Label for="textanswer">Antwort</Label>
+                <div>
+                    <FormGroup >
+                        <Label for="textanswer">Antwort</Label>
+                        <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <TagForm />
+                    </FormGroup>
+                </div>
 
-                    <Input type="textarea" name="textanswer" id="textanswer" multiple/>
-
-                </FormGroup>
             )
         } else if (this.state.mode === 4) {
             return (
-                <FormGroup >
-                    <Label for="textanswer">Antwort</Label>
+                <div>
+                    <FormGroup >
+                        <Label for="textanswer">Antwort</Label>
 
-                    <Input type="textarea" name="textanswer" id="textanswer" multiple/>
-
-                </FormGroup>
+                        <Input type="textarea" name="textanswer" id="textanswer" rows="6" />
+                    </FormGroup>
+                    <FormGroup>
+                        <TagForm />
+                    </FormGroup>
+                </div>
             )
         }
     }
