@@ -1,5 +1,7 @@
 import React from "react";
 import {Button, Card, CardGroup, CardText, CardTitle, Form, FormGroup, Input} from "reactstrap";
+import Logo from '../../components/shared/logo/logo';
+
 class Reset extends React.Component {
 
     validate(event){
@@ -18,12 +20,14 @@ class Reset extends React.Component {
     render() {
         return (
             <div>
-                <h1>Passwort zurücksetzten</h1>
+                <h1 className="display-4">Willkommen bei <Logo/></h1>
+                <p className="lead">Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie so einfach.</p>
+
                 <CardGroup>
                     <Card block>
-                        <CardTitle>Zurücksetzen</CardTitle>
+                        <CardTitle>Passwort zurücksetzen</CardTitle>
                         <CardText>
-                            Um dein Passwort zurückzusetzten musst bitte deine Email Adresse angeben<br/>
+                            Um dein Passwort zurückzusetzen musst bitte deine Email Adresse angeben.
                         </CardText>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>

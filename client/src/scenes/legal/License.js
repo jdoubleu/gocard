@@ -1,9 +1,13 @@
 import React from "react";
+import Header from '../../components/shared/header';
+
 class License extends React.Component {
     render() {
         return (
             <div>
-                License
+                <Header
+                    title="Lizenz"
+                />
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Card, CardGroup, CardText, CardTitle, Form, FormGroup, Input} from "reactstrap";
+import Logo from '../../components/shared/logo/logo';
 
 class Registration extends React.Component {
     constructor(props){
@@ -52,8 +53,9 @@ class Registration extends React.Component {
     render() {
         return (
             <div>
-                <h1>Registrierung</h1>
-                <p>Willkommen bei GoCard!</p>
+                <h1 className="display-4">Willkommen bei <Logo/></h1>
+                <p className="lead">Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie so einfach.</p>
+
                 <CardGroup>
                     <Card block>
                         <CardTitle>Registrieren</CardTitle>

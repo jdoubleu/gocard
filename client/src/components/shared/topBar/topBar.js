@@ -14,9 +14,9 @@ import {
     NavbarToggler,
     NavDropdown
 } from "reactstrap";
-import './header.css';
+import './topBar.css';
 
-class Header extends React.Component {
+class TopBar extends React.Component {
     constructor(props) {
         super(props);
 
@@ -43,7 +43,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <Container className="header">
+            <Container className="top-bar">
                 <Navbar light toggleable className="pb-4">
                     <NavbarToggler className="border-0" right onClick={this.toggleNavbar}/>
                     <NavbarBrand href="/dashboard">
@@ -74,4 +74,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default TopBar;

@@ -1,4 +1,5 @@
 import React from "react";
+import Header from '../../components/shared/header';
 import {Card, Form, FormGroup, Input, Button, Label, Row, Col} from "reactstrap";
 import UserIcon from "../../components/shared/user/icon";
 
@@ -7,9 +8,12 @@ class Profile extends React.Component {
       render() {
         return (
             <div>
-              <h1>Profil Einstellungen</h1>
+                <Header
+                    title="Profil Einstellungen"
+                />
+
                 <Card block>
-                  <div className="mx-auto">
+                  <div className="text-center">
                     <UserIcon name={this.props.name} diameter={200}/>
                   </div>
                   <Form onSubmit={this.handleSubmit}>

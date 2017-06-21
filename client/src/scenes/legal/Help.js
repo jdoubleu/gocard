@@ -1,9 +1,13 @@
 import React from "react";
+import Header from '../../components/shared/header';
+
 class Help extends React.Component {
     render() {
         return (
             <div>
-                Help
+                <Header
+                    title="Hilfe"
+                />
             </div>
         );
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../../components/shared/header';
 import { Button, ButtonGroup, Card, CardGroup, CardTitle, CardText, CardDeck, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Statistic from "../../components/shared/statistic";
@@ -20,8 +21,10 @@ class Detail extends React.Component{
     render() {
         return (
             <div>
-              <h2>Register Detailansicht</h2>
-              {/*<h2>{this.props.register.title}</h2>*/}
+                <Header
+                    title="Objektorientierte Programmierung"
+                />
+
               <CardGroup>
                 <Card block>
                   <CardTitle>Beschreibung</CardTitle>

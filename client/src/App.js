@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Footer from "./components/shared/footer";
-import Header from "./components/shared/header/header";
+import TopBar from "./components/shared/topBar/topBar";
 import Dashboard from "./scenes/Dashboard";
 import Profile from "./scenes/account/Profile";
 import Login from "./scenes/account/Login";
@@ -18,7 +18,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Header />
+                <TopBar />
                 <Container>
                     <Switch>
                         <Route path='/' exact component={Login}/>
