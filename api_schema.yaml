@@ -15,6 +15,8 @@ tags:
     description: Security Operations for changing a user's password
   - name: members
     description: Members are users having access to registers
+  - name: register activity
+    description: Activity of a register
 schemes:
   - http
 securityDefinitions:
@@ -406,6 +408,109 @@ paths:
           description: Not allowed to remove this member
         '404':
           description: Register or member not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/activities/':
+    get:
+      tags:
+        - registers
+        - register activity
+      summary: Get activities for a register
+      description: Lists all activities of the register
+      operationId: getRegisterActivities
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RegisterActivity'
+        '400':
+          description: Invalid register ID supplied
+        '403':
+          description: Not allowed to see activity of this register
+        '404':
+          description: Register or not found
+      security:
+        - api_key: []
+    post:
+      tags:
+        - registers
+        - register activity
+      summary: Add new activity
+      description: Registers a new activity of a user for the given register
+      operationId: createRegisterActivityOfUserForRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: userId
+          in: query
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successfully registered activity
+        '400':
+          description: Invalid register or user ID supplied
+        '403':
+          description: Not allowed to register activities for this user
+        '404':
+          description: Register or user not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/activities/{userId}':
+    get:
+      tags:
+        - registers
+        - register activity
+      summary: Get activities of a user for a register
+      description: Lists all activities of the register of the given user
+      operationId: getRegisterActivitiesForUser
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: userId
+          in: path
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RegisterActivity'
+        '400':
+          description: Invalid register or user ID supplied
+        '403':
+          description: Not allowed to see activity of this user
+        '404':
+          description: Register or user not found
       security:
         - api_key: []
   /cards/:
@@ -864,6 +969,29 @@ definitions:
     required:
       - userid
       - scope
+  RegisterActivity:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      initiator:
+        type: integer
+        format: int64
+        description: User ID of the initiator
+      'type':
+        type: string
+        enum:
+          - 'view'
+          - 'run'
+      date:
+        type: string
+        format: UTC time string
+    required:
+      - id
+      - initiator
+      - type
+      - date
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid

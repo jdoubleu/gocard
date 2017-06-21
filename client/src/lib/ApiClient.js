@@ -591,6 +591,129 @@ var ApiClient = (function() {
         return deferred.promise;
     };
     /**
+     * Lists all activities of the register
+     * @method
+     * @name ApiClient#getRegisterActivities
+     * @param {object} parameters - method options and parameters
+     * @param {integer} parameters.registerId - ID of the register
+     */
+    ApiClient.prototype.getRegisterActivities = function(parameters) {
+        if (parameters === undefined) {
+            parameters = {};
+        }
+        var deferred = Q.defer();
+        var domain = this.domain,
+            path = '/registers/{registerId}/activities/';
+        var body = {},
+            queryParameters = {},
+            headers = {},
+            form = {};
+
+        headers = this.setAuthHeaders(headers);
+        headers['Accept'] = ['application/json'];
+
+        path = path.replace('{registerId}', parameters['registerId']);
+
+        if (parameters['registerId'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: registerId'));
+            return deferred.promise;
+        }
+
+        queryParameters = mergeQueryParams(parameters, queryParameters);
+
+        this.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+        return deferred.promise;
+    };
+    /**
+     * Registers a new activity of a user for the given register
+     * @method
+     * @name ApiClient#createRegisterActivityOfUserForRegister
+     * @param {object} parameters - method options and parameters
+     * @param {integer} parameters.registerId - ID of the register
+     * @param {integer} parameters.userId - ID of the user
+     */
+    ApiClient.prototype.createRegisterActivityOfUserForRegister = function(parameters) {
+        if (parameters === undefined) {
+            parameters = {};
+        }
+        var deferred = Q.defer();
+        var domain = this.domain,
+            path = '/registers/{registerId}/activities/';
+        var body = {},
+            queryParameters = {},
+            headers = {},
+            form = {};
+
+        headers = this.setAuthHeaders(headers);
+        headers['Accept'] = ['application/json'];
+
+        path = path.replace('{registerId}', parameters['registerId']);
+
+        if (parameters['registerId'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: registerId'));
+            return deferred.promise;
+        }
+
+        if (parameters['userId'] !== undefined) {
+            queryParameters['userId'] = parameters['userId'];
+        }
+
+        if (parameters['userId'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: userId'));
+            return deferred.promise;
+        }
+
+        queryParameters = mergeQueryParams(parameters, queryParameters);
+
+        this.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+        return deferred.promise;
+    };
+    /**
+     * Lists all activities of the register of the given user
+     * @method
+     * @name ApiClient#getRegisterActivitiesForUser
+     * @param {object} parameters - method options and parameters
+     * @param {integer} parameters.registerId - ID of the register
+     * @param {integer} parameters.userId - ID of the user
+     */
+    ApiClient.prototype.getRegisterActivitiesForUser = function(parameters) {
+        if (parameters === undefined) {
+            parameters = {};
+        }
+        var deferred = Q.defer();
+        var domain = this.domain,
+            path = '/registers/{registerId}/activities/{userId}';
+        var body = {},
+            queryParameters = {},
+            headers = {},
+            form = {};
+
+        headers = this.setAuthHeaders(headers);
+        headers['Accept'] = ['application/json'];
+
+        path = path.replace('{registerId}', parameters['registerId']);
+
+        if (parameters['registerId'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: registerId'));
+            return deferred.promise;
+        }
+
+        path = path.replace('{userId}', parameters['userId']);
+
+        if (parameters['userId'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: userId'));
+            return deferred.promise;
+        }
+
+        queryParameters = mergeQueryParams(parameters, queryParameters);
+
+        this.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+        return deferred.promise;
+    };
+    /**
      * Updates multiple cards
      * @method
      * @name ApiClient#updateCards
