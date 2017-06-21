@@ -40,8 +40,10 @@ RUN set -xe \
 
 
 ## run configuration
-ENV XDEBUG_URI=localhost:9000
-ENV IDE_URI=localhost:9010
+ENV XDEBUG_ADDR=0.0.0.0
+ENV XDEBUG_PORT=9000
+ENV IDE_ADDR=localhost
+ENV IDE_PORT=9010
 ENV FRAMEWORK=flow
 
-CMD flow-debugproxy -vv -l $XDEBUG_URI -I $IDE_URI
+CMD flow-debugproxy -vv -l $XDEBUG_ADDR:$XDEBUG_PORT -I $IDE_ADDR:$IDE_PORT
