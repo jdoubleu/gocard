@@ -5,7 +5,7 @@ import TopBar from "./components/shared/topBar/topBar";
 import Dashboard from "./scenes/Dashboard";
 import Profile from "./scenes/account/Profile";
 import Login from "./scenes/account/Login";
-import Legal from './scenes/legal/Legal';
+import Legal from "./scenes/legal/Legal";
 import NotFound from "./scenes/errors/NotFound";
 import {Route, Switch} from "react-router-dom";
 import Register from "./scenes/register/Register";

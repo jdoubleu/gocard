@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Col, Button, Card, CardGroup, CardText, CardTitle, Form, FormGroup, Input} from "reactstrap";
+import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
 import Logo from "../../components/shared/logo/logo";
 import Api from "../../lib/ApiClient";
 
@@ -43,7 +43,7 @@ class Login extends React.Component {
 
                     <CardGroup>
                         <Card block>
-                            <CardTitle><span className="text-muted">Anmelden</span>  HSD-Account</CardTitle>
+                            <CardTitle><span className="text-muted">Anmelden</span> HSD-Account</CardTitle>
                             <CardText>
                                 Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem
                                 Hochschul-Account anzumelden.

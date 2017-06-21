@@ -1,15 +1,16 @@
 import React from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import {FormGroup, Input, Label} from "reactstrap";
 import AddUser from "../../components/registers/addUser";
 
 class Form extends React.Component {
 
     render() {
         return (
-              <div>
+            <div>
                 <FormGroup>
                     <Label for="title">Titel</Label>
-                    <Input type="text" name="title" id="title" placeholder="Titel des Registers." value={this.props.title}></Input>
+                    <Input type="text" name="title" id="title" placeholder="Titel des Registers."
+                           value={this.props.title}></Input>
                 </FormGroup>
                 <FormGroup>
                     <Label for="description">Beschreibung</Label>
@@ -20,7 +21,7 @@ class Form extends React.Component {
                     <Label for="members">Mitglieder</Label>
                     <AddUser />
                 </FormGroup>
-              </div>
+            </div>
         );
     }
 }

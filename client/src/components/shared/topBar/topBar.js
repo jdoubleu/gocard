@@ -14,7 +14,7 @@ import {
     NavbarToggler,
     NavDropdown
 } from "reactstrap";
-import './topBar.css';
+import "./topBar.css";
 
 class TopBar extends React.Component {
     constructor(props) {

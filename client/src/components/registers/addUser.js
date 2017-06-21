@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Input, Row, Col} from "reactstrap";
+import {Button, Col, Input, Row} from "reactstrap";
 import Icon from "../shared/user/icon";
 import dummy from "../../dummyUser.json";
 
@@ -33,7 +33,7 @@ class AddUser extends React.Component {
                 });
                 return isInside;
             }),
-            showSearchUsers: event.target.value === '' ? false:true,
+            showSearchUsers: event.target.value === '' ? false : true,
             searchInput: event.target.value
         });
     };
@@ -57,35 +57,35 @@ class AddUser extends React.Component {
     getUserList() {
         if (this.state.showSearchUsers) {
             return (this.state.searchUsers.map((user) => <Row key={user.id}>
-              <Col>
-                <Icon name={user.displayName}/> {user.displayName}
-              </Col>
-              <Col>
-                <Input type="select" name="role" id="role">
-                    <option default>Abonnent</option>
-                    <option>Redakteur</option>
-                    <option>Eigentümer</option>
-                </Input>
-              </Col>
-              <Col className="text-right">
-                <Button onClick={() => this.addUser(user)}>+</Button>
-              </Col>
+                <Col>
+                    <Icon name={user.displayName}/> {user.displayName}
+                </Col>
+                <Col>
+                    <Input type="select" name="role" id="role">
+                        <option default>Abonnent</option>
+                        <option>Redakteur</option>
+                        <option>Eigentümer</option>
+                    </Input>
+                </Col>
+                <Col className="text-right">
+                    <Button onClick={() => this.addUser(user)}>+</Button>
+                </Col>
             </Row>));
         } else {
             return (this.state.addedUsers.map((user) => <Row key={user.id}>
-              <Col>
-                <Icon name={user.displayName}/> {user.displayName}
-              </Col>
-              <Col>
-                <Input type="select" name="role" id="role">
-                    <option default>Abonnent</option>
-                    <option>Redakteur</option>
-                    <option>Eigentümer</option>
-                </Input>
-              </Col>
-              <Col className="text-right">
-                <Button onClick={() => this.deleteUser(user)}>X</Button>
-              </Col>
+                <Col>
+                    <Icon name={user.displayName}/> {user.displayName}
+                </Col>
+                <Col>
+                    <Input type="select" name="role" id="role">
+                        <option default>Abonnent</option>
+                        <option>Redakteur</option>
+                        <option>Eigentümer</option>
+                    </Input>
+                </Col>
+                <Col className="text-right">
+                    <Button onClick={() => this.deleteUser(user)}>X</Button>
+                </Col>
             </Row>));
         }
     }

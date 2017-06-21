@@ -1,23 +1,20 @@
 import React from "react";
 import {
     Button,
+    ButtonGroup,
     Card,
     CardGroup,
-    CardText,
     CardTitle,
-    ButtonGroup,
     Col,
-    Row,
-    Input,
+    Form,
     FormGroup,
-    Label,
+    Input,
     InputGroup,
     InputGroupAddon,
-    Form
-
+    Label,
+    Row
 } from "reactstrap";
-import {Link} from "react-router-dom";
-import TagForm from '../../components/cards/tagForm';
+import TagForm from "../../components/cards/tagForm";
 
 class New extends React.Component {
 
@@ -93,7 +90,7 @@ class New extends React.Component {
                             <Input type="text" id="answer" name="answer"/>
 
                         </InputGroup>
-                        {this.state.inputs.map((form)=> {
+                        {this.state.inputs.map((form) => {
                             return form
                         })}
                     </FormGroup>
@@ -119,7 +116,7 @@ class New extends React.Component {
                             </InputGroupAddon>
                             <Input type="text" id="answer" name="answer"/>
                         </InputGroup>
-                        {this.state.inputsMultiple.map((form)=> {
+                        {this.state.inputsMultiple.map((form) => {
                             return form
                         })}
                     </FormGroup>
@@ -151,7 +148,7 @@ class New extends React.Component {
                     <FormGroup >
                         <Label for="textanswer">Antwort</Label>
 
-                        <Input type="textarea" name="textanswer" id="textanswer" rows="6" />
+                        <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
                     </FormGroup>
                     <FormGroup>
                         <TagForm />
