@@ -1083,6 +1083,46 @@ var ApiClient = (function() {
         return deferred.promise;
     };
     /**
+     * Returns user data of the local user with the given email address.
+
+    This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+
+     * @method
+     * @name ApiClient#getUserByEmail
+     * @param {object} parameters - method options and parameters
+         * @param {integer} parameters.email - Email address of the user
+     */
+    ApiClient.prototype.getUserByEmail = function(parameters) {
+        if (parameters === undefined) {
+            parameters = {};
+        }
+        var deferred = Q.defer();
+        var domain = this.domain,
+            path = '/users/findByEmail';
+        var body = {},
+            queryParameters = {},
+            headers = {},
+            form = {};
+
+        headers = this.setAuthHeaders(headers);
+        headers['Accept'] = ['application/json'];
+
+        if (parameters['email'] !== undefined) {
+            queryParameters['email'] = parameters['email'];
+        }
+
+        if (parameters['email'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: email'));
+            return deferred.promise;
+        }
+
+        queryParameters = mergeQueryParams(parameters, queryParameters);
+
+        this.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+        return deferred.promise;
+    };
+    /**
      * Generates a link with a temporary reset token which will be send to
     the users email address.
 

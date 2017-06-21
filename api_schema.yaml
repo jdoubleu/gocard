@@ -798,6 +798,38 @@ paths:
           description: User not found
       security:
         - api_key: []
+  '/users/findByEmail':
+    get:
+      tags:
+        - users
+      summary: Get user by user email
+      description: |
+        Returns user data of the local user with the given email address.
+
+        This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+      operationId: getUserByEmail
+      produces:
+        - application/json
+      parameters:
+        - name: email
+          in: query
+          description: Email address of the user
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: Invalid email supplied
+        '403':
+          description: Not allowed to view this data
+        '404':
+          description: User not found
+      security:
+        - api_key: []
   /users/passwordReset:
     post:
       tags:
