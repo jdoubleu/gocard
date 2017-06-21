@@ -41,7 +41,7 @@ class AccountFactory extends DefaultAccountFactory
      * @param Account $account
      * @return Account
      */
-    public function createAccessTokenForAccount(Account $account) : Account
+    public function obtainAccessTokenForAccount(Account $account) : Account
     {
         $accessToken = $this->accountRepository->findActiveAccessTokenByAccountReferenceAndAuthenticationProviderName($account, self::AccessTokenProviderName);
 
