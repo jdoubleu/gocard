@@ -32,6 +32,8 @@ services:
             - IDE_ADDR=dockerhost
         extra_hosts:
             - "dockerhost:$DOCKER_HOST_IP"
+        volumes:
+            - ./:/var/www/html
 
     apache:
         build:
