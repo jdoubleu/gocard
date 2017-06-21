@@ -6,7 +6,7 @@ class TagViewer extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        selectedTags: []
+        selectedTags: this.props.tags.slice(0)
       }
 
       this.handleSelect=this.handleSelect.bind(this);
@@ -33,7 +33,7 @@ class TagViewer extends React.Component {
             {
               this.props.tags.map((tag)=>
                 <Button size="sm" className="mr-1" onClick={() => this.handleSelect(tag)}
-                  color={this.state.selectedTags.includes(tag)?'success': 'secondary'}>{tag} {this.state.selectedTags.includes(tag)?'\u2714': ''}</Button>
+                  color={this.state.selectedTags.includes(tag)?'primary': 'secondary'}>{tag} {this.state.selectedTags.includes(tag)?'\u2714': ''}</Button>
               )
             }
           </div>
