@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authentication\Token\Api\v1;
+namespace GoCardTeam\GoCardApi\Security\Authentication\Token\v1;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\ActionRequest;
@@ -11,7 +11,7 @@ use Neos\Flow\Security\Authentication\Token\SessionlessTokenInterface;
  * Class AccessToken
  * Represents and AccessToken needed for any API access.
  *
- * @package GoCardTeam\GoCardApi\Security\Authentication\Token\Api\v1
+ * @package GoCardTeam\GoCardApi\Security\Authentication\Token\v1
  */
 class AccessToken extends AbstractToken implements SessionlessTokenInterface
 {

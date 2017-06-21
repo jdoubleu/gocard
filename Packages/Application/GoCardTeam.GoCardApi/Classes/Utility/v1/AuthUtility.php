@@ -1,12 +1,12 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Utility\Api\v1;
+namespace GoCardTeam\GoCardApi\Utility\v1;
 
 /**
  * Class AuthUtility
  * Provides methods useful for authentication process (e.g. token generator)
  *
- * @package GoCardTeam\GoCardApi\Utility\Api\v1
+ * @package GoCardTeam\GoCardApi\Utility\v1
  */
 class AuthUtility
 {

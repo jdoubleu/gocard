@@ -1,8 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Controller\Api\v1;
+namespace GoCardTeam\GoCardApi\Controller\v1;
 
-use GoCardTeam\GoCardApi\Security\Api\v1\AccountFactory;
+use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Http\Response;
 use Neos\Flow\Mvc\ActionRequest;

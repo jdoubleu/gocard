@@ -1,8 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Api\v1;
+namespace GoCardTeam\GoCardApi\Security\v1;
 
-use GoCardTeam\GoCardApi\Utility\Api\v1\AuthUtility;
+use GoCardTeam\GoCardApi\Utility\v1\AuthUtility;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountFactory as DefaultAccountFactory;
@@ -11,7 +11,7 @@ use Neos\Flow\Security\AccountFactory as DefaultAccountFactory;
  * Class AccountFactory
  * Extends default account factory to create an AccessToken account
  *
- * @package GoCardTeam\GoCardApi\Security\Api\v1
+ * @package GoCardTeam\GoCardApi\Security\v1
  *
  * @Flow\Scope("singleton")
  */

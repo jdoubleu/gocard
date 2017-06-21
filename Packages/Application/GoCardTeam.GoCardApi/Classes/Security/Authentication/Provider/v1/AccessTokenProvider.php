@@ -1,8 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authentication\Provider\Api\v1;
+namespace GoCardTeam\GoCardApi\Security\Authentication\Provider\v1;
 
-use GoCardTeam\GoCardApi\Security\Authentication\Token\Api\v1\AccessToken;
+use GoCardTeam\GoCardApi\Security\Authentication\Token\v1\AccessToken;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountRepository;

@@ -5,8 +5,8 @@ namespace GoCardTeam\GoCardApi\Command;
  * This file is part of the GoCardTeam.GoCardApi package.
  */
 
-use GoCardTeam\GoCardApi\Security\Api\v1\AccountFactory;
-use GoCardTeam\GoCardApi\Security\Api\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
+use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Persistence\QueryResultInterface;

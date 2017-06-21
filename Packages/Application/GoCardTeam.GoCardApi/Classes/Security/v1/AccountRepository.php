@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Api\v1;
+namespace GoCardTeam\GoCardApi\Security\v1;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
@@ -10,7 +10,7 @@ use Neos\Flow\Security\AccountRepository as DefaultAccountRepository;
  * Class AccountRepository
  * Extends the default AccountRepository by methods for AccessToken
  *
- * @package GoCardTeam\GoCardApi\Security\Api\v1
+ * @package GoCardTeam\GoCardApi\Security\v1
  *
  * @Flow\Scope("singleton")
  */

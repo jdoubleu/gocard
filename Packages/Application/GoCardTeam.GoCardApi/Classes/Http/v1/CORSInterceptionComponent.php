@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Http\Api\v1;
+namespace GoCardTeam\GoCardApi\Http\v1;
 
 use Neos\Flow\Http\Component\ComponentChain;
 use Neos\Flow\Http\Component\ComponentContext;
@@ -10,7 +10,7 @@ use Neos\Flow\Http\Component\ComponentInterface;
  * Class CORSInterceptionComponent
  * HTTP components which intercepts preflighted CORS requests
  *
- * @package GoCardTeam\GoCardApi\Http\Api\v1
+ * @package GoCardTeam\GoCardApi\Http\v1
  */
 class CORSInterceptionComponent implements ComponentInterface
 {

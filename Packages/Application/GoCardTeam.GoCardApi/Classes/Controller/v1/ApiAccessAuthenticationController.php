@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Controller\Api\v1;
+namespace GoCardTeam\GoCardApi\Controller\v1;
 
 use Neos\Flow\Http\Response;
 use Neos\Flow\Mvc\ActionRequest;

@@ -5,6 +5,6 @@
   name: 'user login'
   uriPattern: 'login'
   defaults:
-    '@controller': 'Api\v1\LocalAccountAuthentication'
+    '@controller': 'v1\LocalAccountAuthentication'
     '@action': 'authenticate'
   httpMethods: ['POST']

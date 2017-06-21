@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authentication\Token\Api\v1;
+namespace GoCardTeam\GoCardApi\Security\Authentication\Token\v1;
 
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Token\SessionlessTokenInterface;
@@ -12,7 +12,7 @@ use Neos\Flow\Security\Authentication\Token\UsernamePassword;
  * 1. A local GoCard account has an email instead of a username.
  * 2. The API also defines that the email and password needs to be provided directly through the query params.
  *
- * @package GoCardTeam\GoCardApi\Security\Authentication\Token\Api\v1
+ * @package GoCardTeam\GoCardApi\Security\Authentication\Token\v1
  */
 class EmailPassword extends UsernamePassword implements SessionlessTokenInterface
 {
