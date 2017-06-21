@@ -32,6 +32,7 @@ class Statistic extends React.Component {
             <Doughnut
                 options={options}
                 data={data}
+                height="250px"
             />
         );
     }
