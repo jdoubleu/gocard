@@ -43,7 +43,7 @@ class LocalAccountAuthenticationController extends AbstractAuthenticationControl
     {
         /** @var Account $account Logged in account */
         $account = $this->authenticationManager->getSecurityContext()->getAccount();
-        $accessToken = $this->accountFactory->createAccessTokenForAccount($account);
+        $accessToken = $this->accountFactory->obtainAccessTokenForAccount($account);
 
         /** @var Response $response */
         $response = $this->controllerContext->getResponse();

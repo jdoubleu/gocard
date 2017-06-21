@@ -8,7 +8,6 @@ services:
         volumes:
             - ./:/app
         command: composer install
-        user: $UID
 
     php:
         build:
@@ -19,6 +18,20 @@ services:
             - apache
             - mysql
             - redis
+        volumes:
+            - ./:/var/www/html
+
+    debugproxy:
+        build:
+            context: .docker/Development
+            dockerfile: Dockerfile-debugproxy
+        depends_on:
+            - php
+        environment:
+            - XDEBUG_PORT=9009
+            - IDE_ADDR=dockerhost
+        extra_hosts:
+            - "dockerhost:$DOCKER_HOST_IP"
         volumes:
             - ./:/var/www/html
 
@@ -52,7 +65,6 @@ services:
         command: /bin/bash -c "(yarn install || :) && yarn run start"
         ports:
             - 3000:3000
-        user: $UID
 
 volumes:
   database:

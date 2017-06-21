@@ -51,10 +51,7 @@ class AccountRepository extends DefaultAccountRepository
         return $query->matching(
             $query->logicalAnd(
                 $query->equals('authenticationProviderName', $authenticationProviderName),
-                $query->logicalOr(
-                    $query->equals('expirationDate', null),
-                    $query->lessThanOrEqual('expirationDate', new \DateTime())
-                )
+                $query->lessThanOrEqual('expirationDate', new \DateTime())
             )
         )->execute()->toArray();
     }
