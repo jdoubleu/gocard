@@ -1,5 +1,6 @@
 /Build/
 /Configuration/*
+!/Configuration/PackageStates.php
 !/Configuration/Production/
 /Configuration/Production/*.example
 !/Configuration/Testing/
