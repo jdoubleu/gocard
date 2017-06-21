@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, CardGroup, CardText, CardTitle, ButtonGroup} from "reactstrap";
+import {Card, CardGroup, CardText, CardTitle} from "reactstrap";
 import { Link } from 'react-router-dom';
 import UserIcon from "../../components/shared/user/icon";
 
@@ -32,7 +32,7 @@ class Profile extends React.Component {
 
 Profile.defaultProps = {
    name: "Frank N Stein",
-   
+
 }
 
 export default Profile;
