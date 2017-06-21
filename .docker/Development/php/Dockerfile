@@ -17,4 +17,4 @@ RUN set -xe \
 	&& apk del .phpize-deps
 
 ### Configure xdebug
-COPY src/xdebug.ini /usr/local/etc/php/conf.d/
+COPY xdebug.ini /usr/local/etc/php/conf.d/
