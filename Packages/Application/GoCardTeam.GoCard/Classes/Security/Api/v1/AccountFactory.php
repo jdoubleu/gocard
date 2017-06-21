@@ -48,7 +48,13 @@ class AccountFactory extends DefaultAccountFactory
         if($accessToken === null) {
             // Create new access token
             $accessToken = new Account();
-            $accessToken->setAccountIdentifier(AuthUtility::generateAccessToken());
+
+            // Generate an access token which does not already exist
+            do {
+                $token = AuthUtility::generateAccessToken();
+                $accessToken->setAccountIdentifier($token);
+            } while($this->accountRepository->findByAccountIdentifierAndAuthenticationProviderName($token, self::AccessTokenProviderName) != null);
+
             $accessToken->setCredentialsSource($account->getAccountIdentifier());
             $accessToken->setAuthenticationProviderName(self::AccessTokenProviderName);
             $accessToken->setExpirationDate((new \DateTime())->add(new \DateInterval(self::AccessTokenExpiration)));
