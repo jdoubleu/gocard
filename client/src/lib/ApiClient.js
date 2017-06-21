@@ -965,7 +965,10 @@ var ApiClient = (function() {
         return deferred.promise;
     };
     /**
-     * Get user by user id
+     * Returns user data of the local user with the given ID.
+
+    This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+
      * @method
      * @name ApiClient#getUserById
      * @param {object} parameters - method options and parameters
