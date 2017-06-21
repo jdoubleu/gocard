@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Statistic from "../../components/shared/statistic";
 import PreviewCard from '../../components/cards/previewCard';
 import Iconbar from '../../components/shared/member/iconBar';
+import TagViewer from '../../components/registers/tagViewer';
 
 class Detail extends React.Component{
     constructor (props) {
@@ -30,7 +31,9 @@ class Detail extends React.Component{
                 </Card>
                 <Card block className="bg-faded">
                   <CardTitle>Lernen</CardTitle>
-                  <CardText>Tags</CardText>
+                  <CardText>
+                    <TagViewer />
+                  </CardText>
                   <CardTitle>Lernmodus</CardTitle>
                   <CardText>
                     <ButtonGroup check>
