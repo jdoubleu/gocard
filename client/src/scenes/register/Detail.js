@@ -40,9 +40,9 @@ class Detail extends React.Component{
                   <CardTitle>Lernmodus</CardTitle>
                   <CardText>
                     <ButtonGroup check>
-                      <Button outline color="primary" onClick={() => this.onRadioBtnClick(1)} active={this.state.mode === 1}>Normal</Button>
-                      <Button outline color="primary" onClick={() => this.onRadioBtnClick(2)} active={this.state.mode === 2}>Power</Button>
-                      <Button outline color="primary" onClick={() => this.onRadioBtnClick(3)} active={this.state.mode === 3}>Klausur</Button>
+                      <Button outline onClick={() => this.onRadioBtnClick(1)} active={this.state.mode === 1} color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal</Button>
+                      <Button outline onClick={() => this.onRadioBtnClick(2)} active={this.state.mode === 2} color={this.state.mode === 2 ? 'primary' : 'secondary'}>Power</Button>
+                      <Button outline onClick={() => this.onRadioBtnClick(3)} active={this.state.mode === 3} color={this.state.mode === 3 ? 'primary' : 'secondary'}>Klausur</Button>
                     </ButtonGroup>
                   </CardText>
                   <Button  outline color="primary">Lernen starten</Button>
