@@ -1,5 +1,6 @@
 /Build/
 /Configuration/*
+!/Configuration/PackageStates.php
 !/Configuration/Production/
 /Configuration/Production/*.example
 !/Configuration/Testing/
@@ -11,8 +12,8 @@
 /Packages/*
 !/Packages/Application/
 /Packages/Application/*
-!/Packages/Application/GoCardTeam.GoCard/
-/Packages/Application/GoCardTeam.GoCard/Resources/Public/
+!/Packages/Application/GoCardTeam.GoCardApi/
+/Packages/Application/GoCardTeam.GoCardApi/Resources/Public/
 /Web/*
 !/Web/.htaccess
 !/Web/_Resources/
