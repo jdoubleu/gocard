@@ -1,0 +1,13 @@
+# API Routes
+# This file contains generic routes for all api endpoints
+
+-
+  name: 'users routes'
+  uriPattern: 'users/<UsersSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@format':     'json'
+  subRoutes:
+    'UsersSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.Users'

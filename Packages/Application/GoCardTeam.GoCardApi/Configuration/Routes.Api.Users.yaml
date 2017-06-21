@@ -1,0 +1,10 @@
+# Users API Routes
+# Special routes only for the users api endpoint
+
+-
+  name: 'user login'
+  uriPattern: 'login'
+  defaults:
+    '@controller': 'v1\LocalAccountAuthentication'
+    '@action': 'authenticate'
+  httpMethods: ['POST']

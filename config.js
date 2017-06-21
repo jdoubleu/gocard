@@ -5,9 +5,9 @@
 import path from "path";
 
 /**
- * GoCardTeam.GoCard's public resources folder
+ * GoCardTeam.GoCardApi's public resources folder
  */
-const extPublic = 'Packages/Application/GoCardTeam.GoCard/Resources/Public';
+const extPublic = 'Packages/Application/GoCardTeam.GoCardApi/Resources/Public';
 
 export const paths = {
     src: {

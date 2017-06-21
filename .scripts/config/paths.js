@@ -21,7 +21,7 @@ function ensureSlash(path, needsSlash) {
 }
 
 const getPublicUrl = appPackageJson =>
-  envPublicUrl || '_Resources/Static/Packages/GoCardTeam.GoCard';
+  envPublicUrl || '_Resources/Static/Packages/GoCardTeam.GoCardApi';
 
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
@@ -39,7 +39,7 @@ function getServedPath(appPackageJson) {
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
-  appBuild: resolveApp('Packages/Application/GoCardTeam.GoCard/Resources/Public'),
+  appBuild: resolveApp('Packages/Application/GoCardTeam.GoCardApi/Resources/Public'),
   appPublic: resolveApp('client/public'),
   appHtml: resolveApp('client/public/index.html'),
   appIndexJs: resolveApp('client/src/index.js'),
