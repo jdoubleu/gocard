@@ -12,10 +12,7 @@ services:
     php:
         build: .docker/Development/php
         depends_on:
-            - composer
             - apache
-            - mysql
-            - redis
         volumes:
             - ./:/var/www/html
 
