@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Button, ButtonGroup, Card, CardGroup, CardTitle, CardText, CardDeck, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Statistic from "../../components/shared/statistic";
 import PreviewCard from '../../components/cards/previewCard';
 import Iconbar from '../../components/shared/member/iconBar';
 
-class Detail extends Component{
+class Detail extends React.Component{
     constructor (props) {
         super(props);
         this.state = { mode: 1 };

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import "./App.css";
 import Footer from "./components/shared/footer";
 import Header from "./components/shared/header";
@@ -14,7 +14,7 @@ import Reset from "./scenes/account/Reset";
 import CreateCard from "./scenes/cards/Create";
 import {Container} from "reactstrap";
 
-class App extends Component {
+class App extends React.Component {
     render() {
         return (
             <div className="App">
