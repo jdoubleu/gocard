@@ -832,7 +832,7 @@ definitions:
           - SelfValidation
       content:
         type: object
-        description: Anser content of this card depending of the type
+        description: Answer content of this card depending of the type
     required:
       - id
       - author
