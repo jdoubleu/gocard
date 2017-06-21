@@ -1,57 +1,28 @@
-import React, {Component} from "react";
-import Icon from "../../components/shared/user/icon";
-//import Card from '../../components/registers/card';
-import {Button, Col, Container, Input, InputGroup, Row} from "reactstrap";
-class Create extends Component {
+import React from "react";
+import {Card, Form, Button, Row, Col} from "reactstrap";
+import RegisterForm from '../../components/registers/form';
 
+class Edit extends React.Component {
     render() {
         return (
             <div>
-                <h2>Neues Register erstellen</h2>
-
-                <Container>
-                    <Row className="show-grid">
-                        <Col xs="8">
-                            <p>Titel des Registers </p>
-                            <InputGroup>
-                                <Input />
-                            </InputGroup>
-                        </Col>
+                <h1>Register bearbeiten</h1>
+                <Card block>
+                  <Form>
+                    <RegisterForm />
+                    <Row>
+                      <Col>
+                        <Button outline block color="danger">Abbrechen</Button>
+                      </Col>
+                      <Col>
+                        <Button outline block color="primary">Speichern</Button>
+                      </Col>
                     </Row>
-                    <Row className="show-grid">
-                        <Col xs="8">
-                            <p>Beschreibung </p>
-                            <InputGroup>
-                                <Input />
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                    <Row className="show-grid">
-                        <Col xs="8">
-                            <p>Benutzer hinzufügen</p>
-                            <InputGroup>
-                                <Input />
-                            </InputGroup>
-                        </Col>
-
-                        <Col xs="8">
-                            <Icon name="Dimo Bibbers"/> NAME {/*this.props.user.name*/} ROLLE {/*this.props.role.name*/}
-                            <Button>Edit</Button>
-                        </Col>
-
-                    </Row>
-
-                </Container>
-
-                <Button>Speichern</Button>
-                <Button>Abbrechen</Button>
-
+                  </Form>
+                </Card>
             </div>
-
-
         );
     }
-
 }
 
-export default Create;
+export default Edit;

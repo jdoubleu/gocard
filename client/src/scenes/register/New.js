@@ -1,25 +1,22 @@
 import React from "react";
-import {Form, FormGroup, Input, Label, Card} from "reactstrap";
-import AddUser from "../../components/registers/addUser";
+import {Form, Card, Row, Col, Button} from "reactstrap";
+import RegisterForm from '../../components/registers/form';
 
 class New extends React.Component {
 
     render() {
         return (
-            <Card block className="New">
+            <Card block>
                 <Form>
-                    <FormGroup>
-                        <Label for="title">Titel</Label>
-                        <Input type="text" name="title" id="title" placeholder="Titel des Registers."></Input>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="description">Beschreibung</Label>
-                        <Input type="textarea" name="description" id="description"
-                               placeholder="Beschreibung des Registers."></Input>
-                    </FormGroup>
-                    <FormGroup>
-                        <AddUser />
-                    </FormGroup>
+                    <RegisterForm />
+                    <Row>
+                      <Col>
+                        <Button outline block color="danger">Abbrechen</Button>
+                      </Col>
+                      <Col>
+                        <Button outline block color="primary">Erstellen</Button>
+                      </Col>
+                    </Row>
                 </Form>
             </Card>
         );

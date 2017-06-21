@@ -26,9 +26,9 @@ class Detail extends Component{
                   <CardTitle>Beschreibung</CardTitle>
                   <CardText>Lorem ipsum si amet<hr /></CardText>
 
-                  <CardText><Link to="+">Bearbeiten</Link></CardText>
+                  <CardText><Link to="3/edit">Bearbeiten</Link></CardText>
                 </Card>
-                <Card block>
+                <Card block className="bg-faded">
                   <CardTitle>Lernen</CardTitle>
                   <CardText>Tags</CardText>
                   <CardTitle>Lernmodus</CardTitle>
