@@ -28,8 +28,8 @@ services:
         depends_on:
             - php
         environment:
-            - XDEBUG_URI=php:9009
-            - IDE_URI=dockerhost:9010
+            - XDEBUG_PORT=9009
+            - IDE_ADDR=dockerhost
         extra_hosts:
             - "dockerhost:$DOCKER_HOST_IP"
 
