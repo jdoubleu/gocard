@@ -8,7 +8,7 @@ import Iconbar from '../../components/shared/member/iconBar';
 class Detail extends Component{
     constructor (props) {
         super(props);
-        this.state = { mode: [] };
+        this.state = { mode: 1 };
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
     }
 
