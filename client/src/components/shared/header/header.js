@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import UserIcon from "../shared/user/icon";
-import Logo from "./logo/logo";
+import UserIcon from "../user/icon";
+import Logo from "../logo/logo";
 import {
     Collapse,
     Container,
@@ -14,6 +14,7 @@ import {
     NavbarToggler,
     NavDropdown
 } from "reactstrap";
+import './header.css';
 
 class Header extends React.Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class Header extends React.Component {
                 <Navbar light toggleable className="pb-4">
                     <NavbarToggler className="border-0" right onClick={this.toggleNavbar}/>
                     <NavbarBrand href="/dashboard">
-                        <h3><Logo/></h3>
+                        <Logo/>
                     </NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
