@@ -11,7 +11,7 @@ import {Route, Switch} from "react-router-dom";
 import Register from "./scenes/register/Register";
 import Registration from "./scenes/account/Registration";
 import Reset from "./scenes/account/Reset";
-import CreateCard from "./scenes/cards/Create";
+
 import {Container} from "reactstrap";
 
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
                         <Route path='/reset' exact component={Reset}/>
                         <Route path='/dashboard' exact component={Dashboard}/>
                         <Route path='/profile' exact component={Profile}/>
-                        <Route path='/createcard' exact component={CreateCard}/>
+
                         {/* Register Routes */}
                         <Route path="/register" component={Register}/>
 
