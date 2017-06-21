@@ -6,7 +6,7 @@ class Footer extends React.Component {
     render() {
         return (
             <div className="text-center mb-3">
-                <Container>
+                <Container className="text-muted">
                     <hr />
                     <Link to="/legal/help">Hilfe</Link>
                     <span> | </span>

@@ -68,8 +68,6 @@ class Detail extends React.Component{
                 <PreviewCard question="Wir taversiert man durch einen Baum?" />
               </CardDeck>
             </div>
-
-
         );
     }
 
