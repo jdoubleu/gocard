@@ -44,4 +44,4 @@ ENV XDEBUG_URI=localhost:9000
 ENV IDE_URI=localhost:9010
 ENV FRAMEWORK=flow
 
-CMD ["sh", "-c", "flow-debugproxy", "-vv", "-l $XDEBUG_URI", "-I $IDE_URI"]
+CMD flow-debugproxy -vv -l $XDEBUG_URI -I $IDE_URI
