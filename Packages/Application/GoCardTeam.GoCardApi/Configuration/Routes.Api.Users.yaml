@@ -2,6 +2,13 @@
 # Special routes only for the users api endpoint
 
 -
+  name: 'default route'
+  uriPattern: ''
+  defaults:
+    '@controller': 'v1\Endpoint\UsersController'
+    '@action': 'default'
+
+-
   name: 'user login'
   uriPattern: 'login'
   defaults:
