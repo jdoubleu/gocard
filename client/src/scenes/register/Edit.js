@@ -1,25 +1,32 @@
 import React from "react";
-import {Card, Form, Button, Row, Col} from "reactstrap";
-import RegisterForm from '../../components/registers/form';
+import Header from "../../components/shared/header";
+import {Button, Card, Col, Form, Row} from "reactstrap";
+import RegisterForm from "../../components/registers/form";
 
 class Edit extends React.Component {
     render() {
         return (
             <div>
-                <h1>Register bearbeiten</h1>
-                <Card block>
-                  <Form>
-                    <RegisterForm />
-                    <Row>
-                      <Col>
-                        <Button outline block color="danger">Abbrechen</Button>
-                      </Col>
-                      <Col>
-                        <Button outline block color="primary">Speichern</Button>
-                      </Col>
-                    </Row>
-                  </Form>
-                </Card>
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <Header
+                        title="Register bearbeiten"
+                        lead="Hier kannst dein Register bearbeiten."
+                    />
+
+                    <Card block>
+                        <Form>
+                            <RegisterForm />
+                            <Row>
+                                <Col>
+                                    <Button outline block color="danger">Abbrechen</Button>
+                                </Col>
+                                <Col>
+                                    <Button outline block color="primary">Speichern</Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Card>
+                </Col>
             </div>
         );
     }

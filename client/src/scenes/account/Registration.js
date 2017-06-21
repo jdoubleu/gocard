@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, Card, CardGroup, CardText, CardTitle, Form, FormGroup, Input} from "reactstrap";
-import Logo from '../../components/shared/logo/logo';
+import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
+import Logo from "../../components/shared/logo/logo";
 
 class Registration extends React.Component {
     constructor(props){
@@ -53,31 +53,35 @@ class Registration extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="display-4">Willkommen bei <Logo/></h1>
-                <p className="lead">Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie so einfach.</p>
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <div className="pb-2">
+                        <h1 className="display-4">Willkommen bei <Logo/></h1>
+                        <p className="lead">Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie so einfach.</p>
+                    </div>
 
-                <CardGroup>
-                    <Card block>
-                        <CardTitle>Registrieren</CardTitle>
-                        <CardText>
-                            Registriere dich jetzt mit deiner Email Adresse und einem von von dir gewählten Passwort um
-                            einen eigenen Account zu erstellen<br/>
-                        </CardText>
+                    <CardGroup>
+                        <Card block>
+                            <CardTitle>Registrieren</CardTitle>
+                            <CardText>
+                                Registriere dich jetzt mit deiner Email Adresse und einem von von dir gewählten Passwort um
+                                einen eigenen Account zu erstellen<br/>
+                            </CardText>
 
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Input type="email" name="email" id="email" placeholder="E-Mail Adresse" onBlur={this.validateEmail}  required/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Input type="password" name="password" id="password" placeholder="Passwort" value={this.state.password} onChange={this.update} required/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Passwort wiederholen" onChange={this.validatePassword} required/>
-                            </FormGroup>
-                            <Button outline block color="primary">Erstellen</Button>
-                        </Form>
-                    </Card>
-                </CardGroup>
+                            <Form onSubmit={this.handleSubmit}>
+                                <FormGroup>
+                                    <Input type="email" name="email" id="email" placeholder="E-Mail Adresse" onBlur={this.validateEmail}  required/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="password" name="password" id="password" placeholder="Passwort" value={this.state.password} onChange={this.update} required/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input type="password" name="confirmPassword" id="confirmPassword" placeholder="Passwort wiederholen" onChange={this.validatePassword} required/>
+                                </FormGroup>
+                                <Button outline block color="primary">Erstellen</Button>
+                            </Form>
+                        </Card>
+                    </CardGroup>
+                </Col>
             </div>
         );
     }
