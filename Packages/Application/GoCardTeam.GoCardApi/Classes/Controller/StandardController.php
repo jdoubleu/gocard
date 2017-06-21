@@ -15,9 +15,6 @@ class StandardController extends ActionController
      */
     public function indexAction()
     {
-        $this->view->assign('foos', array(
-            'bar', 'baz'
-        ));
     }
 
 }
