@@ -13,14 +13,14 @@ class IconBar extends React.Component {
     calculateIcon(){
       let view = this.props.members.slice(0, this.props.maxIcons-1).map((members)=>
       <span className="pr-1">
-        <Icon name={members}/>
+        <Icon name={members} diameter={this.props.diameter} />
       </span>)
       if(this.props.members.length > this.props.maxIcons) {
         let rest = this.props.members.length - this.props.maxIcons+1;
         if(rest > 99)
           rest = 99
         view.push(
-          <NumberIcon rest={rest} />
+          <NumberIcon rest={rest} diameter={this.props.diameter} />
         )
       }
       return view;
@@ -36,12 +36,14 @@ class IconBar extends React.Component {
 }
 
 IconBar.propTypes = {
+    diameter: PropTypes.number,
     members: PropTypes.array.isRequired,
-    maxIcons: PropTypes.number.isRequired,
+    maxIcons: PropTypes.number,
 };
 
 IconBar.defaultProps = {
-    maxIcons: 5
+    maxIcons: 5,
+    diameter: 40
 };
 
 export default IconBar;
