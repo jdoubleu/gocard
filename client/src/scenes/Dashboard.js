@@ -7,10 +7,9 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                <div className="m-3">
-                    <h1>Dashboard</h1>
-                    <i>Beschreibung</i>
-                </div>
+                <h1 className="display-4">Dashboard</h1>
+                <p className="lead">Hier hast du eine Übersicht über deine Register. Ebenfalls kannst du weitere Register erstellen.</p>
+
                 <Row>
                     <BlankCard />
                     {/* {this.props.registers.map((register) => <RegisterCard title={register.title} members={register.members} />)} */}

@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Button, ButtonGroup, Card, CardGroup, CardTitle, CardText, CardDeck, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Statistic from "../../components/shared/statistic";
 import PreviewCard from '../../components/cards/previewCard';
 import Iconbar from '../../components/shared/member/iconBar';
 
-class Detail extends Component{
+class Detail extends React.Component{
     constructor (props) {
         super(props);
-        this.state = { mode: [] };
+        this.state = { mode: 1 };
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
     }
 
@@ -26,9 +26,9 @@ class Detail extends Component{
                   <CardTitle>Beschreibung</CardTitle>
                   <CardText>Lorem ipsum si amet<hr /></CardText>
 
-                  <CardText><Link to="+">Bearbeiten</Link></CardText>
+                  <CardText><Link to="3/edit">Bearbeiten</Link></CardText>
                 </Card>
-                <Card block>
+                <Card block className="bg-faded">
                   <CardTitle>Lernen</CardTitle>
                   <CardText>Tags</CardText>
                   <CardTitle>Lernmodus</CardTitle>

@@ -46,7 +46,7 @@ class Header extends React.Component {
                 <Navbar light toggleable className="pb-4">
                     <NavbarToggler className="border-0" right onClick={this.toggleNavbar}/>
                     <NavbarBrand href="/dashboard">
-                        <Logo/>
+                        <h3><Logo/></h3>
                     </NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

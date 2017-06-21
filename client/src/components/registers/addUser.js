@@ -33,7 +33,7 @@ class AddUser extends React.Component {
                 });
                 return isInside;
             }),
-            showSearchUsers: event.target.value == ''? false:true,
+            showSearchUsers: event.target.value === '' ? false:true,
             searchInput: event.target.value
         });
     };
