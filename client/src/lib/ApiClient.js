@@ -960,33 +960,6 @@ var ApiClient = (function() {
         return deferred.promise;
     };
     /**
-     * Generates a password reset token for the current logged in user
-     * @method
-     * @name ApiClient#requestPasswordResetToken
-     * @param {object} parameters - method options and parameters
-     */
-    ApiClient.prototype.requestPasswordResetToken = function(parameters) {
-        if (parameters === undefined) {
-            parameters = {};
-        }
-        var deferred = Q.defer();
-        var domain = this.domain,
-            path = '/users/password';
-        var body = {},
-            queryParameters = {},
-            headers = {},
-            form = {};
-
-        headers = this.setAuthHeaders(headers);
-        headers['Accept'] = ['application/json'];
-
-        queryParameters = mergeQueryParams(parameters, queryParameters);
-
-        this.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
-
-        return deferred.promise;
-    };
-    /**
      * Generates a link with a temporary reset token which will be send to
     the users email address.
 
@@ -1001,7 +974,7 @@ var ApiClient = (function() {
         }
         var deferred = Q.defer();
         var domain = this.domain,
-            path = '/users/password';
+            path = '/users/passwordReset';
         var body = {},
             queryParameters = {},
             headers = {},
@@ -1047,6 +1020,7 @@ var ApiClient = (function() {
             headers = {},
             form = {};
 
+        headers = this.setAuthHeaders(headers);
         headers['Accept'] = ['application/json'];
 
         if (parameters['resetToken'] !== undefined) {

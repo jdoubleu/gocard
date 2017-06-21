@@ -693,24 +693,7 @@ paths:
           description: User not found
       security:
         - api_key: []
-  /users/password:
-    get:
-      tags:
-        - users
-        - passwords
-      summary: Request a password reset token for the current user
-      description: Generates a password reset token for the current logged in user
-      operationId: requestPasswordResetToken
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Successful request
-          schema:
-            type: string
-            description: Password resetToken which can be used to reset the user's password
-      security:
-        - api_key: []
+  /users/passwordReset:
     post:
       tags:
         - users
@@ -731,6 +714,7 @@ paths:
       responses:
         default:
           description: Successful request
+  /users/password:
     put:
       tags:
         - users
@@ -779,6 +763,8 @@ paths:
             $ref: '#/definitions/ValidationResponse'
         '403':
           description: Invalid reset token
+      security:
+        - api_key: []
 definitions:
   Register:
     type: object
