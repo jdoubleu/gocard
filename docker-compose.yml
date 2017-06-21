@@ -51,6 +51,8 @@ services:
             - MYSQL_DATABASE=flow
         volumes:
             - database:/var/lib/mysql
+        ports:
+            - 3306:3306
 
     redis:
         image: redis
