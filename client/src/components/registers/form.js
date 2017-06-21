@@ -17,6 +17,7 @@ class Form extends React.Component {
                            placeholder="Beschreibung des Registers." value={this.props.description}></Input>
                 </FormGroup>
                 <FormGroup>
+                    <Label for="members">Mitglieder</Label>
                     <AddUser />
                 </FormGroup>
               </div>
