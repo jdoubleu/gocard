@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "gocardteam/gocard-api",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "GoCardTeam\\GoCardApi\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "GoCardTeam.GoCardApi"
+        }
+    }
+}

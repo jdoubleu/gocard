@@ -1,0 +1,26 @@
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'GoCardTeam.GoCardApi':
+          position: 'start'
+
+    security:
+      authentication:
+        providers:
+          'LocalAuthenticationProvider':
+            provider: '\GoCardTeam\GoCardApi\Security\Authentication\Provider\Api\v1\PersistedEmailPasswordProvider'
+            requestPatterns:
+              'GoCardTeam.GoCardApi:ApiAccessRequest':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\Api\v1\LocalAccountAuthenticationController'
+          'AccessTokenAuthenticationProvider':
+            provider: '\GoCardTeam\GoCardApi\Security\Authentication\Provider\Api\v1\AccessTokenProvider'
+            providerOptions:
+              localAccountProviderName: 'PersistedUsernamePasswordProvider'
+            requestPatterns:
+              'GoCardTeam.GoCardApi:ApiAccess':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\Api\v1\Endpoint\.*'

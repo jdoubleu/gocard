@@ -1,0 +1,9 @@
+Neos:
+  Flow:
+    http:
+      chain:
+        'process':
+          chain:
+            'CORSInterception':
+              position: 'before routing'
+              component: 'GoCardTeam\GoCardApi\Http\Api\v1\CORSInterceptionComponent'
