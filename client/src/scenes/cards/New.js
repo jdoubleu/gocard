@@ -17,6 +17,7 @@ import {
 
 } from "reactstrap";
 import {Link} from "react-router-dom";
+import TagForm from '../../components/cards/tagForm';
 
 class New extends React.Component {
 
@@ -52,7 +53,7 @@ class New extends React.Component {
     newInput() {
         this.setState({
             inputs: this.state.inputs.concat(
-                <InputGroup>
+                <InputGroup className="mt-2">
                     <InputGroupAddon>
                         <Input addon type="radio" name="button"/>
                     </InputGroupAddon>
@@ -67,6 +68,7 @@ class New extends React.Component {
     }
 
     display(mode) {
+        //Singlechoice
         if (this.state.mode === 1) {
             return (
                 <div>
@@ -80,16 +82,20 @@ class New extends React.Component {
 
                     </InputGroup>
                     {this.state.inputs.map((form)=> {
-                        {form}
+                        return form
                     })}
                     </FormGroup>
                     <FormGroup>
-                    <Button outline color="info" onClick={() => this.newInput(1)}
-                            active={this.state.plus === 1}>+</Button>
-
-                </FormGroup>
+                      <Button block outline color="info" onClick={() => this.newInput(1)}
+                              active={this.state.plus === 1}>Weiter Antwort
+                      </Button>
+                    </FormGroup>
+                    <FormGroup>
+                      <TagForm />
+                    </FormGroup>
                     </div>
             )
+        //Multiplechoice
         } else if (this.state.mode === 2) {
             return(
             <FormGroup>
