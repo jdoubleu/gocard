@@ -10,9 +10,7 @@ services:
         command: composer install
 
     php:
-        build:
-            context: .docker/Development/
-            dockerfile: Dockerfile-php
+        build: .docker/Development/php
         depends_on:
             - composer
             - apache
@@ -22,9 +20,7 @@ services:
             - ./:/var/www/html
 
     debugproxy:
-        build:
-            context: .docker/Development
-            dockerfile: Dockerfile-debugproxy
+        build: .docker/Development/debugproxy
         depends_on:
             - php
         environment:
@@ -36,9 +32,7 @@ services:
             - ./:/var/www/html
 
     apache:
-        build:
-            context: .docker/Development/
-            dockerfile: Dockerfile-httpd
+        build: .docker/Development/apache
         volumes:
             - ./:/var/www/html
         ports:
