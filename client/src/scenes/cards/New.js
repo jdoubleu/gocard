@@ -101,6 +101,7 @@ class New extends React.Component {
                         </Button>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="tags">Tags</Label>
                         <TagForm />
                     </FormGroup>
                 </div>
@@ -122,10 +123,11 @@ class New extends React.Component {
                         })}
                     </FormGroup>
                     <FormGroup>
-                        <Button outline color="info" onClick={() => this.newInputMultiple()}
+                        <Button block outline color="info" onClick={() => this.newInputMultiple()}
                         >Weitere Antwort hinzufügen</Button>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="tags">Tags</Label>
                         <TagForm />
                     </FormGroup>
                 </div>
@@ -138,6 +140,7 @@ class New extends React.Component {
                         <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="tags">Tags</Label>
                         <TagForm />
                     </FormGroup>
                 </div>
@@ -152,6 +155,7 @@ class New extends React.Component {
                         <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
                     </FormGroup>
                     <FormGroup>
+                        <Label for="tags">Tags</Label>
                         <TagForm />
                     </FormGroup>
                 </div>
@@ -187,7 +191,7 @@ class New extends React.Component {
                         <br/>
                         <Form>
                             <FormGroup>
-                                <Label for="question" size="lg">Frage:</Label>
+                                <Label for="question">Frage</Label>
                                 <Input type="text" name="question" id="question"
                                        placeholder="Bitte deine Frage eingeben"/>
                             </FormGroup>

@@ -43,8 +43,7 @@ class Detail extends React.Component {
                 <CardGroup>
                     <Card block>
                         <CardTitle>Beschreibung</CardTitle>
-                        <CardText>
-                            Lorem ipsum si amet
+                        <CardText>OOP Register: Hier ligt alles zum Modul OOP1 von Prof. Dahm
                             <hr />
                         </CardText>
 
