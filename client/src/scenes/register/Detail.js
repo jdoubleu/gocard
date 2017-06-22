@@ -6,6 +6,7 @@ import Statistic from "../../components/shared/statistic";
 import PreviewCard from "../../components/cards/previewCard";
 import Iconbar from "../../components/shared/member/iconBar";
 import TagViewer from "../../components/registers/tagViewer";
+import BlankPreviewCard from "../../components/cards/blankPreviewCard";
 
 class Detail extends React.Component {
     constructor(props) {
@@ -68,7 +69,7 @@ class Detail extends React.Component {
                     </Col>
                 </Row>
                 <CardDeck>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
+                    <BlankPreviewCard/>
                     <PreviewCard question="Wir taversiert man durch einen Baum?"/>
                     <PreviewCard question="Wir taversiert man durch einen Baum?"/>
                     <PreviewCard question="Wir taversiert"/>

@@ -15,6 +15,8 @@ import {
     Row
 } from "reactstrap";
 import TagForm from "../../components/cards/tagForm";
+import {Link} from "react-router-dom";
+import Header from "../../components/shared/header";
 
 class New extends React.Component {
 
@@ -162,12 +164,15 @@ class New extends React.Component {
     render() {
         return (
             <div>
-                <h1>Neue Karteikarte erstellen</h1>
-                <CardGroup>
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <Header
+                        title="Neue Karteikarte"
+                        lead="Hier kannst du eine neue Karteikarte für dein Register erstellen."
+                    />
                     <Card block>
                         <CardTitle>Wähle den Fragetyp dieser Karteikarte</CardTitle>
 
-                        <ButtonGroup size="lg">
+                        <ButtonGroup>
                             <Button outline color="info" onClick={() => this.onRadioBtnClick(1)}
                                     active={this.state.mode === 1}>Single Choice</Button>
                             <Button outline color="info" onClick={() => this.onRadioBtnClick(2)}
@@ -191,16 +196,20 @@ class New extends React.Component {
                         </Form>
                         <Row>
                             <Col>
-                                <Button outline block color="danger">Abbrechen</Button>
+                                <Link to="/register/:id">
+                                    <Button outline block color="danger">Abbrechen</Button>
+                                </Link>
                             </Col>
                             <Col>
-                                <Button outline block color="primary">Erstellen</Button>
+                                <Link to="/register/:id">
+                                    <Button outline block color="primary">Erstellen</Button>
+                                </Link>
                             </Col>
                         </Row>
 
 
                     </Card>
-                </CardGroup>
+                </Col>
             </div>
         );
     }
