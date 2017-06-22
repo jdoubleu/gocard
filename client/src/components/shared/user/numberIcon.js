@@ -8,7 +8,7 @@ class NumberIcon extends React.Component {
             <span className="user-NumberIcon">
               <svg height={this.props.diameter} width={this.props.diameter}>
                   <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2 - 2}
-                          stroke="gray" stroke-width="4" fill="none"/>
+                          stroke="gray" fill="none"/>
                   <text fill="grey" fontSize={this.props.diameter / 2.5} x={this.props.diameter / 2}
                         y={this.props.diameter / 2} textAnchor="middle"
                         alignmentBaseline="central">+{this.props.rest}</text>
