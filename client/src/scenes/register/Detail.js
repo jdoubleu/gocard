@@ -1,4 +1,5 @@
 import React from "react";
+import "./Detail.css";
 import Header from "../../components/shared/header";
 import {Button, ButtonGroup, Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
@@ -34,7 +35,7 @@ class Detail extends React.Component {
 
                         <CardText><Link to="3/edit">Bearbeiten</Link></CardText>
                     </Card>
-                    <Card block className="bg-faded">
+                    <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <CardText>
                             <TagViewer />

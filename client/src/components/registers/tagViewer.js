@@ -32,7 +32,7 @@ class TagViewer extends React.Component {
                 <div>
                     {
                         this.props.tags.map((tag) =>
-                            <Button size="sm" className="mr-1" onClick={() => this.handleSelect(tag)}
+                            <Button outline size="sm" className="mr-1" onClick={() => this.handleSelect(tag)}
                                     color={this.state.selectedTags.includes(tag) ? 'primary' : 'secondary'}>{tag} {this.state.selectedTags.includes(tag) ? '\u2714' : ''}</Button>
                         )
                     }
