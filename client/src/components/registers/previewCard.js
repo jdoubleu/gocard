@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
 import IconBar from "../shared/member/iconBar";
 
