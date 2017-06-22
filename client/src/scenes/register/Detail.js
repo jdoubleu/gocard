@@ -1,7 +1,20 @@
 import React from "react";
 import "./Detail.css";
 import Header from "../../components/shared/header";
-import {Button, ButtonGroup, Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import {
+    Button,
+    ButtonGroup,
+    Card,
+    CardDeck,
+    CardGroup,
+    CardText,
+    CardTitle,
+    Col,
+    Form,
+    FormGroup,
+    Label,
+    Row
+} from "reactstrap";
 import {Link} from "react-router-dom";
 import Statistic from "../../components/shared/statistic";
 import PreviewCard from "../../components/cards/previewCard";
@@ -29,7 +42,8 @@ class Detail extends React.Component {
                 <CardGroup>
                     <Card block>
                         <CardTitle>Beschreibung</CardTitle>
-                        <CardText>Lorem ipsum si amet
+                        <CardText>
+                            Lorem ipsum si amet
                             <hr />
                         </CardText>
 
@@ -37,29 +51,38 @@ class Detail extends React.Component {
                     </Card>
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <CardText>
-                            <TagViewer />
-                        </CardText>
-                        <CardTitle>Lernmodus</CardTitle>
-                        <CardText>
-                            <ButtonGroup check>
-                                <Button outline onClick={() => this.onRadioBtnClick(1)} active={this.state.mode === 1}
-                                        color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal</Button>
-                                <Button outline onClick={() => this.onRadioBtnClick(2)} active={this.state.mode === 2}
-                                        color={this.state.mode === 2 ? 'primary' : 'secondary'}>Power</Button>
-                                <Button outline onClick={() => this.onRadioBtnClick(3)} active={this.state.mode === 3}
-                                        color={this.state.mode === 3 ? 'primary' : 'secondary'}>Klausur</Button>
-                            </ButtonGroup>
-                        </CardText>
-                        <Button outline color="primary">Lernen starten</Button>
+                        <Form>
+                            <FormGroup>
+                                <Label for="tags">Tags</Label>
+                                <TagViewer />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="mode">Lernmodus</Label>
+                                <ButtonGroup check>
+                                    <Button outline onClick={() => this.onRadioBtnClick(1)}
+                                            active={this.state.mode === 1}
+                                            color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal</Button>
+                                    <Button outline onClick={() => this.onRadioBtnClick(2)}
+                                            active={this.state.mode === 2}
+                                            color={this.state.mode === 2 ? 'primary' : 'secondary'}>Power</Button>
+                                    <Button outline onClick={() => this.onRadioBtnClick(3)}
+                                            active={this.state.mode === 3}
+                                            color={this.state.mode === 3 ? 'primary' : 'secondary'}>Klausur</Button>
+                                </ButtonGroup>
+                            </FormGroup>
+                            <Button block outline color="primary">Lernen starten</Button>
+                        </Form>
                     </Card>
                     <Card block>
                         <CardTitle>Statistik</CardTitle>
-                        <CardText><Statistic /></CardText>
+                        <CardText>
+                            <Statistic />
+                        </CardText>
                         <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
                             <Iconbar
-                                members={["Lewis", "nicki lauder", "peter maffay", "Udo", "Dimo Bibbers", "Kurt Z Hose", "Kurt Z Hose", "Kurt Z Hose"]}/>
+                                members={["Lewis", "nicki lauder", "peter maffay", "Udo", "Dimo Bibbers", "Kurt Z Hose", "Kurt Z Hose", "Kurt Z Hose"]}
+                            />
                         </CardText>
                     </Card>
                 </CardGroup>

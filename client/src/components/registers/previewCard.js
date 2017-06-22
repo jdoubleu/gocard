@@ -14,14 +14,10 @@ class PreviewCard extends React.Component {
 
                     <Row className="mb-3">
                         <Col xs="8">
-                            <CardText>
-                                <IconBar members={this.props.members} diameter={36}/>
-                            </CardText>
+                            <IconBar members={this.props.members} diameter={36}/>
                         </Col>
                         <Col xs="4">
-                            <CardText>
-                                <Statistic/>
-                            </CardText>
+                            <Statistic/>
                         </Col>
                     </Row>
 

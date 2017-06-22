@@ -25,7 +25,7 @@ class Statistic extends React.Component {
         const options = {
             cutoutPercentage: 80,
             legend: false,
-            maintainAspectRatio: false
+            maintainAspectRatio: true
         };
 
 
@@ -33,7 +33,6 @@ class Statistic extends React.Component {
             <Doughnut
                 options={options}
                 data={data}
-                height={125}
             />
         );
     }
