@@ -170,7 +170,7 @@ class New extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <Header
                         title="Neue Karteikarte"
-                        lead="Hier kannst du eine neue Karteikarte für dein Register erstellen."
+                        lead="Hier kannst du eine neue Karteikarte für Dein Register erstellen."
                     />
                     <Card block>
                         <CardTitle>Wähle den Fragetyp dieser Karteikarte</CardTitle>

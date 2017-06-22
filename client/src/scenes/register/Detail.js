@@ -43,7 +43,7 @@ class Detail extends React.Component {
                 <CardGroup>
                     <Card block>
                         <CardTitle>Beschreibung</CardTitle>
-                        <CardText>OOP Register: Hier ligt alles zum Modul OOP1 von Prof. Dahm
+                        <CardText>OOP Register: Hier liegt alles zum Modul OOP1 von Prof. Dahm
                             <hr />
                         </CardText>
 
@@ -93,15 +93,14 @@ class Detail extends React.Component {
                 </Row>
                 <CardDeck>
                     <BlankPreviewCard/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
-                    <PreviewCard question="Wir taversiert"/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
-                    <PreviewCard question="Lorem ipsum dollor sias sa  amed "/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
-                    <PreviewCard question="Wir taversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+                    <PreviewCard question="Wie traversiert man durch einen Baum?"/>
+
                 </CardDeck>
             </div>
         );

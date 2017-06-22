@@ -36,9 +36,8 @@ class Login extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <div className="pb-2">
                         <h1 className="display-4">Willkommen bei <Logo/></h1>
-                        <p className="lead">Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie
-                            so
-                            einfach.</p>
+                        <p className="lead">Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen. Du kannst
+                        deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.</p>
                     </div>
 
                     <CardGroup>
