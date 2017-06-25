@@ -3,7 +3,7 @@ import {
     Button,
     ButtonGroup,
     Card,
-    CardTitle,
+    CardText,
     Col,
     Form,
     FormGroup,
@@ -140,6 +140,11 @@ class New extends React.Component {
                         <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
                     </FormGroup>
                     <FormGroup>
+                        {/*
+                        Do Not Delete this empty Form Group. Important
+                         */}
+                    </FormGroup>
+                    <FormGroup>
                         <Label for="tags">Tags</Label>
                         <TagForm />
                     </FormGroup>
@@ -153,6 +158,11 @@ class New extends React.Component {
                         <Label for="textanswer">Antwort</Label>
 
                         <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
+                    </FormGroup>
+                    <FormGroup>
+                        {/*
+                         Do Not Delete this empty Form Group. Important
+                         */}
                     </FormGroup>
                     <FormGroup>
                         <Label for="tags">Tags</Label>
@@ -173,29 +183,31 @@ class New extends React.Component {
                         lead="Hier kannst du eine neue Karteikarte für Dein Register erstellen."
                     />
                     <Card block>
-                        <CardTitle>Wähle den Fragetyp dieser Karteikarte</CardTitle>
 
-                        <ButtonGroup>
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(1)}
-                                    active={this.state.mode === 1}>Single Choice</Button>
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(2)}
-                                    active={this.state.mode === 2}>Multiple Choice</Button>
-
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(3)}
-                                    active={this.state.mode === 3}>Selbstkontrolle</Button>
-
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(4)}
-                                    active={this.state.mode === 4}>Texteingabe</Button>
-
-                        </ButtonGroup>
-                        <br/>
                         <Form>
                             <FormGroup>
                                 <Label for="question">Frage</Label>
                                 <Input type="text" name="question" id="question"
                                        placeholder="Bitte deine Frage eingeben"/>
                             </FormGroup>
+
+
+                            <ButtonGroup>
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(1)}
+                                        active={this.state.mode === 1}>Single Choice</Button>
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(2)}
+                                        active={this.state.mode === 2}>Multiple Choice</Button>
+
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(3)}
+                                        active={this.state.mode === 3}>Selbstkontrolle</Button>
+
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(4)}
+                                        active={this.state.mode === 4}>Texteingabe</Button>
+
+                            </ButtonGroup>
+                            <br/>
                             {this.display()}
+                            <br/>
                         </Form>
                         <Row>
                             <Col>
