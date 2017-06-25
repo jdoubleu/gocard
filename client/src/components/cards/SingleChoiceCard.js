@@ -70,7 +70,7 @@ class SingleChoiceCard extends React.Component {
                 } else if (this.state.answer === false) {
                     return (
                         <div>
-                            <CardText>Deine Antwort war flasch! Die richtige Antwort ist</CardText>
+                            <CardText>Deine Antwort war falsch! Die richtige Antwort lautet: </CardText>
                             <CardText>{this.getRightAnswer()}</CardText>
                             <div className="text-right">
                                 <Button outline color="primary">Weiter</Button>
@@ -115,15 +115,26 @@ class SingleChoiceCard extends React.Component {
 
     }
 
+
+    skipQuestion(){
+        console.log('skip question view');
+    }
+
+    cancelMode(){
+      console.log('cancel view');
+      // Link to last register
+    }
+
     render() {
         return (
-            <Col sm="12" md={{size: 8, offset: 2}}>
+          <Row>
+            <Col sm="12" md={{size: 7, offset: 2}}>
 
 
                 <Card block>
 
                     <CardTitle>{this.props.question}</CardTitle>
-                    <p>Single Choice Frage: bitte kreuze nur eine Antwort an!</p>
+                    <p>Single Choice Frage: Bitte kreuze nur eine Antwort an!</p>
                     <FormGroup>
                         {this.showAnswers()}
                     </FormGroup>
@@ -132,10 +143,16 @@ class SingleChoiceCard extends React.Component {
                     </FormGroup>
                     {this.button()}
 
-
                 </Card>
-            </Col>
 
+            </Col>
+            <Col>
+              <div>
+              <Button outline color="primary" onClick={this.cancelMode}>Lernmodus beenden</Button>
+              <Button outline color="primary" onClick={this.skipQuestion}>Überspringe Frage</Button>
+              </div>
+            </Col>
+          </Row>
         );
     }
 }
@@ -149,7 +166,7 @@ SingleChoiceCard.propTypes = {
 
 
 SingleChoiceCard.defaultProps = {
-    question: "Wie traversiere ich durch eien Baum?",
+    question: "Wie traversiere ich durch einen Baum?",
     answer: ["Mit toString", "Mit Bananen", "Mit Getter/Setter"],
     mode: 2
 };
