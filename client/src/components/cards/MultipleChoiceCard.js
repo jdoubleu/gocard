@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Button, Card, Col, Form, FormGroup, Input, Label, Row, CardText, CardTitle} from "reactstrap";
+import lodash from "lodash";
 
 
 class MultipleChoiceCard extends React.Component {
@@ -10,9 +11,13 @@ class MultipleChoiceCard extends React.Component {
         this.getRightAnswers = this.getRightAnswers.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validate = this.validate.bind(this);
+        this.showAnswers = this.showAnswers.bind(this);
+        this.button = this.button.bind(this);
+        this.array = [];
+        this.count = 0;
         this.state = {
             answer: false,
-            show: '',
+            show: false,
             clicked: [],
             test: []
         }
@@ -27,40 +32,43 @@ class MultipleChoiceCard extends React.Component {
 
         this.setState({
             show: true,
-            clicked: this.state.clicked
         })
-        console.log(this.state.show);
     }
 
     validate(event) {
-        let array = []
 
-        array.forEach(a => {
+        let test = false;
+        this.array.forEach(a => {
             if (a === event.target.value) {
-                let index = array.indexOf(event.target.value);
-                delete array[index];
+                let index = this.array.indexOf(event.target.value);
+                delete this.array[index];
+                test = true;
             }
         });
-        array = array.concat(event.target.value);
-        array.forEach(a =>{
-            this.getRightAnswers().forEach(d =>{
-                if(a === d){
-                    this.setState({
-                        answer: true
-                    })
-                }else{
-                    this.setState({
-                        answer: false
-                    })
-                }
-            })
-        });
-        this.setState({
-            clicked: array
+
+        if (test === false) {
+            this.array = this.array.concat(event.target.value);
+        }
+        let valid = true;
+        this.count = 0;
+        let dif = lodash.difference(this.array, this.getRightAnswers());
+        if (dif.length > 0) {
+            valid = false;
+        }
+        let allundifiend = true;
+        this.array.forEach(a => {
+            if (a != undefined) {
+                allundifiend = false;
+            }
         })
-        console.log(this.state.clicked);
+        if (allundifiend === true) {
+            valid = false;
+        }
 
-
+        this.setState({
+            clicked: this.array,
+            answer: valid
+        })
 
 
     }
@@ -72,7 +80,12 @@ class MultipleChoiceCard extends React.Component {
             if (this.props.mode === 2) {
                 if (this.state.answer === true) {
                     return (
-                        <CardText>Deine Antwort war richtig!</CardText>
+                        <div>
+                            <CardText>Deine Antwort war richtig!</CardText>
+                            <div className="text-right">
+                                <Button outline color="primary">Weiter</Button>
+                            </div>
+                        </div>
                     )
                 } else if (this.state.answer === false) {
                     return (
@@ -81,10 +94,54 @@ class MultipleChoiceCard extends React.Component {
                             {this.getRightAnswers().map((a) => {
                                 return <CardText>{a}</CardText>
                             })}
+                            <div className="text-right">
+                                <Button outline color="primary">Weiter</Button>
+                            </div>
                         </div>
                     )
                 }
             }
+        }
+    }
+
+    showAnswers() {
+        if (this.state.show === false) {
+            console.log("ich bin hier");
+            return ( this.props.answer.map((answer) =>
+                    <Row>
+                        <Col md={{offset: 1, size: 1}}>
+                            <Input type="checkbox" name="buttonAnswer" value={answer}
+                                   onClick={this.validate}></Input>
+                        </Col>
+                        <Col>
+                            <CardText>{answer}</CardText>
+                        </Col>
+                    </Row>
+                )
+            );
+        } else {
+            console.log("ich bin da");
+            return ( this.props.answer.map((answer) =>
+                    <Row>
+                        <Col md={{offset: 1, size: 1}}>
+                            <Input type="checkbox" name="buttonAnswer" value={answer}
+                                   onClick={this.validate} disabled></Input>
+                        </Col>
+                        <Col>
+                            <CardText>{answer}</CardText>
+                        </Col>
+                    </Row>
+                )
+            );
+        }
+
+    }
+
+    button() {
+        if (this.state.show == false) {
+            return (<Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>)
+        } else {
+            return (<br/>)
         }
     }
 
@@ -98,24 +155,13 @@ class MultipleChoiceCard extends React.Component {
                     <CardTitle>{this.props.question}</CardTitle>
                     <p>Single Choice Frage: bitte kreuze nur eine Antwort an!</p>
                     <FormGroup>
-                        {this.props.answer.map((answer) => {
-                            return <Row>
-                                <Col md={{offset: 1, size: 1}}>
-                                    <Input type="checkbox" name="buttonAnswer" value={answer}
-                                           onClick={this.validate}></Input>
-                                </Col>
-                                <Col>
-                                    <CardText>{answer}</CardText>
-                                </Col>
-                            </Row>
-                        })
-                        }
+                        {this.showAnswers()}
                     </FormGroup>
                     <FormGroup>
                         {this.display()}
                     </FormGroup>
 
-                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
+                    {this.button()}
 
 
                 </Card>

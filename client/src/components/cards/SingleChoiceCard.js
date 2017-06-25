@@ -10,9 +10,11 @@ class SingleChoiceCard extends React.Component {
         this.getRightAnswer = this.getRightAnswer.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validate = this.validate.bind(this);
+        this.button = this.button.bind(this);
+        this.showAnswers = this.showAnswers.bind(this);
         this.state = {
             answer: false,
-            show: ''
+            show: false
         }
     }
 
@@ -23,7 +25,7 @@ class SingleChoiceCard extends React.Component {
     handleSubmit() {
 
         this.setState({
-            show:true
+            show: true
         })
         console.log(this.state.show);
     }
@@ -43,25 +45,74 @@ class SingleChoiceCard extends React.Component {
 
     }
 
+    button() {
+        if (this.state.show == false) {
+            return (<Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>)
+        } else {
+            return (<br/>)
+        }
+    }
+
     display() {
-        console.log("display");
-        if(this.state.show === true) {
+
+        if (this.state.show === true) {
             console.log("ich darf angezeigt werden");
             if (this.props.mode === 2) {
                 if (this.state.answer === true) {
                     return (
-                        <CardText>Deine Antwort war richtig!</CardText>
+                        <Col>
+                            <CardText>Deine Antwort war richtig!</CardText>
+                            <div className="text-right">
+                                <Button outline color="primary">Weiter</Button>
+                            </div>
+                        </Col>
                     )
                 } else if (this.state.answer === false) {
                     return (
                         <div>
                             <CardText>Deine Antwort war flasch! Die richtige Antwort ist</CardText>
                             <CardText>{this.getRightAnswer()}</CardText>
+                            <div className="text-right">
+                                <Button outline color="primary">Weiter</Button>
+                            </div>
                         </div>
                     )
                 }
             }
         }
+    }
+
+    showAnswers() {
+        if (this.state.show === false) {
+            console.log("ich bin hier");
+            return ( this.props.answer.map((answer) =>
+                    <Row>
+                        <Col md={{offset: 1, size: 1}}>
+                            <Input type="radio" name="buttonAnswer" value={answer}
+                                   onClick={this.validate}></Input>
+                        </Col>
+                        <Col>
+                            <CardText>{answer}</CardText>
+                        </Col>
+                    </Row>
+                )
+            );
+        } else {
+            console.log("ich bin da");
+            return ( this.props.answer.map((answer) =>
+                    <Row>
+                        <Col md={{offset: 1, size: 1}}>
+                            <Input type="radio" name="buttonAnswer" value={answer}
+                                   onClick={this.validate} disabled></Input>
+                        </Col>
+                        <Col>
+                            <CardText>{answer}</CardText>
+                        </Col>
+                    </Row>
+                )
+            );
+        }
+
     }
 
     render() {
@@ -71,30 +122,15 @@ class SingleChoiceCard extends React.Component {
 
                 <Card block>
 
-                        <CardTitle>{this.props.question}</CardTitle>
-                        <p>Single Choice Frage: bitte kreuze nur eine Antwort an!</p>
-                        <FormGroup>
-                            {this.props.answer.map((answer) => {
-                                return <Row>
-                                    <Col md={{offset: 1, size: 1}}>
-                                        <Input type="radio" name="buttonAnswer" value={answer}
-                                               onClick={this.validate}></Input>
-                                    </Col>
-                                    <Col>
-                                        <CardText>{answer}</CardText>
-                                    </Col>
-                                </Row>
-                            })
-                            }
-                        </FormGroup>
+                    <CardTitle>{this.props.question}</CardTitle>
+                    <p>Single Choice Frage: bitte kreuze nur eine Antwort an!</p>
+                    <FormGroup>
+                        {this.showAnswers()}
+                    </FormGroup>
                     <FormGroup>
                         {this.display()}
                     </FormGroup>
-
-                        <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
-
-
-
+                    {this.button()}
 
 
                 </Card>
