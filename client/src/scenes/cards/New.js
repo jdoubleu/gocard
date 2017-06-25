@@ -48,7 +48,7 @@ class New extends React.Component {
         })
     }
 
-    newInputMultiple() {
+    newInputMultiple(event) {
         this.setState({
             inputsMultiple: this.state.inputsMultiple.concat(
                 <InputGroup className="mt-2">
@@ -60,9 +60,13 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
+        if(event === 2){
+            this.newInput(event);
+        }
+
     }
 
-    newInput() {
+    newInput(event) {
         this.setState({
             inputs: this.state.inputs.concat(
                 <InputGroup className="mt-2">
@@ -74,6 +78,9 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
+        if(event ===1) {
+            this.newInputMultiple(event);
+        }
 
     }
 
@@ -123,7 +130,7 @@ class New extends React.Component {
                         })}
                     </FormGroup>
                     <FormGroup>
-                        <Button block outline color="info" onClick={() => this.newInputMultiple()}
+                        <Button block outline color="info" onClick={() => this.newInputMultiple(2)}
                         >Weitere Antwort hinzufügen</Button>
                     </FormGroup>
                     <FormGroup>
