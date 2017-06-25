@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, Col, Form, FormGroup, Input, Label, Row, CardText, CardTitle} from "reactstrap";
+import {Button, Card, Col, FormGroup, Input, Row, CardText, CardTitle} from "reactstrap";
 import lodash from "lodash";
 
 
