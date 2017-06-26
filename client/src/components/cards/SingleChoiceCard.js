@@ -58,7 +58,7 @@ class SingleChoiceCard extends React.Component {
 
         if (this.state.show === true) {
             console.log("ich darf angezeigt werden");
-            if (this.props.mode === 2) {
+            if (this.props.mode <= 2) {
                 if (this.state.answer === true) {
                     return (
                         <Col>
@@ -181,7 +181,7 @@ SingleChoiceCard.propTypes = {
 SingleChoiceCard.defaultProps = {
     question: "Wie traversiere ich durch einen Baum?",
     answer: ["Mit toString", "Mit Bananen", "Mit Getter/Setter"],
-    mode: 2
+    mode: 3
 };
 
 export default SingleChoiceCard;

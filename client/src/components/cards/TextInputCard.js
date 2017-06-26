@@ -35,20 +35,22 @@ class SelfValidateCard extends React.Component {
     }
 
     display(){
-        if(this.state.show === true){
-            if(this.state.answer === true){
-                return(
-                    <CardText>Deine Antwort ist richtig</CardText>
-                )
-            }else{
-                return(
-                    <div>
-                        <CardText>Deine Antwort war falsch</CardText>
-                        <CardText>{this.props.answer}</CardText>
-                    </div>
-                )
-            }
+        if(this.state.show === true) {
+            if (this.props.mode <= 2) {
+                if (this.state.answer === true) {
+                    return (
+                        <CardText>Deine Antwort ist richtig</CardText>
+                    )
+                } else {
+                    return (
+                        <div>
+                            <CardText>Deine Antwort war falsch</CardText>
+                            <CardText>{this.props.answer}</CardText>
+                        </div>
+                    )
+                }
 
+            }
         }
     }
 
@@ -120,13 +122,15 @@ class SelfValidateCard extends React.Component {
 
 SelfValidateCard.propTypes = {
     question: PropTypes.string.isRequired,
-    answer: PropTypes.string
+    answer: PropTypes.string,
+    mode: PropTypes.number
 };
 
 
 SelfValidateCard.defaultProps = {
     question: 'Wie traversiert man über einen Baum?',
-    answer: 'mit toString'
+    answer: 'mit toString',
+    mode: 2
 };
 
 export default SelfValidateCard;

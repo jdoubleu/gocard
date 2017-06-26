@@ -51,9 +51,6 @@ class SelfValidateCard extends React.Component {
             return(
                 <div>
                     <CardText>{this.props.answer}</CardText>
-
-
-
                     <Row>
                         <Col>
                             <Button outline block color="danger">Falsch</Button>

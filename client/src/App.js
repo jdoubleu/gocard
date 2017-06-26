@@ -15,6 +15,7 @@ import SingleChoice from "./components/cards/SingleChoiceCard";
 import MultipleChoice from "./components/cards/MultipleChoiceCard";
 import SelfValidate from "./components/cards/SelfValidateCard";
 import Input from "./components/cards/TextInputCard";
+import Feedback from "./scenes/learn/Feedback";
 
 import {Container} from "reactstrap";
 
@@ -35,6 +36,7 @@ class App extends React.Component {
                         <Route path='/multiple' exact component={MultipleChoice}/> # just for testing
                         <Route path='/self' exact component={SelfValidate}/> # just for testing
                         <Route path='/input' exact component={Input}/> # just for testing
+                        <Route path='/feedback' exact component={Feedback}/> # just for testing
 
                         {/* Register Routes */}
                         <Route path="/register" component={Register}/>
