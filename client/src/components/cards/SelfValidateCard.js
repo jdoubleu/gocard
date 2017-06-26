@@ -9,6 +9,7 @@ class SelfValidateCard extends React.Component {
         this.button = this.button.bind(this);
         this.display = this.display.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.displaySkipCancel = this.displaySkipCancel.bind(this);
         this.state = {
             show: false
         }
@@ -27,6 +28,21 @@ class SelfValidateCard extends React.Component {
             return (<Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>)
         } else {
             return (<br/>)
+        }
+    }
+    displaySkipCancel(){
+        if(this.state.show=== false) {
+            return ( <Row>
+                    <Col>
+                        <Button outline block color="danger">Abbrechen</Button>
+                    </Col>
+                    <Col>
+                        <Button outline block color="info">Überspringen</Button>
+                    </Col>
+                </Row>
+            )
+        }else{
+            return(<Button outline block color="danger">Abbrechen</Button>)
         }
     }
 
@@ -68,6 +84,8 @@ class SelfValidateCard extends React.Component {
                       {this.button()}
                   </Form>
               </Card>
+              <br/>
+              {this.displaySkipCancel()}
           </Col>
 
         );

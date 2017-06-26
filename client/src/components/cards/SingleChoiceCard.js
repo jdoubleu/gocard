@@ -12,6 +12,7 @@ class SingleChoiceCard extends React.Component {
         this.validate = this.validate.bind(this);
         this.button = this.button.bind(this);
         this.showAnswers = this.showAnswers.bind(this);
+        this.displaySkipCancel = this.displaySkipCancel.bind(this);
         this.state = {
             answer: false,
             show: false
@@ -115,6 +116,22 @@ class SingleChoiceCard extends React.Component {
 
     }
 
+    displaySkipCancel(){
+        if(this.state.show=== false) {
+            return ( <Row>
+                    <Col>
+                        <Button outline block color="danger">Abbrechen</Button>
+                    </Col>
+                    <Col>
+                        <Button outline block color="info">Überspringen</Button>
+                    </Col>
+                </Row>
+            )
+        }else{
+            return(<Button outline block color="danger">Abbrechen</Button>)
+        }
+    }
+
 
     skipQuestion(){
         console.log('skip question view');
@@ -144,14 +161,10 @@ class SingleChoiceCard extends React.Component {
                     {this.button()}
 
                 </Card>
+                <br/>
+                {this.displaySkipCancel()}
+            </Col>
 
-            </Col>
-            <Col>
-              <div>
-              <Button outline color="primary" onClick={this.cancelMode}>Lernmodus beenden</Button>
-              <Button outline color="primary" onClick={this.skipQuestion}>Überspringe Frage</Button>
-              </div>
-            </Col>
           </Row>
         );
     }

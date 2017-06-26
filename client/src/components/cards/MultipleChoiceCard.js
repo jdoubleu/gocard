@@ -13,6 +13,7 @@ class MultipleChoiceCard extends React.Component {
         this.validate = this.validate.bind(this);
         this.showAnswers = this.showAnswers.bind(this);
         this.button = this.button.bind(this);
+        this.displaySkipCancel = this.displaySkipCancel.bind(this);
         this.array = [];
         this.count = 0;
         this.state = {
@@ -103,6 +104,22 @@ class MultipleChoiceCard extends React.Component {
             }
         }
     }
+    displaySkipCancel(){
+        if(this.state.show=== false) {
+            return ( <Row>
+                    <Col>
+                        <Button outline block color="danger">Abbrechen</Button>
+                    </Col>
+                    <Col>
+                        <Button outline block color="info">Überspringen</Button>
+                    </Col>
+                </Row>
+            )
+        }else{
+            return(<Button outline block color="danger">Abbrechen</Button>)
+        }
+    }
+
 
     showAnswers() {
         if (this.state.show === false) {
@@ -160,11 +177,10 @@ class MultipleChoiceCard extends React.Component {
                     <FormGroup>
                         {this.display()}
                     </FormGroup>
-
                     {this.button()}
-
-
                 </Card>
+                <br/>
+                {this.displaySkipCancel()}
             </Col>
 
         );
