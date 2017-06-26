@@ -7,6 +7,7 @@ class Feedback extends React.Component {
         super(props);
         this.displayAllCards = this.displayAllCards.bind(this);
         this.getAllCards = this.getAllCards.bind(this);
+        this.displayStatus = this.displayStatus.bind(this);
         this.state = {
             cards : dummy
         }
@@ -19,19 +20,44 @@ class Feedback extends React.Component {
         return this.state.cards;
     }
 
+    displayStatus(status){
+
+
+
+       if(status === "true"){
+           return(
+
+               <CardText>✔
+                   </CardText>
+           )
+       }else{
+           return(
+           <CardText>X</CardText>
+           )
+       }
+    }
+
     displayAllCards(){
         return(
             this.state.cards.map((cards) =><div> <Row key={cards.id}>
             <Col>
+                <Label>Frage</Label>
+                </Col>
+                <Col>
                 <CardText>{cards.question}</CardText>
                 </Col>
+
         </Row>
                 <Row>
+
                     <Col>
+                        <Label>Antwort</Label>
+                        </Col>
+                        <Col>
                     <CardText>{cards.answer}</CardText>
                         </Col>
                     <Col>
-                        {cards.status}
+                        {this.displayStatus(cards.status)}
                         </Col>
                 </Row>
                 </div>
