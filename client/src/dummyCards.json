@@ -3,30 +3,35 @@
     "id": -123123,
     "question": "Wie Traversiere ich durch einen Baum",
     "answer": "toString",
-    "status": "true"
+    "status": "true",
+    "userAnswer": "toString"
   },
   {
     "id": -62671231231930,
     "question": "Drei Primitive Datentypen",
-    "answer": "int short Sting",
-    "status": "false"
+    "answer": "int short long",
+    "status": "false",
+    "userAnswer": "int byte String"
   },
   {
     "id": -123,
     "question": "Was ist eine Referenz",
     "answer": "ein zeiger",
-    "status": "true"
+    "status": "false",
+    "userAnswer": "toString"
   },
   {
     "id": 435435,
     "question": "Wer stribt bei Game of Thrones",
     "answer": "Hodor",
-    "status": "true"
+    "status": "true",
+    "userAnswer": "Hodor"
   },
   {
     "id": -456456,
     "question": "Wie ist Timos richtiger name",
-    "answer": "Timo Bibbers",
-    "status": "true"
+    "answer": "Dimo Bibbers",
+    "status": "false",
+    "userAnswer": "Dimo Rosenbaltt"
   }
 ]

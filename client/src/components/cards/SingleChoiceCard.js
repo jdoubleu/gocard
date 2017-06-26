@@ -79,6 +79,12 @@ class SingleChoiceCard extends React.Component {
                         </div>
                     )
                 }
+            }else {
+                return(
+                    <div className="text-right">
+                        <Button outline color="primary">Weiter</Button>
+                    </div>
+                )
             }
         }
     }

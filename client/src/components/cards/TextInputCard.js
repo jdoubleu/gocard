@@ -50,6 +50,10 @@ class SelfValidateCard extends React.Component {
                     )
                 }
 
+            }else {
+                <div className="text-right">
+                    <Button outline color="primary">Weiter</Button>
+                </div>
             }
         }
     }
