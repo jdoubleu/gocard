@@ -33,36 +33,47 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <Col sm="12" md={{size: 8, offset: 2}}>
+                <Col sm="12" md={{size: 12}}>
                     <div className="pb-2">
+                      <Col sm={{ size: '10'}} md="10" className="lead">
                         <h1 className="display-4">Willkommen bei <Logo/></h1>
-                        <p className="lead">Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie
-                            so
-                            einfach.</p>
+                        <hr/>
+                          Auf dieser Webseite hast du die Möglichkeit, online mit Karteikarten zu lernen. Du kannst deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
+                        </Col>
                     </div>
+
+                    <br />
 
                     <CardGroup>
                         <Card block>
                             <CardTitle><span className="text-muted">Anmelden</span> HSD-Account</CardTitle>
-                            <CardText>
-                                Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem
-                                Hochschul-Account anzumelden.
+
+                            <Col sm={{ size: 'auto', offset: 0.5 }} md="11">
+                            <CardText className="text-left">
+
+                                  Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem Hochschul-Account anzumelden.
+
                             </CardText>
 
                             <CardText>
                                 <a href="http://passport.hs-duesseldorf.de/default.aspx">Passwort vergessen?</a>
                             </CardText>
-
+                            <div className="text-left" >
                             <Button outline color="primary">Anmelden mit HSD-Account</Button>
+                          </div>
+                          </Col>
                         </Card>
                         <Card block>
                             <CardTitle><span className="text-muted">Anmelden</span> GoCard-Account</CardTitle>
                             <CardText>
-                                Hast du bereits einen GoCard-Account? <br/>
+                              <Col sm={{ size: 'auto', offset: 0.5 }} md="11">
+                                Du hast noch keinen GoCard-Account? <br/>
                                 <Link to="/registration">GoCard-Account erstellen</Link>
+                              </Col>
                             </CardText>
 
                             <Form onSubmit={this.loginGoCard}>
+                              <Col sm={{ size: 'auto', offset: 0.5 }} md="11">
                                 <FormGroup>
                                     <Input type="email" name="email" id="email" placeholder="E-Mail Adresse"/>
                                 </FormGroup>
@@ -72,8 +83,10 @@ class Login extends React.Component {
                                 <CardText>
                                     <Link to="/reset">Passwort vergessen?</Link>
                                 </CardText>
-
-                                <Button outline block color="primary">Anmelden mit GoCard-Account</Button>
+                                <div className="text-left">
+                                  <Button outline color="primary">Anmelden mit GoCard-Account</Button>
+                                </div>
+                              </Col>
                             </Form>
                         </Card>
                     </CardGroup>

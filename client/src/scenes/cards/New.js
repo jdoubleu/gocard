@@ -3,7 +3,7 @@ import {
     Button,
     ButtonGroup,
     Card,
-    CardTitle,
+    CardText,
     Col,
     Form,
     FormGroup,
@@ -48,7 +48,7 @@ class New extends React.Component {
         })
     }
 
-    newInputMultiple() {
+    newInputMultiple(event) {
         this.setState({
             inputsMultiple: this.state.inputsMultiple.concat(
                 <InputGroup className="mt-2">
@@ -60,9 +60,13 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
+        if(event === 2){
+            this.newInput(event);
+        }
+
     }
 
-    newInput() {
+    newInput(event) {
         this.setState({
             inputs: this.state.inputs.concat(
                 <InputGroup className="mt-2">
@@ -74,6 +78,9 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
+        if(event ===1) {
+            this.newInputMultiple(event);
+        }
 
     }
 
@@ -123,7 +130,7 @@ class New extends React.Component {
                         })}
                     </FormGroup>
                     <FormGroup>
-                        <Button block outline color="info" onClick={() => this.newInputMultiple()}
+                        <Button block outline color="info" onClick={() => this.newInputMultiple(2)}
                         >Weitere Antwort hinzufügen</Button>
                     </FormGroup>
                     <FormGroup>
@@ -138,6 +145,11 @@ class New extends React.Component {
                     <FormGroup >
                         <Label for="textanswer">Antwort</Label>
                         <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
+                    </FormGroup>
+                    <FormGroup>
+                        {/*
+                        Do Not Delete this empty Form Group. Important
+                         */}
                     </FormGroup>
                     <FormGroup>
                         <Label for="tags">Tags</Label>
@@ -155,6 +167,11 @@ class New extends React.Component {
                         <Input type="textarea" name="textanswer" id="textanswer" rows="6"/>
                     </FormGroup>
                     <FormGroup>
+                        {/*
+                         Do Not Delete this empty Form Group. Important
+                         */}
+                    </FormGroup>
+                    <FormGroup>
                         <Label for="tags">Tags</Label>
                         <TagForm />
                     </FormGroup>
@@ -170,32 +187,34 @@ class New extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <Header
                         title="Neue Karteikarte"
-                        lead="Hier kannst du eine neue Karteikarte für dein Register erstellen."
+                        lead="Hier kannst du eine neue Karteikarte für Dein Register erstellen."
                     />
                     <Card block>
-                        <CardTitle>Wähle den Fragetyp dieser Karteikarte</CardTitle>
 
-                        <ButtonGroup>
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(1)}
-                                    active={this.state.mode === 1}>Single Choice</Button>
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(2)}
-                                    active={this.state.mode === 2}>Multiple Choice</Button>
-
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(3)}
-                                    active={this.state.mode === 3}>Selbstkontrolle</Button>
-
-                            <Button outline color="info" onClick={() => this.onRadioBtnClick(4)}
-                                    active={this.state.mode === 4}>Texteingabe</Button>
-
-                        </ButtonGroup>
-                        <br/>
                         <Form>
                             <FormGroup>
                                 <Label for="question">Frage</Label>
                                 <Input type="text" name="question" id="question"
                                        placeholder="Bitte deine Frage eingeben"/>
                             </FormGroup>
+
+
+                            <ButtonGroup>
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(1)}
+                                        active={this.state.mode === 1}>Single Choice</Button>
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(2)}
+                                        active={this.state.mode === 2}>Multiple Choice</Button>
+
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(3)}
+                                        active={this.state.mode === 3}>Selbstkontrolle</Button>
+
+                                <Button outline color="info" onClick={() => this.onRadioBtnClick(4)}
+                                        active={this.state.mode === 4}>Texteingabe</Button>
+
+                            </ButtonGroup>
+                            <br/>
                             {this.display()}
+                            <br/>
                         </Form>
                         <Row>
                             <Col>

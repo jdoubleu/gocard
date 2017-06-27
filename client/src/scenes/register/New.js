@@ -11,7 +11,7 @@ class New extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <Header
                         title="Neues Register"
-                        lead="Hier kannst du ein neues Register für deine Karteikarten erstellen."
+                        lead="Hier kannst du ein neues Register für Deine Karteikarten erstellen."
                     />
 
                     <Card block>
