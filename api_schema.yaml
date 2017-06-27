@@ -975,7 +975,7 @@ definitions:
         type: string
       email:
         type: string
-      status:
+      accountType:
         type: string
         enum:
           - local
