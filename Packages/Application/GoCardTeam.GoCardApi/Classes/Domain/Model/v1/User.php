@@ -52,6 +52,14 @@ class User
     protected $status;
 
     /**
+     * Init User
+     */
+    public function __construct()
+    {
+        assert(PHP_INT_SIZE == 8, "64Bit integers are not supported");
+    }
+    
+    /**
      * @return int
      */
     public function getUid(): int
