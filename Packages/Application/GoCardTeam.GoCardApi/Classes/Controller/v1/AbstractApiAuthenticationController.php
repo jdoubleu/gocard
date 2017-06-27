@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Controller\Api\v1;
+namespace GoCardTeam\GoCardApi\Controller\v1;
 
 use Neos\Flow\Mvc\View\JsonView;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
