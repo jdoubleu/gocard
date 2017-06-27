@@ -15,7 +15,7 @@ import {
     Label,
     Row
 } from "reactstrap";
-import Statistic from "../../components/shared/statistic";
+import StatisticBar from "../../components/shared/statisticBar";
 import PreviewCardFeedback from "../../components/cards/previewCardFeedback";
 
 import TagViewer from "../../components/registers/tagViewer";
@@ -60,13 +60,13 @@ class Feedback extends React.Component {
                     <Card block className="border-top-primary">
                         <CardTitle>Alte Statistik</CardTitle>
                         <CardText>
-                            <Statistic />
+                            <StatisticBar />
                         </CardText>
                     </Card>
                     <Card block>
                         <CardTitle>Neue Statistik</CardTitle>
                         <CardText>
-                            <Statistic />
+                            <StatisticBar />
                         </CardText>
                     </Card>
                 </CardGroup>
