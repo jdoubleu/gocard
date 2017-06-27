@@ -27,4 +27,13 @@ abstract class AbstractApiEndpointController extends ActionController
      * @var array
      */
     protected $supportedMediaTypes = ["application/json"];
+
+    /**
+     * Default action for this endpoint.
+     * Might be called because there is no routing configuration for this endpoint so far.
+     */
+    public function defaultAction()
+    {
+        $this->throwStatus(400);
+    }
 }

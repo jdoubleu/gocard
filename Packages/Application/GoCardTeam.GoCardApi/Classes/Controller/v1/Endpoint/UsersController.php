@@ -13,12 +13,4 @@ use Neos\Flow\Mvc\Controller\ActionController;
  */
 class UsersController extends ActionController
 {
-
-    /**
-     * Default Action
-     * Routed through default endpoint
-     */
-    public function defaultAction()
-    {
-    }
 }
