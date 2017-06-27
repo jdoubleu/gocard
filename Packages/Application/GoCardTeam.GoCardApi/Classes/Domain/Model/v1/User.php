@@ -15,8 +15,10 @@ use Neos\Flow\Security\Account;
 class User
 {
     /**
-     * @ORM\Id()
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="Integer")
+     * @ORM\Id()
+     * @ORM\Column(type="bigint")
      * @var integer
      */
     protected $uid;
