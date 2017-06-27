@@ -102,7 +102,7 @@ var ApiClient = (function() {
         this.apiKey.isQuery = isQuery;
     };
     /**
-     * Set Auth headers
+     * Set Login headers
      * @method
      * @name ApiClient#setAuthHeaders
      * @param {object} headerParams - headers object

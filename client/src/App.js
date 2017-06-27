@@ -4,7 +4,7 @@ import Footer from "./modules/shared/footer";
 import TopBar from "./modules/shared/topBar/topBar";
 import Dashboard from "./scenes/Dashboard";
 import Profile from "./scenes/account/Profile";
-import Login from "./scenes/account/Login";
+import Login from "./containers/Login";
 import Legal from "./scenes/legal/Legal";
 import NotFound from "./scenes/errors/NotFound";
 import {Route, Switch} from "react-router-dom";
