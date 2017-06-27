@@ -30,11 +30,55 @@ class Feedback extends React.Component {
             mode: 1,
             cards: Cards
         };
+        this.displayCards = this.displayCards.bind(this);
+        this.getAllRight = this.getAllRight.bind(this);
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+        this.getAllWrong = this.getAllWrong.bind(this);
+    }
+    onRadioBtnClick(mode) {
+
+        this.setState({mode});
+
     }
 
-    onRadioBtnClick(mode) {
-        this.setState({mode});
+    displayCards(){
+        if(this.state.mode === 1){
+            return(
+
+                this.state.cards.map((card)=> <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+
+            )
+        }else if(this.state.mode === 2){
+            return(
+                this.getAllRight()
+            )
+        }else if(this.state.mode === 3){
+            return(
+                this.getAllWrong()
+            )
+        }
+    }
+
+    getAllRight(){
+        let array = [];
+        array =this.state.cards.filter(a =>
+        {
+
+            return  a.status === "true";
+        })
+        console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+    }
+
+    getAllWrong(){
+         let array = [];
+        array =this.state.cards.filter(a =>
+        {
+
+            return  a.status === "false";
+        })
+            console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
     }
 
     render() {
@@ -57,26 +101,42 @@ class Feedback extends React.Component {
                         </Form>
 
                     </Card>
-                    <Card block className="border-top-primary">
-                        <CardTitle>Alte Statistik</CardTitle>
-                        <CardText>
-                            <StatisticBar />
-                        </CardText>
-                    </Card>
+
                     <Card block>
+                        <CardTitle>Alte Statistik</CardTitle>
+                        <Row >
+                            <Col xs="8">
+                                <StatisticBar/>
+                            </Col>
+                        </Row>
                         <CardTitle>Neue Statistik</CardTitle>
-                        <CardText>
-                            <StatisticBar />
-                        </CardText>
+                        <Row >
+                            <Col xs="8">
+                                <StatisticBar/>
+                            </Col>
+                        </Row>
                     </Card>
                 </CardGroup>
                 <Row className="mt-4 ml-3">
-                    <Col>
-                        <h4>Alle abgefragten Karteikarten</h4>
-                    </Col>
+
+                    <FormGroup>
+
+                        <ButtonGroup check>
+                            <Button outline onClick={() => this.onRadioBtnClick(1)}
+                                    active={this.state.mode === 1}
+                                    color={this.state.mode === 1 ? 'primary' : 'secondary'}>Alle</Button>
+                            <Button outline onClick={() => this.onRadioBtnClick(2)}
+                                    active={this.state.mode === 2}
+                                    color={this.state.mode === 2 ? 'primary' : 'secondary'}>Richtige</Button>
+                            <Button outline onClick={() => this.onRadioBtnClick(3)}
+                                    active={this.state.mode === 3}
+                                    color={this.state.mode === 3 ? 'primary' : 'secondary'}>Falsche</Button>
+                        </ButtonGroup>
+                    </FormGroup>
+
                 </Row>
                 <CardDeck>
-                    {this.state.cards.map((card)=> <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)}
+                    {this.displayCards()}
                 </CardDeck>
 
 
