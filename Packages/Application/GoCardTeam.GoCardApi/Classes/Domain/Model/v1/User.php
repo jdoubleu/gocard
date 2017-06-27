@@ -43,6 +43,13 @@ class User
     protected $account;
 
     /**
+     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(new|verified|active)"})
+     * @ORM\Column(type="string", columnDefinition="ENUM('new', 'verified', 'active')")
+     * @var string
+     */
+    protected $status;
+
+    /**
      * @return int
      */
     public function getUid(): int
@@ -106,6 +113,22 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
     }
 
     /**

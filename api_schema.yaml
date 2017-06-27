@@ -975,6 +975,19 @@ definitions:
         type: string
       email:
         type: string
+      status:
+        type: string
+        enum:
+          - new
+          - verified
+          - active
+        description: |+
+          Status of the user/account.
+
+          Each step implements the step before:
+          * New means the user has been registered
+          * Verified means the user was verified (e.g. via email confirmation)
+          * Active means the user has agreed the EULA
       accountType:
         type: string
         enum:
