@@ -6,12 +6,9 @@ import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Inpu
 import PropTypes from "prop-types";
 
 class Login extends React.Component {
-
-    handleClick(event) {
-        const email = this.refs.email;
-        const password = this.refs.password;
-        const creds = {email: email.value.trim(), password: password.value.trim()};
-        this.props.onLocalLoginClick(creds);
+    constructor(props){
+        super(props)
+        this.handleClick = this.handleClick.bind(this);
     }
 
     render() {
@@ -46,7 +43,7 @@ class Login extends React.Component {
                                 <Link to="/registration">GoCard-Account erstellen</Link>
                             </CardText>
 
-                            <Form onSubmit={(event) => this.handleClick(event)}>
+                            <Form onSubmit={this.handleClick}>
                                 <FormGroup>
                                     <Input type="email" name="email" id="email" ref="email"
                                            placeholder="E-Mail Adresse"/>
@@ -66,6 +63,15 @@ class Login extends React.Component {
                 </Col>
             </div>
         );
+    }
+
+    handleClick(event) {
+        event.preventDefault();
+        const email = event.target.email;
+        const password = event.target.password;
+        const creds = {email: email.value.trim(), password: password.value.trim()};
+        console.log(this.props);
+        this.props.onLocalLoginClick(creds);
     }
 }
 

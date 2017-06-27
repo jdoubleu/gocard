@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {loginUser} from "../actions/index";
 import LoginComp from "../components/Login";
 
-
 class Login extends React.Component {
 
     render() {
@@ -26,7 +25,7 @@ Login.propTypes = {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
+
     const {auth} = state;
     const {isAuthenticated, errorMessage} = auth;
 

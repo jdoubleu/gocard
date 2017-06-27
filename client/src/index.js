@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import createHistory from "history/createBrowserHistory";
 import {ConnectedRouter, routerMiddleware, routerReducer} from "react-router-redux";
 import {applyMiddleware, combineReducers, createStore} from "redux";
+import promiseMiddleware from 'redux-promise';
 import {Provider} from "react-redux";
 import reducers from "./reducers";
 
@@ -15,14 +16,15 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 const history = createHistory();
-const middleware = routerMiddleware(history);
+const routeMiddleware = routerMiddleware(history);
 
 const store = createStore(
     combineReducers({
         ...reducers,
         route: routerReducer
     }),
-    applyMiddleware(middleware)
+    applyMiddleware(routeMiddleware, promiseMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
