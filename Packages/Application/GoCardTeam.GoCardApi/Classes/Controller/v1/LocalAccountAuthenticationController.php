@@ -9,6 +9,12 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 
+/**
+ * Class LocalAccountAuthenticationController
+ * Authentication controller for local accounts only.
+ * 
+ * @package GoCardTeam\GoCardApi\Controller\v1
+ */
 class LocalAccountAuthenticationController extends AbstractApiAuthenticationController
 {
 

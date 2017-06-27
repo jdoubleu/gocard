@@ -9,7 +9,7 @@ use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationControlle
  * Class AbstractApiController
  * Abstract API controller which does some preparation work, sets up
  * everything the api needs.
- * This differs from AbstractApiController in that it is ment for authentication controllers.
+ * This differs from AbstractApiController in that it is meant for authentication controllers.
  *
  * @package GoCardTeam\GoCard\Controller\Api\v1
  */
