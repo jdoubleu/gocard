@@ -11,12 +11,12 @@ class Legal extends React.Component {
     render() {
         return (
             <Switch>
-              <Route path='/legal/help' component={Help}/>
-              <Route path='/legal/imprint' component={Imprint}/>
-              <Route path='/legal/eula' component={EULA}/>
-              <Route path='/legal/privacy-policy' component={PrivacyPolicy}/>
-              <Route path='/legal/license' component={License}/>
-              <Route component={NotFound}/>
+                <Route path='/legal/help' component={Help}/>
+                <Route path='/legal/imprint' component={Imprint}/>
+                <Route path='/legal/eula' component={EULA}/>
+                <Route path='/legal/privacy-policy' component={PrivacyPolicy}/>
+                <Route path='/legal/license' component={License}/>
+                <Route component={NotFound}/>
             </Switch>
         );
     }

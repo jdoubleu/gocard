@@ -1,9 +1,13 @@
 import React from "react";
+import Header from "../../components/shared/header";
+
 class PrivacyPolicy extends React.Component {
     render() {
         return (
             <div>
-                PrivacyPolicy
+                <Header
+                    title="Datenschutzerklärung"
+                />
             </div>
         );
     }

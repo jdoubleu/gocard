@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
-import IconBar from '../shared/member/iconBar';
+import IconBar from "../shared/member/iconBar";
 
 class PreviewCard extends React.Component {
     render() {
@@ -14,14 +14,10 @@ class PreviewCard extends React.Component {
 
                     <Row className="mb-3">
                         <Col xs="8">
-                            <CardText>
-                                <IconBar members={this.props.members} diameter={36}/>
-                            </CardText>
+                            <IconBar members={this.props.members} diameter={36}/>
                         </Col>
                         <Col xs="4">
-                            <CardText>
-                                <Statistic/>
-                            </CardText>
+                            <Statistic/>
                         </Col>
                     </Row>
 

@@ -1,14 +1,17 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-class NumberIcon extends React.Component{
+class NumberIcon extends React.Component {
 
     render() {
         return (
             <span className="user-NumberIcon">
               <svg height={this.props.diameter} width={this.props.diameter}>
-                  <circle cx={this.props.diameter/2} cy={this.props.diameter/2} r={this.props.diameter/2} fill="gray"/>
-                  <text fill="white" fontSize={this.props.diameter/2.5} x={this.props.diameter/2} y={this.props.diameter/2} textAnchor="middle" alignmentBaseline="central">+{this.props.rest}</text>
+                  <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2 - 2}
+                          stroke="gray" fill="none"/>
+                  <text fill="grey" fontSize={this.props.diameter / 2.5} x={this.props.diameter / 2}
+                        y={this.props.diameter / 2} textAnchor="middle"
+                        alignmentBaseline="central">+{this.props.rest}</text>
               </svg>
             </span>
         );
@@ -16,13 +19,13 @@ class NumberIcon extends React.Component{
 }
 
 NumberIcon.propTypes = {
-  rest: PropTypes.number.isRequired,
-  diameter: PropTypes.number
+    rest: PropTypes.number.isRequired,
+    diameter: PropTypes.number
 };
 
 NumberIcon.defaultProps = {
-  rest: 0,
-  diameter: 40
+    rest: 0,
+    diameter: 40
 };
 
 export default NumberIcon;
