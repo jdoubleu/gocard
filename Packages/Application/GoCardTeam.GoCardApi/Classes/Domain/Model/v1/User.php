@@ -108,4 +108,13 @@ class User
         $this->email = $email;
     }
 
+    /**
+     * Emits the account type
+     * @return string either 'local' or 'extern'
+     */
+    public function getAccountType()
+    {
+        return $this->account->getAuthenticationProviderName() == 'LocalAuthenticationProvider' ? 'local' : 'extern';
+    }
+
 }
