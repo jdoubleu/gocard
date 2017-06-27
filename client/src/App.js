@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import Footer from "./components/shared/footer";
-import TopBar from "./components/shared/topBar/topBar";
+import Footer from "./modules/shared/footer";
+import TopBar from "./modules/shared/topBar/topBar";
 import Dashboard from "./scenes/Dashboard";
 import Profile from "./scenes/account/Profile";
 import Login from "./scenes/account/Login";
@@ -11,10 +11,10 @@ import {Route, Switch} from "react-router-dom";
 import Register from "./scenes/register/Register";
 import Registration from "./scenes/account/Registration";
 import Reset from "./scenes/account/Reset";
-import SingleChoice from "./components/cards/SingleChoiceCard";
-import MultipleChoice from "./components/cards/MultipleChoiceCard";
-import SelfValidate from "./components/cards/SelfValidateCard";
-import Input from "./components/cards/TextInputCard";
+import SingleChoice from "./modules/cards/SingleChoiceCard";
+import MultipleChoice from "./modules/cards/MultipleChoiceCard";
+import SelfValidate from "./modules/cards/SelfValidateCard";
+import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
 
 import {Container} from "reactstrap";

@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
-import Logo from "../../components/shared/logo/logo";
+import Logo from "../../modules/shared/logo/logo";
 
 class Reset extends React.Component {
 

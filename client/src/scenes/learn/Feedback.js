@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
-import CardList from "../../components/cards/cardList";
+import CardList from "../../modules/cards/cardList";
 
 class Feedback extends React.Component {
     render() {

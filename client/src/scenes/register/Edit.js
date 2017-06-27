@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../../components/shared/header";
+import Header from "../../modules/shared/header";
 import {Button, Card, Col, Form, Row} from "reactstrap";
-import RegisterForm from "../../components/registers/form";
+import RegisterForm from "../../modules/registers/form";
 
 class Edit extends React.Component {
     render() {

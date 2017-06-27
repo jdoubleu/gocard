@@ -1,6 +1,6 @@
 import React from "react";
 import "./Detail.css";
-import Header from "../../components/shared/header";
+import Header from "../../modules/shared/header";
 import {
     Button,
     ButtonGroup,
@@ -16,11 +16,11 @@ import {
     Row
 } from "reactstrap";
 import {Link} from "react-router-dom";
-import Statistic from "../../components/shared/statistic";
-import PreviewCard from "../../components/cards/previewCard";
-import Iconbar from "../../components/shared/member/iconBar";
-import TagViewer from "../../components/registers/tagViewer";
-import BlankPreviewCard from "../../components/cards/blankPreviewCard";
+import Statistic from "../../modules/shared/statistic";
+import PreviewCard from "../../modules/cards/previewCard";
+import Iconbar from "../../modules/shared/member/iconBar";
+import TagViewer from "../../modules/registers/tagViewer";
+import BlankPreviewCard from "../../modules/cards/blankPreviewCard";
 
 class Detail extends React.Component {
     constructor(props) {
