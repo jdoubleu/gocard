@@ -10,8 +10,8 @@ class Login extends React.Component {
     handleClick(event) {
         const email = this.refs.email;
         const password = this.refs.password;
-        const creds = { email: email.value.trim(), password: password.value.trim() };
-        this.props.onLocalLoginClick(creds)
+        const creds = {email: email.value.trim(), password: password.value.trim()};
+        this.props.onLocalLoginClick(creds);
     }
 
     render() {
@@ -20,7 +20,8 @@ class Login extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <div className="pb-2">
                         <h1 className="display-4">Willkommen bei </h1>
-                        <p className="lead">Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen. Du kannst
+                        <p className="lead">Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen.
+                            Du kannst
                             deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.</p>
                     </div>
 
@@ -47,10 +48,12 @@ class Login extends React.Component {
 
                             <Form onSubmit={(event) => this.handleClick(event)}>
                                 <FormGroup>
-                                    <Input type="email" name="email" id="email" ref="email" placeholder="E-Mail Adresse"/>
+                                    <Input type="email" name="email" id="email" ref="email"
+                                           placeholder="E-Mail Adresse"/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input type="password" name="password" id="password" ref="password" placeholder="Passwort"/>
+                                    <Input type="password" name="password" id="password" ref="password"
+                                           placeholder="Passwort"/>
                                 </FormGroup>
                                 <CardText>
                                     <Link to="/reset">Passwort vergessen?</Link>
@@ -65,8 +68,6 @@ class Login extends React.Component {
         );
     }
 }
-
-
 
 
 Login.propTypes = {

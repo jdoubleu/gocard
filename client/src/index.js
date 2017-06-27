@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import createHistory from "history/createBrowserHistory";
+import {ConnectedRouter, routerMiddleware, routerReducer} from "react-router-redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
+import reducers from "./reducers";
+
 import registerServiceWorker from "./registerServiceWorker";
+
+import App from "./App";
+
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import createHistory from 'history/createBrowserHistory';
-import reducers from './reducers';
-import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
 
 
 const history = createHistory();
