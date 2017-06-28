@@ -4,9 +4,10 @@ import Single from "../../components/cards/SingleChoiceCard";
 import Multiple from "../../components/cards/MultipleChoiceCard";
 import Self from "../../components/cards/SelfValidateCard";
 import InputText from "../../components/cards/TextInputCard";
-import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
+import {Button, Col, Row } from "reactstrap";
 import Feedback from "./Feedback";
-import lodash from "lodash";
+
+import {Link} from "react-router-dom";
 class Normal extends React.Component {
     constructor(props) {
         super(props);
@@ -125,23 +126,82 @@ class Normal extends React.Component {
 
             if (this.counter < this.state.notAnsweredCards.length) {
                 console.log(this.counter);
-                return (
-                    <div>
-                        <InputText question={this.state.notAnsweredCards[this.counter].question}
-                                   answer={this.state.notAnsweredCards[this.counter].answer}
-                                   mode={this.mode}/>
+                if(this.state.allcards[this.counter].type === 1) {
+                    return (
+                        <div>
+                            <Single question={this.state.allcards[this.counter].question}
+                                    answer={this.state.allcards[this.counter].answer}
+                                    mode={this.mode}/>
 
-                    </div>
-                )
+                        </div>
+                    )
+                }else if(this.state.allcards[this.counter].type === 2){
+                    return (
+                        <div>
+                            <Multiple question={this.state.allcards[this.counter].question}
+                                      answer={this.state.allcards[this.counter].answer}
+                                      mode={this.mode} right={this.state.allcards[this.counter].rightAnswer}/>
+
+                        </div>
+                    )
+                }else if(this.state.allcards[this.counter].type === 3){
+                    return (
+                        <div>
+                            <Self question={this.state.allcards[this.counter].question}
+                                  answer={this.state.allcards[this.counter].answer}
+                                  mode={this.mode}/>
+
+                        </div>
+                    )
+                }else if(this.state.allcards[this.counter].type === 4){
+                    return (
+                        <div>
+                            <InputText question={this.state.allcards[this.counter].question}
+                                       answer={this.state.allcards[this.counter].answer}
+                                       mode={this.mode}/>
+
+                        </div>
+                    )
+                }
             }else{
                 this.counter = 0;
-                return(
-                <div>
-                    <InputText question={this.state.notAnsweredCards[this.counter].question}
-                               answer={this.state.notAnsweredCards[this.counter].answer}
-                               mode={this.mode}/>
+                if(this.state.allcards[this.counter].type === 1) {
+                    return (
+                        <div>
+                            <Single question={this.state.allcards[this.counter].question}
+                                    answer={this.state.allcards[this.counter].answer}
+                                    mode={this.mode}/>
 
-                </div>)
+                        </div>
+                    )
+                }else if(this.state.allcards[this.counter].type === 2){
+                    return (
+                        <div>
+                            <Multiple question={this.state.allcards[this.counter].question}
+                                      answer={this.state.allcards[this.counter].answer}
+                                      mode={this.mode} right={this.state.allcards[this.counter].rightAnswer}/>
+
+                        </div>
+                    )
+                }else if(this.state.allcards[this.counter].type === 3){
+                    return (
+                        <div>
+                            <Self question={this.state.allcards[this.counter].question}
+                                  answer={this.state.allcards[this.counter].answer}
+                                  mode={this.mode}/>
+
+                        </div>
+                    )
+                }else if(this.state.allcards[this.counter].type === 4){
+                    return (
+                        <div>
+                            <InputText question={this.state.allcards[this.counter].question}
+                                       answer={this.state.allcards[this.counter].answer}
+                                       mode={this.mode}/>
+
+                        </div>
+                    )
+                }
             }
         }
     }
@@ -153,25 +213,82 @@ class Normal extends React.Component {
 
         if(this.index< this.state.allcards.length && this.round === false){
             if(this.state.mode === 1){
+                if(this.state.allcards[this.index].type === 1) {
+                    return (
+                        <div>
+                            <Single question={this.state.allcards[this.index].question}
+                                       answer={this.state.allcards[this.index].answer}
+                                       mode={this.mode}/>
 
-                return (
-                    <div>
-                        <InputText question={this.state.allcards[this.index].question} answer={this.state.allcards[this.index].answer}
-                                   mode={this.mode}/>
+                        </div>
+                    )
+                }else if(this.state.allcards[this.index].type === 2){
+                    return (
+                        <div>
+                            <Multiple question={this.state.allcards[this.index].question}
+                                       answer={this.state.allcards[this.index].answer}
+                                       mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
 
-                    </div>
-                )
+                        </div>
+                    )
+                }else if(this.state.allcards[this.index].type === 3){
+                    return (
+                        <div>
+                            <Self question={this.state.allcards[this.index].question}
+                                       answer={this.state.allcards[this.index].answer}
+                                       mode={this.mode}/>
+
+                        </div>
+                    )
+                }else if(this.state.allcards[this.index].type === 4){
+                    return (
+                        <div>
+                            <InputText question={this.state.allcards[this.index].question}
+                                       answer={this.state.allcards[this.index].answer}
+                                       mode={this.mode}/>
+
+                        </div>
+                    )
+                }
             }else {
 
-                return (
-                    <div>
-                        <InputText question={this.state.allcards[this.index].question}
-                                   answer={this.state.allcards[this.index].answer}
-                                   mode={this.mode}/>
+                if(this.state.allcards[this.index].type === 1) {
+                    return (
+                        <div>
+                            <Single question={this.state.allcards[this.index].question}
+                                    answer={this.state.allcards[this.index].answer}
+                                    mode={this.mode}/>
 
+                        </div>
+                    )
+                }else if(this.state.allcards[this.index].type === 2){
+                    return (
+                        <div>
+                            <Multiple question={this.state.allcards[this.index].question}
+                                      answer={this.state.allcards[this.index].answer}
+                                      mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
 
-                    </div>
-                )
+                        </div>
+                    )
+                }else if(this.state.allcards[this.index].type === 3){
+                    return (
+                        <div>
+                            <Self question={this.state.allcards[this.index].question}
+                                  answer={this.state.allcards[this.index].answer}
+                                  mode={this.mode}/>
+
+                        </div>
+                    )
+                }else if(this.state.allcards[this.index].type === 4){
+                    return (
+                        <div>
+                            <InputText question={this.state.allcards[this.index].question}
+                                       answer={this.state.allcards[this.index].answer}
+                                       mode={this.mode}/>
+
+                        </div>
+                    )
+                }
             }
         }else if(this.state.answerCards.length !== this.state.allcards.length){
             this.round =true;
@@ -196,9 +313,11 @@ class Normal extends React.Component {
                     <Col sm="12" md={{size: 8, offset: 2}}>
                         <Row>
                             <Col>
+                                <Link to="/dashboard">
                                 <Button block outline onClick={() => this.onRadioBtnClick(1)}
                                         active={this.state.mode === 1}
                                         color="danger">Abbrechen</Button>
+                                    </Link>
                             </Col>
                             <Col>
                                 <Button block outline onClick={() => this.onRadioBtnClick(1)}

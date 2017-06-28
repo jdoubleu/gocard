@@ -27,10 +27,11 @@
   {
     "id": 435435,
     "question": "Wer stribt bei Game of Thrones",
-    "answer": "Hodor",
+    "answer": ["Ned", "Cersei", "Hodor", "Jon"],
+    "rightAnswer":["Ned", "Hodor", "Jon"],
     "status": null,
     "userAnswer": null,
-    "type": 4
+    "type": 2
   },
   {
     "id": -456456,
