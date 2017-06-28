@@ -19,6 +19,7 @@ class Login extends React.Component {
 Login.propTypes = {
     dispatch: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
+    isAuthenticated: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
