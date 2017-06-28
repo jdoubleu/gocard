@@ -1,13 +1,17 @@
 import React from "react";
+import {Route, Switch, } from "react-router-dom";
+
 import "./App.css";
-import Footer from "./modules/shared/footer";
+import "bootstrap/dist/css/bootstrap.css";
+import {Container} from "reactstrap";
+
+import NotFound from "./scenes/errors/NotFound";
 import TopBar from "./modules/shared/topBar/topBar";
+import Footer from "./modules/shared/footer";
 import Dashboard from "./scenes/Dashboard";
 import Profile from "./scenes/account/Profile";
 import Login from "./containers/Login";
 import Legal from "./scenes/legal/Legal";
-import NotFound from "./scenes/errors/NotFound";
-import {Route, Switch} from "react-router-dom";
 import Register from "./scenes/register/Register";
 import Registration from "./scenes/account/Registration";
 import Reset from "./scenes/account/Reset";
@@ -17,7 +21,6 @@ import SelfValidate from "./modules/cards/SelfValidateCard";
 import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
 
-import {Container} from "reactstrap";
 
 class App extends React.Component {
     render() {
@@ -27,6 +30,7 @@ class App extends React.Component {
                 <Container>
                     <Switch>
                         <Route path='/' exact component={Login}/>
+                        <Route path='/login' exact component={Login}/>
                         <Route path='/registration' exact component={Registration}/>
                         <Route path='/reset' exact component={Reset}/>
                         <Route path='/dashboard' exact component={Dashboard}/>

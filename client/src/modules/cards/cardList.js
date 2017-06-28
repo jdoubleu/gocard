@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
-import dummy from "../../dummyCards.json";
+import dummy from "../dummyCards.json";
 
 class Feedback extends React.Component {
     constructor(props){
