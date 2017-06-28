@@ -20,6 +20,7 @@ import MultipleChoice from "./modules/cards/MultipleChoiceCard";
 import SelfValidate from "./modules/cards/SelfValidateCard";
 import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
+import ProtectedRoute from './containers/ProtectedRoute';
 
 
 class App extends React.Component {
@@ -33,17 +34,18 @@ class App extends React.Component {
                         <Route path='/login' exact component={Login}/>
                         <Route path='/registration' exact component={Registration}/>
                         <Route path='/reset' exact component={Reset}/>
-                        <Route path='/dashboard' exact component={Dashboard}/>
-                        <Route path='/profile' exact component={Profile}/>
+                        <ProtectedRoute path='/dashboard' exact component={Dashboard}/>
+                        <ProtectedRoute path='/profile' exact component={Profile}/>
 
                         <Route path='/single' exact component={SingleChoice}/> # just for testing
                         <Route path='/multiple' exact component={MultipleChoice}/> # just for testing
                         <Route path='/self' exact component={SelfValidate}/> # just for testing
                         <Route path='/input' exact component={Input}/> # just for testing
                         <Route path='/feedback' exact component={Feedback}/> # just for testing
+                        <Route path='/feedback' exact component={Feedback} alt={Login}/> # just for testing
 
                         {/* Register Routes */}
-                        <Route path="/register" component={Register}/>
+                        <ProtectedRoute path="/register" component={Register}/>
 
                         {/* Footer Routes */}
                         <Route path="/legal" component={Legal}/>
