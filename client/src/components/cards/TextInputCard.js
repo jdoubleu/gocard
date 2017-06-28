@@ -126,8 +126,9 @@ class SelfValidateCard extends React.Component {
 
 SelfValidateCard.propTypes = {
     question: PropTypes.string.isRequired,
-    answer: PropTypes.string,
-    mode: PropTypes.number
+    answer: PropTypes.string.isRequired,
+    mode: PropTypes.number.isRequired,
+
 };
 
 

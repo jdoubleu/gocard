@@ -178,9 +178,10 @@ class SingleChoiceCard extends React.Component {
 
 SingleChoiceCard.propTypes = {
     question: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
+    mode: PropTypes.number.isRequired,
     desc: PropTypes.string,
-    answer: PropTypes.array,
-    mode: PropTypes.number
+
 };
 
 

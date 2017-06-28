@@ -195,9 +195,10 @@ class MultipleChoiceCard extends React.Component {
 
 MultipleChoiceCard.propTypes = {
     question: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
+    mode: PropTypes.number.isRequired,
     desc: PropTypes.string,
-    answer: PropTypes.array,
-    mode: PropTypes.number
+
 };
 
 
