@@ -14,3 +14,10 @@
     '@controller': 'v1\LocalAccountAuthentication'
     '@action': 'authenticate'
   httpMethods: ['POST']
+
+-
+  name: 'find user'
+  uriPattern: '{userId}'
+  defaults:
+    '@action': 'getUserById'
+  httpMethods: ['GET']
