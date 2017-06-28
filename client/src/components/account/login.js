@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
-import Logo from "../modules/shared/logo/logo";
+import Logo from "../shared/logo/index";
 
 const Login = ({onLocalLoginClick}) => {
 

@@ -69,19 +69,16 @@ export function loginUser(creds) {
             email: creds.email,
             password: creds.password
         }).then(response => {
-            response.text()
-                .then(user => ({user, response}))
+            const user = response.body;
+            return ({user, response});
         }).then(({user, response}) => {
-            if (!response.ok) {
+            if (response.response.statusCode !== 200) {
                 // If there was a problem, we want to
                 // dispatch the error condition
                 dispatch(loginError(user.message));
                 return Promise.reject(user);
             }
             else {
-                // If login was successful, set the token in local storage
-                localStorage.setItem('id_token', user.id_token);
-
                 // Dispatch the success action
                 dispatch(receiveLogin(user));
             }
@@ -93,7 +90,6 @@ export function loginUser(creds) {
 export function logoutUser() {
     return dispatch => {
         dispatch(requestLogout());
-        localStorage.removeItem('id_token');
         dispatch(receiveLogout());
     }
 }
