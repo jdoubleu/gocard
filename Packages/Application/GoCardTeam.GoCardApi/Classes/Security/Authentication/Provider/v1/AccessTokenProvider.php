@@ -82,6 +82,8 @@ class AccessTokenProvider extends AbstractProvider
             return;
         }
 
+        $authenticationToken->setAuthenticationStatus(TokenInterface::WRONG_CREDENTIALS);
+
         $providerName = $this->name;
         $accountRepository = $this->accountRepository;
         $this->securityContext->withoutAuthorizationChecks(function () use ($credentials, $providerName, $accountRepository, &$accessToken) {
@@ -89,7 +91,6 @@ class AccessTokenProvider extends AbstractProvider
         });
 
         if ($accessToken === null) {
-            $authenticationToken->setAuthenticationStatus(TokenInterface::WRONG_CREDENTIALS);
             return;
         }
 
