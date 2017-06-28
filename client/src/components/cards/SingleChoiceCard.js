@@ -123,7 +123,7 @@ class SingleChoiceCard extends React.Component {
     render() {
         return (
           <Row>
-            <Col sm="12" md={{size: 7, offset: 2}}>
+            <Col sm="12" md={{size: 8, offset: 2}}>
 
 
                 <Card block>
