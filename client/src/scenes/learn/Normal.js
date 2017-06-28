@@ -1,9 +1,9 @@
 import React from "react";
 import dummy from "../../dummyCards.json";
-import single from "../../components/cards/SingleChoiceCard";
-import multiple from "../../components/cards/MultipleChoiceCard";
-import self from "../../components/cards/SelfValidateCard";
-import input from "../../components/cards/TextInputCard";
+import Single from "../../components/cards/SingleChoiceCard";
+import Multiple from "../../components/cards/MultipleChoiceCard";
+import Self from "../../components/cards/SelfValidateCard";
+import Input from "../../components/cards/TextInputCard";
 
 class Normal extends React.Component {
     constructor(props) {
@@ -18,37 +18,25 @@ class Normal extends React.Component {
 
     }
 
-    displayLearningCard() {
-        this.state.allcards.forEach(a => {
-            switch (a.type) {
-                case 1:
-                    return (
-                        <single question={a.question} answer={a.answer} mode={this.mode}/>
-                    )
-                    break;
-                case 2:
-                    return (
-                        <multiple question={a.question} answer={a.answer} mode={this.mode}/>
-                    )
-                    break;
-                case 3:
-                    return (
-                        <self question={a.question} answer={a.answer} mode={this.mode}/>
-                    )
-                    break;
-                case 4:
-                    return (
-                        <input question={a.question} answer={a.answer} mode={this.mode}/>
-                    )
-                    break;
-            }
-        })
+    displayLearningCard(i) {
+        let index= i;
+        index++;
+        if(index< this.state.allcards.length){
+            return (
+                <div>
+                <Input question={this.state.allcards[index].question} answer={this.state.allcards[index].answer}
+                       mode={this.mode}/>
+                    
+                </div>
+            )
+
+        }
     }
 
     render() {
         return (
             <div>
-                {this.displayLearningCard()}
+                {this.displayLearningCard(-1)}
             </div>
         );
     }

@@ -133,9 +133,6 @@ SelfValidateCard.propTypes = {
 
 
 SelfValidateCard.defaultProps = {
-    question: 'Wie traversiert man über einen Baum?',
-    answer: 'mit toString',
-    mode: 2
 };
 
 export default SelfValidateCard;
