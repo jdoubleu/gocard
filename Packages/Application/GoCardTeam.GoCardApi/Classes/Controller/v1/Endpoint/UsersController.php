@@ -35,4 +35,18 @@ class UsersController extends AbstractApiEndpointController
 
         $this->view->assign('value', $user);
     }
+
+    /**
+     * @param string $email email address
+     */
+    public function getUserByEmailAction(string $email)
+    {
+        /** @var User $user */
+        $user = $this->userRepository->findOneByEmail($email, false, false);
+        if ($user === null) {
+            $this->throwStatus('User not found');
+        }
+
+        $this->view->assign('value', $user);
+    }
 }

@@ -16,6 +16,13 @@
   httpMethods: ['POST']
 
 -
+  name: 'find user by email'
+  uriPattern: 'findByEmail'
+  defaults:
+    '@action': 'getUserByEmail'
+  httpMethods: ['GET']
+
+-
   name: 'find user'
   uriPattern: '{userId}'
   defaults:
