@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import createHistory from "history/createBrowserHistory";
 import {ConnectedRouter, routerMiddleware, routerReducer} from "react-router-redux";
-import {applyMiddleware, combineReducers, createStore, compose} from "redux";
-import thunk from 'redux-thunk';
-import {createLogger} from 'redux-logger';
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import thunk from "redux-thunk";
+import {createLogger} from "redux-logger";
 import {Provider} from "react-redux";
 import reducers from "./reducers";
-import { offline } from 'redux-offline';
-import offlineConfig from 'redux-offline/lib/defaults';
+import {offline} from "redux-offline";
+import offlineConfig from "redux-offline/lib/defaults";
 
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -17,7 +17,7 @@ import App from "./App";
 const history = createHistory();
 const router = routerMiddleware(history);
 
-const middleware = [ thunk, router ];
+const middleware = [thunk, router];
 
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
@@ -31,9 +31,7 @@ const store = createStore(
     compose(
         applyMiddleware(...middleware),
         offline(offlineConfig),
-
     )
-
 );
 
 ReactDOM.render(
