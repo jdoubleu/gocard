@@ -25,7 +25,16 @@ if (process.env.NODE_ENV !== 'production') {
 
 const config = {
     ...offlineConfig,
-    persistCallback: () => render
+    persistCallback: () => (
+        ReactDOM.render(
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <App />
+                </ConnectedRouter>
+            </Provider>,
+            document.getElementById('root')
+        )
+    )
 };
 
 const store = createStore(
@@ -38,17 +47,5 @@ const store = createStore(
         offline(config),
     )
 );
-
-const render = (
-    ReactDOM.render(
-        <Provider store={store}>
-            <ConnectedRouter history={history}>
-                <App />
-            </ConnectedRouter>
-        </Provider>,
-        document.getElementById('root')
-    )
-);
-
 
 registerServiceWorker();
