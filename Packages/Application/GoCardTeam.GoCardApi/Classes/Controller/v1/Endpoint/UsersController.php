@@ -2,10 +2,10 @@
 
 namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 
+use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Mvc\Controller\ActionController;
 
 /**
  * Class UsersController
@@ -13,7 +13,7 @@ use Neos\Flow\Mvc\Controller\ActionController;
  *
  * @package GoCardTeam\GoCardApi\Controller\v1\Endpoint
  */
-class UsersController extends ActionController
+class UsersController extends AbstractApiEndpointController
 {
 
     /**
