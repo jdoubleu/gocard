@@ -30,7 +30,7 @@ class UsersController extends AbstractApiEndpointController
         /** @var User $user */
         $user = $this->userRepository->findOneByUid($userId);
         if ($user === null) {
-            $this->throwStatus('User not found');
+            $this->throwStatus(404, 'User not found');
         }
 
         $this->view->assign('value', $user);
@@ -44,7 +44,7 @@ class UsersController extends AbstractApiEndpointController
         /** @var User $user */
         $user = $this->userRepository->findOneByEmail($email, false, false);
         if ($user === null) {
-            $this->throwStatus('User not found');
+            $this->throwStatus(404, 'User not found');
         }
 
         $this->view->assign('value', $user);
