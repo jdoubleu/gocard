@@ -21,6 +21,7 @@ import SelfValidate from "./modules/cards/SelfValidateCard";
 import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
 import ProtectedRoute from './containers/ProtectedRoute';
+import Home from './containers/Home';
 
 
 class App extends React.Component {
@@ -30,11 +31,9 @@ class App extends React.Component {
                 <TopBar />
                 <Container>
                     <Switch>
-                        <Route path='/' exact component={Login}/>
-                        <Route path='/login' exact component={Login}/>
+                        <Route path='/' exact component={Home}/>
                         <Route path='/registration' exact component={Registration}/>
                         <Route path='/reset' exact component={Reset}/>
-                        <ProtectedRoute path='/dashboard' exact component={Dashboard}/>
                         <ProtectedRoute path='/profile' exact component={Profile}/>
 
                         <Route path='/single' exact component={SingleChoice}/> # just for testing

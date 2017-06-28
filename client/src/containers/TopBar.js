@@ -42,7 +42,7 @@ class TopBar extends React.Component {
                 onToggleUserDropDown={this.onToggleUserDropDown}
                 username="Frank N. Stein"
                 onLogout={() => dispatch(logoutUser())}
-                onNavbarBrandClick={() => dispatch(push("/dashboard"))}
+                onNavbarBrandClick={() => dispatch(push("/"))}
             />
         )
     }
