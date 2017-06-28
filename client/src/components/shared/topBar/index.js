@@ -51,7 +51,7 @@ const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown,
                     !isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavLink to="login">Anmelden</NavLink>
+                            <NavLink to="/">Anmelden</NavLink>
                         </Nav>
                     </Collapse>
                 }

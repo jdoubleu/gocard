@@ -8,12 +8,11 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-function requestLogin(creds) {
+function requestLogin() {
     return {
         type: LOGIN_REQUEST,
         isFetching: true,
-        isAuthenticated: false,
-        creds
+        isAuthenticated: false
     }
 }
 
@@ -64,7 +63,7 @@ function receiveLogout() {
 export function loginUser(creds) {
     return dispatch => {
         // We dispatch requestLogin to kickoff the call to the API
-        dispatch(requestLogin(creds));
+        dispatch(requestLogin());
         return apiConnection.loginUser({
             email: creds.email,
             password: creds.password

@@ -7,10 +7,11 @@ import LoginComponent from "../components/account/login";
 class Login extends React.Component {
 
     render() {
-        const {dispatch, errorMessage} = this.props;
+        const {dispatch, isLocalLoginFetching, errorMessage} = this.props;
         return (
             <LoginComponent
                 onLocalLoginClick={ creds => dispatch(loginUser(creds))}
+                isLocalLoginFetching={isLocalLoginFetching}
             />
         )
     }
@@ -19,13 +20,14 @@ class Login extends React.Component {
 Login.propTypes = {
     dispatch: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
-    isAuthenticated: PropTypes.bool.isRequired
+    isLocalLoginFetching: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
+    console.log(state.auth);
     return {
         errorMessage: state.auth.errorMessage,
-        isAuthenticated: state.auth.isAuthenticated
+        isLocalLoginFetching: state.auth.isFetching
     }
 }
 

@@ -1,4 +1,4 @@
-import {LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS} from "../actions";
+import {LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS} from "../actions";
 
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
@@ -11,8 +11,7 @@ function auth(state = {
         case LOGIN_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true,
-                isAuthenticated: false,
-                user: action.creds
+                isAuthenticated: false
             });
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
@@ -26,9 +25,14 @@ function auth(state = {
                 isAuthenticated: false,
                 errorMessage: action.message
             });
-        case LOGOUT_SUCCESS:
+        case LOGOUT_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true,
+                isAuthenticated: false
+            });
+        case LOGOUT_SUCCESS:
+            return Object.assign({}, state, {
+                isFetching: false,
                 isAuthenticated: false
             });
         default:

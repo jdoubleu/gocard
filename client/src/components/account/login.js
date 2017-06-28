@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
 import Logo from "../shared/logo/index";
 
-const Login = ({onLocalLoginClick}) => {
+const Login = ({onLocalLoginClick, isLocalLoginFetching}) => {
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -56,7 +56,7 @@ const Login = ({onLocalLoginClick}) => {
                             <Link to="/reset">Passwort vergessen?</Link>
                         </CardText>
 
-                        <Button outline block color="primary">Anmelden mit GoCard-Account</Button>
+                        <Button disabled={isLocalLoginFetching} outline block color="primary">Anmelden mit GoCard-Account</Button>
                     </Form>
                 </Card>
             </CardGroup>
@@ -66,6 +66,7 @@ const Login = ({onLocalLoginClick}) => {
 
 Login.propTypes = {
     onLocalLoginClick: PropTypes.func.isRequired,
+    isLocalLoginFetching: PropTypes.bool.isRequired
 };
 
 export default Login;
