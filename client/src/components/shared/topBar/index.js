@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import UserIcon from "../../../modules/shared/user/icon";
 import Logo from "../logo";
 import {
-    Button,
     Collapse,
     Container,
     DropdownItem,
@@ -23,9 +22,11 @@ const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown,
         <Container className="top-bar">
             <Navbar light toggleable className="pb-4">
                 <NavbarToggler className="border-0" right onClick={onToggleTopBarDropDown}/>
-                <NavbarBrand href="/dashboard">
-                    <Logo/>
-                </NavbarBrand>
+                <NavLink to="/dashboard">
+                    <NavbarBrand>
+                        <Logo/>
+                    </NavbarBrand>
+                </NavLink>
                 {
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
