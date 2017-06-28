@@ -6,6 +6,8 @@
   uriPattern: 'users/<UsersSubroutes>'
   defaults:
     '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\UsersController'
+    '@action':     'default'
     '@format':     'json'
   subRoutes:
     'UsersSubroutes':

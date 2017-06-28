@@ -5,7 +5,6 @@
   name: 'default route'
   uriPattern: ''
   defaults:
-    '@controller': 'v1\Endpoint\UsersController'
     '@action': 'default'
 
 -
