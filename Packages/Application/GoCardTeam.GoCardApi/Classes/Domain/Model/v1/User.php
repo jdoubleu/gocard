@@ -15,9 +15,8 @@ use Neos\Flow\Security\Account;
 class User
 {
     /**
-     * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="Integer")
-     * @ORM\Id()
+     * @ORM\Id
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="bigint")
      * @var integer
      */
