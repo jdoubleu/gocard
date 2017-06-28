@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect, Link} from "react-router-dom";
 import UserIcon from "../../../modules/shared/user/icon";
 import Logo from "../logo";
 import {
@@ -17,16 +17,14 @@ import {
 } from "reactstrap";
 import "./topBar.css";
 
-const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout}) => {
+const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
     return (
         <Container className="top-bar">
             <Navbar light toggleable className="pb-4">
                 <NavbarToggler className="border-0" right onClick={onToggleTopBarDropDown}/>
-                <NavLink to="/dashboard">
-                    <NavbarBrand>
+                    <NavbarBrand onClick={() => onNavbarBrandClick()}>
                         <Logo/>
                     </NavbarBrand>
-                </NavLink>
                 {
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
@@ -69,7 +67,8 @@ TopBar.propTypes = {
     onToggleUserDropDown: PropTypes.func.isRequired,
     username: PropTypes.string,
     isAuthenticated: PropTypes.bool.isRequired,
-    onLogout: PropTypes.func.isRequired
+    onLogout: PropTypes.func.isRequired,
+    onNavbarBrandClick: PropTypes.func.isRequired
 };
 
 TopBar.defaultProps = {
