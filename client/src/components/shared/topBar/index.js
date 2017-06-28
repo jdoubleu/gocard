@@ -39,8 +39,8 @@ const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown,
                                         <NavLink to="/profile">Einstellungen</NavLink>
                                     </DropdownItem>
                                     <DropdownItem divider/>
-                                    <DropdownItem>
-                                        <a onClick={() => onLogout()} href="#">Logout</a>
+                                    <DropdownItem onClick={() => onLogout()}>
+                                        <a href="">Logout</a>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </NavDropdown>
