@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
+import dummy from "../../dummyCards.json";
 
 
 class SelfValidateCard extends React.Component {
@@ -50,10 +51,6 @@ class SelfValidateCard extends React.Component {
                     )
                 }
 
-            }else {
-                <div className="text-right">
-                    <Button outline color="primary">Weiter</Button>
-                </div>
             }
         }
     }
@@ -65,6 +62,8 @@ class SelfValidateCard extends React.Component {
             this.setState({
                 answer : true
             })
+            ;
+
         }
 
     }
@@ -116,8 +115,8 @@ class SelfValidateCard extends React.Component {
                         {this.button()}
                     </Form>
                 </Card>
-                <br/>
-                {this.displaySkipCancel()}
+
+
             </Col>
 
         );
@@ -128,6 +127,7 @@ SelfValidateCard.propTypes = {
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
     mode: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
 
 };
 
