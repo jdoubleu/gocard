@@ -19,10 +19,11 @@
   {
     "id": -123,
     "question": "Was ist eine Referenz",
-    "answer": "ein zeiger",
+    "answer": ["Ein tee", "ein Zeiger", "Dimo Bibbers"],
+    "rightAnswer": "ein Zeiger",
     "status": null,
     "userAnswer": null,
-    "type": 4
+    "type": 1
   },
   {
     "id": 435435,

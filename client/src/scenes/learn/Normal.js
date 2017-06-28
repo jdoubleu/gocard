@@ -131,7 +131,7 @@ class Normal extends React.Component {
                         <div>
                             <Single question={this.state.allcards[this.counter].question}
                                     answer={this.state.allcards[this.counter].answer}
-                                    mode={this.mode}/>
+                                    mode={this.mode} right={this.state.allcards[this.counter].rightAnswer}/>
 
                         </div>
                     )
@@ -170,7 +170,7 @@ class Normal extends React.Component {
                         <div>
                             <Single question={this.state.allcards[this.counter].question}
                                     answer={this.state.allcards[this.counter].answer}
-                                    mode={this.mode}/>
+                                    mode={this.mode} right={this.state.allcards[this.counter].rightAnswer}/>
 
                         </div>
                     )
@@ -218,7 +218,7 @@ class Normal extends React.Component {
                         <div>
                             <Single question={this.state.allcards[this.index].question}
                                        answer={this.state.allcards[this.index].answer}
-                                       mode={this.mode}/>
+                                       mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
 
                         </div>
                     )
@@ -257,7 +257,7 @@ class Normal extends React.Component {
                         <div>
                             <Single question={this.state.allcards[this.index].question}
                                     answer={this.state.allcards[this.index].answer}
-                                    mode={this.mode}/>
+                                    mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
 
                         </div>
                     )
