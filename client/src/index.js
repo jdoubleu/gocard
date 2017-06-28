@@ -23,6 +23,11 @@ if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
 }
 
+const config = {
+    ...offlineConfig,
+    persistCallback: () => render
+};
+
 const store = createStore(
     combineReducers({
         ...reducers,
@@ -30,16 +35,20 @@ const store = createStore(
     }),
     compose(
         applyMiddleware(...middleware),
-        offline(offlineConfig),
+        offline(config),
     )
 );
 
-ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <App />
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById('root')
+const render = (
+    ReactDOM.render(
+        <Provider store={store}>
+            <ConnectedRouter history={history}>
+                <App />
+            </ConnectedRouter>
+        </Provider>,
+        document.getElementById('root')
+    )
 );
+
+
 registerServiceWorker();
