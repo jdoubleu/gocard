@@ -18,7 +18,7 @@ Neos:
           'AccessTokenAuthenticationProvider':
             provider: '\GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\AccessTokenProvider'
             providerOptions:
-              localAccountProviderName: 'PersistedUsernamePasswordProvider'
+              localAccountProviderName: 'LocalAuthenticationProvider'
             requestPatterns:
               'GoCardTeam.GoCardApi:ApiAccess':
                 pattern: 'ControllerObjectName'

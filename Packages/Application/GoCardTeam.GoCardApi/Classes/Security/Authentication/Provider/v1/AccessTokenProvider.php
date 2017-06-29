@@ -19,7 +19,7 @@ class AccessTokenProvider extends AbstractProvider
      * Default Provider for local account.
      * This will be overwritten by this Provider's `localAccountProviderName` option.
      */
-    const LocalAccountProviderName = 'PersistedUsernamePasswordProvider';
+    const LocalAccountProviderName = 'LocalAuthenticationProvider';
 
     /**
      * @var AccountRepository
@@ -82,13 +82,13 @@ class AccessTokenProvider extends AbstractProvider
             return;
         }
 
+        $authenticationToken->setAuthenticationStatus(TokenInterface::WRONG_CREDENTIALS);
+
         $providerName = $this->name;
         $accountRepository = $this->accountRepository;
         $this->securityContext->withoutAuthorizationChecks(function () use ($credentials, $providerName, $accountRepository, &$accessToken) {
             $accessToken = $accountRepository->findActiveByAccountIdentifierAndAuthenticationProviderName($credentials['access_token'], $providerName);
         });
-
-        $authenticationToken->setAuthenticationStatus(TokenInterface::WRONG_CREDENTIALS);
 
         if ($accessToken === null) {
             return;
@@ -101,13 +101,9 @@ class AccessTokenProvider extends AbstractProvider
             return;
         }
 
-        if ($accessToken->getExpirationDate() > new \DateTime()) {
-            $accessToken->authenticationAttempted(TokenInterface::AUTHENTICATION_SUCCESSFUL);
-            $authenticationToken->setAuthenticationStatus(TokenInterface::AUTHENTICATION_SUCCESSFUL);
-            $authenticationToken->setAccount($account);
-        } else {
-            $accessToken->authenticationAttempted(TokenInterface::WRONG_CREDENTIALS);
-        }
+        $accessToken->authenticationAttempted(TokenInterface::AUTHENTICATION_SUCCESSFUL);
+        $authenticationToken->setAuthenticationStatus(TokenInterface::AUTHENTICATION_SUCCESSFUL);
+        $authenticationToken->setAccount($account);
         $this->accountRepository->update($accessToken);
         $this->persistenceManager->whitelistObject($accessToken);
     }

@@ -2,9 +2,29 @@
 # Special routes only for the users api endpoint
 
 -
+  name: 'default route'
+  uriPattern: ''
+  defaults:
+    '@action': 'default'
+
+-
   name: 'user login'
   uriPattern: 'login'
   defaults:
     '@controller': 'v1\LocalAccountAuthentication'
     '@action': 'authenticate'
   httpMethods: ['POST']
+
+-
+  name: 'find user by email'
+  uriPattern: 'findByEmail'
+  defaults:
+    '@action': 'getUserByEmail'
+  httpMethods: ['GET']
+
+-
+  name: 'find user'
+  uriPattern: '{userId}'
+  defaults:
+    '@action': 'getUserById'
+  httpMethods: ['GET']
