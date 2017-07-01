@@ -49,4 +49,14 @@ class UsersController extends AbstractApiEndpointController
 
         $this->view->assign('value', $user);
     }
+
+    /**
+     * Deletes a user
+     *
+     * @param User $user user to be deleted
+     */
+    public function deleteUserAction(User $user)
+    {
+        $this->userRepository->remove($user);
+    }
 }

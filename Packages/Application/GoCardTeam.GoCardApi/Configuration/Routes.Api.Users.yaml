@@ -28,3 +28,13 @@
   defaults:
     '@action': 'getUserById'
   httpMethods: ['GET']
+
+-
+  name: 'delete user'
+  uriPattern: '{user}'
+  defaults:
+    '@action': 'deleteUser'
+  routeParts:
+    user:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+  httpMethods: ['DELETE']
