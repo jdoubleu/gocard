@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
-import {logoutUser} from '../actions'
+import {logoutUser} from '../actions/auth'
 import TopBarComponent from "../components/shared/topBar";
 
 class TopBar extends React.Component {

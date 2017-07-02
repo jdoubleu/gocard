@@ -1,4 +1,5 @@
-import {LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS, USER_FAILURE, USER_SUCCESS, USER_REQUEST} from "../actions";
+import { USER_FAILURE, USER_SUCCESS, USER_REQUEST} from "../actions/user";
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS,} from "../actions/auth";
 
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
