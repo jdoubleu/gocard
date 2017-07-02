@@ -5,8 +5,6 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
-use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
-use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
@@ -28,15 +26,9 @@ class UsersController extends AbstractApiEndpointController
 
     /**
      * @Flow\Inject
-     * @var AccountFactory
+     * @var LocalAccountService
      */
-    protected $accountFactory;
-
-    /**
-     * @Flow\Inject
-     * @var AccountRepository
-     */
-    protected $accountRepositoy;
+    protected $accountService;
 
     /**
      * Allows property modification for update action.
@@ -57,14 +49,13 @@ class UsersController extends AbstractApiEndpointController
      */
     public function addUserAction(User $user, string $password)
     {
-        $account = $this->accountFactory->createAccountWithPassword($user->getEmail(), $password, [], LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER);
+        $account = $this->accountService->createNewLocalAccount($user->getEmail(), $password);
 
-        if ($this->accountRepositoy->findByAccountIdentifierAndAuthenticationProviderName($user->getEmail(), LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER) !== null) {
-           $this->throwStatus(409);
-           return;
+        if (!$this->accountService->maybePersistNewAccount($account)) {
+            $this->throwStatus(409);
+            return;
         }
 
-        $this->accountRepositoy->add($account);
         $user->setAccount($account);
 
         $this->userRepository->add($user);
