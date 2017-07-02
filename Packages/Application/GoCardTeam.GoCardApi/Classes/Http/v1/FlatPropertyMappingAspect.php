@@ -16,6 +16,21 @@ class FlatPropertyMappingAspect
 {
 
     /**
+     * Flag name which enables additional property mapping.
+     *
+     * Use this in the routing configuration:
+     * ```
+     *   ...
+     *   routeParts:
+     *     user:
+     *       objectType: ...
+     *       mapAdditionalPropertiesFromBody: true
+     *   ...
+     * ```
+     */
+    const ADDITIONAL_MAPPING_FLAG = 'mapAdditionalPropertiesFromBody';
+
+    /**
      * @Flow\Inject
      * @var Router
      */
@@ -38,6 +53,11 @@ class FlatPropertyMappingAspect
 
         $route = $this->router->getLastMatchedRoute();
         $routePartsConfiguration = $route->getRoutePartsConfiguration();
+
+        if(!$routePartsConfiguration[self::ADDITIONAL_MAPPING_FLAG] ?? false) {
+            return $result;
+        }
+
         [$partsConfiguration, $targetName] = [end($routePartsConfiguration), key($routePartsConfiguration)];
 
         if(!array_key_exists('objectType', $partsConfiguration)) {
