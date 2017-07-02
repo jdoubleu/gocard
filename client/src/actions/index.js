@@ -16,12 +16,12 @@ function requestLogin() {
     }
 }
 
-function receiveLogin(user) {
+function receiveLogin(access_token) {
     return {
         type: LOGIN_SUCCESS,
         isFetching: false,
         isAuthenticated: true,
-        id_token: user.id_token
+        access_token: access_token
     }
 }
 
@@ -31,6 +31,35 @@ function loginError(message) {
         isFetching: false,
         isAuthenticated: false,
         message
+    }
+}
+
+//User actions
+export const USER_REQUEST = 'USER_REQUEST';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAILURE = 'USER_FAILURE';
+
+function requestUser() {
+    return {
+        type: USER_REQUEST,
+        isFetching: true,
+        user: null,
+    }
+}
+
+function receiveUser(user) {
+    return {
+        type: USER_SUCCESS,
+        isFetching: false,
+        user: user
+    }
+}
+
+function userError(err) {
+    return {
+        type: USER_FAILURE,
+        isFetching: false,
+        message: err
     }
 }
 
@@ -68,20 +97,30 @@ export function loginUser(creds) {
             email: creds.email,
             password: creds.password
         }).then(response => {
-            const user = response.body;
-            return ({user, response});
-        }).then(({user, response}) => {
-            if (response.response.statusCode !== 200) {
-                // If there was a problem, we want to
-                // dispatch the error condition
-                dispatch(loginError(user.message));
-                return Promise.reject(user);
+            const access_token = response.body;
+            return (access_token);
+        }).then((access_token) => {
+            // Dispatch the success action
+            dispatch(receiveLogin(access_token));
+            //apiConnection.setApiKey(access_token,"access_token",true); :TODO set API key
+            dispatch(requestUser());
+            console.log(creds.email);
+            console.log(access_token);
+            apiConnection.getUserByEmail({email: creds.email, $queryParameters: {access_token: access_token}}).then( //:TODO remove API key
+                response => {
+                    dispatch(receiveUser(response.body));
+                }
+            ).catch(err => {
+                    console.log("Error: ", err);
+                    dispatch(userError(err));
+                }
+            );
+        }).catch(err => {
+                console.log("Error: ", err);
+                dispatch(loginError());
+                return Promise.reject();
             }
-            else {
-                // Dispatch the success action
-                dispatch(receiveLogin(user));
-            }
-        }).catch(err => console.log("Error: ", err));
+        );
     }
 }
 

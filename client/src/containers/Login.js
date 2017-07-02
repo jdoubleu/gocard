@@ -24,7 +24,6 @@ Login.propTypes = {
 };
 
 function mapStateToProps(state) {
-    console.log(state.auth);
     return {
         errorMessage: state.auth.errorMessage,
         isLocalLoginFetching: state.auth.isFetching

@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 import "./topBar.css";
 
-const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
+const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
     return (
         <Container className="top-bar">
             <Navbar light toggleable className="pb-4">
@@ -29,10 +29,10 @@ const TopBar = ({dropDownTopBar, dropDownUser, username, onToggleTopBarDropDown,
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
                         <Nav className="ml-auto" navbar>
-                            <UserIcon name={username}/>
+                            <UserIcon name={displayName}/>
                             <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
                                 <DropdownToggle nav caret>
-                                    <span>{username}</span>
+                                    <span>{displayName}</span>
                                 </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
@@ -65,10 +65,10 @@ TopBar.propTypes = {
     onToggleTopBarDropDown: PropTypes.func.isRequired,
     dropDownUser: PropTypes.bool.isRequired,
     onToggleUserDropDown: PropTypes.func.isRequired,
-    username: PropTypes.string,
     isAuthenticated: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
-    onNavbarBrandClick: PropTypes.func.isRequired
+    onNavbarBrandClick: PropTypes.func.isRequired,
+    displayName: PropTypes.string
 };
 
 TopBar.defaultProps = {

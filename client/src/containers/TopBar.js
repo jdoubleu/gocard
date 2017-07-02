@@ -32,15 +32,15 @@ class TopBar extends React.Component {
 
 
     render() {
-        const {dispatch, isAuthenticated} = this.props;
+        const {dispatch, isAuthenticated, displayName} = this.props;
         return (
             <TopBarComponent
                 isAuthenticated={isAuthenticated}
+                displayName={displayName}
                 dropDownTopBar={this.state.dropDownTopBar}
                 onToggleTopBarDropDown={this.onToggleTopBarDropDown}
                 dropDownUser={this.state.dropDownUser}
                 onToggleUserDropDown={this.onToggleUserDropDown}
-                username="Frank N. Stein"
                 onLogout={() => dispatch(logoutUser())}
                 onNavbarBrandClick={() => dispatch(push("/"))}
             />
@@ -51,11 +51,13 @@ class TopBar extends React.Component {
 TopBar.propTypes = {
     dispatch: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
+    displayName: PropTypes.string
 };
 
 function mapStateToProps(state) {
     return {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        displayName: state.user.displayName
     }
 }
 
