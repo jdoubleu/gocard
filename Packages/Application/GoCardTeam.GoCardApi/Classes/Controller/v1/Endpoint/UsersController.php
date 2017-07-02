@@ -57,6 +57,12 @@ class UsersController extends AbstractApiEndpointController
     public function addUserAction(User $user, string $password)
     {
         $account = $this->accountFactory->createAccountWithPassword($user->getEmail(), $password, [], 'LocalAuthenticationProvider');
+
+        if ($this->accountRepositoy->findByAccountIdentifierAndAuthenticationProviderName($user->getEmail(), 'LocalAuthenticationProvider') !== null) {
+           $this->throwStatus(409);
+           return;
+        }
+
         $this->accountRepositoy->add($account);
         $user->setAccount($account);
 

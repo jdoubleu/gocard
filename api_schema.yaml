@@ -652,6 +652,8 @@ paths:
           description: Invalid request
           schema:
             $ref: '#/definitions/ValidationResponse'
+        '409':
+          description: A user with this email already exists
   /users/login:
     post:
       tags:
