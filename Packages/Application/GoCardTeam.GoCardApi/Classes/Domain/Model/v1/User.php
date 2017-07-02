@@ -38,7 +38,7 @@ class User
     protected $email;
 
     /**
-     * @ORM\OneToOne()
+     * @ORM\OneToOne(cascade={"persist"})
      * @var Account
      */
     protected $account;
