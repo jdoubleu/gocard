@@ -12,7 +12,7 @@ class SingleChoiceCard extends React.Component {
         this.validate = this.validate.bind(this);
         this.button = this.button.bind(this);
         this.showAnswers = this.showAnswers.bind(this);
-        this.displaySkipCancel = this.displaySkipCancel.bind(this);
+
         this.state = {
             answer: false,
             show: false
@@ -20,7 +20,7 @@ class SingleChoiceCard extends React.Component {
     }
 
     getRightAnswer() {
-        return "Mit toString";
+        return this.props.right;
     }
 
     handleSubmit() {
@@ -63,9 +63,7 @@ class SingleChoiceCard extends React.Component {
                     return (
                         <Col>
                             <CardText>Deine Antwort war richtig!</CardText>
-                            <div className="text-right">
-                                <Button outline color="primary">Weiter</Button>
-                            </div>
+
                         </Col>
                     )
                 } else if (this.state.answer === false) {
@@ -73,12 +71,15 @@ class SingleChoiceCard extends React.Component {
                         <div>
                             <CardText>Deine Antwort war falsch! Die richtige Antwort lautet: </CardText>
                             <CardText>{this.getRightAnswer()}</CardText>
-                            <div className="text-right">
-                                <Button outline color="primary">Weiter</Button>
-                            </div>
                         </div>
                     )
                 }
+            }else {
+                return(
+                    <div className="text-right">
+                        <Button outline color="primary">Weiter</Button>
+                    </div>
+                )
             }
         }
     }
@@ -116,36 +117,13 @@ class SingleChoiceCard extends React.Component {
 
     }
 
-    displaySkipCancel(){
-        if(this.state.show=== false) {
-            return ( <Row>
-                    <Col>
-                        <Button outline block color="danger">Abbrechen</Button>
-                    </Col>
-                    <Col>
-                        <Button outline block color="info">Überspringen</Button>
-                    </Col>
-                </Row>
-            )
-        }else{
-            return(<Button outline block color="danger">Abbrechen</Button>)
-        }
-    }
 
 
-    skipQuestion(){
-        console.log('skip question view');
-    }
-
-    cancelMode(){
-      console.log('cancel view');
-      // Link to last register
-    }
 
     render() {
         return (
           <Row>
-            <Col sm="12" md={{size: 7, offset: 2}}>
+            <Col sm="12" md={{size: 8, offset: 2}}>
 
 
                 <Card block>
@@ -161,8 +139,7 @@ class SingleChoiceCard extends React.Component {
                     {this.button()}
 
                 </Card>
-                <br/>
-                {this.displaySkipCancel()}
+
             </Col>
 
           </Row>
@@ -172,16 +149,15 @@ class SingleChoiceCard extends React.Component {
 
 SingleChoiceCard.propTypes = {
     question: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
+    mode: PropTypes.number.isRequired,
     desc: PropTypes.string,
-    answer: PropTypes.array,
-    mode: PropTypes.number
+
 };
 
 
 SingleChoiceCard.defaultProps = {
-    question: "Wie traversiere ich durch einen Baum?",
-    answer: ["Mit toString", "Mit Bananen", "Mit Getter/Setter"],
-    mode: 3
+
 };
 
 export default SingleChoiceCard;

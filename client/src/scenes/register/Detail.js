@@ -59,9 +59,11 @@ class Detail extends React.Component {
                             <FormGroup>
                                 <Label for="mode">Lernmodus</Label>
                                 <ButtonGroup check>
+                                    <Link to="/normal">
                                     <Button outline onClick={() => this.onRadioBtnClick(1)}
                                             active={this.state.mode === 1}
                                             color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal</Button>
+                                        </Link>
                                     <Button outline onClick={() => this.onRadioBtnClick(2)}
                                             active={this.state.mode === 2}
                                             color={this.state.mode === 2 ? 'primary' : 'secondary'}>Power</Button>

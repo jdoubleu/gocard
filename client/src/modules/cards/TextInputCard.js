@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
 
 
+
 class SelfValidateCard extends React.Component {
     constructor(props){
         super(props);
@@ -61,6 +62,8 @@ class SelfValidateCard extends React.Component {
             this.setState({
                 answer : true
             })
+            ;
+
         }
 
     }
@@ -112,8 +115,8 @@ class SelfValidateCard extends React.Component {
                         {this.button()}
                     </Form>
                 </Card>
-                <br/>
-                {this.displaySkipCancel()}
+
+
             </Col>
 
         );
@@ -122,15 +125,14 @@ class SelfValidateCard extends React.Component {
 
 SelfValidateCard.propTypes = {
     question: PropTypes.string.isRequired,
-    answer: PropTypes.string,
-    mode: PropTypes.number
+    answer: PropTypes.string.isRequired,
+    mode: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+
 };
 
 
 SelfValidateCard.defaultProps = {
-    question: 'Wie traversiert man über einen Baum?',
-    answer: 'mit toString',
-    mode: 2
 };
 
 export default SelfValidateCard;

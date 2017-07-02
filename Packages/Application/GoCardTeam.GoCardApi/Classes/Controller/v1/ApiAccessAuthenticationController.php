@@ -4,7 +4,6 @@ namespace GoCardTeam\GoCardApi\Controller\v1;
 
 use Neos\Flow\Http\Response;
 use Neos\Flow\Mvc\ActionRequest;
-use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 
 /**
@@ -13,16 +12,8 @@ use Neos\Flow\Security\Exception\AuthenticationRequiredException;
  *
  * @package GoCardTeam\GoCardApi\Controller\Api\v1
  */
-class ApiAccessAuthenticationController extends AbstractAuthenticationController
+class ApiAccessAuthenticationController extends AbstractApiAuthenticationController
 {
-
-    /**
-     * Override default supported types
-     * This API consumes application/json
-     *
-     * @var array
-     */
-    protected $supportedMediaTypes = ["application/json"];
 
     /**
      * Continues the request if there is one, otherwise will throw a 400 status code
@@ -51,16 +42,5 @@ class ApiAccessAuthenticationController extends AbstractAuthenticationController
         /** @var Response $response */
         $response = $this->controllerContext->getResponse();
         $response->setStatus(401, 'Unauthorized');
-    }
-
-    /**
-     * Overwrite default error method to not return any output.
-     * The error is handled via status code in onAuthenticationFailure method
-     *
-     * @return string
-     */
-    protected function errorAction()
-    {
-        return '';
     }
 }

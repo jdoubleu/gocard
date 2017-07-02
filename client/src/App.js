@@ -22,6 +22,8 @@ import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
 import ProtectedRoute from './containers/ProtectedRoute';
 import Home from './containers/Home';
+import Normal from "./scenes/learn/Normal";
+import Detail from "./scenes/register/Detail"
 
 
 class App extends React.Component {
@@ -41,7 +43,9 @@ class App extends React.Component {
                         <Route path='/self' exact component={SelfValidate}/> # just for testing
                         <Route path='/input' exact component={Input}/> # just for testing
                         <Route path='/feedback' exact component={Feedback}/> # just for testing
-                        <Route path='/feedback' exact component={Feedback} alt={Login}/> # just for testing
+                        <Route path='/normal' exact component={Normal}/> # just for testing
+                        <Route path='/detail' exact component={Detail}/> # just for testing
+
 
                         {/* Register Routes */}
                         <ProtectedRoute path="/register" component={Register}/>

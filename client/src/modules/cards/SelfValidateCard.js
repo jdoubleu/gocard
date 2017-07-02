@@ -9,7 +9,6 @@ class SelfValidateCard extends React.Component {
         this.button = this.button.bind(this);
         this.display = this.display.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.displaySkipCancel = this.displaySkipCancel.bind(this);
         this.state = {
             show: false
         }
@@ -30,21 +29,7 @@ class SelfValidateCard extends React.Component {
             return (<br/>)
         }
     }
-    displaySkipCancel(){
-        if(this.state.show=== false) {
-            return ( <Row>
-                    <Col>
-                        <Button outline block color="danger">Abbrechen</Button>
-                    </Col>
-                    <Col>
-                        <Button outline block color="info">Überspringen</Button>
-                    </Col>
-                </Row>
-            )
-        }else{
-            return(<Button outline block color="danger">Abbrechen</Button>)
-        }
-    }
+
 
     display(){
         if(this.state.show === true){
@@ -81,8 +66,7 @@ class SelfValidateCard extends React.Component {
                       {this.button()}
                   </Form>
               </Card>
-              <br/>
-              {this.displaySkipCancel()}
+
           </Col>
 
         );
@@ -91,13 +75,13 @@ class SelfValidateCard extends React.Component {
 
 SelfValidateCard.propTypes = {
     question: PropTypes.string.isRequired,
-    answer: PropTypes.string
+    answer: PropTypes.string.isRequired,
+    mode: PropTypes.number.isRequired,
 };
 
 
 SelfValidateCard.defaultProps = {
-    question: 'Wie traversiert man über einen Baum?',
-    answer: 'Über Rekursion und toString kann in Pre/Post/In Order funktionieren '
+
 };
 
 export default SelfValidateCard;

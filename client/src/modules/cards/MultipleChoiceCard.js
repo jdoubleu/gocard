@@ -13,7 +13,6 @@ class MultipleChoiceCard extends React.Component {
         this.validate = this.validate.bind(this);
         this.showAnswers = this.showAnswers.bind(this);
         this.button = this.button.bind(this);
-        this.displaySkipCancel = this.displaySkipCancel.bind(this);
         this.array = [];
         this.count = 0;
         this.state = {
@@ -25,7 +24,8 @@ class MultipleChoiceCard extends React.Component {
     }
 
     getRightAnswers() {
-        let answers = ["Mit toString", "durch Rekursion", "Pre/Post/In Order"];
+        let answers = ["Ned", "Jon", "Hodor"];
+
         return answers;
     }
 
@@ -50,11 +50,13 @@ class MultipleChoiceCard extends React.Component {
         if (test === false) {
             this.array = this.array.concat(event.target.value);
         }
-        let valid = true;
+        let valid = false;
         this.count = 0;
-        let dif = lodash.difference(this.array, this.getRightAnswers());
-        if (dif.length > 0) {
-            valid = false;
+        console.log(this.array);
+        console.log(this.getRightAnswers());
+        let dif = lodash.difference(this.getRightAnswers(),this.array );
+        if (dif.length === 0) {
+            valid = true;
         }
         let allundifiend = true;
         this.array.forEach(a => {
@@ -78,52 +80,35 @@ class MultipleChoiceCard extends React.Component {
 
         if (this.state.show === true) {
 
-            if (this.props.mode === 2) {
+            if (this.props.mode === 1) {
                 if (this.state.answer === true) {
                     return (
                         <div>
                             <CardText>Deine Antwort war richtig!</CardText>
-                            <div className="text-right">
-                                <Button outline color="primary">Weiter</Button>
-                            </div>
+
                         </div>
                     )
                 } else if (this.state.answer === false) {
+                    console.log("hallo");
                     return (
+
                         <div>
                             <CardText>Deine Antwort war flasch! Die richtige Antworten sind</CardText>
                             {this.getRightAnswers().map((a) => {
                                 return <CardText>{a}</CardText>
                             })}
-                            <div className="text-right">
-                                <Button outline color="primary">Weiter</Button>
-                            </div>
+
                         </div>
                     )
                 }
             }
         }
     }
-    displaySkipCancel(){
-        if(this.state.show=== false) {
-            return ( <Row>
-                    <Col>
-                        <Button outline block color="danger">Abbrechen</Button>
-                    </Col>
-                    <Col>
-                        <Button outline block color="info">Überspringen</Button>
-                    </Col>
-                </Row>
-            )
-        }else{
-            return(<Button outline block color="danger">Abbrechen</Button>)
-        }
-    }
+
 
 
     showAnswers() {
         if (this.state.show === false) {
-            console.log("ich bin hier");
             return ( this.props.answer.map((answer) =>
                     <Row>
                         <Col md={{offset: 1, size: 1}}>
@@ -137,7 +122,6 @@ class MultipleChoiceCard extends React.Component {
                 )
             );
         } else {
-            console.log("ich bin da");
             return ( this.props.answer.map((answer) =>
                     <Row>
                         <Col md={{offset: 1, size: 1}}>
@@ -179,8 +163,7 @@ class MultipleChoiceCard extends React.Component {
                     </FormGroup>
                     {this.button()}
                 </Card>
-                <br/>
-                {this.displaySkipCancel()}
+
             </Col>
 
         );
@@ -189,16 +172,15 @@ class MultipleChoiceCard extends React.Component {
 
 MultipleChoiceCard.propTypes = {
     question: PropTypes.string.isRequired,
+    answer: PropTypes.array.isRequired,
+    mode: PropTypes.number.isRequired,
     desc: PropTypes.string,
-    answer: PropTypes.array,
-    mode: PropTypes.number
+    right: PropTypes.array,
+
 };
 
 
 MultipleChoiceCard.defaultProps = {
-    question: "Wie traversiere ich durch eien Baum?",
-    answer: ["Mit toString", "Mit Bananen", "Mit Getter/Setter", "durch Rekursion", "Pre/Post/In Order"],
-    mode: 2
 };
 
 export default MultipleChoiceCard;
