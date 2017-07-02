@@ -2,12 +2,6 @@
 # Special routes only for the users api endpoint
 
 -
-  name: 'default route'
-  uriPattern: ''
-  defaults:
-    '@action': 'default'
-
--
   name: 'user login'
   uriPattern: 'login'
   defaults:
