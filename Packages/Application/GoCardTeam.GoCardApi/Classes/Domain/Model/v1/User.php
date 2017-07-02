@@ -113,7 +113,7 @@ class User
      */
     public function getEmail()
     {
-        return $this->getAccountType() == 'local' ? $this->account->getAccountIdentifier() : $this->email;
+        return $this->email;
     }
 
     /**
@@ -122,11 +122,7 @@ class User
      */
     public function setEmail($email)
     {
-        if($this->getAccountType() == 'local') {
-            $this->account->setAccountIdentifier($email);
-        } else {
-            $this->email = $email;
-        }
+        $this->email = $email;
     }
 
     /**
