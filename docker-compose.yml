@@ -15,9 +15,6 @@ services:
             - apache
         volumes:
             - ./:/var/www/html
-        environment:
-            - XDEBUG_CONFIG="idekey=cli"
-        env_file: .env
 
     debugproxy:
         build: .docker/Development/debugproxy
