@@ -6,6 +6,7 @@ use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
 /**
  * Class UsersController
@@ -48,6 +49,28 @@ class UsersController extends AbstractApiEndpointController
         }
 
         $this->view->assign('value', $user);
+    }
+
+    /**
+     * Allows property modification for update action.
+     * By default it is not allowed to modify a persisted object.
+     */
+    public function initializeUpdateUserAction()
+    {
+        $userConfiguration = $this->arguments->getArgument('user')->getPropertyMappingConfiguration();
+        $userConfiguration->allowAllProperties()->skipProperties('uid', 'accountType');
+        $userConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
+
+    }
+
+    /**
+     * Updates the given user
+     *
+     * @param User $user updated user data from body
+     */
+    public function updateUserAction(User $user)
+    {
+        $this->userRepository->update($user);
     }
 
     /**

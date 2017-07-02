@@ -30,6 +30,16 @@
   httpMethods: ['GET']
 
 -
+  name: 'update user'
+  uriPattern: '{user}'
+  defaults:
+    '@action': 'updateUser'
+  routeParts:
+    user:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+  httpMethods: ['PUT']
+
+-
   name: 'delete user'
   uriPattern: '{user}'
   defaults:
