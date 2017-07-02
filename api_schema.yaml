@@ -642,7 +642,21 @@ paths:
           description: Created user object
           required: true
           schema:
-            $ref: '#/definitions/User'
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+                format: password
+              displayName:
+                type: string
+              status:
+                type: string
+                default: "new"
+            required:
+              - email
+              - password
       responses:
         '200':
           description: Successfully created the user
