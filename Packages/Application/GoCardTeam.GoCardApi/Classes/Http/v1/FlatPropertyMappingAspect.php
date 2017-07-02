@@ -54,13 +54,12 @@ class FlatPropertyMappingAspect
         $route = $this->router->getLastMatchedRoute();
         $routePartsConfiguration = $route->getRoutePartsConfiguration();
 
-        if(!$routePartsConfiguration[self::ADDITIONAL_MAPPING_FLAG] ?? false) {
-            return $result;
-        }
-
         [$partsConfiguration, $targetName] = [end($routePartsConfiguration), key($routePartsConfiguration)];
 
-        if(!array_key_exists('objectType', $partsConfiguration)) {
+        if(!is_array($partsConfiguration)
+            || !($partsConfiguration[self::ADDITIONAL_MAPPING_FLAG] ?? false)
+            || !array_key_exists('objectType', $partsConfiguration)
+        ) {
             return $result;
         }
 
