@@ -62,7 +62,7 @@ class User
     /**
      * @return int
      */
-    public function getUid(): int
+    public function getUid(): ?int
     {
         return $this->uid;
     }
@@ -78,7 +78,7 @@ class User
     /**
      * @return Account
      */
-    public function getAccount(): Account
+    public function getAccount(): ?Account
     {
         return $this->account;
     }
