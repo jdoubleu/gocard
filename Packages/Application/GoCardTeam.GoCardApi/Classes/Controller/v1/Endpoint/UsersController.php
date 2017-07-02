@@ -7,6 +7,7 @@ use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
 use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
@@ -56,9 +57,9 @@ class UsersController extends AbstractApiEndpointController
      */
     public function addUserAction(User $user, string $password)
     {
-        $account = $this->accountFactory->createAccountWithPassword($user->getEmail(), $password, [], 'LocalAuthenticationProvider');
+        $account = $this->accountFactory->createAccountWithPassword($user->getEmail(), $password, [], LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER);
 
-        if ($this->accountRepositoy->findByAccountIdentifierAndAuthenticationProviderName($user->getEmail(), 'LocalAuthenticationProvider') !== null) {
+        if ($this->accountRepositoy->findByAccountIdentifierAndAuthenticationProviderName($user->getEmail(), LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER) !== null) {
            $this->throwStatus(409);
            return;
         }

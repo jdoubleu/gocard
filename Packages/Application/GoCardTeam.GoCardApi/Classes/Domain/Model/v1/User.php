@@ -6,6 +6,7 @@ namespace GoCardTeam\GoCardApi\Domain\Model\v1;
  */
 
 use Doctrine\ORM\Mapping as ORM;
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 
@@ -147,7 +148,7 @@ class User
      */
     public function getAccountType()
     {
-        return $this->account->getAuthenticationProviderName() == 'LocalAuthenticationProvider' ? 'local' : 'extern';
+        return $this->account->getAuthenticationProviderName() == LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER ? 'local' : 'extern';
     }
 
 }

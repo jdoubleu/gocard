@@ -2,6 +2,7 @@
 
 namespace GoCardTeam\GoCardApi\Command;
 
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
@@ -16,11 +17,6 @@ use Neos\Flow\Cli\CommandController;
  */
 class UsersCommandController extends CommandController
 {
-
-    /**
-     * Name of the local account authentication provider
-     */
-    const LocalAccountAuthenticationProvider = 'LocalAuthenticationProvider';
 
     /**
      * @var AccountRepository
@@ -50,7 +46,7 @@ class UsersCommandController extends CommandController
      */
     public function createUserWithLocalAccountCommand(string $email, string $password, string $displayname, string $status = 'active')
     {
-        $account = $this->accountFactory->createAccountWithPassword($email, $password, [], self::LocalAccountAuthenticationProvider);
+        $account = $this->accountFactory->createAccountWithPassword($email, $password, [], LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER);
         $this->accountRepository->add($account);
 
         $user = new User();

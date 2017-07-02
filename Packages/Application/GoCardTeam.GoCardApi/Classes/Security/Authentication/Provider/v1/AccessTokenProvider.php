@@ -3,6 +3,7 @@
 namespace GoCardTeam\GoCardApi\Security\Authentication\Provider\v1;
 
 use GoCardTeam\GoCardApi\Security\Authentication\Token\v1\AccessToken;
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountRepository;
@@ -14,12 +15,6 @@ use Neos\Flow\Security\Exception\UnsupportedAuthenticationTokenException;
 
 class AccessTokenProvider extends AbstractProvider
 {
-
-    /**
-     * Default Provider for local account.
-     * This will be overwritten by this Provider's `localAccountProviderName` option.
-     */
-    const LocalAccountProviderName = 'LocalAuthenticationProvider';
 
     /**
      * @var AccountRepository
@@ -94,7 +89,7 @@ class AccessTokenProvider extends AbstractProvider
             return;
         }
 
-        $account = $accountRepository->findActiveByAccountIdentifierAndAuthenticationProviderName($accessToken->getCredentialsSource(), $this->options['localAccountProviderName'] ?? self::LocalAccountProviderName);
+        $account = $accountRepository->findActiveByAccountIdentifierAndAuthenticationProviderName($accessToken->getCredentialsSource(), $this->options['localAccountProviderName'] ?? LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER);
 
         if($account === null) {
             $accessToken->authenticationAttempted(TokenInterface::WRONG_CREDENTIALS);

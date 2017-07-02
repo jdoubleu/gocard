@@ -7,6 +7,7 @@ namespace GoCardTeam\GoCardApi\Command;
 
 use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Persistence\QueryResultInterface;
@@ -17,11 +18,6 @@ use Neos\Flow\Security\Account;
  */
 class Apiv1AccountManageCommandController extends CommandController
 {
-
-    /**
-     * Name of the local account authentication provider
-     */
-    const LocalAccountAuthenticationProvider = 'LocalAuthenticationProvider';
 
     /**
      * Name of the access token authentication provider
@@ -49,7 +45,7 @@ class Apiv1AccountManageCommandController extends CommandController
      */
     public function createAccountCommand(string $email, string $password, array $roles = [])
     {
-        $account = $this->accountFactory->createAccountWithPassword($email, $password, $roles, self::LocalAccountAuthenticationProvider);
+        $account = $this->accountFactory->createAccountWithPassword($email, $password, $roles, LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER);
         $this->accountRepository->add($account);
         $this->outputLine('Successfully created user (%s)', [$account->getAccountIdentifier()]);
     }
@@ -74,7 +70,7 @@ class Apiv1AccountManageCommandController extends CommandController
     public function listAccountsCommand()
     {
         /** @var QueryResultInterface $accounts */
-        $accounts = $this->accountRepository->findByAuthenticationProviderName(self::LocalAccountAuthenticationProvider);
+        $accounts = $this->accountRepository->findByAuthenticationProviderName(LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER);
         $this->generateAccountListOutput($accounts->toArray());
     }
 
