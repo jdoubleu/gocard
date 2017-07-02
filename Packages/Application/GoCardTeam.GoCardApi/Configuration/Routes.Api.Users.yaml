@@ -2,6 +2,17 @@
 # Special routes only for the users api endpoint
 
 -
+  name: 'create new user'
+  uriPattern: ''
+  defaults:
+    '@action': 'addUser'
+  routeParts:
+    user:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
   name: 'user login'
   uriPattern: 'login'
   defaults:
