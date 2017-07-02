@@ -70,7 +70,7 @@ class FlatPropertyMappingAspect
         }, ARRAY_FILTER_USE_KEY);
 
         if (!array_key_exists($targetName, $result)) {
-            $plainArguments[$targetName] = [];
+            $result[$targetName] = [];
         } elseif (!is_array($result[$targetName])) {
             return $result;
         }
