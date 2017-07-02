@@ -6,6 +6,7 @@ use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
 use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
+use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
@@ -31,6 +32,12 @@ class UsersController extends AbstractApiEndpointController
     protected $accountFactory;
 
     /**
+     * @Flow\Inject
+     * @var AccountRepository
+     */
+    protected $accountRepositoy;
+
+    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */
@@ -50,6 +57,7 @@ class UsersController extends AbstractApiEndpointController
     public function addUserAction(User $user, string $password)
     {
         $account = $this->accountFactory->createAccountWithPassword($user->getEmail(), $password, [], 'LocalAuthenticationProvider');
+        $this->accountRepositoy->add($account);
         $user->setAccount($account);
 
         $this->userRepository->add($user);
