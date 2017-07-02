@@ -102,23 +102,27 @@ export function loginUser(creds) {
         }).then((access_token) => {
             // Dispatch the success action
             dispatch(receiveLogin(access_token));
-            //apiConnection.setApiKey(access_token,"access_token",true); :TODO set API key
-            dispatch(requestUser());
-            console.log(creds.email);
-            console.log(access_token);
-            apiConnection.getUserByEmail({email: creds.email, $queryParameters: {access_token: access_token}}).then( //:TODO remove API key
-                response => {
-                    dispatch(receiveUser(response.body));
-                }
-            ).catch(err => {
-                    console.log("Error: ", err);
-                    dispatch(userError(err));
-                }
-            );
+            dispatch(getUser(creds.email));
         }).catch(err => {
                 console.log("Error: ", err);
                 dispatch(loginError());
                 return Promise.reject();
+            }
+        );
+    }
+}
+
+export function getUser(email) {
+    return (dispatch, getState) => {
+        //apiConnection.setApiKey(access_token,"access_token",true); :TODO set API key
+        dispatch(requestUser());
+        apiConnection.getUserByEmail({email: email, $queryParameters: {access_token: getState().auth.access_token}}).then( //:TODO remove API key
+            response => {
+                dispatch(receiveUser(response.body));
+            }
+        ).catch(err => {
+                console.log("Error: ", err);
+                dispatch(userError(err));
             }
         );
     }
