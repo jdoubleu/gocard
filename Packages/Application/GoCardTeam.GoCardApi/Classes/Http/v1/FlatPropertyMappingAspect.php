@@ -52,6 +52,11 @@ class FlatPropertyMappingAspect
         $result = $joinPoint->getAdviceChain()->proceed($joinPoint);
 
         $route = $this->router->getLastMatchedRoute();
+
+        if ($route === null) {
+            return $result;
+        }
+
         $routePartsConfiguration = $route->getRoutePartsConfiguration();
 
         [$partsConfiguration, $targetName] = [end($routePartsConfiguration), key($routePartsConfiguration)];
