@@ -7,12 +7,12 @@ import lodash from "lodash";
 class MultipleChoiceCard extends React.Component {
     constructor(props) {
         super(props);
-        this.display = this.display.bind(this);
         this.getRightAnswers = this.getRightAnswers.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validate = this.validate.bind(this);
         this.showAnswers = this.showAnswers.bind(this);
         this.button = this.button.bind(this);
+        this.correct = this.correct.bind(this);
         this.array = [];
         this.count = 0;
         this.state = {
@@ -24,9 +24,7 @@ class MultipleChoiceCard extends React.Component {
     }
 
     getRightAnswers() {
-        let answers = ["Ned", "Jon", "Hodor"];
-
-        return answers;
+        return this.props.right;
     }
 
     handleSubmit() {
@@ -52,8 +50,6 @@ class MultipleChoiceCard extends React.Component {
         }
         let valid = false;
         this.count = 0;
-        console.log(this.array);
-        console.log(this.getRightAnswers());
         let dif = lodash.difference(this.getRightAnswers(),this.array );
         if (dif.length === 0) {
             valid = true;
@@ -76,36 +72,27 @@ class MultipleChoiceCard extends React.Component {
 
     }
 
-    display() {
-
-        if (this.state.show === true) {
-
-            if (this.props.mode === 1) {
-                if (this.state.answer === true) {
-                    return (
-                        <div>
-                            <CardText>Deine Antwort war richtig!</CardText>
-
-                        </div>
-                    )
-                } else if (this.state.answer === false) {
-                    console.log("hallo");
-                    return (
-
-                        <div>
-                            <CardText>Deine Antwort war flasch! Die richtige Antworten sind</CardText>
-                            {this.getRightAnswers().map((a) => {
-                                return <CardText>{a}</CardText>
-                            })}
-
-                        </div>
-                    )
-                }
+    correct(answer){
+        let correct = false;
+        this.getRightAnswers().forEach(a=>{
+            if(a === answer){
+                correct = true
             }
+        })
+        if(correct === true){
+            return(
+                <Col className="correct-answer">
+                    <CardText>{answer}</CardText>
+                </Col>
+            )
+        }else{
+            return(
+                <Col className="wrong-answer">
+                    <CardText>{answer}</CardText>
+                </Col>
+            )
         }
     }
-
-
 
     showAnswers() {
         if (this.state.show === false) {
@@ -128,9 +115,7 @@ class MultipleChoiceCard extends React.Component {
                             <Input type="checkbox" name="buttonAnswer" value={answer}
                                    onClick={this.validate} disabled></Input>
                         </Col>
-                        <Col>
-                            <CardText>{answer}</CardText>
-                        </Col>
+                        {this.correct(answer)}
                     </Row>
                 )
             );
@@ -158,9 +143,7 @@ class MultipleChoiceCard extends React.Component {
                     <FormGroup>
                         {this.showAnswers()}
                     </FormGroup>
-                    <FormGroup>
-                        {this.display()}
-                    </FormGroup>
+
                     {this.button()}
                 </Card>
 
