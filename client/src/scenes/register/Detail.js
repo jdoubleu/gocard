@@ -27,10 +27,21 @@ class Detail extends React.Component {
         super(props);
         this.state = {mode: 1};
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+        this.start = this.start.bind(this);
     }
 
     onRadioBtnClick(mode) {
         this.setState({mode});
+    }
+
+    start(){
+        if(this.state.mode === 1){
+            return "/normal";
+        }else if(this.state.mode ===2){
+            return "/power";
+        }else{
+            return"/exam";
+        }
     }
 
     render() {
@@ -59,11 +70,9 @@ class Detail extends React.Component {
                             <FormGroup>
                                 <Label for="mode">Lernmodus</Label>
                                 <ButtonGroup check>
-                                    <Link to="/normal">
                                     <Button outline onClick={() => this.onRadioBtnClick(1)}
                                             active={this.state.mode === 1}
                                             color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal</Button>
-                                        </Link>
                                     <Button outline onClick={() => this.onRadioBtnClick(2)}
                                             active={this.state.mode === 2}
                                             color={this.state.mode === 2 ? 'primary' : 'secondary'}>Power</Button>
@@ -72,7 +81,9 @@ class Detail extends React.Component {
                                             color={this.state.mode === 3 ? 'primary' : 'secondary'}>Klausur</Button>
                                 </ButtonGroup>
                             </FormGroup>
+                            <Link to={this.start()}>
                             <Button block outline color="primary">Lernen starten</Button>
+                            </Link>
                         </Form>
                     </Card>
                     <Card block>
