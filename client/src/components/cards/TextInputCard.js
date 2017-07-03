@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./correct-answer.css";
 import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
 import dummy from "../../dummyCards.json";
 
@@ -12,7 +13,7 @@ class SelfValidateCard extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.input = this.input.bind(this);
         this.validate = this.validate.bind(this);
-        this.displaySkipCancel = this.displaySkipCancel.bind(this);
+
         this.state = {
             show: false,
             answer: false
@@ -40,13 +41,14 @@ class SelfValidateCard extends React.Component {
             if (this.props.mode <= 2) {
                 if (this.state.answer === true) {
                     return (
-                        <CardText>Deine Antwort ist richtig</CardText>
+                        <CardText>Deine Antwort ist richtig!</CardText>
                     )
                 } else {
                     return (
                         <div>
                             <CardText>Deine Antwort war falsch</CardText>
-                            <CardText>{this.props.answer}</CardText>
+                            <CardText>Die richtige Antwort lautet:</CardText>
+                            <CardText><em><b>{this.props.answer}</b></em></CardText>
                         </div>
                     )
                 }
@@ -67,21 +69,7 @@ class SelfValidateCard extends React.Component {
         }
 
     }
-    displaySkipCancel(){
-        if(this.state.show=== false) {
-            return ( <Row>
-                    <Col>
-                        <Button outline block color="danger">Abbrechen</Button>
-                    </Col>
-                    <Col>
-                        <Button outline block color="info">Überspringen</Button>
-                    </Col>
-                </Row>
-            )
-        }else{
-            return(<Button outline block color="danger">Abbrechen</Button>)
-        }
-    }
+
 
     input(){
         if(this.state.show ===false){
