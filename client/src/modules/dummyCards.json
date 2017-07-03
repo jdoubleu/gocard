@@ -6,7 +6,6 @@
     "status": null,
     "userAnswer": "toString",
     "type": 4
-
   },
   {
     "id": -62671231231930,
@@ -19,7 +18,11 @@
   {
     "id": -123,
     "question": "Was ist eine Referenz",
-    "answer": ["Ein tee", "ein Zeiger", "Dimo Bibbers"],
+    "answer": [
+      "Ein tee",
+      "ein Zeiger",
+      "Dimo Bibbers"
+    ],
     "rightAnswer": "ein Zeiger",
     "status": null,
     "userAnswer": null,
@@ -28,8 +31,17 @@
   {
     "id": 435435,
     "question": "Wer stribt bei Game of Thrones",
-    "answer": ["Ned", "Cersei", "Hodor", "Jon"],
-    "rightAnswer":["Ned", "Hodor", "Jon"],
+    "answer": [
+      "Ned",
+      "Cersei",
+      "Hodor",
+      "Jon"
+    ],
+    "rightAnswer": [
+      "Ned",
+      "Hodor",
+      "Jon"
+    ],
     "status": null,
     "userAnswer": null,
     "type": 2

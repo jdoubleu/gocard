@@ -1,4 +1,4 @@
-import API from '../lib/ApiClient';
+import API from "../lib/ApiClient";
 
 const apiConnection = new API.ApiClient("http://localhost/api/v1");
 
@@ -37,7 +37,10 @@ export function getUser(email) {
     return (dispatch, getState) => {
         //apiConnection.setApiKey(access_token,"access_token",true); :TODO set API key
         dispatch(requestUser());
-        apiConnection.getUserByEmail({email: email, $queryParameters: {access_token: getState().auth.access_token}}).then( //:TODO remove API key
+        apiConnection.getUserByEmail({
+            email: email,
+            $queryParameters: {access_token: getState().auth.access_token}
+        }).then( //:TODO remove API key
             response => {
                 dispatch(receiveUser(response.body));
             }

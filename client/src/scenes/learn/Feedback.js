@@ -12,7 +12,6 @@ import {
     Col,
     Form,
     FormGroup,
-    Label,
     Row
 } from "reactstrap";
 import StatisticBar from "../../modules/shared/statisticBar";
@@ -32,50 +31,52 @@ class Feedback extends React.Component {
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
         this.getAllWrong = this.getAllWrong.bind(this);
     }
+
     onRadioBtnClick(mode) {
 
         this.setState({mode});
 
     }
 
-    displayCards(){
-        if(this.state.mode === 1){
-            return(
+    displayCards() {
+        if (this.state.mode === 1) {
+            return (
 
-                this.state.cards.map((card)=> <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+                this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                                    right={card.answer} check={card.status}/>)
 
             )
-        }else if(this.state.mode === 2){
-            return(
+        } else if (this.state.mode === 2) {
+            return (
                 this.getAllRight()
             )
-        }else if(this.state.mode === 3){
-            return(
+        } else if (this.state.mode === 3) {
+            return (
                 this.getAllWrong()
             )
         }
     }
 
-    getAllRight(){
+    getAllRight() {
         let array = [];
-        array =this.state.cards.filter(a =>
-        {
+        array = this.state.cards.filter(a => {
 
-            return  a.status === "true";
+            return a.status === "true";
         })
         console.log(array);
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.answer} check={card.status}/>)
     }
 
-    getAllWrong(){
-         let array = [];
-        array =this.state.cards.filter(a =>
-        {
+    getAllWrong() {
+        let array = [];
+        array = this.state.cards.filter(a => {
 
-            return  a.status === "false";
+            return a.status === "false";
         })
-            console.log(array);
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+        console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.answer} check={card.status}/>)
     }
 
     render() {
@@ -142,12 +143,12 @@ class Feedback extends React.Component {
     }
 
 }
-Feedback.propTypes={
+Feedback.propTypes = {
     register: PropTypes.string,
     tags: PropTypes.array
 }
 
-Feedback.defaultProps={
+Feedback.defaultProps = {
     register: "Feedback OOP 1",
     tags: ["Bibbers", "Unendlich/Unendlich", "Fabian Zippi Zipproth", "Joshua leise", "Wirtschaftsexperte"]
 

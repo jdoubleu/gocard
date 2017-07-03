@@ -1,5 +1,5 @@
 import React from "react";
-import {Col, Row, Form, FormGroup, Input, Button, Card, CardText, CardTitle} from "reactstrap";
+import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row} from "reactstrap";
 
 
 const Dialog = () => {

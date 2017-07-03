@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class Icon extends React.Component {
     getInitials(name) {
-        if(!!name) {
+        if (!!name) {
             // Split name by space
             let splittedName = name.split(" ", 2);
             if (splittedName.length === 1) {
@@ -20,7 +20,8 @@ class Icon extends React.Component {
                 <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2 - 2}
                         stroke="gray" fill="none"/>
                 <text fontSize={this.props.diameter / 2.5} x={this.props.diameter / 2} y={this.props.diameter / 2}
-                      textAnchor="middle" alignmentBaseline="central" fill="grey">{this.getInitials(this.props.name)}</text>
+                      textAnchor="middle" alignmentBaseline="central"
+                      fill="grey">{this.getInitials(this.props.name)}</text>
             </svg>
         );
     }

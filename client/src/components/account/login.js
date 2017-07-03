@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input, Alert} from "reactstrap";
+import {Alert, Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
 import Logo from "../shared/logo/index";
 
 const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
@@ -45,9 +45,9 @@ const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
                         <Link to="/registration">GoCard-Account erstellen</Link>
                     </CardText>
                     {message &&
-                        <Alert color="danger">
-                            <strong>{message}</strong>
-                        </Alert>
+                    <Alert color="danger">
+                        <strong>{message}</strong>
+                    </Alert>
                     }
                     <Form onSubmit={handleClick}>
                         <FormGroup>
@@ -60,7 +60,8 @@ const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
                             <Link to="/reset">Passwort vergessen?</Link>
                         </CardText>
 
-                        <Button disabled={isLocalLoginFetching} outline block color="primary">Anmelden mit GoCard-Account</Button>
+                        <Button disabled={isLocalLoginFetching} outline block color="primary">Anmelden mit
+                            GoCard-Account</Button>
                     </Form>
                 </Card>
             </CardGroup>

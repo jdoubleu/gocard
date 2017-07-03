@@ -1,9 +1,9 @@
-import { USER_FAILURE, USER_SUCCESS, USER_REQUEST} from "../actions/user";
+import {USER_FAILURE, USER_REQUEST, USER_SUCCESS} from "../actions/user";
 
 function user(state = {
     isFetching: false,
 }, action) {
-    switch (action.type){
+    switch (action.type) {
         case USER_REQUEST:
             return Object.assign({}, state, {
                 isFetching: true,

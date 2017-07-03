@@ -10,7 +10,8 @@ class InfoIcon extends React.Component {
                 <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2 - 2}
                         stroke="grey" fill="none"/>
                 <text fontSize={this.props.diameter / 2.5} x={this.props.diameter / 2} y={this.props.diameter / 2}
-                      textAnchor="middle" alignmentBaseline="central" fill="blue">I</text>
+                      textAnchor="middle" alignmentBaseline="central" fill="blue">I
+                </text>
             </svg>
         );
     }

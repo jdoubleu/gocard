@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row} from "reactstrap";
+import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Row} from "reactstrap";
 
 
 class SelfValidateCard extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.button = this.button.bind(this);
         this.display = this.display.bind(this);
@@ -22,20 +22,30 @@ class SelfValidateCard extends React.Component {
 
     }
 
-    button(){
+    button() {
         if (this.state.show == false) {
-            return (<Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>)
+            return (<Row>
+                <Col>
+                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
+                </Col>
+                <Col>
+                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Weiss ich
+                        nicht</Button>
+                </Col>
+            </Row>)
         } else {
             return (<br/>)
         }
     }
 
 
-    display(){
-        if(this.state.show === true){
-            return(
+    display() {
+        if (this.state.show === true) {
+            return (
                 <div>
-                    <CardText>{this.props.answer}</CardText>
+                    <CardText>Bewerte jetzt deine Antwort!</CardText>
+                    <CardText>Die Richtige Antwort lautet:</CardText>
+                    <CardText> <em><b>{this.props.answer}</b></em></CardText>
                     <Row>
                         <Col>
                             <Button outline block color="danger">Falsch</Button>
@@ -50,24 +60,25 @@ class SelfValidateCard extends React.Component {
             )
         }
     }
+
     render() {
         return (
-          <Col sm="12" md={{size: 8, offset: 2}}>
+            <Col sm="12" md={{size: 8, offset: 2}}>
 
 
-              <Card block>
-                  <Form onSubmit={this.handleSubmit}>
+                <Card block>
+                    <Form onSubmit={this.handleSubmit}>
 
-                      <CardTitle>{this.props.question}</CardTitle>
-                      <p>Selbstkontrollfrage: Versuche zunächst die Frage selbstständig zu beantworten, erst dann schaue dir die Musterlösung an und bewerte deine Antwort mit richtig oder falsch.</p>
-                      <FormGroup>
-                          {this.display()}
-                      </FormGroup>
-                      {this.button()}
-                  </Form>
-              </Card>
+                        <CardTitle>{this.props.question}</CardTitle>
+                        <CardText>Selbstkontrollfrage: Beantworte die Frage für dich selbst.</CardText>
+                        <FormGroup>
+                            {this.display()}
+                        </FormGroup>
+                        {this.button()}
+                    </Form>
+                </Card>
 
-          </Col>
+            </Col>
 
         );
     }
@@ -80,8 +91,6 @@ SelfValidateCard.propTypes = {
 };
 
 
-SelfValidateCard.defaultProps = {
-
-};
+SelfValidateCard.defaultProps = {};
 
 export default SelfValidateCard;

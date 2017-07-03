@@ -34,13 +34,13 @@ class Detail extends React.Component {
         this.setState({mode});
     }
 
-    start(){
-        if(this.state.mode === 1){
+    start() {
+        if (this.state.mode === 1) {
             return "/normal";
-        }else if(this.state.mode ===2){
+        } else if (this.state.mode === 2) {
             return "/power";
-        }else{
-            return"/exam";
+        } else {
+            return "/exam";
         }
     }
 
@@ -82,7 +82,7 @@ class Detail extends React.Component {
                                 </ButtonGroup>
                             </FormGroup>
                             <Link to={this.start()}>
-                            <Button block outline color="primary">Lernen starten</Button>
+                                <Button block outline color="primary">Lernen starten</Button>
                             </Link>
                         </Form>
                     </Card>

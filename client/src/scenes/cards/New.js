@@ -3,7 +3,6 @@ import {
     Button,
     ButtonGroup,
     Card,
-    CardText,
     Col,
     Form,
     FormGroup,
@@ -60,7 +59,7 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
-        if(event === 2){
+        if (event === 2) {
             this.newInput(event);
         }
 
@@ -78,7 +77,7 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
-        if(event ===1) {
+        if (event === 1) {
             this.newInputMultiple(event);
         }
 
@@ -148,7 +147,7 @@ class New extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         {/*
-                        Do Not Delete this empty Form Group. Important
+                         Do Not Delete this empty Form Group. Important
                          */}
                     </FormGroup>
                     <FormGroup>

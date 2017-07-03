@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Switch, } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -8,9 +8,7 @@ import {Container} from "reactstrap";
 import NotFound from "./scenes/errors/NotFound";
 import TopBar from "./containers/TopBar";
 import Footer from "./modules/shared/footer";
-import Dashboard from "./scenes/Dashboard";
 import Profile from "./scenes/account/Profile";
-import Login from "./containers/Login";
 import Legal from "./scenes/legal/Legal";
 import Register from "./scenes/register/Register";
 import Registration from "./scenes/account/Registration";
@@ -20,10 +18,10 @@ import MultipleChoice from "./modules/cards/MultipleChoiceCard";
 import SelfValidate from "./modules/cards/SelfValidateCard";
 import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
-import ProtectedRoute from './containers/ProtectedRoute';
-import Home from './containers/Home';
+import ProtectedRoute from "./containers/ProtectedRoute";
+import Home from "./containers/Home";
 import Normal from "./scenes/learn/Normal";
-import Detail from "./scenes/register/Detail"
+import Detail from "./scenes/register/Detail";
 
 
 class App extends React.Component {

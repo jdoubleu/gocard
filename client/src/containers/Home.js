@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Route, Redirect} from "react-router-dom";
 import Dashboard from "../scenes/Dashboard";
-import Login from './Login';
+import Login from "./Login";
 
 const Home = ({isAuthenticated}) => {
-        return isAuthenticated ? (
-            <Dashboard/>
-        ) : (
-             <Login />
-        )
+    return isAuthenticated ? (
+        <Dashboard/>
+    ) : (
+        <Login />
+    )
 };
 
 Home.propTypes = {

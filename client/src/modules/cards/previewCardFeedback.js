@@ -1,35 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, CardTitle, Col, CardText, Label,Row} from "reactstrap";
+import {Card, CardText, CardTitle, Col, Label, Row} from "reactstrap";
 
 class PreviewCardFeedback extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.check = this.check.bind(this);
         this.displayRight = this.displayRight.bind(this);
     }
-    check(){
-        if(this.props.check === "true"){
-            return(
+
+    check() {
+        if (this.props.check === "true") {
+            return (
                 <CardText className="display-3">✓</CardText>
             )
-        }else {
-            return(
-                <CardText className="display-3" >X</CardText>
+        } else {
+            return (
+                <CardText className="display-3">X</CardText>
             )
         }
     }
 
-    displayRight(){
-        if(this.props.check === "false"){
-            return(<Row>
+    displayRight() {
+        if (this.props.check === "false") {
+            return (<Row>
                 <Col>
                     <Label for="richtig">Richtige Antwort:</Label>
                     <CardText id="richtig">{this.props.right}</CardText>
                 </Col>
             </Row>)
-        }else{
-            return(
+        } else {
+            return (
                 <div></div>
             )
         }
@@ -41,11 +42,11 @@ class PreviewCardFeedback extends React.Component {
                 <Card block className="mb-2">
                     <CardTitle>{this.props.question}</CardTitle>
                     {this.check()}
-                        <Row>
+                    <Row>
                         <Col>
-                    <Label for="deine">Deine Antwort:</Label>
-                    <CardText id="deine">{this.props.answer}</CardText>
-                            </Col>
+                            <Label for="deine">Deine Antwort:</Label>
+                            <CardText id="deine">{this.props.answer}</CardText>
+                        </Col>
                     </Row>
                     <br/>
                     {this.displayRight()}
@@ -63,7 +64,6 @@ PreviewCardFeedback.propTypes = {
     right: PropTypes.string.isRequired,
     check: PropTypes.string.isRequire
 };
-
 
 
 export default PreviewCardFeedback;

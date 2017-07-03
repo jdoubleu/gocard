@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {NavLink, Redirect, Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import UserIcon from "../../../modules/shared/user/icon";
 import Logo from "../logo";
 import {
@@ -22,9 +22,9 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
         <Container className="top-bar">
             <Navbar light toggleable className="pb-4">
                 <NavbarToggler className="border-0" right onClick={onToggleTopBarDropDown}/>
-                    <NavbarBrand onClick={() => onNavbarBrandClick()}>
-                        <Logo/>
-                    </NavbarBrand>
+                <NavbarBrand onClick={() => onNavbarBrandClick()}>
+                    <Logo/>
+                </NavbarBrand>
                 {
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
