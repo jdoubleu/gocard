@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, Col, FormGroup, Input, Row, CardText, CardTitle} from "reactstrap";
-import "./correct-answer.css";
+import {Button, Card, CardText, CardTitle, Col, FormGroup, Input, Row} from "reactstrap";
 
 
 class SingleChoiceCard extends React.Component {
@@ -20,16 +19,16 @@ class SingleChoiceCard extends React.Component {
         }
     }
 
-    correct(answer){
+    correct(answer) {
 
-        if(answer === this.getRightAnswer()){
-            return(
-                    <Col className="correct-answer">
-                        <CardText>{answer}</CardText>
-                    </Col>
+        if (answer === this.getRightAnswer()) {
+            return (
+                <Col className="correct-answer">
+                    <CardText>{answer}</CardText>
+                </Col>
             )
-        }else{
-            return(
+        } else {
+            return (
 
                 <Col className="wrong-answer">
                     <CardText>{answer}</CardText>
@@ -97,15 +96,15 @@ class SingleChoiceCard extends React.Component {
                 )
             );
         } else {
-            return(this.props.answer.map((answer) =>
-                <Row>
-                    <Col md={{offset: 1, size: 1}}>
-                        <Input type="radio" name="buttonAnswer" value={answer}
-                                disabled></Input>
-                    </Col>
-                    {this.correct(answer)}
-                </Row>
-            )
+            return (this.props.answer.map((answer) =>
+                    <Row>
+                        <Col md={{offset: 1, size: 1}}>
+                            <Input type="radio" name="buttonAnswer" value={answer}
+                                   disabled></Input>
+                        </Col>
+                        {this.correct(answer)}
+                    </Row>
+                )
             );
         }
 

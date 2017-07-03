@@ -1,7 +1,7 @@
-.col .correct-answer{
-    background-color: rgba(0,255,0,0.3);
+.col .correct-answer {
+    background-color: rgba(0, 255, 0, 0.3);
 }
 
-.col .wrong-answer{
-    background-color: rgba(255,0,0,0.3);
+.col .wrong-answer {
+    background-color: rgba(255, 0, 0, 0.3);
 }

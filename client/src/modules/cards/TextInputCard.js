@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./correct-answer.css";
-import {Button, Card, Col, Form, Input, CardText, CardTitle, FormGroup, Row  } from "reactstrap";
-import dummy from "../../dummyCards.json";
+import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row} from "reactstrap";
 
 
 class SelfValidateCard extends React.Component {

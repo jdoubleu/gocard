@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, Col, FormGroup, Input, Row, CardText, CardTitle} from "reactstrap";
+import {Button, Card, CardText, CardTitle, Col, FormGroup, Input, Row} from "reactstrap";
 import lodash from "lodash";
 
 
@@ -50,7 +50,7 @@ class MultipleChoiceCard extends React.Component {
         }
         let valid = false;
         this.count = 0;
-        let dif = lodash.difference(this.getRightAnswers(),this.array );
+        let dif = lodash.difference(this.getRightAnswers(), this.array);
         if (dif.length === 0) {
             valid = true;
         }
@@ -72,21 +72,21 @@ class MultipleChoiceCard extends React.Component {
 
     }
 
-    correct(answer){
+    correct(answer) {
         let correct = false;
-        this.getRightAnswers().forEach(a=>{
-            if(a === answer){
+        this.getRightAnswers().forEach(a => {
+            if (a === answer) {
                 correct = true
             }
         })
-        if(correct === true){
-            return(
+        if (correct === true) {
+            return (
                 <Col className="correct-answer">
                     <CardText>{answer}</CardText>
                 </Col>
             )
-        }else{
-            return(
+        } else {
+            return (
                 <Col className="wrong-answer">
                     <CardText>{answer}</CardText>
                 </Col>
@@ -171,8 +171,7 @@ MultipleChoiceCard.propTypes = {
 };
 
 
-MultipleChoiceCard.defaultProps = {
-};
+MultipleChoiceCard.defaultProps = {};
 
 export default MultipleChoiceCard;
 
