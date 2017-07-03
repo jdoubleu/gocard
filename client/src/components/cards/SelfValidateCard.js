@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row} from "reactstrap";
+import {Button, Card, Col, Form, CardText, CardTitle, FormGroup, Row} from "reactstrap";
 
 
 class SelfValidateCard extends React.Component {
@@ -24,7 +24,15 @@ class SelfValidateCard extends React.Component {
 
     button(){
         if (this.state.show == false) {
-            return (<Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>)
+            return (<Row>
+                <Col>
+                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
+                </Col>
+                <Col>
+                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Weiss ich
+                        nicht</Button>
+                </Col>
+            </Row>)
         } else {
             return (<br/>)
         }

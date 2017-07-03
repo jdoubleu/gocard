@@ -126,7 +126,7 @@ class Normal extends React.Component {
         return (
             <div>
                 {this.displayLearningCard()}
-
+                    <br/>
                     <Col sm="12" md={{size: 8, offset: 2}}>
                         <Row>
                             <Col>

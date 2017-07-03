@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./correct-answer.css";
-import {Button, Card, Col, Form, Input,CardText, CardTitle, FormGroup, Row, Label} from "reactstrap";
+import {Button, Card, Col, Form, Input, CardText, CardTitle, FormGroup, Row  } from "reactstrap";
 import dummy from "../../dummyCards.json";
 
 
 class SelfValidateCard extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.button = this.button.bind(this);
         this.display = this.display.bind(this);
@@ -28,16 +28,27 @@ class SelfValidateCard extends React.Component {
 
     }
 
-    button(){
+    button() {
         if (this.state.show == false) {
-            return (<Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>)
+
+            return (<Row>
+                    <Col>
+                        <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
+                    </Col>
+                    <Col>
+                        <Button block outline color="primary" onClick={() => this.handleSubmit()}>Weiss ich
+                            nicht</Button>
+                    </Col>
+                </Row>
+
+            )
         } else {
             return (<br/>)
         }
     }
 
-    display(){
-        if(this.state.show === true) {
+    display() {
+        if (this.state.show === true) {
             if (this.props.mode <= 2) {
                 if (this.state.answer === true) {
                     return (
@@ -57,12 +68,12 @@ class SelfValidateCard extends React.Component {
         }
     }
 
-    validate(event){
+    validate(event) {
 
 
-        if(event.target.value === this.props.answer){
+        if (event.target.value === this.props.answer) {
             this.setState({
-                answer : true
+                answer: true
             })
             ;
 
@@ -71,17 +82,19 @@ class SelfValidateCard extends React.Component {
     }
 
 
-    input(){
-        if(this.state.show ===false){
-            return(<div>
-                <Input type="textarea" name="antwort" onBlur={this.validate} placeholder="Bitte gebe hier deine Antwort ein"></Input>
+    input() {
+        if (this.state.show === false) {
+            return (<div>
+                <Input type="textarea" name="antwort" onBlur={this.validate}
+                       placeholder="Bitte gebe hier deine Antwort ein"></Input>
             </div>)
-        }else if(this.state.show === true){
-            return(<div>
+        } else if (this.state.show === true) {
+            return (<div>
                 <Input type="textarea" name="antwort" disabled></Input>
             </div>)
         }
     }
+
     render() {
         return (
             <Col sm="12" md={{size: 8, offset: 2}}>
@@ -94,7 +107,7 @@ class SelfValidateCard extends React.Component {
                         <CardText>Texteingabe: Bitte gebe den genauen Antworttext ein</CardText>
                         <FormGroup>
                             {this.input()}
-                            </FormGroup>
+                        </FormGroup>
                         <FormGroup>
                             {this.display()}
                         </FormGroup>
@@ -118,8 +131,7 @@ SelfValidateCard.propTypes = {
 };
 
 
-SelfValidateCard.defaultProps = {
-};
+SelfValidateCard.defaultProps = {};
 
 export default SelfValidateCard;
 
