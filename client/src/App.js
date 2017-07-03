@@ -22,6 +22,8 @@ import ProtectedRoute from "./containers/ProtectedRoute";
 import Home from "./containers/Home";
 import Normal from "./scenes/learn/Normal";
 import Detail from "./scenes/register/Detail";
+import Power from "./scenes/learn/Power";
+import Exam from "./scenes/learn/Exam";
 
 
 class App extends React.Component {
@@ -43,7 +45,8 @@ class App extends React.Component {
                         <Route path='/feedback' exact component={Feedback}/> # just for testing
                         <Route path='/normal' exact component={Normal}/> # just for testing
                         <Route path='/detail' exact component={Detail}/> # just for testing
-
+                        <Route path='/power' exact component={Power}/> # just for testing
+                        <Route path='/exam' exact component={Exam}/> # just for testing
 
                         {/* Register Routes */}
                         <ProtectedRoute path="/register" component={Register}/>
