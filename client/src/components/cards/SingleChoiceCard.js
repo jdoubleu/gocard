@@ -1,21 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Button, Card, Col, FormGroup, Input, Row, CardText, CardTitle} from "reactstrap";
+import "./correct-answer.css";
 
 
 class SingleChoiceCard extends React.Component {
     constructor(props) {
         super(props);
-        this.display = this.display.bind(this);
         this.getRightAnswer = this.getRightAnswer.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validate = this.validate.bind(this);
         this.button = this.button.bind(this);
         this.showAnswers = this.showAnswers.bind(this);
+        this.correct = this.correct.bind(this);
 
         this.state = {
             answer: false,
             show: false
+        }
+    }
+
+    correct(answer){
+
+        if(answer === this.getRightAnswer()){
+            return(
+                    <Col className="correct-answer">
+                        <CardText>{answer}</CardText>
+                    </Col>
+            )
+        }else{
+            return(
+
+                <Col className="wrong-answer">
+                    <CardText>{answer}</CardText>
+                </Col>
+            )
         }
     }
 
@@ -54,39 +73,9 @@ class SingleChoiceCard extends React.Component {
         }
     }
 
-    display() {
-
-        if (this.state.show === true) {
-            console.log("ich darf angezeigt werden");
-            if (this.props.mode <= 2) {
-                if (this.state.answer === true) {
-                    return (
-                        <Col>
-                            <CardText>Deine Antwort war richtig!</CardText>
-
-                        </Col>
-                    )
-                } else if (this.state.answer === false) {
-                    return (
-                        <div>
-                            <CardText>Deine Antwort war falsch! Die richtige Antwort lautet: </CardText>
-                            <CardText>{this.getRightAnswer()}</CardText>
-                        </div>
-                    )
-                }
-            }else {
-                return(
-                    <div className="text-right">
-                        <Button outline color="primary">Weiter</Button>
-                    </div>
-                )
-            }
-        }
-    }
-
     showAnswers() {
         if (this.state.show === false) {
-            console.log("ich bin hier");
+
             return ( this.props.answer.map((answer) =>
                     <Row>
                         <Col md={{offset: 1, size: 1}}>
@@ -100,49 +89,38 @@ class SingleChoiceCard extends React.Component {
                 )
             );
         } else {
-            console.log("ich bin da");
-            return ( this.props.answer.map((answer) =>
-                    <Row>
-                        <Col md={{offset: 1, size: 1}}>
-                            <Input type="radio" name="buttonAnswer" value={answer}
-                                   onClick={this.validate} disabled></Input>
-                        </Col>
-                        <Col>
-                            <CardText>{answer}</CardText>
-                        </Col>
-                    </Row>
-                )
+            return(this.props.answer.map((answer) =>
+                <Row>
+                    <Col md={{offset: 1, size: 1}}>
+                        <Input type="radio" name="buttonAnswer" value={answer}
+                                disabled></Input>
+                    </Col>
+                    {this.correct(answer)}
+                </Row>
+            )
             );
         }
 
     }
 
 
-
-
     render() {
         return (
-          <Row>
-            <Col sm="12" md={{size: 8, offset: 2}}>
+            <Row>
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <Card block>
+                        <CardTitle>{this.props.question}</CardTitle>
+                        <p>Single Choice Frage: Bitte kreuze nur eine Antwort an!</p>
+                        <FormGroup>
+                            {this.showAnswers()}
+                        </FormGroup>
+                        {this.button()}
 
+                    </Card>
 
-                <Card block>
+                </Col>
 
-                    <CardTitle>{this.props.question}</CardTitle>
-                    <p>Single Choice Frage: Bitte kreuze nur eine Antwort an!</p>
-                    <FormGroup>
-                        {this.showAnswers()}
-                    </FormGroup>
-                    <FormGroup>
-                        {this.display()}
-                    </FormGroup>
-                    {this.button()}
-
-                </Card>
-
-            </Col>
-
-          </Row>
+            </Row>
         );
     }
 }
@@ -152,12 +130,11 @@ SingleChoiceCard.propTypes = {
     answer: PropTypes.string.isRequired,
     mode: PropTypes.number.isRequired,
     desc: PropTypes.string,
+    right: PropTypes.string
 
 };
 
 
-SingleChoiceCard.defaultProps = {
-
-};
+SingleChoiceCard.defaultProps = {};
 
 export default SingleChoiceCard;
