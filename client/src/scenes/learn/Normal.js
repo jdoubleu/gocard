@@ -18,8 +18,10 @@ class Normal extends React.Component {
         }
         this.mode = 1;
         this.index = 0;
+        this.isFeedback = false;
         this.displayLearningCard = this.displayLearningCard.bind(this);
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+        this.displayButtons = this.displayButtons.bind(this);
 
 
     }
@@ -113,10 +115,33 @@ class Normal extends React.Component {
                 }
             }
         } else {
+            this.isFeedback =true;
             return (
                 <Feedback/>
             )
         }
+    }
+
+    displayButtons() {
+        if(this.isFeedback === false)
+        return (
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Row>
+                    <Col>
+                        <Link to="/dashboard">
+                            <Button block outline onClick={() => this.onRadioBtnClick(1)}
+                                    active={this.state.mode === 0}
+                                    color="danger">Abbrechen</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Button block outline onClick={() => this.onRadioBtnClick(1)}
+                                active={this.state.mode === 1}
+                                color="info">weiter</Button>
+                    </Col>
+                </Row>
+            </Col>
+        )
     }
 
     render() {
@@ -124,22 +149,7 @@ class Normal extends React.Component {
             <div>
                 {this.displayLearningCard()}
                 <br/>
-                <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Row>
-                        <Col>
-                            <Link to="/dashboard">
-                                <Button block outline onClick={() => this.onRadioBtnClick(1)}
-                                        active={this.state.mode === 0}
-                                        color="danger">Abbrechen</Button>
-                            </Link>
-                        </Col>
-                        <Col>
-                            <Button block outline onClick={() => this.onRadioBtnClick(1)}
-                                    active={this.state.mode === 1}
-                                    color="info">weiter</Button>
-                        </Col>
-                    </Row>
-                </Col>
+                {this.displayButtons()}
             </div>
 
         );

@@ -81,13 +81,13 @@ class MultipleChoiceCard extends React.Component {
         })
         if (correct === true) {
             return (
-                <Col className="correct-answer">
+                <Col className="text-success">
                     <CardText>{answer}</CardText>
                 </Col>
             )
         } else {
             return (
-                <Col className="wrong-answer">
+                <Col className="text-danger">
                     <CardText>{answer}</CardText>
                 </Col>
             )

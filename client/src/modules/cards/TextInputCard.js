@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./correct-answer.css";
+
 import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row} from "reactstrap";
 
 
