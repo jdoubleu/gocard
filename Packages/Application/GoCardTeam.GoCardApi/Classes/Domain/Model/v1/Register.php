@@ -87,6 +87,14 @@ class Register
     }
 
     /**
+     * @return int
+     */
+    public function getOwnersUid(): int
+    {
+        return $this->getOwner()->getUid();
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCrdate(): \DateTime
