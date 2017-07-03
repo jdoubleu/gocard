@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/shared/header";
+import Header from "../../modules/shared/header";
 
 class License extends React.Component {
     render() {

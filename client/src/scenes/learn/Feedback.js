@@ -1,6 +1,6 @@
 import React from "react";
 import "../register/Detail.css";
-import Header from "../../components/shared/header";
+import Header from "../../modules/shared/header";
 import {
     Button,
     ButtonGroup,
@@ -15,13 +15,10 @@ import {
     Label,
     Row
 } from "reactstrap";
-import StatisticBar from "../../components/shared/statisticBar";
-import PreviewCardFeedback from "../../components/cards/previewCardFeedback";
-
-import TagViewer from "../../components/registers/tagViewer";
-
+import StatisticBar from "../../modules/shared/statisticBar";
+import PreviewCardFeedback from "../../modules/cards/previewCardFeedback";
 import PropTypes from "prop-types";
-import Cards from "../../dummyCards.json";
+import Cards from "../../modules/dummyCards.json";
 
 class Feedback extends React.Component {
     constructor(props) {
@@ -157,4 +154,3 @@ Feedback.defaultProps={
 }
 
 export default Feedback;
-

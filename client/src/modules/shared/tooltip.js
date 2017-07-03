@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Tooltip } from 'reactstrap';
-import InfoIcon from "../../components/shared/user/infoIcon"
+import InfoIcon from "./user/infoIcon"
 
 class Tips extends React.Component {
 

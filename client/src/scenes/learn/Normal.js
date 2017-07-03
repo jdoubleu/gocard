@@ -1,9 +1,9 @@
 import React from "react";
-import dummy from "../../dummyCards.json";
-import Single from "../../components/cards/SingleChoiceCard";
-import Multiple from "../../components/cards/MultipleChoiceCard";
-import Self from "../../components/cards/SelfValidateCard";
-import InputText from "../../components/cards/TextInputCard";
+import dummy from "../../modules/dummyCards.json";
+import Single from "../../modules/cards/SingleChoiceCard";
+import Multiple from "../../modules/cards/MultipleChoiceCard";
+import Self from "../../modules/cards/SelfValidateCard";
+import InputText from "../../modules/cards/TextInputCard";
 import {Button, Col, Row } from "reactstrap";
 import Feedback from "./Feedback";
 

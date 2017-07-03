@@ -1,6 +1,6 @@
 import React from "react";
 import {FormGroup, Input, Label} from "reactstrap";
-import AddUser from "../../components/registers/addUser";
+import AddUser from "..//registers/addUser";
 
 class Form extends React.Component {
 
