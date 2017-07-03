@@ -139,7 +139,7 @@ class MultipleChoiceCard extends React.Component {
                 <Card block>
 
                     <CardTitle>{this.props.question}</CardTitle>
-                    <p>Multiple Choice Frage: Bitte alle richtigen Antworten ankreuzen!</p>
+                    <CardText>Multiple Choice Frage: Bitte alle richtigen Antworten ankreuzen!</CardText>
                     <FormGroup>
                         {this.showAnswers()}
                     </FormGroup>

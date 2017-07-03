@@ -59,7 +59,7 @@ class SelfValidateCard extends React.Component {
                   <Form onSubmit={this.handleSubmit}>
 
                       <CardTitle>{this.props.question}</CardTitle>
-                      <p>Selbstkontrollfrage: Versuche zunächst die Frage selbstständig zu beantworten, erst dann schaue dir die Musterlösung an und bewerte deine Antwort mit richtig oder falsch.</p>
+                      <CardText>Selbstkontrollfrage: Versuche zunächst die Frage selbstständig zu beantworten, erst dann schaue dir die Musterlösung an und bewerte deine Antwort mit richtig oder falsch.</CardText>
                       <FormGroup>
                           {this.display()}
                       </FormGroup>

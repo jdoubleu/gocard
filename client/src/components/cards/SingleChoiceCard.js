@@ -110,7 +110,7 @@ class SingleChoiceCard extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <Card block>
                         <CardTitle>{this.props.question}</CardTitle>
-                        <p>Single Choice Frage: Bitte kreuze nur eine Antwort an!</p>
+                        <CardText>Single Choice Frage: Bitte kreuze nur eine Antwort an!</CardText>
                         <FormGroup>
                             {this.showAnswers()}
                         </FormGroup>

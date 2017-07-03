@@ -86,12 +86,10 @@ class SelfValidateCard extends React.Component {
     input(){
         if(this.state.show ===false){
             return(<div>
-                <Label for="antwort"></Label>
                 <Input type="textarea" name="antwort" onBlur={this.validate} placeholder="Bitte gebe hier deine Antwort ein"></Input>
             </div>)
         }else if(this.state.show === true){
             return(<div>
-                <Label for="antwort"></Label>
                 <Input type="textarea" name="antwort" disabled></Input>
             </div>)
         }
@@ -105,7 +103,7 @@ class SelfValidateCard extends React.Component {
                     <Form onSubmit={this.handleSubmit}>
 
                         <CardTitle>{this.props.question}</CardTitle>
-                        <p>Texteingabe: Bitte gebe den genauen Antworttext ein</p>
+                        <CardText>Texteingabe: Bitte gebe den genauen Antworttext ein</CardText>
                         <FormGroup>
                             {this.input()}
                             </FormGroup>
