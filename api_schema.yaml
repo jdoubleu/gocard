@@ -968,10 +968,10 @@ definitions:
         type: string
         description: Which type this card's content is
         enum:
-          - SingleChoice
-          - MultipleChoice
-          - TextInput
-          - SelfValidation
+          - single-choice
+          - multiple-choice
+          - text-input
+          - self-validate
       content:
         type: object
         description: Answer content of this card depending of the type
