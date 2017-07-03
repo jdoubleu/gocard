@@ -65,7 +65,7 @@ class SingleChoiceCard extends React.Component {
     }
 
     button() {
-        if (this.state.show == false) {
+        if (this.state.show === false) {
             return (<Row>
                 <Col>
                     <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>

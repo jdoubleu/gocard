@@ -56,7 +56,7 @@ class MultipleChoiceCard extends React.Component {
         }
         let allundifiend = true;
         this.array.forEach(a => {
-            if (a != undefined) {
+            if (a !== undefined) {
                 allundifiend = false;
             }
         })
@@ -124,7 +124,7 @@ class MultipleChoiceCard extends React.Component {
     }
 
     button() {
-        if (this.state.show == false) {
+        if (this.state.show === false) {
             return (<Row>
                 <Col>
                     <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
