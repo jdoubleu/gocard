@@ -35,7 +35,9 @@ class SelfValidateCard extends React.Component {
         if(this.state.show === true){
             return(
                 <div>
-                    <CardText>{this.props.answer}</CardText>
+                    <CardText>Bewerte jetzt deine Antwort!</CardText>
+                    <CardText>Die Richtige Antwort lautet:</CardText>
+                    <CardText> <em><b>{this.props.answer}</b></em></CardText>
                     <Row>
                         <Col>
                             <Button outline block color="danger">Falsch</Button>
@@ -59,7 +61,7 @@ class SelfValidateCard extends React.Component {
                   <Form onSubmit={this.handleSubmit}>
 
                       <CardTitle>{this.props.question}</CardTitle>
-                      <CardText>Selbstkontrollfrage: Versuche zunächst die Frage selbstständig zu beantworten, erst dann schaue dir die Musterlösung an und bewerte deine Antwort mit richtig oder falsch.</CardText>
+                      <CardText>Selbstkontrollfrage: Beantworte die Frage für dich selbst.</CardText>
                       <FormGroup>
                           {this.display()}
                       </FormGroup>
