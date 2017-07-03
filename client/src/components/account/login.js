@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
+import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input, Alert} from "reactstrap";
 import Logo from "../shared/logo/index";
 
-const Login = ({onLocalLoginClick, isLocalLoginFetching}) => {
+const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -44,7 +44,11 @@ const Login = ({onLocalLoginClick, isLocalLoginFetching}) => {
                         Hast du bereits einen GoCard-Account? <br/>
                         <Link to="/registration">GoCard-Account erstellen</Link>
                     </CardText>
-
+                    {message &&
+                        <Alert color="danger">
+                            <strong>{message}</strong>
+                        </Alert>
+                    }
                     <Form onSubmit={handleClick}>
                         <FormGroup>
                             <Input type="email" name="email" id="email" placeholder="E-Mail Adresse"/>
@@ -66,7 +70,8 @@ const Login = ({onLocalLoginClick, isLocalLoginFetching}) => {
 
 Login.propTypes = {
     onLocalLoginClick: PropTypes.func.isRequired,
-    isLocalLoginFetching: PropTypes.bool.isRequired
+    isLocalLoginFetching: PropTypes.bool.isRequired,
+    message: PropTypes.string
 };
 
 export default Login;

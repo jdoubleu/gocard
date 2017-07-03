@@ -12,6 +12,7 @@ class Login extends React.Component {
             <LoginComponent
                 onLocalLoginClick={ creds => dispatch(loginUser(creds))}
                 isLocalLoginFetching={isLocalLoginFetching}
+                message={errorMessage}
             />
         )
     }

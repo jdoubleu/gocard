@@ -78,7 +78,13 @@ export function loginUser(creds) {
             dispatch(getUser(creds.email));
         }).catch(err => {
                 console.log("Error: ", err);
-                dispatch(loginError());
+                if(err.response.statusCode === 400) {
+                    dispatch(loginError("Passwort oder E-Mail Adresse falsch!"));
+                } else if(err.response.statusCode === 500) {
+                    dispatch(loginError("Verbindung zum Server nicht möglich!"));
+                } else {
+                    dispatch(loginError("Irgendwas ist schiefgelaufen."));
+                }
                 return Promise.reject();
             }
         );
