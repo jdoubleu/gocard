@@ -22,6 +22,7 @@ class Power extends React.Component {
         this.displayLearningCard = this.displayLearningCard.bind(this);
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
         this.displayButtons = this.displayButtons.bind(this);
+        this.whichCard = this.whichCard.bind(this);
 
 
     }
@@ -32,88 +33,55 @@ class Power extends React.Component {
 
     }
 
+    whichCard() {
+        if (this.state.allcards[this.index].type === 1) {
+            return (
+                <div>
+                    <Single question={this.state.allcards[this.index].question}
+                            answer={this.state.allcards[this.index].answer}
+                            mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
+
+                </div>
+            )
+        } else if (this.state.allcards[this.index].type === 2) {
+            return (
+                <div>
+                    <Multiple question={this.state.allcards[this.index].question}
+                              answer={this.state.allcards[this.index].answer}
+                              mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
+
+                </div>
+            )
+        } else if (this.state.allcards[this.index].type === 3) {
+            return (
+                <div>
+                    <Self question={this.state.allcards[this.index].question}
+                          answer={this.state.allcards[this.index].answer}
+                          mode={this.mode}/>
+
+                </div>
+            )
+        } else if (this.state.allcards[this.index].type === 4) {
+            return (
+                <div>
+                    <InputText question={this.state.allcards[this.index].question}
+                               answer={this.state.allcards[this.index].answer}
+                               mode={this.mode}/>
+
+                </div>
+            )
+        }
+    }
+
 
     displayLearningCard() {
 
         if (this.index < this.state.allcards.length) {
-            if (this.state.mode === 1) {
-                if (this.state.allcards[this.index].type === 1) {
-                    return (
-                        <div>
-                            <Single question={this.state.allcards[this.index].question}
-                                    answer={this.state.allcards[this.index].answer}
-                                    mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
-
-                        </div>
-                    )
-                } else if (this.state.allcards[this.index].type === 2) {
-                    return (
-                        <div>
-                            <Multiple question={this.state.allcards[this.index].question}
-                                      answer={this.state.allcards[this.index].answer}
-                                      mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
-
-                        </div>
-                    )
-                } else if (this.state.allcards[this.index].type === 3) {
-                    return (
-                        <div>
-                            <Self question={this.state.allcards[this.index].question}
-                                  answer={this.state.allcards[this.index].answer}
-                                  mode={this.mode}/>
-
-                        </div>
-                    )
-                } else if (this.state.allcards[this.index].type === 4) {
-                    return (
-                        <div>
-                            <InputText question={this.state.allcards[this.index].question}
-                                       answer={this.state.allcards[this.index].answer}
-                                       mode={this.mode}/>
-
-                        </div>
-                    )
-                }
-            } else {
-
-                if (this.state.allcards[this.index].type === 1) {
-                    return (
-                        <div>
-                            <Single question={this.state.allcards[this.index].question}
-                                    answer={this.state.allcards[this.index].answer}
-                                    mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
-
-                        </div>
-                    )
-                } else if (this.state.allcards[this.index].type === 2) {
-                    return (
-                        <div>
-                            <Multiple question={this.state.allcards[this.index].question}
-                                      answer={this.state.allcards[this.index].answer}
-                                      mode={this.mode} right={this.state.allcards[this.index].rightAnswer}/>
-
-                        </div>
-                    )
-                } else if (this.state.allcards[this.index].type === 3) {
-                    return (
-                        <div>
-                            <Self question={this.state.allcards[this.index].question}
-                                  answer={this.state.allcards[this.index].answer}
-                                  mode={this.mode}/>
-
-                        </div>
-                    )
-                } else if (this.state.allcards[this.index].type === 4) {
-                    return (
-                        <div>
-                            <InputText question={this.state.allcards[this.index].question}
-                                       answer={this.state.allcards[this.index].answer}
-                                       mode={this.mode}/>
-
-                        </div>
-                    )
-                }
-            }
+                return (
+                    <div>
+                        {this.whichCard()}
+                    </div>
+                )
         } else {
             this.isFeedback =true;
             return (
