@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import  {UncontrolledTooltip} from "reactstrap";
 
 class Icon extends React.Component {
+
+
+
     getInitials(name) {
         if (!!name) {
             // Split name by space
@@ -16,6 +20,7 @@ class Icon extends React.Component {
 
     render() {
         return (
+          <span>
             <svg height={this.props.diameter} width={this.props.diameter}>
                 <circle cx={this.props.diameter / 2} cy={this.props.diameter / 2} r={this.props.diameter / 2 - 2}
                         stroke="gray" fill="none"/>
@@ -23,6 +28,8 @@ class Icon extends React.Component {
                       textAnchor="middle" alignmentBaseline="central"
                       fill="grey">{this.getInitials(this.props.name)}</text>
             </svg>
+            {/* <UncontrolledTooltip placement="bottom" target={"ID"+this.props.name} delay={0}> {this.props.name} </UncontrolledTooltip> */}
+            </span>
         );
     }
 }

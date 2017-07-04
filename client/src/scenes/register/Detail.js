@@ -13,7 +13,8 @@ import {
     Form,
     FormGroup,
     Label,
-    Row
+    Row,
+    UncontrolledTooltip
 } from "reactstrap";
 import {Link} from "react-router-dom";
 import Statistic from "../../modules/shared/statistic";
@@ -59,24 +60,35 @@ class Detail extends React.Component {
                         </CardText>
 
                         <CardText><Link to="3/edit">Bearbeiten</Link></CardText>
+
                     </Card>
                     <Card block className="border-top-primary">
+
+
+
+
                         <CardTitle>Lernen</CardTitle>
                         <Form>
                             <FormGroup>
-                                <Label for="tags">Tags</Label>
+                                <Label for="tags" id="labelTags">Tags</Label>
                                 <TagViewer />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="mode">Lernmodus</Label>
-                                <ButtonGroup check>
-                                    <Button outline onClick={() => this.onRadioBtnClick(1)}
+                                <Label for="mode" id="labelLernmodus" width="80px">Lernmodus</Label>
+                                <ButtonGroup check >
+                                    <Link to="/normal">
+                                    <Button id="buttonNormal" outline onClick={() => this.onRadioBtnClick(1)}
                                             active={this.state.mode === 1}
-                                            color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal</Button>
-                                    <Button outline onClick={() => this.onRadioBtnClick(2)}
+                                            color={this.state.mode === 1 ? 'primary' : 'secondary'}>Normal
+
+                                    </Button>
+
+                                        </Link>
+
+                                    <Button id="buttonPower" outline onClick={() => this.onRadioBtnClick(2)}
                                             active={this.state.mode === 2}
-                                            color={this.state.mode === 2 ? 'primary' : 'secondary'}>Power</Button>
-                                    <Button outline onClick={() => this.onRadioBtnClick(3)}
+                                            color={this.state.mode === 2 ? 'primary' : 'secondary'} >Power </Button>
+                                    <Button id="buttonKlausur" outline onClick={() => this.onRadioBtnClick(3)}
                                             active={this.state.mode === 3}
                                             color={this.state.mode === 3 ? 'primary' : 'secondary'}>Klausur</Button>
                                 </ButtonGroup>
@@ -91,11 +103,9 @@ class Detail extends React.Component {
                         <CardText>
                             <Statistic />
                         </CardText>
-                        <CardTitle>Benutzer des Registers</CardTitle>
+                        <CardTitle >Benutzer des Registers</CardTitle>
                         <CardText>
-                            <Iconbar
-                                members={["Lewis", "nicki lauder", "peter maffay", "Udo", "Dimo Bibbers", "Kurt Z Hose", "Kurt Z Hose", "Kurt Z Hose"]}
-                            />
+                            <Iconbar members={["Lewis", "nicki lauder", "peter maffay", "Udo", "Dimo Bibbers", "Kurt Z Hose", "Kurt Z Hose", "Kurt Z Hose"]} />
                         </CardText>
                     </Card>
                 </CardGroup>
@@ -115,6 +125,19 @@ class Detail extends React.Component {
                     <PreviewCard question="Wie traversiert man durch einen Baum?"/>
 
                 </CardDeck>
+
+                {/* there are some tooltips for the user information, called via id */}
+                <UncontrolledTooltip placement="right" target="labelTags">
+                  Die Tags können ausgewählt werden, um themenbezogene Lernkarten zu erhalten. Sie können einen oder mehrere Tags
+                  auswählen um das Lernen zu starten. Wenn Tags nicht ausgewählt sind, werden diese nicht im Lernmodus berücksichtigt.
+                </UncontrolledTooltip>
+                <UncontrolledTooltip placement="right" target="labelLernmodus">
+                  Der Lernmodus muss ausgwählt werden, um die Variante des Lernens zu definieren.
+
+                  {/*  {<span> <br /> </span>} Normalmodus: Wir gehen nach und nach durch die alle Karteikarten mit den themenbezogenen Tags und fragen diese ab.*/}
+                </UncontrolledTooltip>
+
+
             </div>
         );
     }
