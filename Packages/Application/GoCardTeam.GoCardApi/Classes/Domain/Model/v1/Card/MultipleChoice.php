@@ -1,0 +1,83 @@
+<?php
+
+namespace GoCardTeam\GoCardApi\Domain\Model\v1\Card;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Neos\Flow\Annotations as Flow;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @Flow\ValueObject(embedded=true)
+ */
+class MultipleChoice extends AbstractCardContent
+{
+
+    /**
+     * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="UniqueArrayItems")
+     * @ORM\Embedded
+     * @var int[]
+     */
+    protected $correctAnswers;
+
+    /**
+     * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="UniqueArrayItems")
+     * @ORM\Embedded
+     * @var string[]
+     */
+    protected $answers;
+
+    /**
+     * Initialize this object
+     */
+    public function __construct()
+    {
+        $this->correctAnswers = new ArrayCollection();
+        $this->answers = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCorrectAnswers()
+    {
+        return $this->correctAnswers;
+    }
+
+    /**
+     * @param mixed $correctAnswers
+     */
+    public function setCorrectAnswers($correctAnswers)
+    {
+        $this->correctAnswers = $correctAnswers;
+    }
+
+    /**
+     * @return \string[]
+     */
+    public function getAnswers(): array
+    {
+        return $this->answers;
+    }
+
+    /**
+     * @param \string[] $answers
+     */
+    public function setAnswers(array $answers)
+    {
+        $this->answers = $answers;
+    }
+
+    /**
+     * Represent the card content as an array
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'correct' => $this->correctAnswers,
+            'answers' => $this->answers->toArray()
+        ];
+    }
+}
