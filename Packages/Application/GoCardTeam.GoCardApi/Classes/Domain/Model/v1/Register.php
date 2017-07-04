@@ -2,6 +2,7 @@
 
 namespace GoCardTeam\GoCardApi\Domain\Model\v1;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -49,6 +50,19 @@ class Register
      * @var string
      */
     protected $description;
+
+    /**
+     * @var ArrayCollection<Card>
+     */
+    protected $cards;
+
+    /**
+     * Initialize this entity
+     */
+    public function __construct()
+    {
+        $this->cards = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -146,5 +160,21 @@ class Register
     {
         $this->description = $description;
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCards(): ArrayCollection
+    {
+        return $this->cards;
+    }
+
+    /**
+     * @param ArrayCollection $cards
+     */
+    public function setCards(ArrayCollection $cards)
+    {
+        $this->cards = $cards;
     }
 }
