@@ -74,12 +74,10 @@ class Register
 
     /**
      * @param int $uid
-     * @return Register
      */
-    public function setUid(int $uid): Register
+    public function setUid(int $uid)
     {
         $this->uid = $uid;
-        return $this;
     }
 
     /**
@@ -92,12 +90,10 @@ class Register
 
     /**
      * @param User $owner
-     * @return Register
      */
-    public function setOwner(User $owner): Register
+    public function setOwner(User $owner)
     {
         $this->owner = $owner;
-        return $this;
     }
 
     /**
@@ -118,12 +114,10 @@ class Register
 
     /**
      * @param \DateTime $crdate
-     * @return Register
      */
-    public function setCrdate(\DateTime $crdate): Register
+    public function setCrdate(\DateTime $crdate)
     {
         $this->crdate = $crdate;
-        return $this;
     }
 
     /**
@@ -136,12 +130,10 @@ class Register
 
     /**
      * @param string $title
-     * @return Register
      */
-    public function setTitle(string $title): Register
+    public function setTitle(string $title)
     {
         $this->title = $title;
-        return $this;
     }
 
     /**
@@ -154,12 +146,10 @@ class Register
 
     /**
      * @param string $description
-     * @return Register
      */
-    public function setDescription(string $description): Register
+    public function setDescription(string $description)
     {
         $this->description = $description;
-        return $this;
     }
 
     /**
