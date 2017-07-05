@@ -60,6 +60,7 @@ class Card
 
     /**
      * @Flow\Validate(type="NotEmpty")
+     * @ORM\Column(type="text")
      * @var CardContent
      */
     protected $content;
