@@ -10,19 +10,23 @@ class PreviewCardFeedback extends React.Component {
     }
 
     check() {
-        if (this.props.check === "true") {
+        if (this.props.check === true) {
             return (
                 <CardText className="display-3">✓</CardText>
             )
-        } else {
+        } else if(this.props.check === false){
             return (
                 <CardText className="display-3">X</CardText>
+            )
+        }else{
+            return (
+                <CardText className="display-3">-</CardText>
             )
         }
     }
 
     displayRight() {
-        if (this.props.check === "false") {
+        if (this.props.check === false || this.props.check === null) {
             return (<Row>
                 <Col>
                     <Label for="richtig">Richtige Antwort:</Label>
@@ -62,7 +66,8 @@ PreviewCardFeedback.propTypes = {
     question: PropTypes.string.isRequired,
     answer: PropTypes.string.isRequired,
     right: PropTypes.string.isRequired,
-    check: PropTypes.string.isRequire
+    check: PropTypes.bool.isRequired
+
 };
 
 

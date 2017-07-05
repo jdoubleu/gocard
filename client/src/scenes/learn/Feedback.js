@@ -24,12 +24,16 @@ class Feedback extends React.Component {
         super(props);
         this.state = {
             mode: 1,
-            cards: Cards
+            cards: Cards,
+            check: null
         };
         this.displayCards = this.displayCards.bind(this);
         this.getAllRight = this.getAllRight.bind(this);
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
         this.getAllWrong = this.getAllWrong.bind(this);
+        this.getAll = this.getAll.bind(this);
+        this.check = this.check.bind(this);
+        this.getAllNotAnswered = this.getAllNotAnswered.bind(this);
     }
 
     onRadioBtnClick(mode) {
@@ -41,10 +45,7 @@ class Feedback extends React.Component {
     displayCards() {
         if (this.state.mode === 1) {
             return (
-
-                this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                                    right={card.answer} check={card.status}/>)
-
+                this.getAll()
             )
         } else if (this.state.mode === 2) {
             return (
@@ -54,29 +55,60 @@ class Feedback extends React.Component {
             return (
                 this.getAllWrong()
             )
+        } else if( this.state.mode ===4){
+            return (
+                this.getAllNotAnswered()
+            )
         }
+    }
+
+    getAll(){
+        return this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.rightAnswer} check={this.check(card.rightAnswer, card.userAnswer)}/>)
+    }
+
+    check(right, user){
+        if(right === user){
+            return true;
+        }else if(user === null){
+            return null;
+        }else if(right != user & user!= null){
+            return false;
+        }
+
     }
 
     getAllRight() {
         let array = [];
         array = this.state.cards.filter(a => {
 
-            return a.status === "true";
+            return a.userAnswer === a.rightAnswer;
         })
         console.log(array);
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.answer} check={card.status}/>)
+                                                        right={card.rightAnswer} check={true}/>)
+    }
+
+    getAllNotAnswered() {
+        let array = [];
+        array = this.state.cards.filter(a => {
+
+            return a.userAnswer === null;
+        })
+        console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.rightAnswer} check={null}/>)
     }
 
     getAllWrong() {
         let array = [];
         array = this.state.cards.filter(a => {
 
-            return a.status === "false";
+            return a.userAnswer != a.rightAnswer &&  a.userAnswer!= null;
         })
         console.log(array);
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.answer} check={card.status}/>)
+                                                        right={card.rightAnswer} check={false}/>)
     }
 
     render() {
@@ -129,6 +161,9 @@ class Feedback extends React.Component {
                             <Button outline onClick={() => this.onRadioBtnClick(3)}
                                     active={this.state.mode === 3}
                                     color={this.state.mode === 3 ? 'primary' : 'secondary'}>Falsche</Button>
+                            <Button outline onClick={() => this.onRadioBtnClick(4)}
+                                    active={this.state.mode === 4}
+                                    color={this.state.mode === 4 ? 'primary' : 'secondary'}>Keine Antwort</Button>
                         </ButtonGroup>
                     </FormGroup>
 
