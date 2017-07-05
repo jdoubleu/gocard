@@ -53,7 +53,7 @@ class Card
     /**
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(single-choice|multiple-choice|text-input|self-validate)"})
-     * @ORM\Column(type="string", columnDefinition="ENUM('single-choice', 'multiple-choice', 'text-input', 'self-validate')", nullable=false)
+     * @ORM\Column(type="string", columnDefinition="ENUM('single-choice', 'multiple-choice', 'text-input', 'self-validate')")
      * @var string
      */
     protected $type;
