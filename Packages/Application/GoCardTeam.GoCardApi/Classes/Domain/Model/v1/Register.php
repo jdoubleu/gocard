@@ -52,6 +52,7 @@ class Register
     protected $description;
 
     /**
+     * @ORM\OneToMany(fetch="EXTRA_LAZY", orphanRemoval=true, mappedBy="Register")
      * @var ArrayCollection<Card>
      */
     protected $cards;
