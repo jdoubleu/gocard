@@ -38,8 +38,9 @@ class Card
 
     /**
      * @Flow\Validate(type="UniqueArrayItems")
-     * @ORM\OneToMany()
-     * @var ArrayCollection<string>
+     * @ORM\Column(type="simple_array")
+     * @ORM\OneToMany(cascade={"persist"}, fetch="EAGER", orphanRemoval=true)
+     * @var string[]
      */
     protected $tags;
 
