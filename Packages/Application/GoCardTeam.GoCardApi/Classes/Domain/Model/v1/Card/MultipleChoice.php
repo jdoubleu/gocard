@@ -15,7 +15,6 @@ class MultipleChoice extends AbstractCardContent
     /**
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="UniqueArrayItems")
-     * @ORM\Embedded
      * @var int[]
      */
     protected $correctAnswers;
@@ -23,7 +22,6 @@ class MultipleChoice extends AbstractCardContent
     /**
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="UniqueArrayItems")
-     * @ORM\Embedded
      * @var string[]
      */
     protected $answers;

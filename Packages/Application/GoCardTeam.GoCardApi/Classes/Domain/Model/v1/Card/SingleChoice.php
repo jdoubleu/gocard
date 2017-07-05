@@ -22,7 +22,6 @@ class SingleChoice extends AbstractCardContent
     /**
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="UniqueArrayItems")
-     * @ORM\Embedded
      * @var string[]
      */
     protected $answers;

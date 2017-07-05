@@ -61,7 +61,6 @@ class Card
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @ORM\Embedded
      * @var CardContent
      */
     protected $content;
