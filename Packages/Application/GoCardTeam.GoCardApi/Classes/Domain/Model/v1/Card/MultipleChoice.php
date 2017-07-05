@@ -44,27 +44,11 @@ class MultipleChoice extends AbstractCardContent
     }
 
     /**
-     * @param mixed $correctAnswers
-     */
-    public function setCorrectAnswers($correctAnswers)
-    {
-        $this->correctAnswers = $correctAnswers;
-    }
-
-    /**
      * @return \string[]
      */
     public function getAnswers(): array
     {
         return $this->answers;
-    }
-
-    /**
-     * @param \string[] $answers
-     */
-    public function setAnswers(array $answers)
-    {
-        $this->answers = $answers;
     }
 
     /**

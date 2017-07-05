@@ -66,19 +66,18 @@ class Card
     protected $content;
 
     /**
+     * Construct Card
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * @return int
      */
     public function getUid(): int
     {
         return $this->uid;
-    }
-
-    /**
-     * @param int $uid
-     */
-    public function setUid(int $uid)
-    {
-        $this->uid = $uid;
     }
 
     /**
@@ -90,27 +89,11 @@ class Card
     }
 
     /**
-     * @param User $author
-     */
-    public function setAuthor(User $author)
-    {
-        $this->author = $author;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCrdate(): \DateTime
     {
         return $this->crdate;
-    }
-
-    /**
-     * @param \DateTime $crdate
-     */
-    public function setCrdate(\DateTime $crdate)
-    {
-        $this->crdate = $crdate;
     }
 
     /**
@@ -122,27 +105,11 @@ class Card
     }
 
     /**
-     * @param ArrayCollection $tags
-     */
-    public function setTags(ArrayCollection $tags)
-    {
-        $this->tags = $tags;
-    }
-
-    /**
      * @return string
      */
     public function getQuestion(): string
     {
         return $this->question;
-    }
-
-    /**
-     * @param string $question
-     */
-    public function setQuestion(string $question)
-    {
-        $this->question = $question;
     }
 
     /**
@@ -154,26 +121,10 @@ class Card
     }
 
     /**
-     * @param string $type
-     */
-    public function setType(string $type)
-    {
-        $this->type = $type;
-    }
-
-    /**
      * @return CardContent
      */
     public function getContent(): CardContent
     {
         return $this->content;
-    }
-
-    /**
-     * @param CardContent $content
-     */
-    public function setContent(CardContent $content)
-    {
-        $this->content = $content;
     }
 }

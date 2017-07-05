@@ -43,27 +43,11 @@ class SingleChoice extends AbstractCardContent
     }
 
     /**
-     * @param int $correctAnswer
-     */
-    public function setCorrectAnswer(int $correctAnswer)
-    {
-        $this->correctAnswer = $correctAnswer;
-    }
-
-    /**
      * @return ArrayCollection
      */
     public function getAnswers(): ArrayCollection
     {
         return $this->answers;
-    }
-
-    /**
-     * @param ArrayCollection $answers
-     */
-    public function setAnswers(ArrayCollection $answers)
-    {
-        $this->answers = $answers;
     }
 
     /**
