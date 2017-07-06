@@ -1,8 +1,8 @@
 privilegeTargets:
 
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
-    'GoCardTeam.GoCard:ApiAccess.restrictedAccess':
-      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\.*->.*())'
+    'GoCardTeam.GoCard:UsersController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->.*())'
 
 roles:
 
@@ -10,5 +10,5 @@ roles:
     parentFoles: ['Neos.Flow:AuthenticatedUser']
     privileges:
       -
-        privilegeTarget: 'GoCardTeam.GoCard:ApiAccess.restrictedAccess'
+        privilegeTarget: 'GoCardTeam.GoCard:UsersController.restrictedActions'
         permission: GRANT
