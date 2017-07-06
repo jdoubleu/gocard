@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../modules/shared/header";
+import Header from "../../components/shared/headline";
 
 class Help extends React.Component {
     render() {

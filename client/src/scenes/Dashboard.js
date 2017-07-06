@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../modules/shared/header";
+import Header from "../components/shared/headline";
 import BlankCard from "../modules/registers/blankCard";
 import RegisterCard from "../modules/registers/previewCard";
 import {Row} from "reactstrap";

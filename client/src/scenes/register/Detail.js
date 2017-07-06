@@ -1,6 +1,6 @@
 import React from "react";
 import "./Detail.css";
-import Header from "../../modules/shared/header";
+import Header from "../../components/shared/headline";
 import {
   Button,
   ButtonGroup,

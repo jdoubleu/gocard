@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../modules/shared/header";
+import Header from "../../components/shared/headline";
 
 class Imprint extends React.Component {
     render() {

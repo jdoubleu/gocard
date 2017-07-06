@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import TagForm from "../../modules/cards/tagForm";
 import {Link} from "react-router-dom";
-import Header from "../../modules/shared/header";
+import Header from "../../components/shared/headline";
 
 class New extends React.Component {
 

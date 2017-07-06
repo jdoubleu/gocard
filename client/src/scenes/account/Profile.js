@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../modules/shared/header";
+import Header from "../../components/shared/headline";
 import {Button, Card, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import UserIcon from "../../components/shared/user/icon";
 
