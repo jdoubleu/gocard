@@ -32,7 +32,7 @@ class AccessToken extends AbstractToken implements SessionlessTokenInterface
      * Note: You should not persist the credentials!
      *
      * @param ActionRequest $actionRequest The current request instance
-     * @return boolean TRUE if this token needs to be (re-)authenticated
+     * @return void
      */
     public function updateCredentials(ActionRequest $actionRequest)
     {
