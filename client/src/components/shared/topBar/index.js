@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
-import UserIcon from "../../../modules/shared/user/icon";
+import UserIcon from "../user/icon";
 import Logo from "../logo";
 import {
     Collapse,
@@ -29,7 +29,9 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
                         <Nav className="ml-auto" navbar>
-                            <UserIcon name={displayName}/>
+                            <UserIcon>
+                                {displayName}
+                            </UserIcon>
                             <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
                                 <DropdownToggle nav caret>
                                     <span>{displayName}</span>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistic";
-import IconBar from "../shared/member/iconBar";
+import IconBar from "../../components/register/member/bar";
 
 class PreviewCard extends React.Component {
     render() {

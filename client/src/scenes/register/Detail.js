@@ -19,7 +19,7 @@ import {
 import {Link} from "react-router-dom";
 import Statistic from "../../modules/shared/statistic";
 import PreviewCard from "../../modules/cards/previewCard";
-import Iconbar from "../../modules/shared/member/iconBar";
+import MemberBar from "../../components/register/member/bar";
 import TagViewer from "../../modules/registers/tagViewer";
 import BlankPreviewCard from "../../modules/cards/blankPreviewCard";
 
@@ -101,7 +101,7 @@ class Detail extends React.Component {
             </CardText>
             <CardTitle >Benutzer des Registers</CardTitle>
             <CardText>
-              <Iconbar members={["Lewis","nicki lauder","peter maffay","Udo","Dimo Bibbers","Ingo Dingo","Tarzan","Balu Bär"]}/>
+              <MemberBar members={["Lewis","nicki lauder","peter maffay","Udo","Dimo Bibbers","Ingo Dingo","Tarzan","Balu Bär"]}/>
             </CardText>
           </Card>
         </CardGroup>

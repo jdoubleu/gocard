@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Col, Input, Row} from "reactstrap";
-import Icon from "../shared/user/icon";
+import Icon from "../../components/shared/user/icon";
 import dummy from "../dummyUser.json";
 
 class AddUser extends React.Component {

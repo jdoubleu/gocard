@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../modules/shared/header";
 import {Button, Card, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
-import UserIcon from "../../modules/shared/user/icon";
+import UserIcon from "../../components/shared/user/icon";
 
 class Profile extends React.Component {
 
