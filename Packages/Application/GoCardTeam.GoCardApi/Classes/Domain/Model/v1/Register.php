@@ -156,7 +156,7 @@ class Register
     /**
      * @return ArrayCollection
      */
-    public function getCards(): ArrayCollection
+    public function getCards()
     {
         return $this->cards;
     }
@@ -164,7 +164,7 @@ class Register
     /**
      * @param ArrayCollection $cards
      */
-    public function setCards(ArrayCollection $cards)
+    public function setCards($cards)
     {
         $this->cards = $cards;
     }

@@ -27,4 +27,11 @@ abstract class AbstractApiEndpointController extends ActionController
      * @var array
      */
     protected $supportedMediaTypes = ["application/json"];
+
+    /**
+     * Override type for better IDE support
+     * 
+     * @var JsonView
+     */
+    protected $view;
 }

@@ -694,8 +694,7 @@ paths:
         '200':
           description: Successfully logged in
           schema:
-            description: Access token
-            type: string
+            $ref: '#/definitions/AccessTokenResponse'
           headers:
             X-Rate-Limit:
               type: integer
@@ -1056,6 +1055,12 @@ definitions:
       - initiator
       - type
       - date
+  AccessTokenResponse:
+    type: object
+    properties:
+      access_token:
+        type: string
+        readOnly: true
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid
