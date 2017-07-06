@@ -21,6 +21,6 @@
     '@controller': 'v1\Endpoint\Registers'
     '@format':     'json'
   subRoutes:
-    'UsersSubroutes':
+    'RegistersSubroutes':
       package: 'GoCardTeam.GoCardApi'
       suffix:  'Api.Registers'
