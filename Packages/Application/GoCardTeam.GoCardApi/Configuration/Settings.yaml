@@ -9,14 +9,14 @@ Neos:
       authentication:
         providers:
           'LocalAuthenticationProvider':
-            provider: '\GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\PersistedEmailPasswordProvider'
+            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\PersistedEmailPasswordProvider'
             requestPatterns:
               'GoCardTeam.GoCardApi:ApiAccessRequest':
                 pattern: 'ControllerObjectName'
                 patternOptions:
                   'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\v1\LocalAccountAuthenticationController'
           'AccessTokenAuthenticationProvider':
-            provider: '\GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\AccessTokenProvider'
+            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\AccessTokenProvider'
             providerOptions:
               localAccountProviderName: 'LocalAuthenticationProvider'
             requestPatterns:
