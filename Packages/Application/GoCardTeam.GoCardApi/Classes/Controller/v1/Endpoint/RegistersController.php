@@ -18,4 +18,21 @@ class RegistersController extends AbstractApiEndpointController
      * @var RegisterRepository
      */
     protected $registerRepository;
+
+    /**
+     * Retrieves all registers
+     */
+    public function findAllRegistersAction()
+    {
+        $registers = $this->registerRepository->findAll();
+
+        $this->view->assign('value', $registers);
+        $this->view->setConfiguration([
+            'value' => [
+                '_descendAll' => [
+                    '_descend' => ['crdate' => []]
+                ]
+            ]
+        ]);
+    }
 }

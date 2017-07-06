@@ -1,2 +1,9 @@
 # Registers API Routes
 # Special routes only for the registers api endpoint
+
+-
+  name: 'get all registers'
+  uriPattern: ''
+  defaults:
+    '@action': 'findAllRegisters'
+  httpMethods: ['GET']
