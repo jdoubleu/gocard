@@ -47,7 +47,7 @@ class User
     /**
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(new|verified|active)"})
-     * @ORM\Column(type="string", columnDefinition="ENUM('new', 'verified', 'active')", nullable=false)
+     * @ORM\Column(type="string", columnDefinition="ENUM('new', 'verified', 'active')")
      * @var string
      */
     protected $status;

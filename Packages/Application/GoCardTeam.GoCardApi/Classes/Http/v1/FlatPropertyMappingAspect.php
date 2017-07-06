@@ -44,7 +44,7 @@ class FlatPropertyMappingAspect
 
     /**
      * @param JoinPointInterface $joinPoint
-     * @Flow\Around("method(protected Neos\Flow\Mvc\DispatchComponent->mergeArguments())")
+     * @Flow\Around("method(protected Neos\Flow\Mvc\DispatchComponent->parseRequestBody())")
      * @return mixed
      */
     public function mapFlatProperties(JoinPointInterface $joinPoint)
@@ -52,6 +52,11 @@ class FlatPropertyMappingAspect
         $result = $joinPoint->getAdviceChain()->proceed($joinPoint);
 
         $route = $this->router->getLastMatchedRoute();
+
+        if ($route === null) {
+            return $result;
+        }
+
         $routePartsConfiguration = $route->getRoutePartsConfiguration();
 
         [$partsConfiguration, $targetName] = [end($routePartsConfiguration), key($routePartsConfiguration)];
