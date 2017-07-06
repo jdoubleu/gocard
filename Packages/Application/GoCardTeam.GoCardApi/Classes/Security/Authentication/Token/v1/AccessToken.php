@@ -4,6 +4,7 @@ namespace GoCardTeam\GoCardApi\Security\Authentication\Token\v1;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\Exception\NoSuchArgumentException;
 use Neos\Flow\Security\Authentication\Token\AbstractToken;
 use Neos\Flow\Security\Authentication\Token\SessionlessTokenInterface;
 
@@ -35,7 +36,12 @@ class AccessToken extends AbstractToken implements SessionlessTokenInterface
      */
     public function updateCredentials(ActionRequest $actionRequest)
     {
-        $accessToken = $actionRequest->getArgument('access_token');
+        try {
+            $accessToken = $actionRequest->getArgument('access_token');
+        } catch (NoSuchArgumentException $e) {
+            $this->setAuthenticationStatus(self::NO_CREDENTIALS_GIVEN);
+            return;
+        }
 
         if (!empty($accessToken)) {
             $this->credentials['access_token'] = $accessToken;

@@ -3,6 +3,7 @@
 namespace GoCardTeam\GoCardApi\Security\Authentication\Token\v1;
 
 use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\Exception\NoSuchArgumentException;
 use Neos\Flow\Security\Authentication\Token\SessionlessTokenInterface;
 use Neos\Flow\Security\Authentication\Token\UsernamePassword;
 
@@ -24,8 +25,13 @@ class EmailPassword extends UsernamePassword implements SessionlessTokenInterfac
             return;
         }
 
-        $email = $actionRequest->getArgument('email');
-        $password = $actionRequest->getArgument('password');
+        try {
+            $email = $actionRequest->getArgument('email');
+            $password = $actionRequest->getArgument('password');
+        } catch (NoSuchArgumentException $e) {
+            $this->setAuthenticationStatus(self::NO_CREDENTIALS_GIVEN);
+            return;
+        }
 
         if (!empty($email) && !empty($password)) {
             $this->credentials['username'] = $email;
