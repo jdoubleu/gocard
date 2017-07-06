@@ -59,6 +59,10 @@ class UsersController extends AbstractApiEndpointController
         $user->setAccount($account);
 
         $this->userRepository->add($user);
+        
+        $this->persistenceManager->whitelistObject($account);
+        $this->persistenceManager->whitelistObject($user);
+        $this->persistenceManager->persistAll(true);
 
         $this->view->assign('value', $user);
     }
