@@ -11,7 +11,7 @@ import Footer from "./modules/shared/footer";
 import Profile from "./scenes/account/Profile";
 import Legal from "./scenes/legal/Legal";
 import Register from "./scenes/register/Register";
-import Registration from "./scenes/account/Registration";
+import Registration from "./containers/Registration";
 import Reset from "./scenes/account/Reset";
 import SingleChoice from "./modules/cards/SingleChoiceCard";
 import MultipleChoice from "./modules/cards/MultipleChoiceCard";
