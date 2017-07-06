@@ -7,7 +7,7 @@ import {Container} from "reactstrap";
 
 import NotFound from "./scenes/errors/NotFound";
 import TopBar from "./containers/TopBar";
-import Footer from "./modules/shared/footer";
+import Footer from "./components/shared/footer";
 import Profile from "./scenes/account/Profile";
 import Legal from "./scenes/legal/Legal";
 import Register from "./scenes/register/Register";
