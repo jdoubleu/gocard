@@ -12,3 +12,15 @@
     'UsersSubroutes':
       package: 'GoCardTeam.GoCardApi'
       suffix:  'Api.Users'
+
+-
+  name: 'registers routes'
+  uriPattern: 'registers/<RegistersSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Registers'
+    '@format':     'json'
+  subRoutes:
+    'RegistersSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.Registers'

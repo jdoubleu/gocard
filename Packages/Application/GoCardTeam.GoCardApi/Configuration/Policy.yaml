@@ -6,8 +6,7 @@ privilegeTargets:
 
 roles:
 
-  'GoCardTeam.GoCard:SimpleClient':
-    parentFoles: ['Neos.Flow:AuthenticatedUser']
+  'Neos.Flow:AuthenticatedUser':
     privileges:
       -
         privilegeTarget: 'GoCardTeam.GoCard:UsersController.restrictedActions'
