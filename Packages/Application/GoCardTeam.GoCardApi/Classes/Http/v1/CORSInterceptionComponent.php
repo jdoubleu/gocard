@@ -8,7 +8,7 @@ use Neos\Flow\Http\Component\ComponentInterface;
 
 /**
  * Class CORSInterceptionComponent
- * HTTP components which intercepts preflighted CORS requests
+ * HTTP modules which intercepts preflighted CORS requests
  *
  * @package GoCardTeam\GoCardApi\Http\v1
  */

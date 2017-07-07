@@ -1,6 +1,6 @@
 import React from "react";
 import "../register/Detail.css";
-import Header from "../../components/shared/header";
+import Headline from "../../components/shared/headline";
 import {
     Button,
     ButtonGroup,
@@ -12,81 +12,109 @@ import {
     Col,
     Form,
     FormGroup,
-    Label,
     Row
 } from "reactstrap";
-import StatisticBar from "../../components/shared/statisticBar";
-import PreviewCardFeedback from "../../components/cards/previewCardFeedback";
-
-import TagViewer from "../../components/registers/tagViewer";
-
+import StatisticBar from "../../modules/shared/statisticBar";
+import PreviewCardFeedback from "../../modules/cards/previewCardFeedback";
 import PropTypes from "prop-types";
-import Cards from "../../dummyCards.json";
+import Cards from "../../modules/dummyCards.json";
 
 class Feedback extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             mode: 1,
-            cards: Cards
+            cards: Cards,
+            check: null
         };
         this.displayCards = this.displayCards.bind(this);
         this.getAllRight = this.getAllRight.bind(this);
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
         this.getAllWrong = this.getAllWrong.bind(this);
+        this.getAll = this.getAll.bind(this);
+        this.check = this.check.bind(this);
+        this.getAllNotAnswered = this.getAllNotAnswered.bind(this);
     }
+
     onRadioBtnClick(mode) {
 
         this.setState({mode});
 
     }
 
-    displayCards(){
-        if(this.state.mode === 1){
-            return(
-
-                this.state.cards.map((card)=> <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
-
+    displayCards() {
+        if (this.state.mode === 1) {
+            return (
+                this.getAll()
             )
-        }else if(this.state.mode === 2){
-            return(
+        } else if (this.state.mode === 2) {
+            return (
                 this.getAllRight()
             )
-        }else if(this.state.mode === 3){
-            return(
+        } else if (this.state.mode === 3) {
+            return (
                 this.getAllWrong()
+            )
+        } else if( this.state.mode ===4){
+            return (
+                this.getAllNotAnswered()
             )
         }
     }
 
-    getAllRight(){
-        let array = [];
-        array =this.state.cards.filter(a =>
-        {
-
-            return  a.status === "true";
-        })
-        console.log(array);
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+    getAll(){
+        return this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.rightAnswer} check={this.check(card.rightAnswer, card.userAnswer)}/>)
     }
 
-    getAllWrong(){
-         let array = [];
-        array =this.state.cards.filter(a =>
-        {
+    check(right, user){
+        if(right === user){
+            return true;
+        }else if(user === null){
+            return null;
+        }else if(right != user & user!= null){
+            return false;
+        }
 
-            return  a.status === "false";
+    }
+
+    getAllRight() {
+        let array = [];
+        array = this.state.cards.filter(a => {
+
+            return a.userAnswer === a.rightAnswer;
         })
-            console.log(array);
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer} right={card.answer} check={card.status}/>)
+        console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.rightAnswer} check={true}/>)
+    }
+
+    getAllNotAnswered() {
+        let array = [];
+        array = this.state.cards.filter(a => {
+
+            return a.userAnswer === null;
+        })
+        console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.rightAnswer} check={null}/>)
+    }
+
+    getAllWrong() {
+        let array = [];
+        array = this.state.cards.filter(a => {
+
+            return a.userAnswer != a.rightAnswer &&  a.userAnswer!= null;
+        })
+        console.log(array);
+        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
+                                                        right={card.rightAnswer} check={false}/>)
     }
 
     render() {
         return (
             <div>
-                <Header
-                    title="Feedback"
-                />
+                <Headline title="Feedback"></Headline>
 
                 <CardGroup>
                     <Card block>
@@ -131,6 +159,9 @@ class Feedback extends React.Component {
                             <Button outline onClick={() => this.onRadioBtnClick(3)}
                                     active={this.state.mode === 3}
                                     color={this.state.mode === 3 ? 'primary' : 'secondary'}>Falsche</Button>
+                            <Button outline onClick={() => this.onRadioBtnClick(4)}
+                                    active={this.state.mode === 4}
+                                    color={this.state.mode === 4 ? 'primary' : 'secondary'}>Keine Antwort</Button>
                         </ButtonGroup>
                     </FormGroup>
 
@@ -145,16 +176,15 @@ class Feedback extends React.Component {
     }
 
 }
-Feedback.propTypes={
+Feedback.propTypes = {
     register: PropTypes.string,
     tags: PropTypes.array
 }
 
-Feedback.defaultProps={
+Feedback.defaultProps = {
     register: "Feedback OOP 1",
     tags: ["Bibbers", "Unendlich/Unendlich", "Fabian Zippi Zipproth", "Joshua leise", "Wirtschaftsexperte"]
 
 }
 
 export default Feedback;
-

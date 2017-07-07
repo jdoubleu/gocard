@@ -3,7 +3,6 @@ import {
     Button,
     ButtonGroup,
     Card,
-    CardText,
     Col,
     Form,
     FormGroup,
@@ -13,9 +12,9 @@ import {
     Label,
     Row
 } from "reactstrap";
-import TagForm from "../../components/cards/tagForm";
+import TagForm from "../../modules/cards/tagForm";
 import {Link} from "react-router-dom";
-import Header from "../../components/shared/header";
+import Headline from "../../components/shared/headline";
 
 class New extends React.Component {
 
@@ -60,7 +59,7 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
-        if(event === 2){
+        if (event === 2) {
             this.newInput(event);
         }
 
@@ -78,7 +77,7 @@ class New extends React.Component {
                 </InputGroup>
             )
         })
-        if(event ===1) {
+        if (event === 1) {
             this.newInputMultiple(event);
         }
 
@@ -148,7 +147,7 @@ class New extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         {/*
-                        Do Not Delete this empty Form Group. Important
+                         Do Not Delete this empty Form Group. Important
                          */}
                     </FormGroup>
                     <FormGroup>
@@ -185,10 +184,10 @@ class New extends React.Component {
         return (
             <div>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Header
-                        title="Neue Karteikarte"
-                        lead="Hier kannst du eine neue Karteikarte für Dein Register erstellen."
-                    />
+                    <Headline title="Neue Karteikarte">
+                        Hier kannst du eine neue Karteikarte für Dein Register erstellen.
+                    </Headline>
+
                     <Card block>
 
                         <Form>

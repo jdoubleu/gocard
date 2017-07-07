@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
-import Logo from "../../components/shared/logo/logo";
+import Logo from "../../components/shared/logo/index";
 
 class Registration extends React.Component {
     constructor(props) {
@@ -55,7 +55,8 @@ class Registration extends React.Component {
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <div className="pb-2">
                         <h1 className="display-4">Willkommen bei <Logo/></h1>
-                        <p className="lead">Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen. Du kannst
+                        <p className="lead">Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen.
+                            Du kannst
                             deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.</p>
                     </div>
 

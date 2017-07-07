@@ -6,8 +6,7 @@
 !/Configuration/Testing/
 /Configuration/Testing/*.example
 !/Configuration/Development/
-/Configuration/Development/*
-!/Configuration/Development/*.example
+/Configuration/Development/*.example
 /Data/
 /Packages/*
 !/Packages/Application/

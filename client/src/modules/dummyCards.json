@@ -1,0 +1,52 @@
+[
+  {
+    "id": -123123,
+    "question": "Wie Traversiere ich durch einen Baum",
+    "answer": "toString",
+    "rightAnswer": "toString",
+    "userAnswer": "toString",
+    "type": 4
+  },
+  {
+    "id": -62671231231930,
+    "question": "Drei Primitive Datentypen",
+    "answer": "int short long",
+    "rightAnswer": "int short long",
+    "userAnswer": "Array String byte",
+    "type": 3
+  },
+  {
+    "id": -123,
+    "question": "Was ist eine Referenz",
+    "answer": [
+      "Ein tee",
+      "ein Zeiger",
+      "Dimo Bibbers"
+    ],
+    "rightAnswer": "ein Zeiger",
+    "userAnswer": null,
+    "type": 1
+  },
+  {
+    "id": 435435,
+    "question": "Wer stribt bei Game of Thrones",
+    "answer": [
+      "Ned",
+      "Cersei",
+      "Hodor",
+      "Jon"
+    ],
+    "rightAnswer":"Ned Hodor Jon"
+    ,
+    "userAnswer": "Ned Hodor Jon",
+    "type": 2
+  },
+  {
+    "id": -456456,
+    "question": "Wie ist Timos richtiger name",
+    "answer": "Dimo Bibbers",
+    "rightAnswer": "Dimo Bibbers",
+    "userAnswer": "Timo Rosenblatt",
+    "type": 4
+  }
+]
