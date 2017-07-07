@@ -2,27 +2,25 @@ version: '3'
 
 services:
 
-    composer:
-        image: composer
-        restart: "no"
+    ####################
+    # Frontend
+    ####################
+
+    node:
+        image: node
         volumes:
-            - ./:/app
-        command: composer install
+            - ./:/usr/src/app
+        working_dir: /usr/src/app
+        command: /bin/bash -c "(yarn install || :) && yarn run start"
+        ports:
+            - 3000:3000
+
+    ####################
+    # Backend
+    ####################
 
     php:
         build: .docker/Development/php
-        volumes:
-            - ./:/var/www/html
-
-    debugproxy:
-        build: .docker/Development/debugproxy
-        depends_on:
-            - php
-        environment:
-            - XDEBUG_PORT=9009
-            - IDE_ADDR=dockerhost
-        extra_hosts:
-            - "dockerhost:$DOCKER_HOST_IP"
         volumes:
             - ./:/var/www/html
 
@@ -48,14 +46,28 @@ services:
         volumes:
             - database:/data
 
-    node:
-        image: node
+    ####################
+    # Tools
+    ####################
+
+    composer:
+        image: composer
+        restart: "no"
         volumes:
-            - ./:/usr/src/app
-        working_dir: /usr/src/app
-        command: /bin/bash -c "(yarn install || :) && yarn run start"
-        ports:
-            - 3000:3000
+            - ./:/app
+        command: composer install
+
+    debugproxy:
+        build: .docker/Development/debugproxy
+        depends_on:
+            - php
+        environment:
+            - XDEBUG_PORT=9009
+            - IDE_ADDR=dockerhost
+        extra_hosts:
+            - "dockerhost:$DOCKER_HOST_IP"
+        volumes:
+            - ./:/var/www/html
 
     swagger:
         image: swaggerapi/swagger-ui
