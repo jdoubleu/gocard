@@ -5,22 +5,25 @@ function user(state = {
 }, action) {
     switch (action.type) {
         case USER_REQUEST:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: true,
-            });
+            };
         case USER_SUCCESS:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: false,
                 ...action.user
-            });
+            };
         case USER_FAILURE:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: false,
                 message: action.message
-            });
+            };
         default:
             return state;
     }
 }
 
-export default user
+export default user;

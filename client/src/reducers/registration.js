@@ -5,21 +5,24 @@ function registration(state = {
 }, action) {
     switch (action.type) {
         case ADD_USER_REQUEST:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: true,
-            });
+            };
         case ADD_USER_SUCCESS:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: false,
-            });
+            };
         case ADD_USER_FAILURE:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 isFetching: false,
                 message: action.message
-            });
+            };
         default:
             return state;
     }
 }
 
-export default registration
+export default registration;
