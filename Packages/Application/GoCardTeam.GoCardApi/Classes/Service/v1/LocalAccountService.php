@@ -9,6 +9,8 @@ use Neos\Flow\Security\Account;
 
 /**
  * Special service for managing local accounts
+ *
+ * @Flow\Scope("singleton")
  */
 class LocalAccountService
 {
