@@ -7,3 +7,14 @@
   defaults:
     '@action': 'findAllRegisters'
   httpMethods: ['GET']
+
+-
+  name: 'create new register'
+  uriPattern: ''
+  defaults:
+    '@action': 'addRegister'
+  routeParts:
+    register:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
