@@ -90,6 +90,13 @@ services:
     # Service Groups
     ####################
 
+    installation:
+        image: tianon/true
+        restart: 'no'
+        depends_on:
+            - yarn
+            - composer
+
     frontend:
         image: tianon/true
         restart: 'no'
