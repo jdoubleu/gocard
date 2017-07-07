@@ -78,5 +78,24 @@ services:
         ports:
             - 81:8080
 
+    ####################
+    # Service Groups
+    ####################
+
+    frontend:
+        image: tianon/true
+        restart: 'no'
+        depends_on:
+            - node
+
+    backend:
+        image: tianon/true
+        restart: 'no'
+        depends_on:
+            - php
+            - apache
+            - mysql
+            - debugproxy
+
 volumes:
   database:
