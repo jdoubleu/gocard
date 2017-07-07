@@ -12,9 +12,11 @@ Neos:
   Flow:
     persistence:
       backendOptions:
+        host: 'mysql'
         dbname: 'flow'       # adjust to your database name
-        user: ''             # adjust to your database user
-        password: ''         # adjust to your database password
+        user: 'root'             # adjust to your database user
+        password: 'jFaa6D4JJPB3sNY8RRwjUF5e'         # adjust to your database password
+        port: '3306'
 
        # if you want to log executed SQL queries, enable the next 2 lines
 #      doctrine:
