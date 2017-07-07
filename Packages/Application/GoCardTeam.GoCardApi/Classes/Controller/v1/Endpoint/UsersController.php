@@ -2,11 +2,14 @@
 
 namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
+use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\Exception\KnownObjectException;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
 /**
@@ -31,6 +34,12 @@ class UsersController extends AbstractApiEndpointController
     protected $accountService;
 
     /**
+     * @Flow\Inject
+     * @var AccountRepository
+     */
+    protected $accountRepository;
+
+    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */
@@ -51,18 +60,19 @@ class UsersController extends AbstractApiEndpointController
     {
         $account = $this->accountService->createNewLocalAccount($user->getEmail(), $password);
 
-        if (!$this->accountService->maybePersistNewAccount($account)) {
+        try {
+            $this->accountRepository->add($account);
+
+            $user->setAccount($account);
+
+            $this->userRepository->add($user);
+
+            $this->persistenceManager->whitelistObject($account);
+            $this->persistenceManager->whitelistObject($user);
+            $this->persistenceManager->persistAll(true);
+        } catch (KnownObjectException | UniqueConstraintViolationException $e) {
             $this->throwStatus(409);
-            return;
         }
-
-        $user->setAccount($account);
-
-        $this->userRepository->add($user);
-        
-        $this->persistenceManager->whitelistObject($account);
-        $this->persistenceManager->whitelistObject($user);
-        $this->persistenceManager->persistAll(true);
 
         $this->view->assign('value', $user);
     }
