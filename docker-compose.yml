@@ -62,8 +62,9 @@ services:
         restart: "no"
         volumes:
             - ./:/app
+            - yarncache:/home/node/.yarn/
         working_dir: /app
-        command: yarn install
+        command: yarn install --cache-folder /home/node/.yarn
 
     debugproxy:
         build: .docker/Development/debugproxy
@@ -114,3 +115,4 @@ services:
 
 volumes:
   database:
+  yarncache:
