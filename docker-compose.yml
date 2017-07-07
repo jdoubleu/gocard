@@ -11,8 +11,6 @@ services:
 
     php:
         build: .docker/Development/php
-        depends_on:
-            - apache
         volumes:
             - ./:/var/www/html
 
