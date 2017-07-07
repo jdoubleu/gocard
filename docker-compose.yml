@@ -55,6 +55,7 @@ services:
         restart: "no"
         volumes:
             - ./:/app
+            - composercache:/composer/cache/
         command: composer install
 
     yarn:
@@ -116,3 +117,4 @@ services:
 volumes:
   database:
   yarncache:
+  composercache:
