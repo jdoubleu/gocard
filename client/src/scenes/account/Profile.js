@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/shared/headline";
+import Headline from "../../components/shared/headline";
 import {Button, Card, Col, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import UserIcon from "../../components/shared/user/icon";
 
@@ -9,13 +9,13 @@ class Profile extends React.Component {
         return (
             <div>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Header
-                        title="Profil Einstellungen"
-                    />
+                    <Headline title="Profil Einstellungen"/>
 
                     <Card block>
                         <div className="text-center">
-                            <UserIcon name={this.props.name} diameter={200}/>
+                            <UserIcon diameter={200}>
+                                {this.props.name}
+                            </UserIcon>
                         </div>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
@@ -49,12 +49,6 @@ class Profile extends React.Component {
             </div>
         );
     }
-}
-
-
-Profile.defaultProps = {
-    name: "Frank N Stein",
-
 }
 
 export default Profile;
