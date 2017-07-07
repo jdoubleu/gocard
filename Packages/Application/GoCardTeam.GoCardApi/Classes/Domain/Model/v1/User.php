@@ -16,6 +16,7 @@ use Neos\Flow\Security\Account;
 class User
 {
     /**
+     * @Flow\Identity
      * @ORM\Id
      * @ORM\GeneratedValue()
      * @ORM\Column(type="bigint")

@@ -14,6 +14,7 @@ class Card
 {
 
     /**
+     * @Flow\Identity
      * @ORM\Id
      * @ORM\GeneratedValue()
      * @ORM\Column(type="bigint")
@@ -23,7 +24,7 @@ class Card
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @ORM\OneToOne()
+     * @ORM\ManyToOne()
      * @var User
      */
     protected $author;

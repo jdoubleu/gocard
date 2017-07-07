@@ -2,6 +2,7 @@
 
 namespace GoCardTeam\GoCardApi\Security\v1;
 
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountRepository as DefaultAccountRepository;
@@ -54,5 +55,22 @@ class AccountRepository extends DefaultAccountRepository
                 $query->lessThanOrEqual('expirationDate', new \DateTime()),
             ])
         )->execute()->toArray();
+    }
+
+    /**
+     * Looks up a local account referenced by an access token
+     *
+     * @param Account $accessToken
+     * @return Account|null Local account or null
+     */
+    public function findLocalAccountByAccessToken(Account $accessToken)
+    {
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->logicalAnd([
+                $query->equals('accountIdentifier', $accessToken),
+                $query->equals('authenticationProviderName', LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER)
+            ])
+        )->setLimit(1)->execute()->getFirst();
     }
 }
