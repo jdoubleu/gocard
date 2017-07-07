@@ -13,6 +13,7 @@ class Register
 {
 
     /**
+     * @Flow\Identity
      * @ORM\Id
      * @ORM\GeneratedValue()
      * @ORM\Column(type="bigint")
