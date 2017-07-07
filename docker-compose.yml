@@ -3,117 +3,117 @@ version: '3'
 
 services:
 
-    ####################
-    # Frontend
-    ####################
+  ####################
+  # Frontend
+  ####################
 
-    node:
-        image: node
-        volumes:
-            - ./:/usr/src/app
-        working_dir: /usr/src/app
-        command: yarn run start
-        ports:
-            - 3000:3000
+  node:
+    image: node
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    command: yarn run start
+    ports:
+      - 3000:3000
 
-    ####################
-    # Backend
-    ####################
+  ####################
+  # Backend
+  ####################
 
-    php:
-        build: .docker/Development/php
-        volumes:
-            - ./:/var/www/html
+  php:
+    build: .docker/Development/php
+    volumes:
+      - ./:/var/www/html
 
-    apache:
-        build: .docker/Development/apache
-        volumes:
-            - ./:/var/www/html
-        ports:
-            - 80:80
+  apache:
+    build: .docker/Development/apache
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 80:80
 
-    mysql:
-        image: mariadb
-        environment:
-            - MYSQL_ROOT_PASSWORD=jFaa6D4JJPB3sNY8RRwjUF5e
-            - MYSQL_DATABASE=flow
-        volumes:
-            - database:/var/lib/mysql
-        ports:
-            - 3306:3306
+  mysql:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=jFaa6D4JJPB3sNY8RRwjUF5e
+      - MYSQL_DATABASE=flow
+    volumes:
+      - database:/var/lib/mysql
+    ports:
+      - 3306:3306
 
-    redis:
-        image: redis
-        volumes:
-            - database:/data
+  redis:
+    image: redis
+    volumes:
+      - database:/data
 
-    ####################
-    # Tools
-    ####################
+  ####################
+  # Tools
+  ####################
 
-    composer:
-        image: composer
-        restart: "no"
-        volumes:
-            - ./:/app
-            - composercache:/composer/cache/
-        command: composer install
+  composer:
+    image: composer
+    restart: "no"
+    volumes:
+      - ./:/app
+      - composercache:/composer/cache/
+    command: composer install
 
-    yarn:
-        image: node
-        restart: "no"
-        volumes:
-            - ./:/app
-            - yarncache:/home/node/.yarn/
-        working_dir: /app
-        command: yarn install --cache-folder /home/node/.yarn
+  yarn:
+    image: node
+    restart: "no"
+    volumes:
+      - ./:/app
+      - yarncache:/home/node/.yarn/
+    working_dir: /app
+    command: yarn install --cache-folder /home/node/.yarn
 
-    debugproxy:
-        build: .docker/Development/debugproxy
-        depends_on:
-            - php
-        environment:
-            - XDEBUG_PORT=9009
-            - IDE_ADDR=dockerhost
-        extra_hosts:
-            - "dockerhost:$DOCKER_HOST_IP"
-        volumes:
-            - ./:/var/www/html
+  debugproxy:
+    build: .docker/Development/debugproxy
+    depends_on:
+      - php
+    environment:
+      - XDEBUG_PORT=9009
+      - IDE_ADDR=dockerhost
+    extra_hosts:
+      - "dockerhost:$DOCKER_HOST_IP"
+    volumes:
+      - ./:/var/www/html
 
-    swagger:
-        image: swaggerapi/swagger-ui
-        volumes:
-            - ./api_schema.yaml:/app/schema.yaml
-        environment:
-            - SWAGGER_JSON=/app/schema.yaml
-        ports:
-            - 81:8080
+  swagger:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./api_schema.yaml:/app/schema.yaml
+    environment:
+      - SWAGGER_JSON=/app/schema.yaml
+    ports:
+      - 81:8080
 
-    ####################
-    # Service Groups
-    ####################
+  ####################
+  # Service Groups
+  ####################
 
-    installation:
-        image: tianon/true
-        restart: 'no'
-        depends_on:
-            - yarn
-            - composer
+  installation:
+    image: tianon/true
+    restart: 'no'
+    depends_on:
+      - yarn
+      - composer
 
-    frontend:
-        image: tianon/true
-        restart: 'no'
-        depends_on:
-            - node
+  frontend:
+    image: tianon/true
+    restart: 'no'
+    depends_on:
+      - node
 
-    backend:
-        image: tianon/true
-        restart: 'no'
-        depends_on:
-            - php
-            - apache
-            - mysql
-            - debugproxy
+  backend:
+    image: tianon/true
+    restart: 'no'
+    depends_on:
+      - php
+      - apache
+      - mysql
+      - debugproxy
 
 volumes:
   database:
