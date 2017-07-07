@@ -69,7 +69,7 @@ class Register
     /**
      * @return int
      */
-    public function getUid(): int
+    public function getUid(): ?int
     {
         return $this->uid;
     }
@@ -85,7 +85,7 @@ class Register
     /**
      * @return User
      */
-    public function getOwner(): User
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
@@ -101,15 +101,15 @@ class Register
     /**
      * @return int
      */
-    public function getOwnersUid(): int
+    public function getOwnersUid(): ?int
     {
-        return $this->getOwner()->getUid();
+        return ($owner = $this->getOwner()) != null ? $owner->getUid() : null;
     }
 
     /**
      * @return \DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
