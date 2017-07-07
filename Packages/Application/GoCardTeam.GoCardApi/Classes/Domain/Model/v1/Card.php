@@ -24,7 +24,7 @@ class Card
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @ORM\OneToOne()
+     * @ORM\ManyToOne()
      * @var User
      */
     protected $author;

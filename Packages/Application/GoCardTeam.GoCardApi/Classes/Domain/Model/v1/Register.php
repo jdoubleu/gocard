@@ -23,7 +23,7 @@ class Register
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @ORM\OneToOne()
+     * @ORM\ManyToOne()
      * @var User
      */
     protected $owner;
