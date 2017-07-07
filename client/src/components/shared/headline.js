@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Headline = ({title, lead, ...rest}) => {
+const Headline = ({title, children, ...rest}) => {
     return (
         <div {...rest}>
             <h1>{title}</h1>
-            <p className="text-muted">{lead}</p>
+            <p className="text-muted">{children}</p>
         </div>
 
     );
@@ -13,7 +13,7 @@ const Headline = ({title, lead, ...rest}) => {
 
 Headline.propTypes = {
     title: PropTypes.string.isRequired,
-    lead: PropTypes.string
+    children: PropTypes.string
 };
 
 export default Headline;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Detail.css";
-import Header from "../../components/shared/headline";
+import Headline from "../../components/shared/headline";
 import {
   Button,
   ButtonGroup,
@@ -50,7 +50,7 @@ class Detail extends React.Component {
   render() {
     return (
       <div>
-        <Header title="Objektorientierte Programmierung"/>
+        <Headline title="Objektorientierte Programmierung"/>
 
         <CardGroup>
           <Card block>

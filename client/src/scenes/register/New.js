@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/shared/headline";
+import Headline from "../../components/shared/headline";
 import {Button, Card, Col, Form, Row} from "reactstrap";
 import RegisterForm from "../../modules/registers/form";
 
@@ -9,10 +9,9 @@ class New extends React.Component {
         return (
             <div>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Header
-                        title="Neues Register"
-                        lead="Hier kannst du ein neues Register für Deine Karteikarten erstellen."
-                    />
+                    <Headline title="Neues Register">
+                        Hier kannst du ein neues Register für Deine Karteikarten erstellen.
+                    </Headline>
 
                     <Card block>
                         <Form>

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../components/shared/headline";
+import Headline from "../../components/shared/headline";
 import {Button, Card, Col, Form, Row} from "reactstrap";
 import RegisterForm from "../../modules/registers/form";
 
@@ -8,10 +8,9 @@ class Edit extends React.Component {
         return (
             <div>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Header
-                        title="Register bearbeiten"
-                        lead="Hier kannst dein Register bearbeiten."
-                    />
+                    <Headline title="Register bearbeiten">
+                        Hier kannst dein Register bearbeiten.
+                    </Headline>
 
                     <Card block>
                         <Form>

@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import TagForm from "../../modules/cards/tagForm";
 import {Link} from "react-router-dom";
-import Header from "../../components/shared/headline";
+import Headline from "../../components/shared/headline";
 
 class New extends React.Component {
 
@@ -184,10 +184,10 @@ class New extends React.Component {
         return (
             <div>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Header
-                        title="Neue Karteikarte"
-                        lead="Hier kannst du eine neue Karteikarte für Dein Register erstellen."
-                    />
+                    <Headline title="Neue Karteikarte">
+                        Hier kannst du eine neue Karteikarte für Dein Register erstellen.
+                    </Headline>
+
                     <Card block>
 
                         <Form>

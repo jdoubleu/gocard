@@ -1,6 +1,6 @@
 import React from "react";
 import "../register/Detail.css";
-import Header from "../../components/shared/headline";
+import Headline from "../../components/shared/headline";
 import {
     Button,
     ButtonGroup,
@@ -114,9 +114,7 @@ class Feedback extends React.Component {
     render() {
         return (
             <div>
-                <Header
-                    title="Feedback"
-                />
+                <Headline title="Feedback"></Headline>
 
                 <CardGroup>
                     <Card block>

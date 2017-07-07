@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/shared/headline";
+import Headline from "../components/shared/headline";
 import BlankCard from "../modules/registers/blankCard";
 import RegisterCard from "../modules/registers/previewCard";
 import {Row} from "reactstrap";
@@ -8,10 +8,9 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                <Header
-                    title="Dashboard"
-                    lead="Hier hast du eine Übersicht über deine Register. Ebenfalls kannst du weitere Register erstellen."
-                />
+                <Headline title="Dashboard">
+                    Hier hast du eine Übersicht über deine Register. Ebenfalls kannst du weitere Register erstellen.
+                </Headline>
 
                 <Row>
                     <BlankCard />
