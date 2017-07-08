@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {NavLink} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
+import Breadcrumb from "../../../containers/shared/breadcrumb";
 import UserIcon from "../user/icon";
 import Logo from "../logo";
 import {
@@ -28,6 +29,9 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
                 {
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
+                        <span className="navbar-text ml-auto">
+                            <Route component={Breadcrumb}/>
+                        </span>
                         <Nav className="ml-auto" navbar>
                             <UserIcon>
                                 {displayName}

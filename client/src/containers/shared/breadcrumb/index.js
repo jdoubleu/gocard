@@ -66,20 +66,10 @@ const BreadcrumbsItem = ({...rest, match}) => {
 const Breadcrumb = ({isAuthenticated, ...rest, location: {pathname}, match}) => {
     const paths = getPaths(pathname);
     return (
-        <BreadcrumbComponent className="m-0 p-0 pl-3 mb-4">
-            {isAuthenticated && paths.map(p => <Route path={p} component={BreadcrumbsItem}/>)}
+        <BreadcrumbComponent className="m-0 p-0">
+            {paths.map(p => <Route path={p} component={BreadcrumbsItem}/>)}
         </BreadcrumbComponent>
     );
 };
 
-Breadcrumb.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired
-};
-
-function mapStateToProps(state) {
-    return {
-        isAuthenticated: state.auth.isAuthenticated
-    }
-}
-
-export default connect(mapStateToProps)(Breadcrumb);
+export default Breadcrumb;
