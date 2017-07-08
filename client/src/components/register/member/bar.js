@@ -2,8 +2,8 @@ import React from "react";
 import lodash from "lodash";
 import PropTypes from "prop-types";
 import {UncontrolledTooltip} from "reactstrap";
-import Icon from "../../shared/user/icon";
-import CollapsedIcon from "./collapsedIcon";
+import UserIcon from "../../shared/user/icon";
+import Icon from "../../shared/icon";
 
 const Bar = ({members, diameter, maxIcons}) => {
     const visibleMembers = lodash.chunk(members, maxIcons - 1)[0];
@@ -13,9 +13,9 @@ const Bar = ({members, diameter, maxIcons}) => {
             {
                 visibleMembers.map((member) =>
                     <span>
-                        <Icon diameter={diameter} id={"ID" + member}>
+                        <UserIcon diameter={diameter} id={"ID" + member}>
                             {member}
-                        </Icon>
+                        </UserIcon>
                         <UncontrolledTooltip placement="bottom" target={"ID" + member} delay={0}>
                             {member}
                         </UncontrolledTooltip>
@@ -24,10 +24,10 @@ const Bar = ({members, diameter, maxIcons}) => {
             }
             {
                 collapsedMembers && collapsedMembers.length > 0 &&
-                <span id="additionalMembers">
-                    <CollapsedIcon diameter={diameter}>
-                        {collapsedMembers}
-                    </CollapsedIcon>
+                <span >
+                    <Icon diameter={diameter} id="additionalMembers">
+                        +{collapsedMembers.length}
+                    </Icon>
                     <UncontrolledTooltip placement="bottom" target="additionalMembers" delay={0}>
                         {
                             collapsedMembers.map((member) =>
