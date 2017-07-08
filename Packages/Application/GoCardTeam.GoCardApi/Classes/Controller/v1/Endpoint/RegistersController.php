@@ -106,7 +106,7 @@ class RegistersController extends AbstractApiEndpointController
     public function initializeUpdateRegisterAction()
     {
         $userConfiguration = $this->arguments->getArgument('register')->getPropertyMappingConfiguration();
-        $userConfiguration->allowAllProperties()->skipProperties('uid');
+        $userConfiguration->allowAllProperties()->skipProperties('uid', 'crdate');
         $userConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
     }
 
