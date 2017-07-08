@@ -1,11 +1,7 @@
 import API from "../lib/ApiClient";
-import {getUser} from "./user";
 
 const apiConnection = new API.ApiClient("http://localhost/api/v1");
 
-
-// There are three possible states for our login
-// process and we need actions for each of them
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -18,12 +14,12 @@ function requestLogin() {
     }
 }
 
-function receiveLogin(access_token) {
+function receiveLogin(token) {
     return {
         type: LOGIN_SUCCESS,
         isFetching: false,
         isAuthenticated: true,
-        access_token: access_token
+        token
     }
 }
 
@@ -36,10 +32,6 @@ function loginError(message) {
     }
 }
 
-// Three possible states for our logout process as well.
-// Since we are using JWTs, we just need to remove the token
-// from localStorage. These actions are more useful if we
-// were calling the API to log the user out
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
@@ -60,21 +52,14 @@ function receiveLogout() {
     }
 }
 
-// Calls the API to get a token and
-// dispatches actions along the way
 export function loginUser(creds) {
     return dispatch => {
-        // We dispatch requestLogin to kickoff the call to the API
         dispatch(requestLogin());
         return apiConnection.loginUser({
             email: creds.email,
             password: creds.password
         }).then(response => {
-            const access_token = response.body;
-            return (access_token);
-        }).then((access_token) => {
-            // Dispatch the success action
-            dispatch(receiveLogin(access_token));
+            dispatch(receiveLogin(response.body));
             dispatch(getUser(creds.email));
         }).catch(err => {
                 console.log("Error: ", err);
@@ -96,5 +81,73 @@ export function logoutUser() {
     return dispatch => {
         dispatch(requestLogout());
         dispatch(receiveLogout());
+    }
+}
+
+
+//User actions
+export const USER_REQUEST = 'USER_REQUEST';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAILURE = 'USER_FAILURE';
+
+function requestUser() {
+    return {
+        type: USER_REQUEST,
+        isFetching: true,
+        user: null,
+    }
+}
+
+function receiveUser(user) {
+    return {
+        type: USER_SUCCESS,
+        isFetching: false,
+        user: user
+    }
+}
+
+function userError(err) {
+    return {
+        type: USER_FAILURE,
+        isFetching: false,
+        message: err
+    }
+}
+
+
+export function getUser(email) {
+    return (dispatch, getState) => {
+        dispatch(requestUser());
+        apiConnection.getUserByEmail({
+            email: email,
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(
+            response => {
+                dispatch(receiveUser(response.body));
+            }
+        ).catch(err => {
+                console.log("Error: ", err);
+                dispatch(userError(err));
+            }
+        );
+    }
+}
+
+export function updateUser(user) {
+    return (dispatch, getState) => {
+        dispatch(requestUser());
+        apiConnection.updateUser({
+            userId: getState().auth.user.uid,
+            body: user,
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(
+            response => {
+                dispatch(receiveUser(response.body));
+            }
+        ).catch(err => {
+                console.log("Error: ", err);
+                dispatch(userError(err));
+            }
+        );
     }
 }

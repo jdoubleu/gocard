@@ -77,13 +77,13 @@ class Power extends React.Component {
     displayLearningCard() {
 
         if (this.index < this.state.allcards.length) {
-                return (
-                    <div>
-                        {this.whichCard()}
-                    </div>
-                )
+            return (
+                <div>
+                    {this.whichCard()}
+                </div>
+            )
         } else {
-            this.isFeedback =true;
+            this.isFeedback = true;
             return (
                 <Feedback/>
             )
@@ -91,7 +91,7 @@ class Power extends React.Component {
     }
 
     displayButtons() {
-        if(this.isFeedback === false)
+        if (this.isFeedback === false)
             return (
                 <Col sm="12" md={{size: 8, offset: 2}}>
                     <Row>
