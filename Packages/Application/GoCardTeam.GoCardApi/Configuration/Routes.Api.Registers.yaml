@@ -18,3 +18,33 @@
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
+
+-
+  name: 'find register'
+  uriPattern: '{registerId}'
+  defaults:
+    '@action': 'findByRegisterById'
+  httpMethods: ['GET']
+
+-
+  name: 'update register'
+  uriPattern: '{register}'
+  defaults:
+    '@action': 'updateRegister'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'delete register'
+  uriPattern: '{register}'
+  defaults:
+    '@action': 'deleteRegister'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+  httpMethods: ['DELETE']

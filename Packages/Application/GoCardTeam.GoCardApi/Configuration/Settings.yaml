@@ -24,3 +24,11 @@ Neos:
                 pattern: 'ControllerObjectName'
                 patternOptions:
                   'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\v1\Endpoint\.*'
+
+    persistence:
+      doctrine:
+        dbal:
+          mappingTypes:
+            'enum':
+              dbType: 'enum'
+              className: 'Doctrine\DBAL\Types\StringType'

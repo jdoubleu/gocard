@@ -120,9 +120,8 @@ paths:
           required: true
           type: integer
           format: int64
-        - name: name
+        - name: body
           in: body
-          description: Updated name of the pet
           required: true
           schema:
             $ref: '#/definitions/Register'
@@ -753,7 +752,7 @@ paths:
           description: User not found
       security:
         - api_key: []
-    put:
+    post:
       tags:
         - users
       summary: Update user

@@ -52,11 +52,10 @@ class RegistersController extends AbstractApiEndpointController
      */
     public function initializeAddRegisterAction()
     {
-        // Update
-        // Change mapping configuration
         $registerConfiguration = $this->arguments->getArgument('register')->getPropertyMappingConfiguration();
         $registerConfiguration->allowAllProperties()->skipProperties('uid');
         $registerConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $registerConfiguration->forProperty('register.owner')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
     }
 
     /**
@@ -79,5 +78,59 @@ class RegistersController extends AbstractApiEndpointController
                 '_descend' => ['crdate' => []]
             ]
         ]);
+    }
+
+    /**
+     * @param int $registerId
+     */
+    public function findByRegisterByIdAction(int $registerId)
+    {
+        /** @var Register $register */
+        $register = $this->registerRepository->findByIdentifier($registerId);
+        if ($register === null) {
+            $this->throwStatus(404, 'Register not found');
+        }
+
+        $this->view->assign('value', $register);
+        $this->view->setConfiguration([
+            'value' => [
+                '_descend' => ['crdate' => []]
+            ]
+        ]);
+    }
+
+    /**
+     * Allows property modification for update action.
+     * By default it is not allowed to modify a persisted object.
+     */
+    public function initializeUpdateRegisterAction()
+    {
+        $userConfiguration = $this->arguments->getArgument('register')->getPropertyMappingConfiguration();
+        $userConfiguration->allowAllProperties()->skipProperties('uid', 'crdate');
+        $userConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
+    }
+
+    /**
+     * Updates the given user
+     *
+     * @Flow\SkipCsrfProtection
+     *
+     * @param Register $register
+     */
+    public function updateRegisterAction(Register $register)
+    {
+        $this->registerRepository->update($register);
+    }
+
+    /**
+     * Deletes a register
+     *
+     * @Flow\SkipCsrfProtection
+     *
+     * @param Register $register
+     */
+    public function deleteRegisterAction(Register $register)
+    {
+        $this->registerRepository->remove($register);
     }
 }
