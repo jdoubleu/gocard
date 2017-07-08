@@ -52,11 +52,10 @@ class RegistersController extends AbstractApiEndpointController
      */
     public function initializeAddRegisterAction()
     {
-        // Update
-        // Change mapping configuration
         $registerConfiguration = $this->arguments->getArgument('register')->getPropertyMappingConfiguration();
         $registerConfiguration->allowAllProperties()->skipProperties('uid');
         $registerConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $registerConfiguration->forProperty('register.owner')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
     }
 
     /**
