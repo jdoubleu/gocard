@@ -25,3 +25,14 @@
   defaults:
     '@action': 'findByRegisterById'
   httpMethods: ['GET']
+
+-
+  name: 'update register'
+  uriPattern: '{register}'
+  defaults:
+    '@action': 'updateRegister'
+  routeParts:
+    register:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']

@@ -98,4 +98,25 @@ class RegistersController extends AbstractApiEndpointController
             ]
         ]);
     }
+
+    /**
+     * Allows property modification for update action.
+     * By default it is not allowed to modify a persisted object.
+     */
+    public function initializeUpdateRegisterAction()
+    {
+        $userConfiguration = $this->arguments->getArgument('register')->getPropertyMappingConfiguration();
+        $userConfiguration->allowAllProperties()->skipProperties('uid');
+        $userConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
+    }
+
+    /**
+     * Updates the given user
+     *
+     * @param Register $register
+     */
+    public function updateRegisterAction(Register $register)
+    {
+        $this->registerRepository->update($register);
+    }
 }
