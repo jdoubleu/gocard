@@ -33,6 +33,7 @@
     '@action': 'updateRegister'
   routeParts:
     register:
+      uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']

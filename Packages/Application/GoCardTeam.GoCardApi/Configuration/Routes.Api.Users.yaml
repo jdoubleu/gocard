@@ -41,6 +41,7 @@
     '@action': 'updateUser'
   routeParts:
     user:
+      uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
