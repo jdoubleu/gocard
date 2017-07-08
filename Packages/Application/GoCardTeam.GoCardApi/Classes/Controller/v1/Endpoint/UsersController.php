@@ -132,6 +132,8 @@ class UsersController extends AbstractApiEndpointController
     /**
      * Deletes a user
      *
+     * @Flow\SkipCsrfProtection
+     *
      * @param User $user user to be deleted
      */
     public function deleteUserAction(User $user)
