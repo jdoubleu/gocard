@@ -43,7 +43,7 @@
     user:
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
       mapAdditionalPropertiesFromBody: true
-  httpMethods: ['PUT']
+  httpMethods: ['POST']
 
 -
   name: 'delete user'

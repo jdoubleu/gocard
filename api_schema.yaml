@@ -752,7 +752,7 @@ paths:
           description: User not found
       security:
         - api_key: []
-    put:
+    post:
       tags:
         - users
       summary: Update user
