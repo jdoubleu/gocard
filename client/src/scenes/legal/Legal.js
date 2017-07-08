@@ -1,5 +1,5 @@
 import React from "react";
-import NotFound from "../errors/NotFound";
+import NotFound from "../../components/shared/errors/notFound";
 import {Route, Switch} from "react-router-dom";
 import Help from "./Help";
 import Imprint from "./Imprint";

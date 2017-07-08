@@ -5,7 +5,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {Container} from "reactstrap";
 
-import NotFound from "./scenes/errors/NotFound";
+import NotFound from "./components/shared/errors/notFound";
 import TopBar from "./containers/shared/TopBar";
 import Footer from "./components/shared/footer";
 import Profile from "./containers/account/Profile";
