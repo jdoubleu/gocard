@@ -41,9 +41,10 @@
     '@action': 'updateUser'
   routeParts:
     user:
+      uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
       mapAdditionalPropertiesFromBody: true
-  httpMethods: ['PUT']
+  httpMethods: ['POST']
 
 -
   name: 'delete user'
@@ -52,5 +53,6 @@
     '@action': 'deleteUser'
   routeParts:
     user:
+      uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
   httpMethods: ['DELETE']

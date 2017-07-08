@@ -67,65 +67,15 @@ class Card
     protected $content;
 
     /**
+     * @ORM\ManyToOne(inversedBy="cards")
+     * @var Register
+     */
+    protected $register;
+
+    /**
      * Construct Card
      */
     public function __construct()
     {
-    }
-
-    /**
-     * @return int
-     */
-    public function getUid(): int
-    {
-        return $this->uid;
-    }
-
-    /**
-     * @return User
-     */
-    public function getAuthor(): User
-    {
-        return $this->author;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCrdate(): \DateTime
-    {
-        return $this->crdate;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getTags(): ArrayCollection
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQuestion(): string
-    {
-        return $this->question;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return CardContent
-     */
-    public function getContent(): CardContent
-    {
-        return $this->content;
     }
 }

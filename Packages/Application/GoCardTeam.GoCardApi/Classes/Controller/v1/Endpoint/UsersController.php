@@ -83,7 +83,7 @@ class UsersController extends AbstractApiEndpointController
     public function getUserByIdAction(int $userId)
     {
         /** @var User $user */
-        $user = $this->userRepository->findOneByUid($userId);
+        $user = $this->userRepository->findByIdentifier($userId);
         if ($user === null) {
             $this->throwStatus(404, 'User not found');
         }
@@ -120,6 +120,8 @@ class UsersController extends AbstractApiEndpointController
     /**
      * Updates the given user
      *
+     * @Flow\SkipCsrfProtection
+     *
      * @param User $user updated user data from body
      */
     public function updateUserAction(User $user)
@@ -129,6 +131,8 @@ class UsersController extends AbstractApiEndpointController
 
     /**
      * Deletes a user
+     *
+     * @Flow\SkipCsrfProtection
      *
      * @param User $user user to be deleted
      */
