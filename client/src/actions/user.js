@@ -39,7 +39,7 @@ export function getUser(email) {
         dispatch(requestUser());
         apiConnection.getUserByEmail({
             email: email,
-            $queryParameters: {access_token: getState().auth.access_token}
+            $queryParameters: {access_token: getState().auth.token.access_token}
         }).then( //:TODO remove API key
             response => {
                 dispatch(receiveUser(response.body));

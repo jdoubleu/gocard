@@ -18,12 +18,12 @@ function requestLogin() {
     }
 }
 
-function receiveLogin(access_token) {
+function receiveLogin(token) {
     return {
         type: LOGIN_SUCCESS,
         isFetching: false,
         isAuthenticated: true,
-        access_token: access_token
+        token
     }
 }
 
@@ -70,11 +70,8 @@ export function loginUser(creds) {
             email: creds.email,
             password: creds.password
         }).then(response => {
-            const access_token = response.body;
-            return (access_token);
-        }).then((access_token) => {
             // Dispatch the success action
-            dispatch(receiveLogin(access_token));
+            dispatch(receiveLogin(response.body));
             dispatch(getUser(creds.email));
         }).catch(err => {
                 console.log("Error: ", err);

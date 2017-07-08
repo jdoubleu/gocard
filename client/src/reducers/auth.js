@@ -16,8 +16,8 @@ function auth(state = {
                 ...state,
                 isFetching: false,
                 isAuthenticated: true,
-                access_token: action.access_token,
-                errorMessage: ''
+                token: action.token,
+                errorMessage: null
             };
         case LOGIN_FAILURE:
             return {
@@ -37,7 +37,7 @@ function auth(state = {
                 ...state,
                 isFetching: false,
                 isAuthenticated: false,
-                access_token: null
+                tokens: null
             };
         default:
             return state;
