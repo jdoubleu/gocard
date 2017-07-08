@@ -87,7 +87,7 @@ class RegistersController extends AbstractApiEndpointController
     {
         /** @var Register $register */
         $register = $this->registerRepository->findByIdentifier($registerId);
-        if ($registerId === null) {
+        if ($register === null) {
             $this->throwStatus(404, 'Register not found');
         }
 
