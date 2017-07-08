@@ -121,4 +121,16 @@ class RegistersController extends AbstractApiEndpointController
     {
         $this->registerRepository->update($register);
     }
+
+    /**
+     * Deletes a register
+     *
+     * @Flow\SkipCsrfProtection
+     *
+     * @param Register $register
+     */
+    public function deleteRegisterAction(Register $register)
+    {
+        $this->registerRepository->remove($register);
+    }
 }
