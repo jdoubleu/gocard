@@ -8,6 +8,7 @@ import {Container} from "reactstrap";
 import NotFound from "./components/shared/errors/notFound";
 import TopBar from "./containers/shared/TopBar";
 import Footer from "./components/shared/footer";
+import Breadcrumb from "./containers/shared/breadcrumb";
 import Settings from "./containers/account/Settings";
 import Legal from "./components/legal/legal";
 import Register from "./scenes/register/Register";
@@ -32,6 +33,7 @@ class App extends React.Component {
             <div className="App">
                 <TopBar />
                 <Container>
+                    <Route component={Breadcrumb} />
                     <Switch>
                         <Route path='/' exact component={Home}/>
                         <Route path='/registration' exact component={Registration}/>

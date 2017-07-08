@@ -20,7 +20,7 @@ import "./topBar.css";
 const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
     return (
         <Container className="top-bar">
-            <Navbar light toggleable className="pb-4">
+            <Navbar light toggleable>
                 <NavbarToggler className="border-0" right onClick={onToggleTopBarDropDown}/>
                 <NavbarBrand onClick={() => onNavbarBrandClick()}>
                     <Logo/>
