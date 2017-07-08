@@ -83,7 +83,7 @@ class UsersController extends AbstractApiEndpointController
     public function getUserByIdAction(int $userId)
     {
         /** @var User $user */
-        $user = $this->userRepository->findOneByUid($userId);
+        $user = $this->userRepository->findByIdentifier($userId);
         if ($user === null) {
             $this->throwStatus(404, 'User not found');
         }
