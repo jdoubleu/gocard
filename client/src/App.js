@@ -9,7 +9,7 @@ import NotFound from "./components/shared/errors/notFound";
 import TopBar from "./containers/shared/TopBar";
 import Footer from "./components/shared/footer";
 import Profile from "./containers/account/Profile";
-import Legal from "./scenes/legal/Legal";
+import Legal from "./components/legal/legal";
 import Register from "./scenes/register/Register";
 import Registration from "./containers/account/Registration";
 import Reset from "./scenes/account/Reset";
