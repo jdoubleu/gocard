@@ -79,4 +79,23 @@ class RegistersController extends AbstractApiEndpointController
             ]
         ]);
     }
+
+    /**
+     * @param int $registerId
+     */
+    public function findByRegisterByIdAction(int $registerId)
+    {
+        /** @var Register $register */
+        $register = $this->registerRepository->findOneByUid($registerId);
+        if ($registerId === null) {
+            $this->throwStatus(404, 'Register not found');
+        }
+
+        $this->view->assign('value', $register);
+        $this->view->setConfiguration([
+            'value' => [
+                '_descend' => ['crdate' => []]
+            ]
+        ]);
+    }
 }

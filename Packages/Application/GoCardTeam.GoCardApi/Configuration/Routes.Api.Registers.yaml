@@ -18,3 +18,10 @@
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
+
+-
+  name: 'find register'
+  uriPattern: '{registerId}'
+  defaults:
+    '@action': 'findByRegisterById'
+  httpMethods: ['GET']
