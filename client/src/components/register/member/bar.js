@@ -26,7 +26,7 @@ const Bar = ({members, diameter, maxIcons}) => {
                 collapsedMembers && collapsedMembers.length > 0 &&
                 <span >
                     <Icon diameter={diameter} id="additionalMembers">
-                        +{collapsedMembers.length}
+                        {"+"+collapsedMembers.length}
                     </Icon>
                     <UncontrolledTooltip placement="bottom" target="additionalMembers" delay={0}>
                         {
