@@ -67,6 +67,12 @@ class Card
     protected $content;
 
     /**
+     * @ORM\ManyToOne(inversedBy="cards")
+     * @var Register
+     */
+    protected $register;
+
+    /**
      * Construct Card
      */
     public function __construct()
