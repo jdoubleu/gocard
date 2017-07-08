@@ -38,7 +38,7 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
                                 </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
-                                        <NavLink to="/profile">Einstellungen</NavLink>
+                                        <NavLink to="/settings">Einstellungen</NavLink>
                                     </DropdownItem>
                                     <DropdownItem divider/>
                                     <DropdownItem onClick={() => onLogout()}>

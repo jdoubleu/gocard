@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {updateUser} from "../../actions/auth";
-import ProfileComponent from "../../components/account/profile";
+import SettingsComponent from "../../components/account/settings";
 
-class Profile extends React.Component {
+class Settings extends React.Component {
     render() {
         return (
-            <ProfileComponent displayName={this.state.displayName} email={this.state.email}
-                              password={this.state.password} passwordRepeat={this.state.passwordRepeat}
-                              handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
-                              modal={this.state.modal} modalToggle={this.modalToggle}
-                              modalHandleSubmit={this.modalHandleSubmit}
+            <SettingsComponent displayName={this.state.displayName} email={this.state.email}
+                               password={this.state.password} passwordRepeat={this.state.passwordRepeat}
+                               handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
+                               modal={this.state.modal} modalToggle={this.modalToggle}
+                               modalHandleSubmit={this.modalHandleSubmit}
             />
         );
     }
@@ -66,7 +66,7 @@ class Profile extends React.Component {
     }
 }
 
-Profile.propTypes = {
+Settings.propTypes = {
     user: PropTypes.array.isRequired
 };
 
@@ -76,4 +76,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Settings);

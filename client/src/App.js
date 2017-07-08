@@ -8,7 +8,7 @@ import {Container} from "reactstrap";
 import NotFound from "./components/shared/errors/notFound";
 import TopBar from "./containers/shared/TopBar";
 import Footer from "./components/shared/footer";
-import Profile from "./containers/account/Profile";
+import Settings from "./containers/account/Settings";
 import Legal from "./components/legal/legal";
 import Register from "./scenes/register/Register";
 import Registration from "./containers/account/Registration";
@@ -36,7 +36,7 @@ class App extends React.Component {
                         <Route path='/' exact component={Home}/>
                         <Route path='/registration' exact component={Registration}/>
                         <Route path='/reset' exact component={Reset}/>
-                        <ProtectedRoute path='/profile' exact component={Profile}/>
+                        <ProtectedRoute path='/settings' exact component={Settings}/>
 
                         <Route path='/single' exact component={SingleChoice}/> # just for testing
                         <Route path='/multiple' exact component={MultipleChoice}/> # just for testing

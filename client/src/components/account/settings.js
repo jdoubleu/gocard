@@ -18,10 +18,10 @@ import {Link} from "react-router-dom";
 import Headline from "../shared/headline";
 import UserIcon from "../shared/user/icon";
 
-const Profile = ({isFetching, handleSubmit, handleInputChange, displayName, email, password, passwordRepeat, modal, modalToggle, modalHandleSubmit}) => {
+const Settings = ({isFetching, handleSubmit, handleInputChange, displayName, email, password, passwordRepeat, modal, modalToggle, modalHandleSubmit}) => {
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
-            <Headline title="Profil Einstellungen"/>
+            <Headline title="Einstellungen"/>
 
             <Card block>
                 <div className="text-center">
@@ -89,7 +89,7 @@ const Profile = ({isFetching, handleSubmit, handleInputChange, displayName, emai
     )
 };
 
-Profile.propTypes = {
+Settings.propTypes = {
     isFetching: PropTypes.bool.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleInputChange: PropTypes.func.isRequired,
@@ -102,4 +102,4 @@ Profile.propTypes = {
     modalHandleSubmit: PropTypes.func.isRequired
 };
 
-export default Profile;
+export default Settings;
