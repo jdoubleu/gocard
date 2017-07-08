@@ -55,24 +55,25 @@ class Feedback extends React.Component {
             return (
                 this.getAllWrong()
             )
-        } else if( this.state.mode ===4){
+        } else if (this.state.mode === 4) {
             return (
                 this.getAllNotAnswered()
             )
         }
     }
 
-    getAll(){
+    getAll() {
         return this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={this.check(card.rightAnswer, card.userAnswer)}/>)
+                                                                   right={card.rightAnswer}
+                                                                   check={this.check(card.rightAnswer, card.userAnswer)}/>)
     }
 
-    check(right, user){
-        if(right === user){
+    check(right, user) {
+        if (right === user) {
             return true;
-        }else if(user === null){
+        } else if (user === null) {
             return null;
-        }else if(right != user & user!= null){
+        } else if (right != user & user != null) {
             return false;
         }
 
@@ -104,7 +105,7 @@ class Feedback extends React.Component {
         let array = [];
         array = this.state.cards.filter(a => {
 
-            return a.userAnswer != a.rightAnswer &&  a.userAnswer!= null;
+            return a.userAnswer != a.rightAnswer && a.userAnswer != null;
         })
         console.log(array);
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}

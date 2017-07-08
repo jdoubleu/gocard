@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
-import {logoutUser} from "../actions/auth";
-import TopBarComponent from "../components/shared/topBar";
+import {logoutUser} from "../../actions/auth";
+import TopBarComponent from "../../components/shared/topBar/index";
 
 class TopBar extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ TopBar.propTypes = {
 function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        displayName: state.user.displayName
+        displayName: state.auth.user.displayName
     }
 }
 

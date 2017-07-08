@@ -14,11 +14,11 @@ class PreviewCardFeedback extends React.Component {
             return (
                 <CardText className="display-3">✓</CardText>
             )
-        } else if(this.props.check === false){
+        } else if (this.props.check === false) {
             return (
                 <CardText className="display-3">X</CardText>
             )
-        }else{
+        } else {
             return (
                 <CardText className="display-3">-</CardText>
             )

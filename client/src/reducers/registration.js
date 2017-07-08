@@ -1,4 +1,4 @@
-import {ADD_USER_SUCCESS, ADD_USER_REQUEST, ADD_USER_FAILURE} from '../actions/registration'
+import {ADD_USER_FAILURE, ADD_USER_REQUEST, ADD_USER_SUCCESS} from "../actions/registration";
 
 function registration(state = {
     isFetching: false,

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import Dashboard from "../scenes/Dashboard";
-import Login from "./Login";
+import Login from "./account/Login";
 
 const Home = ({isAuthenticated}) => {
     return isAuthenticated ? (

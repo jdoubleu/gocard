@@ -77,11 +77,11 @@ class Exam extends React.Component {
     displayLearningCard() {
 
         if (this.index < this.state.allcards.length) {
-                return (
-                    <div>
-                        {this.whichCard()}
-                    </div>
-                )
+            return (
+                <div>
+                    {this.whichCard()}
+                </div>
+            )
         } else {
             this.isFeedback = true;
             return (
