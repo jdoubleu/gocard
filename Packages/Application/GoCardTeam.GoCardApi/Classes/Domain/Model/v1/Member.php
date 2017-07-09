@@ -29,7 +29,7 @@ class Member
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(new|verified|active)"})
+     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(read|write|update)"})
      * @ORM\Column(type="string", columnDefinition="SET('read', 'write', 'update')")
      * @var string
      */
