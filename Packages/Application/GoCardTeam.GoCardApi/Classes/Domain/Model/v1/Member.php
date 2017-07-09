@@ -81,6 +81,14 @@ class Member
     }
 
     /**
+     * @return int
+     */
+    public function getUsersUid(): ?int
+    {
+        return ($user = $this->getUser()) != null ? $user->getUid() : null;
+    }
+
+    /**
      * @return string
      */
     public function getStatus(): string
