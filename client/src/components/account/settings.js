@@ -78,8 +78,9 @@ const Settings = ({isFetching, handleSubmit, handleInputChange, displayName, ema
                             Möchest du wirklich dein Account löschen?
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="danger" onClick={modalHandleSubmit} disabled={isFetching}>Account
-                                löschen</Button>{' '}
+                            <Button color="danger" onClick={modalHandleSubmit} disabled={isFetching}>
+                                Account löschen
+                            </Button>{' '}
                             <Button color="secondary" onClick={modalToggle}>Abbrechen</Button>
                         </ModalFooter>
                     </Modal>
@@ -96,7 +97,7 @@ Settings.propTypes = {
     displayName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string,
-    passwordRepeat: PropTypes.string,
+    confirmPassword: PropTypes.string,
     modal: PropTypes.bool.isRequired,
     modalToggle: PropTypes.func.isRequired,
     modalHandleSubmit: PropTypes.func.isRequired

@@ -8,7 +8,7 @@ class Settings extends React.Component {
     render() {
         return (
             <SettingsComponent displayName={this.state.displayName} email={this.state.email}
-                               password={this.state.password} passwordRepeat={this.state.passwordRepeat}
+                               password={this.state.password} confirmPassword={this.state.confirmPassword}
                                handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
                                modal={this.state.modal} modalToggle={this.modalToggle}
                                modalHandleSubmit={this.modalHandleSubmit} isFetching={this.props.isFetching}
@@ -23,7 +23,7 @@ class Settings extends React.Component {
             displayName: props.user.displayName,
             email: props.user.email,
             password: '',
-            passwordRepeat: '',
+            confirmPassword: '',
             modal: false
         };
 
