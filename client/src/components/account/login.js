@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Alert, Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGroup, Input} from "reactstrap";
+import {Alert, Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row} from "reactstrap";
 import Logo from "../shared/logo/index";
 
 const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
@@ -16,82 +16,74 @@ const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
     };
 
     return (
+        <Row>
+            <Col sm={12} md={{size: 10, offset: 1}} className="pb-2">
+                <h1 className="display-4">Willkommen bei <Logo/></h1>
+                <p className="lead">
+                    Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen.
+                    Du kannst deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
+                </p>
+            </Col>
 
-      <div>
-        <Col>
-         <Col sm={{size: '10', offset: 1 }} md="10" className="lead">
-           <h1 className="display-4"> Willkommen bei  <Logo/> </h1>
-           <hr/>
-           Auf dieser Webseite hast du die Möglichkeit, online mit Karteikarten zu lernen. Du kannst deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
-         </Col>
+            <Col sm={12} md={{size: 5, offset: 1}} className="mb-2">
+                <Card block className="h-100">
+                    <CardTitle>
+                        <span className="text-muted">Anmelden</span> HSD-Account
+                    </CardTitle>
 
-         <br/>
-         <br/>
+                    <div className="text-left pl-2">
+                        <CardText>
+                            Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem
+                            Hochschul-Account anzumelden.
+                        </CardText>
 
-         <CardGroup>
-           <Card block>
-             <CardTitle>
-               <span className="text-muted">Anmelden</span> HSD-Account</CardTitle>
+                        <CardText>
+                            <a href="http://passport.hs-duesseldorf.de/default.aspx"> Passwort vergessen?</a>
+                        </CardText>
+                        <Button outline block color="primary">
+                            <a href="https://idp.fh-duesseldorf.de/idp/Authn/UserPassword">
+                                Anmelden mit HSD-Account
+                            </a>
+                        </Button>
+                    </div>
+                </Card>
+            </Col>
 
-             <Col sm={{offset: 0.5}} md="11">
-               <CardText className="text-left">
-
-                 Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem Hochschul-Account anzumelden.
-
-               </CardText>
-
-               <CardText>
-                 <a href="http://passport.hs-duesseldorf.de/default.aspx"> Passwort vergessen?</a>
-               </CardText>
-               <div className="text-left">
-                 <Button outline color="primary"><a href="https://idp.fh-duesseldorf.de/idp/Authn/UserPassword">Anmelden mit HSD-Account</a></Button>
-
-
-               </div>
-             </Col>
-           </Card>
-           <Col sm="1">
-
-           </Col>
-
-           <Card block>
-             <CardTitle>
-               <span className="text-muted">Anmelden</span> GoCard-Account</CardTitle>
-             <CardText>
-               <Col sm={{offset: 0.5}} md="11">
-                 Du hast noch keinen GoCard-Account?
-                 <br/>
-                 <Link to="/registration">GoCard-Account erstellen</Link>
-               </Col>
-             </CardText>
-             {message &&
-                <Alert color="danger">
-                    <strong>{message}</strong>
-                </Alert>
-              }
-             <Form onSubmit={handleClick}>
-               <Col>
-                 <FormGroup>
-                   <Input type="email" name="email" id="email" placeholder="E-Mail Adresse"/>
-                 </FormGroup>
-                 <FormGroup>
-                   <Input type="password" name="password" id="password" placeholder="Passwort"/>
-                 </FormGroup>
-                 <CardText>
-                   <Link to="/reset">Passwort vergessen?</Link>
-                 </CardText>
-                 <div className="text-left">
-                   <Button disabled={isLocalLoginFetching} outline block color="primary">Anmelden mit GoCard-Account</Button>
-                 </div>
-               </Col>
-             </Form>
-           </Card>
-         </CardGroup>
-       </Col>
-      </div>
-
-
-
+            <Col sm={12} md={{size: 5, offset: 0}} className="mb-2">
+                <Card block className="h-100">
+                    <CardTitle>
+                        <span className="text-muted">Anmelden</span> GoCard-Account
+                    </CardTitle>
+                    <div className="text-left pl-2">
+                        <CardText>
+                            Du hast noch keinen GoCard-Account?
+                            <br/>
+                            <Link to="/registration">GoCard-Account erstellen</Link>
+                        </CardText>
+                        {
+                            message &&
+                            <Alert color="danger">
+                                <strong>{message}</strong>
+                            </Alert>
+                        }
+                        <Form onSubmit={handleClick}>
+                            <FormGroup>
+                                <Input type="email" name="email" id="email" placeholder="E-Mail Adresse"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Input type="password" name="password" id="password" placeholder="Passwort"/>
+                            </FormGroup>
+                            <CardText>
+                                <Link to="/reset">Passwort vergessen?</Link>
+                            </CardText>
+                            <Button disabled={isLocalLoginFetching} outline block color="primary">
+                                Anmelden mit GoCard-Account
+                            </Button>
+                        </Form>
+                    </div>
+                </Card>
+            </Col>
+        </Row>
     );
 };
 
