@@ -1,8 +1,4 @@
-import {
-    REGISTERS_REQUEST,
-    REGISTERS_SUCCESS,
-    REGISTERS_FAILURE,
-} from "../actions/registers";
+import {REGISTERS_FAILURE, REGISTERS_REQUEST, REGISTERS_SUCCESS} from "../actions/registers";
 
 const initialState = {
     isFetching: false,

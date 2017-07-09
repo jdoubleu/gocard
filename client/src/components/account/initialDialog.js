@@ -1,5 +1,19 @@
 import React from "react";
-import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import {
+    Button,
+    Card,
+    CardText,
+    CardTitle,
+    Col,
+    Form,
+    FormGroup,
+    Input,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    Row
+} from "reactstrap";
 import PropTypes from "prop-types";
 
 const Dialog = ({handleInputChange, handleSubmit, displayName, modalHandleSubmit, isFetching, modalToggle, modal}) => {
@@ -36,7 +50,8 @@ const Dialog = ({handleInputChange, handleSubmit, displayName, modalHandleSubmit
                             </Modal>
                         </Col>
                         <Col>
-                            <Button outline block color="success" onClick={handleSubmit}>Ich akzeptiere die EULA</Button>
+                            <Button outline block color="success" onClick={handleSubmit}>Ich akzeptiere die
+                                EULA</Button>
                         </Col>
                     </Row>
                 </Form>

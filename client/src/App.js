@@ -30,7 +30,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Route component={TopBar} />
+                <Route component={TopBar}/>
                 <Container>
                     <Switch>
                         <Route path='/' exact component={Home}/>

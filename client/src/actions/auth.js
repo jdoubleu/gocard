@@ -163,8 +163,8 @@ export function deleteUser() {
                 dispatch(logoutUser());
             }
         ).catch(
-            err =>{
-                console.log("Error",err);
+            err => {
+                console.log("Error", err);
                 dispatch(userError(err))
             }
         );

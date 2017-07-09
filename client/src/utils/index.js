@@ -1,5 +1,5 @@
 export function getInitials(displayName) {
-    if(!displayName)
+    if (!displayName)
         return "";
 
     // Split name by space
