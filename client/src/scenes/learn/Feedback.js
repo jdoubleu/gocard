@@ -73,7 +73,7 @@ class Feedback extends React.Component {
             return true;
         } else if (user === null) {
             return null;
-        } else if (right != user & user != null) {
+        } else if (right !== user && user !== null) {
             return false;
         }
 
@@ -104,9 +104,8 @@ class Feedback extends React.Component {
     getAllWrong() {
         let array = [];
         array = this.state.cards.filter(a => {
-
-            return a.userAnswer != a.rightAnswer && a.userAnswer != null;
-        })
+            return a.userAnswer !== a.rightAnswer && a.userAnswer !== null;
+        });
         console.log(array);
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
                                                         right={card.rightAnswer} check={false}/>)
@@ -115,7 +114,7 @@ class Feedback extends React.Component {
     render() {
         return (
             <div>
-                <Headline title="Feedback"></Headline>
+                <Headline title="Feedback"/>
 
                 <CardGroup>
                     <Card block>

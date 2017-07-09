@@ -5,10 +5,6 @@ import DashboardComponent from "../components/dashboard";
 import {getRegisters} from "../actions/registers";
 
 class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         const {dispatch} = this.props;
         dispatch(getRegisters())
