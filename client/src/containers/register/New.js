@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import NewRegisterComponent from "../../components/register/newRegister";
+import NewComponent from "../../components/register/new";
 import {addRegister} from "../../actions/registers";
 
 
-class NewRegister extends React.Component {
+class New extends React.Component {
     render() {
         return (
-            // handle this!
-            <NewRegisterComponent handleSubmit={this.handleSubmit} title={this.state.title} description={this.state.description} handleInputChange={this.handleInputChange}/>
+            <NewComponent handleSubmit={this.handleSubmit} title={this.state.title}
+                                  description={this.state.description} handleInputChange={this.handleInputChange}
+            />
         );
     }
 
@@ -36,21 +37,21 @@ class NewRegister extends React.Component {
     }
 
     handleSubmit(event) {
-      event.preventDefault();
+        event.preventDefault();
 
-      this.props.dispatch(addRegister({
-          body: {
-            owner: this.props.user.uid,
-            crdate: new Date().toISOString(),
-            title: this.state.title,
-            description: this.state.description
-          }
-        })
-      )
+        this.props.dispatch(addRegister({
+                body: {
+                    owner: this.props.user.uid,
+                    crdate: new Date().toISOString(),
+                    title: this.state.title,
+                    description: this.state.description
+                }
+            })
+        )
     }
 }
 
-NewRegister.propTypes = {
+New.propTypes = {
     user: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired
 };
@@ -62,4 +63,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(NewRegister);
+export default connect(mapStateToProps)(New);

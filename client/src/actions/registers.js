@@ -33,12 +33,13 @@ function registersFailure(err) {
 export function getRegisters() {
     return (dispatch, getState) => {
         dispatch(registersRequest());
-        apiConnection.findAllRegisters({$queryParameters: {access_token: getState().auth.token.access_token}})
-            .then(
-                response => {
-                    dispatch(registersSuccess(response.body));
-                }
-            ).catch(err => {
+        apiConnection.findAllRegisters({
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(
+            response => {
+                dispatch(registersSuccess(response.body));
+            }
+        ).catch(err => {
                 dispatch(registersFailure(err));
             }
         );
@@ -80,18 +81,17 @@ export function addRegister(registerData) {
     return (dispatch, getState) => {
         dispatch(addRegisterRequest());
         console.log("register data: ", registerData);
-        apiConnection.addRegister(
-          registerData,
-          {$queryParameters: {access_token: getState().auth.token.access_token}}
-        )
-          .then(response => {
+        apiConnection.addRegister({
+            body: registerData,
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(response => {
             console.log("Success");
             console.log(response);
             dispatch(addRegisterSuccess(response));
-          })
-          .catch(err => {
-            console.log("Error: ", err);
-            dispatch(addRegisterFailure(err));
-          })
+        })
+            .catch(err => {
+                console.log("Error: ", err);
+                dispatch(addRegisterFailure(err));
+            })
     }
 }
