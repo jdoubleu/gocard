@@ -81,17 +81,17 @@ export function addRegister(registerData) {
         dispatch(addRegisterRequest());
         console.log("register data: ", registerData);
         apiConnection.addRegister(
-          registerData,
-          {$queryParameters: {access_token: getState().auth.token.access_token}}
+            registerData,
+            {$queryParameters: {access_token: getState().auth.token.access_token}}
         )
-          .then(response => {
-            console.log("Success");
-            console.log(response);
-            dispatch(addRegisterSuccess(response));
-          })
-          .catch(err => {
-            console.log("Error: ", err);
-            dispatch(addRegisterFailure(err));
-          })
+            .then(response => {
+                console.log("Success");
+                console.log(response);
+                dispatch(addRegisterSuccess(response));
+            })
+            .catch(err => {
+                console.log("Error: ", err);
+                dispatch(addRegisterFailure(err));
+            })
     }
 }
