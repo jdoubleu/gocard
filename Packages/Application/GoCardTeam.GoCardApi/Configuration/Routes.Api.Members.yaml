@@ -1,0 +1,9 @@
+# Members API Routes
+# Special routes only for the members api endpoint
+
+-
+  name: 'get all members of register'
+  uriPattern: ''
+  defaults:
+    '@action': 'findMembersByRegister'
+  httpMethods: ['GET']
