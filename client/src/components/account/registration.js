@@ -9,42 +9,6 @@ const Registration = ({
                           validateEmail, updatePassword, email, password, passwordRepeat, validPassword, validEmail
                       }) => {
 
-    /*const validateEmail = (event) => {
-     let email = event.target.value;
-     if (email.includes("@")) {
-     console.log("@ gefunden ");
-     } else {
-     //Show error
-     }
-     };
-
-     const update = (event) => {
-     this.setState({
-     password: event.target.value
-     });
-     };
-
-
-     const validatePassword = (event) => {
-     let confirmPw = event.target.value;
-     this.setState()
-     if (confirmPw === this.state.password) {
-     console.log("Passwoerter sind gleich");
-     this.setState({
-     validatePassword: true
-     });
-     } else {
-     console.log("Passwoerter sind nicht mehr gleich");
-     this.setState({
-     validatePassword: false
-     });
-     }
-     };
-
-     const handleSubmit = (event) => {
-     event.preventDefault();
-     };*/
-
     return (
         <div>
             <Col sm="12" md={{size: 8, offset: 2}}>
