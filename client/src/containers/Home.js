@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import Dashboard from "../scenes/Dashboard";
+import Dashboard from "../containers/Dashboard";
 import Login from "./account/Login";
 import {Route} from "react-router-dom";
 import ProtectedRoute from "./shared/ProtectedRoute";
-
 
 const Home = ({isAuthenticated}) => {
     return isAuthenticated ? (

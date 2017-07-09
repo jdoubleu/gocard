@@ -7,14 +7,15 @@ import IconBar from "../../components/register/member/bar";
 
 class PreviewCard extends React.Component {
     render() {
+        console.log("Register",this.props.register);
         return (
             <Col xl="4" md="6" xs="12">
                 <Card block className="mb-2">
-                    <CardTitle>{this.props.title}</CardTitle>
+                    <CardTitle>{this.props.register.title}</CardTitle>
 
                     <Row className="mb-3">
                         <Col xs="8">
-                            <IconBar members={this.props.members} diameter={36}/>
+                            <IconBar members={this.props.register.members} diameter={36}/>
                         </Col>
                         <Col xs="4">
                             <Statistic/>
@@ -31,7 +32,7 @@ class PreviewCard extends React.Component {
 }
 
 PreviewCard.propTypes = {
-    members: PropTypes.array,
+    register: PropTypes.object.isRequired
 };
 
 export default PreviewCard;
