@@ -1,39 +1,58 @@
 import React from "react";
-import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row} from "reactstrap";
+import {Button, Card, CardText, CardTitle, Col, Form, FormGroup, Input, Row, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+import PropTypes from "prop-types";
 
-
-const Dialog = () => {
+const Dialog = ({handleInputChange, handleSubmit, displayName, modalHandleSubmit, isFetching, modalToggle, modal}) => {
     return (
-        <div>
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                <Card block>
-                    <CardTitle>Fast geschafft!</CardTitle>
+        <Col sm="12" md={{size: 8, offset: 2}}>
+            <Card block>
+                <CardTitle>Fast geschafft!</CardTitle>
+                <CardText>
+                    Bitte gib unten deinen Anzeigenamen ein und akzeptiere die EULA.<br/>
+                </CardText>
+
+                <Form>
+                    <FormGroup>
+                        <Input type="text" name="displayName" id="displayName" placeholder="Anzeigename"
+                               onChange={handleInputChange} value={displayName} required/>
+                    </FormGroup>
+
                     <CardText>
-                        Bitte gib unten deinen Anzeigenamen ein und akzeptiere die EULA.<br/>
+                        EULA PLACEHOLDER
                     </CardText>
-
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <Input type="text" name="displayName" id="displayName" placeholder="Anzeigename"
-                                   onBlur={this.validateEmail} required/>
-                        </FormGroup>
-
-                        <CardText>
-                            EULA PLACEHOLDER
-                        </CardText>
-                        <Row>
-                            <Col>
-                                <Button outline block color="danger">Abbrechen</Button>
-                            </Col>
-                            <Col>
-                                <Button outline block color="success">Ich akzeptiere die EULA</Button>
-                            </Col>
-                        </Row>
-                    </Form>
-                </Card>
-            </Col>
-        </div>
+                    <Row>
+                        <Col>
+                            <Button outline block color="danger" onClick={modalToggle}>Abbrechen</Button>
+                            <Modal isOpen={modal} toggle={modalToggle}>
+                                <ModalHeader toggle={modalToggle}>Account löschen</ModalHeader>
+                                <ModalBody>
+                                    Möchest du wirklich dein Account löschen?
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="danger" onClick={modalHandleSubmit} disabled={isFetching}>Account
+                                        löschen</Button>{' '}
+                                    <Button color="secondary" onClick={modalToggle}>Abbrechen</Button>
+                                </ModalFooter>
+                            </Modal>
+                        </Col>
+                        <Col>
+                            <Button outline block color="success" onClick={handleSubmit}>Ich akzeptiere die EULA</Button>
+                        </Col>
+                    </Row>
+                </Form>
+            </Card>
+        </Col>
     )
+};
+
+Dialog.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    handleInputChange: PropTypes.func.isRequired,
+    displayName: PropTypes.string,
+    modal: PropTypes.bool.isRequired,
+    modalToggle: PropTypes.func.isRequired,
+    modalHandleSubmit: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired
 };
 
 export default Dialog;
