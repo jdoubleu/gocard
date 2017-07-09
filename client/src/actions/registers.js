@@ -31,7 +31,7 @@ function registersFailure(err) {
 }
 
 export function getRegisters() {
-    return(dispatch, getState) => {
+    return (dispatch, getState) => {
         dispatch(registersRequest());
         apiConnection.findAllRegisters({$queryParameters: {access_token: getState().auth.token.access_token}})
             .then(
@@ -39,7 +39,7 @@ export function getRegisters() {
                     dispatch(registersSuccess(response.body));
                 }
             ).catch(err => {
-                    dispatch(registersFailure(err));
+                dispatch(registersFailure(err));
             }
         );
     }

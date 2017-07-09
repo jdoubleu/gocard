@@ -8,9 +8,9 @@ import ProtectedRoute from "./shared/ProtectedRoute";
 
 const Home = ({isAuthenticated}) => {
     return isAuthenticated ? (
-        <ProtectedRoute component={Dashboard} />
+        <ProtectedRoute component={Dashboard}/>
     ) : (
-        <Route component={Login} />
+        <Route component={Login}/>
     )
 };
 

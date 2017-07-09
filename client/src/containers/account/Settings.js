@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {updateUser, deleteUser} from "../../actions/auth";
+import {deleteUser, updateUser} from "../../actions/auth";
 import SettingsComponent from "../../components/account/settings";
 
 class Settings extends React.Component {

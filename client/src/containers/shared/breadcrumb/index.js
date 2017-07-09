@@ -1,8 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {Link, Route} from "react-router-dom";
 import {Breadcrumb as BreadcrumbComponent, BreadcrumbItem} from "reactstrap";
-import {connect} from "react-redux";
 
 import "./breadcrumb.css";
 
@@ -17,8 +15,8 @@ const routes = {
     'Impressum': /^\/legal\/imprint/,
     'Lizenz': /^\/legal\/license/,
     'Neues Register': /^\/register\/new$/,
-    'Register': /^\/register\/[^\/]+?$/,
-    'Bearbeiten': /^\/register\/[^\/]+?\/edit$/,
+    'Register': /^\/register\/[^/]+?$/,
+    'Bearbeiten': /^\/register\/[^/]+?\/edit$/,
     'Neue Karteikarte': /\/register\/\S+\/card\/new/,
 };
 
@@ -63,11 +61,11 @@ const BreadcrumbsItem = ({...rest, match}) => {
     return null;
 };
 
-const Breadcrumb = ({isAuthenticated, ...rest, location: {pathname}, match}) => {
+const Breadcrumb = ({...rest, location: {pathname}}) => {
     const paths = getPaths(pathname);
     return (
         <BreadcrumbComponent className="m-0 p-0">
-            {paths.map(p => <Route path={p} component={BreadcrumbsItem}/>)}
+            {paths.map(p => <Route path={p} component={BreadcrumbsItem} {...rest} />)}
         </BreadcrumbComponent>
     );
 };

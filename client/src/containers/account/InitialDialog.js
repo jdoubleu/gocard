@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {updateUser} from "../../actions/auth";
+import {deleteUser, updateUser} from "../../actions/auth";
 import InitialDialogComponent from "../../components/account/initialDialog";
-import {deleteUser} from "../../actions/auth";
 
 class InitialDialog extends React.Component {
     render() {

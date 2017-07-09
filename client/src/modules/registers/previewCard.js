@@ -7,7 +7,7 @@ import IconBar from "../../components/register/member/bar";
 
 class PreviewCard extends React.Component {
     render() {
-        console.log("Register",this.props.register);
+        console.log("Register", this.props.register);
         return (
             <Col xl="4" md="6" xs="12">
                 <Card block className="mb-2">
