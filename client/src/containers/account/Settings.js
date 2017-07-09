@@ -11,7 +11,7 @@ class Settings extends React.Component {
                                password={this.state.password} passwordRepeat={this.state.passwordRepeat}
                                handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
                                modal={this.state.modal} modalToggle={this.modalToggle}
-                               modalHandleSubmit={this.modalHandleSubmit}
+                               modalHandleSubmit={this.modalHandleSubmit} isFetching={this.props.isFetching}
             />
         );
     }
@@ -67,12 +67,13 @@ class Settings extends React.Component {
 }
 
 Settings.propTypes = {
-    user: PropTypes.array.isRequired
+    user: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.user
+        user: state.auth.user,
+        isFetching: state.auth.isFetching
     }
 }
 

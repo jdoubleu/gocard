@@ -102,9 +102,7 @@ function receiveUser(user) {
     return {
         type: USER_SUCCESS,
         isFetching: false,
-        user: {
-            ...user
-        }
+        user
     }
 }
 

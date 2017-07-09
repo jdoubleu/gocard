@@ -33,9 +33,12 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
                             <Route component={Breadcrumb}/>
                         </span>
                         <Nav className="ml-auto" navbar>
-                            <UserIcon>
-                                {displayName}
-                            </UserIcon>
+                            {
+                                displayName &&
+                                <UserIcon>
+                                    {displayName}
+                                </UserIcon>
+                            }
                             <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
                                 <DropdownToggle nav caret>
                                     <span>{displayName}</span>
