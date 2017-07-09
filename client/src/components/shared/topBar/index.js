@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 import "./topBar.css";
 
-const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
+const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
     return (
         <Container className="top-bar">
             <Navbar light toggleable>
@@ -32,28 +32,32 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
                         <span className="navbar-text ml-auto">
                             <Route component={Breadcrumb}/>
                         </span>
-                        <Nav className="ml-auto" navbar>
-                            {
-                                displayName &&
-                                <UserIcon>
-                                    {displayName}
-                                </UserIcon>
-                            }
-                            <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
-                                <DropdownToggle nav caret>
-                                    <span>{displayName}</span>
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        <NavLink to="/settings">Einstellungen</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem divider/>
-                                    <DropdownItem onClick={() => onLogout()}>
-                                        <a href="">Logout</a>
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </NavDropdown>
-                        </Nav>
+                        {
+                            user.status === "active" &&
+                            <Nav className="ml-auto" navbar>
+                                {
+                                    user.displayName &&
+                                    <UserIcon>
+                                        {user.displayName}
+                                    </UserIcon>
+                                }
+
+                                <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
+                                    <DropdownToggle nav caret>
+                                        <span>{user.displayName}</span>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            <NavLink to="/settings">Einstellungen</NavLink>
+                                        </DropdownItem>
+                                        <DropdownItem divider/>
+                                        <DropdownItem onClick={() => onLogout()}>
+                                            <a href="">Logout</a>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </NavDropdown>
+                            </Nav>
+                        }
                     </Collapse>
                 }
                 {
@@ -77,7 +81,7 @@ TopBar.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
     onNavbarBrandClick: PropTypes.func.isRequired,
-    displayName: PropTypes.string
+    user: PropTypes.object
 };
 
 TopBar.defaultProps = {
