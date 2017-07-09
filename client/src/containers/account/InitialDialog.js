@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {updateUser} from "../../actions/auth";
 import InitialDialogComponent from "../../components/account/initialDialog";
+import {deleteUser} from "../../actions/auth";
 
 class InitialDialog extends React.Component {
     render() {
@@ -55,7 +56,7 @@ class InitialDialog extends React.Component {
 
     modalHandleSubmit(event) {
         event.preventDefault();
-        console.log("DELETE USER");
+        this.props.dispatch(deleteUser());
     }
 }
 

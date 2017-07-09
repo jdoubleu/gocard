@@ -114,7 +114,6 @@ function userError(err) {
     }
 }
 
-
 export function getUser(email) {
     return (dispatch, getState) => {
         dispatch(requestUser());
@@ -147,6 +146,26 @@ export function updateUser(user) {
         ).catch(err => {
                 console.log("Error: ", err);
                 dispatch(userError(err));
+            }
+        );
+    }
+}
+
+export function deleteUser() {
+    return (dispatch, getState) => {
+        dispatch(requestUser());
+        apiConnection.deleteUser({
+            userId: getState().auth.user.uid,
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(
+            response => {
+                dispatch(receiveUser({}));
+                dispatch(logoutUser());
+            }
+        ).catch(
+            err =>{
+                console.log("Error",err);
+                dispatch(userError(err))
             }
         );
     }
