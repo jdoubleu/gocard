@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {updateUser} from "../../actions/auth";
+import {updateUser, deleteUser} from "../../actions/auth";
 import SettingsComponent from "../../components/account/settings";
 
 class Settings extends React.Component {
@@ -62,7 +62,7 @@ class Settings extends React.Component {
 
     modalHandleSubmit(event) {
         event.preventDefault();
-        console.log("DELETE USER");
+        this.props.dispatch(deleteUser());
     }
 }
 

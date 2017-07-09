@@ -10,7 +10,8 @@ class InitialDialog extends React.Component {
         return (
             <InitialDialogComponent handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
                                     modal={this.state.modal} modalToggle={this.modalToggle}
-                                    modalHandleSubmit={this.modalHandleSubmit} isFetching={false}
+                                    modalHandleSubmit={this.modalHandleSubmit} isFetching={this.props.isFetching}
+                                    displayName={this.state.displayName}
             />
         );
     }
@@ -19,7 +20,7 @@ class InitialDialog extends React.Component {
         super(props);
 
         this.state = {
-            displayName: props.user.displayName,
+            displayName: props.user.displayName || props.user.email.split('@')[0],
             modal: false
         };
 
@@ -61,12 +62,14 @@ class InitialDialog extends React.Component {
 }
 
 InitialDialog.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.user
+        user: state.auth.user,
+        isFetching: state.auth.isFetching
     }
 }
 
