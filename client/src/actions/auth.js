@@ -102,7 +102,9 @@ function receiveUser(user) {
     return {
         type: USER_SUCCESS,
         isFetching: false,
-        user: user
+        user: {
+            ...user
+        }
     }
 }
 
@@ -142,7 +144,7 @@ export function updateUser(user) {
             $queryParameters: {access_token: getState().auth.token.access_token}
         }).then(
             response => {
-                dispatch(receiveUser(response.body));
+                dispatch(receiveUser(user));
             }
         ).catch(err => {
                 console.log("Error: ", err);
