@@ -5,7 +5,7 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Member;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
-use GoCardTeam\GoCardApi\Domain\Repository\v1\MembersRepository;
+use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Neos\Flow\Annotations as Flow;
@@ -19,9 +19,9 @@ class MembersController extends AbstractApiEndpointController
 
     /**
      * @Flow\Inject
-     * @var MembersRepository
+     * @var MemberRepository
      */
-    protected $membersRepository;
+    protected $memberRepository;
 
     /**
      * @Flow\Inject

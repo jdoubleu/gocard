@@ -8,6 +8,6 @@ use Neos\Flow\Persistence\Repository;
 /**
  * @Flow\Scope("singleton")
  */
-class MembersRepository extends Repository
+class MemberRepository extends Repository
 {
 }
