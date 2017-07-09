@@ -58,7 +58,10 @@ function auth(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                user: action.user
+                user: {
+                    ...state.user,
+                    ...action.user
+                }
             };
         case USER_FAILURE:
             return {
