@@ -2,6 +2,9 @@ import {
     REGISTERS_REQUEST,
     REGISTERS_SUCCESS,
     REGISTERS_FAILURE,
+    ADD_REGISTER_FAILURE,
+    ADD_REGISTER_REQUEST,
+    ADD_REGISTER_SUCCESS
 } from "../actions/registers";
 
 const initialState = {
@@ -23,6 +26,23 @@ function registers(state = initialState, action) {
                 registers: action.registers
             };
         case REGISTERS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                errorMessage: action.errorMessage
+            };
+        case ADD_REGISTER_REQUEST:
+            return {
+                ...state,
+                isFetching: true
+            };
+        case ADD_REGISTER_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                registers: state.registers.registers.concat([action.register])
+            };
+        case ADD_REGISTER_FAILURE:
             return {
                 ...state,
                 isFetching: false,

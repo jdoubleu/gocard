@@ -25,7 +25,6 @@ import Detail from "./scenes/register/Detail";
 import Power from "./scenes/learn/Power";
 import Exam from "./scenes/learn/Exam";
 
-
 class App extends React.Component {
     render() {
         return (

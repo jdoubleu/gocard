@@ -45,3 +45,53 @@ export function getRegisters() {
     }
 }
 
+// -------------------
+
+// User actions
+export const ADD_REGISTER_REQUEST = 'ADD_REGISTER_REQUEST';
+export const ADD_REGISTER_SUCCESS = 'ADD_REGISTER_SUCCESS';
+export const ADD_REGISTER_FAILURE = 'ADD_REGISTER_FAILURE';
+
+function addRegisterRequest() {
+    return {
+        type: ADD_REGISTER_REQUEST,
+        isFetching: true
+    }
+}
+
+
+function addRegisterSuccess(register) {
+    return {
+        type: ADD_REGISTER_SUCCESS,
+        isFetching: false,
+        register: register
+    }
+}
+
+function addRegisterFailure(err) {
+    return {
+        type: ADD_REGISTER_FAILURE,
+        isFetching: false,
+        errorMessage: err
+    }
+}
+
+export function addRegister(registerData) {
+    return (dispatch, getState) => {
+        dispatch(addRegisterRequest());
+        console.log("register data: ", registerData);
+        apiConnection.addRegister(
+          registerData,
+          {$queryParameters: {access_token: getState().auth.token.access_token}}
+        )
+          .then(response => {
+            console.log("Success");
+            console.log(response);
+            dispatch(addRegisterSuccess(response));
+          })
+          .catch(err => {
+            console.log("Error: ", err);
+            dispatch(addRegisterFailure(err));
+          })
+    }
+}

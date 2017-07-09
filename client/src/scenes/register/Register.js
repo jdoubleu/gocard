@@ -1,7 +1,7 @@
 import React from "react";
 import NotFound from "../../components/shared/errors/notFound";
 import {Route, Switch} from "react-router-dom";
-import NewRegister from "./New";
+import NewRegister from "../../containers/register/NewRegister";
 import DetailRegister from "./Detail";
 import EditRegister from "./Edit";
 import NewCard from "../cards/New";
