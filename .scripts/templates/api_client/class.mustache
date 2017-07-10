@@ -215,8 +215,30 @@ export default client;
 /*
  * API Models
  */
+const Models = {
+    {{#definitions}}
+        /**
+         * {{name}}
+        {{#description}}
+         *
+         * {{&description}}
+        {{/description}}
+         */
+        {{#tsType}}
+            {{! mst use different delimiters to avoid ambiguities when delimiters directly follow a literal brace {. }}
+            {{=<% %>=}}
+            <%#isObject%><%name%>: {<%#properties%>
+            '<%name%>': <%#isEnum%>[/* <%&tsType%> */]<%/isEnum%><%!
+            %><%^isEnum%>'<%&tsType%>'<%/isEnum%>,<%/properties%>
+            },<%/isObject%>
+            <%={{ }}=%>
+        {{/tsType}}
+        {{^tsType}}
+            {{name}}: {},
+        {{/tsType}}
 
-{{> type}}
+    {{/definitions}}
+};
 
 /*
  * API Methods
