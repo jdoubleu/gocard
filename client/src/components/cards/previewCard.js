@@ -7,7 +7,7 @@ class PreviewCard extends React.Component {
         return (
             <Col xl="4" md="6" xs="12">
                 <Card block className="mb-2">
-                    <CardTitle>{this.props.question}</CardTitle>
+                    <CardTitle>{this.props.card.question}</CardTitle>
                     <Button outline color="primary">Ansehen</Button>
                 </Card>
             </Col>
@@ -17,7 +17,7 @@ class PreviewCard extends React.Component {
 }
 
 PreviewCard.propTypes = {
-    question: PropTypes.string.isRequired,
+    card: PropTypes.object.isRequired,
 };
 
 export default PreviewCard;

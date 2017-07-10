@@ -1,7 +1,7 @@
 import React from "react";
 import Headline from "../components/shared/headline";
-import BlankCard from "../modules/registers/blankCard";
-import PreviewCard from "../modules/registers/previewCard";
+import BlankCard from "./register/modules/blankCard";
+import PreviewCard from "./register/modules/previewCard";
 import {Row} from "reactstrap";
 import PropTypes from "prop-types";
 

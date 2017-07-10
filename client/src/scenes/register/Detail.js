@@ -1,5 +1,4 @@
 import React from "react";
-import "./Detail.css";
 import Headline from "../../components/shared/headline";
 import {
     Button,
@@ -17,11 +16,11 @@ import {
     UncontrolledTooltip
 } from "reactstrap";
 import {Link} from "react-router-dom";
-import Statistic from "../../modules/shared/statistic";
-import PreviewCard from "../../modules/cards/previewCard";
+import Statistic from "../../components/shared/statistics/statistic";
+import PreviewCard from "../../components/cards/previewCard";
 import MemberBar from "../../components/register/member/bar";
-import TagViewer from "../../modules/registers/tagViewer";
-import BlankPreviewCard from "../../modules/cards/blankPreviewCard";
+import TagViewer from "../../components/register/modules/tagViewer";
+import BlankPreviewCard from "../../components/cards/blankPreviewCard";
 
 class Detail extends React.Component {
     constructor(props) {

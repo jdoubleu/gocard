@@ -1,7 +1,7 @@
 import React from "react";
 import Headline from "../../components/shared/headline";
 import {Button, Card, Col, Form, Row} from "reactstrap";
-import RegisterForm from "../../modules/registers/form";
+import RegisterForm from "../../components/register/modules/form";
 
 class Edit extends React.Component {
     render() {

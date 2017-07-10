@@ -7,7 +7,7 @@ class TagViewer extends React.Component {
         super(props);
         this.state = {
             selectedTags: this.props.tags.slice(0)
-        }
+        };
 
         this.handleSelect = this.handleSelect.bind(this);
         this.getTagView = this.getTagView.bind(this);
@@ -20,7 +20,7 @@ class TagViewer extends React.Component {
                 selectedTags: this.state.selectedTags.concat(tag)
             });
         } else {
-            var selectedTags = this.state.selectedTags;
+            let selectedTags = this.state.selectedTags;
             _.pull(selectedTags, tag);
             this.setState({selectedTags});
         }
@@ -60,6 +60,6 @@ class TagViewer extends React.Component {
 
 TagViewer.defaultProps = {
     tags: ["tags", "of", "all", "cards"]
-}
+};
 
 export default TagViewer;

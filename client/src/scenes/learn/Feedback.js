@@ -1,5 +1,5 @@
 import React from "react";
-import "../register/Detail.css";
+import "../../components/register/Detail.css";
 import Headline from "../../components/shared/headline";
 import {
     Button,
@@ -14,7 +14,7 @@ import {
     FormGroup,
     Row
 } from "reactstrap";
-import StatisticBar from "../../modules/shared/statisticBar";
+import StatisticBar from "../../components/shared/statistics/statisticBar";
 import PreviewCardFeedback from "../../modules/cards/previewCardFeedback";
 import PropTypes from "prop-types";
 import Cards from "../../modules/dummyCards.json";

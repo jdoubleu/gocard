@@ -95,3 +95,45 @@ export function addRegister(registerData) {
             })
     }
 }
+
+///----Get Members
+//User actions
+export const MEMBERS_REQUEST = 'MEMBERS_REQUEST';
+export const MEMBERS_SUCCESS = 'MEMBERS_SUCCESS';
+export const MEMBERS_FAILURE = 'MEMBERS_FAILURE';
+
+function membersRequest() {
+    return {
+        type: MEMBERS_REQUEST,
+        isFetching: true,
+    }
+}
+
+function membersSuccess(users, registerId) {
+    return {
+        type: MEMBERS_SUCCESS,
+        isFetching: false,
+        members: {registerId: registerId, members: users}
+    }
+}
+
+function membersFailure(err) {
+    return {
+        type: MEMBERS_FAILURE,
+        isFetching: false,
+        errorMessage: err
+    }
+}
+
+export function getMembers(registerId) {
+    return (dispatch, getState) => {
+        dispatch(membersRequest());
+        apiConnection.findMembersByRegister({registerId: registerId, $queryParameters: {access_token: getState().auth.token.access_token}})
+            .then(response => {
+                membersSuccess(response.body)
+            }).catch(err => {
+            membersFailure(err)
+        });
+
+    }
+}
