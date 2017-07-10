@@ -4,6 +4,7 @@
  */
 
 import fetch from 'fetch';
+import EventEmitter from 'events';
 
 /*
  * Helper functions
@@ -21,7 +22,7 @@ function mergeQueryParams(parameters, queryParameters) {
 /**
  * API Client class
  */
-class {{&className}} {
+class {{&className}} extends EventEmitter {
 
     /**
      * {{&description}}
@@ -31,6 +32,8 @@ class {{&className}} {
      * @param {object} [domainOrOptions.token] - auth token - object with value property and optional headerOrQueryName and isQuery properties
      */
     constructor(options) {
+        super();
+
         let domain = (typeof options === 'object') ? options.domain : options;
         this.domain = domain ? domain : '{{&domain}}';
         if(this.domain.length === 0) {
@@ -62,6 +65,13 @@ class {{&className}} {
      * @param {object} deferred - promise object
      */
     request(method, url, parameters, body, headers, queryParameters, form, deferred){
+        let ev = { proceed: true, data: {} };
+        this.emit('beforeRequest').apply(this, [ev].concat(Array.from(arguments)));
+
+        if(!ev.proceed) {
+            deferred.resolve(ev.data);
+        }
+
         let req = {
             method: method,
             uri: url,
@@ -77,6 +87,7 @@ class {{&className}} {
         }
         fetch(req, function(error, response, body){
             if(error) {
+                this.emit('requestFailure').apply(this, [req].concat(Array.from(arguments)));
                 deferred.reject(error);
             } else {
                 if(/^application\/(.*\\+)?json/.test(response.headers['content-type'])) {
@@ -84,6 +95,11 @@ class {{&className}} {
                         body = JSON.parse(body);
                     } catch(e) {}
                 }
+                this.emit('requestSuccess').apply(this, [ev, body, req].concat(Array.from(arguments)));
+                if(!ev.proceed) {
+                    deferred.resolve(ev.data);
+                }
+
                 if(response.statusCode === 204) {
                     deferred.resolve({ response: response });
                 } else if(response.statusCode >= 200 && response.statusCode <= 299) {
@@ -93,6 +109,8 @@ class {{&className}} {
                 }
             }
         });
+
+        this.emit('afterRequest').apply(this, req);
     }
 
     {{#isSecure}}
