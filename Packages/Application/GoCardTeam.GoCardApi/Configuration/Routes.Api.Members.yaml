@@ -1,0 +1,20 @@
+# Members API Routes
+# Special routes only for the members api endpoint
+
+-
+  name: 'get all members of register'
+  uriPattern: ''
+  defaults:
+    '@action': 'findMembersByRegister'
+  httpMethods: ['GET']
+
+-
+  name: 'update members of register'
+  uriPattern: ''
+  defaults:
+    '@action': 'updateMembersOfRegister'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']

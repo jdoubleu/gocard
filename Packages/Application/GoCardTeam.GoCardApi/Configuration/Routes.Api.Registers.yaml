@@ -1,5 +1,5 @@
 # Registers API Routes
-# Special routes only for the registers api endpoint
+# Special routes only for the registers api endpoint and all sub-routes with their endpoints
 
 -
   name: 'get all registers'
@@ -48,3 +48,19 @@
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
   httpMethods: ['DELETE']
+
+-
+  name: 'member routes'
+  uriPattern: '{register}/members/<MembersSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Members'
+    '@format':     'json'
+  subRoutes:
+    'MembersSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.Members'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'

@@ -21,7 +21,7 @@ class PersistedApiObjectConverter extends PersistentObjectConverter
      *
      * @var array
      */
-    protected $sourceTypes = ['integer'];
+    protected $sourceTypes = ['string', 'array', 'integer'];
 
     /**
      * @var int
@@ -79,6 +79,13 @@ class PersistedApiObjectConverter extends PersistentObjectConverter
     {
         if (is_integer($source)) {
             $source = (string) $source;
+        } elseif (is_array($source)) {
+            $identifierPropertyName = $this->reflectionService->getPropertyNamesByAnnotation($targetType, Flow\Identity::class)[0];
+
+            if (array_key_exists($identifierPropertyName, $source)) {
+                $source['__identity'] = (string) $source[$identifierPropertyName];
+                unset($source[$identifierPropertyName]);
+            }
         }
 
         return parent::convertFrom($source, $targetType, $convertedChildProperties, $configuration);
