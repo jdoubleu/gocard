@@ -111,7 +111,7 @@ class RegistersController extends AbstractApiEndpointController
     }
 
     /**
-     * Updates the given user
+     * Updates the given register
      *
      * @param Register $register
      */
