@@ -11,11 +11,11 @@ export function {{&methodName}}(parameters){
         parameters = {};
     }
     let deferred = Promise.defer();
-    let domain = this.domain,  path = '{{&path}}';
+    let domain = client.domain,  path = '{{&path}}';
     let body = {}, queryParameters = {}, headers = {}, form = {};
 
     {{#isSecure}}
-        headers = this.setAuthHeaders(headers);
+        headers = client.setAuthHeaders(headers);
     {{/isSecure}}
     {{#headers}}
         headers['{{&name}}'] = [{{&value}}];
