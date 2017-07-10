@@ -9,7 +9,7 @@ class New extends React.Component {
     render() {
         return (
             <NewComponent handleSubmit={this.handleSubmit} title={this.state.title}
-                                  description={this.state.description} handleInputChange={this.handleInputChange}
+                          description={this.state.description} handleInputChange={this.handleInputChange}
             />
         );
     }
@@ -39,15 +39,7 @@ class New extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        this.props.dispatch(addRegister({
-                body: {
-                    owner: this.props.user.uid,
-                    crdate: new Date().toISOString(),
-                    title: this.state.title,
-                    description: this.state.description
-                }
-            })
-        )
+        this.props.dispatch(addRegister(this.state.title, this.state.description));
     }
 }
 

@@ -11,6 +11,7 @@ const Bar = ({members, diameter, maxIcons}) => {
     return (
         <span>
             {
+                visibleMembers && collapsedMembers.length > 0 &&
                 visibleMembers.map((member) =>
                     <span>
                         <UserIcon diameter={diameter} id={"ID" + member}>

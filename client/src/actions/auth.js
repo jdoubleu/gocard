@@ -8,27 +8,21 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 function requestLogin() {
     return {
-        type: LOGIN_REQUEST,
-        isFetching: true,
-        isAuthenticated: false
+        type: LOGIN_REQUEST
     }
 }
 
 function receiveLogin(token) {
     return {
         type: LOGIN_SUCCESS,
-        isFetching: false,
-        isAuthenticated: true,
-        token
+        payload: token
     }
 }
 
 function loginError(message) {
     return {
         type: LOGIN_FAILURE,
-        isFetching: false,
-        isAuthenticated: false,
-        message
+        payload: message
     }
 }
 
@@ -38,17 +32,13 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
 function requestLogout() {
     return {
-        type: LOGOUT_REQUEST,
-        isFetching: true,
-        isAuthenticated: true
+        type: LOGOUT_REQUEST
     }
 }
 
 function receiveLogout() {
     return {
-        type: LOGOUT_SUCCESS,
-        isFetching: false,
-        isAuthenticated: false
+        type: LOGOUT_SUCCESS
     }
 }
 
@@ -92,25 +82,21 @@ export const USER_FAILURE = 'USER_FAILURE';
 
 function requestUser() {
     return {
-        type: USER_REQUEST,
-        isFetching: true,
-        user: null,
+        type: USER_REQUEST
     }
 }
 
 function receiveUser(user) {
     return {
         type: USER_SUCCESS,
-        isFetching: false,
-        user
+        payload: user
     }
 }
 
-function userError(err) {
+function userError(message) {
     return {
         type: USER_FAILURE,
-        isFetching: false,
-        message: err
+        payload: message
     }
 }
 
