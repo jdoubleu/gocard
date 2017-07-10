@@ -2,7 +2,7 @@ import React from "react";
 import Headline from "../shared/headline";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 
-const PrivacyPolicy = () => {
+const EULA = () => {
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>
@@ -29,7 +29,7 @@ const PrivacyPolicy = () => {
                         jedoch behalten wir uns vor ihren Account zu löschen falls wir sehen, dass sie Rechtswiedrige Daten
                         über diese Seite verbreiten. Für den verlust von Daten haften wir nicht. Wir probieren unserer möglichstes
                         um den Verlust von Daten zu verhindern.
-                        Weiters zum Thema Datenschutz in dem Bereich Datenschutz
+                        Weiters zum Thema Datenschutz in dem Bereich Datenschutz.
                     </CardText>
 
                     <span><hr/></span>
@@ -45,7 +45,7 @@ const PrivacyPolicy = () => {
                     <CardTitle>Lernen</CardTitle>
                     <CardText className="px-2 text-justify">
                         Wir haften nicht für das von ihnen erziehlte lernergebnis. Wir bieten ihnen nur eine
-                        Umgebung für ihr lernen
+                        Umgebung für ihr lernen.
                     </CardText>
 
                     <span><hr/></span>
@@ -69,4 +69,4 @@ const PrivacyPolicy = () => {
     );
 };
 
-export default PrivacyPolicy;
+export default EULA;
