@@ -56,6 +56,7 @@ class {{&className}} extends EventEmitter {
     /**
      * HTTP Request
      *
+     * @param {string} actionName - api action name
      * @param {string} method - http method
      * @param {string} url - url to do request
      * @param {object} parameters
@@ -65,9 +66,10 @@ class {{&className}} extends EventEmitter {
      * @param {object} form - form data object
      * @param {object} deferred - promise object
      */
-    request(method, url, parameters, body, headers, queryParameters, form, deferred){
+    request(actionName, method, url, parameters, body, headers, queryParameters, form, deferred){
+        let emit = this.emit;
         let ev = { proceed: true, data: {} };
-        this.emit('beforeRequest').apply(this, [ev].concat(Array.from(arguments)));
+        emit.apply(this, ['beforeRequest', actionName, ev].concat(Array.from(arguments)));
 
         if(!ev.proceed) {
             deferred.resolve(ev.data);
@@ -88,7 +90,7 @@ class {{&className}} extends EventEmitter {
         }
         request(req, function(error, response, body){
             if(error) {
-                this.emit('requestFailure').apply(this, [req].concat(Array.from(arguments)));
+                emit.apply(this, ['requestFailure', actionName, req].concat(Array.from(arguments)));
                 deferred.reject(error);
             } else {
                 if(/^application\/(.*\\+)?json/.test(response.headers['content-type'])) {
@@ -96,7 +98,7 @@ class {{&className}} extends EventEmitter {
                         body = JSON.parse(body);
                     } catch(e) {}
                 }
-                this.emit('requestSuccess').apply(this, [ev, body, req].concat(Array.from(arguments)));
+                emit.apply(this, ['requestSuccess', actionName, ev, body, req].concat(Array.from(arguments)));
                 if(!ev.proceed) {
                     deferred.resolve(ev.data);
                 }
@@ -111,7 +113,7 @@ class {{&className}} extends EventEmitter {
             }
         });
 
-        this.emit('afterRequest').apply(this, req);
+        emit.apply(this, ['afterRequest', actionName, req]);
     }
 
     {{#isSecure}}
