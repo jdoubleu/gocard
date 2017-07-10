@@ -17,7 +17,7 @@ const Dashboard = ({registers}) => {
                 {
                     registers &&
                     registers.map((register) =>
-                        <Preview register={register}/>
+                        <Preview register={register} key={register.uid}/>
                     )
                 }
             </Row>
