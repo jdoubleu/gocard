@@ -47,6 +47,7 @@ class ApiClient extends EventEmitter {
     /**
      * HTTP Request
      *
+     * @param {string} actionName - api action name
      * @param {string} method - http method
      * @param {string} url - url to do request
      * @param {object} parameters
@@ -56,12 +57,13 @@ class ApiClient extends EventEmitter {
      * @param {object} form - form data object
      * @param {object} deferred - promise object
      */
-    request(method, url, parameters, body, headers, queryParameters, form, deferred) {
+    request(actionName, method, url, parameters, body, headers, queryParameters, form, deferred) {
+        let emit = this.emit;
         let ev = {
             proceed: true,
             data: {}
         };
-        this.emit('beforeRequest').apply(this, [ev].concat(Array.from(arguments)));
+        emit.apply(this, ['beforeRequest', actionName, ev].concat(Array.from(arguments)));
 
         if (!ev.proceed) {
             deferred.resolve(ev.data);
@@ -82,7 +84,7 @@ class ApiClient extends EventEmitter {
         }
         request(req, function(error, response, body) {
             if (error) {
-                this.emit('requestFailure').apply(this, [req].concat(Array.from(arguments)));
+                emit.apply(this, ['requestFailure', actionName, req].concat(Array.from(arguments)));
                 deferred.reject(error);
             } else {
                 if (/^application\/(.*\\+)?json/.test(response.headers['content-type'])) {
@@ -90,7 +92,7 @@ class ApiClient extends EventEmitter {
                         body = JSON.parse(body);
                     } catch (e) {}
                 }
-                this.emit('requestSuccess').apply(this, [ev, body, req].concat(Array.from(arguments)));
+                emit.apply(this, ['requestSuccess', actionName, ev, body, req].concat(Array.from(arguments)));
                 if (!ev.proceed) {
                     deferred.resolve(ev.data);
                 }
@@ -113,7 +115,7 @@ class ApiClient extends EventEmitter {
             }
         });
 
-        this.emit('afterRequest').apply(this, req);
+        emit.apply(this, ['afterRequest', actionName, req]);
     }
 
     /**
@@ -274,7 +276,7 @@ export function findAllRegisters(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findAllRegisters', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -313,7 +315,7 @@ export function addRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('addRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -349,7 +351,7 @@ export function findByRegisterById(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findByRegisterById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -396,7 +398,7 @@ export function updateRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -432,7 +434,7 @@ export function deleteRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('deleteRegister', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -468,7 +470,7 @@ export function findByCardsByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findByCardsByRegister', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -514,7 +516,7 @@ export function addCardsToRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('addCardsToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -550,7 +552,7 @@ export function findMembersByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findMembersByRegister', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -596,7 +598,7 @@ export function updateMembersOfRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateMembersOfRegister', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -642,7 +644,7 @@ export function addMembersToRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('addMembersToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -688,7 +690,7 @@ export function getMemberByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getMemberByRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -732,7 +734,7 @@ export function deleteMemberOfRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('deleteMemberOfRegister', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -768,7 +770,7 @@ export function getRegisterActivities(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getRegisterActivities', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -814,7 +816,7 @@ export function createRegisterActivityOfUserForRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('createRegisterActivityOfUserForRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -858,7 +860,7 @@ export function getRegisterActivitiesForUser(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getRegisterActivitiesForUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -896,7 +898,7 @@ export function updateCards(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -932,7 +934,7 @@ export function getCard(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getCard', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -968,7 +970,7 @@ export function updateCard(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateCard', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1004,7 +1006,7 @@ export function deleteCard(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('deleteCard', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1040,7 +1042,7 @@ export function addUser(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('addUser', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1086,7 +1088,7 @@ export function loginUser(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('loginUser', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1114,7 +1116,7 @@ export function logoutUser(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('logoutUser', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1153,7 +1155,7 @@ export function getUserById(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getUserById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1199,7 +1201,7 @@ export function updateUser(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateUser', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1238,7 +1240,7 @@ export function deleteUser(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('deleteUser', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1279,7 +1281,7 @@ export function getUserByEmail(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getUserByEmail', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1317,7 +1319,7 @@ export function requestPasswordReset(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('requestPasswordReset', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1368,7 +1370,7 @@ export function updatePassword(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updatePassword', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
