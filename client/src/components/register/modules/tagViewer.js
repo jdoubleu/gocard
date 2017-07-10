@@ -1,65 +1,30 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {Button} from "reactstrap";
-import _ from "lodash";
 
-class TagViewer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedTags: this.props.tags.slice(0)
-        };
 
-        this.handleSelect = this.handleSelect.bind(this);
-        this.getTagView = this.getTagView.bind(this);
-    }
-
-    handleSelect(tag) {
-        let index = this.state.selectedTags.indexOf(tag);
-        if (index < 0) {
-            this.setState({
-                selectedTags: this.state.selectedTags.concat(tag)
-            });
-        } else {
-            let selectedTags = this.state.selectedTags;
-            _.pull(selectedTags, tag);
-            this.setState({selectedTags});
-        }
-    }
-
-    getTagView() {
-        if (this.props.tags.length > 0) {
-            return (
-                <div>
-                    {
-                        this.props.tags.map((tag) =>
-                            <Button outline size="sm" className="mr-1" onClick={() => this.handleSelect(tag)}
-                                    color={this.state.selectedTags.includes(tag) ? 'primary' : 'secondary'}>{tag} {this.state.selectedTags.includes(tag) ? '\u2714' : ''}</Button>
-                        )
-                    }
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <p>
-                        Keine Tags vorhanden.
-                    </p>
-                </div>
-            );
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                {this.getTagView()}
-            </div>
-        );
-    }
-}
-
-TagViewer.defaultProps = {
-    tags: ["tags", "of", "all", "cards"]
+const tagViewer = ({tags, handleSelect, selectedTags}) => {
+    return (
+        <div>
+            {tags &&
+                this.props.tags.map((tag) =>
+                    <Button outline size="sm" className="mr-1" onClick={() => handleSelect(tag)}
+                            color={selectedTags.includes(tag) ? 'primary' : 'secondary'}>{tag} {selectedTags.includes(tag) ? '\u2714' : ''}</Button>
+                )
+            }
+            {!tags &&
+                <p>
+                    Keine Tags vorhanden.
+                </p>
+            }
+        </div>
+    );
 };
 
-export default TagViewer;
+tagViewer.propTypes = {
+    tags: PropTypes.array.isRequired,
+    selectedTags: PropTypes.array.isRequired,
+    handleSelect: PropTypes.func.isRequired,
+};
+
+export default tagViewer;
