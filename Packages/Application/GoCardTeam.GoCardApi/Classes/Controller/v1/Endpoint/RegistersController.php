@@ -113,8 +113,6 @@ class RegistersController extends AbstractApiEndpointController
     /**
      * Updates the given user
      *
-     * @Flow\SkipCsrfProtection
-     *
      * @param Register $register
      */
     public function updateRegisterAction(Register $register)
@@ -124,8 +122,6 @@ class RegistersController extends AbstractApiEndpointController
 
     /**
      * Deletes a register
-     *
-     * @Flow\SkipCsrfProtection
      *
      * @param Register $register
      */

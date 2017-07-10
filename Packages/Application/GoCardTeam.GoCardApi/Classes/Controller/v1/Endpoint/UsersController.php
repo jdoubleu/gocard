@@ -120,8 +120,6 @@ class UsersController extends AbstractApiEndpointController
     /**
      * Updates the given user
      *
-     * @Flow\SkipCsrfProtection
-     *
      * @param User $user updated user data from body
      */
     public function updateUserAction(User $user)
@@ -131,8 +129,6 @@ class UsersController extends AbstractApiEndpointController
 
     /**
      * Deletes a user
-     *
-     * @Flow\SkipCsrfProtection
      *
      * @param User $user user to be deleted
      */
