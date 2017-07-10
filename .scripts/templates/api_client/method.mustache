@@ -16,6 +16,7 @@ export function {{&methodName}}(parameters){
 
     {{#isSecure}}
         headers = client.setAuthHeaders(headers);
+        queryParameters = client.setAuthQueryParams(queryParameters);
     {{/isSecure}}
     {{#headers}}
         headers['{{&name}}'] = [{{&value}}];

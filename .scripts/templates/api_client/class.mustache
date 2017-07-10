@@ -182,6 +182,26 @@ class {{&className}} extends EventEmitter {
         {{/isSecureBasic}}
             return headers;
         }
+
+        /**
+         * Set Auth query parameters
+         *
+         * @param {object} queryParams - query object
+         */
+        setAuthQueryParams(queryParams) {
+            let query = queryParams ? queryParams : {};
+        {{#isSecureToken}}
+            if (this.token.isQuery && this.token.headerOrQueryName) {
+                query[this.token.headerOrQueryName] = this.token.value;
+            }
+        {{/isSecureToken}}
+        {{#isSecureApiKey}}
+            if (this.apiKey.isQuery && this.apiKey.headerOrQueryName) {
+                query[this.apiKey.headerOrQueryName] = this.apiKey.value;
+            }
+        {{/isSecureApiKey}}
+            return query;
+        }
     {{/isSecure}}
 }
 
