@@ -1,9 +1,10 @@
 import React from "react";
 import Headline from "../components/shared/headline";
 import BlankCard from "./register/modules/blankCard";
-import PreviewCard from "./register/modules/previewCard";
+import Preview from "./register/preview";
 import {Row} from "reactstrap";
 import PropTypes from "prop-types";
+import _ from "lodash";
 
 const Dashboard = ({registers}) => {
     return (
@@ -16,8 +17,8 @@ const Dashboard = ({registers}) => {
                 <BlankCard />
                 {
                     registers &&
-                    registers.map((register) =>
-                        <PreviewCard register={register}/>
+                    _.toArray(registers).map((register) =>
+                        <Preview register={register}/>
                     )
                 }
             </Row>
@@ -26,7 +27,7 @@ const Dashboard = ({registers}) => {
 };
 
 Dashboard.propTypes = {
-    registers: PropTypes.array.isRequired
+    registers: PropTypes.object.isRequired
 };
 
 export default Dashboard;

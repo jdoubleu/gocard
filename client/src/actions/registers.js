@@ -1,4 +1,5 @@
 import API from "../lib/ApiClient";
+import moment from "moment";
 
 const apiConnection = new API.ApiClient("http://localhost/api/v1");
 
@@ -33,12 +34,13 @@ function registersFailure(err) {
 export function getRegisters() {
     return (dispatch, getState) => {
         dispatch(registersRequest());
-        apiConnection.findAllRegisters({$queryParameters: {access_token: getState().auth.token.access_token}})
-            .then(
-                response => {
-                    dispatch(registersSuccess(response.body));
-                }
-            ).catch(err => {
+        apiConnection.findAllRegisters({
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(
+            response => {
+                dispatch(registersSuccess(response.body));
+            }
+        ).catch(err => {
                 dispatch(registersFailure(err));
             }
         );
@@ -76,23 +78,24 @@ function addRegisterFailure(err) {
     }
 }
 
-export function addRegister(registerData) {
+export function addRegister(title, description) {
     return (dispatch, getState) => {
         dispatch(addRegisterRequest());
-        console.log("register data: ", registerData);
-        apiConnection.addRegister(
-            registerData,
-            {$queryParameters: {access_token: getState().auth.token.access_token}}
-        )
-            .then(response => {
-                console.log("Success");
-                console.log(response);
-                dispatch(addRegisterSuccess(response));
-            })
-            .catch(err => {
-                console.log("Error: ", err);
-                dispatch(addRegisterFailure(err));
-            })
+        apiConnection.addRegister({
+            body: {
+                title,
+                description,
+                owner: getState().auth.user.uid,
+                crdate: moment().format(),
+            },
+            $queryParameters: {access_token: getState().auth.token.access_token}
+        }).then(response => {
+            console.log(response);
+            dispatch(addRegisterSuccess(response));
+        }).catch(err => {
+            console.log("Error: ", err);
+            dispatch(addRegisterFailure(err));
+        })
     }
 }
 

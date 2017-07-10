@@ -29,7 +29,7 @@ function auth(state = initialState, action) {
                 ...state,
                 isFetching: false,
                 isAuthenticated: true,
-                token: action.token,
+                token: action.payload,
                 errorMessage: null
             };
         case LOGIN_FAILURE:
@@ -37,7 +37,7 @@ function auth(state = initialState, action) {
                 ...state,
                 isFetching: false,
                 isAuthenticated: false,
-                errorMessage: action.message
+                errorMessage: action.payload
             };
         case LOGOUT_REQUEST:
             return {
@@ -60,14 +60,14 @@ function auth(state = initialState, action) {
                 isFetching: false,
                 user: {
                     ...state.user,
-                    ...action.user
+                    ...action.payload
                 }
             };
         case USER_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                errorMessage: action.message
+                errorMessage: action.payload
             };
         default:
             return state;
