@@ -3,10 +3,11 @@ import {
     CARDS_SUCCESS,
     CARDS_FAILURE
 } from "../actions/cards";
+import _ from "lodash";
 
 const initialState = {
     isFetching: false,
-    cards: []
+    cards: {}
 };
 
 function cards(state = initialState, action) {
@@ -17,10 +18,14 @@ function cards(state = initialState, action) {
                 isFetching: true,
             };
         case CARDS_SUCCESS:
+            let newCards = state.cards || {};
+            newCards[action.registerId] = [
+                ...action.cards
+            ];
             return {
                 ...state,
                 isFetching: false,
-                cards: [...state.cards, action.cards]
+                cards: newCards
             };
         case CARDS_FAILURE:
             return {

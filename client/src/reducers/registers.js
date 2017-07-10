@@ -5,21 +5,20 @@ import {
     REGISTERS_FAILURE,
     REGISTERS_REQUEST,
     REGISTERS_SUCCESS,
-    MEMBERS_SUCCESS,
-    MEMBERS_REQUEST,
-    MEMBERS_FAILURE
+    STORE_SELECTEDTAGS
 } from "../actions/registers";
+import _ from "lodash";
 
 const initialState = {
     isFetching: false,
-    registers: []
+    registers: {},
+    selectedTags: {}
 };
 
 function registers(state = initialState, action) {
     switch (action.type) {
         case REGISTERS_REQUEST:
         case ADD_REGISTER_REQUEST:
-        case MEMBERS_REQUEST:
             return {
                 ...state,
                 isFetching: true,
@@ -28,11 +27,13 @@ function registers(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                registers: action.registers
+                registers: {
+                    ...state.registers,
+                    ..._.keyBy({...action.registers}, 'uid')
+                }
             };
         case REGISTERS_FAILURE:
         case ADD_REGISTER_FAILURE:
-        case MEMBERS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
@@ -42,13 +43,19 @@ function registers(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                registers: state.registers.registers.concat([action.register])
+                registers: {
+                    ...state.registers,
+                    ..._.keyBy({...action.register}, action.register.uid)
+                }
             };
-        case MEMBERS_SUCCESS:
+        case STORE_SELECTEDTAGS:
+            let newTags = state.selectedTags || {};
+            newTags[action.registerId] = [
+                ...action.selectedTags
+            ];
             return {
                 ...state,
-                isFetching: false,
-                users: [...state.users, action.users]
+                selectedTags: newTags
             };
         default:
             return state;

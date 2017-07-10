@@ -101,42 +101,18 @@ export function addRegister(title, description) {
 
 ///----Get Members
 //User actions
-export const MEMBERS_REQUEST = 'MEMBERS_REQUEST';
-export const MEMBERS_SUCCESS = 'MEMBERS_SUCCESS';
-export const MEMBERS_FAILURE = 'MEMBERS_FAILURE';
+export const STORE_SELECTEDTAGS = 'STORE_SELECTEDTAGS';
 
-function membersRequest() {
+function strSelectedTags(registerId, selectedTags) {
     return {
-        type: MEMBERS_REQUEST,
-        isFetching: true,
+        type: STORE_SELECTEDTAGS,
+        registerId,
+        selectedTags
     }
 }
 
-function membersSuccess(users, registerId) {
-    return {
-        type: MEMBERS_SUCCESS,
-        isFetching: false,
-        members: {registerId: registerId, members: users}
-    }
-}
-
-function membersFailure(err) {
-    return {
-        type: MEMBERS_FAILURE,
-        isFetching: false,
-        errorMessage: err
-    }
-}
-
-export function getMembers(registerId) {
+export function storeSelectedTags(registerId, selectedTags) {
     return (dispatch, getState) => {
-        dispatch(membersRequest());
-        apiConnection.findMembersByRegister({registerId: registerId, $queryParameters: {access_token: getState().auth.token.access_token}})
-            .then(response => {
-                membersSuccess(response.body)
-            }).catch(err => {
-            membersFailure(err)
-        });
-
+        dispatch(strSelectedTags(registerId, selectedTags));
     }
 }

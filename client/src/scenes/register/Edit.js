@@ -1,7 +1,6 @@
 import React from "react";
 import Headline from "../../components/shared/headline";
 import {Button, Card, Col, Form, Row} from "reactstrap";
-import RegisterForm from "../../components/register/modules/form";
 
 class Edit extends React.Component {
     render() {
@@ -14,7 +13,6 @@ class Edit extends React.Component {
 
                     <Card block>
                         <Form>
-                            <RegisterForm />
                             <Row>
                                 <Col>
                                     <Button outline block color="danger">Abbrechen</Button>

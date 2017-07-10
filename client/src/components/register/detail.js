@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 import {Link} from "react-router-dom";
 import MemberBar from "./member/bar";
-import TagViewer from "./modules/tagViewer";
+import TagViewer from "../../containers/register/modules/TagViewer";
 import Statistic from "../shared/statistics/statistic";
 import BlankPreviewCard from "../cards/blankPreviewCard";
 import PreviewCard from "../cards/previewCard";
@@ -49,7 +49,7 @@ const detail = ({handleSubmit, register, members, mode, cards, modeSelected}) =>
                     <Form>
                         <FormGroup>
                             <Label for="tags" id="labelTags">Tags</Label>
-                            <TagViewer/>
+                            <TagViewer cards={cards} registerId={register.uid}/>
                         </FormGroup>
                         <FormGroup>
                             <Label for="mode" id="labelLernmodus" width="80px">Lernmodus</Label>
@@ -92,7 +92,8 @@ const detail = ({handleSubmit, register, members, mode, cards, modeSelected}) =>
             </Row>
             <CardDeck>
                 <BlankPreviewCard/>
-                {cards &&
+                {
+                    cards &&
                     cards.map((card) =>
                         <PreviewCard card={card}/>
                     )

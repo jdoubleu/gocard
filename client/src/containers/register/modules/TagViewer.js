@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import _ from "lodash";
 import TagViewerComponent from "../../../components/register/modules/tagViewer";
+import {storeSelectedTags} from "../../../actions/registers";
 
 class TagViewer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tags: [],
-            selectedTags: this.state.tags.slice(0)
+            tags: this.calculatedTags(),
+            selectedTags: this.calculatedSelectedTags()
         };
 
         this.handleSelect = this.handleSelect.bind(this);
         this.calculatedTags = this.calculatedTags.bind(this);
-
-    }
-    componentWillMount(){
-        this.calculatedTags();
+        this.calculatedSelectedTags = this.calculatedSelectedTags.bind(this);
     }
 
     calculatedTags(){
@@ -26,9 +24,19 @@ class TagViewer extends React.Component {
             tags = _.concat(tags, card.tags)
         });
         tags = _.uniq(tags);
-        this.setState({
-           tags
-        });
+        if(tags === undefined){
+            return [];
+        } else {
+            return tags;
+        }
+    }
+
+    calculatedSelectedTags(){
+        if(!!this.props.selectedTags && this.props.selectedTags.length > 0 ){
+            return this.props.selectedTags;
+        } else {
+            return this.calculatedTags().slice(0);
+        }
     }
 
     handleSelect(tag) {
@@ -37,17 +45,21 @@ class TagViewer extends React.Component {
             this.setState({
                 selectedTags: this.state.selectedTags.concat(tag)
             });
+            console.log("In",this.props.registerId);
+            this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
         } else {
             let selectedTags = this.state.selectedTags;
             _.pull(selectedTags, tag);
             this.setState({selectedTags});
+            console.log("Out",this.state.selectedTags);
+            this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
         }
     }
 
     render() {
         return (
             <div>
-                <TagViewerComponent tags={this.state.tags} selectedTags={this.state.selectedTags} handleSelect={this.handleSelect}/>
+                <TagViewerComponent tags={["OOP2","Netze","Mathe3","Bibbers"]} selectedTags={this.state.selectedTags} handleSelect={this.handleSelect}/>
             </div>
         );
     }
@@ -56,13 +68,14 @@ class TagViewer extends React.Component {
 
 
 TagViewer.propTypes = {
-    cards: PropTypes.array.isRequired
+    cards: PropTypes.array.isRequired,
+    registerId: PropTypes.number.isRequired
 };
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
-        user: state.auth.user,
+        selectedTags: state.registers.selectedTags[ownProps.registerId]
     }
 }
 

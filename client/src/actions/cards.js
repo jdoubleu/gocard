@@ -18,7 +18,8 @@ function cardsSuccess(cards, registerId) {
     return {
         type: CARDS_SUCCESS,
         isFetching: false,
-        cards: {registerId: registerId, cards: cards}
+        registerId,
+        cards
     }
 }
 
@@ -30,7 +31,7 @@ function cardsFailure(err) {
     }
 }
 
-export function getCards(registerId) {
+export function loadCards(registerId) {
     return (dispatch, getState) => {
         dispatch(cardsRequest());
         apiConnection.findByCardsByRegister({registerId: registerId, $queryParameters: {access_token: getState().auth.token.access_token}})

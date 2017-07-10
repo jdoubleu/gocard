@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, CardTitle, Col, Row} from "reactstrap";
-import Statistic from "../../modules/shared/statistic";
+import Statistic from "../shared/statistics/statistic";
 import MemberBar from "./member/bar";
 
 const Preview = ({register}) => {

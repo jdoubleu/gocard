@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import DetailComponent from "../../components/register/detail";
-import {addRegister} from "../../actions/registers";
-
+import {withRouter} from "react-router-dom";
+import {loadMembers} from "../../actions/users";
+import {loadCards} from "../../actions/cards";
+import _ from "lodash";
 
 class Detail extends React.Component {
     render() {
         return (
-            <DetailComponent cards="" mode={this.state.mode} members="" register="" handleSubmit={this.handleSubmit} modeSelected={this.modeSelected()}/>
+            <DetailComponent cards={this.props.cards} mode={this.state.mode} members={this.props.members} register={this.props.register} handleSubmit={this.handleSubmit} modeSelected={this.modeSelected}/>
         );
     }
 
@@ -19,8 +21,8 @@ class Detail extends React.Component {
     }
 
     componentWillMount(){
-    //this.props.dispatch(getCards);
-    //this.props.dispatch(getMembers);
+        this.props.dispatch(loadMembers(this.props.match.params.id));
+        this.props.dispatch(loadCards(this.props.match.params.id));
     }
 
     constructor(props) {
@@ -28,7 +30,8 @@ class Detail extends React.Component {
 
         this.state = {
             mode: 1,
-            description: ""
+            description: "",
+            register: {}
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,15 +56,16 @@ class Detail extends React.Component {
 
 Detail.propTypes = {
     user: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
+        register: state.registers.registers[ownProps.match.params.id],
+        members: state.users.members[ownProps.match.params.id],
         user: state.auth.user,
-        register: state.auth.user,
-        isFetching: state.auth.isFetching
+        users: state.users,
+        cards: state.cards.cards[ownProps.match.params.id]
     }
 }
 
-export default connect(mapStateToProps)(Detail);
+export default withRouter(connect(mapStateToProps)(Detail));
