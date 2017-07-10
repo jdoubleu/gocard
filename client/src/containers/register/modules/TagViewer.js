@@ -44,15 +44,15 @@ class TagViewer extends React.Component {
         if (index < 0) {
             this.setState({
                 selectedTags: this.state.selectedTags.concat(tag)
+            }, function(){
+                this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
             });
-            console.log("In",this.props.registerId);
-            this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
         } else {
             let selectedTags = this.state.selectedTags;
             _.pull(selectedTags, tag);
-            this.setState({selectedTags});
-            console.log("Out",this.state.selectedTags);
-            this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
+            this.setState({selectedTags}, function(){
+                this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
+            });
         }
     }
 
