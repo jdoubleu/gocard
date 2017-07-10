@@ -1,7 +1,7 @@
 import React from "react";
 import Headline from "../components/shared/headline";
 import BlankCard from "../modules/registers/blankCard";
-import PreviewCard from "../modules/registers/previewCard";
+import Preview from "./register/preview";
 import {Row} from "reactstrap";
 import PropTypes from "prop-types";
 
@@ -17,7 +17,7 @@ const Dashboard = ({registers}) => {
                 {
                     registers &&
                     registers.map((register) =>
-                        <PreviewCard register={register}/>
+                        <Preview register={register}/>
                     )
                 }
             </Row>
