@@ -3,7 +3,8 @@
  * API Client
  */
 
-import fetch from 'fetch';
+import request from 'request';
+import Q from 'q';
 import EventEmitter from 'events';
 
 /*
@@ -85,7 +86,7 @@ class {{&className}} extends EventEmitter {
         if(typeof(body) === 'object' && !(body instanceof Buffer)) {
             req.json = true;
         }
-        fetch(req, function(error, response, body){
+        request(req, function(error, response, body){
             if(error) {
                 this.emit('requestFailure').apply(this, [req].concat(Array.from(arguments)));
                 deferred.reject(error);

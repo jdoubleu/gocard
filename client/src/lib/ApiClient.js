@@ -4,7 +4,8 @@
  * API Client
  */
 
-import fetch from 'fetch';
+import request from 'request';
+import Q from 'q';
 import EventEmitter from 'events';
 
 /*
@@ -79,7 +80,7 @@ class ApiClient extends EventEmitter {
         if (typeof(body) === 'object' && !(body instanceof Buffer)) {
             req.json = true;
         }
-        fetch(req, function(error, response, body) {
+        request(req, function(error, response, body) {
             if (error) {
                 this.emit('requestFailure').apply(this, [req].concat(Array.from(arguments)));
                 deferred.reject(error);
@@ -258,7 +259,7 @@ export function findAllRegisters(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers';
     let body = {},
@@ -288,7 +289,7 @@ export function addRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers';
     let body = {},
@@ -327,7 +328,7 @@ export function findByRegisterById(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}';
     let body = {},
@@ -364,7 +365,7 @@ export function updateRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}';
     let body = {},
@@ -410,7 +411,7 @@ export function deleteRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}';
     let body = {},
@@ -446,7 +447,7 @@ export function findByCardsByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/cards/';
     let body = {},
@@ -483,7 +484,7 @@ export function addCardsToRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/cards/';
     let body = {},
@@ -528,7 +529,7 @@ export function findMembersByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/members/';
     let body = {},
@@ -565,7 +566,7 @@ export function updateMembersOfRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/members/';
     let body = {},
@@ -611,7 +612,7 @@ export function addMembersToRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/members/';
     let body = {},
@@ -657,7 +658,7 @@ export function getMemberByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/members/{memberId}';
     let body = {},
@@ -703,7 +704,7 @@ export function deleteMemberOfRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/members/{memberId}';
     let body = {},
@@ -746,7 +747,7 @@ export function getRegisterActivities(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/activities/';
     let body = {},
@@ -783,7 +784,7 @@ export function createRegisterActivityOfUserForRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/activities/';
     let body = {},
@@ -829,7 +830,7 @@ export function getRegisterActivitiesForUser(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/registers/{registerId}/activities/{userId}';
     let body = {},
@@ -872,7 +873,7 @@ export function updateCards(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/cards/';
     let body = {},
@@ -910,7 +911,7 @@ export function getCard(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/cards/{cardId}';
     let body = {},
@@ -946,7 +947,7 @@ export function updateCard(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/cards/{cardId}';
     let body = {},
@@ -982,7 +983,7 @@ export function deleteCard(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/cards/{cardId}';
     let body = {},
@@ -1018,7 +1019,7 @@ export function addUser(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users';
     let body = {},
@@ -1055,7 +1056,7 @@ export function loginUser(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/login';
     let body = {},
@@ -1099,7 +1100,7 @@ export function logoutUser(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/logout';
     let body = {},
@@ -1131,7 +1132,7 @@ export function getUserById(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/{userId}';
     let body = {},
@@ -1168,7 +1169,7 @@ export function updateUser(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/{userId}';
     let body = {},
@@ -1216,7 +1217,7 @@ export function deleteUser(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/{userId}';
     let body = {},
@@ -1255,7 +1256,7 @@ export function getUserByEmail(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/findByEmail';
     let body = {},
@@ -1295,7 +1296,7 @@ export function requestPasswordReset(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/passwordReset';
     let body = {},
@@ -1335,7 +1336,7 @@ export function updatePassword(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,
         path = '/users/password';
     let body = {},

@@ -10,7 +10,7 @@ export function {{&methodName}}(parameters){
     if(parameters === undefined) {
         parameters = {};
     }
-    let deferred = Promise.defer();
+    let deferred = Q.defer();
     let domain = client.domain,  path = '{{&path}}';
     let body = {}, queryParameters = {}, headers = {}, form = {};
 
