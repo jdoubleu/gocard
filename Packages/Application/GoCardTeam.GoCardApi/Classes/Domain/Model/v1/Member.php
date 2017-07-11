@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @Flow\Entity
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="user_register", columns={"user","register"})})
  */
 class Member
 {
