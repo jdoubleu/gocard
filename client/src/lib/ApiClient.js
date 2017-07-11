@@ -207,7 +207,7 @@ const Models = {
      * Member
      */
     Member: {
-        'userid': 'number',
+        'user': 'number',
         'scope': 'array',
     },
 

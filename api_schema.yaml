@@ -1087,7 +1087,7 @@ definitions:
   Member:
     type: object
     properties:
-      userid:
+      user:
         type: integer
         format: int64
         description: ID of the user
@@ -1101,7 +1101,7 @@ definitions:
             - update
         uniqueItems: true
     required:
-      - userid
+      - user
       - scope
   RegisterActivity:
     type: object
