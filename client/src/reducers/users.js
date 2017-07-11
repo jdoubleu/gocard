@@ -46,7 +46,7 @@ function users(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                selectedMembers: newMembers
+                members: newMembers
             };
         default:
             return state;
