@@ -1292,6 +1292,42 @@ export function deleteUser(parameters) {
 }
 
 /**
+ * Returns all member objects of a given user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.userId - ID of the user
+ */
+export function getMembersByUser(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/users/{userId}/memberships';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{userId}', parameters['userId']);
+
+    if (parameters['userId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: userId'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('getMembersByUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Returns user data of the local user with the given email address.
 
 This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
