@@ -19,6 +19,11 @@ import {
 import "./topBar.css";
 
 const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
+    const handleLogout = (event) => {
+        event.preventDefault();
+        onLogout();
+    };
+
     return (
         <Container className="top-bar">
             <Navbar light toggleable>
@@ -29,7 +34,7 @@ const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onT
                 {
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
-                        <span className="navbar-text ml-auto">
+                        <span className="navbar-text mx-auto">
                             <Route component={Breadcrumb}/>
                         </span>
                         {
@@ -51,7 +56,7 @@ const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onT
                                             <NavLink to="/settings">Einstellungen</NavLink>
                                         </DropdownItem>
                                         <DropdownItem divider/>
-                                        <DropdownItem onClick={() => onLogout()}>
+                                        <DropdownItem onClick={handleLogout}>
                                             <a href="">Logout</a>
                                         </DropdownItem>
                                     </DropdownMenu>

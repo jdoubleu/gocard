@@ -1,19 +1,19 @@
 import {
+    LOAD_CURRENT_USER_SUCCESS,
+    LOAD_CURRENT_USER_FAILURE,
     LOGIN_FAILURE,
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
+    LOGOUT_FAILURE,
     LOGOUT_REQUEST,
-    LOGOUT_SUCCESS,
-    USER_FAILURE,
-    USER_REQUEST,
-    USER_SUCCESS
+    LOGOUT_SUCCESS
 } from "../actions/auth";
 
 const initialState = {
     isFetching: false,
     isAuthenticated: false,
     token: {},
-    user: {}
+    userId: null
 };
 
 function auth(state = initialState, action) {
@@ -22,52 +22,48 @@ function auth(state = initialState, action) {
             return {
                 ...state,
                 isFetching: true,
-                isAuthenticated: false
+                isAuthenticated: false,
+                error: null
             };
         case LOGIN_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                isAuthenticated: true,
-                token: action.payload,
-                errorMessage: null
+                isAuthenticated: false,
+                token: action.response,
+                error: null
             };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 isFetching: false,
                 isAuthenticated: false,
-                errorMessage: action.payload
+                error: action.error
             };
         case LOGOUT_REQUEST:
             return {
                 ...state,
-                isFetching: true,
-                isAuthenticated: false
+                isFetching: true
             };
         case LOGOUT_SUCCESS:
             return {
                 ...initialState
             };
-        case USER_REQUEST:
+        case LOGOUT_FAILURE:
             return {
-                ...state,
-                isFetching: true,
+                ...initialState,
+                error: action.error
             };
-        case USER_SUCCESS:
+        case LOAD_CURRENT_USER_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
-                user: {
-                    ...state.user,
-                    ...action.payload
-                }
+                isAuthenticated: true,
+                userId: action.response.uid
             };
-        case USER_FAILURE:
+        case LOAD_CURRENT_USER_FAILURE:
             return {
-                ...state,
-                isFetching: false,
-                errorMessage: action.payload
+                ...initialState,
+                message: action.error
             };
         default:
             return state;

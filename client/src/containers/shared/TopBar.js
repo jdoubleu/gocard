@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import {logoutUser} from "../../actions/auth";
+import {getUserById} from "../../actions/user";
+
 import TopBarComponent from "../../components/shared/topBar/index";
 
 class TopBar extends React.Component {
@@ -18,6 +20,11 @@ class TopBar extends React.Component {
         this.onToggleUserDropDown = this.onToggleUserDropDown.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.isAuthenticated)
+            this.props.dispatch(getUserById(this.props.userId))
+    }
+
     onToggleTopBarDropDown() {
         this.setState({
             dropDownTopBar: !this.state.dropDownTopBar
@@ -29,7 +36,6 @@ class TopBar extends React.Component {
             dropDownUser: !this.state.dropDownUser
         });
     }
-
 
     render() {
         const {dispatch, isAuthenticated, user} = this.props;
@@ -57,7 +63,8 @@ TopBar.propTypes = {
 function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        user: state.auth.user
+        userId: state.auth.userId,
+        user: state.user.items[state.auth.userId] || {}
     }
 }
 

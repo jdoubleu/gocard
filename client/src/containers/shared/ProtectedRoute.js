@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import InitialDialog from "../../containers/account/InitialDialog";
 
-const ProtectedRoute = ({component: Component, isAuthenticated, ...rest, userStatus}) => (
+const ProtectedRoute = ({component: Component, isAuthenticated, user, ...rest}) => (
     <Route {...rest} render={props => (
         isAuthenticated ? (
-            userStatus === "verified" ? (
+            user.status === "verified" ? (
                 <InitialDialog {...props}/>
             ) : (
                 <Component {...props}/>
@@ -23,13 +23,14 @@ const ProtectedRoute = ({component: Component, isAuthenticated, ...rest, userSta
 
 ProtectedRoute.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    user: PropTypes.object
 };
 
 function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        userStatus: state.auth.user.status
+        user: state.user.items[state.auth.userId] || {}
     }
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import RegistrationComponent from "../../components/account/registration";
-import {addUser} from "../../actions/registration";
+import {addUser} from "../../actions/user";
 
 class Registration extends React.Component {
     constructor(props) {
@@ -37,12 +37,10 @@ class Registration extends React.Component {
         const {dispatch} = this.props;
         if (this.state.validEmail && this.state.validPassword) {
             dispatch(addUser({
-                body: {
-                    "email": this.state.email,
-                    "password": this.state.password,
-                    "displayName": "",
-                    "status": "new"
-                }
+                "email": this.state.email,
+                "password": this.state.password,
+                "displayName": "",
+                "status": "new"
             }))
         }
     }
@@ -72,21 +70,22 @@ class Registration extends React.Component {
             <RegistrationComponent validateEmail={this.validateEmail} handleSubmit={this.handleSubmit}
                                    updatePassword={this.updatePassword} updatePasswordRepeat={this.updatePasswordRepeat}
                                    isRegistrationFetching={false}
-                                   validEmail={this.state.validEmail} validPassword={this.state.validPassword}/>
+                                   validEmail={this.state.validEmail} validPassword={this.state.validPassword}
+            />
         )
     }
 }
 
 Registration.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
+    error: PropTypes.string,
     isFetching: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        errorMessage: state.auth.errorMessage,
-        isFetching: state.registration.isFetching
+        errorMessage: state.auth.error,
+        isFetching: state.auth.isFetching
     }
 }
 

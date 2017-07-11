@@ -1,13 +1,13 @@
 import React from "react";
-import lodash from "lodash";
+import _ from "lodash";
 import PropTypes from "prop-types";
 import {UncontrolledTooltip} from "reactstrap";
 import UserIcon from "../../shared/user/icon";
 import Icon from "../../shared/icon";
 
 const Bar = ({members, diameter, maxIcons}) => {
-    const visibleMembers = lodash.chunk(members, maxIcons - 1)[0];
-    const collapsedMembers = lodash.chunk(members, maxIcons - 1)[1];
+    const visibleMembers = _.chunk(members, maxIcons - 1)[0];
+    const collapsedMembers = _.chunk(members, maxIcons - 1)[1];
     return (
         <span>
             {

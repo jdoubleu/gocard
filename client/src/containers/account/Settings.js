@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {deleteUser, updateUser} from "../../actions/auth";
+import {deleteUser, updateUser} from "../../actions/user";
 import SettingsComponent from "../../components/account/settings";
 
 class Settings extends React.Component {
@@ -72,7 +72,7 @@ Settings.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.user,
+        user: state.users.items[state.auth.userId] || {},
         isFetching: state.auth.isFetching
     }
 }

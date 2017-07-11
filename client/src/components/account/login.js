@@ -12,7 +12,7 @@ const Login = ({onLocalLoginClick, isLocalLoginFetching, message}) => {
             email: event.target.email.value.trim(),
             password: event.target.password.value.trim()
         };
-        onLocalLoginClick(creds);
+        onLocalLoginClick(creds.email, creds.password);
     };
 
     return (
