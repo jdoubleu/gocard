@@ -2,51 +2,55 @@ import {
     ADD_REGISTER_FAILURE,
     ADD_REGISTER_REQUEST,
     ADD_REGISTER_SUCCESS,
-    REGISTERS_FAILURE,
-    REGISTERS_REQUEST,
-    REGISTERS_SUCCESS
-} from "../actions/registers";
+    DELETE_REGISTER_FAILURE,
+    DELETE_REGISTER_REQUEST,
+    DELETE_REGISTER_SUCCESS,
+    LOAD_REGISTERS_FAILURE,
+    LOAD_REGISTERS_REQUEST,
+    LOAD_REGISTERS_SUCCESS
+} from "../actions/register";
+import _ from "lodash";
 
 const initialState = {
     isFetching: false,
-    registers: []
+    items: {}
 };
 
 function registers(state = initialState, action) {
     switch (action.type) {
-        case REGISTERS_REQUEST:
+        case LOAD_REGISTERS_REQUEST:
+        case DELETE_REGISTER_REQUEST:
+        case ADD_REGISTER_REQUEST:
             return {
                 ...state,
                 isFetching: true,
             };
-        case REGISTERS_SUCCESS:
+        case LOAD_REGISTERS_FAILURE:
+        case ADD_REGISTER_FAILURE:
+        case DELETE_REGISTER_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                registers: action.registers
+                error: action.error
             };
-        case REGISTERS_FAILURE:
+        case LOAD_REGISTERS_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                errorMessage: action.errorMessage
-            };
-        case ADD_REGISTER_REQUEST:
-            return {
-                ...state,
-                isFetching: true
+                items: _.keyBy(action.response, 'uid')
             };
         case ADD_REGISTER_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                registers: state.registers.registers.concat([action.register])
+                items: _.merge(state.items, _.keyBy(action.response, 'uid'))
             };
-        case ADD_REGISTER_FAILURE:
+
+        case DELETE_REGISTER_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                errorMessage: action.errorMessage
+                items: _.omit(state.items, action.registerId)
             };
         default:
             return state;

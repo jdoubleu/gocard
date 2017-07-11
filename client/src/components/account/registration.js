@@ -3,12 +3,7 @@ import {Alert, Button, Card, CardGroup, CardText, CardTitle, Col, Form, FormGrou
 import Logo from "../../components/shared/logo/index";
 import PropTypes from "prop-types";
 
-
-const Registration = ({
-                          isRegistrationFetching, message, handleSubmit, updatePasswordRepeat,
-                          validateEmail, updatePassword, email, password, passwordRepeat, validPassword, validEmail
-                      }) => {
-
+const Registration = ({isRegistrationFetching, message, handleSubmit, updatePasswordRepeat, validateEmail, updatePassword, email, password, passwordRepeat, validPassword, validEmail}) => {
     return (
         <div>
             <Col sm="12" md={{size: 8, offset: 2}}>
@@ -23,25 +18,26 @@ const Registration = ({
                     <Card block>
                         <CardTitle>Registrieren</CardTitle>
                         <CardText>
-                            Registriere dich jetzt mit deiner Email Adresse und einem von dir gewählten Passwort
-                            ,um
-                            einen eigenen Account zu erstellen.<br/>
+                            Registriere dich jetzt mit deiner Email Adresse und einem von dir gewählten Passwort, um
+                            einen eigenen Account zu erstellen.
                         </CardText>
 
                         <Form onSubmit={handleSubmit}>
-                            {!validEmail &&
-                            <Alert color="danger">
-                                <strong>E-Mail ungültig!</strong>
-                            </Alert>
+                            {
+                                !validEmail &&
+                                <Alert color="danger">
+                                    <strong>E-Mail ungültig!</strong>
+                                </Alert>
                             }
                             <FormGroup>
                                 <Input type="email" name="email" id="email" placeholder="E-Mail Adresse"
                                        onChange={validateEmail} value={email} required/>
                             </FormGroup>
-                            {!validPassword &&
-                            <Alert color="danger">
-                                <strong>Passwörter sind nicht gleich!</strong>
-                            </Alert>
+                            {
+                                !validPassword &&
+                                <Alert color="danger">
+                                    <strong>Passwörter sind nicht gleich!</strong>
+                                </Alert>
                             }
                             <FormGroup>
                                 <Input type="password" name="password" id="password" placeholder="Passwort"

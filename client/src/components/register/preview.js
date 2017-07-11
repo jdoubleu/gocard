@@ -5,9 +5,9 @@ import {Card, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../../modules/shared/statistic";
 import MemberBar from "./member/bar";
 
-const Preview = ({register}) => {
+const Preview = ({register, ...rest}) => {
     return (
-        <Col xl="4" md="6" xs="12">
+        <Col xl="4" md="6" xs="12" {...rest}>
             <Card block className="mb-2">
                 <CardTitle>{register.title}</CardTitle>
 
