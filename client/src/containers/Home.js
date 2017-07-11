@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import Dashboard from "../scenes/Dashboard";
-import Login from "./Login";
+import Dashboard from "../containers/Dashboard";
+import Login from "./account/Login";
+import {Route} from "react-router-dom";
+import ProtectedRoute from "./shared/ProtectedRoute";
 
 const Home = ({isAuthenticated}) => {
     return isAuthenticated ? (
-        <Dashboard/>
+        <ProtectedRoute component={Dashboard}/>
     ) : (
-        <Login />
+        <Route component={Login}/>
     )
 };
 
@@ -22,5 +24,5 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Home);
 

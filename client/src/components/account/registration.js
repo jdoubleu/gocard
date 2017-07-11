@@ -4,46 +4,12 @@ import Logo from "../../components/shared/logo/index";
 import PropTypes from "prop-types";
 
 
-const Registration = ({isRegistrationFetching, message, handleSubmit, updatePasswordRepeat,
-                          validateEmail, updatePassword, email, password, passwordRepeat, validPassword, validEmail}) =>{
+const Registration = ({
+                          isRegistrationFetching, message, handleSubmit, updatePasswordRepeat,
+                          validateEmail, updatePassword, email, password, passwordRepeat, validPassword, validEmail
+                      }) => {
 
-    /*const validateEmail = (event) => {
-        let email = event.target.value;
-        if (email.includes("@")) {
-            console.log("@ gefunden ");
-        } else {
-            //Show error
-        }
-    };
-
-    const update = (event) => {
-        this.setState({
-            password: event.target.value
-        });
-    };
-
-
-    const validatePassword = (event) => {
-        let confirmPw = event.target.value;
-        this.setState()
-        if (confirmPw === this.state.password) {
-            console.log("Passwoerter sind gleich");
-            this.setState({
-                validatePassword: true
-            });
-        } else {
-            console.log("Passwoerter sind nicht mehr gleich");
-            this.setState({
-                validatePassword: false
-            });
-        }
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };*/
-
-    return(
+    return (
         <div>
             <Col sm="12" md={{size: 8, offset: 2}}>
                 <div className="pb-2">
@@ -83,9 +49,11 @@ const Registration = ({isRegistrationFetching, message, handleSubmit, updatePass
                             </FormGroup>
                             <FormGroup>
                                 <Input type="password" name="confirmPassword" id="confirmPassword"
-                                       placeholder="Passwort wiederholen" value={passwordRepeat} onChange={updatePasswordRepeat} required/>
+                                       placeholder="Passwort wiederholen" value={passwordRepeat}
+                                       onChange={updatePasswordRepeat} required/>
                             </FormGroup>
-                            <Button outline block color="primary" disabled={!(validPassword && validEmail)}>Erstellen</Button>
+                            <Button outline block color="primary"
+                                    disabled={!(validPassword && validEmail)}>Erstellen</Button>
                         </Form>
                     </Card>
                 </CardGroup>

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {NavLink} from "react-router-dom";
+import {NavLink, Route} from "react-router-dom";
+import Breadcrumb from "../../../containers/shared/breadcrumb";
 import UserIcon from "../user/icon";
 import Logo from "../logo";
 import {
@@ -17,10 +18,10 @@ import {
 } from "reactstrap";
 import "./topBar.css";
 
-const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
+const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onToggleUserDropDown, isAuthenticated, onLogout, onNavbarBrandClick}) => {
     return (
         <Container className="top-bar">
-            <Navbar light toggleable className="pb-4">
+            <Navbar light toggleable>
                 <NavbarToggler className="border-0" right onClick={onToggleTopBarDropDown}/>
                 <NavbarBrand onClick={() => onNavbarBrandClick()}>
                     <Logo/>
@@ -28,25 +29,35 @@ const TopBar = ({dropDownTopBar, dropDownUser, displayName, onToggleTopBarDropDo
                 {
                     isAuthenticated &&
                     <Collapse isOpen={dropDownTopBar} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <UserIcon>
-                                {displayName}
-                            </UserIcon>
-                            <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
-                                <DropdownToggle nav caret>
-                                    <span>{displayName}</span>
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        <NavLink to="/profile">Einstellungen</NavLink>
-                                    </DropdownItem>
-                                    <DropdownItem divider/>
-                                    <DropdownItem onClick={() => onLogout()}>
-                                        <a href="">Logout</a>
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </NavDropdown>
-                        </Nav>
+                        <span className="navbar-text ml-auto">
+                            <Route component={Breadcrumb}/>
+                        </span>
+                        {
+                            user.status === "active" &&
+                            <Nav className="ml-auto" navbar>
+                                {
+                                    user.displayName &&
+                                    <UserIcon>
+                                        {user.displayName}
+                                    </UserIcon>
+                                }
+
+                                <NavDropdown isOpen={dropDownUser} toggle={onToggleUserDropDown}>
+                                    <DropdownToggle nav caret>
+                                        <span>{user.displayName}</span>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            <NavLink to="/settings">Einstellungen</NavLink>
+                                        </DropdownItem>
+                                        <DropdownItem divider/>
+                                        <DropdownItem onClick={() => onLogout()}>
+                                            <a href="">Logout</a>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </NavDropdown>
+                            </Nav>
+                        }
                     </Collapse>
                 }
                 {
@@ -70,7 +81,7 @@ TopBar.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
     onNavbarBrandClick: PropTypes.func.isRequired,
-    displayName: PropTypes.string
+    user: PropTypes.object
 };
 
 TopBar.defaultProps = {

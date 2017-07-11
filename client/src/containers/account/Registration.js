@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import RegistrationComponent from "../components/account/registration";
-import {addUser} from "../actions/registration";
+import RegistrationComponent from "../../components/account/registration";
+import {addUser} from "../../actions/registration";
 
 class Registration extends React.Component {
     constructor(props) {

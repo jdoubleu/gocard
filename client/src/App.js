@@ -5,38 +5,37 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {Container} from "reactstrap";
 
-import NotFound from "./scenes/errors/NotFound";
-import TopBar from "./containers/TopBar";
+import NotFound from "./components/shared/errors/notFound";
+import TopBar from "./containers/shared/TopBar";
 import Footer from "./components/shared/footer";
-import Profile from "./scenes/account/Profile";
-import Legal from "./scenes/legal/Legal";
-import Register from "./scenes/register/Register";
-import Registration from "./containers/Registration";
+import Settings from "./containers/account/Settings";
+import Legal from "./components/legal";
+import Register from "./components/register";
+import Registration from "./containers/account/Registration";
 import Reset from "./scenes/account/Reset";
 import SingleChoice from "./modules/cards/SingleChoiceCard";
 import MultipleChoice from "./modules/cards/MultipleChoiceCard";
 import SelfValidate from "./modules/cards/SelfValidateCard";
 import Input from "./modules/cards/TextInputCard";
 import Feedback from "./scenes/learn/Feedback";
-import ProtectedRoute from "./containers/ProtectedRoute";
+import ProtectedRoute from "./containers/shared/ProtectedRoute";
 import Home from "./containers/Home";
 import Normal from "./scenes/learn/Normal";
 import Detail from "./scenes/register/Detail";
 import Power from "./scenes/learn/Power";
 import Exam from "./scenes/learn/Exam";
 
-
 class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <TopBar />
+                <Route component={TopBar}/>
                 <Container>
                     <Switch>
                         <Route path='/' exact component={Home}/>
                         <Route path='/registration' exact component={Registration}/>
                         <Route path='/reset' exact component={Reset}/>
-                        <ProtectedRoute path='/profile' exact component={Profile}/>
+                        <ProtectedRoute path='/settings' exact component={Settings}/>
 
                         <Route path='/single' exact component={SingleChoice}/> # just for testing
                         <Route path='/multiple' exact component={MultipleChoice}/> # just for testing

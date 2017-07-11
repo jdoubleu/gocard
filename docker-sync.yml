@@ -1,0 +1,18 @@
+# Docker Sync Development configuration
+version: '2'
+
+options:
+  compose-file-path: 'docker-compose.yml'
+  compose-dev-file-path: 'docker-compose.sync.yml'
+
+syncs:
+  lernz_volumes_app_client:
+    src: './'
+    sync_excludes_type: 'Path'
+    sync_excludes: ['.idea', '.git', '.docker', 'bin', 'Build', 'Configuration', 'Data', 'Packages', 'Web']
+    watch_excludes: ['node_modules/.cache', 'node_modules/.bin']
+  lernz_volumes_app_backend:
+    src: './'
+    sync_excludes_type: 'Path'
+    sync_excludes: ['.idea', '.git', '.docker', 'node_modules', 'Data/Temporary']
+    sync_userid: '82'

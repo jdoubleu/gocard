@@ -1,5 +1,5 @@
 import auth from "./auth";
-import user from "./user";
 import registration from "./registration";
+import registers from "./registers";
 
-export default {auth, user, registration};
+export default {auth, registration, registers};

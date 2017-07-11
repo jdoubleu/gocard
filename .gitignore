@@ -29,3 +29,4 @@ yarn-error.log
 npm-debug.log
 /.idea/
 /.env
+/.docker-sync/

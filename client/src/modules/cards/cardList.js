@@ -16,14 +16,12 @@ class Feedback extends React.Component {
     getAllCards() {
         this.setState({
             cards: dummy
-        })
+        });
         console.log(this.state.cards);
         return this.state.cards;
     }
 
     displayStatus(status) {
-
-
         if (status === "true") {
             return (
 

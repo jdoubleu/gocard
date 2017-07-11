@@ -7,7 +7,7 @@
  * @param {string} [domainOrOptions.domain] - The project domain
  * @param {object} [domainOrOptions.token] - auth token - object with value property and optional headerOrQueryName and isQuery properties
  */
-var ApiClient = (function () {
+var ApiClient = (function() {
     'use strict';
 
     var request = require('request');
@@ -25,7 +25,7 @@ var ApiClient = (function () {
     function mergeQueryParams(parameters, queryParameters) {
         if (parameters.$queryParameters) {
             Object.keys(parameters.$queryParameters)
-                .forEach(function (parameterName) {
+                .forEach(function(parameterName) {
                     var parameter = parameters.$queryParameters[parameterName];
                     queryParameters[parameterName] = parameter;
                 });
@@ -46,7 +46,7 @@ var ApiClient = (function () {
      * @param {object} form - form data object
      * @param {object} deferred - promise object
      */
-    ApiClient.prototype.request = function (method, url, parameters, body, headers, queryParameters, form, deferred) {
+    ApiClient.prototype.request = function(method, url, parameters, body, headers, queryParameters, form, deferred) {
         var req = {
             method: method,
             uri: url,
@@ -60,15 +60,14 @@ var ApiClient = (function () {
         if (typeof(body) === 'object' && !(body instanceof Buffer)) {
             req.json = true;
         }
-        request(req, function (error, response, body) {
+        request(req, function(error, response, body) {
             if (error) {
                 deferred.reject(error);
             } else {
                 if (/^application\/(.*\\+)?json/.test(response.headers['content-type'])) {
                     try {
                         body = JSON.parse(body);
-                    } catch (e) {
-                    }
+                    } catch (e) {}
                 }
                 if (response.statusCode === 204) {
                     deferred.resolve({
@@ -97,18 +96,18 @@ var ApiClient = (function () {
      * @param {string} headerOrQueryName - the header or query name to send the apiKey at
      * @param {boolean} isQuery - true if send the apiKey as query param, otherwise, send as header param
      */
-    ApiClient.prototype.setApiKey = function (value, headerOrQueryName, isQuery) {
+    ApiClient.prototype.setApiKey = function(value, headerOrQueryName, isQuery) {
         this.apiKey.value = value;
         this.apiKey.headerOrQueryName = headerOrQueryName;
         this.apiKey.isQuery = isQuery;
     };
     /**
-     * Set Login headers
+     * Set Auth headers
      * @method
      * @name ApiClient#setAuthHeaders
      * @param {object} headerParams - headers object
      */
-    ApiClient.prototype.setAuthHeaders = function (headerParams) {
+    ApiClient.prototype.setAuthHeaders = function(headerParams) {
         var headers = headerParams ? headerParams : {};
         if (!this.apiKey.isQuery && this.apiKey.headerOrQueryName) {
             headers[this.apiKey.headerOrQueryName] = this.apiKey.value;
@@ -122,7 +121,7 @@ var ApiClient = (function () {
      * @name ApiClient#findAllRegisters
      * @param {object} parameters - method options and parameters
      */
-    ApiClient.prototype.findAllRegisters = function (parameters) {
+    ApiClient.prototype.findAllRegisters = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -151,7 +150,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {} parameters.body - Register object that needs to be added
      */
-    ApiClient.prototype.addRegister = function (parameters) {
+    ApiClient.prototype.addRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -189,7 +188,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.registerId - ID of register to get
      */
-    ApiClient.prototype.findByRegisterById = function (parameters) {
+    ApiClient.prototype.findByRegisterById = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -223,9 +222,9 @@ var ApiClient = (function () {
      * @name ApiClient#updateRegister
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.registerId - ID of register that needs to be updated
-     * @param {} parameters.name - Updated name of the pet
+     * @param {} parameters.body - GoCard API
      */
-    ApiClient.prototype.updateRegister = function (parameters) {
+    ApiClient.prototype.updateRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -248,12 +247,12 @@ var ApiClient = (function () {
             return deferred.promise;
         }
 
-        if (parameters['name'] !== undefined) {
-            body = parameters['name'];
+        if (parameters['body'] !== undefined) {
+            body = parameters['body'];
         }
 
-        if (parameters['name'] === undefined) {
-            deferred.reject(new Error('Missing required  parameter: name'));
+        if (parameters['body'] === undefined) {
+            deferred.reject(new Error('Missing required  parameter: body'));
             return deferred.promise;
         }
 
@@ -270,7 +269,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.registerId - ID of register that should be deleted
      */
-    ApiClient.prototype.deleteRegister = function (parameters) {
+    ApiClient.prototype.deleteRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -305,7 +304,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.registerId - ID of register which cards to get
      */
-    ApiClient.prototype.findByCardsByRegister = function (parameters) {
+    ApiClient.prototype.findByCardsByRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -341,7 +340,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID register the cards should be added to
      * @param {} parameters.cards - Cards to be created
      */
-    ApiClient.prototype.addCardsToRegister = function (parameters) {
+    ApiClient.prototype.addCardsToRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -385,7 +384,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.registerId - ID of the register
      */
-    ApiClient.prototype.findMembersByRegister = function (parameters) {
+    ApiClient.prototype.findMembersByRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -421,7 +420,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID of the register
      * @param {} parameters.members - Members to be updated
      */
-    ApiClient.prototype.updateMembersOfRegister = function (parameters) {
+    ApiClient.prototype.updateMembersOfRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -466,7 +465,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID of the register
      * @param {} parameters.member - Member to be added
      */
-    ApiClient.prototype.addMembersToRegister = function (parameters) {
+    ApiClient.prototype.addMembersToRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -511,7 +510,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID of the register
      * @param {} parameters.member - Member to be updated
      */
-    ApiClient.prototype.getMemberByRegister = function (parameters) {
+    ApiClient.prototype.getMemberByRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -556,7 +555,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID of the register
      * @param {integer} parameters.memberId - ID of the member which should be removed
      */
-    ApiClient.prototype.deleteMemberOfRegister = function (parameters) {
+    ApiClient.prototype.deleteMemberOfRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -598,7 +597,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.registerId - ID of the register
      */
-    ApiClient.prototype.getRegisterActivities = function (parameters) {
+    ApiClient.prototype.getRegisterActivities = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -634,7 +633,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID of the register
      * @param {integer} parameters.userId - ID of the user
      */
-    ApiClient.prototype.createRegisterActivityOfUserForRegister = function (parameters) {
+    ApiClient.prototype.createRegisterActivityOfUserForRegister = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -679,7 +678,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.registerId - ID of the register
      * @param {integer} parameters.userId - ID of the user
      */
-    ApiClient.prototype.getRegisterActivitiesForUser = function (parameters) {
+    ApiClient.prototype.getRegisterActivitiesForUser = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -721,7 +720,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {} parameters.cards - Cards to be updated
      */
-    ApiClient.prototype.updateCards = function (parameters) {
+    ApiClient.prototype.updateCards = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -758,7 +757,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.cardId - ID of the card to get
      */
-    ApiClient.prototype.getCard = function (parameters) {
+    ApiClient.prototype.getCard = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -793,7 +792,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.cardId - ID of the card which needs to be updated
      */
-    ApiClient.prototype.updateCard = function (parameters) {
+    ApiClient.prototype.updateCard = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -828,7 +827,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {integer} parameters.cardId - ID of the card which should be deleted
      */
-    ApiClient.prototype.deleteCard = function (parameters) {
+    ApiClient.prototype.deleteCard = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -863,7 +862,7 @@ var ApiClient = (function () {
      * @param {object} parameters - method options and parameters
      * @param {} parameters.body - Created user object
      */
-    ApiClient.prototype.addUser = function (parameters) {
+    ApiClient.prototype.addUser = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -900,7 +899,7 @@ var ApiClient = (function () {
      * @param {string} parameters.email - The email address for login
      * @param {string} parameters.password - The password for login in clear text
      */
-    ApiClient.prototype.loginUser = function (parameters) {
+    ApiClient.prototype.loginUser = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -944,7 +943,7 @@ var ApiClient = (function () {
      * @name ApiClient#logoutUser
      * @param {object} parameters - method options and parameters
      */
-    ApiClient.prototype.logoutUser = function (parameters) {
+    ApiClient.prototype.logoutUser = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -968,14 +967,14 @@ var ApiClient = (function () {
     /**
      * Returns user data of the local user with the given ID.
 
-     This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+    This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
 
      * @method
      * @name ApiClient#getUserById
      * @param {object} parameters - method options and parameters
-     * @param {integer} parameters.userId - ID of the user
+         * @param {integer} parameters.userId - ID of the user
      */
-    ApiClient.prototype.getUserById = function (parameters) {
+    ApiClient.prototype.getUserById = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -1011,7 +1010,7 @@ var ApiClient = (function () {
      * @param {integer} parameters.userId - ID of the user
      * @param {} parameters.body - Updated user object
      */
-    ApiClient.prototype.updateUser = function (parameters) {
+    ApiClient.prototype.updateUser = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -1044,21 +1043,21 @@ var ApiClient = (function () {
 
         queryParameters = mergeQueryParams(parameters, queryParameters);
 
-        this.request('PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+        this.request('POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
         return deferred.promise;
     };
     /**
      * Deletes a user from the system.
 
-     After this the user will automatically be logged out
+    After this the user will automatically be logged out
 
      * @method
      * @name ApiClient#deleteUser
      * @param {object} parameters - method options and parameters
-     * @param {integer} parameters.userId - ID of the user which should be deleted
+         * @param {integer} parameters.userId - ID of the user which should be deleted
      */
-    ApiClient.prototype.deleteUser = function (parameters) {
+    ApiClient.prototype.deleteUser = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -1089,14 +1088,14 @@ var ApiClient = (function () {
     /**
      * Returns user data of the local user with the given email address.
 
-     This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+    This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
 
      * @method
      * @name ApiClient#getUserByEmail
      * @param {object} parameters - method options and parameters
-     * @param {integer} parameters.email - Email address of the user
+         * @param {integer} parameters.email - Email address of the user
      */
-    ApiClient.prototype.getUserByEmail = function (parameters) {
+    ApiClient.prototype.getUserByEmail = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -1128,14 +1127,14 @@ var ApiClient = (function () {
     };
     /**
      * Generates a link with a temporary reset token which will be send to
-     the users email address.
+    the users email address.
 
      * @method
      * @name ApiClient#requestPasswordReset
      * @param {object} parameters - method options and parameters
-     * @param {string} parameters.email - Email address of the user
+         * @param {string} parameters.email - Email address of the user
      */
-    ApiClient.prototype.requestPasswordReset = function (parameters) {
+    ApiClient.prototype.requestPasswordReset = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }
@@ -1167,15 +1166,15 @@ var ApiClient = (function () {
     /**
      * Updates the user's password
 
-     You need to get a resetToken first
+    You need to get a resetToken first
 
      * @method
      * @name ApiClient#updatePassword
      * @param {object} parameters - method options and parameters
-     * @param {integer} parameters.resetToken - Token to change a password
-     * @param {} parameters.body - Password data
+         * @param {integer} parameters.resetToken - Token to change a password
+         * @param {} parameters.body - Password data
      */
-    ApiClient.prototype.updatePassword = function (parameters) {
+    ApiClient.prototype.updatePassword = function(parameters) {
         if (parameters === undefined) {
             parameters = {};
         }

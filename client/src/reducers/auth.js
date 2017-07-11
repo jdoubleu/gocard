@@ -1,9 +1,22 @@
-import {LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS} from "../actions/auth";
+import {
+    LOGIN_FAILURE,
+    LOGIN_REQUEST,
+    LOGIN_SUCCESS,
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
+    USER_FAILURE,
+    USER_REQUEST,
+    USER_SUCCESS
+} from "../actions/auth";
 
-function auth(state = {
+const initialState = {
     isFetching: false,
     isAuthenticated: false,
-}, action) {
+    token: {},
+    user: {}
+};
+
+function auth(state = initialState, action) {
     switch (action.type) {
         case LOGIN_REQUEST:
             return {
@@ -16,15 +29,15 @@ function auth(state = {
                 ...state,
                 isFetching: false,
                 isAuthenticated: true,
-                access_token: action.access_token,
-                errorMessage: ''
+                token: action.payload,
+                errorMessage: null
             };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 isFetching: false,
                 isAuthenticated: false,
-                errorMessage: action.message
+                errorMessage: action.payload
             };
         case LOGOUT_REQUEST:
             return {
@@ -34,10 +47,27 @@ function auth(state = {
             };
         case LOGOUT_SUCCESS:
             return {
+                ...initialState
+            };
+        case USER_REQUEST:
+            return {
+                ...state,
+                isFetching: true,
+            };
+        case USER_SUCCESS:
+            return {
                 ...state,
                 isFetching: false,
-                isAuthenticated: false,
-                access_token: null
+                user: {
+                    ...state.user,
+                    ...action.payload
+                }
+            };
+        case USER_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                errorMessage: action.payload
             };
         default:
             return state;

@@ -83,7 +83,7 @@ class Normal extends React.Component {
                 </div>
             )
         } else {
-            this.isFeedback =true;
+            this.isFeedback = true;
             return (
                 <Feedback/>
             )
@@ -91,25 +91,25 @@ class Normal extends React.Component {
     }
 
     displayButtons() {
-        if(this.isFeedback === false)
-        return (
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                <Row>
-                    <Col>
-                        <Link to="/dashboard">
+        if (this.isFeedback === false)
+            return (
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <Row>
+                        <Col>
+                            <Link to="/dashboard">
+                                <Button block outline onClick={() => this.onRadioBtnClick(1)}
+                                        active={this.state.mode === 0}
+                                        color="danger">Abbrechen</Button>
+                            </Link>
+                        </Col>
+                        <Col>
                             <Button block outline onClick={() => this.onRadioBtnClick(1)}
-                                    active={this.state.mode === 0}
-                                    color="danger">Abbrechen</Button>
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Button block outline onClick={() => this.onRadioBtnClick(1)}
-                                active={this.state.mode === 1}
-                                color="info">weiter</Button>
-                    </Col>
-                </Row>
-            </Col>
-        )
+                                    active={this.state.mode === 1}
+                                    color="info">weiter</Button>
+                        </Col>
+                    </Row>
+                </Col>
+            )
     }
 
     render() {
