@@ -25,7 +25,7 @@ import PreviewCard from "../cards/previewCard";
 import "./Detail.css";
 
 
-const detail = ({handleSubmit, register, members, mode, cards, modeSelected}) => {
+const detail = ({handleSubmit, register, users, mode, cards, modeSelected}) => {
 
     return (
         <div>
@@ -101,12 +101,12 @@ const detail = ({handleSubmit, register, members, mode, cards, modeSelected}) =>
             </CardDeck>
             <UncontrolledTooltip placement="right" target="labelTags">
                 Die Tags können ausgewählt werden, um themenbezogene Lernkarten zu erhalten. Sie können einen oder
-                mehrere Tags auswählen um das Lernen zu starten. Wenn Tags nicht ausgewählt sind, werden diese nicht
-                im Lernmodus berücksichtigt.
+                mehrere Tags auswählen. Wenn Tags nicht ausgewählt sind, werden Karteikarten mit diesen Tags nicht
+                im Lernmodus berücksichtigt. Sind keine Tags ausgewählt sind alle Karteikarten ausgewählt.
             </UncontrolledTooltip>
             <UncontrolledTooltip placement="right" target="labelLernmodus">
                 Der Lernmodus muss ausgwählt werden, um die Variante des Lernens zu
-                definieren. {/*  {<span> <br /> </span>} Normalmodus: Wir gehen nach und nach durch die alle Karteikarten mit den themenbezogenen Tags und fragen diese ab.*/}
+                definieren.
             </UncontrolledTooltip>
 
         </div>
@@ -117,7 +117,7 @@ const detail = ({handleSubmit, register, members, mode, cards, modeSelected}) =>
 detail.propTypes = {
     cards: PropTypes.array.isRequired,
     mode: PropTypes.number.isRequired,
-    members: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired,
     register: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     modeSelected: PropTypes.func.isRequired,

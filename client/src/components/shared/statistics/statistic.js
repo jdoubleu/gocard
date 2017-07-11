@@ -3,6 +3,29 @@ import PropTypes from "prop-types";
 import {Doughnut} from "react-chartjs-2";
 
 class Statistic extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.getView = this.getView.bind(this);
+    }
+
+    getView(options, data){
+        if(this.props.good === 0 && this.props.middle === 0 && this.props.bad ===0){
+            return(
+                <p>
+                    Wenn du Karteikarten beantwortest, erhälst du deine Statistik.
+                </p>
+            );
+        } else {
+            return(
+                <Doughnut
+                    options={options}
+                    data={data}
+                />
+            );
+        }
+    }
+
     render() {
         const data = {
             datasets: [{
@@ -30,10 +53,7 @@ class Statistic extends React.Component {
 
 
         return (
-            <Doughnut
-                options={options}
-                data={data}
-            />
+            this.getView(options, data)
         );
     }
 }
@@ -47,9 +67,9 @@ Statistic.propTypes = {
 };
 
 Statistic.defaultProps = {
-    good: 20,
-    middle: 75,
-    bad: 85,
+    good: 0,
+    middle: 0,
+    bad: 0,
 };
 
 

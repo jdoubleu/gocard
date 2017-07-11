@@ -6,7 +6,10 @@ import {
     REGISTERS_REQUEST,
     REGISTERS_SUCCESS,
     STORE_SELECTEDTAGS,
-    STORE_SELECTEDMODE
+    STORE_SELECTEDMODE,
+    GET_USER_FAILURE,
+    GET_USER_REQUEST,
+    GET_USER_SUCCESS
 } from "../actions/registers";
 import _ from "lodash";
 
@@ -14,13 +17,15 @@ const initialState = {
     isFetching: false,
     registers: {},
     selectedTags: {},
-    selectedMode: {}
+    selectedMode: {},
+    users: {}
 };
 
 function registers(state = initialState, action) {
     switch (action.type) {
         case REGISTERS_REQUEST:
         case ADD_REGISTER_REQUEST:
+        case GET_USER_REQUEST:
             return {
                 ...state,
                 isFetching: true,
@@ -36,6 +41,7 @@ function registers(state = initialState, action) {
             };
         case REGISTERS_FAILURE:
         case ADD_REGISTER_FAILURE:
+        case GET_USER_FAILURE:
             return {
                 ...state,
                 isFetching: false,
@@ -67,6 +73,15 @@ function registers(state = initialState, action) {
             return {
                 ...state,
                 selectedMode: newMode
+            };
+        case GET_USER_SUCCESS:
+            let newUser = state.users || {};
+            newUser[action.registerId] =[
+                ...state.users, action.user
+            ];
+            return {
+                ...state,
+                users: newUser
             };
         default:
             return state;

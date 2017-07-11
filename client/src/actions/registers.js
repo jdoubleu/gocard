@@ -99,8 +99,6 @@ export function addRegister(title, description) {
     }
 }
 
-///----Get Members
-//User actions
 export const STORE_SELECTEDTAGS = 'STORE_SELECTEDTAGS';
 
 function strSelectedTags(registerId, selectedTags) {
@@ -133,4 +131,44 @@ export function storeSelectedMode(registerId, selectedMode) {
     }
 }
 
+export const GET_USER_REQUEST = 'GET_USER_REQUEST';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_FAILURE = 'GET_USER_FAILURE';
 
+
+function getUserRequest() {
+    return {
+        type: GET_USER_REQUEST,
+        isFetching: true
+    }
+}
+
+
+function getUserSuccess(user, registerId) {
+    return {
+        type: GET_USER_SUCCESS,
+        isFetching: false,
+        registerId,
+        user
+    }
+}
+
+function getUserFailure(err) {
+    return {
+        type: GET_USER_FAILURE,
+        isFetching: false,
+        errorMessage: err
+    }
+}
+
+export function getUserForRegister(userId, registerId) {
+    return (dispatch, getState) => {
+        dispatch(getUserRequest());
+        apiConnection.getUserById({userId: userId, $queryParameters: {access_token: getState().auth.token.access_token}})
+            .then(response => {
+                getUserSuccess(response.body, registerId)
+            }).catch(err => {
+            getUserFailure(err)
+        });
+    }
+}
