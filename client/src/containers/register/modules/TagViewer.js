@@ -32,7 +32,7 @@ class TagViewer extends React.Component {
     }
 
     calculatedSelectedTags(){
-        if(!!this.props.selectedTags && this.props.selectedTags.length > 0 ){
+        if(this.props.selectedTags !== undefined && this.props.selectedTags.length > 0 ){
             return this.props.selectedTags;
         } else {
             return this.calculatedTags().slice(0);

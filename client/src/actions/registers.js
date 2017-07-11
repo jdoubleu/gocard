@@ -116,3 +116,21 @@ export function storeSelectedTags(registerId, selectedTags) {
         dispatch(strSelectedTags(registerId, selectedTags));
     }
 }
+
+export const STORE_SELECTEDMODE = 'STORE_SELECTEDMODE';
+
+function strSelectedMode(registerId, selectedMode) {
+    return {
+        type: STORE_SELECTEDMODE,
+        registerId,
+        selectedMode
+    }
+}
+
+export function storeSelectedMode(registerId, selectedMode) {
+    return (dispatch, getState) => {
+        dispatch(strSelectedMode(registerId, selectedMode));
+    }
+}
+
+

@@ -5,6 +5,7 @@ import DetailComponent from "../../components/register/detail";
 import {withRouter} from "react-router-dom";
 import {loadMembers} from "../../actions/users";
 import {loadCards} from "../../actions/cards";
+import {storeSelectedMode} from "../../actions/registers";
 import _ from "lodash";
 
 class Detail extends React.Component {
@@ -17,6 +18,8 @@ class Detail extends React.Component {
     modeSelected(mode){
         this.setState({
             mode
+        },function(){
+            this.props.dispatch(storeSelectedMode(this.props.match.params.id, this.state.mode));
         });
     }
 
@@ -29,13 +32,14 @@ class Detail extends React.Component {
         super(props);
 
         this.state = {
-            mode: 1,
+            mode: this.calculatedSelectedMode(),
             description: "",
             register: {}
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.modeSelected = this.modeSelected.bind(this);
+        this.calculatedSelectedMode = this.calculatedSelectedMode.bind(this);
     }
 
     handleInputChange(event) {
@@ -46,6 +50,15 @@ class Detail extends React.Component {
         this.setState({
             [name]: value
         });
+    }
+
+    calculatedSelectedMode(){
+        console.log("Mode", this.props.mode);
+        if(this.props.mode !== undefined){
+            return this.props.mode[0];
+        } else {
+            return 1;
+        }
     }
 
     handleSubmit(event) {
@@ -64,7 +77,8 @@ function mapStateToProps(state, ownProps) {
         members: state.users.members[ownProps.match.params.id],
         user: state.auth.user,
         users: state.users,
-        cards: state.cards.cards[ownProps.match.params.id]
+        cards: state.cards.cards[ownProps.match.params.id],
+        mode: state.registers.selectedMode[ownProps.match.params.id]
     }
 }
 

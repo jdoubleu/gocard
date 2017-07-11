@@ -5,14 +5,16 @@ import {
     REGISTERS_FAILURE,
     REGISTERS_REQUEST,
     REGISTERS_SUCCESS,
-    STORE_SELECTEDTAGS
+    STORE_SELECTEDTAGS,
+    STORE_SELECTEDMODE
 } from "../actions/registers";
 import _ from "lodash";
 
 const initialState = {
     isFetching: false,
     registers: {},
-    selectedTags: {}
+    selectedTags: {},
+    selectedMode: {}
 };
 
 function registers(state = initialState, action) {
@@ -56,6 +58,15 @@ function registers(state = initialState, action) {
             return {
                 ...state,
                 selectedTags: newTags
+            };
+        case STORE_SELECTEDMODE:
+            let newMode = state.selectedMode || {};
+            newMode[action.registerId] =[
+                action.selectedMode
+            ];
+            return {
+                ...state,
+                selectedMode: newMode
             };
         default:
             return state;
