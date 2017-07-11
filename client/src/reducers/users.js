@@ -28,7 +28,7 @@ function users(state = initialState, action) {
                 isFetching: false,
                 users: {
                     ...state.users,
-                    ..._.keyBy({...action.user}, action.user.uid)
+                    ..._.keyBy({...action.user}, 'uid')
                 }
             };
         case USERS_FAILURE:
@@ -39,13 +39,14 @@ function users(state = initialState, action) {
                 errorMessage: action.errorMessage
             };
         case MEMBERS_SUCCESS:
+            let newMembers = state.members || {};
+            newMembers[action.registerId] =[
+                ...action.members
+            ];
             return {
                 ...state,
                 isFetching: false,
-                members: {
-                    ...state.members,
-                    ..._.keyBy({...action.members}, action.registerId)
-                }
+                selectedMembers: newMembers
             };
         default:
             return state;

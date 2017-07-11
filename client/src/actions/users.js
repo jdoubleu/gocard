@@ -58,7 +58,7 @@ function membersSuccess(members, registerId) {
     return {
         type: MEMBERS_SUCCESS,
         isFetching: false,
-        registerId: registerId,
+        registerId,
         members
     }
 }
@@ -76,7 +76,7 @@ export function loadMembers(registerId) {
         dispatch(membersRequest());
         apiConnection.findMembersByRegister({registerId: registerId, $queryParameters: {access_token: getState().auth.token.access_token}})
             .then(response => {
-                membersSuccess(response.body)
+                membersSuccess(response.body, registerId)
             }).catch(err => {
             membersFailure(err)
         });
