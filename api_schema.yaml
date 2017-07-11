@@ -410,6 +410,45 @@ paths:
           description: Register or member not found
       security:
         - api_key: []
+  '/registers/{registerId}/members/findByUser':
+    get:
+      tags:
+        - registers
+        - members
+      summary: Get a member of a register
+      description: Returns the member object of the given register and user
+      operationId: findMemberByRegisterAndUser
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: userId
+          in: body
+          description: ID of the user
+          schema:
+            type: integer
+            format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid register or user ID supplied
+        '403':
+          description: Not allowed to view members of this register
+        '404':
+          description: Register or User with this ID not found
+      security:
+        - api_key: []
   '/registers/{registerId}/activities/':
     get:
       tags:

@@ -740,6 +740,52 @@ export function deleteMemberOfRegister(parameters) {
 }
 
 /**
+ * Returns the member object of the given register and user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID of the register
+ * @param {} parameters.userId - ID of the user
+ */
+export function findMemberByRegisterAndUser(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/members/findByUser';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['userId'] !== undefined) {
+        body = parameters['userId'];
+    }
+
+    if (parameters['userId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: userId'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('findMemberByRegisterAndUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Lists all activities of the register
  *
  * @param {object} parameters - method options and parameters
