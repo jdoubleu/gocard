@@ -72,7 +72,7 @@ Settings.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        user: state.users.items[state.auth.userId] || {},
+        user: state.user.items[state.auth.userId] || {},
         isFetching: state.auth.isFetching
     }
 }
