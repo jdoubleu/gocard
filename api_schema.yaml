@@ -3,6 +3,7 @@ info:
   description: GoCard API
   version: 1.0.0
   title: GoCard API
+host: "localhost"
 basePath: /api/v1
 tags:
   - name: registers
