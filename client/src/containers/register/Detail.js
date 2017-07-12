@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import DetailComponent from "../../components/register/detail";
 import {withRouter} from "react-router-dom";
-import {loadCards} from "../../actions/cards";
+import {loadCards} from "../../actions/card";
 import {storeSelectedTags, loadMembers, getUserForRegister} from "../../actions/registers";
 import _ from "lodash";
 

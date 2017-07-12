@@ -37,3 +37,13 @@ export function deleteRegister(registerId) {
         payload: {registerId}
     }
 }
+
+export const STORE_SELECTED_TAGS = 'STORE_SELECTED_TAGS';
+
+export function storeSelectedTags(tags, registerId) {
+    return {
+        type: STORE_SELECTED_TAGS,
+        registerId,
+        tags
+    }
+}
