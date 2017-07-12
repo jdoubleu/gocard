@@ -626,6 +626,11 @@ paths:
           type: integer
           format: int64
           required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Card'
       responses:
         '200':
           description: Successfully updated the card

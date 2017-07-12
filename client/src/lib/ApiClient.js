@@ -990,6 +990,7 @@ export function getCard(parameters) {
  *
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.cardId - ID of the card which needs to be updated
+ * @param {} parameters.body - GoCard API
  */
 export function updateCard(parameters) {
     if (parameters === undefined) {
@@ -1011,6 +1012,15 @@ export function updateCard(parameters) {
 
     if (parameters['cardId'] === undefined) {
         deferred.reject(new Error('Missing required  parameter: cardId'));
+        return deferred.promise;
+    }
+
+    if (parameters['body'] !== undefined) {
+        body = parameters['body'];
+    }
+
+    if (parameters['body'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: body'));
         return deferred.promise;
     }
 
