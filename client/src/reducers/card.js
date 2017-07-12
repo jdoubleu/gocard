@@ -1,37 +1,37 @@
 import {
-    CARDS_REQUEST,
-    CARDS_SUCCESS,
-    CARDS_FAILURE
-} from "../actions/cards";
+    LOAD_CARDS_REQUEST,
+    LOAD_CARDS_SUCCESS,
+    LOAD_CARDS_FAILURE
+} from "../actions/card";
 import _ from "lodash";
 
 const initialState = {
     isFetching: false,
-    cards: {}
+    items: {}
 };
 
 function cards(state = initialState, action) {
     switch (action.type) {
-        case CARDS_REQUEST:
+        case LOAD_CARDS_REQUEST:
             return {
                 ...state,
                 isFetching: true,
             };
-        case CARDS_SUCCESS:
-            let newCards = state.cards || {};
+        case LOAD_CARDS_SUCCESS:
+            let newCards = state.items || {};
             newCards[action.registerId] = [
-                ...action.cards
+                ...action.items
             ];
             return {
                 ...state,
                 isFetching: false,
-                cards: newCards
+                items: newCards
             };
-        case CARDS_FAILURE:
+        case LOAD_CARDS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                errorMessage: action.errorMessage
+                error: action.error
             };
         default:
             return state;
