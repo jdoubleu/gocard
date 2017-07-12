@@ -312,7 +312,7 @@ paths:
         - members
       summary: Add member to this register
       description: Adds a new member to this register
-      operationId: addMembersToRegister
+      operationId: addMemberToRegister
       produces:
         - application/json
       parameters:

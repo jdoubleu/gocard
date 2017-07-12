@@ -18,3 +18,14 @@
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
+
+-
+  name: 'add new member to register'
+  uriPattern: ''
+  defaults:
+    '@action': 'addMemberToRegister'
+  routeParts:
+    member:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
