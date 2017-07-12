@@ -1013,7 +1013,6 @@ definitions:
       - id
       - owner
       - title
-      - description
   Card:
     type: object
     properties:
