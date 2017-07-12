@@ -24,7 +24,6 @@ services:
     build: .docker/Development/php
     volumes:
       - ./:/var/www/html
-      - flowcache:/var/www/html/Data/Temporary
 
   apache:
     build: .docker/Development/apache
@@ -80,7 +79,6 @@ services:
       - "dockerhost:$DOCKER_HOST_IP"
     volumes:
       - ./:/var/www/html
-      - flowcache:/var/www/html/Data/Temporary
 
   swagger:
     image: swaggerapi/swagger-ui
@@ -121,4 +119,3 @@ volumes:
   database:
   yarncache:
   composercache:
-  flowcache:
