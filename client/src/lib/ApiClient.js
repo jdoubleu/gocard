@@ -207,6 +207,7 @@ const Models = {
      * Member
      */
     Member: {
+        'id': 'number',
         'user': 'number',
         'scope': 'array',
     },
@@ -610,7 +611,7 @@ export function updateMembersOfRegister(parameters) {
  * @param {integer} parameters.registerId - ID of the register
  * @param {} parameters.member - Member to be added
  */
-export function addMembersToRegister(parameters) {
+export function addMemberToRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -644,7 +645,7 @@ export function addMembersToRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('addMembersToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('addMemberToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -656,7 +657,7 @@ export function addMembersToRegister(parameters) {
  * @param {integer} parameters.registerId - ID of the register
  * @param {} parameters.member - Member to be updated
  */
-export function getMemberByRegister(parameters) {
+export function updateMemberByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -690,7 +691,7 @@ export function getMemberByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('getMemberByRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateMemberByRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -744,7 +745,7 @@ export function deleteMemberOfRegister(parameters) {
  *
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.registerId - ID of the register
- * @param {} parameters.userId - ID of the user
+ * @param {integer} parameters.user - ID of the user
  */
 export function findMemberByRegisterAndUser(parameters) {
     if (parameters === undefined) {
@@ -769,12 +770,12 @@ export function findMemberByRegisterAndUser(parameters) {
         return deferred.promise;
     }
 
-    if (parameters['userId'] !== undefined) {
-        body = parameters['userId'];
+    if (parameters['user'] !== undefined) {
+        queryParameters['user'] = parameters['user'];
     }
 
-    if (parameters['userId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: userId'));
+    if (parameters['user'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: user'));
         return deferred.promise;
     }
 
