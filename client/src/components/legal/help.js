@@ -62,17 +62,16 @@ const Help = () => {
                             Lernvortschritt im überblick behälst.
                             <Col className="px-4 text-justify">
                                 <Row className="mb-1">
-                                    Es gibt die Stufe "Kann ich nicht"(in dem Statistik Garphen rot)
+                                    Es gibt die Stufe "Kann ich nicht"(in dem Statistik Graphen rot)
                                 </Row>
                                 <Row className="mb-1">
-                                    Es gibt die Stufe "geht so"(in dem Statistik Garphen gelb/orange)
+                                    Es gibt die Stufe "geht so"(in dem Statistik Graphen gelb/orange)
                                 </Row>
                                 <Row className="mb-1">
-                                    Es gibt die Stufe "kann ich"(in dem Statistik Garphen grün)
+                                    Es gibt die Stufe "kann ich"(in dem Statistik Graphen grün)
                                 </Row>
                             </Col>
-                            Du kannst jede Karteikarte mit bestimmten Tags ausstatten. <a href="#tags"> Mehr zu Tags
-                            hier!</a>
+                            Du kannst jede Karteikarte mit bestimmten Tags ausstatten.
                         </CardText>
 
                         <span><hr/></span>
@@ -266,8 +265,7 @@ const Help = () => {
                                     am Ende gesagt welche Antwort Richtig oder Falsch war)
                                 </Row>
                             </Col>
-                            Nach jedem Lerndurchlauf gibt es eine Feedback Anzeige.<a href="#feedback">Mehr zu Feedback
-                            hier!</a>
+                            Nach jedem Lerndurchlauf gibt es eine Feedback Anzeige.
                         </CardText>
 
                         <span><hr/></span>
@@ -276,8 +274,8 @@ const Help = () => {
                         <CardText className="px-2 text-justify">
                             Auf dem Feedback siehts du oben links die Beschreibung des Registers und die verwendeten
                             Tags. Auf der Rechten Seite findest du einen
-                            Garphen der dir zeigt wie sich deine Lernen auf deine Statistik ausgewirkt hat. Auf dem
-                            Balken Garphen ist der linke Balken immer das neue Ergebnis und der
+                            Graphen der dir zeigt wie sich deine Lernen auf deine Statistik ausgewirkt hat. Auf dem
+                            Balken Graphen ist der linke Balken immer das neue Ergebnis und der
                             rechte der Balken der alten Statistik. Unten hast du ähnlich wie bei der Registerdetail
                             Ansicht alle Karten die beim Lernen verwendet wurden. Desweitern kann man diese
                             Anzeige der Karten Filtern. Man kann sich alle Anzeigen lassen, nur die richtig
@@ -328,7 +326,7 @@ const Help = () => {
 
                         <CardTitle>Initaler Anmelde Dialog</CardTitle>
                         <CardText className="px-2 text-justify">
-                            Beim ersten Login muss sowohl die <a href="eula">EULA</a> dieser Seite bestätigt werden, als
+                            Beim ersten Login muss sowohl die dieser Seite bestätigt werden, als
                             auch ein Anzeige Name festgelegt werden. Bitte lesen sie sich die EULA vor dem bestätigen
                             durch. Falls sie die EULA ablehnen können sie diese Seite nicht nutzen. Erst mit der
                             bestätigung der EULA wird ihr Account entgültig freigegben.

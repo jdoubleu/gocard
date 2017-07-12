@@ -85,7 +85,7 @@ class Feedback extends React.Component {
 
             return a.userAnswer === a.rightAnswer;
         })
-        console.log(array);
+
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
                                                         right={card.rightAnswer} check={true}/>)
     }
@@ -96,7 +96,7 @@ class Feedback extends React.Component {
 
             return a.userAnswer === null;
         })
-        console.log(array);
+
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
                                                         right={card.rightAnswer} check={null}/>)
     }
@@ -106,7 +106,7 @@ class Feedback extends React.Component {
         array = this.state.cards.filter(a => {
             return a.userAnswer !== a.rightAnswer && a.userAnswer !== null;
         });
-        console.log(array);
+
         return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
                                                         right={card.rightAnswer} check={false}/>)
     }

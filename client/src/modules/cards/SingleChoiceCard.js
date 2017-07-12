@@ -20,17 +20,24 @@ class SingleChoiceCard extends React.Component {
     }
 
     correct(answer) {
+        if (this.props.mode !== 3) {
+            if (answer === this.getRightAnswer()) {
+                return (
+                    <Col className="text-success">
+                        <CardText>{answer}</CardText>
+                    </Col>
+                )
+            } else {
+                return (
 
-        if (answer === this.getRightAnswer()) {
-            return (
-                <Col className="text-success">
-                    <CardText>{answer}</CardText>
-                </Col>
-            )
-        } else {
-            return (
-
-                <Col className="text-danger">
+                    <Col className="text-danger">
+                        <CardText>{answer}</CardText>
+                    </Col>
+                )
+            }
+        }else{
+            return(
+                <Col>
                     <CardText>{answer}</CardText>
                 </Col>
             )
@@ -39,6 +46,7 @@ class SingleChoiceCard extends React.Component {
 
     getRightAnswer() {
         return this.props.right;
+        console.log(this.props.right);
     }
 
     handleSubmit() {
