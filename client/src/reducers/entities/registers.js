@@ -56,13 +56,13 @@ function addRegisterId(state, action) {
 function deleteRegisterId(state, action) {
     const {registerId} = action;
 
-    return _.omit(state, registerId);
+    return _.pull(state, registerId);
 }
 
 function updateRegisterId(state, action) {
     const {registerId, response} = action;
 
-    return _.concat(_.omit(state, registerId), response.uid);
+    return _.concat(_.pull(state, registerId), response.uid);
 }
 
 function addRegisterIds(state, action) {
