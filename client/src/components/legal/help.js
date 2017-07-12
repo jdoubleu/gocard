@@ -26,6 +26,9 @@ const Help = () => {
                             <NavItem>
                                 <NavLink href="#else">Sonstiges</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink href="#processes">Abläufe</NavLink>
+                            </NavItem>
                         </Nav>
                     </CardHeader>
                     <CardBlock>
@@ -247,7 +250,7 @@ const Help = () => {
 
                         <span><hr/></span>
 
-                        <CardTitle>Was sind die Lernvarianten?</CardTitle>
+                        <CardTitle id="learnmode">Was sind die Lernvarianten?</CardTitle>
                         <CardText className="px-2 text-justify">
                             Bei GoCard gibt es drei Lernvarianten:
                             <Col className="px-4 text-justify">
@@ -397,6 +400,40 @@ const Help = () => {
                             aufzunehmen. Der Punkt <a href="license">Lizenz</a> ist zur Rechtlichen absicherung, da für
                             die
                             Entwicklung dieser Seite Tools und Librarys verwendet wurden.
+                        </CardText>
+                        <span><hr/></span>
+
+                        <CardTitle id="processes">Ablauf Lernen</CardTitle>
+                        <CardText className="px-2 text-justify">
+                            1. Register Auswählen
+                            <Col className="px-4 text-justify">
+                                <Row className="mb-1">
+                                Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte Register aus, indem die
+                                Karteikarten liegen, die du lernen möchtest.
+                                </Row>
+                            </Col>
+                            2. Tags Auswählen
+                            <Col className="px-4 text-justify">
+                                <Row className="mb-1">
+                                    Mit der Auswahl der Tags kannst du einschränken, welche Karten du lernen willst. Nur Karten die einen oder
+                                    mehrere der Ausgewählten Tags besitzen zum Lernen ausgewählt. Wenn du keine Tags
+                                    Angibst werden alle sich im Register befindlichen Karten gelernt.
+                                </Row>
+                            </Col>
+                            3. Lernvariante Auswählen
+                            <Col className="px-4 text-justify">
+                                <Row className="mb-1">
+                                    Für eine Erklärung der Lernvariante <a href="#learnmode">Hier!</a>
+                                </Row>
+                            </Col>
+                            4. Fragen Beantworten oder Überspringen
+                            <br/>
+                            5. Feedback
+                            <Col className="px-4 text-justify">
+                                <Row className="mb-1">
+                                    Wenn du alle Karten durch gelernt hast, kommst du automatisch in die Feedback Ansicht.
+                                </Row>
+                            </Col>
                         </CardText>
                     </CardBlock>
                 </Card>
