@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
 
 Dashboard.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    registers: PropTypes.array.isRequired
+    registersIds: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {

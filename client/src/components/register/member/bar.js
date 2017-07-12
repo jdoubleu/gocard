@@ -14,25 +14,25 @@ const Bar = ({members, diameter, maxIcons}) => {
                 visibleMembers && collapsedMembers.length > 0 &&
                 visibleMembers.map((member) =>
                     <span>
-                        <UserIcon diameter={diameter} id={"ID" + member}>
-                            {member}
+                        <UserIcon diameter={diameter} id={"ID" + member.uid}>
+                            {member.displayName}
                         </UserIcon>
-                        <UncontrolledTooltip placement="bottom" target={"ID" + member} delay={0}>
-                            {member}
+                        <UncontrolledTooltip placement="bottom" target={"ID" + member.uid} delay={0}>
+                            {member.displayName}
                         </UncontrolledTooltip>
                     </span>
                 )
             }
             {
                 collapsedMembers && collapsedMembers.length > 0 &&
-                <span >
+                <span>
                     <Icon diameter={diameter} id="additionalMembers">
                         {"+" + collapsedMembers.length}
                     </Icon>
                     <UncontrolledTooltip placement="bottom" target="additionalMembers" delay={0}>
                         {
                             collapsedMembers.map((member) =>
-                                <span>{member}<br/></span>
+                                <span>{member.displayName}<br/></span>
                             )
                         }
                     </UncontrolledTooltip>
@@ -44,7 +44,7 @@ const Bar = ({members, diameter, maxIcons}) => {
 
 Bar.propTypes = {
     diameter: PropTypes.number,
-    members: PropTypes.array.isRequired,
+    members: PropTypes.object.isRequired,
     maxIcons: PropTypes.number
 };
 
