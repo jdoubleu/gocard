@@ -1,7 +1,5 @@
 import auth from "./auth";
-import card from "./card";
-import user from "./user";
-import member from "./member";
-import register from "./register";
+import entities from "./entities";
+import ui from "./entities/index";
 
-export default {auth, user, register, member, card};
+export default {auth, entities, ui};

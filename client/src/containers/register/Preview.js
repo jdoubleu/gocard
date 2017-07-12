@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, CardTitle, Col, Row} from "reactstrap";
-import Statistic from "../shared/statistics/statistic";
-import MemberBar from "./member/bar";
+import Statistic from "../../components/shared/statistics/statistic";
+import MemberBar from "../../components/register/member/bar";
+import {connect} from "react-redux";
 
-const Preview = ({register, members, ...rest}) => {
+const Preview = ({register, ...rest}) => {
     return (
         <Col xl="4" md="6" xs="12" {...rest}>
             <Card block className="mb-2">
@@ -13,7 +14,7 @@ const Preview = ({register, members, ...rest}) => {
 
                 <Row className="mb-3">
                     <Col xs="8">
-                        <MemberBar members={members} diameter={36}/>
+                        <MemberBar members={{}} diameter={36}/>
                     </Col>
                     <Col xs="4">
                         <Statistic/>
@@ -26,8 +27,13 @@ const Preview = ({register, members, ...rest}) => {
 };
 
 Preview.propTypes = {
-    register: PropTypes.object.isRequired,
-    members: PropTypes.array.isRequired
+    registerId: PropTypes.object.isRequired
 };
 
-export default Preview;
+function mapStateToProps(state, ownProps) {
+    return {
+        register: state.entities.registers.byId[ownProps.registerId] || {},
+    }
+}
+
+export default connect(mapStateToProps)(Preview);

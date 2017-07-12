@@ -64,7 +64,7 @@ function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
         userId: state.auth.userId,
-        user: state.user.items[state.auth.userId] || {}
+        user: state.entities.users.byId[state.auth.userId] || {}
     }
 }
 
