@@ -29,3 +29,15 @@
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
+
+-
+  name: 'update member'
+  uriPattern: '{member}'
+  defaults:
+    '@action': 'updateMemberByRegister'
+  routeParts:
+    member:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']

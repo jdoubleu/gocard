@@ -96,4 +96,28 @@ class MembersController extends AbstractApiEndpointController
 
         $this->view->assign('value', $member);
     }
+
+    /**
+     * Allows property modification for update action.
+     * By default it is not allowed to modify a persisted object.
+     */
+    public function initializeUpdateMemberByRegisterAction()
+    {
+        $memberConfiguration = $this->arguments->getArgument('member')->getPropertyMappingConfiguration();
+        $memberConfiguration->allowAllProperties()->skipProperties('uid');
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
+        $memberConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+    }
+
+    /**
+     * @param Register $register
+     * @param Member $member
+     */
+    public function updateMemberByRegisterAction(Register $register, Member $member)
+    {
+        $member->setRegister($register);
+
+        $this->memberRepository->update($member);
+    }
 }

@@ -348,7 +348,7 @@ paths:
         - members
       summary: Update member of a register
       description: Updates a specific member of a register
-      operationId: getMemberByRegister
+      operationId: updateMemberByRegister
       produces:
         - application/json
       parameters:
