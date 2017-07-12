@@ -120,4 +120,12 @@ class MembersController extends AbstractApiEndpointController
 
         $this->memberRepository->update($member);
     }
+
+    /**
+     * @param Member $member
+     */
+    public function deleteMemberOfRegisterAction(Member $member)
+    {
+        $this->memberRepository->remove($member);
+    }
 }

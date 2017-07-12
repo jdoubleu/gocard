@@ -41,3 +41,14 @@
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
+
+-
+  name: 'delete member'
+  uriPattern: '{member}'
+  defaults:
+    '@action': 'deleteMemberOfRegister'
+  routeParts:
+    member:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+  httpMethods: ['DELETE']
