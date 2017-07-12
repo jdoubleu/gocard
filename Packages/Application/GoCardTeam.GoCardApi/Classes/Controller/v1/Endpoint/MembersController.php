@@ -70,11 +70,11 @@ class MembersController extends AbstractApiEndpointController
      */
     public function initializeAddMemberToRegisterAction()
     {
-        $registerConfiguration = $this->arguments->getArgument('member')->getPropertyMappingConfiguration();
-        $registerConfiguration->allowAllProperties()->skipProperties('uid');
-        $registerConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
-        $registerConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
-        $registerConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration = $this->arguments->getArgument('member')->getPropertyMappingConfiguration();
+        $memberConfiguration->allowAllProperties()->skipProperties('uid');
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $memberConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
     }
 
     /**
