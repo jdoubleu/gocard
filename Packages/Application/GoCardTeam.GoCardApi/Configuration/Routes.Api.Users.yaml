@@ -56,3 +56,14 @@
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
   httpMethods: ['DELETE']
+
+-
+  name: 'get members of user'
+  uriPattern: '{user}/memberships'
+  defaults:
+    '@action': 'getMembersByUser'
+  routeParts:
+    user:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+  httpMethods: ['GET']

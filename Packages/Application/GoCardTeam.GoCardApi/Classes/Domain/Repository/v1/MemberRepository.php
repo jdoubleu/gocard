@@ -29,4 +29,16 @@ class MemberRepository extends Repository
             ])
         )->execute()->getFirst();
     }
+
+    /**
+     * @param User $user
+     * @return Member[]|null
+     */
+    public function findByUser(User $user)
+    {
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->equals('user', $user->getUid())
+        )->execute()->toArray();
+    }
 }
