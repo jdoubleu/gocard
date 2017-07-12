@@ -27,7 +27,7 @@ const Preview = ({register, ...rest}) => {
 };
 
 Preview.propTypes = {
-    registerId: PropTypes.object.isRequired
+    registerId: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

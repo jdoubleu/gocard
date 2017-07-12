@@ -1,6 +1,8 @@
 import {combineReducers} from "redux";
 import {
-    ADD_REGISTER_SUCCESS, DELETE_REGISTER_SUCCESS, LOAD_REGISTERS_SUCCESS,
+    ADD_REGISTER_SUCCESS,
+    DELETE_REGISTER_SUCCESS,
+    LOAD_REGISTERS_SUCCESS,
     UPDATE_REGISTER_SUCCESS
 } from "../../actions/register";
 import _ from "lodash";
@@ -8,22 +10,13 @@ import _ from "lodash";
 function addRegisterEntry(state, action) {
     const {response} = action;
 
-    return {
-        ...state,
-        [response.uid]: response
-    };
+    return _.merge(state, {[response.uid]: response});
 }
 
 function updateRegisterEntry(state, action) {
     const {response} = action;
 
-    return {
-        ...state,
-        [response.uid]: {
-            ...state[response.uid],
-            ...response
-        }
-    };
+    return _.merge(state, {[response.uid]: response});
 }
 
 function deleteRegisterEntry(state, action) {
@@ -35,10 +28,7 @@ function deleteRegisterEntry(state, action) {
 function addRegisterEntrys(state, action) {
     const {response} = action;
 
-    return {
-        ...state,
-        ..._.keyBy(response, 'uid')
-    }
+    return _.merge(state, _.keyBy(response, 'uid'));
 }
 
 function registersById(state = {}, action) {

@@ -62,7 +62,7 @@ class Settings extends React.Component {
 
     modalHandleSubmit(event) {
         event.preventDefault();
-        this.props.dispatch(deleteUser());
+        this.props.dispatch(deleteUser(this.props.user.id));
     }
 }
 
