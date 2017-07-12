@@ -43,45 +43,5 @@ export function loadUser(userId) {
     }
 }
 
-export const MEMBERS_REQUEST = 'MEMBERS_REQUEST';
-export const MEMBERS_SUCCESS = 'MEMBERS_SUCCESS';
-export const MEMBERS_FAILURE = 'MEMBERS_FAILURE';
-
-function membersRequest() {
-    return {
-        type: MEMBERS_REQUEST,
-        isFetching: true,
-    }
-}
-
-function membersSuccess(members, registerId) {
-    return {
-        type: MEMBERS_SUCCESS,
-        isFetching: false,
-        registerId,
-        members
-    }
-}
-
-function membersFailure(err) {
-    return {
-        type: MEMBERS_FAILURE,
-        isFetching: false,
-        errorMessage: err
-    }
-}
-
-export function loadMembers(registerId) {
-    return (dispatch, getState) => {
-        dispatch(membersRequest());
-        apiConnection.findMembersByRegister({registerId: registerId, $queryParameters: {access_token: getState().auth.token.access_token}})
-            .then(response => {
-                membersSuccess(response.body, registerId)
-            }).catch(err => {
-            membersFailure(err)
-        });
-
-    }
-}
 
 

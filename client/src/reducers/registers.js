@@ -9,7 +9,10 @@ import {
     STORE_SELECTEDMODE,
     GET_USER_FAILURE,
     GET_USER_REQUEST,
-    GET_USER_SUCCESS
+    GET_USER_SUCCESS,
+    MEMBERS_SUCCESS,
+    MEMBERS_REQUEST,
+    MEMBERS_FAILURE
 } from "../actions/registers";
 import _ from "lodash";
 
@@ -17,8 +20,8 @@ const initialState = {
     isFetching: false,
     registers: {},
     selectedTags: {},
-    selectedMode: {},
-    users: {}
+    users: {},
+    members: {}
 };
 
 function registers(state = initialState, action) {
@@ -26,6 +29,7 @@ function registers(state = initialState, action) {
         case REGISTERS_REQUEST:
         case ADD_REGISTER_REQUEST:
         case GET_USER_REQUEST:
+        case MEMBERS_REQUEST:
             return {
                 ...state,
                 isFetching: true,
@@ -42,6 +46,7 @@ function registers(state = initialState, action) {
         case REGISTERS_FAILURE:
         case ADD_REGISTER_FAILURE:
         case GET_USER_FAILURE:
+        case MEMBERS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
@@ -65,15 +70,6 @@ function registers(state = initialState, action) {
                 ...state,
                 selectedTags: newTags
             };
-        case STORE_SELECTEDMODE:
-            let newMode = state.selectedMode || {};
-            newMode[action.registerId] =[
-                action.selectedMode
-            ];
-            return {
-                ...state,
-                selectedMode: newMode
-            };
         case GET_USER_SUCCESS:
             let newUser = state.users || {};
             newUser[action.registerId] =[
@@ -82,6 +78,16 @@ function registers(state = initialState, action) {
             return {
                 ...state,
                 users: newUser
+            };
+        case MEMBERS_SUCCESS:
+            let newMembers = state.members || {};
+            newMembers[action.registerId] =[
+                ...action.members
+            ];
+            return {
+                ...state,
+                isFetching: false,
+                members: newMembers
             };
         default:
             return state;

@@ -3,23 +3,20 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import DetailComponent from "../../components/register/detail";
 import {withRouter} from "react-router-dom";
-import {loadMembers} from "../../actions/users";
 import {loadCards} from "../../actions/cards";
-import {storeSelectedMode, getUserForRegister} from "../../actions/registers";
+import {loadMembers, getUserForRegister} from "../../actions/registers";
 import _ from "lodash";
 
 class Detail extends React.Component {
     render() {
         return (
-            <DetailComponent cards={this.props.cards} mode={this.state.mode} users={this.props.members} register={this.props.register} handleSubmit={this.handleSubmit} modeSelected={this.modeSelected}/>
+            <DetailComponent cards={this.props.cards} mode={this.state.mode} users={this.props.memberNames} register={this.props.register} handleSubmit={this.handleSubmit} modeSelected={this.modeSelected}/>
         );
     }
 
     modeSelected(mode){
         this.setState({
             mode
-        },function(){
-            this.props.dispatch(storeSelectedMode(this.props.match.params.id, this.state.mode));
         });
     }
 
@@ -33,7 +30,7 @@ class Detail extends React.Component {
         super(props);
 
         this.state = {
-            mode: this.calculatedSelectedMode(),
+            mode: 1,
             description: "",
             register: {},
             memberNames: {}
@@ -41,7 +38,6 @@ class Detail extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.modeSelected = this.modeSelected.bind(this);
-        this.calculatedSelectedMode = this.calculatedSelectedMode.bind(this);
         this.calculateMemberNames = this.calculateMemberNames.bind(this);
     }
 
@@ -55,14 +51,6 @@ class Detail extends React.Component {
         });
     }
 
-    calculatedSelectedMode(){
-        console.log("Mode", this.props.mode);
-        if(this.props.mode !== undefined){
-            return this.props.mode[0];
-        } else {
-            return 1;
-        }
-    }
     calculateMemberNames() {
         this.props.members.map((member) =>
             this.props.dispatch(getUserForRegister(member.userid, this.props.match.params.id))

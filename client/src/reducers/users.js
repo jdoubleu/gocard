@@ -1,10 +1,7 @@
 import {
     USERS_REQUEST,
     USERS_SUCCESS,
-    USERS_FAILURE,
-    MEMBERS_SUCCESS,
-    MEMBERS_REQUEST,
-    MEMBERS_FAILURE
+    USERS_FAILURE
 } from "../actions/users";
 import _ from "lodash";
 
@@ -17,7 +14,6 @@ const initialState = {
 function users(state = initialState, action) {
     switch (action.type) {
         case USERS_REQUEST:
-        case MEMBERS_REQUEST:
             return {
                 ...state,
                 isFetching: true,
@@ -32,21 +28,10 @@ function users(state = initialState, action) {
                 }
             };
         case USERS_FAILURE:
-        case MEMBERS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
                 errorMessage: action.errorMessage
-            };
-        case MEMBERS_SUCCESS:
-            let newMembers = state.members || {};
-            newMembers[action.registerId] =[
-                ...action.members
-            ];
-            return {
-                ...state,
-                isFetching: false,
-                members: newMembers
             };
         default:
             return state;

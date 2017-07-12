@@ -115,22 +115,6 @@ export function storeSelectedTags(registerId, selectedTags) {
     }
 }
 
-export const STORE_SELECTEDMODE = 'STORE_SELECTEDMODE';
-
-function strSelectedMode(registerId, selectedMode) {
-    return {
-        type: STORE_SELECTEDMODE,
-        registerId,
-        selectedMode
-    }
-}
-
-export function storeSelectedMode(registerId, selectedMode) {
-    return (dispatch, getState) => {
-        dispatch(strSelectedMode(registerId, selectedMode));
-    }
-}
-
 export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILURE = 'GET_USER_FAILURE';
@@ -170,5 +154,46 @@ export function getUserForRegister(userId, registerId) {
             }).catch(err => {
             getUserFailure(err)
         });
+    }
+}
+
+export const MEMBERS_REQUEST = 'MEMBERS_REQUEST';
+export const MEMBERS_SUCCESS = 'MEMBERS_SUCCESS';
+export const MEMBERS_FAILURE = 'MEMBERS_FAILURE';
+
+function membersRequest() {
+    return {
+        type: MEMBERS_REQUEST,
+        isFetching: true,
+    }
+}
+
+function membersSuccess(members, registerId) {
+    return {
+        type: MEMBERS_SUCCESS,
+        isFetching: false,
+        registerId,
+        members
+    }
+}
+
+function membersFailure(err) {
+    return {
+        type: MEMBERS_FAILURE,
+        isFetching: false,
+        errorMessage: err
+    }
+}
+
+export function loadMembers(registerId) {
+    return (dispatch, getState) => {
+        dispatch(membersRequest());
+        apiConnection.findMembersByRegister({registerId: registerId, $queryParameters: {access_token: getState().auth.token.access_token}})
+            .then(response => {
+                membersSuccess(response.body, registerId)
+            }).catch(err => {
+            membersFailure(err)
+        });
+
     }
 }
