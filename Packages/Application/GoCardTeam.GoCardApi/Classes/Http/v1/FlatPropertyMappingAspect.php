@@ -117,7 +117,7 @@ class FlatPropertyMappingAspect
      * @param ClassSchema $classSchema
      * @Flow\CompileStatic
      */
-    protected function keepDataByClass(array $source, array &$target, ClassSchema $classSchema)
+    protected static function keepDataByClass(array $source, array &$target, ClassSchema $classSchema)
     {
         foreach ($classSchema->getProperties() as $prop => $value) {
             if(!array_key_exists($prop, $source) || array_key_exists($prop, $target)) {

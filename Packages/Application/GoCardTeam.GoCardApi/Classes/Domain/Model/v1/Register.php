@@ -45,7 +45,6 @@ class Register
     protected $title;
 
     /**
-     * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="Text")
      * @ORM\Column(type="text")
      * @var string

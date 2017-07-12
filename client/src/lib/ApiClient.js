@@ -207,7 +207,8 @@ const Models = {
      * Member
      */
     Member: {
-        'userid': 'number',
+        'id': 'number',
+        'user': 'number',
         'scope': 'array',
     },
 
@@ -610,7 +611,7 @@ export function updateMembersOfRegister(parameters) {
  * @param {integer} parameters.registerId - ID of the register
  * @param {} parameters.member - Member to be added
  */
-export function addMembersToRegister(parameters) {
+export function addMemberToRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -644,7 +645,7 @@ export function addMembersToRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('addMembersToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('addMemberToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -656,7 +657,7 @@ export function addMembersToRegister(parameters) {
  * @param {integer} parameters.registerId - ID of the register
  * @param {} parameters.member - Member to be updated
  */
-export function getMemberByRegister(parameters) {
+export function updateMemberByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -690,7 +691,7 @@ export function getMemberByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('getMemberByRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('updateMemberByRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -735,6 +736,52 @@ export function deleteMemberOfRegister(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('deleteMemberOfRegister', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Returns the member object of the given register and user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID of the register
+ * @param {integer} parameters.user - ID of the user
+ */
+export function findMemberByRegisterAndUser(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/members/findByUser';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['user'] !== undefined) {
+        queryParameters['user'] = parameters['user'];
+    }
+
+    if (parameters['user'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: user'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('findMemberByRegisterAndUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -944,6 +991,7 @@ export function getCard(parameters) {
  *
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.cardId - ID of the card which needs to be updated
+ * @param {} parameters.body - GoCard API
  */
 export function updateCard(parameters) {
     if (parameters === undefined) {
@@ -965,6 +1013,15 @@ export function updateCard(parameters) {
 
     if (parameters['cardId'] === undefined) {
         deferred.reject(new Error('Missing required  parameter: cardId'));
+        return deferred.promise;
+    }
+
+    if (parameters['body'] !== undefined) {
+        body = parameters['body'];
+    }
+
+    if (parameters['body'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: body'));
         return deferred.promise;
     }
 
@@ -1241,6 +1298,42 @@ export function deleteUser(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('deleteUser', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Returns all member objects of a given user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.userId - ID of the user
+ */
+export function getMembersByUser(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/users/{userId}/memberships';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{userId}', parameters['userId']);
+
+    if (parameters['userId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: userId'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('getMembersByUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
