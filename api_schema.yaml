@@ -427,12 +427,11 @@ paths:
           type: integer
           format: int64
           required: true
-        - name: userId
-          in: body
+        - name: user
+          in: query
           description: ID of the user
-          schema:
-            type: integer
-            format: int64
+          type: integer
+          format: int64
           required: true
       responses:
         '200':

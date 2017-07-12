@@ -5,6 +5,7 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Member;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
+use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -127,5 +128,16 @@ class MembersController extends AbstractApiEndpointController
     public function deleteMemberOfRegisterAction(Member $member)
     {
         $this->memberRepository->remove($member);
+    }
+
+    /**
+     * @param Register $register
+     * @param User $user
+     */
+    public function findMemberByRegisterAndUserAction(Register $register, User $user)
+    {
+        $member = $this->memberRepository->findByRegisterAndUser($register, $user);
+
+        $this->view->assign('value', $member);
     }
 }
