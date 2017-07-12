@@ -81,7 +81,7 @@ const detail = ({handleSubmit, register, users, mode, cards, modeSelected}) => {
                     <CardTitle >Benutzer des Registers</CardTitle>
                     <CardText>
                         <MemberBar
-                            members={members}/>
+                            members={users}/>
                     </CardText>
                 </Card>
             </CardGroup>
