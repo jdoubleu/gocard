@@ -11,7 +11,6 @@ class New extends React.Component {
         return (
             <NewComponent handleSubmit={this.handleSubmit} title={this.state.title}
                           description={this.state.description} handleInputChange={this.handleInputChange}
-                          isFetching={this.props.isFetching}
             />
         );
     }
@@ -58,14 +57,12 @@ class New extends React.Component {
 }
 
 New.propTypes = {
-    user: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired
+    user: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        userId: state.auth.userId,
-        isFetching: state.register.isFetching
+        userId: state.auth.userId
     }
 }
 

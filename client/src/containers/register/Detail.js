@@ -59,21 +59,14 @@ class Detail extends React.Component {
 
     handleSelectTag(tag) {
     }
-
-
 }
 
 Detail.propTypes = {};
 
 function mapStateToProps(state, ownProps) {
+    const registerId = ownProps.match.params.id;
     return {
-        register: state.register.items[ownProps.match.params.id],
-        members: state.user.items[ownProps.match.params.id],
-        userId: state.auth.userId,
-        users: state.user.items,
-        cards: state.card.items[ownProps.match.params.id] || [],
-        mode: state.register.selectedMode[ownProps.match.params.id],
-        selectedTags: state.register.selectedTags[ownProps.registerId]
+        register: state.entities.registers.byId[registerId]
     }
 }
 

@@ -67,7 +67,7 @@ InitialDialog.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        user: state.user.items[state.auth.userId] || {},
+        user: state.entities.users.byId[state.auth.userId] || {},
         isFetching: state.auth.isFetching
     }
 }

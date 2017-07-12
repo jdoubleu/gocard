@@ -46,21 +46,20 @@ function usersById(state = {}, action) {
 
 function addUserId(state, action) {
     const {response} = action;
-    const {userId} = response;
 
-    return state.concat(userId);
+    return _.concat(state, response.uid);
 }
 
 function deleteUserId(state, action) {
     const {userId} = action;
 
-    return _.pull(state, userId);
+    return _.omit(state, userId);
 }
 
 function updateUserId(state, action) {
     const {userId, response} = action;
 
-    return _.omit(state, userId).concat(response.uid);
+    return _.concat(_.omit(state, userId), response.uid);
 }
 
 function allUsers(state = [], action) {
