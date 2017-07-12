@@ -92,7 +92,7 @@ class Member
     /**
      * @return string
      */
-    public function getScope(): string
+    public function getScope(): ?string
     {
         return $this->scope;
     }
