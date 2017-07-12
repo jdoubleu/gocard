@@ -5,7 +5,9 @@ namespace GoCardTeam\GoCardApi\Http\v1;
 use Neos\Flow\Aop\JoinPointInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Routing\Router;
+use Neos\Flow\Reflection\ClassSchema;
 use Neos\Flow\Reflection\ReflectionService;
+use Neos\Utility\TypeHandling;
 
 /**
  * Aspect for mapping flat properties given in request body to a routed object.
@@ -68,7 +70,7 @@ class FlatPropertyMappingAspect
             return $result;
         }
 
-        $classSchema = $this->reflectionService->getClassSchema($partsConfiguration['objectType']);
+        $type = TypeHandling::parseType($partsConfiguration['objectType']);
 
         $plainArguments = array_filter($result, function ($argumentKey) {
             return $argumentKey[0] != '@';
@@ -80,15 +82,49 @@ class FlatPropertyMappingAspect
             return $result;
         }
 
-        foreach ($classSchema->getProperties() as $prop => $value) {
-            if(!array_key_exists($prop, $plainArguments) || array_key_exists($prop, $result[$targetName])) {
-                continue;
-            }
+        /*
+         * When type is collection: enumerate over children and map them to the childElement
+         * Yet only handle subtypes for collections. But maybe there exist other objects which also have subelements
+         */
+        if (!empty($type['elementType']) && TypeHandling::isCollectionType($type['type'])) {
+            $classSchema = $this->reflectionService->getClassSchema($type['elementType']);
 
-            unset($result[$prop]);
-            $result[$targetName][$prop] = $plainArguments[$prop];
+            $plainArguments = array_filter($plainArguments, 'is_numeric', ARRAY_FILTER_USE_KEY);
+            foreach ($plainArguments as $key => $argument) {
+                if (isset($result[$targetName][$key])) {
+                    continue;
+                }
+
+                $result[$targetName][$key] = [];
+                $this->keepDataByClass($argument, $result[$targetName][$key], $classSchema);
+                unset($result[$key]);
+            }
+        } else {
+            $classSchema = $this->reflectionService->getClassSchema($type['type']);
+
+            $this->keepDataByClass($plainArguments, $result[$targetName], $classSchema);
+            foreach (array_flip(array_intersect_assoc($result, $result[$targetName])) as $mappedProperty) {
+                unset($result[$mappedProperty]);
+            }
         }
 
         return $result;
+    }
+
+    /**
+     * @param array $source
+     * @param array $target
+     * @param ClassSchema $classSchema
+     * @Flow\CompileStatic
+     */
+    protected function keepDataByClass(array $source, array &$target, ClassSchema $classSchema)
+    {
+        foreach ($classSchema->getProperties() as $prop => $value) {
+            if(!array_key_exists($prop, $source) || array_key_exists($prop, $target)) {
+                continue;
+            }
+
+            $target[$prop] = $source[$prop];
+        }
     }
 }

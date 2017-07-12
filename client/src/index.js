@@ -9,6 +9,7 @@ import {Provider} from "react-redux";
 import reducers from "./reducers";
 import {offline} from "redux-offline";
 import offlineConfig from "redux-offline/lib/defaults";
+import callAPI from "./middleware/callAPI";
 
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -17,7 +18,7 @@ import App from "./App";
 const history = createHistory();
 const router = routerMiddleware(history);
 
-const middleware = [thunk, router];
+const middleware = [thunk, router, callAPI];
 
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());

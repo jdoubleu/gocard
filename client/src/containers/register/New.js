@@ -2,14 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import NewComponent from "../../components/register/new";
-import {addRegister} from "../../actions/registers";
-
+import {addRegister} from "../../actions/register";
+import moment from "moment";
+import {push} from "react-router-redux";
 
 class New extends React.Component {
     render() {
         return (
             <NewComponent handleSubmit={this.handleSubmit} title={this.state.title}
                           description={this.state.description} handleInputChange={this.handleInputChange}
+                          isFetching={this.props.isFetching}
             />
         );
     }
@@ -39,7 +41,19 @@ class New extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        this.props.dispatch(addRegister(this.state.title, this.state.description));
+        const {dispatch, userId} = this.props;
+
+        dispatch(
+            addRegister({
+                owner: userId,
+                crdate: moment().format(),
+                title: this.state.title,
+                description: this.state.description
+            })
+        ).then(
+            success =>
+                dispatch(push('/'))
+        );
     }
 }
 
@@ -50,8 +64,8 @@ New.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        user: state.auth.user,
-        isFetching: state.auth.isFetching
+        userId: state.auth.userId,
+        isFetching: state.register.isFetching
     }
 }
 

@@ -1,7 +1,6 @@
 import auth from "./auth";
-import registration from "./registration";
-import registers from "./registers";
-import users from "./users";
-import cards from "./cards";
+import card from "./card";
+import user from "./user";
+import register from "./register";
 
-export default {auth, registration, registers, users, cards};
+export default {auth, user, register, card};

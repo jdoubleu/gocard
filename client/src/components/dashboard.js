@@ -17,8 +17,8 @@ const Dashboard = ({registers}) => {
                 <BlankCard />
                 {
                     registers &&
-                    _.toArray(registers).map((register) =>
-                        <Preview register={register}/>
+                    registers.map((register) =>
+                        <Preview register={register} key={register.uid}/>
                     )
                 }
             </Row>

@@ -59,6 +59,12 @@ class Register
     protected $cards;
 
     /**
+     * @ORM\OneToMany(fetch="EXTRA_LAZY", orphanRemoval=true, mappedBy="register")
+     * @var ArrayCollection<Member>
+     */
+    protected $members;
+
+    /**
      * Initialize this entity
      */
     public function __construct()
@@ -168,5 +174,21 @@ class Register
     public function setCards($cards)
     {
         $this->cards = $cards;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param ArrayCollection $members
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
     }
 }
