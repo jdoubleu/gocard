@@ -2,17 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Button} from "reactstrap";
 
-
 const tagViewer = ({tags, handleSelect, selectedTags}) => {
     return (
         <div>
-            { tags &&
+            {
+                tags &&
                 tags.map((tag) =>
                     <Button outline size="sm" className="mr-1" onClick={() => handleSelect(tag)}
-                            color={selectedTags.includes(tag) ? 'primary' : 'secondary'}>{tag} {selectedTags.includes(tag) ? '\u2714' : ''}</Button>
+                            color={selectedTags.includes(tag) ? 'primary' : 'secondary'}>
+                        {tag} {selectedTags.includes(tag) ? '\u2714' : ''}
+                    </Button>
                 )
             }
-            { !!tags &&
+            {
+                !tags &&
                 <p>
                     Keine Tags vorhanden.
                 </p>

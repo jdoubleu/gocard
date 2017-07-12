@@ -6,7 +6,7 @@ import {Row} from "reactstrap";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
-const Dashboard = ({registers}) => {
+const Dashboard = ({registers, members}) => {
     return (
         <div>
             <Headline title="Dashboard">
@@ -18,7 +18,7 @@ const Dashboard = ({registers}) => {
                 {
                     registers &&
                     registers.map((register) =>
-                        <Preview register={register} key={register.uid}/>
+                        <Preview register={register} members={members[register.uid] || []} key={register.uid}/>
                     )
                 }
             </Row>
@@ -27,7 +27,8 @@ const Dashboard = ({registers}) => {
 };
 
 Dashboard.propTypes = {
-    registers: PropTypes.object.isRequired
+    registers: PropTypes.array.isRequired,
+    members: PropTypes.object.isRequired
 };
 
 export default Dashboard;

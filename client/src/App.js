@@ -21,7 +21,6 @@ import Feedback from "./scenes/learn/Feedback";
 import ProtectedRoute from "./containers/shared/ProtectedRoute";
 import Home from "./containers/Home";
 import Normal from "./scenes/learn/Normal";
-import Detail from "./scenes/register/Detail";
 import Power from "./scenes/learn/Power";
 import Exam from "./scenes/learn/Exam";
 
@@ -43,7 +42,6 @@ class App extends React.Component {
                         <Route path='/input' exact component={Input}/> # just for testing
                         <Route path='/feedback' exact component={Feedback}/> # just for testing
                         <Route path='/normal' exact component={Normal}/> # just for testing
-                        <Route path='/detail' exact component={Detail}/> # just for testing
                         <Route path='/power' exact component={Power}/> # just for testing
                         <Route path='/exam' exact component={Exam}/> # just for testing
 

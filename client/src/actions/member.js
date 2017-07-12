@@ -1,4 +1,4 @@
-import{findMembersByRegister as apiFindMembersByRegister} from "../lib/ApiClient"
+import {findMembersByRegister as apiFindMembersByRegister} from "../lib/ApiClient";
 
 export const LOAD_MEMBERS_REQUEST = 'LOAD_MEMBERS_REQUEST';
 export const LOAD_MEMBERS_SUCCESS = 'LOAD_MEMBERS_SUCCESS';

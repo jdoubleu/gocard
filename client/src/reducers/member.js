@@ -1,41 +1,37 @@
 import {
-    USERS_REQUEST,
-    USERS_SUCCESS,
-    USERS_FAILURE
-} from "../actions/users";
+    LOAD_MEMBERS_REQUEST,
+    LOAD_MEMBERS_SUCCESS,
+    LOAD_MEMBERS_FAILURE,
+} from "../actions/member";
 import _ from "lodash";
 
 const initialState = {
     isFetching: false,
-    users: {},
-    members: {}
+    items: {}
 };
 
-function users(state = initialState, action) {
+function member(state = initialState, action) {
     switch (action.type) {
-        case USERS_REQUEST:
+        case LOAD_MEMBERS_REQUEST:
             return {
                 ...state,
                 isFetching: true,
             };
-        case USERS_SUCCESS:
+        case LOAD_MEMBERS_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                users: {
-                    ...state.users,
-                    ..._.keyBy({...action.user}, 'uid')
-                }
+                items: _.merge(state.items, _.keyBy(action.response, action.registerId))
             };
-        case USERS_FAILURE:
+        case LOAD_MEMBERS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                errorMessage: action.errorMessage
+                error: action.error
             };
         default:
             return state;
     }
 }
 
-export default users;
+export default member;

@@ -5,7 +5,7 @@ import {Card, CardTitle, Col, Row} from "reactstrap";
 import Statistic from "../shared/statistics/statistic";
 import MemberBar from "./member/bar";
 
-const Preview = ({register, ...rest}) => {
+const Preview = ({register, members, ...rest}) => {
     return (
         <Col xl="4" md="6" xs="12" {...rest}>
             <Card block className="mb-2">
@@ -13,7 +13,7 @@ const Preview = ({register, ...rest}) => {
 
                 <Row className="mb-3">
                     <Col xs="8">
-                        <MemberBar members={register.members} diameter={36}/>
+                        <MemberBar members={members} diameter={36}/>
                     </Col>
                     <Col xs="4">
                         <Statistic/>
@@ -26,7 +26,8 @@ const Preview = ({register, ...rest}) => {
 };
 
 Preview.propTypes = {
-    register: PropTypes.object.isRequired
+    register: PropTypes.object.isRequired,
+    members: PropTypes.array.isRequired
 };
 
 export default Preview;

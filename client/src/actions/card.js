@@ -11,4 +11,3 @@ export function loadCards(registerId) {
         payload: {registerId}
     }
 }
-

@@ -15,7 +15,7 @@ const initialState = {
     items: {}
 };
 
-function users(state = initialState, action) {
+function user(state = initialState, action) {
     switch (action.type) {
         case LOAD_CURRENT_USER_REQUEST:
         case LOAD_USER_REQUEST:
@@ -42,4 +42,4 @@ function users(state = initialState, action) {
     }
 }
 
-export default users;
+export default user;

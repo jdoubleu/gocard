@@ -21,11 +21,11 @@ import MemberBar from "./member/bar";
 import Statistic from "../shared/statistics/statistic";
 import BlankPreviewCard from "../cards/blankCard";
 import PreviewCard from "../cards/preview";
-import TagViewerComponent from "./tagViewer";
+import TagSelect from "./tagSelect.js";
 import "./Detail.css";
 
 
-const detail = ({handleSubmit, register, users, mode, cards, modeSelected, tags, handleSelect, selectedTags, totalScore}) => {
+const detail = ({handleSubmit, handleInputChange, register, members, mode, cards, modeSelected, tags, handleSelect, selectedTags, totalScore}) => {
 
     return (
         <div>
@@ -34,54 +34,51 @@ const detail = ({handleSubmit, register, users, mode, cards, modeSelected, tags,
             <CardGroup>
                 <Card block>
                     <CardTitle>Beschreibung</CardTitle>
-                    <CardText>{register.description}
-                        <hr/>
-                    </CardText>
-
                     <CardText>
-                        <Link to="3/edit">Bearbeiten</Link>
+                        {register.description}
                     </CardText>
-
+                    <span><hr/></span>
+                    <Link to="3/edit">Bearbeiten</Link>
                 </Card>
                 <Card block className="border-top-primary">
-
                     <CardTitle>Lernen</CardTitle>
                     <Form>
                         <FormGroup>
                             <Label for="tags" id="labelTags">Tags</Label>
-                            <TagViewerComponent tags={tags} selectedTags={selectedTags} handleSelect={handleSelect} />
+                            <TagSelect tags={tags} selectedTags={selectedTags} handleSelect={handleSelect}/>
                         </FormGroup>
                         <FormGroup>
-                            <Label for="mode" id="labelLernmodus" width="80px">Lernmodus</Label>
+                            <Label for="mode" id="labelLernmodus">Lernmodus</Label>
                             <ButtonGroup check>
-                                <Button id="buttonNormal" outline
-                                        onClick={() => modeSelected(1)} active={mode === 1}
+                                <Button outline
+                                        onClick={() => handleInputChange({target: {value: 1, name: 'mode'}})}
+                                        active={mode === 1}
                                         color={mode === 1 ? 'primary' : 'secondary'}>Normal
                                 </Button>
-                                <Button id="buttonPower" outline
-                                        onClick={() => modeSelected(2)} active={mode === 2}
+                                <Button outline
+                                        onClick={() => handleInputChange({target: {value: 2, name: 'mode'}})}
+                                        active={mode === 2}
                                         color={mode === 2 ? 'primary' : 'secondary'}>Power
                                 </Button>
-                                <Button id="buttonKlausur" outline
-                                        onClick={() => modeSelected(3)} active={mode === 3}
+                                <Button outline
+                                        onClick={() => handleInputChange({target: {value: 3, name: 'mode'}})}
+                                        active={mode === 3}
                                         color={mode === 3 ? 'primary' : 'secondary'}>Klausur
                                 </Button>
                             </ButtonGroup>
                         </FormGroup>
-                        <Link to={handleSubmit}>
-                            <Button block outline color="primary">Lernen starten</Button>
-                        </Link>
+                        <Button block outline color="primary" onClick={() => handleSubmit}>Lernen starten</Button>
                     </Form>
                 </Card>
                 <Card block>
                     <CardTitle>Statistik</CardTitle>
                     <CardText>
-                        <Statistic good={totalScore.good} middle={totalScore.middle} bad={totalScore.bad} />
+                        <Statistic good={totalScore.good} middle={totalScore.middle} bad={totalScore.bad}/>
                     </CardText>
                     <CardTitle >Benutzer des Registers</CardTitle>
                     <CardText>
                         <MemberBar
-                            members={users}/>
+                            members={members}/>
                     </CardText>
                 </Card>
             </CardGroup>
@@ -123,8 +120,8 @@ detail.propTypes = {
     modeSelected: PropTypes.func.isRequired,
     tags: PropTypes.array.isRequired,
     handleSelect: PropTypes.func.isRequired,
-    selectedTags:PropTypes.array.isRequired,
-    totalScore:PropTypes.object
+    selectedTags: PropTypes.array.isRequired,
+    totalScore: PropTypes.object
 };
 
 export default detail;

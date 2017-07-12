@@ -11,23 +11,23 @@ class Dashboard extends React.Component {
         dispatch(loadRegisters())
     }
 
-
     render() {
-        const {registers} = this.props;
+        const {registers, members} = this.props;
         return (
-            <DashboardComponent registers={registers}/>
+            <DashboardComponent registers={registers} members={members}/>
         )
     }
 }
 
 Dashboard.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    register: PropTypes.array.isRequired
+    registers: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        registers: _.values(state.register.items)
+        registers: _.values(state.register.items) || [],
+        members: state.member.items || {}
     }
 }
 

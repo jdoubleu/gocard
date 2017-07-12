@@ -28,23 +28,20 @@ const statistic = ({good, middle, bad}) => {
         maintainAspectRatio: true
     };
 
-    return (
-        <div>
-            {
-                (good !== 0 || bad !== 0 || middle !== 0) &&
-                <Doughnut
-                    options={options}
-                    data={data}
-                />
-            }
-            {
-                good === 0 && bad === 0 && middle === 0 &&
-                <p>
-                    Wenn du Karteikarten beantwortest, erhälst du deine Statistik.
-                </p>
-            }
-        </div>
-    );
+    if(good !== 0 || bad !== 0 || middle !== 0){
+        return (
+            <Doughnut
+                options={options}
+                data={data}
+            />
+        );
+    }else{
+        return (
+            <span>
+                Wenn du Karteikarten beantwortest, erhälst du deine Statistik.
+            </span>
+        );
+    }
 };
 
 statistic.propTypes = {

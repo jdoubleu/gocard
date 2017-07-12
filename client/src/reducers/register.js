@@ -13,7 +13,9 @@ import _ from "lodash";
 
 const initialState = {
     isFetching: false,
-    items: {}
+    items: {},
+    selectedMode: {},
+    selectedTags: {}
 };
 
 function registers(state = initialState, action) {
@@ -43,9 +45,14 @@ function registers(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                items: _.merge(state.items, _.keyBy(action.response, 'uid'))
+                items: _.merge(
+                    state.items,
+                    _.keyBy(
+                        action.response,
+                        'uid'
+                    )
+                )
             };
-
         case DELETE_REGISTER_SUCCESS:
             return {
                 ...state,
