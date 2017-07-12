@@ -5,10 +5,12 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Member;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
+use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Persistence\Exception\KnownObjectException;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 
 /**
@@ -61,5 +63,81 @@ class MembersController extends AbstractApiEndpointController
         $register->setMembers($members);
 
         $this->registerRepository->update($register);
+    }
+    
+    /**
+     * Allows property modification for update action.
+     * By default it is not allowed to modify a persisted object.
+     */
+    public function initializeAddMemberToRegisterAction()
+    {
+        $memberConfiguration = $this->arguments->getArgument('member')->getPropertyMappingConfiguration();
+        $memberConfiguration->allowAllProperties()->skipProperties('uid');
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $memberConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+    }
+
+    /**
+     * @param Register $register
+     * @param Member $member
+     */
+    public function addMemberToRegisterAction(Register $register, Member $member)
+    {
+        try {
+            $member->setRegister($register);
+
+            $this->memberRepository->add($member);
+
+            $this->persistenceManager->whitelistObject($member);
+            $this->persistenceManager->persistAll(true);
+        } catch (KnownObjectException $e) {
+            $this->throwStatus(409);
+        }
+
+        $this->view->assign('value', $member);
+    }
+
+    /**
+     * Allows property modification for update action.
+     * By default it is not allowed to modify a persisted object.
+     */
+    public function initializeUpdateMemberByRegisterAction()
+    {
+        $memberConfiguration = $this->arguments->getArgument('member')->getPropertyMappingConfiguration();
+        $memberConfiguration->allowAllProperties()->skipProperties('uid');
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
+        $memberConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+    }
+
+    /**
+     * @param Register $register
+     * @param Member $member
+     */
+    public function updateMemberByRegisterAction(Register $register, Member $member)
+    {
+        $member->setRegister($register);
+
+        $this->memberRepository->update($member);
+    }
+
+    /**
+     * @param Member $member
+     */
+    public function deleteMemberOfRegisterAction(Member $member)
+    {
+        $this->memberRepository->remove($member);
+    }
+
+    /**
+     * @param Register $register
+     * @param User $user
+     */
+    public function findMemberByRegisterAndUserAction(Register $register, User $user)
+    {
+        $member = $this->memberRepository->findByRegisterAndUser($register, $user);
+
+        $this->view->assign('value', $member);
     }
 }

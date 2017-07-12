@@ -5,6 +5,7 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
+use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
@@ -38,6 +39,12 @@ class UsersController extends AbstractApiEndpointController
      * @var AccountRepository
      */
     protected $accountRepository;
+
+    /**
+     * @Flow\Inject
+     * @var MemberRepository
+     */
+    protected $memberRepository;
 
     /**
      * Allows property modification for update action.
@@ -135,5 +142,16 @@ class UsersController extends AbstractApiEndpointController
     public function deleteUserAction(User $user)
     {
         $this->userRepository->remove($user);
+    }
+
+    /**
+     * @param User $user
+     */
+    public function getMembersByUserAction(User $user)
+    {
+        $members = $this->memberRepository->findByUser($user);
+
+        // TODO: expose register property in member models
+        $this->view->assign('value', $members);
     }
 }

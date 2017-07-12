@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @Flow\Entity
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="user_register", columns={"user","register"})})
  */
 class Member
 {
@@ -33,7 +34,7 @@ class Member
      * @ORM\Column(type="string", columnDefinition="SET('read', 'write', 'update')")
      * @var string
      */
-    protected $status;
+    protected $scope;
 
     /**
      * @ORM\ManyToOne(inversedBy="members")
@@ -91,17 +92,17 @@ class Member
     /**
      * @return string
      */
-    public function getStatus(): string
+    public function getScope(): ?string
     {
-        return $this->status;
+        return $this->scope;
     }
 
     /**
-     * @param string $status
+     * @param string $scope
      */
-    public function setStatus(string $status)
+    public function setScope(string $scope)
     {
-        $this->status = $status;
+        $this->scope = $scope;
     }
 
     /**
