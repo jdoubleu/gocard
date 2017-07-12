@@ -17,10 +17,10 @@ import {
 } from "reactstrap";
 import {Link} from "react-router-dom";
 import Statistic from "../../components/shared/statistics/statistic";
-import PreviewCard from "../../components/cards/previewCard";
+import PreviewCard from "../../components/cards/preview";
 import MemberBar from "../../components/register/member/bar";
-import TagViewer from "../../components/register/modules/tagViewer";
-import BlankPreviewCard from "../../components/cards/blankPreviewCard";
+import TagViewer from "../../components/register/tagViewer";
+import BlankPreviewCard from "../../components/cards/blankCard";
 
 class Detail extends React.Component {
     constructor(props) {

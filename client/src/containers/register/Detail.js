@@ -4,13 +4,16 @@ import {connect} from "react-redux";
 import DetailComponent from "../../components/register/detail";
 import {withRouter} from "react-router-dom";
 import {loadCards} from "../../actions/cards";
-import {loadMembers, getUserForRegister} from "../../actions/registers";
+import {storeSelectedTags, loadMembers, getUserForRegister} from "../../actions/registers";
 import _ from "lodash";
 
 class Detail extends React.Component {
     render() {
         return (
-            <DetailComponent cards={this.props.cards} mode={this.state.mode} users={this.props.memberNames} register={this.props.register} handleSubmit={this.handleSubmit} modeSelected={this.modeSelected}/>
+            <DetailComponent cards={this.props.cards} mode={this.state.mode} users={this.props.memberNames}
+                             register={this.props.register} handleSubmit={this.handleSubmit} modeSelected={this.modeSelected}
+                             tags={["OOP2","Netze","Mathe3","Bibbers"]} selectedTags={this.state.selectedTags}
+                             totalScore={this.state.totalScore} handleSelect={this.handleSelect}/>
         );
     }
 
@@ -33,12 +36,18 @@ class Detail extends React.Component {
             mode: 1,
             description: "",
             register: {},
-            memberNames: {}
+            memberNames: {},
+            tags: this.calculatedTags(),
+            selectedTags: this.calculatedSelectedTags(),
+            totalScore: {good: 1, middle:0, bad:10}
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.modeSelected = this.modeSelected.bind(this);
         this.calculateMemberNames = this.calculateMemberNames.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.calculatedTags = this.calculatedTags.bind(this);
+        this.calculatedSelectedTags = this.calculatedSelectedTags.bind(this);
     }
 
     handleInputChange(event) {
@@ -65,6 +74,46 @@ class Detail extends React.Component {
         event.preventDefault();
 
     }
+
+    calculatedTags(){
+        let tags = [];
+        _.forEach(this.props.cards, function(card) {
+            tags = _.concat(tags, card.tags)
+        });
+        tags = _.uniq(tags);
+        if(tags === undefined){
+            return [];
+        } else {
+            return tags;
+        }
+    }
+
+    calculatedSelectedTags(){
+        if(this.props.selectedTags !== undefined && this.props.selectedTags.length > 0 ){
+            return this.props.selectedTags;
+        } else {
+            return this.calculatedTags().slice(0);
+        }
+    }
+
+    handleSelect(tag) {
+        let index = this.state.selectedTags.indexOf(tag);
+        if (index < 0) {
+            this.setState({
+                selectedTags: this.state.selectedTags.concat(tag)
+            }, function(){
+                this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
+            });
+        } else {
+            let selectedTags = this.state.selectedTags;
+            _.pull(selectedTags, tag);
+            this.setState({selectedTags}, function(){
+                this.props.dispatch(storeSelectedTags(this.props.registerId, this.state.selectedTags));
+            });
+        }
+    }
+
+
 }
 
 Detail.propTypes = {
@@ -78,7 +127,8 @@ function mapStateToProps(state, ownProps) {
         user: state.auth.user,
         users: state.users,
         cards: state.cards.cards[ownProps.match.params.id],
-        mode: state.registers.selectedMode[ownProps.match.params.id]
+        mode: state.registers.selectedMode[ownProps.match.params.id],
+        selectedTags: state.registers.selectedTags[ownProps.registerId]
     }
 }
 

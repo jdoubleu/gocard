@@ -18,14 +18,14 @@ import {
 } from "reactstrap";
 import {Link} from "react-router-dom";
 import MemberBar from "./member/bar";
-import TagViewer from "../../containers/register/modules/TagViewer";
 import Statistic from "../shared/statistics/statistic";
-import BlankPreviewCard from "../cards/blankPreviewCard";
-import PreviewCard from "../cards/previewCard";
+import BlankPreviewCard from "../cards/blankCard";
+import PreviewCard from "../cards/preview";
+import TagViewerComponent from "./tagViewer";
 import "./Detail.css";
 
 
-const detail = ({handleSubmit, register, users, mode, cards, modeSelected}) => {
+const detail = ({handleSubmit, register, users, mode, cards, modeSelected, tags, handleSelect, selectedTags, totalScore}) => {
 
     return (
         <div>
@@ -49,7 +49,7 @@ const detail = ({handleSubmit, register, users, mode, cards, modeSelected}) => {
                     <Form>
                         <FormGroup>
                             <Label for="tags" id="labelTags">Tags</Label>
-                            <TagViewer cards={cards} registerId={register.uid}/>
+                            <TagViewerComponent tags={tags} selectedTags={selectedTags} handleSelect={handleSelect} />
                         </FormGroup>
                         <FormGroup>
                             <Label for="mode" id="labelLernmodus" width="80px">Lernmodus</Label>
@@ -76,7 +76,7 @@ const detail = ({handleSubmit, register, users, mode, cards, modeSelected}) => {
                 <Card block>
                     <CardTitle>Statistik</CardTitle>
                     <CardText>
-                        <Statistic/>
+                        <Statistic good={totalScore.good} middle={totalScore.middle} bad={totalScore.bad} />
                     </CardText>
                     <CardTitle >Benutzer des Registers</CardTitle>
                     <CardText>
@@ -121,6 +121,10 @@ detail.propTypes = {
     register: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     modeSelected: PropTypes.func.isRequired,
+    tags: PropTypes.array.isRequired,
+    handleSelect: PropTypes.func.isRequired,
+    selectedTags:PropTypes.array.isRequired,
+    totalScore:PropTypes.object
 };
 
 export default detail;
