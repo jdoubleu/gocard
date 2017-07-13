@@ -18,3 +18,44 @@
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
+
+-
+  name: 'add new member to register'
+  uriPattern: ''
+  defaults:
+    '@action': 'addMemberToRegister'
+  routeParts:
+    member:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'update member'
+  uriPattern: '{member}'
+  defaults:
+    '@action': 'updateMemberByRegister'
+  routeParts:
+    member:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'delete member'
+  uriPattern: '{member}'
+  defaults:
+    '@action': 'deleteMemberOfRegister'
+  routeParts:
+    member:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+  httpMethods: ['DELETE']
+
+-
+  name: 'find member of register by user'
+  uriPattern: 'findByUser'
+  defaults:
+    '@action': 'findMemberByRegisterAndUser'
+  httpMethods: ['GET']

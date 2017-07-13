@@ -312,7 +312,7 @@ paths:
         - members
       summary: Add member to this register
       description: Adds a new member to this register
-      operationId: addMembersToRegister
+      operationId: addMemberToRegister
       produces:
         - application/json
       parameters:
@@ -348,7 +348,7 @@ paths:
         - members
       summary: Update member of a register
       description: Updates a specific member of a register
-      operationId: getMemberByRegister
+      operationId: updateMemberByRegister
       produces:
         - application/json
       parameters:
@@ -408,6 +408,44 @@ paths:
           description: Not allowed to remove this member
         '404':
           description: Register or member not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/members/findByUser':
+    get:
+      tags:
+        - registers
+        - members
+      summary: Get a member of a register
+      description: Returns the member object of the given register and user
+      operationId: findMemberByRegisterAndUser
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: user
+          in: query
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid register or user ID supplied
+        '403':
+          description: Not allowed to view members of this register
+        '404':
+          description: Register or User with this ID not found
       security:
         - api_key: []
   '/registers/{registerId}/activities/':
@@ -588,6 +626,11 @@ paths:
           type: integer
           format: int64
           required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Card'
       responses:
         '200':
           description: Successfully updated the card
@@ -816,6 +859,38 @@ paths:
           description: User not found
       security:
         - api_key: []
+  '/users/{userId}/memberships':
+    get:
+      tags:
+        - users
+        - members
+      summary: Get members of user
+      description: Returns all member objects of a given user
+      operationId: getMembersByUser
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid ID supplied
+        '403':
+          description: Not allowed to view this data
+        '404':
+          description: User not found
+      security:
+        - api_key: []
   '/users/findByEmail':
     get:
       tags:
@@ -942,7 +1017,6 @@ definitions:
       - id
       - owner
       - title
-      - description
   Card:
     type: object
     properties:
@@ -1016,7 +1090,10 @@ definitions:
   Member:
     type: object
     properties:
-      userid:
+      id:
+        type: integer
+        format: int64
+      user:
         type: integer
         format: int64
         description: ID of the user
@@ -1030,7 +1107,7 @@ definitions:
             - update
         uniqueItems: true
     required:
-      - userid
+      - user
       - scope
   RegisterActivity:
     type: object
