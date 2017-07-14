@@ -43,6 +43,14 @@ const PrivacyPolicy = () => {
                         für die Zukunft zu widerrufen. Zur Auskunftserteilung wenden Sie sich bitte an den
                         Anbieter unter den Kontaktdaten im Impressum.
                     </CardText>
+
+                    <span><hr/></span>
+
+                    <CardTitle>Datenspeicherung</CardTitle>
+                    <CardText className="px-2 text-justify">
+                        Ihre Accountdaten werden von uns gespeichert. Desweitern werden alle von deinen Erstellten Inhalten
+                        gespeichert. Deine persönlichen lernleistungen werden gespeichert.
+                    </CardText>
                 </Card>
             </Col>
         </Row>
