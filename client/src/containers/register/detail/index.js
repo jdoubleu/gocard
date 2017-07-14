@@ -2,7 +2,6 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {loadCards} from "../../../actions/card";
-import {loadMembers} from "../../../actions/member";
 import "./Detail.css";
 import Headline from "../../../components/shared/headline";
 import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
@@ -11,10 +10,17 @@ import BlankCard from "../../../components/card/blankCard";
 import MemberBar from "../member/Bar";
 import Progress from "../statistics/Progress";
 import LearnForm from "../../forms/Learn";
+import {loadRegister} from "../../../actions/register";
 
 class Detail extends React.Component {
+    componentWillMount() {
+        const {dispatch, match} = this.props;
+        dispatch(loadCards(match.params.id));
+        dispatch(loadRegister(match.params.id));
+    }
+
     render() {
-        const {cards, members, register} = this.props;
+        const {register, cardIds} = this.props;
         return (
             <div>
                 <Headline title={register.title}/>
@@ -41,7 +47,7 @@ class Detail extends React.Component {
                         </CardText>
                         <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
-                            <MemberBar members={members}/>
+                            <MemberBar registerId={register.uid}/>
                         </CardText>
                     </Card>
                 </CardGroup>
@@ -54,20 +60,14 @@ class Detail extends React.Component {
                 <CardDeck>
                     <BlankCard/>
                     {
-                        cards &&
-                        cards.map((card) =>
-                            <PreviewCard card={card}/>
+                        cardIds &&
+                        cardIds.map((cardId) =>
+                            <PreviewCard card={cardId}/>
                         )
                     }
                 </CardDeck>
             </div>
         );
-    }
-
-    componentWillMount() {
-        const {dispatch, match} = this.props;
-        dispatch(loadMembers(match.params.id));
-        dispatch(loadCards(match.params.id));
     }
 }
 

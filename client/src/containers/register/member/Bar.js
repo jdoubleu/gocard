@@ -5,43 +5,53 @@ import UserIcon from "../../../components/shared/user/icon";
 import Icon from "../../../components/shared/icon";
 import {UncontrolledTooltip} from "reactstrap";
 import _ from "lodash";
+import {loadMembers} from "../../../actions/member";
 
-const Bar = ({members, diameter, maxIcons, registerId, ...rest}) => {
-    const visibleMembers = _.chunk(members, maxIcons - 1)[0];
-    const collapsedMembers = _.chunk(members, maxIcons - 1)[1];
-    return (
-        <span>
-            {
-                visibleMembers && collapsedMembers.length > 0 &&
-                visibleMembers.map((member) =>
+class Bar extends React.Component {
+
+    componentWillMount() {
+        const {dispatch, registerId} = this.props;
+        dispatch(loadMembers(registerId));
+    }
+
+    render() {
+        const {members, diameter, maxIcons, registerId} = this.props;
+        const visibleMembers = _.chunk(members, maxIcons - 1)[0];
+        const collapsedMembers = _.chunk(members, maxIcons - 1)[1];
+        return (
+            <span>
+                {
+                    visibleMembers && collapsedMembers.length > 0 &&
+                    visibleMembers.map((member) =>
+                        <span>
+                            <UserIcon diameter={diameter} id={registerId + member.uid}>
+                                {member.displayName}
+                            </UserIcon>
+                            <UncontrolledTooltip placement="bottom" target={"ID" + member.uid}>
+                                {member.displayName}
+                            </UncontrolledTooltip>
+                        </span>
+                    )
+                }
+                {
+                    collapsedMembers && collapsedMembers.length > 0 &&
                     <span>
-                        <UserIcon diameter={diameter} id={registerId + member.uid}>
-                            {member.displayName}
-                        </UserIcon>
-                        <UncontrolledTooltip placement="bottom" target={"ID" + member.uid}>
-                            {member.displayName}
+                        <Icon diameter={diameter} id={registerId + '-collapsed'}>
+                            {"+" + collapsedMembers.length}
+                        </Icon>
+                        <UncontrolledTooltip placement="bottom" target={registerId + '-collapsed'}>
+                            {
+                                collapsedMembers.map((member) =>
+                                    <span>{member.displayName}<br/></span>
+                                )
+                            }
                         </UncontrolledTooltip>
                     </span>
-                )
-            }
-            {
-                collapsedMembers && collapsedMembers.length > 0 &&
-                <span>
-                    <Icon diameter={diameter} id={registerId + '-collapsed'}>
-                        {"+" + collapsedMembers.length}
-                    </Icon>
-                    <UncontrolledTooltip placement="bottom" target={registerId + '-collapsed'}>
-                        {
-                            collapsedMembers.map((member) =>
-                                <span>{member.displayName}<br/></span>
-                            )
-                        }
-                    </UncontrolledTooltip>
-                </span>
-            }
-        </span>
-    );
-};
+                }
+            </span>
+        );
+    }
+}
 
 Bar.propTypes = {
     registerId: PropTypes.number.isRequired,

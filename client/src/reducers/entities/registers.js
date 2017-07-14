@@ -3,6 +3,7 @@ import {
     ADD_REGISTER_SUCCESS,
     DELETE_REGISTER_SUCCESS,
     LOAD_REGISTERS_SUCCESS,
+    LOAD_REGISTER_SUCCESS,
     UPDATE_REGISTER_SUCCESS
 } from "../../actions/register";
 import _ from "lodash";
@@ -33,6 +34,7 @@ function addRegisterEntrys(state, action) {
 
 function registersById(state = {}, action) {
     switch (action.type) {
+        case LOAD_REGISTER_SUCCESS:
         case ADD_REGISTER_SUCCESS:
             return addRegisterEntry(state, action);
         case UPDATE_REGISTER_SUCCESS:
@@ -73,6 +75,7 @@ function addRegisterIds(state, action) {
 
 function allRegisters(state = [], action) {
     switch (action.type) {
+        case LOAD_REGISTER_SUCCESS:
         case ADD_REGISTER_SUCCESS:
             return addRegisterId(state, action);
         case UPDATE_REGISTER_SUCCESS:
