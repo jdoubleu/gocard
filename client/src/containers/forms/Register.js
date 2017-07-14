@@ -17,7 +17,7 @@ const validate = values => {
 };
 
 const RegisterForm = props => {
-    const {error, handleSubmit, submitting} = props;
+    const {error, handleSubmit, submitting, submitLabel} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -42,7 +42,7 @@ const RegisterForm = props => {
             />
 
             <Button outline block color="primary" type="submit" disabled={submitting}>
-                Speichern
+                {submitLabel}
             </Button>
         </Form>
     )
