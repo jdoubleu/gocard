@@ -1,11 +1,11 @@
 import React from "react";
-import {FormFeedback, FormGroup, Input, Label} from "reactstrap";
+import {FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
 
-const InputField = ({input, label, disableLabel, type, meta: {touched, error}}) => (
+const InputField = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => (
     <FormGroup color={touched && error && 'danger'}>
         {
             !disableLabel &&
-            <Label>
+            <Label id={`label-${input.name}`}>
                 {label}
             </Label>
         }
@@ -13,6 +13,12 @@ const InputField = ({input, label, disableLabel, type, meta: {touched, error}}) 
         {
             touched && error &&
             <FormFeedback>{error}</FormFeedback>
+        }
+        {
+            toolTip &&
+            <UncontrolledTooltip placement="right" target={`label-${input.name}`}>
+                {toolTip}
+            </UncontrolledTooltip>
         }
     </FormGroup>
 );
