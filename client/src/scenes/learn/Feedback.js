@@ -1,5 +1,5 @@
 import React from "react";
-import "../../components/register/Detail.css";
+import "../../containers/register/Detail/Detail.css";
 import Headline from "../../components/shared/headline";
 import {
     Button,

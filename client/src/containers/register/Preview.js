@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, CardTitle, Col, Row} from "reactstrap";
-import Statistic from "../../components/shared/statistics/statistic";
+import Progress from "../../containers/register/statistics/Progress";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 
@@ -17,7 +17,7 @@ const Preview = ({register, ...rest}) => {
                         <MemberBar registerId={register.uid} diameter={36}/>
                     </Col>
                     <Col xs="4">
-                        <Statistic registerId={register.uid} />
+                        <Progress registerId={register.uid} />
                     </Col>
                 </Row>
                 <Link className="btn btn-outline-primary" to={`/register/${register.uid}`}>Öffnen</Link>
