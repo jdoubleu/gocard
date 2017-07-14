@@ -7,7 +7,7 @@ import "./Detail.css";
 import Headline from "../../../components/shared/headline";
 import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../../card/Preview";
-import BlankCard from "../../../components/cards/blankCard";
+import BlankCard from "../../../components/card/blankCard";
 import MemberBar from "../member/Bar";
 import Progress from "../statistics/Progress";
 import LearnForm from "../../forms/Learn";
