@@ -1,34 +1,66 @@
 import React from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Link} from "react-router-dom";
+import Logo from "../../components/shared/logo";
+import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
-import LoginComponent from "../../components/account/login";
 
-class Login extends React.Component {
+const Login = () => {
+    return (
+        <Row>
+            <Col sm={12} md={{size: 10, offset: 1}} className="pb-2">
+                <h1 className="display-4">Willkommen bei <Logo/></h1>
+                <p className="lead">
+                    Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen.
+                    Du kannst deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
+                </p>
+            </Col>
 
-    render() {
-        const {dispatch, isLocalLoginFetching, errorMessage} = this.props;
-        return (
-            <LoginComponent
-                onLocalLoginClick={ (email, password) => dispatch(loginUser(email, password))}
-                isLocalLoginFetching={isLocalLoginFetching}
-                message={errorMessage}
-            />
-        )
-    }
-}
+            <Col sm={12} md={{size: 5, offset: 1}} className="mb-2">
+                <Card block className="h-100">
+                    <CardTitle>
+                        <span className="text-muted">Anmelden</span> HSD-Account
+                    </CardTitle>
 
-Login.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    errorMessage: PropTypes.string,
-    isLocalLoginFetching: PropTypes.bool.isRequired
+                    <div className="text-left pl-2">
+                        <CardText>
+                            Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem
+                            Hochschul-Account anzumelden.
+                        </CardText>
+
+                        <CardText>
+                            <a href="http://passport.hs-duesseldorf.de/default.aspx"> Passwort vergessen?</a>
+                        </CardText>
+                        <Button outline block color="primary">
+                            <a href="https://idp.fh-duesseldorf.de/idp/Authn/UserPassword">
+                                Anmelden mit HSD-Account
+                            </a>
+                        </Button>
+                    </div>
+                </Card>
+            </Col>
+
+            <Col sm={12} md={{size: 5, offset: 0}} className="mb-2">
+                <Card block className="h-100">
+                    <CardTitle>
+                        <span className="text-muted">Anmelden</span> GoCard-Account
+                    </CardTitle>
+                    <div className="text-left pl-2">
+                        <CardText>
+                            Du hast noch keinen GoCard-Account?
+                            <br/>
+                            <Link to="/registration">GoCard-Account erstellen</Link>
+                        </CardText>
+                        <LoginForm onSubmit={handleSubmit}/>
+                    </div>
+                </Card>
+            </Col>
+        </Row>
+    )
 };
 
-function mapStateToProps(state) {
-    return {
-        errorMessage: state.auth.errorMessage,
-        isLocalLoginFetching: state.auth.isFetching
-    }
-}
+const handleSubmit = (values, dispatch) => {
+    return dispatch(loginUser(values));
+};
 
-export default connect(mapStateToProps)(Login)
+export default Login;

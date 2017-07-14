@@ -8,14 +8,14 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export function loginUser(email, password) {
+export function loginUser(credentials) {
     return function (dispatch) {
         dispatch({
             types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
-            callAPI: () => apiLoginUser({email, password}),
+            callAPI: () => apiLoginUser(credentials),
         }).then(
             success =>
-                dispatch(getCurrentUser(email))
+                dispatch(getCurrentUser(credentials.email))
         );
     }
 }
