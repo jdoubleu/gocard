@@ -10,7 +10,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export function loginUser(credentials) {
     return function (dispatch) {
-        dispatch({
+        return dispatch({
             types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
             callAPI: () => apiLoginUser(credentials),
         }).then(
