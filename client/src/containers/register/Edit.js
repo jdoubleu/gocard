@@ -9,7 +9,7 @@ import RegisterForm from "../forms/Register";
 
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateRegister(values)).then(
+        return dispatch(updateRegister(register.uid, values)).then(
             response =>
                 dispatch(push('/'))
         )
