@@ -1,22 +1,58 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MemberBar from "../../../components/register/member/bar";
 import {connect} from "react-redux";
+import UserIcon from "../../../components/shared/user/icon";
+import Icon from "../../../components/shared/icon";
+import {UncontrolledTooltip} from "reactstrap";
+import _ from "lodash";
 
-const Bar = ({members, diameter, ...rest}) => {
+const Bar = ({members, diameter, maxIcons, registerId, ...rest}) => {
+    const visibleMembers = _.chunk(members, maxIcons - 1)[0];
+    const collapsedMembers = _.chunk(members, maxIcons - 1)[1];
     return (
-        <MemberBar members={members} diameter={diameter} {...rest}/>
+        <span>
+            {
+                visibleMembers && collapsedMembers.length > 0 &&
+                visibleMembers.map((member) =>
+                    <span>
+                        <UserIcon diameter={diameter} id={registerId + member.uid}>
+                            {member.displayName}
+                        </UserIcon>
+                        <UncontrolledTooltip placement="bottom" target={"ID" + member.uid}>
+                            {member.displayName}
+                        </UncontrolledTooltip>
+                    </span>
+                )
+            }
+            {
+                collapsedMembers && collapsedMembers.length > 0 &&
+                <span>
+                    <Icon diameter={diameter} id={registerId + '-collapsed'}>
+                        {"+" + collapsedMembers.length}
+                    </Icon>
+                    <UncontrolledTooltip placement="bottom" target={registerId + '-collapsed'}>
+                        {
+                            collapsedMembers.map((member) =>
+                                <span>{member.displayName}<br/></span>
+                            )
+                        }
+                    </UncontrolledTooltip>
+                </span>
+            }
+        </span>
     );
 };
 
 Bar.propTypes = {
     registerId: PropTypes.number.isRequired,
     members: PropTypes.object.isRequired,
-    diameter: PropTypes.number.isRequired
+    diameter: PropTypes.number.isRequired,
+    maxIcons: PropTypes.number.isRequired
 };
 
 Bar.defaultProps = {
-    diameter: 36
+    diameter: 36,
+    maxIcons: 5
 };
 
 function mapStateToProps(state, ownProps) {
