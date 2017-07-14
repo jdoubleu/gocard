@@ -1,93 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import RegistrationComponent from "../../components/account/registration";
+import {Card, CardGroup, CardText, CardTitle, Col} from "reactstrap";
+import Logo from "../../components/shared/logo/index";
+import RegistrationForm from "../../containers/forms/Registration";
 import {addUser} from "../../actions/user";
 
-class Registration extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            validPassword: false,
-            validEmail: false,
-            email: '',
-            password: '',
-            passwordRepeat: '',
-            validForm: false
-        };
+const Registration = () => {
+    return (
+        <Col sm="12" md={{size: 8, offset: 2}}>
+            <div className="pb-2">
+                <h1 className="display-4">Willkommen bei <Logo/></h1>
+                <p className="lead">
+                    Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen. Du kannst deine
+                    Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
+                </p>
+            </div>
 
-        this.validateEmail = this.validateEmail.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
-        this.updatePasswordRepeat = this.updatePasswordRepeat.bind(this);
-        this.validatePassword = this.validatePassword.bind(this);
-    }
-
-    validateEmail(event) {
-        let email = event.target.value.trim();
-        this.setState({
-            validEmail: email.includes("@"),
-            email: email
-        });
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-
-        const {dispatch} = this.props;
-        if (this.state.validEmail && this.state.validPassword) {
-            dispatch(addUser({
-                "email": this.state.email,
-                "password": this.state.password,
-                "displayName": "",
-                "status": "new"
-            }))
-        }
-    }
-
-    updatePassword(event) {
-        this.setState({
-            password: event.target.value.trim()
-        }, this.validatePassword);
-    }
-
-    updatePasswordRepeat(event) {
-        this.setState({
-            passwordRepeat: event.target.value.trim()
-        }, this.validatePassword);
-    }
-
-    validatePassword() {
-        if (this.state.password !== '' && this.state.passwordRepeat !== '') {
-            this.setState({
-                validPassword: this.state.password === this.state.passwordRepeat
-            });
-        }
-    }
-
-    render() {
-        return (
-            <RegistrationComponent validateEmail={this.validateEmail} handleSubmit={this.handleSubmit}
-                                   updatePassword={this.updatePassword} updatePasswordRepeat={this.updatePasswordRepeat}
-                                   isRegistrationFetching={false}
-                                   validEmail={this.state.validEmail} validPassword={this.state.validPassword}
-            />
-        )
-    }
-}
-
-Registration.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    error: PropTypes.string,
-    isFetching: PropTypes.bool.isRequired
+            <CardGroup>
+                <Card block>
+                    <CardTitle>Registrieren</CardTitle>
+                    <CardText>
+                        Registriere dich jetzt mit deiner Email Adresse und einem von dir gewählten Passwort, um
+                        einen eigenen Account zu erstellen.
+                    </CardText>
+                    <RegistrationForm onSubmit={handleSubmit}/>
+                </Card>
+            </CardGroup>
+        </Col>
+    )
 };
 
-function mapStateToProps(state) {
-    return {
-        errorMessage: state.auth.error,
-        isFetching: state.auth.isFetching
-    }
-}
+const handleSubmit = (values, dispatch) => {
+    return dispatch(addUser(values));
+};
 
-export default connect(mapStateToProps)(Registration)
+export default Registration;
 
