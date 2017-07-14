@@ -14,7 +14,7 @@ export function loginUser(credentials) {
             types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
             callAPI: () => apiLoginUser(credentials),
         }).then(
-            success =>
+            response =>
                 dispatch(getCurrentUser(credentials.email))
         );
     }

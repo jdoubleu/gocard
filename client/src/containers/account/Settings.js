@@ -1,79 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {deleteUser, updateUser} from "../../actions/user";
-import SettingsComponent from "../../components/account/settings";
+import {updateUser} from "../../actions/user";
+import {Card, Col} from "reactstrap";
+import Headline from "../../components/shared/headline";
+import SettingsForm from "../forms/Settings";
+import Icon from "../../components/shared/user/icon";
+import {formValueSelector} from "redux-form";
 
-class Settings extends React.Component {
-    render() {
-        return (
-            <SettingsComponent displayName={this.state.displayName} email={this.state.email}
-                               password={this.state.password} confirmPassword={this.state.confirmPassword}
-                               handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
-                               modal={this.state.modal} modalToggle={this.modalToggle}
-                               modalHandleSubmit={this.modalHandleSubmit} isFetching={this.props.isFetching}
-            />
-        );
-    }
+const Settings = ({user, displayName}) => {
+    return (
+        <Col sm="12" md={{size: 8, offset: 2}}>
+            <Headline title="Einstellungen"/>
 
-    constructor(props) {
-        super(props);
+            <Card block>
+                <div className="text-center">
+                    <Icon diameter={200}>
+                        {displayName}
+                    </Icon>
+                </div>
 
-        this.state = {
-            displayName: props.user.displayName,
-            email: props.user.email,
-            password: '',
-            confirmPassword: '',
-            modal: false
-        };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-
-        this.modalToggle = this.modalToggle.bind(this);
-        this.modalHandleSubmit = this.modalHandleSubmit.bind(this);
-    }
-
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-
-        this.props.dispatch(updateUser({
-            "displayName": this.state.displayName,
-            "email": this.state.email,
-            "password": this.state.password,
-        }))
-    }
-
-    modalToggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
-
-    modalHandleSubmit(event) {
-        event.preventDefault();
-        this.props.dispatch(deleteUser(this.props.user.id));
-    }
-}
+                <SettingsForm onSubmit={handleSubmit} initialValues={user}/>
+            </Card>
+        </Col>
+    )
+};
 
 Settings.propTypes = {
     user: PropTypes.object.isRequired
 };
 
+const handleSubmit = (values, dispatch) => {
+    return dispatch(updateUser(values));
+};
+
+const selector = formValueSelector('settingsForm');
 function mapStateToProps(state) {
     return {
         user: state.entities.users.byId[state.auth.userId] || {},
-        isFetching: state.auth.isFetching
+        displayName: selector(state, 'displayName')
     }
 }
 
