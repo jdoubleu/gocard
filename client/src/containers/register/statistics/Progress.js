@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Doughnut} from "react-chartjs-2";
 
-const statistic = ({good, middle, bad}) => {
+const Progress = ({good, middle, bad}) => {
 
     const data = {
         datasets: [{
@@ -28,14 +28,14 @@ const statistic = ({good, middle, bad}) => {
         maintainAspectRatio: true
     };
 
-    if(good !== 0 || bad !== 0 || middle !== 0){
+    if (good !== 0 || bad !== 0 || middle !== 0) {
         return (
             <Doughnut
                 options={options}
                 data={data}
             />
         );
-    }else{
+    } else {
         return (
             <span>
                 Wenn du Karteikarten beantwortest, erhälst du deine Statistik.
@@ -44,17 +44,17 @@ const statistic = ({good, middle, bad}) => {
     }
 };
 
-statistic.propTypes = {
+Progress.propTypes = {
     good: PropTypes.number,
     middle: PropTypes.number,
     bad: PropTypes.number,
 };
 
-statistic.defaultProps = {
+Progress.defaultProps = {
     good: 0,
     middle: 0,
     bad: 0,
 };
 
 
-export default statistic;
+export default Progress;
