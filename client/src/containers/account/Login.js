@@ -6,6 +6,11 @@ import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
 
 const Login = () => {
+
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(loginUser(values));
+    };
+
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}} className="pb-2">
@@ -57,10 +62,6 @@ const Login = () => {
             </Col>
         </Row>
     )
-};
-
-const handleSubmit = (values, dispatch) => {
-    return dispatch(loginUser(values));
 };
 
 export default Login;

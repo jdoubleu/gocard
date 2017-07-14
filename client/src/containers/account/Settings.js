@@ -9,6 +9,11 @@ import Icon from "../../components/shared/user/icon";
 import {formValueSelector} from "redux-form";
 
 const Settings = ({user, displayName}) => {
+
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(updateUser(values));
+    };
+
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
             <Headline title="Einstellungen"/>
@@ -28,10 +33,6 @@ const Settings = ({user, displayName}) => {
 
 Settings.propTypes = {
     user: PropTypes.object.isRequired
-};
-
-const handleSubmit = (values, dispatch) => {
-    return dispatch(updateUser(values));
 };
 
 const selector = formValueSelector('settingsForm');

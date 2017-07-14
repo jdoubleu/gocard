@@ -5,6 +5,11 @@ import RegistrationForm from "../../containers/forms/Registration";
 import {addUser} from "../../actions/user";
 
 const Registration = () => {
+
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(addUser(values));
+    };
+
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
             <div className="pb-2">
@@ -27,10 +32,6 @@ const Registration = () => {
             </CardGroup>
         </Col>
     )
-};
-
-const handleSubmit = (values, dispatch) => {
-    return dispatch(addUser(values));
 };
 
 export default Registration;

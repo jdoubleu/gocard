@@ -5,6 +5,11 @@ import {Card, CardText, CardTitle, Col} from "reactstrap";
 import {updateUser} from "../../actions/user";
 
 const InitialDialog = ({user}) => {
+    
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(updateUser({...values, status: "active"}));
+    };
+
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
             <Card block>
@@ -17,10 +22,6 @@ const InitialDialog = ({user}) => {
             </Card>
         </Col>
     );
-};
-
-const handleSubmit = (values, dispatch) => {
-    return dispatch(updateUser({...values, status: "active"}));
 };
 
 function mapStateToProps(state) {

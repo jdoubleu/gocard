@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {loadCards} from "../../../actions/card";
 import {loadMembers} from "../../../actions/member";
 import "./Detail.css";
@@ -81,4 +81,4 @@ function mapStateToProps(state, ownProps) {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Detail));
+export default connect(mapStateToProps)(Detail);

@@ -1,11 +1,5 @@
 import {combineReducers} from "redux";
-import {
-    LOAD_CARDS_SUCCESS,
-    UPDATE_CARD_SUCCESS,
-    UPDATE_CARDS_SUCCESS,
-    DELETE_CARD_SUCCESS
-
-}from "../../actions/card";
+import {DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS} from "../../actions/card";
 import {_} from "lodash";
 
 function addMultipleCardIds(state, action) {

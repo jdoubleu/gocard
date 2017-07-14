@@ -5,6 +5,11 @@ import ResetForm from "../forms/Reset";
 import {requestPasswordReset} from "../../actions/user";
 
 const Reset = () => {
+
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(requestPasswordReset(values));
+    };
+
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
             <div className="pb-2">
@@ -25,10 +30,6 @@ const Reset = () => {
             </CardGroup>
         </Col>
     )
-};
-
-const handleSubmit = (values, dispatch) => {
-    return dispatch(requestPasswordReset(values));
 };
 
 export default Reset;

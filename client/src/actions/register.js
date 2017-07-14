@@ -1,8 +1,8 @@
 import {
     addRegister as apiAddRegister,
     deleteRegister as apiDeleteRegister,
-    updateRegister as apiUpdateRegister,
-    findAllRegisters as apiFindAllRegisters
+    findAllRegisters as apiFindAllRegisters,
+    updateRegister as apiUpdateRegister
 } from "../lib/ApiClient";
 
 export const LOAD_REGISTERS_REQUEST = 'LOAD_REGISTERS_REQUEST';

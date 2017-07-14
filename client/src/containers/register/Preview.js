@@ -6,7 +6,7 @@ import Progress from "../../containers/register/statistics/Progress";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 
-const Preview = ({register, ...rest}) => {
+const Preview = ({register}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2">
@@ -17,7 +17,7 @@ const Preview = ({register, ...rest}) => {
                         <MemberBar registerId={register.uid} diameter={36}/>
                     </Col>
                     <Col xs="4">
-                        <Progress registerId={register.uid} />
+                        <Progress registerId={register.uid}/>
                     </Col>
                 </Row>
                 <Link className="btn btn-outline-primary" to={`/register/${register.uid}`}>Öffnen</Link>

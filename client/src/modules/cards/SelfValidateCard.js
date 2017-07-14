@@ -16,9 +16,9 @@ class SelfValidateCard extends React.Component {
         }
     }
 
-    displayTrueFalse(){
+    displayTrueFalse() {
         console.log(this.state.check);
-        if(this.state.check === true) {
+        if (this.state.check === true) {
             return (
                 <Row>
                     <Col>
@@ -35,10 +35,10 @@ class SelfValidateCard extends React.Component {
 
     handleSubmit(check) {
 
-            this.setState({
-                show: true,
-                check: check
-            })
+        this.setState({
+            show: true,
+            check: check
+        })
 
 
     }
@@ -50,7 +50,7 @@ class SelfValidateCard extends React.Component {
                     <Button block outline color="primary" onClick={() => this.handleSubmit(true)}>Prüfen</Button>
                 </Col>
                 <Col>
-                    <Button block outline color="primary" onClick={() => this.handleSubmit(false)} >Weiss ich
+                    <Button block outline color="primary" onClick={() => this.handleSubmit(false)}>Weiss ich
                         nicht</Button>
                 </Col>
             </Row>)

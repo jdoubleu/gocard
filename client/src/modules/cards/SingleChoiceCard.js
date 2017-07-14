@@ -35,8 +35,8 @@ class SingleChoiceCard extends React.Component {
                     </Col>
                 )
             }
-        }else{
-            return(
+        } else {
+            return (
                 <Col>
                     <CardText>{answer}</CardText>
                 </Col>

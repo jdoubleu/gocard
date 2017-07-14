@@ -1,9 +1,9 @@
 import {
+    deleteCard as apiDeleteCard,
     findByCardsByRegister as apiFindByCardsByRegister,
     updateCard as apiUpdateCard,
-    updateCards as apiUpdateCards,
-    deleteCard as apiDeleteCard
-} from "../lib/ApiClient"
+    updateCards as apiUpdateCards
+} from "../lib/ApiClient";
 
 export const LOAD_CARDS_REQUEST = 'LOAD_CARDS_REQUEST';
 export const LOAD_CARDS_SUCCESS = 'LOAD_CARDS_SUCCESS';

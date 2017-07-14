@@ -1,6 +1,6 @@
 import React from "react";
 import Headline from "../shared/headline";
-import {Card, CardText, CardTitle, Col, Row, Nav, NavItem, NavLink, CardHeader, CardBlock} from "reactstrap";
+import {Card, CardBlock, CardHeader, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row} from "reactstrap";
 
 const Help = () => {
     return (
@@ -408,14 +408,16 @@ const Help = () => {
                             1. Register Auswählen
                             <Col className="px-4 text-justify">
                                 <Row className="mb-1">
-                                Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte Register aus, indem die
-                                Karteikarten liegen, die du lernen möchtest.
+                                    Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte Register
+                                    aus, indem die
+                                    Karteikarten liegen, die du lernen möchtest.
                                 </Row>
                             </Col>
                             2. Tags Auswählen
                             <Col className="px-4 text-justify">
                                 <Row className="mb-1">
-                                    Mit der Auswahl der Tags kannst du einschränken, welche Karten du lernen willst. Nur Karten die einen oder
+                                    Mit der Auswahl der Tags kannst du einschränken, welche Karten du lernen willst. Nur
+                                    Karten die einen oder
                                     mehrere der Ausgewählten Tags besitzen zum Lernen ausgewählt. Wenn du keine Tags
                                     Angibst werden alle sich im Register befindlichen Karten gelernt.
                                 </Row>
@@ -431,7 +433,8 @@ const Help = () => {
                             5. Feedback
                             <Col className="px-4 text-justify">
                                 <Row className="mb-1">
-                                    Wenn du alle Karten durch gelernt hast, kommst du automatisch in die Feedback Ansicht.
+                                    Wenn du alle Karten durch gelernt hast, kommst du automatisch in die Feedback
+                                    Ansicht.
                                 </Row>
                             </Col>
                         </CardText>

@@ -1,10 +1,7 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {loginUser} from "../../actions/auth";
-import {connect} from "react-redux";
 import {Alert, Button, Form} from "reactstrap";
 import InputField from "./fields/input";
-import Icon from "../../components/shared/user/icon";
 
 const validate = values => {
     const errors = {};
