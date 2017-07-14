@@ -1,16 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {loadCards} from "../../../actions/card";
-import "./Detail.css";
-import Headline from "../../../components/shared/headline";
+import {loadCards} from "../../actions/card";
+import Headline from "../../components/shared/headline";
 import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
-import PreviewCard from "../../card/Preview";
-import BlankCard from "../../../components/card/blankCard";
-import MemberBar from "../member/Bar";
-import Progress from "../statistics/Progress";
-import LearnForm from "../../forms/Learn";
-import {loadRegister} from "../../../actions/register";
+import PreviewCard from "../card/Preview";
+import BlankCard from "../../components/card/blankCard";
+import MemberBar from "./member/Bar";
+import Progress from "./statistics/Progress";
+import LearnForm from "../forms/Learn";
+import {loadRegister} from "../../actions/register";
 
 class Detail extends React.Component {
     componentWillMount() {
