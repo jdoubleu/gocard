@@ -3,7 +3,9 @@ import {
     deleteUser as apiDeleteUser,
     getUserByEmail as apiGetUserByEmail,
     getUserById as apiGetUserById,
-    updateUser as apiUpdateUser
+    updateUser as apiUpdateUser,
+    requestPasswordReset as apiRequestPasswordReset,
+    updatePassword as apiUpdatePassword
 } from "../lib/ApiClient";
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
@@ -31,7 +33,7 @@ export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
 export function addUser(body) {
     return {
         types: [ADD_USER_REQUEST, ADD_USER_SUCCESS, ADD_USER_FAILURE],
-        callAPI: () => apiAddUser({body})
+        callAPI: () => apiAddUser({body: {...body, status: 'new'}})
     };
 }
 
@@ -55,4 +57,26 @@ export function deleteUser(userId) {
         types: [DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE],
         callAPI: () => apiDeleteUser({userId})
     };
+}
+
+export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
+export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
+export const UPDATE_PASSWORD_FAILURE = 'UPDATE_PASSWORD_FAILURE';
+
+export function updatePassword(resetToken, body) {
+    return {
+        types: [UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_FAILURE],
+        callAPI: () => apiUpdatePassword({resetToken, body})
+    };
+}
+
+export const REQUEST_PASSWORD_RESET_REQUEST = 'REQUEST_PASSWORD_RESET_REQUEST';
+export const REQUEST_PASSWORD_RESET_SUCCESS = 'REQUEST_PASSWORD_RESET_SUCCESS';
+export const REQUEST_PASSWORD_RESET_FAILURE = 'REQUEST_PASSWORD_RESET_FAILURE';
+
+export function requestPasswordReset(email) {
+    return {
+        types: [REQUEST_PASSWORD_RESET_REQUEST, REQUEST_PASSWORD_RESET_SUCCESS, REQUEST_PASSWORD_RESET_FAILURE],
+        callAPI: () => apiRequestPasswordReset({email})
+    }
 }

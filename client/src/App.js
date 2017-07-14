@@ -12,7 +12,7 @@ import Settings from "./containers/account/Settings";
 import Legal from "./components/legal";
 import Register from "./components/register";
 import Registration from "./containers/account/Registration";
-import Reset from "./scenes/account/Reset";
+import Reset from "./containers/account/Reset";
 import SingleChoice from "./modules/cards/SingleChoiceCard";
 import MultipleChoice from "./modules/cards/MultipleChoiceCard";
 import SelfValidate from "./modules/cards/SelfValidateCard";
