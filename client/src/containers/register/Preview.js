@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, CardTitle, Col, Row} from "reactstrap";
-import Progress from "../../containers/register/statistics/Progress";
+import Progress from "../../containers/register/statistic/Progress";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 

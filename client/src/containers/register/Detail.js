@@ -7,7 +7,7 @@ import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstr
 import PreviewCard from "../card/Preview";
 import BlankCard from "../../components/card/blankCard";
 import MemberBar from "./member/Bar";
-import Progress from "./statistics/Progress";
+import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
 
