@@ -21,7 +21,7 @@ const selectTag = ({input, options, label, disableLabel, toolTip, type, meta: {t
         <div className="form-control border-0 p-0">
             {
                 options.map((option) =>
-                    <Button outline size="sm" className="mr-1 mb-1"
+                    <Button outline size="sm" className="mr-1 mb-1" key={option}
                             onClick={() => input.onChange(toggleTags(input.value, option))}
                             color={_.includes(input.value, option) ? 'primary' : 'secondary'}>
                         {option} {_.includes(input.value, option) ? '\u2714' : ''}

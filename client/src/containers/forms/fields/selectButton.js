@@ -12,7 +12,7 @@ const selectButton = ({input, options, label, disableLabel, toolTip, type, meta:
         <ButtonGroup className="form-control border-0 p-0">
             {
                 options.map((option) =>
-                    <Button outline color={input.value === option.value ? 'primary' : 'secondary'}
+                    <Button outline color={input.value === option.value ? 'primary' : 'secondary'} key={option.value}
                             onClick={() => input.onChange(option.value)} active={input.value === option.value}>
                         {option.name}
                     </Button>
