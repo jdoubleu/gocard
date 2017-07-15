@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import NewRegister from "../../containers/register/New";
 import DetailRegister from "../../containers/register/Detail";
 import EditRegister from "../../containers/register/Edit";
-import NewCard from "../../scenes/cards/New";
+import NewCard from "../../containers/card/New";
 
 const Register = () => {
     return (
