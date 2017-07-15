@@ -57,7 +57,7 @@ class Detail extends React.Component {
                     </Col>
                 </Row>
                 <CardDeck>
-                    <BlankCard/>
+                    <BlankCard registerId={register.uid}/>
                     {
                         cardIds &&
                         cardIds.map((cardId) =>
