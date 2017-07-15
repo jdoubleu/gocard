@@ -1,7 +1,7 @@
 import React from "react";
 import {Alert, Button, Form} from "reactstrap";
 import SelectTag from "./fields/selectTag";
-import selectButton from "./fields/selectButton";
+import SelectButton from "./fields/selectButton";
 import {Field, reduxForm} from "redux-form";
 
 const validate = values => {
@@ -26,7 +26,6 @@ const Learn = props => {
             }
             <Field
                 name="tags"
-                type="text"
                 component={SelectTag}
                 label="Tags"
                 toolTip="Die Tags können ausgewählt werden, um themenbezogene Lernkarten zu erhalten. Sie können einen oder mehrere Tags auswählen. Wenn Tags nicht ausgewählt sind, werden Karteikarten mit diesen Tags nicht im Lernmodus berücksichtigt. Sind keine Tags ausgewählt sind alle Karteikarten ausgewählt."
@@ -35,8 +34,7 @@ const Learn = props => {
 
             <Field
                 name="mode"
-                type="text"
-                component={selectButton}
+                component={SelectButton}
                 label="Modus"
                 toolTip="Der Lernmodus muss ausgwählt werden, um die Variante des Lernens zudefinieren."
                 options={[
