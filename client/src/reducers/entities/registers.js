@@ -2,8 +2,8 @@ import {combineReducers} from "redux";
 import {
     ADD_REGISTER_SUCCESS,
     DELETE_REGISTER_SUCCESS,
-    LOAD_REGISTERS_SUCCESS,
     LOAD_REGISTER_SUCCESS,
+    LOAD_REGISTERS_SUCCESS,
     UPDATE_REGISTER_SUCCESS
 } from "../../actions/register";
 import _ from "lodash";

@@ -5,7 +5,7 @@ import {Card, CardText, CardTitle, Col} from "reactstrap";
 import {updateUser} from "../../actions/user";
 
 const InitialDialog = ({user}) => {
-    
+
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateUser({...values, status: "active"}));
     };
