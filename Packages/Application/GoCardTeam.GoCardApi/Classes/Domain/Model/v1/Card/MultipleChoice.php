@@ -28,10 +28,13 @@ class MultipleChoice extends AbstractCardContent
     protected $answers;
 
     /**
-     * Initialize this object
+     * @param array $correctAnswers
+     * @param array $answers
      */
-    public function __construct()
+    public function __construct(array $correctAnswers, array $answers)
     {
+        $this->correctAnswers = $correctAnswers;
+        $this->answers = $answers;
     }
 
     /**

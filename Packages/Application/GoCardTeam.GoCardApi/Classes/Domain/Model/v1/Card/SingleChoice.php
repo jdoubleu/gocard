@@ -27,10 +27,13 @@ class SingleChoice extends AbstractCardContent
     protected $answers;
 
     /**
-     * Initialize this object
+     * @param int $correctAnswer
+     * @param array $answers
      */
-    public function __construct()
+    public function __construct($correctAnswer, array $answers)
     {
+        $this->correctAnswer = $correctAnswer;
+        $this->answers = $answers;
     }
 
     /**
