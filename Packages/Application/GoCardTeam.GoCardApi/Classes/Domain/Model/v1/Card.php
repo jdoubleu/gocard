@@ -8,7 +8,7 @@ use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Flow\ValueObject()
+ * @Flow\Entity
  */
 class Card implements \JsonSerializable
 {
@@ -78,6 +78,134 @@ class Card implements \JsonSerializable
      */
     public function __construct()
     {
+    }
+
+    /**
+     * @return int
+     */
+    public function getUid(): int
+    {
+        return $this->uid;
+    }
+
+    /**
+     * @param int $uid
+     */
+    public function setUid(int $uid)
+    {
+        $this->uid = $uid;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCrdate(): \DateTime
+    {
+        return $this->crdate;
+    }
+
+    /**
+     * @param \DateTime $crdate
+     */
+    public function setCrdate(\DateTime $crdate)
+    {
+        $this->crdate = $crdate;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param array $tags
+     */
+    public function setTags(array $tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuestion(): string
+    {
+        return $this->question;
+    }
+
+    /**
+     * @param string $question
+     */
+    public function setQuestion(string $question)
+    {
+        $this->question = $question;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return CardContent
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param CardContent $content
+     */
+    public function setContent(CardContent $content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return Register
+     */
+    public function getRegister(): ?Register
+    {
+        return $this->register;
+    }
+
+    /**
+     * @param Register $register
+     */
+    public function setRegister(Register $register)
+    {
+        $this->register = $register;
     }
 
     /**
