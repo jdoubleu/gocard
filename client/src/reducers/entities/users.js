@@ -6,7 +6,7 @@ import _ from "lodash";
 function addUserEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy(response, 'uid'));
+    return _.merge(state, _.keyBy([response], 'uid'));
 }
 
 function deleteUserEntry(state, action) {
