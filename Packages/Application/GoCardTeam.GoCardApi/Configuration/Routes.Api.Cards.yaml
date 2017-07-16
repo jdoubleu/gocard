@@ -22,3 +22,15 @@
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
+
+-
+  name: 'update card'
+  uriPattern: '{card}'
+  defaults:
+    '@action': 'updateCard'
+  routeParts:
+    card:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
