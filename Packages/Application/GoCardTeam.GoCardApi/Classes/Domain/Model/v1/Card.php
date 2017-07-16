@@ -62,7 +62,7 @@ class Card implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="object")
      * @var CardContent
      */
     protected $content;
@@ -179,7 +179,7 @@ class Card implements \JsonSerializable
     /**
      * @return CardContent
      */
-    public function getContent()
+    public function getContent(): ?CardContent
     {
         return $this->content;
     }
