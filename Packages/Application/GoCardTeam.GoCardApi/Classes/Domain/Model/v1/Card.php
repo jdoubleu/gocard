@@ -87,7 +87,7 @@ class Card implements \JsonSerializable
     {
         return [
             'id' => $this->uid,
-            'author' => $this->author,
+            'author' => $this->author->getUid(),
             'crdate' => $this->crdate,
             'tags' => $this->tags,
             'question' => $this->question,
