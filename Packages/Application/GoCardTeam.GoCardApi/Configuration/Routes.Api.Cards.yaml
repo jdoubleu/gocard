@@ -1,2 +1,13 @@
 # Cards API Routes
 # Route definitions for the cards endpoint and its action's
+
+-
+  name: 'update cards'
+  uriPattern: ''
+  defaults:
+    '@action': 'updateCards'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']
