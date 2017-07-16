@@ -88,6 +88,7 @@ export const SEARCH_USERS_FAILURE = 'SEARCH_USERS_FAILURE';
 export function searchUsers(search) {
     return {
         types: [SEARCH_USERS_REQUEST, SEARCH_USERS_SUCCESS, SEARCH_USERS_FAILURE],
-        callAPI: () => apiGetUserByEmail({search})
+        callAPI: () => apiGetUserByEmail({email: search}),
+        payload: {search}
     };
 }
