@@ -38,7 +38,7 @@ class Card implements \JsonSerializable
     protected $crdate;
 
     /**
-     * @Flow\Validate(type="UniqueArrayItems")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @var string[]
      */
     protected $tags;

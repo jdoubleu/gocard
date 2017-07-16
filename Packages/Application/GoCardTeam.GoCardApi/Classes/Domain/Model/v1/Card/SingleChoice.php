@@ -21,7 +21,7 @@ class SingleChoice extends AbstractCardContent
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="UniqueArrayItems")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @var string[]
      */
     protected $answers;
