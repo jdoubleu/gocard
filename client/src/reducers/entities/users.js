@@ -1,27 +1,12 @@
 import {combineReducers} from "redux";
-import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, UPDATE_USER_SUCCESS} from "../../actions/user";
+import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, UPDATE_USER_SUCCESS, SEARCH_USERS_SUCCESS} from "../../actions/user";
 import {LOAD_CURRENT_USER_SUCCESS} from "../../actions/auth";
 import _ from "lodash";
 
 function addUserEntry(state, action) {
     const {response} = action;
 
-    return {
-        ...state,
-        [response.uid]: response
-    };
-}
-
-function updateUserEntry(state, action) {
-    const {response} = action;
-
-    return {
-        ...state,
-        [response.uid]: {
-            ...state[response.uid],
-            ...response
-        }
-    };
+    return _.merge(state, _.keyBy([response], 'uid'));
 }
 
 function deleteUserEntry(state, action) {
@@ -30,13 +15,14 @@ function deleteUserEntry(state, action) {
     return _.omit(state, userId);
 }
 
+
 function usersById(state = {}, action) {
     switch (action.type) {
         case LOAD_CURRENT_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
-            return addUserEntry(state, action);
         case UPDATE_USER_SUCCESS:
-            return updateUserEntry(state, action);
+        case SEARCH_USERS_SUCCESS:
+            return addUserEntry(state, action);
         case DELETE_USER_SUCCESS:
             return deleteUserEntry(state, action);
         default:
@@ -62,6 +48,12 @@ function updateUserId(state, action) {
     return _.concat(_.omit(state, userId), response.uid);
 }
 
+function addMultipleUserIds(state, action) {
+    const {response} = action;
+    return _.union(state, _.map(response, 'uid'));
+}
+
+
 function allUsers(state = [], action) {
     switch (action.type) {
         case LOAD_CURRENT_USER_SUCCESS:
@@ -71,6 +63,8 @@ function allUsers(state = [], action) {
             return updateUserId(state, action);
         case DELETE_USER_SUCCESS:
             return deleteUserId(state, action);
+        case SEARCH_USERS_SUCCESS:
+            return addMultipleUserIds(state, action);
         default:
             return state;
     }

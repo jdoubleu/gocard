@@ -80,3 +80,15 @@ export function requestPasswordReset(email) {
         callAPI: () => apiRequestPasswordReset({email})
     }
 }
+
+export const SEARCH_USERS_REQUEST = 'SEARCH_USERS_REQUEST';
+export const SEARCH_USERS_SUCCESS = 'SEARCH_USERS_SUCCESS';
+export const SEARCH_USERS_FAILURE = 'SEARCH_USERS_FAILURE';
+
+export function searchUsers(search) {
+    return {
+        types: [SEARCH_USERS_REQUEST, SEARCH_USERS_SUCCESS, SEARCH_USERS_FAILURE],
+        callAPI: () => apiGetUserByEmail({email: search}),
+        payload: {search}
+    };
+}
