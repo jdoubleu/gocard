@@ -84,4 +84,12 @@ class CardsController extends AbstractApiEndpointController
     {
         $this->cardRepository->update($card);
     }
+
+    /**
+     * @param Card $card
+     */
+    public function deleteCardAction(Card $card)
+    {
+        $this->cardRepository->remove($card);
+    }
 }

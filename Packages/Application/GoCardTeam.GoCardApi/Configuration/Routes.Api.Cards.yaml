@@ -34,3 +34,14 @@
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
+
+-
+  name: 'delete card'
+  uriPattern: '{card}'
+  defaults:
+    '@action': 'deleteCard'
+  routeParts:
+    card:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+  httpMethods: ['DELETE']
