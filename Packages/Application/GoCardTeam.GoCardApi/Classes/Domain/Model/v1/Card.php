@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @Flow\ValueObject()
  */
-class Card
+class Card implements \JsonSerializable
 {
 
     /**
@@ -77,5 +77,22 @@ class Card
      */
     public function __construct()
     {
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * This data will be used by the JsonView to display the output
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->uid,
+            'author' => $this->author,
+            'crdate' => $this->crdate,
+            'tags' => $this->tags,
+            'question' => $this->question,
+            'type' => $this->type,
+            'content' => $this->content
+        ];
     }
 }
