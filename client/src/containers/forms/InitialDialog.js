@@ -7,11 +7,11 @@ const validate = values => {
     const errors = {};
 
     if (!values.displayName) {
-        errors.displayName = 'Required'
+        errors.displayName = 'Du musst einen Anzeigenamen eingeben'
     }
 
     if (!values.acceptEULA) {
-        errors.acceptEULA = 'Required'
+        errors.acceptEULA = 'Du musst die EULA bestätigen um diese Seite nutzen zu können'
     }
 
     return errors

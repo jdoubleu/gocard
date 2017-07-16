@@ -7,22 +7,23 @@ const validate = values => {
     const errors = {};
 
     if (!values.email) {
-        errors.email = 'Required'
+        errors.email = 'Du musst eine E-Mail Adresse eingeben'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
+        errors.email = 'Du hast eine unglütige E-Mail Adresse eingegeben'
     }
 
     if (!values.password) {
-        errors.password = 'Required'
-    } else if (values.password !== values.password_confirm) {
-        errors.password = ' '
+        errors.password = 'Du musst ein Passwort eingeben'
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,}$/i.test(values.password)) {
+        errors.password = 'Dein Passwort muss eine Ziffer, einen Kleinbuchstaben, einen Großbuchstaben und mindestens 8 Zeichen beinhalten'
     }
 
     if (!values.password_confirm) {
-        errors.password_confirm = 'Required'
+        errors.password_confirm = 'Du musst das selbe Passwort hier noch einmal eingeben'
     } else if (values.password !== values.password_confirm) {
-        errors.password_confirm = 'Passwort muss gleich seien'
+        errors.password_confirm = 'Deine Passwörter müssen gleich sein'
     }
+
 
     return errors
 };

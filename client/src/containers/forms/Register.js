@@ -7,7 +7,7 @@ const validate = values => {
     const errors = {};
 
     if (!values.title) {
-        errors.title = 'Required'
+        errors.title = 'Du musst deinem Register einen Titel geben'
     }
 
     return errors

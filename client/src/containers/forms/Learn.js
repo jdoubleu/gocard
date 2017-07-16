@@ -8,7 +8,7 @@ const validate = values => {
     const errors = {};
 
     if (!values.mode) {
-        errors.mode = 'Required'
+        errors.mode = 'Du musst einen Lernmodus auswählen'
     }
 
     return errors

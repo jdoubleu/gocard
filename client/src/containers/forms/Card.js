@@ -11,15 +11,15 @@ const validate = values => {
     const errors = {};
 
     if (!values.question) {
-        errors.question = 'Required'
+        errors.question = 'Du musst deiner Karteikarte eine Frage geben'
     }
 
     if (!values.type) {
-        errors.type = 'Required'
+        errors.type = 'Du musst auswählen welchen Fragetyp deine Karteikarte haben soll'
     }
 
     if (!values.tags) {
-        errors.tags = 'Required'
+        errors.tags = ''
     }
 
     return errors
