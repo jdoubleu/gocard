@@ -3,6 +3,7 @@
 namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
+use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\CardRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Neos\Flow\Annotations as Flow;
@@ -48,5 +49,13 @@ class CardsController extends AbstractApiEndpointController
         foreach ($cards as $card) {
             $this->cardRepository->update($card);
         }
+    }
+
+    /**
+     * @param Card $card
+     */
+    public function getCardAction(Card $card)
+    {
+        $this->view->assign('value', $card);
     }
 }
