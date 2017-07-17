@@ -6,7 +6,6 @@ use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\CardRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
-use GoCardTeam\GoCardApi\Property\TypeConverter\v1\CardContentConverter;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManager;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
@@ -49,7 +48,6 @@ class CardsController extends AbstractApiEndpointController
         $singleCardConfiguration->forProperty('content')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         $contentConfiguration = $singleCardConfiguration->forProperty('content');
         $contentConfiguration->allowAllProperties();
-        $contentConfiguration->setTypeConverter($this->objectManager->get(CardContentConverter::class));
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
     }
@@ -82,20 +80,8 @@ class CardsController extends AbstractApiEndpointController
         $cardConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
         $contentConfiguration = $cardConfiguration->forProperty('content');
         $contentConfiguration->allowAllProperties();
-        $contentConfiguration->setTypeConverter($this->objectManager->get(CardContentConverter::class));
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setTypeConverterOption(CardContentConverter::class, CardContentConverter::CONFIGURATION_SOURCE_TARGET_PROPERTY_NAME_MAPPING, [
-            Card\SingleChoice::class => [
-                'correctAnswer' => 'correct'
-            ],
-            Card\MultipleChoice::class => [
-                'correctAnswers' => 'correct'
-            ],
-            Card\TextInput::class => [
-                'correctAnswer' => 'correct'
-            ]
-        ]);
     }
 
     /**
