@@ -1,4 +1,5 @@
 import API from "../lib/ApiClient";
+import {SubmissionError} from "redux-form";
 
 export default function ({dispatch, getState}) {
     return next => action => {
@@ -52,9 +53,11 @@ export default function ({dispatch, getState}) {
             error => {
                 dispatch({
                     ...payload,
-                    error,
                     type: failureType
                 });
+                if(error.response.statusCode === 500) {
+                    throw new SubmissionError({_error: 'Ooops! Da ist was schiefgelaufen.'})
+                }
                 throw error;
             }
         )
