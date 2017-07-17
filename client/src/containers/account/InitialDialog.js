@@ -1,19 +1,20 @@
 import React from "react";
 import {connect} from "react-redux";
 import InitialDialogForm from "../forms/InitialDialog";
-import {Card, CardText, CardTitle, Col} from "reactstrap";
+import {Card, CardText, Col} from "reactstrap";
 import {updateUser} from "../../actions/user";
+import Headline from "../../components/shared/headline";
 
 const InitialDialog = ({user}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser({...values, status: "active"}));
+        return dispatch(updateUser(user.uid, {...values, status: "active"}));
     };
 
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
+            <Headline title="Fast geschafft!"/>
             <Card block>
-                <CardTitle>Fast geschafft!</CardTitle>
                 <CardText>
                     Bitte gib unten deinen Anzeigenamen ein und akzeptiere die EULA.<br/>
                 </CardText>
