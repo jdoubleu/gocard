@@ -85,6 +85,17 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->setTypeConverter($this->objectManager->get(CardContentConverter::class));
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
+        $contentConfiguration->setTypeConverterOption(CardContentConverter::class, CardContentConverter::CONFIGURATION_SOURCE_TARGET_PROPERTY_NAME_MAPPING, [
+            Card\SingleChoice::class => [
+                'correctAnswer' => 'correct'
+            ],
+            Card\MultipleChoice::class => [
+                'correctAnswers' => 'correct'
+            ],
+            Card\TextInput::class => [
+                'correctAnswer' => 'correct'
+            ]
+        ]);
     }
 
     /**

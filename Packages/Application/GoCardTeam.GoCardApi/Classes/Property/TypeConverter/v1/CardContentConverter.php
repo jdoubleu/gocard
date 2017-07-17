@@ -14,6 +14,11 @@ class CardContentConverter extends PersistentObjectConverter
     /**
      * @var int
      */
+    const CONFIGURATION_SOURCE_TARGET_PROPERTY_NAME_MAPPING = 11;
+
+    /**
+     * @var int
+     */
     protected $priority = 110;
 
     /**
@@ -55,6 +60,7 @@ class CardContentConverter extends PersistentObjectConverter
      * @param string $originalTargetType
      * @param PropertyMappingConfigurationInterface|null $configuration
      * @return string
+     * @throws Exception\InvalidPropertyMappingConfigurationException
      */
     public function getTargetTypeForSource($source, $originalTargetType, PropertyMappingConfigurationInterface $configuration = null)
     {
@@ -67,9 +73,26 @@ class CardContentConverter extends PersistentObjectConverter
         if (is_array($source)) {
             $cardContentClasses = $this->reflectionService->getAllImplementationClassNamesForInterface(CardContent::class);
 
+            $nameMappingConfiguration = $configuration->getConfigurationValue(self::class, self::CONFIGURATION_SOURCE_TARGET_PROPERTY_NAME_MAPPING);
+            if (!is_array($nameMappingConfiguration)) {
+                throw new Exception\InvalidPropertyMappingConfigurationException('The source to target property name mapping configuration needs to be an array.');
+            }
+
             // Emit differences between input and probably mappable type
             foreach ($cardContentClasses as $cardContentClassName) {
                 $properties = $this->reflectionService->getClassPropertyNames($cardContentClassName);
+
+                // Apply custom mapping
+                if ($classPropertyMapping = $nameMappingConfiguration[$cardContentClassName] ?? false) {
+                    if (!is_array($classPropertyMapping)) {
+                        throw new Exception\InvalidPropertyMappingConfigurationException('The source to target property name mapping configuration needs to be an array.');
+                    }
+
+                    $diffMap = array_intersect($properties, array_keys($classPropertyMapping));
+                    foreach ($diffMap as $key => $prop) {
+                        $properties[$key] = $classPropertyMapping[$prop];
+                    }
+                }
 
                 $diff = count(array_diff($sourceProperties, $properties));
 
