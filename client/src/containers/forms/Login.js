@@ -45,7 +45,14 @@ const LoginForm = props => {
             />
 
             <Button outline block color="primary" type="submit" disabled={submitting}>
-                Anmelden mit GoCard-Account
+                {
+                    submitting &&
+                    <span>...Funkkontakt wird aufgenommen</span>
+                }
+                {
+                    !submitting &&
+                    <span>Anmelden mit GoCard-Account</span>
+                }
             </Button>
         </Form>
     )
