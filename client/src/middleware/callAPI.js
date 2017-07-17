@@ -55,7 +55,7 @@ export default function ({dispatch, getState}) {
                     ...payload,
                     type: failureType
                 });
-                if(error.response.statusCode === 500) {
+                if (error.response.statusCode === 500) {
                     throw new SubmissionError({_error: 'Ooops! Da ist was schiefgelaufen.'})
                 }
                 throw error;

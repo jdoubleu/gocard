@@ -1,6 +1,4 @@
-import {SEARCH_USERS_SUCCESS, SEARCH_USERS_REQUEST} from "../../actions/user";
-
-import _ from "lodash";
+import {SEARCH_USERS_REQUEST, SEARCH_USERS_SUCCESS} from "../../actions/user";
 import {CLEAR_SEARCH_USER} from "../../actions/ui";
 
 function addFoundUsers(state, action) {

@@ -4,9 +4,9 @@
  * API Client
  */
 
-import request from 'request';
-import Q from 'q';
-import EventEmitter from 'events';
+import request from "request";
+import Q from "q";
+import EventEmitter from "events";
 
 /*
  * Helper functions
@@ -14,7 +14,7 @@ import EventEmitter from 'events';
 function mergeQueryParams(parameters, queryParameters) {
     if (parameters.$queryParameters) {
         Object.keys(parameters.$queryParameters)
-            .forEach(function(parameterName) {
+            .forEach(function (parameterName) {
                 queryParameters[parameterName] = parameters.$queryParameters[parameterName]
             });
     }
@@ -82,7 +82,7 @@ class ApiClient extends EventEmitter {
         if (typeof(body) === 'object' && !(body instanceof Buffer)) {
             req.json = true;
         }
-        request(req, function(error, response, body) {
+        request(req, function (error, response, body) {
             if (error) {
                 emit.apply(this, ['requestFailure', actionName, req].concat(Array.from(arguments)));
                 deferred.reject(error);
@@ -90,7 +90,8 @@ class ApiClient extends EventEmitter {
                 if (/^application\/(.*\\+)?json/.test(response.headers['content-type'])) {
                     try {
                         body = JSON.parse(body);
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 }
                 emit.apply(this, ['requestSuccess', actionName, ev, body, req].concat(Array.from(arguments)));
                 if (!ev.proceed) {
@@ -130,6 +131,7 @@ class ApiClient extends EventEmitter {
         this.apiKey.headerOrQueryName = headerOrQueryName;
         this.apiKey.isQuery = isQuery;
     }
+
     /**
      * Set Auth headers
      *
@@ -188,7 +190,7 @@ const Models = {
         'crdate': 'string',
         'tags': 'array',
         'question': 'string',
-        'type': [ /* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */ ],
+        'type': [/* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */],
         'content': 'object',
     },
 
@@ -199,8 +201,8 @@ const Models = {
         'id': 'number',
         'displayName': 'string',
         'email': 'string',
-        'status': [ /* "new" | "verified" | "active" */ ],
-        'accountType': [ /* "local" | "extern" */ ],
+        'status': [/* "new" | "verified" | "active" */],
+        'accountType': [/* "local" | "extern" */],
     },
 
     /**
@@ -218,7 +220,7 @@ const Models = {
     RegisterActivity: {
         'id': 'number',
         'initiator': 'number',
-        'type': [ /* "view" | "run" */ ],
+        'type': [/* "view" | "run" */],
         'date': 'string',
     },
 
@@ -1181,7 +1183,7 @@ export function logoutUser(parameters) {
 /**
  * Returns user data of the local user with the given ID.
 
-This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+ This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
 
  *
  * @param {object} parameters - method options and parameters
@@ -1266,7 +1268,7 @@ export function updateUser(parameters) {
 /**
  * Deletes a user from the system.
 
-After this the user will automatically be logged out
+ After this the user will automatically be logged out
 
  *
  * @param {object} parameters - method options and parameters
@@ -1341,7 +1343,7 @@ export function getMembersByUser(parameters) {
 /**
  * Returns user data of the local user with the given email address.
 
-This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+ This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
 
  *
  * @param {object} parameters - method options and parameters
@@ -1381,7 +1383,7 @@ export function getUserByEmail(parameters) {
 
 /**
  * Generates a link with a temporary reset token which will be send to
-the users email address.
+ the users email address.
 
  *
  * @param {object} parameters - method options and parameters
@@ -1420,7 +1422,7 @@ export function requestPasswordReset(parameters) {
 /**
  * Updates the user's password
 
-You need to get a resetToken first
+ You need to get a resetToken first
 
  *
  * @param {object} parameters - method options and parameters

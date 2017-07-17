@@ -11,11 +11,10 @@ const Login = () => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(loginUser(values)).catch(
             error => {
-                if(error instanceof SubmissionError)
-                {
+                if (error instanceof SubmissionError) {
                     throw error;
                 }
-                if(error.response.statusCode === 400) {
+                if (error.response.statusCode === 400) {
                     throw new SubmissionError({_error: 'Login fehlgeschlagen! Passwort/E-Mail falsch.'})
                 }
             }

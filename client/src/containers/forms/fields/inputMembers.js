@@ -1,14 +1,5 @@
 import React from "react";
-import {
-    FormFeedback,
-    FormGroup,
-    Input,
-    Label,
-    UncontrolledTooltip,
-    ListGroup,
-    ListGroupItem,
-    Button,
-} from "reactstrap";
+import {Button, FormFeedback, FormGroup, Input, Label, ListGroup, ListGroupItem, UncontrolledTooltip} from "reactstrap";
 import {connect} from "react-redux";
 import {searchUsers} from "../../../actions/user";
 

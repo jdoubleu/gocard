@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, UPDATE_USER_SUCCESS, SEARCH_USERS_SUCCESS} from "../../actions/user";
+import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, SEARCH_USERS_SUCCESS, UPDATE_USER_SUCCESS} from "../../actions/user";
 import {LOAD_CURRENT_USER_SUCCESS} from "../../actions/auth";
 import _ from "lodash";
 
