@@ -7,13 +7,13 @@ const validate = values => {
     const errors = {};
 
     if (!values.email) {
-        errors.email = 'Du musst eine E-Mail Adresse eingeben'
+        errors.email = 'Eine E-Mail Adresse ist erforderlich.'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Du hast eine unglütige E-Mail Adresse eingegeben'
+        errors.email = 'Ungültige E-Mail Adresse.'
     }
 
     if (!values.password) {
-        errors.password = 'Du musst ein Passwort eingeben'
+        errors.password = 'Ein Passwort ist erforderlich.'
     }
 
     return errors
