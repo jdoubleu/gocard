@@ -3,11 +3,22 @@ import {Card, CardGroup, CardText, CardTitle, Col} from "reactstrap";
 import Logo from "../../components/shared/logo/index";
 import RegistrationForm from "../../containers/forms/Registration";
 import {addUser} from "../../actions/user";
+import {SubmissionError} from "redux-form";
 
 const Registration = () => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(addUser(values));
+        return dispatch(addUser({
+            ...values,
+            displayName: ''
+        })).catch(error => {
+            if (error instanceof SubmissionError) {
+                throw error;
+            }
+            if (error.response.statusCode === 409) {
+                throw new SubmissionError({_error: 'Registrierung fehlgeschlagen! E-Mail Adresse bereits vorhanden.'})
+            }
+        });
     };
 
     return (
