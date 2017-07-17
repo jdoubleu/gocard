@@ -2,6 +2,7 @@ import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {Alert, Button, Form} from "reactstrap";
 import InputField from "./fields/input";
+import InputCheckField from "./fields/inputCheck";
 
 const validate = values => {
     const errors = {};
@@ -39,7 +40,7 @@ const InitialDialogForm = props => {
             <Field
                 name="acceptEULA"
                 type="checkbox"
-                component={InputField}
+                component={InputCheckField}
                 label="Ich akzeptiere die EULA"
             />
 
