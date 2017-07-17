@@ -50,7 +50,7 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->allowAllProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setMapping('correct', 'correctAnswer');
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
     }
 
     /**
@@ -83,7 +83,7 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->allowAllProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setMapping('correct', 'correctAnswer');
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
     }
 
     /**

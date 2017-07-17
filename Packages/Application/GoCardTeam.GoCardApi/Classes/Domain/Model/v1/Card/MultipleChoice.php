@@ -60,7 +60,7 @@ class MultipleChoice extends AbstractCardContent
     public function toArray(): array
     {
         return [
-            'correct' => $this->correctAnswers,
+            'corrects' => $this->correctAnswers,
             'answers' => $this->answers
         ];
     }
