@@ -13,7 +13,7 @@ use Neos\Flow\Annotations as Flow;
  *
  * @Flow\Scope("singleton")
  */
-class PersistedApiObjectConverter extends PersistentObjectConverter
+class PersistentApiObjectConverter extends PersistentObjectConverter
 {
 
     /**

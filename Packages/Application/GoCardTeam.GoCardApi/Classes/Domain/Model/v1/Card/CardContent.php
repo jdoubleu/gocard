@@ -6,7 +6,7 @@ namespace GoCardTeam\GoCardApi\Domain\Model\v1\Card;
  * CardContent which will be used by a card.
  * Subtypes might be ValueObjects
  */
-interface CardContent
+interface CardContent extends \JsonSerializable
 {
 
     /**

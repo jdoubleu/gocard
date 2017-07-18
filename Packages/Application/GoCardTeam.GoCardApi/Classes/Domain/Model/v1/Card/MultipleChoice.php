@@ -14,37 +14,39 @@ class MultipleChoice extends AbstractCardContent
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="UniqueArrayItems")
-     * @var int[]
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
+     * @ORM\Column(type="simple_array")
+     * @var array
      */
     protected $correctAnswers;
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="UniqueArrayItems")
-     * @var string[]
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
+     * @var array
      */
     protected $answers;
 
     /**
-     * Initialize this object
+     * @param array $correctAnswers
+     * @param array $answers
      */
-    public function __construct()
+    public function __construct(array $correctAnswers, array $answers)
     {
-        $this->correctAnswers = new ArrayCollection();
-        $this->answers = new ArrayCollection();
+        $this->correctAnswers = $correctAnswers;
+        $this->answers = $answers;
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getCorrectAnswers()
+    public function getCorrectAnswers(): array
     {
         return $this->correctAnswers;
     }
 
     /**
-     * @return \string[]
+     * @return array
      */
     public function getAnswers(): array
     {
@@ -58,8 +60,8 @@ class MultipleChoice extends AbstractCardContent
     public function toArray(): array
     {
         return [
-            'correct' => $this->correctAnswers,
-            'answers' => $this->answers->toArray()
+            'corrects' => $this->correctAnswers,
+            'answers' => $this->answers
         ];
     }
 }
