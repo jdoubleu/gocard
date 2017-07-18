@@ -18,7 +18,7 @@
   defaults:
     '@action': 'updateCards'
   routeParts:
-    members:
+    cards:
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
