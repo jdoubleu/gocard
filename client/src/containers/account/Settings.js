@@ -13,7 +13,7 @@ import {logoutUser} from "../../actions/auth";
 const Settings = ({user, displayName}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser(user.uid, values));
+        return dispatch(updateUser(user.id, values));
     };
 
     const handleDeleteSubmit = (values, dispatch) => {

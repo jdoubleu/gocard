@@ -11,13 +11,13 @@ import _ from "lodash";
 function addRegisterEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, {[response.uid]: response});
+    return _.merge(state, {[response.id]: response});
 }
 
 function updateRegisterEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, {[response.uid]: response});
+    return _.merge(state, {[response.id]: response});
 }
 
 function deleteRegisterEntry(state, action) {
@@ -29,7 +29,7 @@ function deleteRegisterEntry(state, action) {
 function addRegisterEntrys(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy(response, 'uid'));
+    return _.merge(state, _.keyBy(response, 'id'));
 }
 
 function registersById(state = {}, action) {
@@ -52,7 +52,7 @@ function registersById(state = {}, action) {
 function addRegisterId(state, action) {
     const {response} = action;
 
-    return _.concat(state, response.uid);
+    return _.concat(state, response.id);
 }
 
 function deleteRegisterId(state, action) {
@@ -64,13 +64,13 @@ function deleteRegisterId(state, action) {
 function updateRegisterId(state, action) {
     const {registerId, response} = action;
 
-    return _.concat(_.pull(state, registerId), response.uid);
+    return _.concat(_.pull(state, registerId), response.id);
 }
 
 function addRegisterIds(state, action) {
     const {response} = action;
 
-    return _.union(state, _.map(response, 'uid'));
+    return _.union(state, _.map(response, 'id'));
 }
 
 function allRegisters(state = [], action) {

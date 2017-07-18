@@ -58,7 +58,7 @@ function auth(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
-                userId: action.response.uid
+                userId: action.response.id
             };
         case LOAD_CURRENT_USER_FAILURE:
             return {
