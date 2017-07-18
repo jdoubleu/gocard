@@ -4,6 +4,7 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
+use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\CardRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Neos\Flow\Annotations as Flow;
@@ -100,5 +101,15 @@ class CardsController extends AbstractApiEndpointController
     public function deleteCardAction(Card $card)
     {
         $this->cardRepository->remove($card);
+    }
+
+    /**
+     * @param Register $register
+     */
+    public function findCardsByRegisterAction(Register $register)
+    {
+        $cards = $this->cardRepository->findByRegister($register->getUid());
+
+        $this->view->assign('value', $cards);
     }
 }
