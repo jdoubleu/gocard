@@ -170,7 +170,7 @@ paths:
         - cards
       summary: Get all cards of this register
       description: Returns all cards of the given register
-      operationId: findByCardsByRegister
+      operationId: findCardsByRegister
       produces:
         - application/json
       parameters:

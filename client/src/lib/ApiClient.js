@@ -446,7 +446,7 @@ export function deleteRegister(parameters) {
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.registerId - ID of register which cards to get
  */
-export function findByCardsByRegister(parameters) {
+export function findCardsByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -471,7 +471,7 @@ export function findByCardsByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('findByCardsByRegister', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findCardsByRegister', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
