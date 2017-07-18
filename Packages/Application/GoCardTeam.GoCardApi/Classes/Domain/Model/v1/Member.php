@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @Flow\Entity
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="user_register", columns={"user","register"})})
  */
-class Member
+class Member implements \JsonSerializable
 {
 
     /**
@@ -119,5 +119,18 @@ class Member
     public function setRegister(Register $register)
     {
         $this->register = $register;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * This data will be used by the JsonView to display the output
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getUid(),
+            'user' => $this->getUser()->getUid(),
+            'scope' => $this->getScope()
+        ];
     }
 }

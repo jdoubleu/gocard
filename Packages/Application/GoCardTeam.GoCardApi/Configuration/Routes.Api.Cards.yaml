@@ -1,0 +1,47 @@
+# Cards API Routes
+# Route definitions for the cards endpoint and its action's
+
+-
+  name: 'get card'
+  uriPattern: '{card}'
+  defaults:
+    '@action': 'getCard'
+  routeParts:
+    card:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+  httpMethods: ['GET']
+
+-
+  name: 'update cards'
+  uriPattern: ''
+  defaults:
+    '@action': 'updateCards'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']
+
+-
+  name: 'update card'
+  uriPattern: '{card}'
+  defaults:
+    '@action': 'updateCard'
+  routeParts:
+    card:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'delete card'
+  uriPattern: '{card}'
+  defaults:
+    '@action': 'deleteCard'
+  routeParts:
+    card:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+  httpMethods: ['DELETE']

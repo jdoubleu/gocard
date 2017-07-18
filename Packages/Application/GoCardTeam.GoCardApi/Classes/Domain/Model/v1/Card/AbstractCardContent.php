@@ -12,4 +12,9 @@ abstract class AbstractCardContent implements CardContent
     {
         return json_encode($this->toArray());
     }
+
+    function jsonSerialize()
+    {
+        return $this->toArray();
+    }
 }

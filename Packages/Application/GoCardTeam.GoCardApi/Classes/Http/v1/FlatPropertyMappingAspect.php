@@ -102,10 +102,12 @@ class FlatPropertyMappingAspect
         } else {
             $classSchema = $this->reflectionService->getClassSchema($type['type']);
 
-            $this->keepDataByClass($plainArguments, $result[$targetName], $classSchema);
-            foreach (array_flip(array_intersect_assoc($result, $result[$targetName])) as $mappedProperty) {
-                unset($result[$mappedProperty]);
+            $hydratedData = [];
+            $this->keepDataByClass($plainArguments, $hydratedData, $classSchema);
+            foreach (array_keys($hydratedData) as $mappedKey) {
+                unset($result[$mappedKey]);
             }
+            $result[$targetName] = $hydratedData;
         }
 
         return $result;

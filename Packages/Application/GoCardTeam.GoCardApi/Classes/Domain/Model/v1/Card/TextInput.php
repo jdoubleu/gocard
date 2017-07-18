@@ -21,10 +21,11 @@ class TextInput extends AbstractCardContent
     protected $correctAnswer;
 
     /**
-     * Construct TextInput
+     * @param string $correctAnswer
      */
-    public function __construct()
+    public function __construct($correctAnswer)
     {
+        $this->correctAnswer = $correctAnswer;
     }
 
     /**

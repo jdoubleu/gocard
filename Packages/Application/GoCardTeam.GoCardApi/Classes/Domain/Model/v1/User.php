@@ -13,7 +13,7 @@ use Neos\Flow\Security\Account;
 /**
  * @Flow\Entity
  */
-class User
+class User implements \JsonSerializable
 {
     /**
      * @Flow\Identity
@@ -152,4 +152,18 @@ class User
         return $this->account->getAuthenticationProviderName() == LocalAccountService::LOCAL_AUTHENTICATION_PROVIDER ? 'local' : 'extern';
     }
 
+    /**
+     * Specify data which should be serialized to JSON
+     * This data will be used by the JsonView to display the output
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getUid(),
+            'displayName' => $this->getDisplayName(),
+            'email' => $this->getEmail(),
+            'status' => $this->getStatus(),
+            'accountType' => $this->getAccountType()
+        ];
+    }
 }
