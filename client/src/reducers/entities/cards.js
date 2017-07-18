@@ -1,8 +1,13 @@
 import {combineReducers} from "redux";
-import {DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS} from "../../actions/card";
+import {DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS, ADD_CARD_SUCCESS} from "../../actions/card";
 import {_} from "lodash";
 
 function addCardIds(state, action) {
+    const {response} = action;
+    return _.union(state, _.map(response, 'id'));
+}
+
+function addCardId(state, action) {
     const {response} = action;
     return _.union(state, _.map(response, 'id'));
 }
@@ -39,6 +44,8 @@ function cardsById(state = {}, action) {
             return addCardEntry(state, action);
         case DELETE_CARD_SUCCESS:
             return deleteCardEntry(state, action);
+        case ADD_CARD_SUCCESS:
+            return addCardId(state, action);
         default:
             return state;
     }
@@ -54,6 +61,8 @@ function allCards(state = [], action) {
             return updateCardIds(state, action);
         case DELETE_CARD_SUCCESS:
             return deleteCardId(state, action);
+        case ADD_CARD_SUCCESS:
+            return addCardEntry(state, action);
         default:
             return state;
     }

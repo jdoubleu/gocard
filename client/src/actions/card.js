@@ -32,7 +32,7 @@ export const UPDATE_CARDS_REQUEST = 'UPDATE_CARDS_REQUEST';
 export const UPDATE_CARDS_SUCCESS = 'UPDATE_CARDS_SUCCESS';
 export const UPDATE_CARDS_FAILURE = 'UPDATE_CARDS_FAILURE';
 
-export function updateMultipleCards(cards) {
+export function updateCards(cards) {
     return {
         types: [UPDATE_CARDS_REQUEST, UPDATE_CARDS_SUCCESS, UPDATE_CARDS_FAILURE],
         callAPI: () => apiUpdateCards({cards}),
@@ -49,3 +49,16 @@ export function deleteCard(cardId) {
         callAPI: () => apiDeleteCard({cardId}),
     }
 }
+
+export const ADD_CARD_REQUEST = 'ADD_CARD_REQUEST';
+export const ADD_CARD_SUCCESS = 'ADD_CARD_SUCCESS';
+export const ADD_CARD_FAILURE = 'ADD_CARD_FAILURE';
+
+export function addCard(card) {
+    return {
+        types: [ADD_CARD_REQUEST, ADD_CARD_SUCCESS, ADD_CARD_FAILURE]
+    }
+}
+
+
+
