@@ -4,22 +4,22 @@ import {_} from "lodash";
 
 function addMultipleCardIds(state, action) {
     const {response} = action;
-    return _.union(state, _.map(response, 'uid'));
+    return _.union(state, _.map(response, 'id'));
 }
 
 function addCard(state, action) {
     const {response} = action;
-    return _.merge(state, _.keyBy(response, 'uid'));
+    return _.merge(state, _.keyBy(response, 'id'));
 }
 
 function updateSingleCardId(state, action) {
     const {response} = action;
-    return _.concat(_.omit(state, response.uid), response.uid);
+    return _.concat(_.omit(state, response.id), response.id);
 }
 
 function updateMultipleCardIds(state, action) {
     const {response} = action;
-    return _.union(_.concat(state, _.map(response, 'uid')));
+    return _.union(_.concat(state, _.map(response, 'id')));
 }
 
 function deleteCard(state, action) {

@@ -6,7 +6,7 @@ import _ from "lodash";
 function addUserEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy([response], 'uid'));
+    return _.merge(state, _.keyBy([response], 'id'));
 }
 
 function deleteUserEntry(state, action) {
@@ -33,7 +33,7 @@ function usersById(state = {}, action) {
 function addUserId(state, action) {
     const {response} = action;
 
-    return _.concat(state, response.uid);
+    return _.concat(state, response.id);
 }
 
 function deleteUserId(state, action) {
@@ -45,12 +45,12 @@ function deleteUserId(state, action) {
 function updateUserId(state, action) {
     const {userId, response} = action;
 
-    return _.concat(_.omit(state, userId), response.uid);
+    return _.concat(_.omit(state, userId), response.id);
 }
 
 function addMultipleUserIds(state, action) {
     const {response} = action;
-    return _.union(state, _.map(response, 'uid'));
+    return _.union(state, _.map(response, 'id'));
 }
 
 

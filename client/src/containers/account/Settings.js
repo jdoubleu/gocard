@@ -11,7 +11,7 @@ import {formValueSelector} from "redux-form";
 const Settings = ({user, displayName}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser(user.uid, values));
+        return dispatch(updateUser(user.id, values));
     };
 
     return (

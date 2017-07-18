@@ -31,16 +31,16 @@ const InputMembers = ({input, label, disableLabel, toolTip, type, meta: {touched
             {
                 search !== "" &&
                 _.filter(foundUsers, (u) => {
-                    return !_.find(input.value, ['uid', u.uid])
+                    return !_.find(input.value, ['id', u.id])
                 }).map(user =>
-                    <ListGroupItem className="p-1 px-3 justify-content-between" key={user.uid}>
+                    <ListGroupItem className="p-1 px-3 justify-content-between" key={user.id}>
                         <div className="col-auto">
                             <Icon>{user.displayName}</Icon>
                         </div>
                         <div className="col">
                             {user.displayName}
                         </div>
-                        <Input type="select" className="col mr-2" id={`role-${user.uid}`}>
+                        <Input type="select" className="col mr-2" id={`role-${user.id}`}>
                             <option value="subscriber">Abonnent</option>
                             <option value="editor">Redakteur</option>
                             <option value="owner">Eigentümer</option>
@@ -48,9 +48,9 @@ const InputMembers = ({input, label, disableLabel, toolTip, type, meta: {touched
                         <Button color="primary" outline className="col-auto" onClick={() => {
                             input.onChange({
                                 ...input.value,
-                                [user.uid]: {
-                                    uid: user.uid,
-                                    role: document.getElementById(`role-${user.uid}`).value
+                                [user.id]: {
+                                    id: user.id,
+                                    role: document.getElementById(`role-${user.id}`).value
                                 }
                             });
                             clearSearch();
@@ -64,17 +64,17 @@ const InputMembers = ({input, label, disableLabel, toolTip, type, meta: {touched
             {
                 search === "" &&
                 _.toArray(input.value).map(member =>
-                    <ListGroupItem className="p-1 px-3 justify-content-between" key={member.uid}>
+                    <ListGroupItem className="p-1 px-3 justify-content-between" key={member.id}>
                         <div className="col-auto">
-                            <Icon>{users[member.uid].displayName}</Icon>
+                            <Icon>{users[member.id].displayName}</Icon>
                         </div>
                         <div className="col">
-                            {users[member.uid].displayName}
+                            {users[member.id].displayName}
                         </div>
                         <Input type="select" value={member.role} className="col mr-2"
                                onChange={(event) => input.onChange({
                                    ...input.value,
-                                   [member.uid]: {...member, role: event.target.value}
+                                   [member.id]: {...member, role: event.target.value}
                                })}>
                             <option value="subscriber">Abonnent</option>
                             <option value="editor">Redakteur</option>
@@ -82,7 +82,7 @@ const InputMembers = ({input, label, disableLabel, toolTip, type, meta: {touched
                         </Input>
                         <Button color="danger" outline className="col-auto" onClick={() => {
                             input.onChange(
-                                _.omit(input.value, member.uid)
+                                _.omit(input.value, member.id)
                             )
                         }}>x</Button>
                     </ListGroupItem>

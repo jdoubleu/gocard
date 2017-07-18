@@ -24,10 +24,10 @@ class Bar extends React.Component {
                     visibleMembers && collapsedMembers.length > 0 &&
                     visibleMembers.map((member) =>
                         <span>
-                            <UserIcon diameter={diameter} id={registerId + member.uid}>
+                            <UserIcon diameter={diameter} id={registerId + member.id}>
                                 {member.displayName}
                             </UserIcon>
-                            <UncontrolledTooltip placement="bottom" target={"ID" + member.uid}>
+                            <UncontrolledTooltip placement="bottom" target={"ID" + member.id}>
                                 {member.displayName}
                             </UncontrolledTooltip>
                         </span>
