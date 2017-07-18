@@ -331,6 +331,8 @@ paths:
       responses:
         '200':
           description: Successfully added member
+          schema:
+            $ref: '#/definitions/Member'
         '400':
           description: Invalid request
           schema:
