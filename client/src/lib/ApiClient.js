@@ -209,7 +209,8 @@ const Models = {
     Member: {
         'id': 'number',
         'user': 'number',
-        'scope': 'array',
+        'register': 'number',
+        'role': 'array',
     },
 
     /**
