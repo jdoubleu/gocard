@@ -1,74 +1,32 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {deleteUser, updateUser} from "../../actions/user";
-import InitialDialogComponent from "../../components/account/initialDialog";
+import InitialDialogForm from "../forms/InitialDialog";
+import {Card, CardText, CardTitle, Col} from "reactstrap";
+import {updateUser} from "../../actions/user";
 
-class InitialDialog extends React.Component {
-    render() {
-        return (
-            <InitialDialogComponent handleSubmit={this.handleSubmit} handleInputChange={this.handleInputChange}
-                                    modal={this.state.modal} modalToggle={this.modalToggle}
-                                    modalHandleSubmit={this.modalHandleSubmit} isFetching={this.props.isFetching}
-                                    displayName={this.state.displayName}
-            />
-        );
-    }
+const InitialDialog = ({user}) => {
 
-    constructor(props) {
-        super(props);
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(updateUser({...values, status: "active"}));
+    };
 
-        this.state = {
-            displayName: props.user.displayName || props.user.email.split('@')[0],
-            modal: false
-        };
+    return (
+        <Col sm="12" md={{size: 8, offset: 2}}>
+            <Card block>
+                <CardTitle>Fast geschafft!</CardTitle>
+                <CardText>
+                    Bitte gib unten deinen Anzeigenamen ein und akzeptiere die EULA.<br/>
+                </CardText>
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.modalToggle = this.modalToggle.bind(this);
-        this.modalHandleSubmit = this.modalHandleSubmit.bind(this);
-    }
-
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-
-        this.props.dispatch(updateUser({
-            "displayName": this.state.displayName,
-            "status": "active",
-        }));
-    }
-
-    modalToggle() {
-        this.setState({
-            modal: !this.state.modal
-        });
-    }
-
-    modalHandleSubmit(event) {
-        event.preventDefault();
-        this.props.dispatch(deleteUser());
-    }
-}
-
-InitialDialog.propTypes = {
-    user: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired
+                <InitialDialogForm onSubmit={handleSubmit} initialValues={user}/>
+            </Card>
+        </Col>
+    );
 };
 
 function mapStateToProps(state) {
     return {
-        user: state.user.items[state.auth.userId] || {},
-        isFetching: state.auth.isFetching
+        user: state.entities.users.byId[state.auth.userId] || {}
     }
 }
 

@@ -9,16 +9,37 @@ class SelfValidateCard extends React.Component {
         this.button = this.button.bind(this);
         this.display = this.display.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.displayTrueFalse = this.displayTrueFalse.bind(this);
         this.state = {
-            show: false
+            show: false,
+            check: false
         }
     }
 
-    handleSubmit() {
+    displayTrueFalse() {
+        console.log(this.state.check);
+        if (this.state.check === true) {
+            return (
+                <Row>
+                    <Col>
+                        <Button outline block color="danger" onClick={() => this.handleSubmit()}>Falsch</Button>
+                    </Col>
+                    <Col>
+                        <Button outline block color="primary" onClick={() => this.handleSubmit()}>Richtig</Button>
+                    </Col>
+                </Row>
+            )
+        }
+
+    }
+
+    handleSubmit(check) {
 
         this.setState({
-            show: true
+            show: true,
+            check: check
         })
+
 
     }
 
@@ -26,10 +47,10 @@ class SelfValidateCard extends React.Component {
         if (this.state.show === false) {
             return (<Row>
                 <Col>
-                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Prüfen</Button>
+                    <Button block outline color="primary" onClick={() => this.handleSubmit(true)}>Prüfen</Button>
                 </Col>
                 <Col>
-                    <Button block outline color="primary" onClick={() => this.handleSubmit()}>Weiss ich
+                    <Button block outline color="primary" onClick={() => this.handleSubmit(false)}>Weiss ich
                         nicht</Button>
                 </Col>
             </Row>)
@@ -46,18 +67,10 @@ class SelfValidateCard extends React.Component {
                     <CardText>Bewerte jetzt deine Antwort!</CardText>
                     <CardText>Die Richtige Antwort lautet:</CardText>
                     <CardText> <em><b>{this.props.answer}</b></em></CardText>
-                    <Row>
-                        <Col>
-                            <Button outline block color="danger">Falsch</Button>
-                        </Col>
-                        <Col>
-                            <Button outline block color="primary">Richtig</Button>
-                        </Col>
-                    </Row>
-
+                    {this.displayTrueFalse()}
                 </div>
-
             )
+
         }
     }
 

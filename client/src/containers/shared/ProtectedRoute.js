@@ -30,7 +30,7 @@ ProtectedRoute.propTypes = {
 function mapStateToProps(state) {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        user: state.user.items[state.auth.userId] || {}
+        user: state.entities.users.byId[state.auth.userId] || {}
     }
 }
 

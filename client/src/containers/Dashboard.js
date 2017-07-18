@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import DashboardComponent from "../components/dashboard";
 import {loadRegisters} from "../actions/register";
-import _ from "lodash";
+import Headline from "../components/shared/headline";
+import {Row} from "reactstrap";
+import BlankCard from "../components/register/blankCard";
+import Preview from "./register/Preview";
 
 class Dashboard extends React.Component {
     componentWillMount() {
@@ -11,23 +13,36 @@ class Dashboard extends React.Component {
         dispatch(loadRegisters())
     }
 
-
     render() {
-        const {registers} = this.props;
+        const {registersIds} = this.props;
         return (
-            <DashboardComponent registers={registers}/>
+            <div>
+                <Headline title="Dashboard">
+                    Hier hast du eine Übersicht über deine Register. Ebenfalls kannst du weitere Register erstellen.
+                </Headline>
+
+                <Row>
+                    <BlankCard />
+                    {
+                        registersIds &&
+                        registersIds.map((registerId) =>
+                            <Preview registerId={registerId} key={registerId}/>
+                        )
+                    }
+                </Row>
+            </div>
         )
     }
 }
 
 Dashboard.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    register: PropTypes.array.isRequired
+    registersIds: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        registers: _.values(state.register.items)
+        registersIds: state.entities.registers.allIds || [],
     }
 }
 

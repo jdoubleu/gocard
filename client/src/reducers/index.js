@@ -1,5 +1,6 @@
 import auth from "./auth";
-import user from "./user";
-import register from "./register";
+import entities from "./entities";
+import ui from "./ui";
+import {reducer as form} from "redux-form";
 
-export default {auth, user, register};
+export default {auth, entities, ui, form};

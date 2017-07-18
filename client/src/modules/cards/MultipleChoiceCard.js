@@ -73,21 +73,29 @@ class MultipleChoiceCard extends React.Component {
     }
 
     correct(answer) {
-        let correct = false;
-        this.getRightAnswers().forEach(a => {
-            if (a === answer) {
-                correct = true
+        if (this.props.mode !== 3) {
+            let correct = false;
+            this.getRightAnswers().forEach(a => {
+                if (a === answer) {
+                    correct = true
+                }
+            })
+            if (correct === true) {
+                return (
+                    <Col className="text-success">
+                        <CardText>{answer}</CardText>
+                    </Col>
+                )
+            } else {
+                return (
+                    <Col className="text-danger">
+                        <CardText>{answer}</CardText>
+                    </Col>
+                )
             }
-        })
-        if (correct === true) {
-            return (
-                <Col className="text-success">
-                    <CardText>{answer}</CardText>
-                </Col>
-            )
         } else {
             return (
-                <Col className="text-danger">
+                <Col>
                     <CardText>{answer}</CardText>
                 </Col>
             )

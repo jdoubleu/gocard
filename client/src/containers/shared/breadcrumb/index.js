@@ -65,7 +65,7 @@ const Breadcrumb = ({...rest, location: {pathname}}) => {
     const paths = getPaths(pathname);
     return (
         <BreadcrumbComponent className="m-0 p-0">
-            {paths.map(p => <Route path={p} component={BreadcrumbsItem} {...rest} />)}
+            {paths.map(p => <Route path={p} component={BreadcrumbsItem} key={p} {...rest}/>)}
         </BreadcrumbComponent>
     );
 };
