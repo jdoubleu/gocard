@@ -64,3 +64,19 @@
     register:
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+
+-
+  name: 'register cards routes'
+  uriPattern: '{register}/cards/<RegisterCardsSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Cards'
+    '@format':     'json'
+  subRoutes:
+    'RegisterCardsSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.RegisterCards'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
