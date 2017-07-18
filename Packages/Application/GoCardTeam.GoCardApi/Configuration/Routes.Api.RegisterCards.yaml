@@ -9,3 +9,14 @@
     '@action': 'findCardsByRegister'
   routeParts:
   httpMethods: ['GET']
+
+-
+  name: 'update cards'
+  uriPattern: ''
+  defaults:
+    '@action': 'addCardsToRegister'
+  routeParts:
+    cards:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
