@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @Flow\Entity
  */
-class Register
+class Register implements \JsonSerializable
 {
 
     /**
@@ -189,5 +189,20 @@ class Register
     public function setMembers($members)
     {
         $this->members = $members;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * This data will be used by the JsonView to display the output
+     */
+    function jsonSerialize()
+    {
+        return [
+            'id' => $this->getUid(),
+            'owner' => $this->getOwner()->getUid(),
+            'crdate' => $this->getCrdate(),
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription()
+        ];
     }
 }
