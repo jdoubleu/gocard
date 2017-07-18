@@ -327,7 +327,7 @@ export function addRegister(parameters) {
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.registerId - ID of register to get
  */
-export function findByRegisterById(parameters) {
+export function findRegisterById(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -352,7 +352,7 @@ export function findByRegisterById(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('findByRegisterById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findRegisterById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }

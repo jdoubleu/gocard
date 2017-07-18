@@ -23,7 +23,7 @@
   name: 'find register'
   uriPattern: '{registerId}'
   defaults:
-    '@action': 'findByRegisterById'
+    '@action': 'findRegisterById'
   httpMethods: ['GET']
 
 -

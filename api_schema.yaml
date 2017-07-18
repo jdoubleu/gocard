@@ -83,7 +83,7 @@ paths:
         - registers
       summary: Find register by ID
       description: Returns a single register
-      operationId: findByRegisterById
+      operationId: findRegisterById
       produces:
         - application/json
       parameters:
