@@ -14,8 +14,8 @@ import {loadRegister} from "../../actions/register";
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, match} = this.props;
-        dispatch(loadCards(match.params.id));
-        dispatch(loadRegister(match.params.id));
+        dispatch(loadCards(match.params.registerId));
+        dispatch(loadRegister(match.params.registerId));
     }
 
     render() {
@@ -73,9 +73,9 @@ class Detail extends React.Component {
 Detail.propTypes = {};
 
 function mapStateToProps(state, ownProps) {
-    const registerId = ownProps.match.params.id;
+    const registerId = ownProps.match.params.registerId;
     return {
-        register: state.entities.registers.byId[registerId],
+        register: state.entities.registers.byId[registerId] || {},
         cardIds: state.entities.cards.allIds
     }
 }

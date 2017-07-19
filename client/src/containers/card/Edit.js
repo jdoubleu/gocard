@@ -31,7 +31,7 @@ Edit.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-    card: state.entities.cards.byId[ownProps.match.params.id] || {},
+    card: state.entities.cards.byId[ownProps.match.params.registerId] || {},
 });
 
 const mapDispatchToProps = (dispatch) => ({

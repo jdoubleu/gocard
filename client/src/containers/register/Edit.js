@@ -33,7 +33,7 @@ Edit.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    const registerId = ownProps.match.params.id;
+    const registerId = ownProps.match.params.registerId;
     return {
         register: state.entities.registers.byId[registerId] || {},
     }
