@@ -9,12 +9,4 @@ use Neos\Flow\Annotations as Flow;
  */
 class SelfValidate extends TextInput
 {
-
-    /**
-     * Construct SelfValidate
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 }
