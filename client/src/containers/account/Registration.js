@@ -4,6 +4,7 @@ import Logo from "../../components/shared/logo/index";
 import RegistrationForm from "../../containers/forms/Registration";
 import {addUser} from "../../actions/user";
 import {SubmissionError} from "redux-form";
+import {RequestError} from "../../middleware/callAPI";
 
 const Registration = () => {
 
@@ -12,11 +13,11 @@ const Registration = () => {
             ...values,
             displayName: ''
         })).catch(error => {
-            if (error instanceof SubmissionError) {
-                throw error;
-            }
-            if (error.response.statusCode === 409) {
-                throw new SubmissionError({_error: 'Registrierung fehlgeschlagen! E-Mail Adresse bereits vorhanden.'})
+            if (error instanceof RequestError) {
+                if (error.statusCode === 409) {
+                    throw new SubmissionError({_error: 'Registrierung fehlgeschlagen! E-Mail Adresse bereits vorhanden.'})
+                }
+                throw new SubmissionError({_error: error.message})
             }
         });
     };

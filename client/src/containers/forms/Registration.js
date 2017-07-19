@@ -25,7 +25,6 @@ const validate = values => {
         errors.password_confirm = 'Passwörter stimmen nicht überein.'
     }
 
-
     return errors
 };
 

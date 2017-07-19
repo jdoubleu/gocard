@@ -5,17 +5,20 @@ import Logo from "../../components/shared/logo";
 import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
 import {SubmissionError} from "redux-form";
+import {RequestError} from "../../middleware/callAPI";
 
 const Login = () => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(loginUser(values)).catch(
+        return dispatch(
+            loginUser(values)
+        ).catch(
             error => {
-                if (error instanceof SubmissionError) {
-                    throw error;
-                }
-                if (error.response.statusCode === 400) {
-                    throw new SubmissionError({_error: 'Login fehlgeschlagen! Passwort/E-Mail falsch.'})
+                if (error instanceof RequestError) {
+                    if (error.statusCode === 400) {
+                        throw new SubmissionError({_error: 'Login fehlgeschlagen! Passwort/E-Mail falsch.'})
+                    }
+                    throw new SubmissionError({_error: error.message})
                 }
             }
         );
