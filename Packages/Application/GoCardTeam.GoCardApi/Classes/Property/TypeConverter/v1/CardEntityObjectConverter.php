@@ -52,7 +52,7 @@ class CardEntityObjectConverter extends PersistentObjectConverter
                     $filteredSource['content']['__type'] = Card\MultipleChoice::class;
                     break;
                 case 'text-input':
-                    $filteredSource['content']['__type'] = Card\MultipleChoice::class;
+                    $filteredSource['content']['__type'] = Card\TextInput::class;
                     break;
                 case 'self-validate':
                     $filteredSource['content']['__type'] = Card\SelfValidate::class;
