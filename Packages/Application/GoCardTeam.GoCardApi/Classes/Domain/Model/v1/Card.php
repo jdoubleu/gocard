@@ -39,7 +39,7 @@ class Card implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="simple_array", nullable=true)
      * @var array
      */
     protected $tags;
