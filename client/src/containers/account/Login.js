@@ -15,7 +15,7 @@ const Login = () => {
         ).catch(
             error => {
                 if (error instanceof RequestError) {
-                    if (error.statusCode === 400) {
+                    if (error.statusCode === 400 || error.statusCode === 404) {
                         throw new SubmissionError({_error: 'Login fehlgeschlagen! Passwort/E-Mail falsch.'})
                     }
                     throw new SubmissionError({_error: error.message})
