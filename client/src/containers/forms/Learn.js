@@ -8,7 +8,7 @@ const validate = values => {
     const errors = {};
 
     if (!values.mode) {
-        errors.mode = 'Required'
+        errors.mode = 'Wähle einen Lernmodus'
     }
 
     return errors
@@ -36,7 +36,7 @@ const Learn = props => {
                 name="mode"
                 component={SelectButton}
                 label="Modus"
-                toolTip="Der Lernmodus muss ausgwählt werden, um die Variante des Lernens zudefinieren."
+                toolTip="Der Lernmodus muss ausgwählt werden, um die Variante des Lernens anzugeben."
                 options={[
                     {
                         name: "Normal",

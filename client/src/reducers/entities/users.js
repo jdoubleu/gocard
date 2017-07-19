@@ -1,12 +1,12 @@
 import {combineReducers} from "redux";
-import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, UPDATE_USER_SUCCESS, SEARCH_USERS_SUCCESS} from "../../actions/user";
+import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, SEARCH_USERS_SUCCESS, UPDATE_USER_SUCCESS} from "../../actions/user";
 import {LOAD_CURRENT_USER_SUCCESS} from "../../actions/auth";
 import _ from "lodash";
 
 function addUserEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy([response], 'uid'));
+    return _.merge(state, _.keyBy([response], 'id'));
 }
 
 function deleteUserEntry(state, action) {
@@ -33,7 +33,7 @@ function usersById(state = {}, action) {
 function addUserId(state, action) {
     const {response} = action;
 
-    return _.concat(state, response.uid);
+    return _.concat(state, response.id);
 }
 
 function deleteUserId(state, action) {
@@ -45,12 +45,12 @@ function deleteUserId(state, action) {
 function updateUserId(state, action) {
     const {userId, response} = action;
 
-    return _.concat(_.omit(state, userId), response.uid);
+    return _.concat(_.omit(state, userId), response.id);
 }
 
-function addMultipleUserIds(state, action) {
+function addUserIds(state, action) {
     const {response} = action;
-    return _.union(state, _.map(response, 'uid'));
+    return _.union(state, _.map(response, 'id'));
 }
 
 
@@ -64,7 +64,7 @@ function allUsers(state = [], action) {
         case DELETE_USER_SUCCESS:
             return deleteUserId(state, action);
         case SEARCH_USERS_SUCCESS:
-            return addMultipleUserIds(state, action);
+            return addUserIds(state, action);
         default:
             return state;
     }

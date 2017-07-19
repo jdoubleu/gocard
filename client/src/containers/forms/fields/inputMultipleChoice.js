@@ -44,7 +44,7 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Input addon type="checkbox"
                                        onChange={(event) => input.onChange({
                                            ...input.value,
-                                           selected: fillAt(selected, event.target.checked, index)
+                                           corrects: fillAt(selected, event.target.checked, index)
                                        })}
                                        checked={selected[index]}
                                 />
@@ -60,7 +60,7 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
-                                            selected: removeAt(selected, index),
+                                            corrects: removeAt(selected, index),
                                             options: removeAt(options, index)
                                         })}>
                                     &#10008;

@@ -1,19 +1,20 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form} from "reactstrap";
+import {Alert, Button, Form, FormGroup} from "reactstrap";
 import InputField from "./fields/input";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
 
     if (!values.email) {
-        errors.email = 'Required'
+        errors.email = 'Eine E-Mail Adresse ist erforderlich.'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
+        errors.email = 'Ungültige E-Mail Adresse.'
     }
 
     if (!values.password) {
-        errors.password = 'Required'
+        errors.password = 'Ein Passwort ist erforderlich.'
     }
 
     return errors
@@ -36,6 +37,7 @@ const LoginForm = props => {
                 label="E-Mail Adresse"
                 disableLabel
             />
+
             <Field
                 name="password"
                 type="password"
@@ -44,8 +46,19 @@ const LoginForm = props => {
                 disableLabel
             />
 
+            <FormGroup>
+                <Link to="/reset" className="mb-4">Passwort vergessen?</Link>
+            </FormGroup>
+            
             <Button outline block color="primary" type="submit" disabled={submitting}>
-                Anmelden mit GoCard-Account
+                {
+                    submitting &&
+                    <span>...Funkkontakt wird aufgenommen</span>
+                }
+                {
+                    !submitting &&
+                    <span>Anmelden mit GoCard-Account</span>
+                }
             </Button>
         </Form>
     )

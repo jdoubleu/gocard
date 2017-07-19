@@ -1,9 +1,7 @@
-import {SEARCH_USERS_SUCCESS, SEARCH_USERS_REQUEST} from "../../actions/user";
-
-import _ from "lodash";
+import {SEARCH_USERS_REQUEST, SEARCH_USERS_SUCCESS} from "../../actions/user";
 import {CLEAR_SEARCH_USER} from "../../actions/ui";
 
-function addFoundUsers(state, action) {
+function addFoundUsersEntry(state, action) {
     const {response} = action;
     return {
         ...state,
@@ -11,7 +9,7 @@ function addFoundUsers(state, action) {
     };
 }
 
-function addSearchValue(state, action) {
+function addSearchValueEntry(state, action) {
     return {
         ...state,
         foundUsers: [],
@@ -19,7 +17,7 @@ function addSearchValue(state, action) {
     };
 }
 
-function clearSearchValue(state, action) {
+function clearSearchValueEntry(state, action) {
     return {
         ...state,
         search: ""
@@ -29,11 +27,11 @@ function clearSearchValue(state, action) {
 export default function ui(state = {}, action) {
     switch (action.type) {
         case SEARCH_USERS_REQUEST:
-            return addSearchValue(state, action);
+            return addSearchValueEntry(state, action);
         case SEARCH_USERS_SUCCESS:
-            return addFoundUsers(state, action);
+            return addFoundUsersEntry(state, action);
         case CLEAR_SEARCH_USER:
-            return clearSearchValue(state, action);
+            return clearSearchValueEntry(state, action);
         default:
             return state;
     }

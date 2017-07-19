@@ -1,4 +1,14 @@
 import API from "../lib/ApiClient";
+import {logoutUser} from "../actions/auth";
+
+export class RequestError {
+    constructor(statusCode, body, message) {
+        this.message = message;
+        this.name = 'RequestError';
+        this.statusCode = statusCode;
+        this.body = body;
+    }
+}
 
 export default function ({dispatch, getState}) {
     return next => action => {
@@ -52,9 +62,27 @@ export default function ({dispatch, getState}) {
             error => {
                 dispatch({
                     ...payload,
-                    error,
                     type: failureType
                 });
+
+                const response = error.response || {};
+                const statusCode = response.statusCode;
+                const body = response.body;
+
+                switch (statusCode) {
+                    case 400:
+                        throw new RequestError(statusCode, body, 'Ooops! Anfrage invalide.');
+                    case 401:
+                        dispatch(logoutUser());
+                        break;
+                    case 404:
+                        throw new RequestError(statusCode, body, 'Ooops! Route nicht gefunden.');
+                    case 409:
+                        throw new RequestError(statusCode, body, 'Ooops! Parameter wurden bereits verwendet.');
+                    default:
+                        throw new RequestError(statusCode, body, 'Ooops! Da ist was schiefgelaufen.');
+                }
+
                 throw error;
             }
         )

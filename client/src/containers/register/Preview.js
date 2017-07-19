@@ -14,13 +14,13 @@ const Preview = ({register}) => {
 
                 <Row className="mb-3">
                     <Col xs="8">
-                        <MemberBar registerId={register.uid} diameter={36}/>
+                        <MemberBar registerId={register.id} diameter={36}/>
                     </Col>
                     <Col xs="4">
-                        <Progress registerId={register.uid}/>
+                        <Progress registerId={register.id}/>
                     </Col>
                 </Row>
-                <Link className="btn btn-outline-primary" to={`/register/${register.uid}`}>Öffnen</Link>
+                <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Öffnen</Link>
             </Card>
         </Col>
     );

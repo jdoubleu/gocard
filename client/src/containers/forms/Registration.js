@@ -1,35 +1,36 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form} from "reactstrap";
+import {Alert, Button, CardText, Form} from "reactstrap";
 import InputField from "./fields/input";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
 
     if (!values.email) {
-        errors.email = 'Required'
+        errors.email = 'Eine E-Mail Adresse ist erforderlich.'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address'
+        errors.email = 'Ungültige E-Mail Adresse.'
     }
 
     if (!values.password) {
-        errors.password = 'Required'
-    } else if (values.password !== values.password_confirm) {
-        errors.password = ' '
+        errors.password = 'Ein Passwort ist erforderlich.'
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,}$/i.test(values.password)) {
+        errors.password = 'Dein Passwort muss eine Ziffer, einen Kleinbuchstaben, einen Großbuchstaben und mindestens 8 Zeichen beinhalten'
     }
 
     if (!values.password_confirm) {
-        errors.password_confirm = 'Required'
+        errors.password_confirm = 'Passwort wiederholen.'
     } else if (values.password !== values.password_confirm) {
-        errors.password_confirm = 'Passwort muss gleich seien'
+        errors.password_confirm = 'Passwörter stimmen nicht überein.'
     }
 
     return errors
 };
 
 const RegistrationForm = props => {
-    const {error, handleSubmit, submitting} = props;
-    return (
+    const {error, handleSubmit, submitting, submitSucceeded} = props;
+    return !submitSucceeded ? (
         <Form onSubmit={handleSubmit}>
             {
                 error &&
@@ -63,6 +64,15 @@ const RegistrationForm = props => {
                 Registieren
             </Button>
         </Form>
+    ) : (
+        <div>
+            <hr/>
+            <CardText>
+                Eine E-Mail mit einem Aktivierungslink für deinen Account, wurde an deine E-Mail Adresse versendet.
+                Nach der Aktivierung kannst du dich mit deinem Account anmelden.
+            </CardText>
+            <Link to="/" className="btn btn-outline-success btn-block">Zurück zum Login</Link>
+        </div>
     )
 };
 

@@ -14,8 +14,8 @@ import {loadRegister} from "../../actions/register";
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, match} = this.props;
-        dispatch(loadCards(match.params.id));
-        dispatch(loadRegister(match.params.id));
+        dispatch(loadCards(match.params.registerId));
+        dispatch(loadRegister(match.params.registerId));
     }
 
     render() {
@@ -31,7 +31,7 @@ class Detail extends React.Component {
                             {register.description}
                         </CardText>
                         <span><hr/></span>
-                        <Link to={`${register.uid}/edit`}>Bearbeiten</Link>
+                        <Link to={`${register.id}/edit`}>Bearbeiten</Link>
                     </Card>
 
                     <Card block className="border-top-primary">
@@ -42,11 +42,11 @@ class Detail extends React.Component {
                     <Card block>
                         <CardTitle>Statistik</CardTitle>
                         <CardText>
-                            <Progress registerId={register.uid}/>
+                            <Progress registerId={register.id}/>
                         </CardText>
                         <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
-                            <MemberBar registerId={register.uid}/>
+                            <MemberBar registerId={register.id}/>
                         </CardText>
                     </Card>
                 </CardGroup>
@@ -57,7 +57,7 @@ class Detail extends React.Component {
                     </Col>
                 </Row>
                 <CardDeck>
-                    <BlankCard registerId={register.uid}/>
+                    <BlankCard registerId={register.id}/>
                     {
                         cardIds &&
                         cardIds.map((cardId) =>
@@ -73,9 +73,9 @@ class Detail extends React.Component {
 Detail.propTypes = {};
 
 function mapStateToProps(state, ownProps) {
-    const registerId = ownProps.match.params.id;
+    const registerId = ownProps.match.params.registerId;
     return {
-        register: state.entities.registers.byId[registerId],
+        register: state.entities.registers.byId[registerId] || {},
         cardIds: state.entities.cards.allIds
     }
 }

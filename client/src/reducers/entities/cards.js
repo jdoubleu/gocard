@@ -1,28 +1,36 @@
 import {combineReducers} from "redux";
-import {DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS} from "../../actions/card";
+import {
+    DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS, ADD_CARD_SUCCESS,
+    LOAD_CARD_SUCCESS
+} from "../../actions/card";
 import {_} from "lodash";
 
-function addMultipleCardIds(state, action) {
+function addCardIds(state, action) {
     const {response} = action;
-    return _.union(state, _.map(response, 'uid'));
+    return _.union(state, _.map(response, 'id'));
 }
 
-function addCard(state, action) {
+function addCardId(state, action) {
     const {response} = action;
-    return _.merge(state, _.keyBy(response, 'uid'));
+    return _.union(state, _.map(response, 'id'));
 }
 
-function updateSingleCardId(state, action) {
+function addCardEntry(state, action) {
     const {response} = action;
-    return _.concat(_.omit(state, response.uid), response.uid);
+    return _.merge(state, _.keyBy(response, 'id'));
 }
 
-function updateMultipleCardIds(state, action) {
+function updateCardId(state, action) {
     const {response} = action;
-    return _.union(_.concat(state, _.map(response, 'uid')));
+    return _.concat(_.omit(state, response.id), response.id);
 }
 
-function deleteCard(state, action) {
+function updateCardIds(state, action) {
+    const {response} = action;
+    return _.union(_.concat(state, _.map(response, 'id')));
+}
+
+function deleteCardEntry(state, action) {
     return _.omit(state, action.cardId);
 }
 
@@ -36,9 +44,12 @@ function cardsById(state = {}, action) {
         case LOAD_CARDS_SUCCESS:
         case UPDATE_CARD_SUCCESS:
         case UPDATE_CARDS_SUCCESS:
-            return addCard(state, action);
+        case LOAD_CARD_SUCCESS:
+            return addCardEntry(state, action);
         case DELETE_CARD_SUCCESS:
-            return deleteCard(state, action);
+            return deleteCardEntry(state, action);
+        case ADD_CARD_SUCCESS:
+            return addCardId(state, action);
         default:
             return state;
     }
@@ -47,13 +58,16 @@ function cardsById(state = {}, action) {
 function allCards(state = [], action) {
     switch (action.type) {
         case LOAD_CARDS_SUCCESS:
-            return addMultipleCardIds(state, action);
+            return addCardIds(state, action);
         case UPDATE_CARD_SUCCESS:
-            return updateSingleCardId(state, action);
+            return updateCardId(state, action);
         case UPDATE_CARDS_SUCCESS:
-            return updateMultipleCardIds(state, action);
+            return updateCardIds(state, action);
         case DELETE_CARD_SUCCESS:
             return deleteCardId(state, action);
+        case ADD_CARD_SUCCESS:
+        case LOAD_CARD_SUCCESS:
+            return addCardId(state, action);
         default:
             return state;
     }

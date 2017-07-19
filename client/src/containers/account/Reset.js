@@ -3,11 +3,16 @@ import {Card, CardGroup, CardText, CardTitle, Col} from "reactstrap";
 import Logo from "../../components/shared/logo";
 import ResetForm from "../forms/Reset";
 import {requestPasswordReset} from "../../actions/user";
+import {SubmissionError} from "redux-form";
 
 const Reset = () => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(requestPasswordReset(values));
+        return dispatch(requestPasswordReset(values)).catch(error => {
+            if (error instanceof SubmissionError) {
+                throw error;
+            }
+        });
     };
 
     return (

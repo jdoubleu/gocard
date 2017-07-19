@@ -9,7 +9,7 @@ import RegisterForm from "../forms/Register";
 
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateRegister(register.uid, values)).then(
+        return dispatch(updateRegister(register.id, values)).then(
             response =>
                 dispatch(push('/'))
         )
@@ -33,7 +33,7 @@ Edit.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    const registerId = ownProps.match.params.id;
+    const registerId = ownProps.match.params.registerId;
     return {
         register: state.entities.registers.byId[registerId] || {},
     }

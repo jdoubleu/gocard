@@ -5,13 +5,13 @@ import UserIcon from "../../../components/shared/user/icon";
 import Icon from "../../../components/shared/icon";
 import {UncontrolledTooltip} from "reactstrap";
 import _ from "lodash";
-import {loadMembers} from "../../../actions/member";
+import {loadMembersByRegister} from "../../../actions/member";
 
 class Bar extends React.Component {
 
     componentWillMount() {
         const {dispatch, registerId} = this.props;
-        dispatch(loadMembers(registerId));
+        dispatch(loadMembersByRegister(registerId));
     }
 
     render() {
@@ -24,10 +24,10 @@ class Bar extends React.Component {
                     visibleMembers && collapsedMembers.length > 0 &&
                     visibleMembers.map((member) =>
                         <span>
-                            <UserIcon diameter={diameter} id={registerId + member.uid}>
+                            <UserIcon diameter={diameter} id={registerId + member.id}>
                                 {member.displayName}
                             </UserIcon>
-                            <UncontrolledTooltip placement="bottom" target={"ID" + member.uid}>
+                            <UncontrolledTooltip placement="bottom" target={"ID" + member.id}>
                                 {member.displayName}
                             </UncontrolledTooltip>
                         </span>
