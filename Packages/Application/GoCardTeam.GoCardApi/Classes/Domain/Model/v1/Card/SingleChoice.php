@@ -24,16 +24,16 @@ class SingleChoice extends AbstractCardContent
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @var array
      */
-    protected $answers;
+    protected $options;
 
     /**
      * @param int $correctAnswer
-     * @param array $answers
+     * @param array $options
      */
-    public function __construct($correctAnswer, array $answers)
+    public function __construct($correctAnswer, array $options)
     {
         $this->correctAnswer = $correctAnswer;
-        $this->answers = $answers;
+        $this->options = $options;
     }
 
     /**
@@ -47,9 +47,9 @@ class SingleChoice extends AbstractCardContent
     /**
      * @return array
      */
-    public function getAnswers(): array
+    public function getOptions(): array
     {
-        return $this->answers;
+        return $this->options;
     }
 
     /**
@@ -60,7 +60,7 @@ class SingleChoice extends AbstractCardContent
     {
         return [
             'correct' => $this->correctAnswer,
-            'answers' => $this->answers
+            'options' => $this->options
         ];
     }
 }

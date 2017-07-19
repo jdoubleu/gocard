@@ -1,0 +1,22 @@
+# Register Cards API Routes
+# Part of the Cards Domain but special subroutes of register
+
+
+-
+  name: 'get cards of register'
+  uriPattern: ''
+  defaults:
+    '@action': 'findCardsByRegister'
+  routeParts:
+  httpMethods: ['GET']
+
+-
+  name: 'update cards'
+  uriPattern: ''
+  defaults:
+    '@action': 'addCardsToRegister'
+  routeParts:
+    cards:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']

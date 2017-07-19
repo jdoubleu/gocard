@@ -1,6 +1,6 @@
 import {
     deleteCard as apiDeleteCard,
-    findByCardsByRegister as apiFindByCardsByRegister,
+    findCardsByRegister as apiFindCardsByRegister,
     updateCard as apiUpdateCard,
     updateCards as apiUpdateCards,
     getCard as apiGetCard
@@ -13,7 +13,7 @@ export const LOAD_CARDS_FAILURE = 'LOAD_CARDS_FAILURE';
 export function loadCards(registerId) {
     return {
         types: [LOAD_CARDS_REQUEST, LOAD_CARDS_SUCCESS, LOAD_CARDS_FAILURE],
-        callAPI: () => apiFindByCardsByRegister({registerId}),
+        callAPI: () => apiFindCardsByRegister({registerId}),
         payload: {registerId}
     }
 }
