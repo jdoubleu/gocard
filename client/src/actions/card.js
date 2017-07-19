@@ -2,7 +2,8 @@ import {
     deleteCard as apiDeleteCard,
     findByCardsByRegister as apiFindByCardsByRegister,
     updateCard as apiUpdateCard,
-    updateCards as apiUpdateCards
+    updateCards as apiUpdateCards,
+    getCard as apiGetCard
 } from "../lib/ApiClient";
 
 export const LOAD_CARDS_REQUEST = 'LOAD_CARDS_REQUEST';
@@ -16,6 +17,18 @@ export function loadCards(registerId) {
         payload: {registerId}
     }
 }
+
+export const LOAD_CARD_REQUEST = 'LOAD_CARD_REQUEST';
+export const LOAD_CARD_SUCCESS = 'LOAD_CARD_SUCCESS';
+export const LOAD_CARD_FAILURE = 'LOAD_CARD_FAILURE';
+
+export function loadCard(cardId) {
+    return {
+        types: [LOAD_CARD_REQUEST, LOAD_CARD_SUCCESS, LOAD_CARD_FAILURE],
+        callAPI: () => apiGetCard({cardId}),
+    }
+}
+
 
 export const UPDATE_CARD_REQUEST = 'UPDATE_CARD_REQUEST';
 export const UPDATE_CARD_SUCCESS = 'UPDATE_CARD_SUCCESS';
