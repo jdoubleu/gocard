@@ -31,12 +31,6 @@ class CardsController extends AbstractApiEndpointController
     protected $registerRepository;
 
     /**
-     * @Flow\Inject
-     * @var ObjectManager
-     */
-    protected $objectManager;
-
-    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */
