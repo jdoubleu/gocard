@@ -52,7 +52,7 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                             <Input type={type} name="answer"
                                    onChange={(event) => input.onChange({
                                        ...input.value,
-                                       options: fillAt(options, event.target.value, index)
+                                       correct: fillAt(options, event.target.value, index)
                                    })}
                                    value={option}
                             />
@@ -60,7 +60,7 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
-                                            options: removeAt(options, index)
+                                            correct: removeAt(options, index)
                                         })}>
                                     &#10008;
                                 </Button>
