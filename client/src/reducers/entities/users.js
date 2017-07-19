@@ -48,7 +48,7 @@ function updateUserId(state, action) {
     return _.concat(_.omit(state, userId), response.id);
 }
 
-function addMultipleUserIds(state, action) {
+function addUserIds(state, action) {
     const {response} = action;
     return _.union(state, _.map(response, 'id'));
 }
@@ -64,7 +64,7 @@ function allUsers(state = [], action) {
         case DELETE_USER_SUCCESS:
             return deleteUserId(state, action);
         case SEARCH_USERS_SUCCESS:
-            return addMultipleUserIds(state, action);
+            return addUserIds(state, action);
         default:
             return state;
     }
