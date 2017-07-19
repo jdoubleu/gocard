@@ -218,6 +218,7 @@ class Card implements \JsonSerializable
             'id' => $this->uid,
             'author' => $this->author->getUid(),
             'crdate' => $this->crdate,
+            'register' => $this->getRegister()->getUid(),
             'tags' => $this->tags,
             'question' => $this->question,
             'type' => $this->type,

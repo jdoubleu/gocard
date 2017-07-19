@@ -123,7 +123,7 @@ class CardsController extends AbstractApiEndpointController
         $cardsConfiguration = $this->arguments->getArgument('cards')->getPropertyMappingConfiguration();
         $cardsConfiguration->allowAllProperties();
         $singleCardConfiguration = $cardsConfiguration->forProperty('*');
-        $singleCardConfiguration->allowAllProperties()->skipProperties('uid', 'id');
+        $singleCardConfiguration->allowAllProperties()->skipProperties('uid', 'id', 'register');
         $singleCardConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         $singleCardConfiguration->forProperty('content')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         $contentConfiguration = $singleCardConfiguration->forProperty('content');

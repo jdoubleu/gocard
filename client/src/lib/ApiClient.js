@@ -186,6 +186,7 @@ const Models = {
         'id': 'number',
         'author': 'number',
         'crdate': 'string',
+        'register': 'number',
         'tags': 'array',
         'question': 'string',
         'type': [ /* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */ ],

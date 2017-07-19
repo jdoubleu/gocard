@@ -1032,6 +1032,10 @@ definitions:
       crdate:
         type: string
         format: date-time
+      register:
+        type: integer
+        format: int64
+        description: id of the register
       tags:
         type: array
         items:
