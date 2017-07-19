@@ -39,7 +39,7 @@ class Card implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="simple_array", nullable=true)
      * @var array
      */
     protected $tags;
@@ -68,6 +68,7 @@ class Card implements \JsonSerializable
     protected $content;
 
     /**
+     * @Flow\Validate(type="NotEmpty")
      * @ORM\ManyToOne(inversedBy="cards")
      * @var Register
      */
@@ -218,6 +219,7 @@ class Card implements \JsonSerializable
             'id' => $this->uid,
             'author' => $this->author->getUid(),
             'crdate' => $this->crdate,
+            'register' => $this->getRegister()->getUid(),
             'tags' => $this->tags,
             'question' => $this->question,
             'type' => $this->type,

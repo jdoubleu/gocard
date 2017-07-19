@@ -83,7 +83,7 @@ paths:
         - registers
       summary: Find register by ID
       description: Returns a single register
-      operationId: findByRegisterById
+      operationId: findRegisterById
       produces:
         - application/json
       parameters:
@@ -170,7 +170,7 @@ paths:
         - cards
       summary: Get all cards of this register
       description: Returns all cards of the given register
-      operationId: findByCardsByRegister
+      operationId: findCardsByRegister
       produces:
         - application/json
       parameters:
@@ -331,6 +331,8 @@ paths:
       responses:
         '200':
           description: Successfully added member
+          schema:
+            $ref: '#/definitions/Member'
         '400':
           description: Invalid request
           schema:
@@ -582,6 +584,34 @@ paths:
           description: Cards not found
       security:
         - api_key: []
+    post:
+      tags:
+        - cards
+      summary: Create new card
+      description: Adds a new single card to a given register
+      operationId: addCard
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Card to be created
+          schema:
+            $ref: '#/definitions/Card'
+          required: true
+      responses:
+        '200':
+          description: Successfully created card
+          schema:
+            $ref: '#/definitions/Card'
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to create this card in the given register
+        '404':
+          description: Register not found
   '/cards/{cardId}':
     get:
       tags:
@@ -1030,6 +1060,10 @@ definitions:
       crdate:
         type: string
         format: date-time
+      register:
+        type: integer
+        format: int64
+        description: id of the register
       tags:
         type: array
         items:
@@ -1097,7 +1131,11 @@ definitions:
         type: integer
         format: int64
         description: ID of the user
-      scope:
+      register:
+        type: integer
+        format: int64
+        description: ID of the register
+      role:
         type: array
         items:
           type: string
@@ -1108,7 +1146,7 @@ definitions:
         uniqueItems: true
     required:
       - user
-      - scope
+      - role
   RegisterActivity:
     type: object
     properties:
