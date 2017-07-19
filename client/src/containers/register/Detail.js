@@ -61,7 +61,7 @@ class Detail extends React.Component {
                     {
                         cardIds &&
                         cardIds.map((cardId) =>
-                            <PreviewCard card={cardId}/>
+                            <PreviewCard cardId={cardId}/>
                         )
                     }
                 </CardDeck>

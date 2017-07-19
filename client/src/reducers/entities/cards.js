@@ -3,7 +3,7 @@ import {
     DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS, ADD_CARD_SUCCESS,
     LOAD_CARD_SUCCESS
 } from "../../actions/card";
-import {_} from "lodash";
+import _ from "lodash";
 
 function addCardIds(state, action) {
     const {response} = action;
