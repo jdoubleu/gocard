@@ -36,6 +36,17 @@
   httpMethods: ['POST']
 
 -
+  name: 'create card'
+  uriPattern: ''
+  defaults:
+    '@action': 'addCard'
+  routeParts:
+    card:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
   name: 'delete card'
   uriPattern: '{card}'
   defaults:

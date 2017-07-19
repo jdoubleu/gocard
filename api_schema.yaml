@@ -584,6 +584,34 @@ paths:
           description: Cards not found
       security:
         - api_key: []
+    post:
+      tags:
+        - cards
+      summary: Create new card
+      description: Adds a new single card to a given register
+      operationId: addCard
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Card to be created
+          schema:
+            $ref: '#/definitions/Card'
+          required: true
+      responses:
+        '200':
+          description: Successfully created card
+          schema:
+            $ref: '#/definitions/Card'
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to create this card in the given register
+        '404':
+          description: Register not found
   '/cards/{cardId}':
     get:
       tags:
