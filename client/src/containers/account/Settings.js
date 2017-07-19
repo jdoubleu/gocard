@@ -17,7 +17,7 @@ const Settings = ({user, displayName}) => {
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
-        return dispatch(deleteUser(user.uid)).then(
+        return dispatch(deleteUser(user.id)).then(
             dispatch(logoutUser())
         );
     };
