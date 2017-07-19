@@ -1,14 +1,25 @@
 import React from "react";
 import {connect} from "react-redux";
 import InitialDialogForm from "../forms/InitialDialog";
-import {Card, CardText, Col} from "reactstrap";
-import {updateUser} from "../../actions/user";
+import {Card, CardText, CardTitle, Col} from "reactstrap";
+import {updateUser, deleteUser} from "../../actions/user";
+import {logoutUser} from "../../actions/auth";
 import Headline from "../../components/shared/headline";
+import DeleteUserForm from "../forms/DeleteUser";
 
 const InitialDialog = ({user}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser(user.uid, {...values, status: "active"}));
+        return dispatch(updateUser(user.id, {...values, status: "active"}));
+    };
+
+    const handleDeleteSubmit = (values, dispatch) => {
+        return dispatch(
+            deleteUser(user.id)
+        ).then(
+            response =>
+                dispatch(logoutUser())
+        );
     };
 
     return (
@@ -20,6 +31,12 @@ const InitialDialog = ({user}) => {
                 </CardText>
 
                 <InitialDialogForm onSubmit={handleSubmit} initialValues={user}/>
+            </Card>
+
+            <Card block className="mt-4">
+                <CardTitle>Account löschen</CardTitle>
+                <CardText>Wenn du die EULA nicht akzeptieren möchtest, kannst du deinen Account löschen.</CardText>
+                <DeleteUserForm onSubmit={handleDeleteSubmit}/>
             </Card>
         </Col>
     );
