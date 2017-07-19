@@ -26,7 +26,7 @@ function deleteRegisterEntry(state, action) {
     return _.omit(state, registerId);
 }
 
-function addRegisterEntrys(state, action) {
+function addRegisterEntries(state, action) {
     const {response} = action;
 
     return _.merge(state, _.keyBy(response, 'id'));
@@ -42,7 +42,7 @@ function registersById(state = {}, action) {
         case DELETE_REGISTER_SUCCESS:
             return deleteRegisterEntry(state, action);
         case LOAD_REGISTERS_SUCCESS:
-            return addRegisterEntrys(state, action);
+            return addRegisterEntries(state, action);
         default:
             return state;
     }
