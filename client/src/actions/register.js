@@ -2,7 +2,7 @@ import {
     addRegister as apiAddRegister,
     deleteRegister as apiDeleteRegister,
     findAllRegisters as apiFindAllRegisters,
-    findByRegisterById as apiFindByRegisterById,
+    findRegisterById as apiFindRegisterById,
     updateRegister as apiUpdateRegister
 } from "../lib/ApiClient";
 
@@ -24,7 +24,7 @@ export const LOAD_REGISTER_FAILURE = 'LOAD_REGISTER_FAILURE';
 export function loadRegister(registerId) {
     return {
         types: [LOAD_REGISTER_REQUEST, LOAD_REGISTER_SUCCESS, LOAD_REGISTER_FAILURE],
-        callAPI: () => apiFindByRegisterById({registerId})
+        callAPI: () => apiFindRegisterById({registerId})
     }
 }
 
