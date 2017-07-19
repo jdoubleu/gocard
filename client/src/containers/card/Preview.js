@@ -3,26 +3,35 @@ import PropTypes from "prop-types";
 import {Button, Card, CardTitle, Col} from "reactstrap";
 import {connect} from "react-redux";
 
-const Preview = ({card}) => {
-    return (
-        <Col xl="4" md="6" xs="12">
-            <Card block className="mb-2">
-                <CardTitle>{card.question}</CardTitle>
-                <Button outline color="primary">Ansehen</Button>
-            </Card>
-        </Col>
+class Preview extends React.Component {
 
-    );
-};
+    componentWillMount() {
+        this.props.loadCard();
+    }
+
+    render() {
+        const {card} = this.props;
+        return (
+            <Col xl="4" md="6" xs="12">
+                <Card block className="mb-2">
+                    <CardTitle>{card.question}</CardTitle>
+                    <Button outline color="primary">Ansehen</Button>
+                </Card>
+            </Col>
+        )
+    };
+}
 
 Preview.propTypes = {
     cardId: PropTypes.number.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        card: state.entities.cards.byId[ownProps.cardId] || {},
-    }
-}
+const mapStateToProps = (state, ownProps) => ({
+    card: state.entities.cards.byId[ownProps.cardId] || {},
+});
 
-export default connect(mapStateToProps)(Preview);
+const mapDispatchToProps = (dispatch) => ({
+    loadCard: dispatch()
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Preview);

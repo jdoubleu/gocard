@@ -66,7 +66,7 @@ const CardForm = props => {
             {
                 type === 'single-choice' &&
                 <Field
-                    name="content"
+                    name="content_choice"
                     type="text"
                     component={InputSingleChoice}
                     label="Antwort"
@@ -76,7 +76,7 @@ const CardForm = props => {
             {
                 type === 'multiple-choice' &&
                 <Field
-                    name="content"
+                    name="content_choice"
                     type="text"
                     component={InputMultipleChoice}
                     label="Antwort"
@@ -86,7 +86,7 @@ const CardForm = props => {
             {
                 type === 'self-validate' &&
                 <Field
-                    name="content"
+                    name="content_text"
                     type="textarea"
                     component={InputField}
                     label="Antwort"
@@ -96,7 +96,7 @@ const CardForm = props => {
             {
                 type === 'text-input' &&
                 <Field
-                    name="content"
+                    name="content_text"
                     type="text"
                     component={InputField}
                     label="Antwort"
