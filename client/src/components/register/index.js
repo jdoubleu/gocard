@@ -10,9 +10,9 @@ const Register = () => {
     return (
         <Switch>
             <Route path="/register/new" exact component={NewRegister}/>
-            <Route path="/register/:id/edit" exact component={EditRegister}/>
-            <Route path="/register/:id" exact component={DetailRegister}/>
-            <Route path="/register/:id/card/new" exact component={NewCard}/>
+            <Route path="/register/:registerId/edit" exact component={EditRegister}/>
+            <Route path="/register/:registerId" exact component={DetailRegister}/>
+            <Route path="/register/:registerId/card/new" exact component={NewCard}/>
             <Route component={NotFound}/>
         </Switch>
     );
