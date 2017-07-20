@@ -60,6 +60,7 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
+                                            correct: correct===index?undefined:correct,
                                             options: removeAt(options, index)
                                         })}>
                                     &#10008;
