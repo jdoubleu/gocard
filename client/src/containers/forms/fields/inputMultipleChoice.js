@@ -14,7 +14,11 @@ import _ from "lodash";
 
 const fillAt = (array, value, index) => {
     let copy = [].concat(array);
-    copy[index] = value;
+    if (copy.indexOf(value) >= 0) {
+        copy.splice(copy.indexOf(value), 1);
+    } else {
+        copy[index] = value;
+    }
     return copy;
 };
 
@@ -37,16 +41,15 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
             }
             <FormGroup>
                 {
-
                     options.map((option, index) =>
                         <InputGroup className="mb-1" key={index}>
                             <InputGroupAddon>
                                 <Input addon type="checkbox"
                                        onChange={(event) => input.onChange({
                                            ...input.value,
-                                           corrects: fillAt(corrects, event.target.checked, index)
+                                           corrects: fillAt(corrects, index, index)
                                        })}
-                                       checked={corrects[index]}
+                                       checked={corrects.indexOf(index) >= 0}
                                 />
                             </InputGroupAddon>
                             <Input type={type} name="answer"
