@@ -12,6 +12,7 @@ import Settings from "./containers/account/Settings";
 import Legal from "./components/legal";
 import Register from "./components/register";
 import Registration from "./containers/account/Registration";
+import Forgotten from "./containers/account/Forgotten";
 import Reset from "./containers/account/Reset";
 import ProtectedRoute from "./containers/shared/ProtectedRoute";
 import Home from "./containers/Home";
@@ -25,7 +26,7 @@ class App extends React.Component {
                     <Switch>
                         <Route path='/' exact component={Home}/>
                         <Route path='/registration' exact component={Registration}/>
-                        <Route path='/reset' exact component={Reset}/>
+                        <Route path='/forgotten' exact component={Forgotten}/>
                         <ProtectedRoute path='/settings' exact component={Settings}/>
 
                         {/* Register Routes */}
