@@ -27,6 +27,7 @@ class App extends React.Component {
                         <Route path='/' exact component={Home}/>
                         <Route path='/registration' exact component={Registration}/>
                         <Route path='/forgotten' exact component={Forgotten}/>
+                        <Route path='/reset/:resetToken' exact component={Reset}/>
                         <ProtectedRoute path='/settings' exact component={Settings}/>
 
                         {/* Register Routes */}
