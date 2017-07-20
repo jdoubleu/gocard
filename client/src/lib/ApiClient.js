@@ -479,6 +479,52 @@ export function findCardsByRegister(parameters) {
 }
 
 /**
+ * Creates a single new cards and adds it to a register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID register the cards should be added to
+ * @param {} parameters.card - Card to be created
+ */
+export function addCardToRegister(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/cards/';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['card'] !== undefined) {
+        body = parameters['card'];
+    }
+
+    if (parameters['card'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: card'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('addCardToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Creates multiple new cards and adds them to a register
  *
  * @param {object} parameters - method options and parameters

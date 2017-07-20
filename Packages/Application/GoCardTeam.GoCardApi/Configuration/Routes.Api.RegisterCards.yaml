@@ -11,6 +11,17 @@
   httpMethods: ['GET']
 
 -
+  name: 'create card'
+  uriPattern: ''
+  defaults:
+    '@action': 'addCardToRegister'
+  routeParts:
+    card:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
   name: 'create multiple cards'
   uriPattern: 'multiple'
   defaults:

@@ -195,6 +195,43 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+    post:
+      tags:
+        - registers
+        - cards
+      summary: Create new card
+      description: Creates a single new cards and adds it to a register
+      operationId: addCardToRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID register the cards should be added to
+          type: integer
+          format: int64
+          required: true
+        - name: card
+          in: body
+          description: Card to be created
+          schema:
+            $ref: '#/definitions/Card'
+          required: true
+      responses:
+        '200':
+          description: Successfully created card
+          schema:
+            $ref: '#/definitions/Card'
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to create a card in this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
   '/registers/{registerId}/cards/multiple':
     post:
       tags:
