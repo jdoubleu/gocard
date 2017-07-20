@@ -68,7 +68,6 @@ class Card implements \JsonSerializable
     protected $content;
 
     /**
-     * @Flow\Validate(type="NotEmpty")
      * @ORM\ManyToOne(inversedBy="cards")
      * @var Register
      */
