@@ -2,7 +2,10 @@
 
 namespace GoCardTeam\GoCardApi\Controller\v1;
 
+use Neos\Error\Messages\Error;
+use Neos\Error\Messages\Result;
 use Neos\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Mvc\Controller\Argument;
 use Neos\Flow\Mvc\View\JsonView;
 
 /**
@@ -36,14 +39,44 @@ abstract class AbstractApiEndpointController extends ActionController
     protected $view;
 
     /**
-     * @return string
+     * Generates output for when validation has failed according to the api spec.
+     * 
+     * @return JsonView
      */
     protected function errorAction()
     {
+        $this->handleTargetNotFoundError();
+        $this->forwardToReferringRequest();
+
         if ($this->arguments->getValidationResults()->hasErrors()) {
             $this->response->setStatus(400);
         }
 
-        return parent::errorAction();
+        $errorResult = [
+            '_error' => sprintf('Validation failed while trying to call action %s', $this->actionMethodName)
+        ];
+
+        foreach ($this->arguments as $name => $argument) {
+            /** @var $argument Argument */
+            /** @var Result $validationResult */
+            $validationResult = $argument->getValidationResults();
+            if (!$validationResult->hasErrors()) {
+                continue;
+            }
+
+            $errorResult[$name] = [];
+
+            foreach ($validationResult->getSubResults() as $propName => $prop) {
+                /** @var $prop Result */
+                if (!$prop->hasErrors()) {
+                    continue;
+                }
+
+                $errorResult[$name][$propName] = $prop->getFirstError()->getMessage();
+            }
+        }
+
+        $this->view->assign('value', $errorResult);
+        return null;
     }
 }
