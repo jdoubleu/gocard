@@ -86,7 +86,7 @@ const CardForm = props => {
             {
                 type === 'self-validate' &&
                 <Field
-                    name="content.answer"
+                    name="content.correct"
                     type="textarea"
                     component={InputField}
                     label="Antwort"
@@ -96,7 +96,7 @@ const CardForm = props => {
             {
                 type === 'text-input' &&
                 <Field
-                    name="content.answer"
+                    name="content.correct"
                     type="text"
                     component={InputField}
                     label="Antwort"

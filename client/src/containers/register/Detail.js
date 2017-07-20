@@ -14,8 +14,8 @@ import {loadRegister} from "../../actions/register";
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, match} = this.props;
-        dispatch(loadCards(match.params.registerId));
         dispatch(loadRegister(match.params.registerId));
+        dispatch(loadCards(match.params.registerId));
     }
 
     render() {

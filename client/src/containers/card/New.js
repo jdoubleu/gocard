@@ -4,28 +4,39 @@ import Headline from "../../components/shared/headline";
 import CardForm from "../forms/Card";
 import _ from "lodash";
 import {addCard} from "../../actions/card";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import moment from "moment";
 
-class New extends React.Component {
+const New = ({match, userId}) => {
 
-    handleSubmit = (values, dispatch) => {
-        const content = values.type === 'single-choice' || 'multiple-choice' ? values.content_choice : values.content_text;
-        const body = {..._.omit(values, ['content_choice', 'content_text']), content};
-        return dispatch(addCard(this.props.match.params.registerId, body));
+    const handleSubmit = (values, dispatch) => {
+        const body = {..._.omit(values, ['content_choice', 'content_text']), content: values.content, author: userId, crdate: moment().format(),tags: []};
+        console.log("body", body);
+        return dispatch(addCard(match.params.registerId, body)).catch(err => console.log(err));
     };
 
-    render() {
-        return (
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                <Headline title="Neue Karteikarte">
-                    Hier kannst du eine neue Karteikarte für Dein Register erstellen.
-                </Headline>
+    return (
+        <Col sm="12" md={{size: 8, offset: 2}}>
+            <Headline title="Neue Karteikarte">
+                Hier kannst du eine neue Karteikarte für Dein Register erstellen.
+            </Headline>
 
-                <Card block>
-                    <CardForm handleSubmit={this.handleSubmit} submitLabel="Erstellen"/>
-                </Card>
-            </Col>
-        )
-    };
+            <Card block>
+                <CardForm onSubmit={handleSubmit} submitLabel="Erstellen"/>
+            </Card>
+        </Col>
+    )
+};
+
+New.propTypes = {
+    userId: PropTypes.number.isRequired
+};
+
+function mapStateToProps(state) {
+    return {
+        userId: state.auth.userId
+    }
 }
 
-export default New;
+export default connect(mapStateToProps)(New);
