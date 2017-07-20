@@ -737,6 +737,52 @@ export function addMemberToRegister(parameters) {
 }
 
 /**
+ * Adds multiple new members to the given register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID of the register
+ * @param {} parameters.member - Member to be added
+ */
+export function addMembersToRegister(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/members/multiple';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['member'] !== undefined) {
+        body = parameters['member'];
+    }
+
+    if (parameters['member'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: member'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('addMembersToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Updates a specific member of a register
  *
  * @param {object} parameters - method options and parameters

@@ -99,6 +99,39 @@ class MembersController extends AbstractApiEndpointController
     }
 
     /**
+     * Initialize dddMembersToRegister action
+     */
+    public function initializeAddMembersToRegisterAction()
+    {
+        $membersConfiguration = $this->arguments->getArgument('members')->getPropertyMappingConfiguration();
+        $memberConfiguration = $membersConfiguration->forProperty('*');
+        $memberConfiguration->allowAllProperties()->skipProperties('uid');
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $memberConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+    }
+
+    /**
+     * @param Register $register
+     * @param ArrayCollection<Member> $members
+     */
+    public function addMembersToRegisterAction(Register $register, $members)
+    {
+        foreach ($members as $member) {
+            /** @var Member $member */
+            $member->setRegister($register);
+
+            $this->memberRepository->add($member);
+
+            $this->persistenceManager->whitelistObject($member);
+        }
+
+        $this->persistenceManager->persistAll(true);
+
+        $this->view->assign('value', $members);
+    }
+
+    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */
