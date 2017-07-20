@@ -26,7 +26,7 @@ const removeAt = (array, index) => {
 
 const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
     let options = _.get(input.value, 'options', []);
-    const selected = _.get(input.value, 'selected', []);
+    const corrects = _.get(input.value, 'corrects', []);
     return (
         <FormGroup color={touched && error && 'danger'}>
             {
@@ -44,9 +44,9 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Input addon type="checkbox"
                                        onChange={(event) => input.onChange({
                                            ...input.value,
-                                           corrects: fillAt(selected, event.target.checked, index)
+                                           corrects: fillAt(corrects, event.target.checked, index)
                                        })}
-                                       checked={selected[index]}
+                                       checked={corrects[index]}
                                 />
                             </InputGroupAddon>
                             <Input type={type} name="answer"
@@ -60,7 +60,7 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
-                                            corrects: removeAt(selected, index),
+                                            corrects: removeAt(corrects, index),
                                             options: removeAt(options, index)
                                         })}>
                                     &#10008;
