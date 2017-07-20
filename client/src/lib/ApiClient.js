@@ -219,7 +219,7 @@ const Models = {
      * CardContent for text-input
      */
     TextInput: {
-        'correct': 'string',
+        'answer': 'string',
     },
 
     /**
@@ -228,7 +228,7 @@ const Models = {
      * CardContent for self-validate
      */
     SelfValidate: {
-        'correct': 'string',
+        'answer': 'string',
     },
 
     /**

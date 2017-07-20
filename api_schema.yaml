@@ -1167,20 +1167,20 @@ definitions:
     description: CardContent for text-input
     type: object
     properties:
-      correct:
+      answer:
         description: Correct answer
         type: string
     required:
-      - correct
+      - answer
   SelfValidate:
     description: CardContent for self-validate
     type: object
     properties:
-      correct:
+      answer:
         description: Correct answer
         type: string
     required:
-      - correct
+      - answer
   User:
     type: object
     properties:
