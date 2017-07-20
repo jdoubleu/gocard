@@ -36,30 +36,30 @@ class CardEntityObjectConverter extends PersistentObjectConverter
      */
     public function getSourceChildPropertiesToBeConverted($source)
     {
-        $filteredSource = parent::getSourceChildPropertiesToBeConverted($source);
+        $source = parent::getSourceChildPropertiesToBeConverted($source);
 
         if (
-            !empty($filteredSource['content'])
-            && is_array($filteredSource['content'])
-            && !empty($filteredSource['type'])
-            && !array_key_exists('__type', $filteredSource['content'])
+            !empty($source['content'])
+            && is_array($source['content'])
+            && !empty($source['type'])
+            && !array_key_exists('__type', $source['content'])
         ) {
-            switch ($filteredSource['type']) {
+            switch ($source['type']) {
                 case 'single-choice':
-                    $filteredSource['content']['__type'] = Card\SingleChoice::class;
+                    $source['content']['__type'] = Card\SingleChoice::class;
                     break;
                 case 'multiple-choice':
-                    $filteredSource['content']['__type'] = Card\MultipleChoice::class;
+                    $source['content']['__type'] = Card\MultipleChoice::class;
                     break;
                 case 'text-input':
-                    $filteredSource['content']['__type'] = Card\TextInput::class;
+                    $source['content']['__type'] = Card\TextInput::class;
                     break;
                 case 'self-validate':
-                    $filteredSource['content']['__type'] = Card\SelfValidate::class;
+                    $source['content']['__type'] = Card\SelfValidate::class;
                     break;
             }
         }
 
-        return $filteredSource;
+        return $source;
     }
 }
