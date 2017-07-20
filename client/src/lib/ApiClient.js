@@ -491,7 +491,7 @@ export function addCardsToRegister(parameters) {
     }
     let deferred = Q.defer();
     let domain = client.domain,
-        path = '/registers/{registerId}/cards/';
+        path = '/registers/{registerId}/cards/multiple';
     let body = {},
         queryParameters = {},
         headers = {},
@@ -915,44 +915,6 @@ export function getRegisterActivitiesForUser(parameters) {
 }
 
 /**
- * Updates multiple cards
- *
- * @param {object} parameters - method options and parameters
- * @param {} parameters.cards - Cards to be updated
- */
-export function updateCards(parameters) {
-    if (parameters === undefined) {
-        parameters = {};
-    }
-    let deferred = Q.defer();
-    let domain = client.domain,
-        path = '/cards/';
-    let body = {},
-        queryParameters = {},
-        headers = {},
-        form = {};
-
-    headers = client.setAuthHeaders(headers);
-    queryParameters = client.setAuthQueryParams(queryParameters);
-    headers['Accept'] = ['application/json'];
-
-    if (parameters['cards'] !== undefined) {
-        body = parameters['cards'];
-    }
-
-    if (parameters['cards'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: cards'));
-        return deferred.promise;
-    }
-
-    queryParameters = mergeQueryParams(parameters, queryParameters);
-
-    client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
-
-    return deferred.promise;
-}
-
-/**
  * Adds a new single card to a given register
  *
  * @param {object} parameters - method options and parameters
@@ -1102,6 +1064,44 @@ export function deleteCard(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('deleteCard', 'DELETE', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Updates multiple cards
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {} parameters.cards - Cards to be updated
+ */
+export function updateCards(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/multiple';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    if (parameters['cards'] !== undefined) {
+        body = parameters['cards'];
+    }
+
+    if (parameters['cards'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: cards'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }

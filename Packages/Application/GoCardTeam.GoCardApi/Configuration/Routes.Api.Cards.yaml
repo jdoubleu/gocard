@@ -13,8 +13,8 @@
   httpMethods: ['GET']
 
 -
-  name: 'update cards'
-  uriPattern: ''
+  name: 'update multiple cards'
+  uriPattern: 'multiple'
   defaults:
     '@action': 'updateCards'
   routeParts:

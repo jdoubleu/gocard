@@ -195,6 +195,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+  '/registers/{registerId}/cards/multiple':
     post:
       tags:
         - registers
@@ -554,36 +555,6 @@ paths:
       security:
         - api_key: []
   /cards/:
-    put:
-      tags:
-        - cards
-      summary: Update multiple cards
-      description: Updates multiple cards
-      operationId: updateCards
-      produces:
-        - application/json
-      parameters:
-        - name: cards
-          in: body
-          description: Cards to be updated
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Card'
-          required: true
-      responses:
-        '200':
-          description: Successfully updated cards
-        '400':
-          description: Invalid request
-          schema:
-            $ref: '#/definitions/MultipleValidationResponse'
-        '403':
-          description: Not allowed to update these cards
-        '404':
-          description: Cards not found
-      security:
-        - api_key: []
     post:
       tags:
         - cards
@@ -698,6 +669,37 @@ paths:
           description: Not allowed to delete this card
         '404':
           description: Card not found
+      security:
+        - api_key: []
+  /cards/multiple:
+    put:
+      tags:
+        - cards
+      summary: Update multiple cards
+      description: Updates multiple cards
+      operationId: updateCards
+      produces:
+        - application/json
+      parameters:
+        - name: cards
+          in: body
+          description: Cards to be updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Card'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated cards
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update these cards
+        '404':
+          description: Cards not found
       security:
         - api_key: []
   /users:

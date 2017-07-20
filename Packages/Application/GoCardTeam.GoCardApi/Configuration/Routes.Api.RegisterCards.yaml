@@ -11,8 +11,8 @@
   httpMethods: ['GET']
 
 -
-  name: 'update cards'
-  uriPattern: ''
+  name: 'create multiple cards'
+  uriPattern: 'multiple'
   defaults:
     '@action': 'addCardsToRegister'
   routeParts:
