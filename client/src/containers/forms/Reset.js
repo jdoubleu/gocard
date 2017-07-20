@@ -7,18 +7,28 @@ import {Link} from "react-router-dom";
 const validate = values => {
     const errors = {};
 
-    if (!values.email) {
-        errors.email = 'Eine E-Mail Adresse ist erforderlich.'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Ungültige E-Mail Adresse.'
+    if (!values.oldPassword) {
+        errors.oldPassword = 'Dein altes Passwort ist erforderlich.'
+    }
+
+    if (!values.newPassword) {
+        errors.newPassword = 'Ein Passwort ist erforderlich.'
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,}$/i.test(values.password)) {
+        errors.newPassword = 'Dein Passwort muss eine Ziffer, einen Kleinbuchstaben, einen Großbuchstaben und mindestens 8 Zeichen beinhalten'
+    }
+
+    if (!values.newPasswordRepeated) {
+        errors.newPasswordRepeated = 'Passwort wiederholen.'
+    } else if (values.newPassword !== values.newPasswordRepeated) {
+        errors.newPasswordRepeated = 'Passwörter stimmen nicht überein.'
     }
 
     return errors
 };
 
 const ResetForm = props => {
-    const {error, handleSubmit, submitting, submitSucceeded} = props;
-    return !submitSucceeded ? (
+    const {error, handleSubmit, submitting} = props;
+    return (
         <Form onSubmit={handleSubmit}>
             {
                 error &&
@@ -26,26 +36,35 @@ const ResetForm = props => {
                     {error}
                 </Alert>
             }
+
             <Field
-                name="email"
-                type="text"
+                name="oldPassword"
+                type="password"
                 component={InputField}
-                label="E-Mail Adresse"
+                label="Altes Password"
+                disableLabel
+            />
+
+            <Field
+                name="newPassword"
+                type="password"
+                component={InputField}
+                label="Neues Passwort"
+                disableLabel
+            />
+
+            <Field
+                name="newPasswordRepeated"
+                type="password"
+                component={InputField}
+                label="Neues Passwort wiederholen"
                 disableLabel
             />
 
             <Button outline block color="primary" type="submit" disabled={submitting}>
-                Zurücksetzen
+                Passwort ändern
             </Button>
         </Form>
-    ) : (
-        <div>
-            <hr/>
-            <CardText>
-                Eine E-Mail mit Anweisungen zum zurücksetzen des Passwortes wurden an deine E-Mail Adresse versendet.
-            </CardText>
-            <Link to="/" className="btn btn-outline-success btn-block">Zurück zum Login</Link>
-        </div>
     )
 };
 
