@@ -190,7 +190,45 @@ const Models = {
         'tags': 'array',
         'question': 'string',
         'type': [ /* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */ ],
-        'content': 'object',
+        'content': [ /* {"$ref":"#/definitions/SingleChoice"} | {"$ref":"#/definitions/MultipleChoice"} | {"$ref":"#/definitions/TextInput"} | {"$ref":"#/definitions/SelfValidate"} */ ],
+    },
+
+    /**
+     * SingleChoice
+     *
+     * CardContent for single-choice
+     */
+    SingleChoice: {
+        'correct': 'number',
+        'options': 'array',
+    },
+
+    /**
+     * MultipleChoice
+     *
+     * CardContent for multiple-choice
+     */
+    MultipleChoice: {
+        'corrects': 'array',
+        'options': 'array',
+    },
+
+    /**
+     * TextInput
+     *
+     * CardContent for text-input
+     */
+    TextInput: {
+        'correct': 'string',
+    },
+
+    /**
+     * SelfValidate
+     *
+     * CardContent for self-validate
+     */
+    SelfValidate: {
+        'correct': 'string',
     },
 
     /**

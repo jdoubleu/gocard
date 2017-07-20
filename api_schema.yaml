@@ -1119,14 +1119,68 @@ definitions:
           - text-input
           - self-validate
       content:
-        type: object
         description: Answer content of this card depending of the type
+        type: object
+        #oneOf:
+        enum:
+          - $ref: '#/definitions/SingleChoice'
+          - $ref: '#/definitions/MultipleChoice'
+          - $ref: '#/definitions/TextInput'
+          - $ref: '#/definitions/SelfValidate'
     required:
       - id
       - author
       - question
       - type
       - content
+  SingleChoice:
+    description: CardContent for single-choice
+    type: object
+    properties:
+      correct:
+        description: Index of the correct answer in options array
+        type: integer
+      options:
+        type: array
+        items:
+          type: string
+    required:
+      - correct
+      - options
+  MultipleChoice:
+    description: CardContent for multiple-choice
+    type: object
+    properties:
+      corrects:
+        description: Indices of the correct answers in options array
+        type: array
+        items:
+          type: integer
+      options:
+        type: array
+        items:
+          type: string
+    required:
+      - corrects
+      - options
+  TextInput:
+    description: CardContent for text-input
+    type: object
+    properties:
+      correct:
+        description: Correct answer
+        type: string
+    required:
+      - correct
+  SelfValidate:
+    description: CardContent for self-validate
+    type: object
+    properties:
+      correct:
+        description: Correct answer
+        type: string
+    required:
+      - correct
   User:
     type: object
     properties:
