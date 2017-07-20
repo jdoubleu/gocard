@@ -133,17 +133,18 @@ class CardsController extends AbstractApiEndpointController
      */
     public function addCardsToRegisterAction(Register $register, $cards)
     {
-        $actualCards = $register->getCards();
-
         foreach ($cards as $card) {
             /** @var Card $card */
             $card->setRegister($register);
-            $this->persistenceManager->add($card);
 
-            $actualCards->add($card);
+            $this->cardRepository->add($card);
+
+            $this->persistenceManager->whitelistObject($card);
         }
 
-        $this->registerRepository->update($register);
+        $this->persistenceManager->persistAll(true);
+
+        $this->view->assign('value', $cards);
     }
 
     /**
