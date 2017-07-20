@@ -307,43 +307,6 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
-    put:
-      tags:
-        - registers
-        - members
-      summary: Update members of this register
-      description: Updates all members with their permission of this register
-      operationId: updateMembersOfRegister
-      produces:
-        - application/json
-      parameters:
-        - name: registerId
-          in: path
-          description: ID of the register
-          type: integer
-          format: int64
-          required: true
-        - name: members
-          in: body
-          description: Members to be updated
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Member'
-          required: true
-      responses:
-        '200':
-          description: Successfully updated members
-        '400':
-          description: Invalid request
-          schema:
-            $ref: '#/definitions/MultipleValidationResponse'
-        '403':
-          description: Not allowed to update members of this register
-        '404':
-          description: Register not found
-      security:
-        - api_key: []
     post:
       tags:
         - registers
@@ -419,6 +382,43 @@ paths:
             $ref: '#/definitions/MultipleValidationResponse'
         '403':
           description: Not allowed to add member to this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+    put:
+      tags:
+        - registers
+        - members
+      summary: Update members of this register
+      description: Updates all members with their permission of this register
+      operationId: updateMembersOfRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: members
+          in: body
+          description: Members to be updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated members
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update members of this register
         '404':
           description: Register not found
       security:

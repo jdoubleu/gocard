@@ -9,17 +9,6 @@
   httpMethods: ['GET']
 
 -
-  name: 'update members of register'
-  uriPattern: ''
-  defaults:
-    '@action': 'updateMembersOfRegister'
-  routeParts:
-    members:
-      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
-      mapAdditionalPropertiesFromBody: true
-  httpMethods: ['PUT']
-
--
   name: 'add new member to register'
   uriPattern: ''
   defaults:
@@ -40,6 +29,17 @@
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
+
+-
+  name: 'update members of register'
+  uriPattern: 'multiple'
+  defaults:
+    '@action': 'updateMembersOfRegister'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']
 
 -
   name: 'update member'

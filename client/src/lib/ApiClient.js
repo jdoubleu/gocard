@@ -645,52 +645,6 @@ export function findMembersByRegister(parameters) {
 }
 
 /**
- * Updates all members with their permission of this register
- *
- * @param {object} parameters - method options and parameters
- * @param {integer} parameters.registerId - ID of the register
- * @param {} parameters.members - Members to be updated
- */
-export function updateMembersOfRegister(parameters) {
-    if (parameters === undefined) {
-        parameters = {};
-    }
-    let deferred = Q.defer();
-    let domain = client.domain,
-        path = '/registers/{registerId}/members/';
-    let body = {},
-        queryParameters = {},
-        headers = {},
-        form = {};
-
-    headers = client.setAuthHeaders(headers);
-    queryParameters = client.setAuthQueryParams(queryParameters);
-    headers['Accept'] = ['application/json'];
-
-    path = path.replace('{registerId}', parameters['registerId']);
-
-    if (parameters['registerId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: registerId'));
-        return deferred.promise;
-    }
-
-    if (parameters['members'] !== undefined) {
-        body = parameters['members'];
-    }
-
-    if (parameters['members'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: members'));
-        return deferred.promise;
-    }
-
-    queryParameters = mergeQueryParams(parameters, queryParameters);
-
-    client.request('updateMembersOfRegister', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
-
-    return deferred.promise;
-}
-
-/**
  * Adds a new member to this register
  *
  * @param {object} parameters - method options and parameters
@@ -778,6 +732,52 @@ export function addMembersToRegister(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('addMembersToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Updates all members with their permission of this register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID of the register
+ * @param {} parameters.members - Members to be updated
+ */
+export function updateMembersOfRegister(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/members/multiple';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['members'] !== undefined) {
+        body = parameters['members'];
+    }
+
+    if (parameters['members'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: members'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('updateMembersOfRegister', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
