@@ -99,7 +99,7 @@ class Card implements \JsonSerializable
     /**
      * @return User
      */
-    public function getAuthor(): User
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
@@ -115,7 +115,7 @@ class Card implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
@@ -131,7 +131,7 @@ class Card implements \JsonSerializable
     /**
      * @return array
      */
-    public function getTags(): array
+    public function getTags(): ?array
     {
         return $this->tags;
     }
@@ -147,7 +147,7 @@ class Card implements \JsonSerializable
     /**
      * @return string
      */
-    public function getQuestion(): string
+    public function getQuestion(): ?string
     {
         return $this->question;
     }
@@ -163,7 +163,7 @@ class Card implements \JsonSerializable
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
