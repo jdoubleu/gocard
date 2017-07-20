@@ -47,7 +47,7 @@ const LoginForm = props => {
             />
 
             <FormGroup>
-                <Link to="/reset" className="mb-4">Passwort vergessen?</Link>
+                <Link to="/forgotten" className="mb-4">Passwort vergessen?</Link>
             </FormGroup>
             
             <Button outline block color="primary" type="submit" disabled={submitting}>
