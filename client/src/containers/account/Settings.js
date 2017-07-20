@@ -70,7 +70,7 @@ const selector = formValueSelector('settingsForm');
 function mapStateToProps(state) {
     return {
         user: state.entities.users.byId[state.auth.userId] || {},
-        resetToken: state.auth.tokens.resetToken || null,
+        resetToken: state.auth.token.resetToken || '',
         displayName: selector(state, 'displayName')
     }
 }
