@@ -52,31 +52,47 @@ abstract class AbstractApiEndpointController extends ActionController
             $this->response->setStatus(400);
         }
 
-        $errorResult = [
-            '_error' => sprintf('Validation failed while trying to call action %s', $this->actionMethodName)
-        ];
+        $errorResult = self::hydrateValidationResults($this->arguments->getValidationResults());
 
-        foreach ($this->arguments as $name => $argument) {
-            /** @var $argument Argument */
-            /** @var Result $validationResult */
-            $validationResult = $argument->getValidationResults();
-            if (!$validationResult->hasErrors()) {
-                continue;
-            }
-
-            $errorResult[$name] = [];
-
-            foreach ($validationResult->getSubResults() as $propName => $prop) {
-                /** @var $prop Result */
-                if (!$prop->hasErrors()) {
-                    continue;
-                }
-
-                $errorResult[$name][$propName] = $prop->getFirstError()->getMessage();
-            }
-        }
 
         $this->view->assign('value', $errorResult);
         return null;
+    }
+
+    /**
+     * Generates a special validation result response.
+     *
+     * @see http://redux-form.com/6.0.2/examples/fieldArrays/ for structure of response.
+     *
+     * @param Result $validationResults
+     * @return array|string|null Null if there were no errors, string if there was only one single error or an array with errors of all properties.
+     */
+    protected static function hydrateValidationResults(Result $validationResults)
+    {
+        if (!$validationResults->hasErrors()) {
+            return null;
+        }
+
+        $propertyResults = $validationResults->getSubResults();
+
+        if (empty($propertyResults)) {
+            if ($firstError = $validationResults->getFirstError()) {
+                return $firstError->getMessage();
+            } else {
+                return ['_error' => 'Validation failed.'];
+            }
+        } else {
+            $subResults = [];
+
+            // TODO: Handle collections as array of objects
+            foreach ($propertyResults as $prop => $propResult) {
+                $propResult = self::hydrateValidationResults($propResult);
+                if ($propResult !== null) {
+                    $subResults[$prop] = $propResult;
+                }
+            }
+
+            return $subResults;
+        }
     }
 }
