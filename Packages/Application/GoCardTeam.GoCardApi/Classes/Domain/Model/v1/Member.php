@@ -34,7 +34,7 @@ class Member implements \JsonSerializable
      * @ORM\Column(type="string", columnDefinition="SET('read', 'write', 'update')")
      * @var string
      */
-    protected $scope;
+    protected $role;
 
     /**
      * @ORM\ManyToOne(inversedBy="members")
@@ -92,17 +92,17 @@ class Member implements \JsonSerializable
     /**
      * @return string
      */
-    public function getScope(): ?string
+    public function getRole(): ?string
     {
-        return $this->scope;
+        return $this->role;
     }
 
     /**
-     * @param string $scope
+     * @param string $role
      */
-    public function setScope(string $scope)
+    public function setRole(string $role)
     {
-        $this->scope = $scope;
+        $this->role = $role;
     }
 
     /**
@@ -130,7 +130,7 @@ class Member implements \JsonSerializable
         return [
             'id' => $this->getUid(),
             'user' => $this->getUser()->getUid(),
-            'scope' => $this->getScope()
+            'role' => $this->getRole()
         ];
     }
 }

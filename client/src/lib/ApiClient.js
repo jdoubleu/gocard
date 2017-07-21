@@ -188,6 +188,7 @@ const Models = {
         'id': 'number',
         'author': 'number',
         'crdate': 'string',
+        'register': 'number',
         'tags': 'array',
         'question': 'string',
         'type': [/* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */],
@@ -211,7 +212,8 @@ const Models = {
     Member: {
         'id': 'number',
         'user': 'number',
-        'scope': 'array',
+        'register': 'number',
+        'role': 'array',
     },
 
     /**
@@ -329,7 +331,7 @@ export function addRegister(parameters) {
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.registerId - ID of register to get
  */
-export function findByRegisterById(parameters) {
+export function findRegisterById(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -354,7 +356,7 @@ export function findByRegisterById(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('findByRegisterById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findRegisterById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -448,7 +450,7 @@ export function deleteRegister(parameters) {
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.registerId - ID of register which cards to get
  */
-export function findByCardsByRegister(parameters) {
+export function findCardsByRegister(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
@@ -473,7 +475,7 @@ export function findByCardsByRegister(parameters) {
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('findByCardsByRegister', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('findCardsByRegister', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -948,6 +950,42 @@ export function updateCards(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Adds a new single card to a given register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {} parameters.body - Card to be created
+ */
+export function addCard(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers['Accept'] = ['application/json'];
+
+    if (parameters['body'] !== undefined) {
+        body = parameters['body'];
+    }
+
+    if (parameters['body'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: body'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('addCard', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }

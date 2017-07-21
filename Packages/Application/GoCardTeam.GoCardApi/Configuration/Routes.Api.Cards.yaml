@@ -18,7 +18,7 @@
   defaults:
     '@action': 'updateCards'
   routeParts:
-    members:
+    cards:
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Card>'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
@@ -31,6 +31,17 @@
   routeParts:
     card:
       uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'create card'
+  uriPattern: ''
+  defaults:
+    '@action': 'addCard'
+  routeParts:
+    card:
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
       mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']

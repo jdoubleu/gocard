@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Button, Card, CardTitle, Col} from "reactstrap";
 import {connect} from "react-redux";
+import {loadCard} from "../../actions/card";
+
 
 class Preview extends React.Component {
 
@@ -30,8 +32,8 @@ const mapStateToProps = (state, ownProps) => ({
     card: state.entities.cards.byId[ownProps.cardId] || {},
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    loadCard: dispatch()
+const mapDispatchToProps = (dispatch, props) => ({
+    loadCard: () => dispatch(loadCard(props.cardId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview);

@@ -26,7 +26,7 @@ const removeAt = (array, index) => {
 
 const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
     let options = _.get(input.value, 'options', []);
-    const selected = _.get(input.value, 'selected');
+    const correct = _.get(input.value, 'correct');
     return (
         <FormGroup color={touched && error && 'danger'}>
             {
@@ -44,15 +44,15 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Input addon type="radio" name="valid"
                                        onChange={(event) => input.onChange({
                                            ...input.value,
-                                           selected: index
+                                           correct: index
                                        })}
-                                       checked={selected === index}
+                                       checked={correct === index}
                                 />
                             </InputGroupAddon>
                             <Input type={type} name="answer"
                                    onChange={(event) => input.onChange({
                                        ...input.value,
-                                       correct: fillAt(options, event.target.value, index)
+                                       options: fillAt(options, event.target.value, index)
                                    })}
                                    value={option}
                             />
@@ -60,7 +60,8 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
-                                            correct: removeAt(options, index)
+                                            correct: correct===index?undefined:correct,
+                                            options: removeAt(options, index)
                                         })}>
                                     &#10008;
                                 </Button>

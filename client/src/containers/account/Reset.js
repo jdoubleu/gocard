@@ -1,18 +1,13 @@
 import React from "react";
-import {Card, CardGroup, CardText, CardTitle, Col} from "reactstrap";
+import {Card, CardGroup, CardTitle, Col} from "reactstrap";
 import Logo from "../../components/shared/logo";
 import ResetForm from "../forms/Reset";
-import {requestPasswordReset} from "../../actions/user";
-import {SubmissionError} from "redux-form";
+import {updatePassword} from "../../actions/user";
 
-const Reset = () => {
+const Reset = ({match}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(requestPasswordReset(values)).catch(error => {
-            if (error instanceof SubmissionError) {
-                throw error;
-            }
-        });
+        return dispatch(updatePassword(match.params.resetToken, values));
     };
 
     return (
@@ -26,10 +21,7 @@ const Reset = () => {
 
             <CardGroup>
                 <Card block>
-                    <CardTitle>Passwort zurücksetzen</CardTitle>
-                    <CardText>
-                        Um dein Passwort zurückzusetzen musst bitte deine Email Adresse angeben.
-                    </CardText>
+                    <CardTitle>Passwort ändern</CardTitle>
                     <ResetForm onSubmit={handleSubmit}/>
                 </Card>
             </CardGroup>

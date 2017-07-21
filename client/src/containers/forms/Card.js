@@ -9,13 +9,30 @@ import {connect} from "react-redux";
 
 const validate = values => {
     const errors = {};
-
     if (!values.question) {
         errors.question = 'Eine Fragestellung wird benötigt.'
     }
 
     if (!values.type) {
         errors.type = 'Wähle einen Fragetypen.'
+    }
+
+    if((values.type === "self-validate" || values.type === "text-input")
+        && (values.content === undefined || values.content.answer === undefined)) {
+        errors.content ={answer:"Bitte gib eine Antwort ein."}
+    }
+
+    if(!(values.type === "self-validate" || values.type === "text-input") && values.content === undefined) {
+        errors.content ="Bitte erstelle zuerst eine gültige Antwort."
+    }
+
+    if(values.type === "single-choice" && values.content !== undefined && values.content.correct === undefined) {
+        errors.content = 'Bitte makiere die richtige Antwort.'
+    }
+
+    if(values.type === "multiple-choice" && values.content !== undefined
+        && (values.content.corrects === undefined || values.content.corrects.length === 0)) {
+        errors.content = "Bitte makiere mindestens eine richtige Antwort."
     }
 
     return errors
@@ -66,7 +83,7 @@ const CardForm = props => {
             {
                 type === 'single-choice' &&
                 <Field
-                    name="content_choice"
+                    name="content"
                     type="text"
                     component={InputSingleChoice}
                     label="Antwort"
@@ -76,7 +93,7 @@ const CardForm = props => {
             {
                 type === 'multiple-choice' &&
                 <Field
-                    name="content_choice"
+                    name="content"
                     type="text"
                     component={InputMultipleChoice}
                     label="Antwort"
@@ -86,7 +103,7 @@ const CardForm = props => {
             {
                 type === 'self-validate' &&
                 <Field
-                    name="content_text"
+                    name="content.answer"
                     type="textarea"
                     component={InputField}
                     label="Antwort"
@@ -96,7 +113,7 @@ const CardForm = props => {
             {
                 type === 'text-input' &&
                 <Field
-                    name="content_text"
+                    name="content.answer"
                     type="text"
                     component={InputField}
                     label="Antwort"

@@ -34,4 +34,16 @@ abstract class AbstractApiEndpointController extends ActionController
      * @var JsonView
      */
     protected $view;
+
+    /**
+     * @return string
+     */
+    protected function errorAction()
+    {
+        if ($this->arguments->getValidationResults()->hasErrors()) {
+            $this->response->setStatus(400);
+        }
+
+        return parent::errorAction();
+    }
 }

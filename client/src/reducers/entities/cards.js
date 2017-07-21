@@ -1,73 +1,89 @@
 import {combineReducers} from "redux";
 import {
-    DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS, UPDATE_CARD_SUCCESS, UPDATE_CARDS_SUCCESS, ADD_CARD_SUCCESS,
-    LOAD_CARD_SUCCESS
+    ADD_CARD_SUCCESS,
+    DELETE_CARD_SUCCESS,
+    LOAD_CARD_SUCCESS,
+    LOAD_CARDS_SUCCESS,
+    UPDATE_CARD_SUCCESS
 } from "../../actions/card";
-import {_} from "lodash";
-
-function addCardIds(state, action) {
-    const {response} = action;
-    return _.union(state, _.map(response, 'id'));
-}
-
-function addCardId(state, action) {
-    const {response} = action;
-    return _.union(state, _.map(response, 'id'));
-}
+import _ from "lodash";
 
 function addCardEntry(state, action) {
     const {response} = action;
-    return _.merge(state, _.keyBy(response, 'id'));
+
+    return _.merge(state, {[response.id]: response});
 }
 
-function updateCardId(state, action) {
+function updateCardEntry(state, action) {
     const {response} = action;
-    return _.concat(_.omit(state, response.id), response.id);
-}
 
-function updateCardIds(state, action) {
-    const {response} = action;
-    return _.union(_.concat(state, _.map(response, 'id')));
+    return _.merge(state, {[response.id]: response});
 }
 
 function deleteCardEntry(state, action) {
-    return _.omit(state, action.cardId);
+    const {cardId} = action;
+
+    return _.omit(state, cardId);
 }
 
-function deleteCardId(state, action) {
-    return _.pull(state, action.cardId)
-}
+function addCardEntries(state, action) {
+    const {response} = action;
 
+    return _.merge(state, _.keyBy(response, 'id'));
+}
 
 function cardsById(state = {}, action) {
     switch (action.type) {
-        case LOAD_CARDS_SUCCESS:
-        case UPDATE_CARD_SUCCESS:
-        case UPDATE_CARDS_SUCCESS:
         case LOAD_CARD_SUCCESS:
+        case ADD_CARD_SUCCESS:
             return addCardEntry(state, action);
+        case UPDATE_CARD_SUCCESS:
+            return updateCardEntry(state, action);
         case DELETE_CARD_SUCCESS:
             return deleteCardEntry(state, action);
-        case ADD_CARD_SUCCESS:
-            return addCardId(state, action);
+        case LOAD_CARDS_SUCCESS:
+            return addCardEntries(state, action);
         default:
             return state;
     }
 }
 
+
+function addCardId(state, action) {
+    const {response} = action;
+
+    return _.uniq(_.concat(state, response.id));
+}
+
+function deleteCardId(state, action) {
+    const {cardId} = action;
+
+    return _.pull(state, cardId);
+}
+
+function updateCardId(state, action) {
+    const {cardId, response} = action;
+
+    return _.concat(_.pull(state, cardId), response.id);
+}
+
+function addCardIds(state, action) {
+    const {response} = action;
+
+    return _.union(state, _.map(response, 'id'));
+}
+
 function allCards(state = [], action) {
     switch (action.type) {
-        case LOAD_CARDS_SUCCESS:
-            return addCardIds(state, action);
+        case LOAD_CARD_SUCCESS:
+        case ADD_CARD_SUCCESS:
+            return addCardId(state, action);
         case UPDATE_CARD_SUCCESS:
             return updateCardId(state, action);
-        case UPDATE_CARDS_SUCCESS:
-            return updateCardIds(state, action);
         case DELETE_CARD_SUCCESS:
             return deleteCardId(state, action);
-        case ADD_CARD_SUCCESS:
-        case LOAD_CARD_SUCCESS:
-            return addCardId(state, action);
+        case LOAD_CARDS_SUCCESS:
+            return addCardIds(state, action);
         default:
             return state;
     }
