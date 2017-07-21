@@ -5,6 +5,7 @@ namespace GoCardTeam\GoCardApi\Property\TypeConverter\v1;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Reflection\Exception\InvalidClassException;
 
 /**
  * Special object converter for the card entities.
@@ -33,6 +34,7 @@ class CardEntityObjectConverter extends PersistentObjectConverter
     /**
      * @param mixed $source
      * @return array
+     * @throws InvalidClassException
      */
     public function getSourceChildPropertiesToBeConverted($source)
     {
@@ -57,6 +59,8 @@ class CardEntityObjectConverter extends PersistentObjectConverter
                 case 'self-validate':
                     $source['content']['__type'] = Card\SelfValidate::class;
                     break;
+                default:
+                    throw new InvalidClassException(sprintf('Type %s given for card content could not be resolved to a target model type.', $source['type']));
             }
         }
 
