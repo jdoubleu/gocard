@@ -24,9 +24,9 @@ const removeAt = (array, index) => {
     return copy;
 };
 
-const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
+const inputMultipleChoice = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
     let options = _.get(input.value, 'options', []);
-    const selected = _.get(input.value, 'selected', []);
+    const corrects = _.get(input.value, 'corrects', []);
     return (
         <FormGroup color={touched && error && 'danger'}>
             {
@@ -37,16 +37,16 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
             }
             <FormGroup>
                 {
-
                     options.map((option, index) =>
                         <InputGroup className="mb-1" key={index}>
                             <InputGroupAddon>
                                 <Input addon type="checkbox"
-                                       onChange={(event) => input.onChange({
-                                           ...input.value,
-                                           corrects: fillAt(selected, event.target.checked, index)
-                                       })}
-                                       checked={selected[index]}
+                                       onChange={(event) =>  input.onChange({
+                                               ...input.value,
+                                               corrects: event.target.checked ?  _.union(corrects, [index]) : _.without(corrects, index)
+                                           })
+                                       }
+                                       checked={corrects.indexOf(index) >= 0}
                                 />
                             </InputGroupAddon>
                             <Input type={type} name="answer"
@@ -60,8 +60,8 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
-                                            corrects: removeAt(selected, index),
-                                            options: removeAt(options, index)
+                                            options: removeAt(options, index),
+                                            corrects: _.without(corrects, index)
                                         })}>
                                     &#10008;
                                 </Button>
@@ -88,4 +88,4 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
     )
 };
 
-export default inputSingleChoice;
+export default inputMultipleChoice;

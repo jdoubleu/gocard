@@ -52,7 +52,7 @@ function registersById(state = {}, action) {
 function addRegisterId(state, action) {
     const {response} = action;
 
-    return _.concat(state, response.id);
+    return _.uniq(_.concat(state, response.id));
 }
 
 function deleteRegisterId(state, action) {

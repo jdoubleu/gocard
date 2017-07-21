@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, FormGroup} from "reactstrap";
+import {Alert, Button, CardText, Form} from "reactstrap";
 import InputField from "./fields/input";
 import {Link} from "react-router-dom";
 
@@ -13,16 +13,12 @@ const validate = values => {
         errors.email = 'Ungültige E-Mail Adresse.'
     }
 
-    if (!values.password) {
-        errors.password = 'Ein Passwort ist erforderlich.'
-    }
-
     return errors
 };
 
-const LoginForm = props => {
-    const {error, handleSubmit, submitting} = props;
-    return (
+const ForgottenForm = props => {
+    const {error, handleSubmit, submitting, submitSucceeded} = props;
+    return !submitSucceeded ? (
         <Form onSubmit={handleSubmit}>
             {
                 error &&
@@ -38,33 +34,22 @@ const LoginForm = props => {
                 disableLabel
             />
 
-            <Field
-                name="password"
-                type="password"
-                component={InputField}
-                label="Passwort"
-                disableLabel
-            />
-
-            <FormGroup>
-                <Link to="/forgotten" className="mb-4">Passwort vergessen?</Link>
-            </FormGroup>
-            
             <Button outline block color="primary" type="submit" disabled={submitting}>
-                {
-                    submitting &&
-                    <span>...Funkkontakt wird aufgenommen</span>
-                }
-                {
-                    !submitting &&
-                    <span>Anmelden mit GoCard-Account</span>
-                }
+                Zurücksetzen
             </Button>
         </Form>
+    ) : (
+        <div>
+            <hr/>
+            <CardText>
+                Eine E-Mail mit Anweisungen zum zurücksetzen des Passwortes wurden an deine E-Mail Adresse versendet.
+            </CardText>
+            <Link to="/" className="btn btn-outline-success btn-block">Zurück zum Login</Link>
+        </div>
     )
 };
 
 export default reduxForm({
-    form: 'loginForm',
+    form: 'forgottenForm',
     validate
-})(LoginForm);
+})(ForgottenForm);

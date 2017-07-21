@@ -3,8 +3,10 @@ import {
     findCardsByRegister as apiFindCardsByRegister,
     updateCard as apiUpdateCard,
     updateCards as apiUpdateCards,
-    getCard as apiGetCard
+    getCard as apiGetCard,
+    addCard as apiAddCard
 } from "../lib/ApiClient";
+import _ from "lodash";
 
 export const LOAD_CARDS_REQUEST = 'LOAD_CARDS_REQUEST';
 export const LOAD_CARDS_SUCCESS = 'LOAD_CARDS_SUCCESS';
@@ -69,7 +71,8 @@ export const ADD_CARD_FAILURE = 'ADD_CARD_FAILURE';
 
 export function addCard(registerId, body) {
     return {
-        types: [ADD_CARD_REQUEST, ADD_CARD_SUCCESS, ADD_CARD_FAILURE]
+        types: [ADD_CARD_REQUEST, ADD_CARD_SUCCESS, ADD_CARD_FAILURE],
+        callAPI: () => apiAddCard({body:_.assign(body, {register: registerId})})
     }
 }
 
