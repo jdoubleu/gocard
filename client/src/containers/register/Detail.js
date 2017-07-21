@@ -10,6 +10,7 @@ import MemberBar from "./member/Bar";
 import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
+import {makeGetCardIdsByRegister} from "../../selectors/index";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -72,12 +73,16 @@ class Detail extends React.Component {
 
 Detail.propTypes = {};
 
-function mapStateToProps(state, ownProps) {
-    const registerId = ownProps.match.params.registerId;
-    return {
-        register: state.entities.registers.byId[registerId] || {},
-        cardIds: state.entities.cards.allIds
-    }
-}
+const makeMapStateToProps = () => {
+    const getCardIdsByRegister = makeGetCardIdsByRegister();
+    const mapStateToProps = (state, props) => {
+        const registerId = props.match.params.registerId;
+        return {
+            register: state.entities.registers.byId[registerId] || {},
+            cardIds: getCardIdsByRegister(state, props)
+        }
+    };
+    return mapStateToProps
+};
 
-export default connect(mapStateToProps)(Detail);
+export default connect(makeMapStateToProps)(Detail);
