@@ -3,9 +3,11 @@
 namespace GoCardTeam\GoCardApi\Property\TypeConverter\v1;
 
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
+use GoCardTeam\GoCardApi\Utility\ClassNameUtility;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Reflection\Exception\InvalidClassException;
+use Neos\Utility\ObjectAccess;
 
 /**
  * Special object converter for the card entities.
@@ -46,21 +48,11 @@ class CardEntityObjectConverter extends PersistentObjectConverter
             && !empty($source['type'])
             && !array_key_exists('__type', $source['content'])
         ) {
-            switch ($source['type']) {
-                case 'single-choice':
-                    $source['content']['__type'] = Card\SingleChoice::class;
-                    break;
-                case 'multiple-choice':
-                    $source['content']['__type'] = Card\MultipleChoice::class;
-                    break;
-                case 'text-input':
-                    $source['content']['__type'] = Card\TextInput::class;
-                    break;
-                case 'self-validate':
-                    $source['content']['__type'] = Card\SelfValidate::class;
-                    break;
-                default:
-                    throw new InvalidClassException(sprintf('Type %s given for card content could not be resolved to a target model type.', $source['type']));
+            $className = 'GoCardTeam\GoCardApi\Domain\Model\v1\Card\\' . ClassNameUtility::convertSnakeCaseToPascalCase($source['type']);
+            if ($this->objectManager->isRegistered($className)) {
+                $source['content']['__type'] = $className;
+            } else {
+                throw new InvalidClassException(sprintf('Type %s given for card content could not be resolved to a target model type.', $source['type']));
             }
         }
 
