@@ -45,7 +45,7 @@ class Detail extends React.Component {
                         <CardText>
                             <Progress registerId={register.id}/>
                         </CardText>
-                        <CardTitle>Benutzer des Registers</CardTitle>
+N                        <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
                             <MemberBar registerId={register.id}/>
                         </CardText>
