@@ -1,7 +1,8 @@
 import React from "react";
-import {Field, formValueSelector, reduxForm} from "redux-form";
+import {Field, FieldArray, formValueSelector, reduxForm} from "redux-form";
 import {Alert, Button, Form} from "reactstrap";
 import InputField from "./fields/input";
+import InputTagField from "./fields/inputTag";
 import SelectButton from "./fields/selectButton";
 import InputSingleChoice from "./fields/inputSingleChoice";
 import InputMultipleChoice from "./fields/inputMultipleChoice";
@@ -17,20 +18,20 @@ const validate = values => {
         errors.type = 'Wähle einen Fragetypen.'
     }
 
-    if((values.type === "self-validate" || values.type === "text-input")
+    if ((values.type === "self-validate" || values.type === "text-input")
         && (values.content === undefined || values.content.answer === undefined)) {
-        errors.content ={answer:"Bitte gib eine Antwort ein."}
+        errors.content = {answer: "Bitte gib eine Antwort ein."}
     }
 
-    if(!(values.type === "self-validate" || values.type === "text-input") && values.content === undefined) {
-        errors.content ="Bitte erstelle zuerst eine gültige Antwort."
+    if (!(values.type === "self-validate" || values.type === "text-input") && values.content === undefined) {
+        errors.content = "Bitte erstelle zuerst eine gültige Antwort."
     }
 
-    if(values.type === "single-choice" && values.content !== undefined && values.content.correct === undefined) {
+    if (values.type === "single-choice" && values.content !== undefined && values.content.correct === undefined) {
         errors.content = 'Bitte makiere die richtige Antwort.'
     }
 
-    if(values.type === "multiple-choice" && values.content !== undefined
+    if (values.type === "multiple-choice" && values.content !== undefined
         && (values.content.corrects === undefined || values.content.corrects.length === 0)) {
         errors.content = "Bitte makiere mindestens eine richtige Antwort."
     }
@@ -39,7 +40,7 @@ const validate = values => {
 };
 
 const CardForm = props => {
-    const {error, handleSubmit, submitting, submitLabel, type} = props;
+    const {error, handleSubmit, submitting, submitLabel, type, keyword} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -121,11 +122,18 @@ const CardForm = props => {
             }
 
             <Field
-                name="tags"
+                name="keyword"
                 type="text"
                 component={InputField}
-                label="Tags"
+                label="Suche"
             />
+
+            <FieldArray
+                name={'tags'}
+                component={InputTagField}
+                keyword={keyword}
+            />
+
 
             <Button outline block color="primary" type="submit" disabled={submitting}>
                 {submitLabel}
@@ -137,7 +145,8 @@ const CardForm = props => {
 const selector = formValueSelector('cardForm');
 function mapStateToProps(state) {
     return {
-        type: selector(state, 'type')
+        type: selector(state, 'type'),
+        keyword: selector(state, 'keyword')
     }
 }
 
