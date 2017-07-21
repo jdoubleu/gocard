@@ -33,7 +33,7 @@ class MultipleChoice extends AbstractCardContent
      * @param array $correctAnswers
      * @param array $options
      */
-    public function __construct(array $correctAnswers, array $options)
+    public function __construct($correctAnswers, $options)
     {
         $this->correctAnswers = $correctAnswers;
         $this->options = $options;
@@ -42,7 +42,7 @@ class MultipleChoice extends AbstractCardContent
     /**
      * @return array
      */
-    public function getCorrectAnswers(): array
+    public function getCorrectAnswers()
     {
         return $this->correctAnswers;
     }
@@ -50,7 +50,7 @@ class MultipleChoice extends AbstractCardContent
     /**
      * @return array
      */
-    public function getOptions(): array
+    public function getOptions()
     {
         return $this->options;
     }

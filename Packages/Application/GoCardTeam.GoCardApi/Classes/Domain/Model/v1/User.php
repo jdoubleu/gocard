@@ -64,7 +64,7 @@ class User implements \JsonSerializable
     /**
      * @return int
      */
-    public function getUid(): ?int
+    public function getUid()
     {
         return $this->uid;
     }
@@ -72,7 +72,7 @@ class User implements \JsonSerializable
     /**
      * @param int $uid
      */
-    public function setUid(int $uid)
+    public function setUid($uid)
     {
         $this->uid = $uid;
     }
@@ -80,7 +80,7 @@ class User implements \JsonSerializable
     /**
      * @return Account
      */
-    public function getAccount(): ?Account
+    public function getAccount()
     {
         return $this->account;
     }
@@ -88,7 +88,7 @@ class User implements \JsonSerializable
     /**
      * @param Account $account
      */
-    public function setAccount(Account $account)
+    public function setAccount($account)
     {
         $this->account = $account;
     }
@@ -130,7 +130,7 @@ class User implements \JsonSerializable
     /**
      * @return string
      */
-    public function getStatus(): string
+    public function getStatus()
     {
         return $this->status;
     }
@@ -138,7 +138,7 @@ class User implements \JsonSerializable
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }

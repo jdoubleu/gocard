@@ -52,7 +52,7 @@ class Member implements \JsonSerializable
     /**
      * @return int
      */
-    public function getUid(): int
+    public function getUid()
     {
         return $this->uid;
     }
@@ -60,7 +60,7 @@ class Member implements \JsonSerializable
     /**
      * @param int $uid
      */
-    public function setUid(int $uid)
+    public function setUid($uid)
     {
         $this->uid = $uid;
     }
@@ -68,7 +68,7 @@ class Member implements \JsonSerializable
     /**
      * @return User
      */
-    public function getUser(): ?User
+    public function getUser()
     {
         return $this->user;
     }
@@ -76,7 +76,7 @@ class Member implements \JsonSerializable
     /**
      * @param User $user
      */
-    public function setUser(User $user)
+    public function setUser($user)
     {
         $this->user = $user;
     }
@@ -84,7 +84,7 @@ class Member implements \JsonSerializable
     /**
      * @return int
      */
-    public function getUsersUid(): ?int
+    public function getUsersUid()
     {
         return ($user = $this->getUser()) != null ? $user->getUid() : null;
     }
@@ -92,7 +92,7 @@ class Member implements \JsonSerializable
     /**
      * @return string
      */
-    public function getRole(): ?string
+    public function getRole()
     {
         return $this->role;
     }
@@ -100,7 +100,7 @@ class Member implements \JsonSerializable
     /**
      * @param string $role
      */
-    public function setRole(string $role)
+    public function setRole($role)
     {
         $this->role = $role;
     }
@@ -108,7 +108,7 @@ class Member implements \JsonSerializable
     /**
      * @return Register
      */
-    public function getRegister(): ?Register
+    public function getRegister()
     {
         return $this->register;
     }
@@ -116,7 +116,7 @@ class Member implements \JsonSerializable
     /**
      * @param Register $register
      */
-    public function setRegister(Register $register)
+    public function setRegister($register)
     {
         $this->register = $register;
     }

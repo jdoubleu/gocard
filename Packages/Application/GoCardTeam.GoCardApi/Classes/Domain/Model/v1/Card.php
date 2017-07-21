@@ -83,7 +83,7 @@ class Card implements \JsonSerializable
     /**
      * @return int
      */
-    public function getUid(): int
+    public function getUid()
     {
         return $this->uid;
     }
@@ -91,7 +91,7 @@ class Card implements \JsonSerializable
     /**
      * @param int $uid
      */
-    public function setUid(int $uid)
+    public function setUid($uid)
     {
         $this->uid = $uid;
     }
@@ -99,7 +99,7 @@ class Card implements \JsonSerializable
     /**
      * @return User
      */
-    public function getAuthor(): ?User
+    public function getAuthor()
     {
         return $this->author;
     }
@@ -107,7 +107,7 @@ class Card implements \JsonSerializable
     /**
      * @param User $author
      */
-    public function setAuthor(User $author)
+    public function setAuthor($author)
     {
         $this->author = $author;
     }
@@ -115,7 +115,7 @@ class Card implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getCrdate(): ?\DateTime
+    public function getCrdate()
     {
         return $this->crdate;
     }
@@ -123,7 +123,7 @@ class Card implements \JsonSerializable
     /**
      * @param \DateTime $crdate
      */
-    public function setCrdate(\DateTime $crdate)
+    public function setCrdate($crdate)
     {
         $this->crdate = $crdate;
     }
@@ -131,7 +131,7 @@ class Card implements \JsonSerializable
     /**
      * @return array
      */
-    public function getTags(): ?array
+    public function getTags()
     {
         return $this->tags;
     }
@@ -139,7 +139,7 @@ class Card implements \JsonSerializable
     /**
      * @param array $tags
      */
-    public function setTags(array $tags)
+    public function setTags($tags)
     {
         $this->tags = $tags;
     }
@@ -147,7 +147,7 @@ class Card implements \JsonSerializable
     /**
      * @return string
      */
-    public function getQuestion(): ?string
+    public function getQuestion()
     {
         return $this->question;
     }
@@ -155,7 +155,7 @@ class Card implements \JsonSerializable
     /**
      * @param string $question
      */
-    public function setQuestion(string $question)
+    public function setQuestion($question)
     {
         $this->question = $question;
     }
@@ -163,7 +163,7 @@ class Card implements \JsonSerializable
     /**
      * @return string
      */
-    public function getType(): ?string
+    public function getType()
     {
         return $this->type;
     }
@@ -171,7 +171,7 @@ class Card implements \JsonSerializable
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -179,7 +179,7 @@ class Card implements \JsonSerializable
     /**
      * @return AbstractCardContent
      */
-    public function getContent(): ?AbstractCardContent
+    public function getContent()
     {
         return $this->content;
     }
@@ -187,7 +187,7 @@ class Card implements \JsonSerializable
     /**
      * @param AbstractCardContent $content
      */
-    public function setContent(AbstractCardContent $content)
+    public function setContent($content)
     {
         $this->content = $content;
     }
@@ -195,7 +195,7 @@ class Card implements \JsonSerializable
     /**
      * @return Register
      */
-    public function getRegister(): ?Register
+    public function getRegister()
     {
         return $this->register;
     }
@@ -203,7 +203,7 @@ class Card implements \JsonSerializable
     /**
      * @param Register $register
      */
-    public function setRegister(Register $register)
+    public function setRegister($register)
     {
         $this->register = $register;
     }

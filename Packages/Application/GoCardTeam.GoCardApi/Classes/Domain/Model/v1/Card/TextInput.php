@@ -31,7 +31,7 @@ class TextInput extends AbstractCardContent
     /**
      * @return string
      */
-    public function getCorrectAnswer(): string
+    public function getCorrectAnswer()
     {
         return $this->correctAnswer;
     }
