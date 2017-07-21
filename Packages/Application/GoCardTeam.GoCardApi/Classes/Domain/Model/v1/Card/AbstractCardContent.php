@@ -5,15 +5,18 @@ namespace GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 /**
  * General Card content
  */
-abstract class AbstractCardContent implements CardContent
+abstract class AbstractCardContent implements \JsonSerializable
 {
 
-    public function toJSONString(): string
-    {
-        return json_encode($this->toArray());
-    }
+    /**
+     * @return array Representation of this card content as an array
+     */
+    public abstract function toArray(): array;
 
-    function jsonSerialize()
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
     {
         return $this->toArray();
     }

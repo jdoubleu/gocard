@@ -3,7 +3,7 @@
 namespace GoCardTeam\GoCardApi\Domain\Model\v1;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use GoCardTeam\GoCardApi\Domain\Model\v1\Card\CardContent;
+use GoCardTeam\GoCardApi\Domain\Model\v1\Card\AbstractCardContent;
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -64,7 +64,7 @@ class Card implements \JsonSerializable
      * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\MutableObjectValidator", options={"originalType": "GoCardTeam\GoCardApi\Domain\Model\v1\Card\CardContent"})
      * @ORM\Column(type="object")
-     * @var CardContent
+     * @var AbstractCardContent
      */
     protected $content;
 
@@ -178,17 +178,17 @@ class Card implements \JsonSerializable
     }
 
     /**
-     * @return CardContent
+     * @return AbstractCardContent
      */
-    public function getContent(): ?CardContent
+    public function getContent(): ?AbstractCardContent
     {
         return $this->content;
     }
 
     /**
-     * @param CardContent $content
+     * @param AbstractCardContent $content
      */
-    public function setContent(CardContent $content)
+    public function setContent(AbstractCardContent $content)
     {
         $this->content = $content;
     }
