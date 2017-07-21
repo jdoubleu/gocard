@@ -6,6 +6,7 @@ use Neos\Flow\Validation\Exception\InvalidValidationOptionsException;
 use Neos\Flow\Validation\Validator\AbstractValidator;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Validation\Validator\NotEmptyValidator;
+use Neos\Flow\Validation\ValidatorResolver;
 
 /**
  * Validates items of an array not being empty.
@@ -14,12 +15,11 @@ use Neos\Flow\Validation\Validator\NotEmptyValidator;
  */
 class ArrayItemsNotEmptyValidator extends AbstractValidator
 {
-
     /**
      * @Flow\Inject
-     * @var NotEmptyValidator
+     * @var ValidatorResolver
      */
-    protected $notEmptyValidator;
+    protected $validatorResolver;
 
     /**
      * Check if $value is valid. If it is not valid, needs to add an error
@@ -35,8 +35,10 @@ class ArrayItemsNotEmptyValidator extends AbstractValidator
             $this->addError('Property type is not an array', 1500566042);
         }
 
+        $notEmptyValidator = $this->validatorResolver->createValidator(NotEmptyValidator::class);
+
         foreach ($value as $val) {
-            if ($this->notEmptyValidator->validate($val)->hasErrors()) {
+            if ($notEmptyValidator->validate($val)->hasErrors()) {
                 $this->addError('Property has empty items', 1500566259);
                 break 1;
             }
