@@ -31,7 +31,7 @@ class TextInput extends AbstractCardContent
     /**
      * @return string
      */
-    public function getCorrectAnswer(): string
+    public function getCorrectAnswer()
     {
         return $this->correctAnswer;
     }
@@ -43,7 +43,7 @@ class TextInput extends AbstractCardContent
     public function toArray(): array
     {
         return [
-            'correct' => $this->correctAnswer
+            'answer' => $this->correctAnswer
         ];
     }
 }

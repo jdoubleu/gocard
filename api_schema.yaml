@@ -199,6 +199,44 @@ paths:
       tags:
         - registers
         - cards
+      summary: Create new card
+      description: Creates a single new cards and adds it to a register
+      operationId: addCardToRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID register the cards should be added to
+          type: integer
+          format: int64
+          required: true
+        - name: card
+          in: body
+          description: Card to be created
+          schema:
+            $ref: '#/definitions/Card'
+          required: true
+      responses:
+        '200':
+          description: Successfully created card
+          schema:
+            $ref: '#/definitions/Card'
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to create a card in this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/cards/multiple':
+    post:
+      tags:
+        - registers
+        - cards
       summary: Create multiple new cards
       description: Creates multiple new cards and adds them to a register
       operationId: addCardsToRegister
@@ -269,43 +307,6 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
-    put:
-      tags:
-        - registers
-        - members
-      summary: Update members of this register
-      description: Updates all members with their permission of this register
-      operationId: updateMembersOfRegister
-      produces:
-        - application/json
-      parameters:
-        - name: registerId
-          in: path
-          description: ID of the register
-          type: integer
-          format: int64
-          required: true
-        - name: members
-          in: body
-          description: Members to be updated
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Member'
-          required: true
-      responses:
-        '200':
-          description: Successfully updated members
-        '400':
-          description: Invalid request
-          schema:
-            $ref: '#/definitions/MultipleValidationResponse'
-        '403':
-          description: Not allowed to update members of this register
-        '404':
-          description: Register not found
-      security:
-        - api_key: []
     post:
       tags:
         - registers
@@ -339,6 +340,85 @@ paths:
             $ref: '#/definitions/ValidationResponse'
         '403':
           description: Not allowed to add member to this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+  '/registers/{registerId}/members/multiple':
+    post:
+      tags:
+        - registers
+        - members
+      summary: Add members to this register
+      description: Adds multiple new members to the given register
+      operationId: addMembersToRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: member
+          in: body
+          description: Member to be added
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully added member
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to add member to this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+    put:
+      tags:
+        - registers
+        - members
+      summary: Update members of this register
+      description: Updates all members with their permission of this register
+      operationId: updateMembersOfRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: members
+          in: body
+          description: Members to be updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated members
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update members of this register
         '404':
           description: Register not found
       security:
@@ -554,36 +634,6 @@ paths:
       security:
         - api_key: []
   /cards/:
-    put:
-      tags:
-        - cards
-      summary: Update multiple cards
-      description: Updates multiple cards
-      operationId: updateCards
-      produces:
-        - application/json
-      parameters:
-        - name: cards
-          in: body
-          description: Cards to be updated
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Card'
-          required: true
-      responses:
-        '200':
-          description: Successfully updated cards
-        '400':
-          description: Invalid request
-          schema:
-            $ref: '#/definitions/MultipleValidationResponse'
-        '403':
-          description: Not allowed to update these cards
-        '404':
-          description: Cards not found
-      security:
-        - api_key: []
     post:
       tags:
         - cards
@@ -698,6 +748,37 @@ paths:
           description: Not allowed to delete this card
         '404':
           description: Card not found
+      security:
+        - api_key: []
+  /cards/multiple:
+    put:
+      tags:
+        - cards
+      summary: Update multiple cards
+      description: Updates multiple cards
+      operationId: updateCards
+      produces:
+        - application/json
+      parameters:
+        - name: cards
+          in: body
+          description: Cards to be updated
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Card'
+          required: true
+      responses:
+        '200':
+          description: Successfully updated cards
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update these cards
+        '404':
+          description: Cards not found
       security:
         - api_key: []
   /users:
@@ -1080,14 +1161,68 @@ definitions:
           - text-input
           - self-validate
       content:
-        type: object
         description: Answer content of this card depending of the type
+        type: object
+        #oneOf:
+        enum:
+          - $ref: '#/definitions/SingleChoice'
+          - $ref: '#/definitions/MultipleChoice'
+          - $ref: '#/definitions/TextInput'
+          - $ref: '#/definitions/SelfValidate'
     required:
       - id
       - author
       - question
       - type
       - content
+  SingleChoice:
+    description: CardContent for single-choice
+    type: object
+    properties:
+      correct:
+        description: Index of the correct answer in options array
+        type: integer
+      options:
+        type: array
+        items:
+          type: string
+    required:
+      - correct
+      - options
+  MultipleChoice:
+    description: CardContent for multiple-choice
+    type: object
+    properties:
+      corrects:
+        description: Indices of the correct answers in options array
+        type: array
+        items:
+          type: integer
+      options:
+        type: array
+        items:
+          type: string
+    required:
+      - corrects
+      - options
+  TextInput:
+    description: CardContent for text-input
+    type: object
+    properties:
+      answer:
+        description: Correct answer
+        type: string
+    required:
+      - answer
+  SelfValidate:
+    description: CardContent for self-validate
+    type: object
+    properties:
+      answer:
+        description: Correct answer
+        type: string
+    required:
+      - answer
   User:
     type: object
     properties:
