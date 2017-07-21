@@ -14,6 +14,7 @@ class MultipleChoice extends AbstractCardContent
 
     /**
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\ArrayItemsNotEmptyValidator")
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @ORM\Column(type="simple_array")
      * @var array
@@ -22,6 +23,7 @@ class MultipleChoice extends AbstractCardContent
 
     /**
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\ArrayItemsNotEmptyValidator")
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @var array
      */
