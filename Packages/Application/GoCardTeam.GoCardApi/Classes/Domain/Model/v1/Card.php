@@ -62,6 +62,7 @@ class Card implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\MutableObjectValidator", options={"originalType": "GoCardTeam\GoCardApi\Domain\Model\v1\Card\CardContent"})
      * @ORM\Column(type="object")
      * @var CardContent
      */
