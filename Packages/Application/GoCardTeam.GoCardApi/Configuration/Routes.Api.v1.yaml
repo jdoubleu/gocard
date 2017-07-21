@@ -11,7 +11,7 @@
   subRoutes:
     'UsersSubroutes':
       package: 'GoCardTeam.GoCardApi'
-      suffix:  'Api.Users'
+      suffix:  'Api.v1.Users'
 
 -
   name: 'registers routes'
@@ -23,7 +23,7 @@
   subRoutes:
     'RegistersSubroutes':
       package: 'GoCardTeam.GoCardApi'
-      suffix:  'Api.Registers'
+      suffix:  'Api.v1.Registers'
 
 -
   name: 'cards routes'
@@ -35,4 +35,4 @@
   subRoutes:
     'CardsSubroutes':
       package: 'GoCardTeam.GoCardApi'
-      suffix:  'Api.Cards'
+      suffix:  'Api.v1.Cards'
