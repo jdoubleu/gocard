@@ -18,3 +18,10 @@
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Activity'
   httpMethods: ['GET']
+
+-
+  name: 'get all activities'
+  uriPattern: 'findByEvent'
+  defaults:
+    '@action': 'getActivityByEvent'
+  httpMethods: ['GET']

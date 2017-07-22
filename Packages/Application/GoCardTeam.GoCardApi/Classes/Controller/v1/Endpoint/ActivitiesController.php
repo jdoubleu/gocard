@@ -36,4 +36,14 @@ class ActivitiesController extends AbstractApiEndpointController
     {
         $this->view->assign('value', $activity);
     }
+
+    /**
+     * @param string $eventName
+     */
+    public function getActivityByEventAction(string $eventName)
+    {
+        $activities = $this->activityRepository->findByEvent($eventName);
+
+        $this->view->assign('value', $activities);
+    }
 }
