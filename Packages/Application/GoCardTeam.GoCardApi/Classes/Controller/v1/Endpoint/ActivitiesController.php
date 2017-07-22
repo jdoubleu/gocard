@@ -17,4 +17,14 @@ class ActivitiesController extends AbstractApiEndpointController
      * @var ActivityRepository
      */
     protected $activityRepository;
+
+    /**
+     * Get all activities
+     */
+    public function getActivitiesAction()
+    {
+       $activities = $this->activityRepository->findAll();
+
+       $this->view->assign('value', $activities->toArray());
+    }
 }

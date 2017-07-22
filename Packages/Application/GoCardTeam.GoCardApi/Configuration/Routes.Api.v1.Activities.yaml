@@ -1,2 +1,9 @@
 # Activities API Routes
 # Route definition for the /activities endpoint
+
+-
+  name: 'get all activities'
+  uriPattern: ''
+  defaults:
+    '@action': 'getActivities'
+  httpMethods: ['GET']
