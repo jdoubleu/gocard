@@ -36,3 +36,15 @@
     'CardsSubroutes':
       package: 'GoCardTeam.GoCardApi'
       suffix:  'Api.v1.Cards'
+
+-
+  name: 'activities routes'
+  uriPattern: 'activities/<ActivitiesSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Activities'
+    '@format':     'json'
+  subRoutes:
+    'ActivitiesSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.Activities'
