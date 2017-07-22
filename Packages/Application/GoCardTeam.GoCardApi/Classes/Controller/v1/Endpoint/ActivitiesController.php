@@ -38,6 +38,7 @@ class ActivitiesController extends AbstractApiEndpointController
     }
 
     /**
+     * @Flow\Validate(argumentName="eventName", type="GoCardTeam\GoCardApi\Validation\Validator\v1\ActivityEventTypeValidator")
      * @param string $eventName
      */
     public function getActivityByEventAction(string $eventName)
