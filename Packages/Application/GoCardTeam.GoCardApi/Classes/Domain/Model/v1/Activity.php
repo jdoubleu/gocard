@@ -37,7 +37,7 @@ class Activity implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(create_register|update_register|delete_register|create_card|update_card|delete_card)"})
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\v1\ActivityEventTypeValidator")
      * @ORM\Column(type="string", columnDefinition="ENUM('create_register', 'update_register', 'delete_register', 'create_card', 'update_card', 'delete_card')")
      * @var string
      */
