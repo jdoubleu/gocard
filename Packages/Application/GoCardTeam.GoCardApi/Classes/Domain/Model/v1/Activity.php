@@ -45,7 +45,8 @@ class Activity implements \JsonSerializable
 
     /**
      * @Flow\IgnoreValidation
-     * @Flow\Transient
+     * @ORM\Column(type="text", nullable=true)
+     * @var mixed
      */
     protected $ref;
 
