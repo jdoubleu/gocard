@@ -145,7 +145,7 @@ class Activity implements \JsonSerializable
     {
         return [
             'id' => $this->uid,
-            'user' => $this->user,
+            'user' => $this->user->getUid(),
             'event' => $this->eventType,
             'date' => $this->date,
             'ref' => $this->getRef()
