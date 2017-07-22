@@ -1288,23 +1288,30 @@ definitions:
       id:
         type: integer
         format: int64
-      initiator:
+      user:
         type: integer
         format: int64
         description: User ID of the initiator
-      'type':
-        type: string
-        enum:
-          - 'view'
-          - 'run'
       date:
         type: string
         format: UTC time string
+      event:
+        type: string
+        enum:
+          - 'create_register'
+          - 'update_register'
+          - 'delete_register'
+          - 'create_card'
+          - 'update_card'
+          - 'delete_card'
+      ref:
+        type: object
+        description: Reference values of this event (e.g. the Card id for any 'card_*' event)
     required:
       - id
-      - initiator
-      - type
+      - user
       - date
+      - event
   AccessTokenResponse:
     type: object
     properties:
