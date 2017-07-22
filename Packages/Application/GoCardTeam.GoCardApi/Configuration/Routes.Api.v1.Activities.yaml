@@ -7,3 +7,14 @@
   defaults:
     '@action': 'getActivities'
   httpMethods: ['GET']
+
+-
+  name: 'get activity'
+  uriPattern: '{activity}'
+  defaults:
+    '@action': 'getActivityById'
+  routeParts:
+    activity:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Activity'
+  httpMethods: ['GET']
