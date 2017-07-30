@@ -59,7 +59,23 @@
 
 -
   name: 'card statistics routes'
-  uriPattern: '{card}/statistics/<CardStatisticsSubroutes>'
+  uriPattern: '{card}/statistics/<CardCardStatisticsSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\CardStatistics'
+    '@format':     'json'
+  subRoutes:
+    'CardCardStatisticsSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.CardCardStatistics'
+  routeParts:
+    register:
+      card: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
+
+-
+  name: 'card statistics routes'
+  uriPattern: 'statistics/<CardStatisticsSubroutes>'
   defaults:
     '@package':    'GoCardTeam.GoCardApi'
     '@controller': 'v1\Endpoint\CardStatistics'
@@ -68,7 +84,3 @@
     'CardStatisticsSubroutes':
       package: 'GoCardTeam.GoCardApi'
       suffix:  'Api.v1.CardStatistics'
-  routeParts:
-    register:
-      card: ''
-      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'

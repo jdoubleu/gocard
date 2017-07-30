@@ -759,7 +759,7 @@ paths:
           description: Cards not found
       security:
         - api_key: []
-  '/cards/{cardId}/statistics/{statisticId}':
+  '/cards/statistics/{statisticId}':
     get:
       tags:
         - cards
@@ -770,12 +770,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: cardId
-          in: path
-          description: ID of the card
-          type: integer
-          format: int64
-          required: true
         - name: statisticId
           in: path
           description: ID of the statistic
