@@ -5,6 +5,7 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use GoCardTeam\GoCardApi\Domain\Model\v1\CardStatistic;
+use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\CardStatisticRepository;
 use Neos\Flow\Annotations as Flow;
@@ -63,5 +64,14 @@ class CardStatisticsController extends AbstractApiEndpointController
         $this->persistenceManager->persistAll(true);
 
         $this->view->assign('value', $cardStatistic);
+    }
+
+    /**
+     * @param Register $register
+     * @param User $user
+     */
+    public function getCardStatisticByRegisterAndUserAction(Register $register, User $user)
+    {
+        $this->view->assign('value', $this->cardStatisticRepository->findByRegisterAndUser($register, $user));
     }
 }

@@ -11,3 +11,11 @@
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\CardStatistic'
   httpMethods: ['GET']
+
+-
+  name: 'get statistics of register'
+  uriPattern: 'findByRegister'
+  defaults:
+    '@action': 'getCardStatisticByRegisterAndUser'
+  routeParts:
+  httpMethods: ['GET']

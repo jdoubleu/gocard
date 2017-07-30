@@ -860,6 +860,43 @@ paths:
           description: Card not found
       security:
         - api_key: []
+  '/cards/statistics/findByRegister':
+    get:
+      tags:
+        - cards
+        - card statistics
+        - registers
+      summary: Get all card statistic of register
+      description: Returns the statistic of all cards of the given register and the user
+      operationId: getCardStatisticByRegisterAndUser
+      produces:
+        - application/json
+      parameters:
+        - name: register
+          in: query
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: user
+          in: query
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardStatistic'
+        '400':
+          description: Invalid ID's supplied
+        '403':
+          description: Not allowed to view this register
+      security:
+        - api_key: []
   /users:
     post:
       tags:
