@@ -1,2 +1,9 @@
 # Card Statistics API Routes
 # Route definitions for the card statistics endpoint as sub-endpoint of cards
+
+-
+  name: 'get statistics for user and card'
+  uriPattern: 'findByUser'
+  defaults:
+    '@action': 'getCardStatisticByCardAndUser'
+  httpMethods: ['GET']
