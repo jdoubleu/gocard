@@ -1379,7 +1379,7 @@ definitions:
         description: User ID of the initiator
       date:
         type: string
-        format: UTC time string
+        format: date-time
       event:
         type: string
         enum:
@@ -1416,7 +1416,7 @@ definitions:
         description: Value of this statistics
       date:
         type: string
-        format: UTC
+        format: date-time
     required:
       - user
       - card
