@@ -1288,6 +1288,30 @@ definitions:
       - user
       - date
       - event
+  CardStatistic:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      user:
+        type: integer
+        format: int64
+        description: User ID
+      card:
+        type: integer
+        format: int64
+        description: Card ID
+      value:
+        type: integer
+        description: Value of this statistics
+      date:
+        type: string
+        format: UTC
+    required:
+      - user
+      - card
+      - value
   AccessTokenResponse:
     type: object
     properties:
