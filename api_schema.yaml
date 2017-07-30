@@ -10,6 +10,8 @@ tags:
     description: A collection of multiple cards belonging to one topic
   - name: cards
     description: Single cards containing questions
+  - name: card statistics
+    description: Statistic for a card for a user
   - name: users
     description: Operations about user
   - name: passwords
@@ -755,6 +757,113 @@ paths:
           description: Not allowed to update these cards
         '404':
           description: Cards not found
+      security:
+        - api_key: []
+  '/cards/{cardId}/statistics/{statisticId}':
+    get:
+      tags:
+        - cards
+        - card statistics
+      summary: Get card statistic
+      description: Returns the statistic of card of a given user
+      operationId: getCardStatisticById
+      produces:
+        - application/json
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of the card
+          type: integer
+          format: int64
+          required: true
+        - name: statisticId
+          in: path
+          description: ID of the statistic
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardStatistic'
+        '400':
+          description: Invalid ID's supplied
+        '403':
+          description: Not allowed to view this statistic
+      security:
+        - api_key: []
+  '/cards/{cardId}/statistics/findByUser':
+    get:
+      tags:
+        - cards
+        - card statistics
+      summary: Get card statistic
+      description: Returns the statistic of card of a given user
+      operationId: getCardStatisticByCardAndUser
+      produces:
+        - application/json
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of the card
+          type: integer
+          format: int64
+          required: true
+        - name: userId
+          in: query
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardStatistic'
+        '400':
+          description: Invalid ID's supplied
+        '403':
+          description: Not allowed to view this statistic
+      security:
+        - api_key: []
+  '/cards/{cardId}/statistics':
+    post:
+      tags:
+        - cards
+        - card statistics
+      summary: Create card statistic
+      description: Records a new statistic for a card
+      operationId: createCardStatistic
+      produces:
+        - application/json
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of the card
+          type: integer
+          format: int64
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CardStatistic'
+      responses:
+        '200':
+          description: Successfully created statistics record
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to add a statistic record for this card and user
+        '404':
+          description: Card not found
       security:
         - api_key: []
   /users:
