@@ -56,3 +56,19 @@
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
   httpMethods: ['DELETE']
+
+-
+  name: 'card statistics routes'
+  uriPattern: '{card}/statistics/<CardStatisticsSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\CardStatistics'
+    '@format':     'json'
+  subRoutes:
+    'CardStatisticsSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.CardStatistics'
+  routeParts:
+    register:
+      card: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Card'
