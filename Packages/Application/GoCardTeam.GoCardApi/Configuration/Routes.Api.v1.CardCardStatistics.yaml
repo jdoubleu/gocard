@@ -7,3 +7,14 @@
   defaults:
     '@action': 'getCardStatisticByCardAndUser'
   httpMethods: ['GET']
+
+-
+  name: 'create statistic record'
+  uriPattern: ''
+  defaults:
+    '@action': 'createCardStatistic'
+  routeParts:
+    cardStatistic:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\CardStatistic'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
