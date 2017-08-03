@@ -2,7 +2,7 @@ import React from "react";
 import {Field, FieldArray, formValueSelector, reduxForm} from "redux-form";
 import {Alert, Button, Form} from "reactstrap";
 import InputField from "./fields/input";
-import InputTagField from "./fields/inputTag";
+import InputTagField from "./fields/inputTag/index";
 import SelectButton from "./fields/selectButton";
 import InputSingleChoice from "./fields/inputSingleChoice";
 import InputMultipleChoice from "./fields/inputMultipleChoice";
@@ -117,20 +117,15 @@ const CardForm = props => {
                     name="content.answer"
                     type="text"
                     component={InputField}
+                    keyword={keyword}
                     label="Antwort"
                 />
             }
 
-            <Field
-                name="keyword"
-                type="text"
-                component={InputField}
-                label="Suche"
-            />
-
             <FieldArray
                 name={'tags'}
                 component={InputTagField}
+                label="Tags"
                 keyword={keyword}
             />
 
