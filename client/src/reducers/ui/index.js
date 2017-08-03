@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
 import inputMemberFields from "./inputMembersField";
-import learnMode from "./learnMode";
+import learning from "./learning";
 
-export default combineReducers({inputMemberFields, learnMode});
+export default combineReducers({inputMemberFields, learning});

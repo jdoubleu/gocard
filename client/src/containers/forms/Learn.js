@@ -3,6 +3,7 @@ import {Alert, Button, Form} from "reactstrap";
 import SelectTag from "./fields/selectTag";
 import SelectButton from "./fields/selectButton";
 import {Field, reduxForm} from "redux-form";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
@@ -15,7 +16,7 @@ const validate = values => {
 };
 
 const Learn = props => {
-    const {error, handleSubmit, submitting} = props;
+    const {error, handleSubmit, registerId, disabled} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -53,9 +54,12 @@ const Learn = props => {
                 ]}
             />
 
-            <Button outline block color="primary" type="submit" disabled={submitting}>
-                Lernen starten
-            </Button>
+            {disabled === true &&
+                <Link className="btn btn-block btn-outline-primary disabled" to={`/`}>Lernen starten</Link>
+            }
+            {disabled === false &&
+                <Link className="btn btn-block btn-outline-primary" to={`/register/${registerId}/learn`}>Lernen starten</Link>
+            }
         </Form>
     )
 };

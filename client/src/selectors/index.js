@@ -70,3 +70,10 @@ export const makeGetUsersByRegister = () => {
         }
     );
 };
+
+
+/*
+ * GetCardIdsByTags
+ * GetCardByTags
+ * 1.GetCard = Karte aus getCardsByKeywords,
+ */

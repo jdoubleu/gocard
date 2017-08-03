@@ -1,19 +1,29 @@
 import React from "react";
 import {Card, Col} from "reactstrap";
 import Headline from "../../components/shared/headline";
-import _ from "lodash";
-import {addCard} from "../../actions/card";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
 import {makeGetCardsByRegister} from "../../selectors/index";
+import {getFormValues} from "redux-form";
+import _ from "lodash";
+import {setLastResult, setShowResult} from "../../actions/ui";
+import FeedbackCard from "../../containers/learn/FeedbackCard";
 
-
-
-const LearnMode = ({mode, currentCard, cards }) => {
+const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesSingle, showResult, lastResult ,handleFeedbackClick}) => {
 
     const handleSubmit = (values, dispatch) => {
-
+        if(currentCard.type === "single-choice") {
+            if(valuesSingle !== undefined && currentCard.content.correct === _.parseInt(valuesSingle.userAnswer)) {
+                console.log("Correct");
+            } else {
+                console.log("False");
+            }
+            dispatch(setLastResult(_.parseInt(valuesSingle.userAnswer)));
+            if(mode !== "TEST_MODE") {
+                dispatch(setShowResult(true))
+            }
+        }
     };
 
     const matchTitle = () =>{
@@ -36,10 +46,13 @@ const LearnMode = ({mode, currentCard, cards }) => {
             </Headline>
             <Card block>
                 {
-                    currentCard.type === "single-choice" &&
+                    mode !== "TEST_MODE" && showResult === true &&
+                    <FeedbackCard card={currentCard} userAnswer={lastResult} handleClick={handleFeedbackClick}/>
+                }
+                {
+                    currentCard.type === "single-choice" && showResult === false &&
                     <SingleChoiceCardForm onSubmit={handleSubmit} card={currentCard}/>
                 }
-
             </Card>
         </Col>
     );
@@ -61,12 +74,20 @@ const makeMapStateToProps = () => {
         return {
             register: state.entities.registers.byId[registerId] || {},
             cards: getCardsByRegister(state, props) || [],
-            currentCard: state.ui.learnMode.currentCard || firstCard,
-            mode: state.ui.learnMode.mode || "NORMAL_MODE",
-
+            currentCard: state.ui.learning.misc.currentCard || firstCard,
+            mode: state.ui.learning.misc.mode || "NORMAL_MODE",
+            valuesSingle: getFormValues('singleChoiceLearn')(state),
+            showResult: state.ui.learning.misc.showResult || false,
+            lastResult: state.ui.learning.misc.lastResult || -1
         }
     };
     return mapStateToProps
 };
 
-export default connect(makeMapStateToProps)(LearnMode);
+function mapDispatchToProps(dispatch) {
+    return({
+        handleFeedbackClick: () => {dispatch(setShowResult(false))}
+    })
+}
+
+export default connect(makeMapStateToProps, mapDispatchToProps)(LearnMode);

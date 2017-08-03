@@ -23,3 +23,21 @@ export function addLearnMode(mode) {
         payload: mode
     };
 }
+
+export const SET_SHOW_RESULT = 'SET_SHOW_RESULT';
+
+export function setShowResult(showResult) {
+    return {
+        type: SET_SHOW_RESULT,
+        payload: showResult
+    };
+}
+
+export const SET_LAST_RESULT = 'SET_LAST_RESULT';
+
+export function setLastResult(lastResult) {
+    return {
+        type: SET_LAST_RESULT,
+        payload: lastResult
+    };
+}

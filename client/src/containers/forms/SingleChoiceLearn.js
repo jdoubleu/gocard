@@ -1,32 +1,22 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, ListGroup, ListGroupItem, Input, CardTitle, CardText} from "reactstrap";
-import InputField from "./fields/input";
-import InputMembers from "./fields/inputMembers";
-import {SelectRadio} from "./fields/selectRadio";
+import {Alert, Button, Form, CardTitle, CardText} from "reactstrap";
+import LearnSingleChoiceField from "./fields/learnSingleChoiceField";
 
 
 const validate = values => {
     const errors = {};
-
-    if (!values.title) {
-        errors.title = 'Ein Titel ist erforderlich.'
+    if(values.userAnswer === undefined) {
+        errors.userAnswer = "Bitte kreuze eine Antwort an.";
     }
-
     return errors
 };
 
 
-const SingleChoiceLearn = ({error, submitting, card, values})=> {
-
-    const handleSubmit= (values) => {
-        console.log("values", values.answer);
-    };
-
-
+const SingleChoiceLearn = ({error, submitting, card, handleSubmit}) => {
 
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             {
                 error &&
                 <Alert color="danger">
@@ -35,26 +25,20 @@ const SingleChoiceLearn = ({error, submitting, card, values})=> {
             }
 
 
-                <CardTitle>Frage:
-            {card.question}
-                </CardTitle>
+            <h4 className="text-muted">Frage</h4>
+            <CardTitle>
+                {card.question}
+            </CardTitle>
 
-            <ListGroup>
-            {
-                card &&
-                    card.content.options.map((answer) =>
-                        <ListGroupItem>
-                                {/*<Input type="radio" name="radio"/>
-                                    {answer}*/}
-                            <label>
-                                <Field name="answer" component="input" type="radio" value={answer} onClick={handleSubmit} />
-                                {' '}
-                                {answer}
-                            </label>
-                        </ListGroupItem>
-                    )
-            }
-            </ListGroup>
+            <CardText>
+                <Field
+                    name="userAnswer"
+                    component={LearnSingleChoiceField}
+                    label="Antworten"
+                    content={card.content}
+                />
+            </CardText>
+
             <Button outline block color="primary" type="submit" disabled={submitting}>
                 Jetzt prüfen
             </Button>
@@ -63,6 +47,6 @@ const SingleChoiceLearn = ({error, submitting, card, values})=> {
 };
 
 export default reduxForm({
-    form: 'registerForm',
+    form: 'singleChoiceLearn',
     validate
 })(SingleChoiceLearn);

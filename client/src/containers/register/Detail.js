@@ -20,7 +20,7 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {register, cardIds} = this.props;
+        const {register, cardIds, match} = this.props;
         return (
             <div>
                 <Headline title={register.title}/>
@@ -37,7 +37,7 @@ class Detail extends React.Component {
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm />
+                        <LearnForm registerId={match.params.registerId} disabled={cardIds.length === 0}/>
                     </Card>
 
                     <Card block>
