@@ -253,9 +253,9 @@ const Models = {
     },
 
     /**
-     * RegisterActivity
+     * Activity
      */
-    RegisterActivity: {
+    Activity: {
         'id': 'number',
         'user': 'number',
         'date': 'string',
@@ -264,10 +264,23 @@ const Models = {
     },
 
     /**
+     * CardStatistic
+     */
+    CardStatistic: {
+        'id': 'number',
+        'user': 'number',
+        'card': 'number',
+        'value': 'number',
+        'date': 'string',
+    },
+
+    /**
      * AccessTokenResponse
      */
     AccessTokenResponse: {
         'access_token': 'string',
+        'expires_after': 'string',
+        'reate_limit': 'number',
     },
 
     /**
@@ -920,18 +933,17 @@ export function findMemberByRegisterAndUser(parameters) {
 }
 
 /**
- * Lists all activities of the register
+ * Lists all activities
  *
  * @param {object} parameters - method options and parameters
- * @param {integer} parameters.registerId - ID of the register
  */
-export function getRegisterActivities(parameters) {
+export function getActivities(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
     let deferred = Q.defer();
     let domain = client.domain,
-        path = '/registers/{registerId}/activities/';
+        path = '/activities';
     let body = {},
         queryParameters = {},
         headers = {},
@@ -941,34 +953,26 @@ export function getRegisterActivities(parameters) {
     queryParameters = client.setAuthQueryParams(queryParameters);
     headers['Accept'] = ['application/json'];
 
-    path = path.replace('{registerId}', parameters['registerId']);
-
-    if (parameters['registerId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: registerId'));
-        return deferred.promise;
-    }
-
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('getRegisterActivities', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getActivities', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
 
 /**
- * Registers a new activity of a user for the given register
+ * Returns a single activity
  *
  * @param {object} parameters - method options and parameters
- * @param {integer} parameters.registerId - ID of the register
- * @param {integer} parameters.userId - ID of the user
+ * @param {integer} parameters.activityId - ID of the activity
  */
-export function createRegisterActivityOfUserForRegister(parameters) {
+export function getActivityById(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
     let deferred = Q.defer();
     let domain = client.domain,
-        path = '/registers/{registerId}/activities/';
+        path = '/activities/{activityId}';
     let body = {},
         queryParameters = {},
         headers = {},
@@ -978,43 +982,33 @@ export function createRegisterActivityOfUserForRegister(parameters) {
     queryParameters = client.setAuthQueryParams(queryParameters);
     headers['Accept'] = ['application/json'];
 
-    path = path.replace('{registerId}', parameters['registerId']);
+    path = path.replace('{activityId}', parameters['activityId']);
 
-    if (parameters['registerId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: registerId'));
-        return deferred.promise;
-    }
-
-    if (parameters['userId'] !== undefined) {
-        queryParameters['userId'] = parameters['userId'];
-    }
-
-    if (parameters['userId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: userId'));
+    if (parameters['activityId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: activityId'));
         return deferred.promise;
     }
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('createRegisterActivityOfUserForRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getActivityById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
 
 /**
- * Lists all activities of the register of the given user
+ * Returns a single activity filtered by event type
  *
  * @param {object} parameters - method options and parameters
- * @param {integer} parameters.registerId - ID of the register
- * @param {integer} parameters.userId - ID of the user
+ * @param {string} parameters.eventName - Event type/name to filter activities by
  */
-export function getRegisterActivitiesForUser(parameters) {
+export function getActivityByEvent(parameters) {
     if (parameters === undefined) {
         parameters = {};
     }
     let deferred = Q.defer();
     let domain = client.domain,
-        path = '/registers/{registerId}/activities/{userId}';
+        path = '/activities/findByEvent';
     let body = {},
         queryParameters = {},
         headers = {},
@@ -1024,23 +1018,18 @@ export function getRegisterActivitiesForUser(parameters) {
     queryParameters = client.setAuthQueryParams(queryParameters);
     headers['Accept'] = ['application/json'];
 
-    path = path.replace('{registerId}', parameters['registerId']);
-
-    if (parameters['registerId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: registerId'));
-        return deferred.promise;
+    if (parameters['eventName'] !== undefined) {
+        queryParameters['eventName'] = parameters['eventName'];
     }
 
-    path = path.replace('{userId}', parameters['userId']);
-
-    if (parameters['userId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: userId'));
+    if (parameters['eventName'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: eventName'));
         return deferred.promise;
     }
 
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
-    client.request('getRegisterActivitiesForUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+    client.request('getActivityByEvent', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -1233,6 +1222,182 @@ export function updateCards(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Returns the statistic of card of a given user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.statisticId - ID of the statistic
+ */
+export function getCardStatisticById(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/statistics/{statisticId}';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{statisticId}', parameters['statisticId']);
+
+    if (parameters['statisticId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: statisticId'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('getCardStatisticById', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Returns the statistic of card of a given user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.cardId - ID of the card
+ * @param {integer} parameters.userId - ID of the user
+ */
+export function getCardStatisticByCardAndUser(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/{cardId}/statistics/findByUser';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{cardId}', parameters['cardId']);
+
+    if (parameters['cardId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: cardId'));
+        return deferred.promise;
+    }
+
+    if (parameters['userId'] !== undefined) {
+        queryParameters['userId'] = parameters['userId'];
+    }
+
+    if (parameters['userId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: userId'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('getCardStatisticByCardAndUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Records a new statistic for a card
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.cardId - ID of the card
+ * @param {} parameters.body - GoCard API
+ */
+export function createCardStatistic(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/{cardId}/statistics';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{cardId}', parameters['cardId']);
+
+    if (parameters['cardId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: cardId'));
+        return deferred.promise;
+    }
+
+    if (parameters['body'] !== undefined) {
+        body = parameters['body'];
+    }
+
+    if (parameters['body'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: body'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('createCardStatistic', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Returns the statistic of all cards of the given register and the user
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.register - ID of the register
+ * @param {integer} parameters.user - ID of the user
+ */
+export function getCardStatisticByRegisterAndUser(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/statistics/findByRegister';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    if (parameters['register'] !== undefined) {
+        queryParameters['register'] = parameters['register'];
+    }
+
+    if (parameters['register'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: register'));
+        return deferred.promise;
+    }
+
+    if (parameters['user'] !== undefined) {
+        queryParameters['user'] = parameters['user'];
+    }
+
+    if (parameters['user'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: user'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('getCardStatisticByRegisterAndUser', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
