@@ -21,3 +21,10 @@ Neos:
        # if you want to log executed SQL queries, enable the next 2 lines
 #      doctrine:
 #        sqlLogger: 'Neos\Flow\Persistence\Doctrine\Logging\SqlLogger'
+
+GoCardTeam:
+  GoCardApi:
+    security:
+      accessToken:
+        # 1 year lifetime
+        lifetime: 31536000
