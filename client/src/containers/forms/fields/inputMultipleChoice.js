@@ -14,11 +14,7 @@ import _ from "lodash";
 
 const fillAt = (array, value, index) => {
     let copy = [].concat(array);
-    if (copy.indexOf(value) >= 0) {
-        copy.splice(copy.indexOf(value), 1);
-    } else {
-        copy[index] = value;
-    }
+    copy[index] = value;
     return copy;
 };
 
@@ -28,10 +24,9 @@ const removeAt = (array, index) => {
     return copy;
 };
 
-const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
+const inputMultipleChoice = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
     let options = _.get(input.value, 'options', []);
     const corrects = _.get(input.value, 'corrects', []);
-    console.log("input corrects", _.get(input.value, 'corrects', []));
     return (
         <FormGroup color={touched && error && 'danger'}>
             {
@@ -65,8 +60,8 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
                                 <Button outline color="secondary"
                                         onClick={() => input.onChange({
                                             ...input.value,
-                                            corrects: removeAt(corrects, index),
-                                            options: removeAt(options, index)
+                                            options: removeAt(options, index),
+                                            corrects: _.without(corrects, index)
                                         })}>
                                     &#10008;
                                 </Button>
@@ -93,4 +88,4 @@ const inputSingleChoice = ({input, label, disableLabel, toolTip, type, meta: {to
     )
 };
 
-export default inputSingleChoice;
+export default inputMultipleChoice;

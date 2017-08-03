@@ -3,10 +3,13 @@
 namespace GoCardTeam\GoCardApi\Validation\Validator;
 
 use Neos\Flow\Validation\Validator\AbstractValidator;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Validator to verify distinct items in a collection
  * Yet this validator only checks for unique items which are unique after converting them to strings.
+ *
+ * @Flow\Scope("singleton")
  */
 class UniqueArrayItemsValidator extends AbstractValidator
 {

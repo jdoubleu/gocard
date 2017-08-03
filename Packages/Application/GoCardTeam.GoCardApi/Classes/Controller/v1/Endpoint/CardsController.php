@@ -31,12 +31,6 @@ class CardsController extends AbstractApiEndpointController
     protected $registerRepository;
 
     /**
-     * @Flow\Inject
-     * @var ObjectManager
-     */
-    protected $objectManager;
-
-    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */
@@ -52,7 +46,7 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->allowAllProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
     }
 
     /**
@@ -85,7 +79,7 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->allowAllProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
     }
 
     /**
@@ -130,7 +124,7 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->allowAllProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
     }
 
     /**
@@ -139,17 +133,50 @@ class CardsController extends AbstractApiEndpointController
      */
     public function addCardsToRegisterAction(Register $register, $cards)
     {
-        $actualCards = $register->getCards();
-
         foreach ($cards as $card) {
             /** @var Card $card */
             $card->setRegister($register);
-            $this->persistenceManager->add($card);
 
-            $actualCards->add($card);
+            $this->cardRepository->add($card);
+
+            $this->persistenceManager->whitelistObject($card);
         }
 
-        $this->registerRepository->update($register);
+        $this->persistenceManager->persistAll(true);
+
+        $this->view->assign('value', $cards);
+    }
+
+    /**
+     * Initialize addCardToRegister action
+     */
+    public function initializeAddCardToRegisterAction()
+    {
+        $cardConfiguration = $this->arguments->getArgument('card')->getPropertyMappingConfiguration();
+        $cardConfiguration->allowAllProperties()->skipProperties('uid', 'id', 'register');
+        $cardConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $cardConfiguration->forProperty('content')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $contentConfiguration = $cardConfiguration->forProperty('content');
+        $contentConfiguration->allowAllProperties();
+        $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
+        $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
+    }
+
+    /**
+     * @param Register $register
+     * @param Card $card
+     */
+    public function addCardToRegisterAction(Register $register, Card $card)
+    {
+        $card->setRegister($register);
+
+        $this->cardRepository->add($card);
+
+        $this->persistenceManager->whitelistObject($card);
+        $this->persistenceManager->persistAll(true);
+
+        $this->view->assign('value', $card);
     }
 
     /**
@@ -164,7 +191,7 @@ class CardsController extends AbstractApiEndpointController
         $contentConfiguration->allowAllProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
-        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
+        $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
     }
 
     /**

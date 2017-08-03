@@ -27,7 +27,7 @@ const New = ({userId}) => {
             </Headline>
 
             <Card block>
-                <RegisterForm onSubmit={handleSubmit} submitLabel="Erstellen"/>
+                <RegisterForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/" cancelLabel="Abbrechen"/>
             </Card>
         </Col>
     )

@@ -3,8 +3,11 @@
 namespace GoCardTeam\GoCardApi\Property\TypeConverter\v1;
 
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
+use GoCardTeam\GoCardApi\Utility\ClassNameUtility;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Reflection\Exception\InvalidClassException;
+use Neos\Utility\ObjectAccess;
 
 /**
  * Special object converter for the card entities.
@@ -33,33 +36,26 @@ class CardEntityObjectConverter extends PersistentObjectConverter
     /**
      * @param mixed $source
      * @return array
+     * @throws InvalidClassException
      */
     public function getSourceChildPropertiesToBeConverted($source)
     {
-        $filteredSource = parent::getSourceChildPropertiesToBeConverted($source);
+        $source = parent::getSourceChildPropertiesToBeConverted($source);
 
         if (
-            !empty($filteredSource['content'])
-            && is_array($filteredSource['content'])
-            && !empty($filteredSource['type'])
-            && !array_key_exists('__type', $filteredSource['content'])
+            !empty($source['content'])
+            && is_array($source['content'])
+            && !empty($source['type'])
+            && !array_key_exists('__type', $source['content'])
         ) {
-            switch ($filteredSource['type']) {
-                case 'single-choice':
-                    $filteredSource['content']['__type'] = Card\SingleChoice::class;
-                    break;
-                case 'multiple-choice':
-                    $filteredSource['content']['__type'] = Card\MultipleChoice::class;
-                    break;
-                case 'text-input':
-                    $filteredSource['content']['__type'] = Card\TextInput::class;
-                    break;
-                case 'self-validate':
-                    $filteredSource['content']['__type'] = Card\SelfValidate::class;
-                    break;
+            $className = 'GoCardTeam\GoCardApi\Domain\Model\v1\Card\\' . ClassNameUtility::convertSnakeCaseToPascalCase($source['type']);
+            if ($this->objectManager->isRegistered($className)) {
+                $source['content']['__type'] = $className;
+            } else {
+                throw new InvalidClassException(sprintf('Type %s given for card content could not be resolved to a target model type.', $source['type']));
             }
         }
 
-        return $filteredSource;
+        return $source;
     }
 }
