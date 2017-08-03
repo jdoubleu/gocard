@@ -1,0 +1,21 @@
+# Card Statistics API Routes
+# Route definitions for the card statistics endpoint and its action's
+
+-
+  name: 'get statistic'
+  uriPattern: '{statistic}'
+  defaults:
+    '@action': 'getCardStatisticById'
+  routeParts:
+    statistic:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\CardStatistic'
+  httpMethods: ['GET']
+
+-
+  name: 'get statistics of register'
+  uriPattern: 'findByRegister'
+  defaults:
+    '@action': 'getCardStatisticByRegisterAndUser'
+  routeParts:
+  httpMethods: ['GET']

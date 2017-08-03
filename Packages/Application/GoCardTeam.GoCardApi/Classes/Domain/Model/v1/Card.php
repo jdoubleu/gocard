@@ -17,7 +17,7 @@ class Card implements \JsonSerializable
      * @Flow\Identity
      * @ORM\Id
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="consistent_bigint")
      * @var integer
      */
     protected $uid;

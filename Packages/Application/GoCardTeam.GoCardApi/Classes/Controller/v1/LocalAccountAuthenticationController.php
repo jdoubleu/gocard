@@ -39,9 +39,12 @@ class LocalAccountAuthenticationController extends AbstractApiAuthenticationCont
         /** @var Response $response */
         $response = $this->controllerContext->getResponse();
         $response->setStatus(200, 'Successfully logged in');
-        $response->setHeader('X-Rate-Limit', '-1', true);
-        $response->setHeader('X-Expires-After', $accessToken->getExpirationDate(), true);
-        $this->view->assign('value', ['access_token' => $accessToken->getAccountIdentifier()]);
+        $this->view->assign('value', [
+            'access_token' => $accessToken->getAccountIdentifier(),
+            'expires_after' => $accessToken->getExpirationDate(),
+            'rate_limit' => -1
+        ]);
+        return null;
     }
 
     /**

@@ -75,7 +75,7 @@
   subRoutes:
     'RegisterCardsSubroutes':
       package: 'GoCardTeam.GoCardApi'
-      suffix:  'Api.RegisterCards'
+      suffix:  'Api.v1.RegisterCards'
   routeParts:
     register:
       uriPattern: ''

@@ -257,9 +257,10 @@ const Models = {
      */
     RegisterActivity: {
         'id': 'number',
-        'initiator': 'number',
-        'type': [ /* "view" | "run" */ ],
+        'user': 'number',
         'date': 'string',
+        'event': [ /* "create_register" | "update_register" | "delete_register" | "create_card" | "update_card" | "delete_card" */ ],
+        'ref': 'object',
     },
 
     /**

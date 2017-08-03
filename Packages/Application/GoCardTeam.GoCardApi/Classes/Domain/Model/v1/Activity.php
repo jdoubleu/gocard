@@ -7,9 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @Flow\Entity
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="user_register", columns={"user","register"})})
  */
-class Member implements \JsonSerializable
+class Activity implements \JsonSerializable
 {
 
     /**
@@ -30,20 +29,29 @@ class Member implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(read|write|update)"})
-     * @ORM\Column(type="string", columnDefinition="SET('read', 'write', 'update')")
+     * @Flow\Validate(type="DateTime")
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    protected $date;
+
+    /**
+     * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\v1\ActivityEventTypeValidator")
+     * @ORM\Column(type="string", columnDefinition="ENUM('create_register', 'update_register', 'delete_register', 'create_card', 'update_card', 'delete_card')")
      * @var string
      */
-    protected $role;
+    protected $eventType;
 
     /**
-     * @ORM\ManyToOne(inversedBy="members")
-     * @var Register
+     * @Flow\IgnoreValidation
+     * @ORM\Column(type="text", nullable=true)
+     * @var mixed
      */
-    protected $register;
+    protected $ref;
 
     /**
-     * Initialize this entity
+     * Construct activity
      */
     public function __construct()
     {
@@ -82,43 +90,51 @@ class Member implements \JsonSerializable
     }
 
     /**
-     * @return int
+     * @return \DateTime
      */
-    public function getUsersUid()
+    public function getDate()
     {
-        return ($user = $this->getUser()) != null ? $user->getUid() : null;
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
     }
 
     /**
      * @return string
      */
-    public function getRole()
+    public function getEventType()
     {
-        return $this->role;
+        return $this->eventType;
     }
 
     /**
-     * @param string $role
+     * @param string $eventType
      */
-    public function setRole($role)
+    public function setEventType($eventType)
     {
-        $this->role = $role;
+        $this->eventType = $eventType;
     }
 
     /**
-     * @return Register
+     * @return mixed
      */
-    public function getRegister()
+    public function getRef()
     {
-        return $this->register;
+        return $this->ref;
     }
 
     /**
-     * @param Register $register
+     * @param mixed $ref
      */
-    public function setRegister($register)
+    public function setRef($ref)
     {
-        $this->register = $register;
+        $this->ref = $ref;
     }
 
     /**
@@ -128,9 +144,11 @@ class Member implements \JsonSerializable
     function jsonSerialize()
     {
         return [
-            'id' => $this->getUid(),
-            'user' => $this->getUser()->getUid(),
-            'role' => $this->getRole()
+            'id' => $this->uid,
+            'user' => $this->user->getUid(),
+            'event' => $this->eventType,
+            'date' => $this->date,
+            'ref' => $this->getRef()
         ];
     }
 }

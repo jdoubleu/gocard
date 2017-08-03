@@ -5,6 +5,14 @@ privilegeTargets:
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(?!(initialize)?(?i)(addUser))(.*)(?<!initialize)Action())'
     'GoCardTeam.GoCard:RegistersController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\RegistersController->.*Action())'
+    'GoCardTeam.GoCard:CardsController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardsController->.*Action())'
+    'GoCardTeam.GoCard:MembersController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\MembersController->.*Action())'
+    'GoCardTeam.GoCard:ActivitiesController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\ActivitiesController->.*Action())'
+    'GoCardTeam.GoCard:CardStatisticsController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardStatisticsController->.*Action())'
 
 roles:
 
@@ -15,4 +23,16 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'GoCardTeam.GoCard:RegistersController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCard:CardsController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCard:MembersController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCard:ActivitiesController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCard:CardStatisticsController.restrictedActions'
         permission: GRANT

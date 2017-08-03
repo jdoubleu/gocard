@@ -16,4 +16,4 @@
   subRoutes:
     'APISubroutes':
       package: 'GoCardTeam.GoCardApi'
-      suffix:  'Api'
+      suffix:  'Api.v1'
