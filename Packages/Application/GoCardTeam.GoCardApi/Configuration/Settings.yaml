@@ -1,3 +1,12 @@
+# Package specific settings
+GoCardTeam:
+  GoCardApi:
+    security:
+      accessToken:
+        # Lifetime (in seconds) of a newly generated access token
+        lifetime: 3600
+
+# Framework settings and adjustments
 Neos:
   Flow:
     mvc:

@@ -24,9 +24,10 @@ class AccountFactory extends DefaultAccountFactory
     const AccessTokenProviderName = 'AccessTokenAuthenticationProvider';
 
     /**
-     * Default timeout TimeInterval for AccessTokens
+     * @Flow\InjectConfiguration(path="security.accessToken.lifetime")
+     * @var string
      */
-    const AccessTokenExpiration = "PT1H";
+    protected $accessTokenLifetime;
 
     /**
      * @var AccountRepository
@@ -57,7 +58,7 @@ class AccountFactory extends DefaultAccountFactory
             $accessToken->setAccountIdentifier($token);
             $accessToken->setCredentialsSource($account->getAccountIdentifier());
             $accessToken->setAuthenticationProviderName(self::AccessTokenProviderName);
-            $accessToken->setExpirationDate((new \DateTime())->add(new \DateInterval(self::AccessTokenExpiration)));
+            $accessToken->setExpirationDate((new \DateTime())->add(new \DateInterval('PT' . $this->accessTokenLifetime . 'S')));
 
             // Persist access token
             $this->accountRepository->add($accessToken);
