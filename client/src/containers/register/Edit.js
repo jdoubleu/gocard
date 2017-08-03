@@ -22,7 +22,8 @@ const Edit = ({register}) => {
             </Headline>
 
             <Card block>
-                <RegisterForm onSubmit={handleSubmit} initialValues={register} submitLabel="Speichern"/>
+                <RegisterForm onSubmit={handleSubmit} initialValues={register} submitLabel="Speichern"
+                              cancelRoute={`/register/${register.id}`} cancelLabel="Abbrechen"/>
             </Card>
         </Col>
     )

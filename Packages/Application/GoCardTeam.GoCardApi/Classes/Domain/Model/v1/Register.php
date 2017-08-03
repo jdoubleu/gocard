@@ -74,7 +74,7 @@ class Register implements \JsonSerializable
     /**
      * @return int
      */
-    public function getUid(): ?int
+    public function getUid()
     {
         return $this->uid;
     }
@@ -82,7 +82,7 @@ class Register implements \JsonSerializable
     /**
      * @param int $uid
      */
-    public function setUid(int $uid)
+    public function setUid($uid)
     {
         $this->uid = $uid;
     }
@@ -90,7 +90,7 @@ class Register implements \JsonSerializable
     /**
      * @return User
      */
-    public function getOwner(): ?User
+    public function getOwner()
     {
         return $this->owner;
     }
@@ -98,7 +98,7 @@ class Register implements \JsonSerializable
     /**
      * @param User $owner
      */
-    public function setOwner(User $owner)
+    public function setOwner($owner)
     {
         $this->owner = $owner;
     }
@@ -106,7 +106,7 @@ class Register implements \JsonSerializable
     /**
      * @return int
      */
-    public function getOwnersUid(): ?int
+    public function getOwnersUid()
     {
         return ($owner = $this->getOwner()) != null ? $owner->getUid() : null;
     }
@@ -114,7 +114,7 @@ class Register implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getCrdate(): ?\DateTime
+    public function getCrdate()
     {
         return $this->crdate;
     }
@@ -122,7 +122,7 @@ class Register implements \JsonSerializable
     /**
      * @param \DateTime $crdate
      */
-    public function setCrdate(\DateTime $crdate)
+    public function setCrdate($crdate)
     {
         $this->crdate = $crdate;
     }
@@ -130,7 +130,7 @@ class Register implements \JsonSerializable
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -138,7 +138,7 @@ class Register implements \JsonSerializable
     /**
      * @param string $title
      */
-    public function setTitle(string $title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -146,7 +146,7 @@ class Register implements \JsonSerializable
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -154,7 +154,7 @@ class Register implements \JsonSerializable
     /**
      * @param string $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }

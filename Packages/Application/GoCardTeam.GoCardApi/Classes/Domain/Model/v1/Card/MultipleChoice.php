@@ -14,6 +14,7 @@ class MultipleChoice extends AbstractCardContent
 
     /**
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\ArrayItemsNotEmptyValidator")
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @ORM\Column(type="simple_array")
      * @var array
@@ -22,6 +23,7 @@ class MultipleChoice extends AbstractCardContent
 
     /**
      * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\ArrayItemsNotEmptyValidator")
      * @Flow\Validate(type="GoCardTeam\GoCardApi\Validation\Validator\UniqueArrayItemsValidator")
      * @var array
      */
@@ -31,7 +33,7 @@ class MultipleChoice extends AbstractCardContent
      * @param array $correctAnswers
      * @param array $options
      */
-    public function __construct(array $correctAnswers, array $options)
+    public function __construct($correctAnswers, $options)
     {
         $this->correctAnswers = $correctAnswers;
         $this->options = $options;
@@ -40,7 +42,7 @@ class MultipleChoice extends AbstractCardContent
     /**
      * @return array
      */
-    public function getCorrectAnswers(): array
+    public function getCorrectAnswers()
     {
         return $this->correctAnswers;
     }
@@ -48,7 +50,7 @@ class MultipleChoice extends AbstractCardContent
     /**
      * @return array
      */
-    public function getOptions(): array
+    public function getOptions()
     {
         return $this->options;
     }

@@ -4,9 +4,9 @@
  * API Client
  */
 
-import request from "request";
-import Q from "q";
-import EventEmitter from "events";
+import request from 'request';
+import Q from 'q';
+import EventEmitter from 'events';
 
 /*
  * Helper functions
@@ -14,7 +14,7 @@ import EventEmitter from "events";
 function mergeQueryParams(parameters, queryParameters) {
     if (parameters.$queryParameters) {
         Object.keys(parameters.$queryParameters)
-            .forEach(function (parameterName) {
+            .forEach(function(parameterName) {
                 queryParameters[parameterName] = parameters.$queryParameters[parameterName]
             });
     }
@@ -82,7 +82,7 @@ class ApiClient extends EventEmitter {
         if (typeof(body) === 'object' && !(body instanceof Buffer)) {
             req.json = true;
         }
-        request(req, function (error, response, body) {
+        request(req, function(error, response, body) {
             if (error) {
                 emit.apply(this, ['requestFailure', actionName, req].concat(Array.from(arguments)));
                 deferred.reject(error);
@@ -90,8 +90,7 @@ class ApiClient extends EventEmitter {
                 if (/^application\/(.*\\+)?json/.test(response.headers['content-type'])) {
                     try {
                         body = JSON.parse(body);
-                    } catch (e) {
-                    }
+                    } catch (e) {}
                 }
                 emit.apply(this, ['requestSuccess', actionName, ev, body, req].concat(Array.from(arguments)));
                 if (!ev.proceed) {
@@ -131,7 +130,6 @@ class ApiClient extends EventEmitter {
         this.apiKey.headerOrQueryName = headerOrQueryName;
         this.apiKey.isQuery = isQuery;
     }
-
     /**
      * Set Auth headers
      *
@@ -191,8 +189,46 @@ const Models = {
         'register': 'number',
         'tags': 'array',
         'question': 'string',
-        'type': [/* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */],
-        'content': 'object',
+        'type': [ /* "single-choice" | "multiple-choice" | "text-input" | "self-validate" */ ],
+        'content': [ /* {"$ref":"#/definitions/SingleChoice"} | {"$ref":"#/definitions/MultipleChoice"} | {"$ref":"#/definitions/TextInput"} | {"$ref":"#/definitions/SelfValidate"} */ ],
+    },
+
+    /**
+     * SingleChoice
+     *
+     * CardContent for single-choice
+     */
+    SingleChoice: {
+        'correct': 'number',
+        'options': 'array',
+    },
+
+    /**
+     * MultipleChoice
+     *
+     * CardContent for multiple-choice
+     */
+    MultipleChoice: {
+        'corrects': 'array',
+        'options': 'array',
+    },
+
+    /**
+     * TextInput
+     *
+     * CardContent for text-input
+     */
+    TextInput: {
+        'answer': 'string',
+    },
+
+    /**
+     * SelfValidate
+     *
+     * CardContent for self-validate
+     */
+    SelfValidate: {
+        'answer': 'string',
     },
 
     /**
@@ -202,8 +238,8 @@ const Models = {
         'id': 'number',
         'displayName': 'string',
         'email': 'string',
-        'status': [/* "new" | "verified" | "active" */],
-        'accountType': [/* "local" | "extern" */],
+        'status': [ /* "new" | "verified" | "active" */ ],
+        'accountType': [ /* "local" | "extern" */ ],
     },
 
     /**
@@ -222,7 +258,7 @@ const Models = {
     RegisterActivity: {
         'id': 'number',
         'initiator': 'number',
-        'type': [/* "view" | "run" */],
+        'type': [ /* "view" | "run" */ ],
         'date': 'string',
     },
 
@@ -481,6 +517,52 @@ export function findCardsByRegister(parameters) {
 }
 
 /**
+ * Creates a single new cards and adds it to a register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID register the cards should be added to
+ * @param {} parameters.card - Card to be created
+ */
+export function addCardToRegister(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/cards/';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['card'] !== undefined) {
+        body = parameters['card'];
+    }
+
+    if (parameters['card'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: card'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('addCardToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Creates multiple new cards and adds them to a register
  *
  * @param {object} parameters - method options and parameters
@@ -493,7 +575,7 @@ export function addCardsToRegister(parameters) {
     }
     let deferred = Q.defer();
     let domain = client.domain,
-        path = '/registers/{registerId}/cards/';
+        path = '/registers/{registerId}/cards/multiple';
     let body = {},
         queryParameters = {},
         headers = {},
@@ -563,52 +645,6 @@ export function findMembersByRegister(parameters) {
 }
 
 /**
- * Updates all members with their permission of this register
- *
- * @param {object} parameters - method options and parameters
- * @param {integer} parameters.registerId - ID of the register
- * @param {} parameters.members - Members to be updated
- */
-export function updateMembersOfRegister(parameters) {
-    if (parameters === undefined) {
-        parameters = {};
-    }
-    let deferred = Q.defer();
-    let domain = client.domain,
-        path = '/registers/{registerId}/members/';
-    let body = {},
-        queryParameters = {},
-        headers = {},
-        form = {};
-
-    headers = client.setAuthHeaders(headers);
-    queryParameters = client.setAuthQueryParams(queryParameters);
-    headers['Accept'] = ['application/json'];
-
-    path = path.replace('{registerId}', parameters['registerId']);
-
-    if (parameters['registerId'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: registerId'));
-        return deferred.promise;
-    }
-
-    if (parameters['members'] !== undefined) {
-        body = parameters['members'];
-    }
-
-    if (parameters['members'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: members'));
-        return deferred.promise;
-    }
-
-    queryParameters = mergeQueryParams(parameters, queryParameters);
-
-    client.request('updateMembersOfRegister', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
-
-    return deferred.promise;
-}
-
-/**
  * Adds a new member to this register
  *
  * @param {object} parameters - method options and parameters
@@ -650,6 +686,98 @@ export function addMemberToRegister(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('addMemberToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Adds multiple new members to the given register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID of the register
+ * @param {} parameters.member - Member to be added
+ */
+export function addMembersToRegister(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/members/multiple';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['member'] !== undefined) {
+        body = parameters['member'];
+    }
+
+    if (parameters['member'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: member'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('addMembersToRegister', 'POST', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Updates all members with their permission of this register
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {integer} parameters.registerId - ID of the register
+ * @param {} parameters.members - Members to be updated
+ */
+export function updateMembersOfRegister(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/registers/{registerId}/members/multiple';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    path = path.replace('{registerId}', parameters['registerId']);
+
+    if (parameters['registerId'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: registerId'));
+        return deferred.promise;
+    }
+
+    if (parameters['members'] !== undefined) {
+        body = parameters['members'];
+    }
+
+    if (parameters['members'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: members'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('updateMembersOfRegister', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
@@ -917,44 +1045,6 @@ export function getRegisterActivitiesForUser(parameters) {
 }
 
 /**
- * Updates multiple cards
- *
- * @param {object} parameters - method options and parameters
- * @param {} parameters.cards - Cards to be updated
- */
-export function updateCards(parameters) {
-    if (parameters === undefined) {
-        parameters = {};
-    }
-    let deferred = Q.defer();
-    let domain = client.domain,
-        path = '/cards/';
-    let body = {},
-        queryParameters = {},
-        headers = {},
-        form = {};
-
-    headers = client.setAuthHeaders(headers);
-    queryParameters = client.setAuthQueryParams(queryParameters);
-    headers['Accept'] = ['application/json'];
-
-    if (parameters['cards'] !== undefined) {
-        body = parameters['cards'];
-    }
-
-    if (parameters['cards'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: cards'));
-        return deferred.promise;
-    }
-
-    queryParameters = mergeQueryParams(parameters, queryParameters);
-
-    client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
-
-    return deferred.promise;
-}
-
-/**
  * Adds a new single card to a given register
  *
  * @param {object} parameters - method options and parameters
@@ -1109,6 +1199,44 @@ export function deleteCard(parameters) {
 }
 
 /**
+ * Updates multiple cards
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {} parameters.cards - Cards to be updated
+ */
+export function updateCards(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/cards/multiple';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    if (parameters['cards'] !== undefined) {
+        body = parameters['cards'];
+    }
+
+    if (parameters['cards'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: cards'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('updateCards', 'PUT', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Create a new user
  *
  * @param {object} parameters - method options and parameters
@@ -1221,7 +1349,7 @@ export function logoutUser(parameters) {
 /**
  * Returns user data of the local user with the given ID.
 
- This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
 
  *
  * @param {object} parameters - method options and parameters
@@ -1306,7 +1434,7 @@ export function updateUser(parameters) {
 /**
  * Deletes a user from the system.
 
- After this the user will automatically be logged out
+After this the user will automatically be logged out
 
  *
  * @param {object} parameters - method options and parameters
@@ -1381,7 +1509,7 @@ export function getMembersByUser(parameters) {
 /**
  * Returns user data of the local user with the given email address.
 
- This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
+This call will response with 403 if the access token is not allowed to fetch information about any user even if the user does not exist. This behavious prevents information leaks to outstanding api calls.
 
  *
  * @param {object} parameters - method options and parameters
@@ -1421,7 +1549,7 @@ export function getUserByEmail(parameters) {
 
 /**
  * Generates a link with a temporary reset token which will be send to
- the users email address.
+the users email address.
 
  *
  * @param {object} parameters - method options and parameters
@@ -1460,7 +1588,7 @@ export function requestPasswordReset(parameters) {
 /**
  * Updates the user's password
 
- You need to get a resetToken first
+You need to get a resetToken first
 
  *
  * @param {object} parameters - method options and parameters

@@ -1,8 +1,9 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form} from "reactstrap";
+import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
 import InputMembers from "./fields/inputMembers";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
@@ -15,7 +16,7 @@ const validate = values => {
 };
 
 const RegisterForm = props => {
-    const {error, handleSubmit, submitting, submitLabel} = props;
+    const {error, handleSubmit, submitting, submitLabel, cancelRoute, cancelLabel} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -45,9 +46,16 @@ const RegisterForm = props => {
                 label="Mitglieder"
             />
 
-            <Button outline block color="primary" type="submit" disabled={submitting}>
-                {submitLabel}
-            </Button>
+            <Row>
+                <Col className="pr-1">
+                    <Button outline block color="primary" type="submit" disabled={submitting}>
+                        {submitLabel}
+                    </Button>
+                </Col>
+                <Col className="pl-1">
+                    <Link className="btn btn-outline-primary btn-block" to={cancelRoute}>{cancelLabel}</Link>
+                </Col>
+            </Row>
         </Form>
     )
 };
