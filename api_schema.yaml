@@ -663,6 +663,9 @@ paths:
           description: Not allowed to create this card in the given register
         '404':
           description: Register not found
+      security:
+        - api_key: []
+        - api_key2: []
   '/cards/{cardId}':
     get:
       tags:
