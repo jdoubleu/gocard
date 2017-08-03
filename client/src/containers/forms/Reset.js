@@ -1,8 +1,7 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, CardText, Form} from "reactstrap";
+import {Alert, Button, Form} from "reactstrap";
 import InputField from "./fields/input";
-import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
