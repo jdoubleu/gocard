@@ -10,7 +10,7 @@ import MemberBar from "./member/Bar";
 import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister} from "../../selectors/index";
+import {makeGetCardIdsByRegister, makeGetTagsByRegister} from "../../selectors";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -45,7 +45,7 @@ class Detail extends React.Component {
                         <CardText>
                             <Progress registerId={register.id}/>
                         </CardText>
-N                        <CardTitle>Benutzer des Registers</CardTitle>
+                        <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
                             <MemberBar registerId={register.id}/>
                         </CardText>
@@ -75,11 +75,13 @@ Detail.propTypes = {};
 
 const makeMapStateToProps = () => {
     const getCardIdsByRegister = makeGetCardIdsByRegister();
+    const getTagsByRegisterByKeyword = makeGetTagsByRegister();
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
         return {
             register: state.entities.registers.byId[registerId] || {},
-            cardIds: getCardIdsByRegister(state, props)
+            cardIds: getCardIdsByRegister(state, props),
+            tags: getTagsByRegisterByKeyword(state, props)
         }
     };
     return mapStateToProps
