@@ -1,5 +1,18 @@
+# Package specific settings
+GoCardTeam:
+  GoCardApi:
+    security:
+      accessToken:
+        # Lifetime (in seconds) of a newly generated access token
+        lifetime: 3600
+
+# Framework settings and adjustments
 Neos:
   Flow:
+    core:
+      applicationPackageKey: 'GoCardTeam.GoCardApi'
+      applicationName: 'GoCard'
+
     mvc:
       routes:
         'GoCardTeam.GoCardApi':
@@ -39,3 +52,6 @@ Neos:
             'enum':
               dbType: 'enum'
               className: 'Doctrine\DBAL\Types\StringType'
+            'consistent_bigint':
+              dbType: 'bigint'
+              className: 'GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\v1\BigIntType'

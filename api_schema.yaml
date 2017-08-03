@@ -10,14 +10,16 @@ tags:
     description: A collection of multiple cards belonging to one topic
   - name: cards
     description: Single cards containing questions
+  - name: card statistics
+    description: Statistic for a card for a user
   - name: users
     description: Operations about user
   - name: passwords
     description: Security Operations for changing a user's password
   - name: members
     description: Members are users having access to registers
-  - name: register activity
-    description: Activity of a register
+  - name: activity
+    description: Activity or log of register and card actions
 schemes:
   - http
 securityDefinitions:
@@ -26,6 +28,11 @@ securityDefinitions:
     type: apiKey
     name: access_token
     in: query
+  api_key2:
+    description: Same as the default api key but in header
+    type: apiKey
+    name: X-Access-Token
+    in: header
 paths:
   /registers:
     get:
@@ -49,6 +56,7 @@ paths:
           description: No registers found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -77,6 +85,7 @@ paths:
             $ref: '#/definitions/ValidationResponse'
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}':
     get:
       tags:
@@ -104,6 +113,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -137,6 +147,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - registers
@@ -163,6 +174,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/cards/':
     get:
       tags:
@@ -195,6 +207,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -232,6 +245,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/cards/multiple':
     post:
       tags:
@@ -275,6 +289,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/':
     get:
       tags:
@@ -307,6 +322,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -344,6 +360,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/multiple':
     post:
       tags:
@@ -386,6 +403,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
     put:
       tags:
         - registers
@@ -423,6 +441,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/{memberId}':
     post:
       tags:
@@ -459,6 +478,7 @@ paths:
           description: Register or member not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - registers
@@ -492,6 +512,7 @@ paths:
           description: Register or member not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/findByUser':
     get:
       tags:
@@ -530,20 +551,41 @@ paths:
           description: Register or User with this ID not found
       security:
         - api_key: []
-  '/registers/{registerId}/activities/':
+        - api_key2: []
+  /activities:
     get:
       tags:
-        - registers
-        - register activity
-      summary: Get activities for a register
-      description: Lists all activities of the register
-      operationId: getRegisterActivities
+        - activity
+      summary: Get all activities
+      description: Lists all activities
+      operationId: getActivities
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Activity'
+        '400':
+          description: Invalid activity ID supplied
+      security:
+        - api_key: []
+        - api_key2: []
+  '/activities/{activityId}':
+    get:
+      tags:
+        - activity
+      summary: Get single activity
+      description: Returns a single activity
+      operationId: getActivityById
       produces:
         - application/json
       parameters:
-        - name: registerId
+        - name: activityId
           in: path
-          description: ID of the register
+          description: ID of the activity
           type: integer
           format: int64
           required: true
@@ -551,72 +593,30 @@ paths:
         '200':
           description: Successful request
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/RegisterActivity'
+            $ref: '#/definitions/Activity'
         '400':
-          description: Invalid register ID supplied
+          description: Invalid activity ID supplied
         '403':
-          description: Not allowed to see activity of this register
+          description: Not allowed to see this activity
         '404':
-          description: Register or not found
+          description: Activity not found
       security:
         - api_key: []
-    post:
+        - api_key2: []
+  '/activities/findByEvent':
+    get:
       tags:
-        - registers
-        - register activity
-      summary: Add new activity
-      description: Registers a new activity of a user for the given register
-      operationId: createRegisterActivityOfUserForRegister
+        - activity
+      summary: Get single activity
+      description: Returns a single activity filtered by event type
+      operationId: getActivityByEvent
       produces:
         - application/json
       parameters:
-        - name: registerId
-          in: path
-          description: ID of the register
-          type: integer
-          format: int64
-          required: true
-        - name: userId
+        - name: eventName
           in: query
-          description: ID of the user
-          type: integer
-          format: int64
-          required: true
-      responses:
-        '200':
-          description: Successfully registered activity
-        '400':
-          description: Invalid register or user ID supplied
-        '403':
-          description: Not allowed to register activities for this user
-        '404':
-          description: Register or user not found
-      security:
-        - api_key: []
-  '/registers/{registerId}/activities/{userId}':
-    get:
-      tags:
-        - registers
-        - register activity
-      summary: Get activities of a user for a register
-      description: Lists all activities of the register of the given user
-      operationId: getRegisterActivitiesForUser
-      produces:
-        - application/json
-      parameters:
-        - name: registerId
-          in: path
-          description: ID of the register
-          type: integer
-          format: int64
-          required: true
-        - name: userId
-          in: path
-          description: ID of the user
-          type: integer
-          format: int64
+          description: Event type/name to filter activities by
+          type: string
           required: true
       responses:
         '200':
@@ -624,15 +624,16 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/RegisterActivity'
+              $ref: '#/definitions/Activity'
         '400':
-          description: Invalid register or user ID supplied
+          description: Invalid event type or name supplied
         '403':
-          description: Not allowed to see activity of this user
+          description: Not allowed to see this activity
         '404':
-          description: Register or user not found
+          description: Event not found
       security:
         - api_key: []
+        - api_key2: []
   /cards/:
     post:
       tags:
@@ -691,6 +692,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - cards
@@ -724,6 +726,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - cards
@@ -750,6 +753,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
   /cards/multiple:
     put:
       tags:
@@ -781,6 +785,149 @@ paths:
           description: Cards not found
       security:
         - api_key: []
+        - api_key2: []
+  '/cards/statistics/{statisticId}':
+    get:
+      tags:
+        - cards
+        - card statistics
+      summary: Get card statistic
+      description: Returns the statistic of card of a given user
+      operationId: getCardStatisticById
+      produces:
+        - application/json
+      parameters:
+        - name: statisticId
+          in: path
+          description: ID of the statistic
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardStatistic'
+        '400':
+          description: Invalid ID's supplied
+        '403':
+          description: Not allowed to view this statistic
+      security:
+        - api_key: []
+        - api_key2: []
+  '/cards/{cardId}/statistics/findByUser':
+    get:
+      tags:
+        - cards
+        - card statistics
+      summary: Get card statistic
+      description: Returns the statistic of card of a given user
+      operationId: getCardStatisticByCardAndUser
+      produces:
+        - application/json
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of the card
+          type: integer
+          format: int64
+          required: true
+        - name: userId
+          in: query
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardStatistic'
+        '400':
+          description: Invalid ID's supplied
+        '403':
+          description: Not allowed to view this statistic
+      security:
+        - api_key: []
+        - api_key2: []
+  '/cards/{cardId}/statistics':
+    post:
+      tags:
+        - cards
+        - card statistics
+      summary: Create card statistic
+      description: Records a new statistic for a card
+      operationId: createCardStatistic
+      produces:
+        - application/json
+      parameters:
+        - name: cardId
+          in: path
+          description: ID of the card
+          type: integer
+          format: int64
+          required: true
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CardStatistic'
+      responses:
+        '200':
+          description: Successfully created statistics record
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+        '403':
+          description: Not allowed to add a statistic record for this card and user
+        '404':
+          description: Card not found
+      security:
+        - api_key: []
+        - api_key2: []
+  '/cards/statistics/findByRegister':
+    get:
+      tags:
+        - cards
+        - card statistics
+        - registers
+      summary: Get all card statistic of register
+      description: Returns the statistic of all cards of the given register and the user
+      operationId: getCardStatisticByRegisterAndUser
+      produces:
+        - application/json
+      parameters:
+        - name: register
+          in: query
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: user
+          in: query
+          description: ID of the user
+          type: integer
+          format: int64
+          required: true
+      responses:
+        '200':
+          description: Successful request
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CardStatistic'
+        '400':
+          description: Invalid ID's supplied
+        '403':
+          description: Not allowed to view this register
+      security:
+        - api_key: []
+        - api_key2: []
   /users:
     post:
       tags:
@@ -849,15 +996,6 @@ paths:
           description: Successfully logged in
           schema:
             $ref: '#/definitions/AccessTokenResponse'
-          headers:
-            X-Rate-Limit:
-              type: integer
-              format: int32
-              description: calls per hour allowed by the user
-            X-Expires-After:
-              type: string
-              format: date-time
-              description: date in UTC when token expires
         '400':
           description: Invalid email/password supplied
   /users/logout:
@@ -875,6 +1013,7 @@ paths:
           description: Successfully logged out
       security:
         - api_key: []
+        - api_key2: []
   '/users/{userId}':
     get:
       tags:
@@ -907,6 +1046,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - users
@@ -941,6 +1081,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - users
@@ -970,6 +1111,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
   '/users/{userId}/memberships':
     get:
       tags:
@@ -1002,6 +1144,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
   '/users/findByEmail':
     get:
       tags:
@@ -1034,6 +1177,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
   /users/passwordReset:
     post:
       tags:
@@ -1106,6 +1250,7 @@ paths:
           description: Invalid reset token
       security:
         - api_key: []
+        - api_key2: []
 definitions:
   Register:
     type: object
@@ -1282,35 +1427,72 @@ definitions:
     required:
       - user
       - role
-  RegisterActivity:
+  Activity:
     type: object
     properties:
       id:
         type: integer
         format: int64
-      initiator:
+      user:
         type: integer
         format: int64
         description: User ID of the initiator
-      'type':
-        type: string
-        enum:
-          - 'view'
-          - 'run'
       date:
         type: string
-        format: UTC time string
+        format: date-time
+      event:
+        type: string
+        enum:
+          - 'create_register'
+          - 'update_register'
+          - 'delete_register'
+          - 'create_card'
+          - 'update_card'
+          - 'delete_card'
+      ref:
+        type: object
+        description: Reference values of this event (e.g. the Card id for any 'card_*' event)
     required:
       - id
-      - initiator
-      - type
+      - user
       - date
+      - event
+  CardStatistic:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      user:
+        type: integer
+        format: int64
+        description: User ID
+      card:
+        type: integer
+        format: int64
+        description: Card ID
+      value:
+        type: integer
+        description: Value of this statistics
+      date:
+        type: string
+        format: date-time
+    required:
+      - user
+      - card
+      - value
   AccessTokenResponse:
     type: object
     properties:
       access_token:
         type: string
         readOnly: true
+      expires_after:
+        type: string
+        format: date-time
+      reate_limit:
+        type: integer
+        description: calls per hour allowed by the user
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid
