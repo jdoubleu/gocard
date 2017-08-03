@@ -28,6 +28,9 @@ Neos:
       routes:
         'Neos.Flow': TRUE
 
+    http:
+      applicationToken: 'Off'
+
   # You might need to uncomment the following lines and specify
   # the location of the PHP binary manually.
 #    core:

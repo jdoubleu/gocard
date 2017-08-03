@@ -9,6 +9,10 @@ GoCardTeam:
 # Framework settings and adjustments
 Neos:
   Flow:
+    core:
+      applicationPackageKey: 'GoCardTeam.GoCardApi'
+      applicationName: 'GoCard'
+
     mvc:
       routes:
         'GoCardTeam.GoCardApi':
