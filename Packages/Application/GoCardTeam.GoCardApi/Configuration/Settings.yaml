@@ -52,3 +52,6 @@ Neos:
             'enum':
               dbType: 'enum'
               className: 'Doctrine\DBAL\Types\StringType'
+            'consistent_bigint':
+              dbType: 'bigint'
+              className: 'GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\v1\BigIntType'
