@@ -55,3 +55,7 @@ Neos:
             'consistent_bigint':
               dbType: 'bigint'
               className: 'GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\v1\BigIntType'
+
+    aop:
+      globalObjects:
+        userContext: GoCardTeam\GoCardApi\Context\v1\UserContext
