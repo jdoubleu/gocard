@@ -1052,6 +1052,8 @@ export function addCard(parameters) {
         headers = {},
         form = {};
 
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
     headers['Accept'] = ['application/json'];
 
     if (parameters['body'] !== undefined) {
