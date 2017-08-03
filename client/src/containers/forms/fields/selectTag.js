@@ -18,6 +18,7 @@ const selectTag = ({input, options, label, disableLabel, toolTip, type, meta: {t
                 {label}
             </Label>
         }
+
         <div className="form-control border-0 p-0">
             {
                 options.map((option) =>
@@ -27,6 +28,10 @@ const selectTag = ({input, options, label, disableLabel, toolTip, type, meta: {t
                         {option} {_.includes(input.value, option) ? '\u2714' : ''}
                     </Button>
                 )
+            }
+            {
+                options.length <= 0 &&
+                <span className="text-muted">Es wurden noch keine Tags hinzugefügt.</span>
             }
         </div>
         {
