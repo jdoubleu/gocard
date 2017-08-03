@@ -39,7 +39,7 @@ class AccessToken extends AbstractToken implements SessionlessTokenInterface
         try {
             $accessToken = $actionRequest->getArgument('access_token');
         } catch (NoSuchArgumentException $e) {
-            return;
+            $accessToken = $actionRequest->getHttpRequest()->getHeader('X-Access-Token');
         }
 
         if (!empty($accessToken)) {

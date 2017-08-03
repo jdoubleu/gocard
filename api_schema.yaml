@@ -28,6 +28,11 @@ securityDefinitions:
     type: apiKey
     name: access_token
     in: query
+  api_key2:
+    description: Same as the default api key but in header
+    type: apiKey
+    name: X-Access-Token
+    in: header
 paths:
   /registers:
     get:
@@ -51,6 +56,7 @@ paths:
           description: No registers found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -79,6 +85,7 @@ paths:
             $ref: '#/definitions/ValidationResponse'
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}':
     get:
       tags:
@@ -106,6 +113,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -139,6 +147,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - registers
@@ -165,6 +174,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/cards/':
     get:
       tags:
@@ -197,6 +207,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -234,6 +245,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/cards/multiple':
     post:
       tags:
@@ -277,6 +289,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/':
     get:
       tags:
@@ -309,6 +322,7 @@ paths:
           description: Register with this ID not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - registers
@@ -346,6 +360,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/multiple':
     post:
       tags:
@@ -388,6 +403,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
     put:
       tags:
         - registers
@@ -425,6 +441,7 @@ paths:
           description: Register not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/{memberId}':
     post:
       tags:
@@ -461,6 +478,7 @@ paths:
           description: Register or member not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - registers
@@ -494,6 +512,7 @@ paths:
           description: Register or member not found
       security:
         - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/findByUser':
     get:
       tags:
@@ -532,6 +551,7 @@ paths:
           description: Register or User with this ID not found
       security:
         - api_key: []
+        - api_key2: []
   /activities:
     get:
       tags:
@@ -552,6 +572,7 @@ paths:
           description: Invalid activity ID supplied
       security:
         - api_key: []
+        - api_key2: []
   '/activities/{activityId}':
     get:
       tags:
@@ -581,6 +602,7 @@ paths:
           description: Activity not found
       security:
         - api_key: []
+        - api_key2: []
   '/activities/findByEvent':
     get:
       tags:
@@ -611,6 +633,7 @@ paths:
           description: Event not found
       security:
         - api_key: []
+        - api_key2: []
   /cards/:
     post:
       tags:
@@ -669,6 +692,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - cards
@@ -702,6 +726,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - cards
@@ -728,6 +753,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
   /cards/multiple:
     put:
       tags:
@@ -759,6 +785,7 @@ paths:
           description: Cards not found
       security:
         - api_key: []
+        - api_key2: []
   '/cards/statistics/{statisticId}':
     get:
       tags:
@@ -789,6 +816,7 @@ paths:
           description: Not allowed to view this statistic
       security:
         - api_key: []
+        - api_key2: []
   '/cards/{cardId}/statistics/findByUser':
     get:
       tags:
@@ -825,6 +853,7 @@ paths:
           description: Not allowed to view this statistic
       security:
         - api_key: []
+        - api_key2: []
   '/cards/{cardId}/statistics':
     post:
       tags:
@@ -860,6 +889,7 @@ paths:
           description: Card not found
       security:
         - api_key: []
+        - api_key2: []
   '/cards/statistics/findByRegister':
     get:
       tags:
@@ -897,6 +927,7 @@ paths:
           description: Not allowed to view this register
       security:
         - api_key: []
+        - api_key2: []
   /users:
     post:
       tags:
@@ -982,6 +1013,7 @@ paths:
           description: Successfully logged out
       security:
         - api_key: []
+        - api_key2: []
   '/users/{userId}':
     get:
       tags:
@@ -1014,6 +1046,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
     post:
       tags:
         - users
@@ -1048,6 +1081,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
     delete:
       tags:
         - users
@@ -1077,6 +1111,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
   '/users/{userId}/memberships':
     get:
       tags:
@@ -1109,6 +1144,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
   '/users/findByEmail':
     get:
       tags:
@@ -1141,6 +1177,7 @@ paths:
           description: User not found
       security:
         - api_key: []
+        - api_key2: []
   /users/passwordReset:
     post:
       tags:
@@ -1213,6 +1250,7 @@ paths:
           description: Invalid reset token
       security:
         - api_key: []
+        - api_key2: []
 definitions:
   Register:
     type: object
