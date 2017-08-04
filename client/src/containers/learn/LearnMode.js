@@ -4,32 +4,51 @@ import Headline from "../../components/shared/headline";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
-import {makeGetCardsByRegister} from "../../selectors/index";
+import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
+import {makeGetCardsByRegister, makeGetNextCard} from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
-import {setLastResult, setShowResult} from "../../actions/ui";
+import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
 import FeedbackCard from "../../containers/learn/FeedbackCard";
 
-const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesSingle, showResult, lastResult ,handleFeedbackClick}) => {
+const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect}) => {
 
-    const handleSubmit = (values, dispatch) => {
+    const CalcCardStatistic = (correct) =>{
+        //Load stats for current card
+        //Calculate new Stats
+        //return new stats object
+    };
+
+    const handleSubmitSingleChoice = (values, dispatch) => {
         if(currentCard.type === "single-choice") {
+            let res;
             if(valuesSingle !== undefined && currentCard.content.correct === _.parseInt(valuesSingle.userAnswer)) {
                 console.log("Correct");
+                res = true;
             } else {
                 console.log("False");
+                res = false;
             }
+            dispatch(setLastCorrect(res));
             dispatch(setLastResult(_.parseInt(valuesSingle.userAnswer)));
+
             if(mode !== "TEST_MODE") {
-                dispatch(setShowResult(true))
+                console.log("JEEEPPPP");
+                dispatch(setShowResult(true));
+            }else {
+                console.log("NOOOOOOPPPPEEE");
+                dispatch(addResult(currentCard.id, _.parseInt(valuesSingle.userAnswer), res));
             }
         }
     };
 
+    const handleSubmitMultipleChoice = (values, dispatch) => {
+        if(currentCard.type === "multiple-choice") {
+            console.log("multiple",valuesMultiple);
+        }
+    };
+
     const matchTitle = () =>{
-        console.log("mode", mode);
-        console.log("cards", cards);
-        console.log("currentCard", currentCard);
         if(mode === "NORMAL_MODE"){
             return "Normaler Modus";
         }else if(mode === "POWER_MODE"){
@@ -46,12 +65,21 @@ const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesS
             </Headline>
             <Card block>
                 {
-                    mode !== "TEST_MODE" && showResult === true &&
-                    <FeedbackCard card={currentCard} userAnswer={lastResult} handleClick={handleFeedbackClick}/>
+                    currentCard && mode !== "TEST_MODE" && showResult === true &&
+                    <FeedbackCard card={currentCard} userAnswer={lastResult} handleClick={() => handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}/>
                 }
                 {
-                    currentCard.type === "single-choice" && showResult === false &&
-                    <SingleChoiceCardForm onSubmit={handleSubmit} card={currentCard}/>
+                    currentCard && currentCard.type === "single-choice" && showResult === false &&
+                    <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard}/>
+                }
+                {
+                    currentCard && currentCard.type === "multiple-choice" && showResult === false &&
+                    <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard}/>
+                }
+                {
+                    !currentCard &&
+                    <h1>done</h1>
+                    
                 }
             </Card>
         </Col>
@@ -68,17 +96,22 @@ LearnMode.propTypes = {
 
 const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
+    const getNextCard = makeGetNextCard();
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
         const firstCard = getCardsByRegister(state, props)[0];
         return {
             register: state.entities.registers.byId[registerId] || {},
             cards: getCardsByRegister(state, props) || [],
-            currentCard: state.ui.learning.misc.currentCard || firstCard,
+            //currentCard: state.ui.learning.misc.currentCard || firstCard,
+            currentCard: getNextCard(state, props),
             mode: state.ui.learning.misc.mode || "NORMAL_MODE",
             valuesSingle: getFormValues('singleChoiceLearn')(state),
+            valuesMultiple: getFormValues('multipleChoiceLearn')(state),
             showResult: state.ui.learning.misc.showResult || false,
-            lastResult: state.ui.learning.misc.lastResult || -1
+            lastResult: state.ui.learning.misc.lastResult || -1,
+            userId: state.auth.userId,
+            lastCorrect: state.ui.learning.misc.lastCorrect || -1
         }
     };
     return mapStateToProps
@@ -86,7 +119,10 @@ const makeMapStateToProps = () => {
 
 function mapDispatchToProps(dispatch) {
     return({
-        handleFeedbackClick: () => {dispatch(setShowResult(false))}
+        handleFeedbackClick: (cardId, answer, correct) => {
+            dispatch(setShowResult(false));
+            dispatch(addResult(cardId, answer, correct));
+        }
     })
 }
 

@@ -55,12 +55,9 @@ const Learn = props => {
                 ]}
             />
 
-            {disabled === true &&
-                <Link className="btn btn-block btn-outline-primary disabled" to={`/`}>Lernen starten</Link>
-            }
-            {disabled === false &&
-                <Link className="btn btn-block btn-outline-primary" to={`/register/${registerId}/learn`}>Lernen starten</Link>
-            }
+            <Button outline block color="primary" type="submit" disabled={disabled}>
+                Lernen starten
+            </Button>
         </Form>
     )
 };

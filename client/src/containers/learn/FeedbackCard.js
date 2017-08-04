@@ -57,7 +57,7 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                         }
                     )
                 }
-                <Button outline block color="primary" type="submit" onClick={handleClick}>
+                <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
                     Nächste karte
                 </Button>
             </CardText>

@@ -11,16 +11,25 @@ import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
 import {makeGetCardIdsByRegister, makeGetTagsByRegister} from "../../selectors";
+import {resetResults, setSelectedSettings} from "../../actions/ui";
+import {push} from "react-router-redux";
+
 
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, match} = this.props;
         dispatch(loadRegister(match.params.registerId));
         dispatch(loadCards(match.params.registerId));
+        //Load stats for all Cards for logged in User for current register
     }
 
     render() {
-        const {register, cardIds, match} = this.props;
+        const {register, cardIds, match, tags, settings} = this.props;
+        const handleSubmit = (values, dispatch) => {
+            dispatch(setSelectedSettings(register.id, values.mode, values.tags));
+            dispatch(resetResults());
+            return dispatch(push(`/register/${match.params.registerId}/learn`));
+        };
         return (
             <div>
                 <Headline title={register.title}/>
@@ -37,7 +46,7 @@ class Detail extends React.Component {
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm registerId={match.params.registerId} disabled={cardIds.length === 0}/>
+                        <LearnForm registerId={match.params.registerId} disabled={cardIds.length === 0} tags={tags} onSubmit={handleSubmit} initialValues={settings} />
                     </Card>
 
                     <Card block>
@@ -75,13 +84,14 @@ Detail.propTypes = {};
 
 const makeMapStateToProps = () => {
     const getCardIdsByRegister = makeGetCardIdsByRegister();
-    const getTagsByRegisterByKeyword = makeGetTagsByRegister();
+    const getTagsByRegister = makeGetTagsByRegister();
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
         return {
             register: state.entities.registers.byId[registerId] || {},
             cardIds: getCardIdsByRegister(state, props),
-            tags: getTagsByRegisterByKeyword(state, props)
+            tags: getTagsByRegister(state, props),
+            settings: state.ui.learnSettings.byId[registerId] || {}
         }
     };
     return mapStateToProps

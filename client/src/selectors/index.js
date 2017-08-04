@@ -7,8 +7,10 @@ const getUserId = (state) => state.auth.userId;
 const getMembers = (state) => state.entities.members.byId;
 const getKeyword = (state, props) => props.keyword;
 const getUsers = (state) => state.entities.users.byId;
+const getSelectedTags = (state, props) => state.ui.learnSettings.byId[_.parseInt(props.match.params.registerId)].tags;
+const getAnsweredCardsIds = (state) => state.ui.learning.allIds || [];
 
-export const makeGetCardsByRegister = () => {
+export const makeGetCardsByRegister = (state, props) => {
     return createSelector(
         [getRegisterId, getCards],
         (registerId, cards) => {
@@ -17,7 +19,7 @@ export const makeGetCardsByRegister = () => {
     )
 };
 
-export const makeGetCardIdsByRegister = () => {
+export const makeGetCardIdsByRegister = (state, props) => {
     return createSelector(
         [makeGetCardsByRegister()],
         (cards) => {
@@ -71,9 +73,43 @@ export const makeGetUsersByRegister = () => {
     );
 };
 
+export const makeGetCardsByTags = () => {
+    return createSelector(
+        [makeGetCardsByRegister(), getSelectedTags],
+        (cards, selectedTags) => {
+            console.log("selectedTags", selectedTags);
+            if(selectedTags === undefined || selectedTags.length === 0) {
+                return cards;
+            } else {
+                return _.filter(cards, function(c) { return _.intersectionWith(c.tags, selectedTags).length > 0});
+            }
+        }
+    );
+};
+
+export const makeGetCardIdsByTags = () => {
+    return createSelector(
+        [makeGetCardsByTags()],
+        (cards) => {
+            return _.map(cards, 'id');
+        }
+    );
+};
+
+export const makeGetNextCard = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds],
+        (cards, answeredIds) => {
+            let unAnsweredCards = _.filter(cards, function(c) { return !_.includes(answeredIds, c.id)});
+            if(unAnsweredCards.length > 0) {
+                return unAnsweredCards[0];
+            } else {
+                return null;
+            }
+        }
+    );
+};
 
 /*
- * GetCardIdsByTags
- * GetCardByTags
- * 1.GetCard = Karte aus getCardsByKeywords,
+ * GetNextUnaswerdCard
  */
