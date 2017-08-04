@@ -1,17 +1,17 @@
 privilegeTargets:
 
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
-    'GoCardTeam.GoCard:UsersController.restrictedActions':
+    'GoCardTeam.GoCardApi:UsersController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(?!(initialize)?(?i)(addUser))(.*)(?<!initialize)Action())'
-    'GoCardTeam.GoCard:RegistersController.restrictedActions':
+    'GoCardTeam.GoCardApi:RegistersController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\RegistersController->.*Action())'
-    'GoCardTeam.GoCard:CardsController.restrictedActions':
+    'GoCardTeam.GoCardApi:CardsController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardsController->.*Action())'
-    'GoCardTeam.GoCard:MembersController.restrictedActions':
+    'GoCardTeam.GoCardApi:MembersController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\MembersController->.*Action())'
-    'GoCardTeam.GoCard:ActivitiesController.restrictedActions':
+    'GoCardTeam.GoCardApi:ActivitiesController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\ActivitiesController->.*Action())'
-    'GoCardTeam.GoCard:CardStatisticsController.restrictedActions':
+    'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardStatisticsController->.*Action())'
 
 roles:
@@ -19,20 +19,20 @@ roles:
   'Neos.Flow:AuthenticatedUser':
     privileges:
       -
-        privilegeTarget: 'GoCardTeam.GoCard:UsersController.restrictedActions'
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.restrictedActions'
         permission: GRANT
       -
-        privilegeTarget: 'GoCardTeam.GoCard:RegistersController.restrictedActions'
+        privilegeTarget: 'GoCardTeam.GoCardApi:RegistersController.restrictedActions'
         permission: GRANT
       -
-        privilegeTarget: 'GoCardTeam.GoCard:CardsController.restrictedActions'
+        privilegeTarget: 'GoCardTeam.GoCardApi:CardsController.restrictedActions'
         permission: GRANT
       -
-        privilegeTarget: 'GoCardTeam.GoCard:MembersController.restrictedActions'
+        privilegeTarget: 'GoCardTeam.GoCardApi:MembersController.restrictedActions'
         permission: GRANT
       -
-        privilegeTarget: 'GoCardTeam.GoCard:ActivitiesController.restrictedActions'
+        privilegeTarget: 'GoCardTeam.GoCardApi:ActivitiesController.restrictedActions'
         permission: GRANT
       -
-        privilegeTarget: 'GoCardTeam.GoCard:CardStatisticsController.restrictedActions'
+        privilegeTarget: 'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions'
         permission: GRANT
