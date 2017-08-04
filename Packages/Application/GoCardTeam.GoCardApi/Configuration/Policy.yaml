@@ -13,6 +13,8 @@ privilegeTargets:
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\ActivitiesController->.*Action())'
     'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardStatisticsController->.*Action())'
+    'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByEmailAction(email != current.userContext.user.email))'
 
 roles:
 
@@ -35,4 +37,8 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail'
+        permission: DENY
         permission: GRANT
