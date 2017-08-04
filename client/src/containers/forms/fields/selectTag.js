@@ -3,10 +3,11 @@ import {Button, FormFeedback, FormGroup, Label, UncontrolledTooltip} from "react
 import _ from "lodash";
 
 const toggleTags = (values, value) => {
+    const array = _.isArray(values) ?  values : [];
     if (_.includes(values, value)) {
-        return _.without(values, value);
+        return _.without(array, value);
     } else {
-        return _.concat(values, value);
+        return _.concat(array, value);
     }
 };
 
