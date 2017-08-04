@@ -63,6 +63,6 @@ class UserContext implements CacheAwareInterface
      */
     public function getCacheEntryIdentifier()
     {
-        return $this->persistenceManager->getIdentifierByObject($this->getCurrentUser());
+        return $this->getCurrentUser() ? $this->persistenceManager->getIdentifierByObject($this->getCurrentUser()) : null;
     }
 }
