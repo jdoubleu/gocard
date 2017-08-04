@@ -20,6 +20,17 @@
   httpMethods: ['POST']
 
 -
+  name: 'update member set'
+  uriPattern: ''
+  defaults:
+    '@action': 'updateMemberSetOfRegister'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']
+
+-
   name: 'add multiple members'
   uriPattern: 'multiple'
   defaults:

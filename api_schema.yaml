@@ -361,6 +361,48 @@ paths:
       security:
         - api_key: []
         - api_key2: []
+    put:
+      tags:
+        - registers
+        - members
+      summary: Updates members of a register
+      description: Updates the whole member set of a register. All members not given in the request will be removed, new ones will be created.
+      operationId: updateMemberSetOfRegister
+      produces:
+        - application/json
+      parameters:
+        - name: registerId
+          in: path
+          description: ID of the register
+          type: integer
+          format: int64
+          required: true
+        - name: member
+          in: body
+          description: Member to be added
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+          required: true
+      responses:
+        '200':
+          description: Successfully added member
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Member'
+        '400':
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/MultipleValidationResponse'
+        '403':
+          description: Not allowed to update members of this register
+        '404':
+          description: Register not found
+      security:
+        - api_key: []
+        - api_key2: []
   '/registers/{registerId}/members/multiple':
     post:
       tags:
