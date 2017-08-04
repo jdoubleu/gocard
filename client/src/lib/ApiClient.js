@@ -281,6 +281,7 @@ const Models = {
         'access_token': 'string',
         'expires_after': 'string',
         'reate_limit': 'number',
+        'user': 'number',
     },
 
     /**
@@ -1711,6 +1712,44 @@ export function getUserByEmail(parameters) {
     queryParameters = mergeQueryParams(parameters, queryParameters);
 
     client.request('getUserByEmail', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
+ * Returns an array of users matching the given name
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {string} parameters.name - User's name
+ */
+export function searchUsersByName(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/users/search';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
+    headers['Accept'] = ['application/json'];
+
+    if (parameters['name'] !== undefined) {
+        queryParameters['name'] = parameters['name'];
+    }
+
+    if (parameters['name'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: name'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('searchUsersByName', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
 
     return deferred.promise;
 }
