@@ -40,20 +40,24 @@ abstract class AbstractApiEndpointController extends ActionController
 
     /**
      * Generates output for when validation has failed according to the api spec.
-     * 
+     *
+     * @param Result $errors
      * @return JsonView
      */
-    protected function errorAction()
+    protected function errorAction($errors = null)
     {
+        if ($errors === null) {
+            $errors = $this->arguments->getValidationResults();
+        }
+
         $this->handleTargetNotFoundError();
         $this->forwardToReferringRequest();
 
-        if ($this->arguments->getValidationResults()->hasErrors()) {
+        if ($errors->hasErrors()) {
             $this->response->setStatus(400);
         }
 
-        $errorResult = self::hydrateValidationResults($this->arguments->getValidationResults());
-
+        $errorResult = self::hydrateValidationResults($errors);
 
         $this->view->setOption('jsonEncodingOptions', JSON_FORCE_OBJECT);
         $this->view->assign('value', $errorResult);
