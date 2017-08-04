@@ -15,6 +15,14 @@ import {makeGetTagsByRegisterByKeyword} from "../../../../selectors/index";
 import {withRouter} from "react-router-dom";
 import {change, Field} from "redux-form";
 import InputField from "./input";
+import _ from "lodash";
+
+const addTag = (fields, value, dispatch) => {
+    if (!_.includes(fields.getAll(), value)) {
+        fields.push(value);
+    }
+    dispatch(change('cardForm', 'keyword', ''));
+};
 
 const inputTag = ({fields, label, disableLabel, toolTip, meta: {touched, error}, keyword, tags, dispatch}) => (
         <FormGroup color={touched && error && 'danger'}>
@@ -30,7 +38,9 @@ const inputTag = ({fields, label, disableLabel, toolTip, meta: {touched, error},
                     fields.map((tag, index) =>
                         <span className="btn btn-sm btn-outline-primary m-1">
                             <span className="mr-1">{fields.get(index)}</span>
-                            <Button color="link" className="m-0 p-0" onClick={() => fields.remove(index)}>&#10008;</Button>
+                            <Button color="link" className="m-0 p-0" onClick={() => fields.remove(index)}>
+                                &#10008;
+                            </Button>
                         </span>
                     )
                 }
@@ -44,7 +54,7 @@ const inputTag = ({fields, label, disableLabel, toolTip, meta: {touched, error},
                     component={InputField}
                 />
                 <InputGroupButton>
-                    <Button outline color="secondary" onClick={() => fields.push(keyword)}>+</Button>
+                    <Button outline color="secondary" onClick={() => addTag(fields, keyword, dispatch)}>+</Button>
                 </InputGroupButton>
             </InputGroup>
 
@@ -53,10 +63,9 @@ const inputTag = ({fields, label, disableLabel, toolTip, meta: {touched, error},
                     tags.map((tag, index) =>
                         <ListGroupItem className="p-0 pl-3 justify-content-between">
                             {tag}
-                            <Button outline color="primary" className="m-1" onClick={() => {
-                                fields.push(tag);
-                                dispatch(change('cardForm', 'keyword', ''));
-                            }}>+</Button>
+                            <Button outline color="primary" className="m-1" onClick={() => addTag(fields, tag, dispatch)}>
+                                +
+                            </Button>
                         </ListGroupItem>
                     )
                 }
