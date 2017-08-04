@@ -6,7 +6,13 @@ import _ from "lodash";
 function addUserEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy([response], 'id'));
+    return _.assign({}, state, _.keyBy([response], 'id'));
+}
+
+function updateUserEntry(state, action) {
+    const {response} = action;
+
+    return _.assign({}, state, _.keyBy([response], 'id'));
 }
 
 function deleteUserEntry(state, action) {
@@ -20,9 +26,10 @@ function usersById(state = {}, action) {
     switch (action.type) {
         case LOAD_CURRENT_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
-        case UPDATE_USER_SUCCESS:
         case SEARCH_USERS_SUCCESS:
             return addUserEntry(state, action);
+        case UPDATE_USER_SUCCESS:
+            return updateUserEntry(state, action);
         case DELETE_USER_SUCCESS:
             return deleteUserEntry(state, action);
         default:

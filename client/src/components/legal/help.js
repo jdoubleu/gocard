@@ -12,42 +12,37 @@ const Help = () => {
             <Row>
 
 
-                <Col md="2" sm="2" xs="2">
-
-
-                    <Card id="fixedCard" className="mr-1">
-
-                        <CardHeader>
-
-                            <NavLink href="#card">Karteikarten</NavLink>
-                            <NavLink href="#register">Register</NavLink>
-                            <NavLink href="#learn">Lernen</NavLink>
-                            <NavLink href="#account">Account</NavLink>
-                            <NavLink href="#special">Sonstiges</NavLink>
-                            <NavLink href="#processes">Abläufe</NavLink>
-                        </CardHeader>
-
-                        <NavLink href="#top">nach oben</NavLink>
-
-                    </Card>
-                </Col>
-
                 <Col>
                     <Card>
                         <CardBlock>
                             <CardTitle id="card">Häufig gestellte Fragen</CardTitle>
 
-                            <CardText className="px-2 mb-5 text-justify">
-                                <Button className="m-1" outline color="primary" type="button">
-                                    <NavLink href="#card">Was ist ein Register?</NavLink>
-                                </Button>
-                                <Button className="m-1" outline color="primary" type="button">
-                                    <NavLink href="#card">Wie erstelle ich ein Register?</NavLink>
-                                </Button>
-                                <Button className="m-1" outline color="primary" type="button">
-                                    <NavLink href="#card">Wo finde ich meine Einstellungen?</NavLink>
-                                </Button>
-                            </CardText>
+                                    <CardBlock>
+                                        <Row>
+                                            <Col className="mt-2">
+                                        <NavLink href="#card" className="btn btn-outline-primary">Karteikarten</NavLink>
+                                            </Col>
+                                            <Col className="mt-2">
+                                        <NavLink href="#register" className="btn btn-outline-primary">Register</NavLink>
+                                            </Col>
+                                            <Col className="mt-2">
+                                        <NavLink href="#learn" className="btn btn-outline-primary">Lernen</NavLink>
+                                            </Col>
+                                            <Col className="mt-2">
+                                        <NavLink href="#account" className="btn btn-outline-primary">Account</NavLink>
+                                            </Col>
+                                            <Col className="mt-2">
+                                        <NavLink href="#special" className="btn btn-outline-primary">Sonstiges</NavLink>
+                                            </Col>
+                                            <Col className="mt-2">
+                                        <NavLink href="#processes" className="btn btn-outline-primary">Abläufe</NavLink>
+                                            </Col>
+                                        </Row>
+                                    </CardBlock>
+
+
+
+
 
                             <span><hr/></span>
 
@@ -456,7 +451,7 @@ const Help = () => {
 
                             <span><hr/></span>
 
-                            <CardTitle id="">Sonstiges</CardTitle>
+                            <CardTitle id="special">Sonstiges</CardTitle>
 
                             <span><hr/></span>
 

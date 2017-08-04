@@ -11,13 +11,13 @@ import _ from "lodash";
 function addRegisterEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, {[response.id]: response});
+    return _.assign({}, state, {[response.id]: response});
 }
 
 function updateRegisterEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, {[response.id]: response});
+    return _.assign({}, state, {[response.id]: response});
 }
 
 function deleteRegisterEntry(state, action) {
@@ -29,7 +29,7 @@ function deleteRegisterEntry(state, action) {
 function addRegisterEntries(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy(response, 'id'));
+    return _.assign({}, state, _.keyBy(response, 'id'));
 }
 
 function registersById(state = {}, action) {
