@@ -55,6 +55,7 @@ abstract class AbstractApiEndpointController extends ActionController
         $errorResult = self::hydrateValidationResults($this->arguments->getValidationResults());
 
 
+        $this->view->setOption('jsonEncodingOptions', JSON_FORCE_OBJECT);
         $this->view->assign('value', $errorResult);
         return null;
     }
