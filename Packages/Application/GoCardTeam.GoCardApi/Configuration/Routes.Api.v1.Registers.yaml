@@ -59,7 +59,7 @@
   subRoutes:
     'MembersSubroutes':
       package: 'GoCardTeam.GoCardApi'
-      suffix:  'Api.Members'
+      suffix:  'Api.v1.Members'
   routeParts:
     register:
       uriPattern: ''
