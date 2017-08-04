@@ -1496,6 +1496,10 @@ definitions:
       reate_limit:
         type: integer
         description: calls per hour allowed by the user
+      user:
+        type: integer
+        format: int64
+        description: ID of the current user
   ValidationResponse:
     type: object
     description: An api response usually thrown if the supplied data was invalid

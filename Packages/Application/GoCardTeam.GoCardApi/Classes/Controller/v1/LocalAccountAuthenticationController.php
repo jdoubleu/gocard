@@ -2,6 +2,7 @@
 
 namespace GoCardTeam\GoCardApi\Controller\v1;
 
+use GoCardTeam\GoCardApi\Context\v1\UserContext;
 use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Http\Response;
@@ -25,6 +26,12 @@ class LocalAccountAuthenticationController extends AbstractApiAuthenticationCont
     protected $accountFactory;
 
     /**
+     * @Flow\Inject
+     * @var UserContext
+     */
+    protected $userContext;
+
+    /**
      * Returns an access_token for api request with a 200 status
      *
      * @param ActionRequest $originalRequest
@@ -42,7 +49,8 @@ class LocalAccountAuthenticationController extends AbstractApiAuthenticationCont
         $this->view->assign('value', [
             'access_token' => $accessToken->getAccountIdentifier(),
             'expires_after' => $accessToken->getExpirationDate(),
-            'rate_limit' => -1
+            'rate_limit' => -1,
+            'user' => $this->userContext->getUser()->getUid()
         ]);
         return null;
     }
