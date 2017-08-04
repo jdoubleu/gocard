@@ -26,17 +26,13 @@ const Learn = props => {
                 </Alert>
             }
 
-            {
-                tags &&
-                <Field
-                    name="tags"
-                    component={SelectTag}
-                    label="Tags"
-                    toolTip="Die Tags können ausgewählt werden, um themenbezogene Lernkarten zu erhalten. Sie können einen oder mehrere Tags auswählen. Wenn Tags nicht ausgewählt sind, werden Karteikarten mit diesen Tags nicht im Lernmodus berücksichtigt. Sind keine Tags ausgewählt sind alle Karteikarten ausgewählt."
-                    options={tags}
-                />
-            }
-
+            <Field
+                name="tags"
+                component={SelectTag}
+                label="Tags"
+                toolTip="Die Tags können ausgewählt werden, um themenbezogene Lernkarten zu erhalten. Sie können einen oder mehrere Tags auswählen. Wenn Tags nicht ausgewählt sind, werden Karteikarten mit diesen Tags nicht im Lernmodus berücksichtigt. Sind keine Tags ausgewählt sind alle Karteikarten ausgewählt."
+                options={tags}
+            />
 
             <Field
                 name="mode"
