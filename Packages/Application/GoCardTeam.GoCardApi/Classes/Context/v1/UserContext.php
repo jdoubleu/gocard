@@ -40,19 +40,19 @@ class UserContext implements CacheAwareInterface
      *
      * @var User
      */
-    protected $currentUser;
+    protected $user;
 
     /**
      * Lazy and singleton getter for the current user
      *
      * @return User
      */
-    public function getCurrentUser()
+    public function getUser()
     {
-        if ($this->currentUser === null) {
-            $this->currentUser = $this->userRepository->findOneByAccount($this->securityContext->getAccount());
+        if ($this->user === null) {
+            $this->user = $this->userRepository->findOneByAccount($this->securityContext->getAccount());
         }
-        return $this->currentUser;
+        return $this->user;
     }
 
     /**
@@ -63,6 +63,6 @@ class UserContext implements CacheAwareInterface
      */
     public function getCacheEntryIdentifier()
     {
-        return $this->getCurrentUser() ? $this->persistenceManager->getIdentifierByObject($this->getCurrentUser()) : null;
+        return $this->getUser() ? $this->persistenceManager->getIdentifierByObject($this->getUser()) : null;
     }
 }
