@@ -17,18 +17,19 @@ class Bar extends React.Component {
 
     render() {
         const {members, diameter, maxIcons, registerId} = this.props;
-        const visibleMembers = _.chunk(members, maxIcons - 1)[0] || {};
-        const collapsedMembers = _.chunk(members, maxIcons - 1)[1] || {};
+        const chuckedMembers = _.chunk(members, maxIcons - 1);
+        const visibleMembers = chuckedMembers[0] || [];
+        const collapsedMembers = chuckedMembers[1] || [];
         return (
             <span>
                 {
-                    visibleMembers && collapsedMembers.length > 0 &&
+                    visibleMembers && visibleMembers.length > 0 &&
                     visibleMembers.map((member) =>
-                        <span>
+                        <span key={member.id}>
                             <UserIcon diameter={diameter} id={registerId + member.id}>
                                 {member.displayName}
                             </UserIcon>
-                            <UncontrolledTooltip placement="bottom" target={"ID" + member.id}>
+                            <UncontrolledTooltip placement="bottom" target={registerId + member.id}>
                                 {member.displayName}
                             </UncontrolledTooltip>
                         </span>
@@ -67,12 +68,11 @@ Bar.defaultProps = {
 
 const makeMapStateToProps = () => {
     const getUsersByRegister = makeGetUsersByRegister();
-    const mapStateToProps = (state, props) => {
+    return (state, props) => {
         return {
-            members: getUsersByRegister(state, props) || {}
+            members: getUsersByRegister(state, props) || []
         }
-    };
-    return mapStateToProps
+    }
 };
 
 export default connect(makeMapStateToProps)(Bar);

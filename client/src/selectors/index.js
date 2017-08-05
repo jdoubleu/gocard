@@ -66,7 +66,9 @@ export const makeGetUsersByRegister = () => {
     return createSelector(
         [makeGetMembersByRegister(), getUsers],
         (members, users) => {
-            return _.map(members, (member) => ( _.assign(users[member.user], {role: member.role})))
+            return _.without(_.map(members, (member) => {
+                return users[member.user]
+            }), undefined);
         }
     );
 };

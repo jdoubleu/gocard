@@ -19,7 +19,6 @@ const New = ({match, userId}) => {
             crdate: moment().format(),
             tags: values.tags
         };
-        console.log("body", body);
         return dispatch(addCard(match.params.registerId, body)).then(success =>
             dispatch(push(`/register/${match.params.registerId}`)));
     };
