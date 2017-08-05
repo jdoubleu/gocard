@@ -25,7 +25,7 @@ const New = ({match, userId}) => {
             </Headline>
 
             <Card block>
-                <CardForm onSubmit={handleSubmit} submitLabel="Erstellen"/>
+                <CardForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/" cancelLabel="Abbrechen" />
             </Card>
         </Col>
     )
