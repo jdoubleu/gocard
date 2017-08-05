@@ -60,9 +60,6 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                 {
                     card.type === "multiple-choice" &&
                     card.content.options.map((option, index) => {
-                        // index in UserAnswer && Corrects => Grün
-                        // index in UserAnswer != Corrects || Corrects != UserAnser => Rot
-                        // sonst so hintergrund
                         if ((_.includes(userAnswer, index))) {
                             option = option + " ◀";
                         }

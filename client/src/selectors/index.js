@@ -125,6 +125,20 @@ export const makeGetNextCardForPowerMode = () => {
     );
 };
 
+export const makeGetCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds],
+        (cards, answeredIds) => {
+            let Cards = _.filter(cards, function(c) { return _.includes(answeredIds, c.id)});
+            if(Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
 /*
  * GetNextUnaswerdCard
  */

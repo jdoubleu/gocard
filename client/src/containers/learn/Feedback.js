@@ -1,190 +1,91 @@
 import React from "react";
-import "../../containers/register/Detail/Detail.css";
-import Headline from "../../components/shared/headline";
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardDeck,
-    CardGroup,
-    CardText,
-    CardTitle,
-    Col,
-    Form,
-    FormGroup,
-    Row
-} from "reactstrap";
+import {Card, Col, CardGroup, CardTitle, CardText, Row, CardDeck, Button} from "reactstrap";
+import {connect} from "react-redux";
+import _ from "lodash";
 import StatisticBar from "../../components/shared/statistics/statisticBar";
-import PreviewCardFeedback from "../../modules/cards/previewCardFeedback";
-import PropTypes from "prop-types";
-import Cards from "../../modules/dummyCards.json";
+import FeedbackCard from "./FeedbackCard";
+import {makeGetCardsForResults} from "../../selectors/index";
 
-class Feedback extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            mode: 1,
-            cards: Cards,
-            check: null
-        };
-        this.displayCards = this.displayCards.bind(this);
-        this.getAllRight = this.getAllRight.bind(this);
-        this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-        this.getAllWrong = this.getAllWrong.bind(this);
-        this.getAll = this.getAll.bind(this);
-        this.check = this.check.bind(this);
-        this.getAllNotAnswered = this.getAllNotAnswered.bind(this);
-    }
 
-    onRadioBtnClick(mode) {
+const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards}) => {
 
-        this.setState({mode});
+    const CalcCardStatistic = (correct) => {
+        //Load stats for current card
+        //Calculate new Stats
+        //return new stats object
+    };
 
-    }
-
-    displayCards() {
-        if (this.state.mode === 1) {
-            return (
-                this.getAll()
-            )
-        } else if (this.state.mode === 2) {
-            return (
-                this.getAllRight()
-            )
-        } else if (this.state.mode === 3) {
-            return (
-                this.getAllWrong()
-            )
-        } else if (this.state.mode === 4) {
-            return (
-                this.getAllNotAnswered()
-            )
+    const matchTitle = () => {
+        if (mode === "NORMAL_MODE") {
+            return "Normaler Modus";
+        } else if (mode === "POWER_MODE") {
+            return "Power Modus";
+        } else if ("TEST_MODE") {
+            return "Klausur Modus";
         }
-    }
+    };
 
-    getAll() {
-        return this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                                   right={card.rightAnswer}
-                                                                   check={this.check(card.rightAnswer, card.userAnswer)}/>)
-    }
+    return (
+        <div>
+            <CardGroup>
+                <Card block>
+                    <CardTitle>{register.title}</CardTitle>
+                    <CardText>
+                        {
+                            tags.map((tag) => {
+                                    return (
+                                        <div className="btn btn-outline-primary p-1 ml-1">{tag}</div>
+                                    )
+                                }
+                            )
+                        }
+                    </CardText>
+                </Card>
+                <Card block>
+                    <CardTitle>Statistik</CardTitle>
+                    <CardText>
+                        <StatisticBar/>
+                    </CardText>
+                </Card>
+            </CardGroup>
 
-    check(right, user) {
-        if (right === user) {
-            return true;
-        } else if (user === null) {
-            return null;
-        } else if (right !== user && user !== null) {
-            return false;
+            <Row className="mt-4 ml-3">
+                <Col>
+                    <h4>Gelernte Karten</h4>
+                </Col>
+            </Row>
+            <CardDeck>
+                {
+                    resultCards &&
+                    _.values(resultCards).map((card) =>
+                        <Card>
+                            <FeedbackCard card={card} userAnswer={results[card.id].answer} />
+                        </Card>
+                    )
+                }
+            </CardDeck>
+        </div>
+    );
+};
+
+const makeMapStateToProps = () => {
+    const mapStateToProps = (state, props) => {
+        const registerId = props.match.params.registerId;
+        return {
+            cardIds: state.ui.learning.allIds || [],
+            tags: state.ui.learning.misc.tags || [],
+            results: state.ui.learning.byId ||{}
         }
+    };
+    return mapStateToProps
+};
 
-    }
+function mapDispatchToProps(dispatch) {
+    return ({
+        handleFeedbackClick: (cardId, answer, correct) => {
 
-    getAllRight() {
-        let array = [];
-        array = this.state.cards.filter(a => {
-
-            return a.userAnswer === a.rightAnswer;
-        })
-
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={true}/>)
-    }
-
-    getAllNotAnswered() {
-        let array = [];
-        array = this.state.cards.filter(a => {
-
-            return a.userAnswer === null;
-        })
-
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={null}/>)
-    }
-
-    getAllWrong() {
-        let array = [];
-        array = this.state.cards.filter(a => {
-            return a.userAnswer !== a.rightAnswer && a.userAnswer !== null;
-        });
-
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={false}/>)
-    }
-
-    render() {
-        return (
-            <div>
-                <Headline title="Feedback"/>
-
-                <CardGroup>
-                    <Card block>
-                        <CardTitle>{this.props.register}</CardTitle>
-                        <CardText>Beschreibung</CardText>
-                        <CardTitle>Verwendete Tags</CardTitle>
-                        <Form>
-                            <FormGroup>
-                                {this.props.tags.map((tag) => <CardText>{tag}</CardText>)}
-                            </FormGroup>
-
-                        </Form>
-
-                    </Card>
-
-                    <Card block>
-                        <CardTitle>Alte Statistik</CardTitle>
-                        <Row >
-                            <Col xs="8">
-                                <StatisticBar/>
-                            </Col>
-                        </Row>
-                        <CardTitle>Neue Statistik</CardTitle>
-                        <Row >
-                            <Col xs="8">
-                                <StatisticBar/>
-                            </Col>
-                        </Row>
-                    </Card>
-                </CardGroup>
-                <Row className="mt-4 ml-3">
-
-                    <FormGroup>
-
-                        <ButtonGroup check>
-                            <Button outline onClick={() => this.onRadioBtnClick(1)}
-                                    active={this.state.mode === 1}
-                                    color={this.state.mode === 1 ? 'primary' : 'secondary'}>Alle</Button>
-                            <Button outline onClick={() => this.onRadioBtnClick(2)}
-                                    active={this.state.mode === 2}
-                                    color={this.state.mode === 2 ? 'primary' : 'secondary'}>Richtige</Button>
-                            <Button outline onClick={() => this.onRadioBtnClick(3)}
-                                    active={this.state.mode === 3}
-                                    color={this.state.mode === 3 ? 'primary' : 'secondary'}>Falsche</Button>
-                            <Button outline onClick={() => this.onRadioBtnClick(4)}
-                                    active={this.state.mode === 4}
-                                    color={this.state.mode === 4 ? 'primary' : 'secondary'}>Keine Antwort</Button>
-                        </ButtonGroup>
-                    </FormGroup>
-
-                </Row>
-                <CardDeck>
-                    {this.displayCards()}
-                </CardDeck>
-
-
-            </div>
-        );
-    }
-
-}
-Feedback.propTypes = {
-    register: PropTypes.string,
-    tags: PropTypes.array
+        }
+    })
 }
 
-Feedback.defaultProps = {
-    register: "Feedback OOP 1",
-    tags: ["Bibbers", "Unendlich/Unendlich", "Fabian Zippi Zipproth", "Joshua leise", "Wirtschaftsexperte"]
-
-}
-
-export default Feedback;
+export default connect(makeMapStateToProps, mapDispatchToProps)(Feedback);

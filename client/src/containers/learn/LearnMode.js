@@ -7,13 +7,17 @@ import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
 import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
 import SelfValidateCardForm from "../forms/SelfValidateLearn";
 import TextInputCardForm from "../forms/TextInputLearn";
-import {makeGetCardsByRegister, makeGetNextCard, makeGetNextCardForPowerMode} from "../../selectors/index";
+import {
+    makeGetCardsByRegister, makeGetCardsForResults, makeGetNextCard,
+    makeGetNextCardForPowerMode
+} from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
 import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
 import FeedbackCard from "../../containers/learn/FeedbackCard";
+import Feedback from "../../containers/learn/Feedback";
 
-const LearnMode = ({mode, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput}) => {
+const LearnMode = ({mode,register, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards}) => {
 
     const CalcCardStatistic = (correct) =>{
         //Load stats for current card
@@ -83,33 +87,38 @@ const LearnMode = ({mode, currentCard, valuesSingle, showResult, lastResult , ha
             <Headline title={matchTitle()}>
                 Hier kannst du Lernen
             </Headline>
-            <Card block>
-                {
-                    currentCard && mode !== "TEST_MODE" && showResult === true &&
-                    <FeedbackCard card={currentCard} userAnswer={lastResult} handleClick={() => handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}/>
-                }
-                {
-                    currentCard && currentCard.type === "single-choice" && showResult === false &&
-                    <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard}/>
-                }
-                {
-                    currentCard && currentCard.type === "multiple-choice" && showResult === false &&
-                    <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard}/>
-                }
-                {
-                    currentCard && currentCard.type === 'self-validate' && showResult === false &&
-                    <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard}/>
-                }
-                {
-                    currentCard && currentCard.type === 'text-input' && showResult === false &&
-                    <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard}/>
-                }
-                {
-                    !currentCard &&
-                    <h1>done</h1>
-                    
-                }
-            </Card>
+            {currentCard !== null &&
+                <Card block>
+                    {
+                        currentCard && mode !== "TEST_MODE" && showResult === true &&
+                        <FeedbackCard card={currentCard} userAnswer={lastResult}
+                                      handleClick={() => handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}/>
+                    }
+                    {
+                        currentCard && currentCard.type === "single-choice" && showResult === false &&
+                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard}/>
+                    }
+                    {
+                        currentCard && currentCard.type === "multiple-choice" && showResult === false &&
+                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard}/>
+                    }
+                    {
+                        currentCard && currentCard.type === 'self-validate' && showResult === false &&
+                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard}/>
+                    }
+                    {
+                        currentCard && currentCard.type === 'text-input' && showResult === false &&
+                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard}/>
+                    }
+
+
+                </Card>
+            }
+            {
+                currentCard === null &&
+                <Feedback register={register} mode={mode} resultCards={resultCards} registerId={register.id}/>
+            }
+
         </Col>
     );
 
@@ -126,6 +135,8 @@ const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
     const getNextPowerModeCard = makeGetNextCardForPowerMode();
+    const getCardsForResults = makeGetCardsForResults();
+
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
         return {
@@ -140,7 +151,8 @@ const makeMapStateToProps = () => {
             showResult: state.ui.learning.misc.showResult || false,
             lastResult: state.ui.learning.misc.lastResult || -1,
             userId: state.auth.userId,
-            lastCorrect: state.ui.learning.misc.lastCorrect || -1
+            lastCorrect: state.ui.learning.misc.lastCorrect || -1,
+            resultCards: getCardsForResults(state, props) || {},
         }
     };
     return mapStateToProps
