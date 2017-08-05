@@ -5,7 +5,9 @@ namespace GoCardTeam\GoCardApi\Controller\v1\Endpoint;
 use GoCardTeam\GoCardApi\Context\v1\UserContext;
 use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 
+use GoCardTeam\GoCardApi\Domain\Factory\v1\MemberFactory;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
+use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\KnownObjectException;
@@ -22,6 +24,18 @@ class RegistersController extends AbstractApiEndpointController
      * @var RegisterRepository
      */
     protected $registerRepository;
+
+    /**
+     * @Flow\Inject
+     * @var MemberRepository
+     */
+    protected $memberRepository;
+
+    /**
+     * @Flow\Inject
+     * @var MemberFactory
+     */
+    protected $memberFactory;
 
     /**
      * @Flow\Inject
@@ -66,6 +80,10 @@ class RegistersController extends AbstractApiEndpointController
         try {
             $this->registerRepository->add($register);
 
+            $member = $this->memberFactory->createMember($this->userContext->getUser(), $register, 'write');
+            $this->memberRepository->add($member);
+
+            $this->persistenceManager->whitelistObject($member);
             $this->persistenceManager->whitelistObject($register);
             $this->persistenceManager->persistAll(true);
         } catch (KnownObjectException $e) {
