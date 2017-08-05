@@ -1,6 +1,15 @@
 privilegeTargets:
 
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    # GoCard API
+    # PrivilegeTargets for the API
+
+    # API v1
+
+    #
+    # General API endpoint action targets
+    #
     'GoCardTeam.GoCardApi:UsersController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(?!(initialize)?(?i)(addUser))(.*)(?<!initialize)Action())'
     'GoCardTeam.GoCardApi:RegistersController.restrictedActions':
@@ -13,6 +22,10 @@ privilegeTargets:
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\ActivitiesController->.*Action())'
     'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardStatisticsController->.*Action())'
+
+    #
+    # Users Endpoint
+    #
     'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByEmailAction(email != current.userContext.user.email))'
     'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction':
@@ -24,6 +37,15 @@ roles:
 
   'Neos.Flow:AuthenticatedUser':
     privileges:
+
+      # GoCard API
+      # PrivilegeTargets for the API
+
+      # API v1
+
+      #
+      # General API endpoint action targets
+      #
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.restrictedActions'
         permission: GRANT
@@ -42,6 +64,10 @@ roles:
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions'
         permission: GRANT
+
+      #
+      # Users Endpoint
+      #
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail'
         permission: DENY
