@@ -1,13 +1,13 @@
 import {createSelector} from 'reselect'
 import _ from "lodash";
 
-const getRegisterId = (state, props) => _.parseInt(props.match.params.registerId);
+const getRegisterId = (state, props) => props.registerId ? props.registerId : _.parseInt(props.match.params.registerId);
 const getCards = (state) => state.entities.cards.byId;
 const getUserId = (state) => state.auth.userId;
 const getMembers = (state) => state.entities.members.byId;
 const getKeyword = (state, props) => props.keyword;
 const getUsers = (state) => state.entities.users.byId;
-const getSelectedTags = (state, props) => state.ui.learnSettings.byId[_.parseInt(props.match.params.registerId)].tags;
+const getSelectedTags = (state, props) => state.ui.learnSettings.byId[getRegisterId(state, props)].tags;
 const getAnsweredCardsIds = (state) => state.ui.learning.allIds || [];
 const getAnsweredCards = (state) => state.ui.learning.byId || {};
 
@@ -60,7 +60,7 @@ export const makeGetMembersByRegister = () => {
     return createSelector(
         [getRegisterId, getMembers],
         (registerId, members) => {
-            return _.filter(members, ['registerId', registerId])
+            return _.filter(members, ['register', registerId])
         }
     );
 };
@@ -69,7 +69,9 @@ export const makeGetUsersByRegister = () => {
     return createSelector(
         [makeGetMembersByRegister(), getUsers],
         (members, users) => {
-            return _.map(members, (member) => ( _.assign(users[member.user], {role: member.role})))
+            return _.without(_.map(members, (member) => {
+                return users[member.user]
+            }), undefined);
         }
     );
 };

@@ -1,11 +1,12 @@
 import React from "react";
+import _ from "lodash";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import UserIcon from "../../../components/shared/user/icon";
 import Icon from "../../../components/shared/icon";
 import {UncontrolledTooltip} from "reactstrap";
-import _ from "lodash";
 import {loadMembersByRegister} from "../../../actions/member";
+import {makeGetUsersByRegister} from "../../../selectors";
 
 class Bar extends React.Component {
 
@@ -16,18 +17,19 @@ class Bar extends React.Component {
 
     render() {
         const {members, diameter, maxIcons, registerId} = this.props;
-        const visibleMembers = _.chunk(members, maxIcons - 1)[0];
-        const collapsedMembers = _.chunk(members, maxIcons - 1)[1];
+        const chuckedMembers = _.chunk(members, maxIcons - 1);
+        const visibleMembers = chuckedMembers[0] || [];
+        const collapsedMembers = chuckedMembers[1] || [];
         return (
             <span>
                 {
-                    visibleMembers && collapsedMembers.length > 0 &&
+                    visibleMembers && visibleMembers.length > 0 &&
                     visibleMembers.map((member) =>
-                        <span>
+                        <span key={member.id}>
                             <UserIcon diameter={diameter} id={registerId + member.id}>
                                 {member.displayName}
                             </UserIcon>
-                            <UncontrolledTooltip placement="bottom" target={"ID" + member.id}>
+                            <UncontrolledTooltip placement="bottom" target={registerId + member.id}>
                                 {member.displayName}
                             </UncontrolledTooltip>
                         </span>
@@ -55,7 +57,6 @@ class Bar extends React.Component {
 
 Bar.propTypes = {
     registerId: PropTypes.number.isRequired,
-    members: PropTypes.object.isRequired,
     diameter: PropTypes.number.isRequired,
     maxIcons: PropTypes.number.isRequired
 };
@@ -65,10 +66,13 @@ Bar.defaultProps = {
     maxIcons: 5
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        members: state.entities.members.byId[ownProps.registerId] || {},
+const makeMapStateToProps = () => {
+    const getUsersByRegister = makeGetUsersByRegister();
+    return (state, props) => {
+        return {
+            members: getUsersByRegister(state, props) || []
+        }
     }
-}
+};
 
-export default connect(mapStateToProps)(Bar);
+export default connect(makeMapStateToProps)(Bar);

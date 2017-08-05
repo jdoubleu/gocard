@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, CardTitle, Col} from "reactstrap";
+import {Button, Card, CardText, Col} from "reactstrap";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
 
@@ -16,7 +16,7 @@ class Preview extends React.Component {
         return (
             <Col xl="4" md="6" xs="12">
                 <Card block className="mb-2">
-                    <CardTitle>{card.question}</CardTitle>
+                    <h5>{card.question}</h5>
                     <Button outline color="primary">Ansehen</Button>
                 </Card>
             </Col>

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import _ from "lodash";
 import StatisticBar from "../../components/shared/statistics/statisticBar";
 import FeedbackCard from "./FeedbackCard";
-import {makeGetCardsForResults} from "../../selectors/index";
+import {makeGetCardsForResults} from "../../selectors";
 
 
 const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards}) => {
@@ -69,12 +69,13 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards}) 
 };
 
 const makeMapStateToProps = () => {
+    const getCardsForResults = makeGetCardsForResults();
     const mapStateToProps = (state, props) => {
-        const registerId = props.match.params.registerId;
         return {
             cardIds: state.ui.learning.allIds || [],
             tags: state.ui.learning.misc.tags || [],
-            results: state.ui.learning.byId ||{}
+            results: state.ui.learning.byId ||{},
+            resultCards: getCardsForResults(state, props) || {},
         }
     };
     return mapStateToProps

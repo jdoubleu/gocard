@@ -1,8 +1,8 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
+import {Field, FieldArray, reduxForm} from "redux-form";
 import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
-import InputMembers from "./fields/inputMembers";
+import InputMembers from "./fields/inputMembers/index";
 import {Link} from "react-router-dom";
 
 const validate = values => {
@@ -40,7 +40,7 @@ const RegisterForm = props => {
                 label="Beschreibung"
             />
 
-            <Field
+            <FieldArray
                 name="members"
                 component={InputMembers}
                 label="Mitglieder"

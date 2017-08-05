@@ -1,6 +1,6 @@
 import React from "react";
 import Headline from "../shared/headline";
-import {Media,Table, Card, CardBlock, CardText, CardTitle, Col, NavLink, Row, Button} from "reactstrap";
+import {Media,Table, Card, CardBlock, CardText, CardTitle, Col, NavLink, Row} from "reactstrap";
 import "./help.css";
 
 const Help = () => {

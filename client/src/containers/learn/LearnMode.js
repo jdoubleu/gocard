@@ -135,7 +135,6 @@ const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
     const getNextPowerModeCard = makeGetNextCardForPowerMode();
-    const getCardsForResults = makeGetCardsForResults();
 
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
@@ -152,7 +151,6 @@ const makeMapStateToProps = () => {
             lastResult: state.ui.learning.misc.lastResult || -1,
             userId: state.auth.userId,
             lastCorrect: state.ui.learning.misc.lastCorrect || -1,
-            resultCards: getCardsForResults(state, props) || {},
         }
     };
     return mapStateToProps
