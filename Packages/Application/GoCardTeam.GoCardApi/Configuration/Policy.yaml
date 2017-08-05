@@ -41,4 +41,3 @@ roles:
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail'
         permission: DENY
-        permission: GRANT
