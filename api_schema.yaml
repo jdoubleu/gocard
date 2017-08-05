@@ -1336,9 +1336,6 @@ definitions:
       id:
         type: integer
         format: int64
-      owner:
-        type: integer
-        format: int64
       crdate:
         type: string
         format: date-time
@@ -1349,7 +1346,6 @@ definitions:
         description: register description
     required:
       - id
-      - owner
       - title
   Card:
     type: object

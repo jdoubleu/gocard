@@ -173,7 +173,6 @@ const Models = {
      */
     Register: {
         'id': 'number',
-        'owner': 'number',
         'crdate': 'string',
         'title': 'string',
         'description': 'string',
