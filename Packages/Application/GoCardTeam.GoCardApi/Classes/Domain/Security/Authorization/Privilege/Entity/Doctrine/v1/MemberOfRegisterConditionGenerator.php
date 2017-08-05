@@ -101,6 +101,7 @@ class MemberOfRegisterConditionGenerator implements SqlGeneratorInterface
 
         $memberTable = $quoteStrategy->getTableName($member, $platform);
 
-        return '( SELECT uid FROM ' . $memberTable . ' WHERE ' . $memberTable . '.' . $membersUserColumn . ' = ' . $target->getUid() . ' AND ' . $memberTable . '.' . $membersRegisterColumn . ' = ' . $targetTableAlias . '.' . $registersUidColumn . ')';
+        $sqlFilter->setParameter('user_uid', $target->getUid());
+        return '( SELECT uid FROM ' . $memberTable . ' WHERE ' . $memberTable . '.' . $membersUserColumn . ' = ' . $sqlFilter->getParameter('user_uid') . ' AND ' . $memberTable . '.' . $membersRegisterColumn . ' = ' . $targetTableAlias . '.' . $registersUidColumn . ')';
     }
 }
