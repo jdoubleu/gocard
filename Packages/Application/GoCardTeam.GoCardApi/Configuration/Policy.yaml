@@ -31,7 +31,7 @@ privilegeTargets:
     'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByIdAction(userId != current.userContext.user.uid))'
     'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions':
-      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(update|delete)UserAction(user != current.userContext.user))'
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(update|delete|getMembersBy)UserAction(user != current.userContext.user))'
 
 roles:
 
