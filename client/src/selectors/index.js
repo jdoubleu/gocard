@@ -9,6 +9,7 @@ const getKeyword = (state, props) => props.keyword;
 const getUsers = (state) => state.entities.users.byId;
 const getSelectedTags = (state, props) => state.ui.learnSettings.byId[_.parseInt(props.match.params.registerId)].tags;
 const getAnsweredCardsIds = (state) => state.ui.learning.allIds || [];
+const getAnsweredCards = (state) => state.ui.learning.byId || {};
 
 export const makeGetCardsByRegister = (state, props) => {
     return createSelector(
@@ -100,6 +101,21 @@ export const makeGetNextCard = () => {
         [makeGetCardsByTags(), getAnsweredCardsIds],
         (cards, answeredIds) => {
             let unAnsweredCards = _.filter(cards, function(c) { return !_.includes(answeredIds, c.id)});
+            if(unAnsweredCards.length > 0) {
+                return unAnsweredCards[0];
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
+export const makeGetNextCardForPowerMode = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let unAnsweredCards = _.filter(cards, function(c) { return (!_.includes(answeredIds, c.id)
+                ||(_.includes(answeredIds, c.id)&&answeredCards[c.id].correct !== true))});
             if(unAnsweredCards.length > 0) {
                 return unAnsweredCards[0];
             } else {

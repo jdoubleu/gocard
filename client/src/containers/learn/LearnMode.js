@@ -7,7 +7,7 @@ import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
 import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
 import SelfValidateCardForm from "../forms/SelfValidateLearn";
 import TextInputCardForm from "../forms/TextInputLearn";
-import {makeGetCardsByRegister, makeGetNextCard} from "../../selectors/index";
+import {makeGetCardsByRegister, makeGetNextCard, makeGetNextCardForPowerMode} from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
 import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
@@ -125,12 +125,13 @@ LearnMode.propTypes = {
 const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
+    const getNextPowerModeCard = makeGetNextCardForPowerMode();
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
         return {
             register: state.entities.registers.byId[registerId] || {},
             cards: getCardsByRegister(state, props) || [],
-            currentCard: getNextCard(state, props),
+            currentCard: state.ui.learning.misc.mode === "POWER_MODE" ?getNextPowerModeCard(state, props) : getNextCard(state, props),
             mode: state.ui.learning.misc.mode || "NORMAL_MODE",
             valuesSingle: getFormValues('singleChoiceLearn')(state),
             valuesMultiple: getFormValues('multipleChoiceLearn')(state),
