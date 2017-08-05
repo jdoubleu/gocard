@@ -130,6 +130,7 @@ class Member implements \JsonSerializable
         return [
             'id' => $this->getUid(),
             'user' => $this->getUser()->getUid(),
+            'register' => $this->getRegister()->getUid(),
             'role' => $this->getRole()
         ];
     }

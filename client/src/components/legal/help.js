@@ -15,7 +15,7 @@ const Help = () => {
                 <Col>
                     <Card>
                         <CardBlock>
-                                    <CardBlock>
+                                    <CardBlock id="top">
                                         <Row>
                                             <Col className="mt-2">
                                         <NavLink href="#card" className="btn btn-outline-primary">Karteikarten</NavLink>
@@ -163,6 +163,9 @@ const Help = () => {
                                 eines Registers gespeichert.
                             </CardText>
 
+                            <hr/>
+                            <CardText><a href="#top">Zurück nach oben</a> </CardText>
+
                             <span><hr/></span>
 
                             <CardTitle id="register">Register</CardTitle>
@@ -271,6 +274,9 @@ const Help = () => {
                                 Unter diesen Segmenten wird dir die Sammlung all deiner Karten in diesem Register angezeigt.
                             </CardText>
 
+                            <hr/>
+                            <CardText><a href="#top">Zurück nach oben</a> </CardText>
+
                             <span><hr/></span>
 
                             <CardTitle id="learn">Lernen</CardTitle>
@@ -335,6 +341,9 @@ const Help = () => {
                                 Darunter befindet sich eine Übersicht der verwendeten Karten. Diese Übersicht kann durch die Buttons
                                 "Richtige", "Falsche" und "keine Antwort" gefiltert werden.
                             </CardText>
+
+                            <hr/>
+                            <CardText><a href="#top">Zurück nach oben</a> </CardText>
 
                             <span><hr/></span>
 
@@ -423,6 +432,9 @@ const Help = () => {
                                 bestätigen.
                             </CardText>
 
+                            <hr/>
+                            <CardText><a href="#top">Zurück nach oben</a> </CardText>
+
                             <span><hr/></span>
 
                             <CardTitle id="special">Sonstiges</CardTitle>
@@ -463,6 +475,9 @@ const Help = () => {
                                 die
                                 Entwicklung dieser Seite Tools und Libraries verwendet wurden.
                             </CardText>
+
+                            <hr/>
+                            <CardText><a href="#top">Zurück nach oben</a> </CardText>
 
                             <span><hr/></span>
 

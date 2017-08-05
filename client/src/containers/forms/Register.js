@@ -47,13 +47,13 @@ const RegisterForm = props => {
             />
 
             <Row>
-                <Col className="pr-1">
+                <Col>
+                    <Link className="btn btn-outline-danger btn-block" to={cancelRoute}>{cancelLabel}</Link>
+                </Col>
+                <Col>
                     <Button outline block color="primary" type="submit" disabled={submitting}>
                         {submitLabel}
                     </Button>
-                </Col>
-                <Col className="pl-1">
-                    <Link className="btn btn-outline-primary btn-block" to={cancelRoute}>{cancelLabel}</Link>
                 </Col>
             </Row>
         </Form>

@@ -1,7 +1,8 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form} from "reactstrap";
+import {Alert, Button, Form, Col, Row} from "reactstrap";
 import InputField from "./fields/input";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
@@ -40,9 +41,16 @@ const SettingsForm = props => {
                 label="E-Mail Adresse"
             />
 
-            <Button outline block color="primary" type="submit" disabled={submitting}>
-                Speichern
-            </Button>
+            <Row>
+                <Col>
+                    <Link className="btn btn-outline-danger btn-block" to="/">Abbrechen</Link>
+                </Col>
+                <Col>
+                    <Button outline block color="primary" type="submit" disabled={submitting}>
+                        Speichern
+                    </Button>
+                </Col>
+            </Row>
         </Form>
     )
 };

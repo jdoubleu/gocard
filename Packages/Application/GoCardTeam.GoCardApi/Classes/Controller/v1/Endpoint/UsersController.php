@@ -113,6 +113,26 @@ class UsersController extends AbstractApiEndpointController
     }
 
     /**
+     * @param string $name User's name
+     */
+    public function searchUsersByNameAction(string $name)
+    {
+        $users = $this->userRepository->searchUsersByName(trim('%', $name));
+
+        $this->view->setConfiguration([
+            'value' => [
+                '_descendAll' => [
+                    '_only' => [
+                        'id',
+                        'displayName'
+                    ]
+                ]
+            ]
+        ]);
+        $this->view->assign('value', $users);
+    }
+
+    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */

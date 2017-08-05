@@ -9,6 +9,8 @@ use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Neos\Error\Messages\Error;
+use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\KnownObjectException;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
@@ -96,6 +98,67 @@ class MembersController extends AbstractApiEndpointController
         }
 
         $this->view->assign('value', $member);
+    }
+
+    /**
+     * Initialize updateMemberSetOfRegister action
+     */
+    public function initializeUpdateMemberSetOfRegisterAction()
+    {
+        $membersConfiguration = $this->arguments->getArgument('members')->getPropertyMappingConfiguration();
+        $memberConfiguration = $membersConfiguration->forProperty('*');
+        $memberConfiguration->allowAllProperties();
+        $memberConfiguration->setMapping('id', 'uid');
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
+        $memberConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $memberConfiguration->forProperty('user')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+        $memberConfiguration->forProperty('register')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, false);
+    }
+
+    /**
+     * @param Register $register
+     * @param ArrayCollection<Member> $members
+     */
+    public function updateMemberSetOfRegisterAction(Register $register, $members)
+    {
+        $currentMembers = $register->getMembers();
+        $activeMembers = $newMembers = [];
+
+        foreach ($members as $num => $member) {
+            /** @var Member $member */
+            if ($this->persistenceManager->isNewObject($member)) {
+                $member->setRegister($register);
+                $this->memberRepository->add($member);
+                $currentMembers->add($member);
+            } else {
+                if ($member->getRegister()->getUid() != $register->getUid()) {
+                    $error = new Result();
+                    $error->forProperty('members')
+                        ->forProperty($num)
+                        ->addError(new Error("Cannot move member from one register to another! Please create a new member therefore."));
+                    $this->{$this->errorMethodName}($error);
+                    return;
+                }
+
+                $this->memberRepository->update($member);
+            }
+            $activeMembers[] = $member->getUid();
+        }
+
+        $currentMembers = $currentMembers->filter(function($m) use ($activeMembers) {
+            /** @var Member $m */
+            if (!in_array($m->getUid(), $activeMembers)) {
+                $this->memberRepository->remove($m);
+                return false;
+            }
+
+            return true;
+        });
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', array_values($currentMembers->toArray()));
+        return;
     }
 
     /**

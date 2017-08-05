@@ -6,7 +6,7 @@ const EULA = () => {
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>
-                <Headline title="Endnutzer-Linzenzvereinbarung - EULA"/>
+                <Headline title="Endnutzer Linzenz&shy;vereinbarung EULA"/>
                 <Card block>
                     <CardTitle>Nutzung</CardTitle>
 

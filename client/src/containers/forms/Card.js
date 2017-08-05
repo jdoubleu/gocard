@@ -1,12 +1,14 @@
 import React from "react";
 import {Field, FieldArray, formValueSelector, reduxForm} from "redux-form";
-import {Alert, Button, Form} from "reactstrap";
+import {Alert, Button, Form, Col, Row} from "reactstrap";
 import InputField from "./fields/input";
 import InputTagField from "./fields/inputTag/index";
 import SelectButton from "./fields/selectButton";
 import InputSingleChoice from "./fields/inputSingleChoice";
 import InputMultipleChoice from "./fields/inputMultipleChoice";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+
 
 const validate = values => {
     const errors = {};
@@ -40,7 +42,7 @@ const validate = values => {
 };
 
 const CardForm = props => {
-    const {error, handleSubmit, submitting, submitLabel, type, keyword} = props;
+    const {error, handleSubmit, submitting, submitLabel, type, keyword, cancelLabel, cancelRoute} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -130,9 +132,16 @@ const CardForm = props => {
             />
 
 
-            <Button outline block color="primary" type="submit" disabled={submitting}>
-                {submitLabel}
-            </Button>
+            <Row>
+                <Col>
+                    <Link className="btn btn-outline-danger btn-block" to={cancelRoute}>{cancelLabel}</Link>
+                </Col>
+                <Col>
+                    <Button outline block color="primary" type="submit" disabled={submitting}>
+                        {submitLabel}
+                    </Button>
+                </Col>
+            </Row>
         </Form>
     )
 };

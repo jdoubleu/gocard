@@ -28,6 +28,13 @@
   httpMethods: ['GET']
 
 -
+  name: 'search users'
+  uriPattern: 'search'
+  defaults:
+    '@action': 'searchUsersByName'
+  httpMethods: ['GET']
+
+-
   name: 'find user'
   uriPattern: '{userId}'
   defaults:
