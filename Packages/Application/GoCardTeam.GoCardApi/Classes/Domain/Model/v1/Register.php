@@ -39,7 +39,7 @@ class Register implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="Text")
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @var string
      */
     protected $description;
