@@ -63,17 +63,17 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                         // index in UserAnswer && Corrects => Grün
                         // index in UserAnswer != Corrects || Corrects != UserAnser => Rot
                         // sonst so hintergrund
-                        if((_.includes(userAnswer, index))){
-                            option = option+" ◀";
+                        if ((_.includes(userAnswer, index))) {
+                            option = option + " ◀";
                         }
-                        if(_.includes(card.content.corrects, index)){
+                        if (_.includes(card.content.corrects, index)) {
                             return (
                                 <div className="text-success">
                                     {option}
                                 </div>
                             );
-                        } else if((_.includes(userAnswer, index)&& !_.includes(card.content.corrects, index))
-                            ||(_.includes(card.content.corrects, index) && !_.includes(userAnswer, index))) {
+                        } else if ((_.includes(userAnswer, index) && !_.includes(card.content.corrects, index))
+                            || (_.includes(card.content.corrects, index) && !_.includes(userAnswer, index))) {
                             return (
                                 <div className="text-danger">
                                     {option}
@@ -87,6 +87,32 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                             );
                         }
                     })
+                }
+                {
+                    card.type === 'text-input' &&
+                    (card.content.answer === _.trim(userAnswer)) &&
+                    <div>
+                        <div>
+                            Korrekte Antwort: {card.content.answer}
+                        </div>
+                        <div className="text-success">
+                            Deine Antwort: {userAnswer}
+                        </div>
+                    </div>
+
+                }
+                {
+                    card.type === 'text-input' &&
+                    (card.content.answer !== _.trim(userAnswer)) &&
+                    <div>
+                        <div>
+                            Korrekte Antwort: {card.content.answer}
+                        </div>
+                        <div className="text-danger">
+                            Deine Antwort: {userAnswer}
+                        </div>
+                    </div>
+
                 }
                 <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
                     Nächste karte

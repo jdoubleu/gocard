@@ -1,11 +1,11 @@
 import React from "react";
 import {
-    Button, ButtonGroup, CardText, CardTitle, FormFeedback, FormGroup, Input, Label,
+    Button, CardTitle, FormFeedback, FormGroup, Input, Label,
     UncontrolledTooltip
 } from "reactstrap";
 
 
-const selectButton = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
+const learnSelfValidateButtonField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
     return (
         <FormGroup color={touched && error && 'danger'}>
             {
@@ -60,4 +60,4 @@ const selectButton = ({input, content, label, disableLabel, toolTip, type, meta:
         </FormGroup>);
 };
 
-export default selectButton;
+export default learnSelfValidateButtonField;

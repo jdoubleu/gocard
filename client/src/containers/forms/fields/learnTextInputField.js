@@ -1,7 +1,7 @@
 import React from "react";
 import {FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
 
-const learnSingleChoiceField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => (
+const learnTextInputField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => (
     <FormGroup color={touched && error && 'danger'} tag="fieldset">
         {
             !disableLabel &&
@@ -11,14 +11,11 @@ const learnSingleChoiceField = ({input, content, label, disableLabel, toolTip, t
         }
 
         {
-            content.options.map((option, index) =>
-                <FormGroup>
-                    <Label>
-                        <Input {...input} name={input.name} type="radio" value={index}/>{' '}
-                        {option}
-                    </Label>
-                </FormGroup>
-            )
+            <FormGroup>
+                <Label>
+                    <Input {...input} name={input.name} type="text" placeholder="Gib deine Antwort ein."/>{' '}
+                </Label>
+            </FormGroup>
         }
 
         {
@@ -34,4 +31,4 @@ const learnSingleChoiceField = ({input, content, label, disableLabel, toolTip, t
     </FormGroup>
 );
 
-export default learnSingleChoiceField;
+export default learnTextInputField;

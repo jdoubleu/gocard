@@ -77,7 +77,6 @@ export const makeGetCardsByTags = () => {
     return createSelector(
         [makeGetCardsByRegister(), getSelectedTags],
         (cards, selectedTags) => {
-            console.log("selectedTags", selectedTags);
             if(selectedTags === undefined || selectedTags.length === 0) {
                 return cards;
             } else {

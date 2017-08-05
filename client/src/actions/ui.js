@@ -67,7 +67,6 @@ export function addRegister(body) {
 export const ADD_CARD_RESULT = 'ADD_CARD_RESULT';
 
 export function addResult(cardId, answer, correct) {
-    console.log("cardId", cardId);
     return {
         type: ADD_CARD_RESULT,
         payload: {cardId, answer, correct}

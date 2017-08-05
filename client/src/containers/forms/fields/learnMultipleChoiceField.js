@@ -1,8 +1,8 @@
 import React from "react";
-import {Button, ButtonGroup, FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
+import {FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
 import _ from "lodash";
 
-const selectButton = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
+const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
     const answer = _.get(input.value, 'answer', []);
     return (<FormGroup color={touched && error && 'danger'} tag="fieldset">
             {
@@ -45,4 +45,4 @@ const selectButton = ({input, content, label, disableLabel, toolTip, type, meta:
     );
 };
 
-export default selectButton;
+export default learnMultipleChoiceField;
