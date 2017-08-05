@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Headline from "../../components/shared/headline";
-import {Card, Col} from "reactstrap";
+import {Card, Col, Row} from "reactstrap";
 import {updateRegister} from "../../actions/register";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
@@ -16,16 +16,18 @@ const Edit = ({register}) => {
     };
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
-            <Headline title="Register bearbeiten">
-                Hier kannst dein Register bearbeiten.
-            </Headline>
+        <Row>
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Headline title="Register bearbeiten">
+                    Hier kannst dein Register bearbeiten.
+                </Headline>
 
-            <Card block>
-                <RegisterForm onSubmit={handleSubmit} initialValues={register} submitLabel="Speichern"
-                              cancelRoute={`/register/${register.id}`} cancelLabel="Abbrechen"/>
-            </Card>
-        </Col>
+                <Card block>
+                    <RegisterForm onSubmit={handleSubmit} initialValues={register} submitLabel="Speichern"
+                                  cancelRoute={`/register/${register.id}`} cancelLabel="Abbrechen"/>
+                </Card>
+            </Col>
+        </Row>
     )
 };
 

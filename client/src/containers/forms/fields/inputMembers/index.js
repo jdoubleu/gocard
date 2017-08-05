@@ -69,7 +69,7 @@ class InputMembers extends React.Component {
     }
 
     render() {
-        const {fields, label, disableLabel, toolTip, meta: {touched, error}, users} = this.props;
+        const {fields, label, disableLabel, toolTip, meta: {touched, error}} = this.props;
         return (
             <FormGroup color={touched && error && 'danger'}>
                 {

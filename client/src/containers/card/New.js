@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col} from "reactstrap";
+import {Card, Col, Row} from "reactstrap";
 import Headline from "../../components/shared/headline";
 import CardForm from "../forms/Card";
 import _ from "lodash";
@@ -12,22 +12,30 @@ import {push} from "react-router-redux";
 const New = ({match, userId}) => {
 
     const handleSubmit = (values, dispatch) => {
-        const body = {..._.omit(values, ['content_choice', 'content_text']), content: values.content, author: userId, crdate: moment().format(),tags: values.tags};
+        const body = {
+            ..._.omit(values, ['content_choice', 'content_text']),
+            content: values.content,
+            author: userId,
+            crdate: moment().format(),
+            tags: values.tags
+        };
         console.log("body", body);
         return dispatch(addCard(match.params.registerId, body)).then(success =>
             dispatch(push(`/register/${match.params.registerId}`)));
     };
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
-            <Headline title="Neue Karteikarte">
-                Hier kannst du eine neue Karteikarte für Dein Register erstellen.
-            </Headline>
+        <Row>
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Headline title="Neue Karteikarte">
+                    Hier kannst du eine neue Karteikarte für Dein Register erstellen.
+                </Headline>
 
-            <Card block>
-                <CardForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/" cancelLabel="Abbrechen" />
-            </Card>
-        </Col>
+                <Card block>
+                    <CardForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/" cancelLabel="Abbrechen"/>
+                </Card>
+            </Col>
+        </Row>
     )
 };
 

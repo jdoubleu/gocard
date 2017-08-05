@@ -5,7 +5,7 @@ import {addRegister} from "../../actions/register";
 import {updateMembersByRegister} from "../../actions/member";
 import moment from "moment";
 import {push} from "react-router-redux";
-import {Card, Col} from "reactstrap";
+import {Card, Col, Row} from "reactstrap";
 import Headline from "../../components/shared/headline";
 import RegisterForm from "../forms/Register";
 
@@ -26,15 +26,18 @@ const New = ({userId}) => {
     };
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
-            <Headline title="Neues Register">
-                Hier kannst du ein neues Register für Deine Karteikarten erstellen.
-            </Headline>
+        <Row>
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Headline title="Neues Register">
+                    Hier kannst du ein neues Register für Deine Karteikarten erstellen.
+                </Headline>
 
-            <Card block>
-                <RegisterForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/" cancelLabel="Abbrechen"/>
-            </Card>
-        </Col>
+                <Card block>
+                    <RegisterForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/"
+                                  cancelLabel="Abbrechen"/>
+                </Card>
+            </Col>
+        </Row>
     )
 };
 

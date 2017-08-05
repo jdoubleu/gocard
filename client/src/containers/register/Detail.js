@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {loadCards} from "../../actions/card";
 import Headline from "../../components/shared/headline";
-import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../card/Preview";
 import BlankCard from "../../components/card/blankCard";
 import MemberBar from "./member/Bar";
@@ -57,15 +57,15 @@ class Detail extends React.Component {
                         <h4>Alle Karteikarten</h4>
                     </Col>
                 </Row>
-                <CardDeck>
+                <Row>
                     <BlankCard registerId={register.id}/>
                     {
                         cardIds &&
                         cardIds.map((cardId) =>
-                            <PreviewCard cardId={cardId}/>
+                            <PreviewCard cardId={cardId} key={cardId}/>
                         )
                     }
-                </CardDeck>
+                </Row>
             </div>
         );
     }

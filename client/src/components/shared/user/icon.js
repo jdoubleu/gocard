@@ -13,7 +13,7 @@ const Icon = ({children, ...rest}) => {
 };
 
 Icon.propTypes = {
-    children: PropTypes.string.isRequired,
+    children: PropTypes.string,
     diameter: PropTypes.number
 };
 

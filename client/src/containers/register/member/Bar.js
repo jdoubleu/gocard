@@ -56,7 +56,6 @@ class Bar extends React.Component {
 
 Bar.propTypes = {
     registerId: PropTypes.number.isRequired,
-    members: PropTypes.object.isRequired,
     diameter: PropTypes.number.isRequired,
     maxIcons: PropTypes.number.isRequired
 };

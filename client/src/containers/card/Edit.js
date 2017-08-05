@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Card, Col} from "reactstrap";
+import {Card, Col, Row} from "reactstrap";
 import Headline from "../../components/shared/headline";
 import CardForm from "../forms/Card";
 import {connect} from "react-redux";
@@ -13,15 +13,17 @@ class Edit extends React.Component {
     render() {
         const {card} = this.props;
         return (
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                <Headline title="Karteikarte bearbeiten">
-                    Hier kannst du deine Karteikarte für Dein Register bearbeiten.
-                </Headline>
+            <Row>
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <Headline title="Karteikarte bearbeiten">
+                        Hier kannst du deine Karteikarte für Dein Register bearbeiten.
+                    </Headline>
 
-                <Card block>
-                    <CardForm onSubmit={this.handleSubmit} initialValues={card} submitLabel="Speichern"/>
-                </Card>
-            </Col>
+                    <Card block>
+                        <CardForm onSubmit={this.handleSubmit} initialValues={card} submitLabel="Speichern"/>
+                    </Card>
+                </Col>
+            </Row>
         )
     }
 }
