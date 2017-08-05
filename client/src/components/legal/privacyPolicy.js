@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>
-                <Headline title="Datenschutzerklärung"/>
+                <Headline title="Datenschutz&shy;erklärung"/>
                 <Card block>
                     <CardTitle>Allgemein</CardTitle>
 
@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
 
                     <span><hr/></span>
 
-                    <CardTitle>Personenbezogene Daten</CardTitle>
+                    <CardTitle>Personenbezogene&shy; Daten</CardTitle>
                     <CardText className="px-2 text-justify">
                         Du kannst unsere Webseite ohne Angabe personenbezogener Daten besuchen. Auch bei einer
                         Registrierung in das Portal sind keine personenbezogenen Daten erforderlich. Wenn jedoch
