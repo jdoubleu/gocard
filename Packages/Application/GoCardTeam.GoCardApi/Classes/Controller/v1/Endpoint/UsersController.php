@@ -117,7 +117,7 @@ class UsersController extends AbstractApiEndpointController
      */
     public function searchUsersByNameAction(string $name)
     {
-        $users = $this->userRepository->searchUsersByName(trim('%', $name));
+        $users = $this->userRepository->searchUsersByName(trim($name, '%'));
 
         $this->view->setConfiguration([
             'value' => [
