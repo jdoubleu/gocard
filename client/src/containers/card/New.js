@@ -12,15 +12,15 @@ import {push} from "react-router-redux";
 const New = ({match, userId}) => {
 
     const handleSubmit = (values, dispatch) => {
-        const body = {
-            ..._.omit(values, ['content_choice', 'content_text']),
-            content: values.content,
+        return dispatch(addCard(match.params.registerId, {
+            ...values,
             author: userId,
-            crdate: moment().format(),
-            tags: values.tags
-        };
-        return dispatch(addCard(match.params.registerId, body)).then(success =>
-            dispatch(push(`/register/${match.params.registerId}`)));
+            crdate: moment().format()
+        }))
+            .then(
+                success =>
+                    dispatch(push(`/register/${match.params.registerId}`))
+            );
     };
 
     return (
