@@ -58,7 +58,7 @@ function addRegisterId(state, action) {
 function deleteRegisterId(state, action) {
     const {registerId} = action;
 
-    return _.pull(state, registerId);
+    return _.without(state, registerId);
 }
 
 function updateRegisterId(state, action) {

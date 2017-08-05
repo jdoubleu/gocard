@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Headline from "../../components/shared/headline";
 import {Card, Col, Row} from "reactstrap";
-import {updateRegister} from "../../actions/register";
+import {updateRegister, deleteRegister} from "../../actions/register";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import RegisterForm from "../forms/Register";
+import DeleteRegisterForm from "../forms/DeleteRegister";
 
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
@@ -15,6 +16,13 @@ const Edit = ({register}) => {
         )
     };
 
+    const handleDeleteSubmit = (values, dispatch) => {
+        return dispatch(deleteRegister(register.id)).then(
+            response =>
+                dispatch(push('/'))
+        );
+    };
+
     return (
         <Row>
             <Col sm="12" md={{size: 8, offset: 2}}>
@@ -22,9 +30,13 @@ const Edit = ({register}) => {
                     Hier kannst dein Register bearbeiten.
                 </Headline>
 
-                <Card block>
+                <Card block className="mb-3">
                     <RegisterForm onSubmit={handleSubmit} initialValues={register} submitLabel="Speichern"
                                   cancelRoute={`/register/${register.id}`} cancelLabel="Abbrechen"/>
+                </Card>
+
+                <Card block>
+                    <DeleteRegisterForm onSubmit={handleDeleteSubmit} />
                 </Card>
             </Col>
         </Row>
