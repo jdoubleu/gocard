@@ -15,6 +15,10 @@ privilegeTargets:
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardStatisticsController->.*Action())'
     'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByEmailAction(email != current.userContext.user.email))'
+    'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByIdAction(userId != current.userContext.user.uid))'
+    'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(update|delete)UserAction(user != current.userContext.user))'
 
 roles:
 
@@ -40,4 +44,10 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail'
+        permission: DENY
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction'
+        permission: DENY
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions'
         permission: DENY
