@@ -7,13 +7,15 @@ import {addCard} from "../../actions/card";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
+import {push} from "react-router-redux";
 
 const New = ({match, userId}) => {
 
     const handleSubmit = (values, dispatch) => {
-        const body = {..._.omit(values, ['content_choice', 'content_text']), content: values.content, author: userId, crdate: moment().format(),tags: []};
+        const body = {..._.omit(values, ['content_choice', 'content_text']), content: values.content, author: userId, crdate: moment().format(),tags: values.tags};
         console.log("body", body);
-        return dispatch(addCard(match.params.registerId, body)).catch(err => console.log(err));
+        return dispatch(addCard(match.params.registerId, body)).then(success =>
+            dispatch(push(`/register/${match.params.registerId}`)));
     };
 
     return (

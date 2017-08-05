@@ -11,36 +11,6 @@ import {
 
 import _ from "lodash";
 
-function addMemberEntry(state, action) {
-    const {response} = action;
-    return _.merge(state, _.keyBy(response, 'id'));
-}
-
-function addMemberEntries(state, action) {
-    const {response} = action;
-    return _.merge(state, _.keyBy(response, 'id'));
-}
-
-function updateMemberEntry(state, action) {
-    const {response} = action;
-    return _.merge(state, _.keyBy(response, 'id'));
-}
-
-function updateMemberEntries(state, action) {
-    const {response} = action;
-    return _.merge(state, _.keyBy(response, 'id'));
-}
-
-function deleteMemberEntry(state, action) {
-    return _.omit(state, action.id);
-}
-
-
-function addMembershipEntry(state, action) {
-    const {response} = action;
-    return _.merge(state, _.keyBy(response, 'id'));
-}
-
 function addMemberIds(state, action) {
     const {response} = action;
     return _.union(state, _.map(response, 'id'));
@@ -65,7 +35,6 @@ function deleteMemberId(state, action) {
     return _.pull(state, action.id);
 }
 
-
 function addMembershipId(state, action) {
     const {response} = action;
     return _.union(_.concat(state, _.map(response, 'id')));
@@ -89,6 +58,35 @@ function membersById(state = {}, action) {
         default:
             return state;
     }
+}
+
+function addMemberEntry(state, action) {
+    const {response} = action;
+    return _.assign({}, state, _.keyBy(response, 'id'));
+}
+
+function addMemberEntries(state, action) {
+    const {response} = action;
+    return _.assign({}, state, _.keyBy(response, 'id'));
+}
+
+function updateMemberEntry(state, action) {
+    const {response} = action;
+    return _.assign({}, state, _.keyBy(response, 'id'));
+}
+
+function updateMemberEntries(state, action) {
+    const {response} = action;
+    return _.assign({}, state, _.keyBy(response, 'id'));
+}
+
+function deleteMemberEntry(state, action) {
+    return _.omit(state, action.id);
+}
+
+function addMembershipEntry(state, action) {
+    const {response} = action;
+    return _.assign({}, state, _.keyBy(response, 'id'));
 }
 
 function allMembers(state = [], action) {

@@ -10,6 +10,7 @@ import MemberBar from "./member/Bar";
 import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
+import {makeGetCardIdsByRegister, makeGetTagsByRegister} from "../../selectors";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -19,7 +20,7 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {register, cardIds} = this.props;
+        const {register, cardIds, tags} = this.props;
         return (
             <div>
                 <Headline title={register.title}/>
@@ -36,7 +37,7 @@ class Detail extends React.Component {
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm />
+                        <LearnForm tags={tags}/>
                     </Card>
 
                     <Card block>
@@ -72,12 +73,18 @@ class Detail extends React.Component {
 
 Detail.propTypes = {};
 
-function mapStateToProps(state, ownProps) {
-    const registerId = ownProps.match.params.registerId;
-    return {
-        register: state.entities.registers.byId[registerId] || {},
-        cardIds: state.entities.cards.allIds
-    }
-}
+const makeMapStateToProps = () => {
+    const getCardIdsByRegister = makeGetCardIdsByRegister();
+    const getTagsByRegisterByKeyword = makeGetTagsByRegister();
+    const mapStateToProps = (state, props) => {
+        const registerId = props.match.params.registerId;
+        return {
+            register: state.entities.registers.byId[registerId] || {},
+            cardIds: getCardIdsByRegister(state, props),
+            tags: getTagsByRegisterByKeyword(state, props)
+        }
+    };
+    return mapStateToProps
+};
 
-export default connect(mapStateToProps)(Detail);
+export default connect(makeMapStateToProps)(Detail);

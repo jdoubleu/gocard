@@ -15,7 +15,7 @@ const validate = values => {
 };
 
 const Learn = props => {
-    const {error, handleSubmit, submitting} = props;
+    const {error, handleSubmit, submitting, tags} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -24,12 +24,13 @@ const Learn = props => {
                     {error}
                 </Alert>
             }
+
             <Field
                 name="tags"
                 component={SelectTag}
                 label="Tags"
                 toolTip="Die Tags können ausgewählt werden, um themenbezogene Lernkarten zu erhalten. Sie können einen oder mehrere Tags auswählen. Wenn Tags nicht ausgewählt sind, werden Karteikarten mit diesen Tags nicht im Lernmodus berücksichtigt. Sind keine Tags ausgewählt sind alle Karteikarten ausgewählt."
-                options={["XYZZXY", "sadasd", "asdasd", "4h23b4hj23"]}
+                options={tags}
             />
 
             <Field

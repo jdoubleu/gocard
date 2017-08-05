@@ -11,13 +11,13 @@ import _ from "lodash";
 function addCardEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, {[response.id]: response});
+    return _.assign({}, state, {[response.id]: response});
 }
 
 function updateCardEntry(state, action) {
     const {response} = action;
 
-    return _.merge(state, {[response.id]: response});
+    return _.assign({}, state, {[response.id]: response});
 }
 
 function deleteCardEntry(state, action) {
@@ -29,7 +29,7 @@ function deleteCardEntry(state, action) {
 function addCardEntries(state, action) {
     const {response} = action;
 
-    return _.merge(state, _.keyBy(response, 'id'));
+    return _.assign({}, state, _.keyBy(response, 'id'));
 }
 
 function cardsById(state = {}, action) {
