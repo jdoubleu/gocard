@@ -38,4 +38,18 @@ class UserRepository extends Repository
 
         return $this->findOneByAccount($account);
     }
+
+    /**
+     * Returns all users which names matches the given name.
+     *
+     * @param string $name User's names
+     * @return User[]
+     */
+    public function searchUsersByName(string $name)
+    {
+       $query = $this->createQuery();
+       return $query->matching(
+            $query->like('displayName', '%' . $name . '%')
+       )->execute()->toArray();
+    }
 }

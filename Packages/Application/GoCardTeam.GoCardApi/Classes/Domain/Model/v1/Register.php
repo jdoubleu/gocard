@@ -23,13 +23,6 @@ class Register implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @ORM\ManyToOne()
-     * @var User
-     */
-    protected $owner;
-
-    /**
-     * @Flow\Validate(type="NotEmpty")
      * @Flow\Validate(type="DateTime")
      * @ORM\Column(type="datetime")
      * @var \DateTime
@@ -85,30 +78,6 @@ class Register implements \JsonSerializable
     public function setUid($uid)
     {
         $this->uid = $uid;
-    }
-
-    /**
-     * @return User
-     */
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    /**
-     * @param User $owner
-     */
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-    }
-
-    /**
-     * @return int
-     */
-    public function getOwnersUid()
-    {
-        return ($owner = $this->getOwner()) != null ? $owner->getUid() : null;
     }
 
     /**
@@ -199,7 +168,6 @@ class Register implements \JsonSerializable
     {
         return [
             'id' => $this->getUid(),
-            'owner' => $this->getOwner()->getUid(),
             'crdate' => $this->getCrdate(),
             'title' => $this->getTitle(),
             'description' => $this->getDescription()
