@@ -5,13 +5,14 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
 import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
+import SelfValidateCardForm from "../forms/SelfValidateLearn";
 import {makeGetCardsByRegister, makeGetNextCard} from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
 import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
 import FeedbackCard from "../../containers/learn/FeedbackCard";
 
-const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect}) => {
+const LearnMode = ({mode, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate}) => {
 
     const CalcCardStatistic = (correct) =>{
         //Load stats for current card
@@ -23,20 +24,16 @@ const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesS
         if(currentCard.type === "single-choice") {
             let res;
             if(valuesSingle !== undefined && currentCard.content.correct === _.parseInt(valuesSingle.userAnswer)) {
-                console.log("Correct");
                 res = true;
             } else {
-                console.log("False");
                 res = false;
             }
             dispatch(setLastCorrect(res));
             dispatch(setLastResult(_.parseInt(valuesSingle.userAnswer)));
 
             if(mode !== "TEST_MODE") {
-                console.log("JEEEPPPP");
                 dispatch(setShowResult(true));
             }else {
-                console.log("NOOOOOOPPPPEEE");
                 dispatch(addResult(currentCard.id, _.parseInt(valuesSingle.userAnswer), res));
             }
         }
@@ -44,8 +41,22 @@ const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesS
 
     const handleSubmitMultipleChoice = (values, dispatch) => {
         if(currentCard.type === "multiple-choice") {
-            console.log("multiple",valuesMultiple);
+            let resA = _.difference(currentCard.content.corrects, valuesMultiple.userAnswer.answer).length === 0;
+            let resB = _.difference(valuesMultiple.userAnswer.answer, currentCard.content.corrects).length === 0;
+            let res = resA && resB;
+            dispatch(setLastCorrect(res));
+            dispatch(setLastResult(valuesMultiple.userAnswer.answer));
+            if(mode !== "TEST_MODE") {
+                dispatch(setShowResult(true));
+            }else {
+                dispatch(addResult(currentCard.id, valuesMultiple.userAnswer.answer, res));
+            }
         }
+    };
+    const handleSubmitSelfValidate = (values, dispatch) => {
+      console.log("values", valuesSelfValidate);
+        let res = valuesSelfValidate.correct === "true";
+        dispatch(addResult(currentCard.id, res, res));
     };
 
     const matchTitle = () =>{
@@ -77,6 +88,10 @@ const LearnMode = ({mode, currentCard, cards, valid, answerSingleChoice, valuesS
                     <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard}/>
                 }
                 {
+                    currentCard && currentCard.type === 'self-validate' && showResult === false &&
+                    <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard}/>
+                }
+                {
                     !currentCard &&
                     <h1>done</h1>
                     
@@ -105,9 +120,11 @@ const makeMapStateToProps = () => {
             cards: getCardsByRegister(state, props) || [],
             //currentCard: state.ui.learning.misc.currentCard || firstCard,
             currentCard: getNextCard(state, props),
+            //currentFalseCard: getNextCard(state, props) for powermode -> solange karten mit false existieren,
             mode: state.ui.learning.misc.mode || "NORMAL_MODE",
             valuesSingle: getFormValues('singleChoiceLearn')(state),
             valuesMultiple: getFormValues('multipleChoiceLearn')(state),
+            valuesSelfValidate: getFormValues('selfValidateLearn')(state),
             showResult: state.ui.learning.misc.showResult || false,
             lastResult: state.ui.learning.misc.lastResult || -1,
             userId: state.auth.userId,

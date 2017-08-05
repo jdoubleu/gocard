@@ -12,8 +12,8 @@ const selectButton = ({input, content, label, disableLabel, toolTip, type, meta:
 
         {
             content.options.map((option, index) =>
-                <FormGroup check>
-                    <Label check>
+                <FormGroup>
+                    <Label>
                         <Input {...input} name={input.name} type="radio" value={index}/>{' '}
                         {option}
                     </Label>

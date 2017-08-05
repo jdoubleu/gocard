@@ -133,13 +133,13 @@ entities
             tags
             mode
         -AllIds
-    -LearnMode
+    -learning
         -misc
             tags
             mode
         -byId:
             -cardId => cardId, answer, correct: true
-            -cardId => cardId, answer, correct: null    getNetxtCard = getAllCardIdsByTags - allIds
+            -cardId => cardId, answer, correct: null    getNextCard = getAllCardIdsByTags - allIds
             -cardId => cardId, answer, correct: false
         -allIds
 */

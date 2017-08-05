@@ -57,6 +57,37 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                         }
                     )
                 }
+                {
+                    card.type === "multiple-choice" &&
+                    card.content.options.map((option, index) => {
+                        // index in UserAnswer && Corrects => Grün
+                        // index in UserAnswer != Corrects || Corrects != UserAnser => Rot
+                        // sonst so hintergrund
+                        if((_.includes(userAnswer, index))){
+                            option = option+" ◀";
+                        }
+                        if(_.includes(card.content.corrects, index)){
+                            return (
+                                <div className="text-success">
+                                    {option}
+                                </div>
+                            );
+                        } else if((_.includes(userAnswer, index)&& !_.includes(card.content.corrects, index))
+                            ||(_.includes(card.content.corrects, index) && !_.includes(userAnswer, index))) {
+                            return (
+                                <div className="text-danger">
+                                    {option}
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div>
+                                    {option}
+                                </div>
+                            );
+                        }
+                    })
+                }
                 <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
                     Nächste karte
                 </Button>
