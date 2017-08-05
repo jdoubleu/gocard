@@ -1,7 +1,7 @@
 import React from "react";
 import {Input} from "reactstrap";
 
-const InputField = ({input, label, disableLabel, toolTip, type, meta: {touched, error}}) => (
+const InputField = ({input, label, type, meta: {touched, error}}) => (
     <Input {...input} placeholder={label} type={type}/>
 );
 

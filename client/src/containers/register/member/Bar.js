@@ -1,11 +1,12 @@
 import React from "react";
+import _ from "lodash";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import UserIcon from "../../../components/shared/user/icon";
 import Icon from "../../../components/shared/icon";
 import {UncontrolledTooltip} from "reactstrap";
-import _ from "lodash";
 import {loadMembersByRegister} from "../../../actions/member";
+import {makeGetUsersByRegister} from "../../../selectors";
 
 class Bar extends React.Component {
 
@@ -16,8 +17,8 @@ class Bar extends React.Component {
 
     render() {
         const {members, diameter, maxIcons, registerId} = this.props;
-        const visibleMembers = _.chunk(members, maxIcons - 1)[0];
-        const collapsedMembers = _.chunk(members, maxIcons - 1)[1];
+        const visibleMembers = _.chunk(members, maxIcons - 1)[0] || {};
+        const collapsedMembers = _.chunk(members, maxIcons - 1)[1] || {};
         return (
             <span>
                 {
@@ -65,10 +66,14 @@ Bar.defaultProps = {
     maxIcons: 5
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        members: state.entities.members.byId[ownProps.registerId] || {},
-    }
-}
+const makeMapStateToProps = () => {
+    const getUsersByRegister = makeGetUsersByRegister();
+    const mapStateToProps = (state, props) => {
+        return {
+            members: getUsersByRegister(state, props) || {}
+        }
+    };
+    return mapStateToProps
+};
 
-export default connect(mapStateToProps)(Bar);
+export default connect(makeMapStateToProps)(Bar);

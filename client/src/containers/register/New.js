@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {addRegister} from "../../actions/register";
+import {updateMembersByRegister} from "../../actions/member";
 import moment from "moment";
 import {push} from "react-router-redux";
 import {Card, Col} from "reactstrap";
@@ -11,12 +12,16 @@ import RegisterForm from "../forms/Register";
 const New = ({userId}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(addRegister({
-            ...values,
+            title: values.title,
+            description: values.description,
             owner: userId,
             crdate: moment().format(),
         })).then(
             success =>
-                dispatch(push('/'))
+                dispatch(updateMembersByRegister(success.response.id, values.members)).then(
+                    success =>
+                        dispatch(push('/'))
+                )
         )
     };
 
