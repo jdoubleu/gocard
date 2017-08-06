@@ -12,12 +12,12 @@ const learnSingleChoiceField = ({input, content, label, disableLabel, toolTip, t
 
         {
             content.options.map((option, index) =>
-                <FormGroup>
-                    <Label>
-                        <Input {...input} name={input.name} type="radio" value={index}/>{' '}
+                <div>
+
+                        <Input {...input} name={input.name} type="radio" value={index} className="ml-2"/>{' '}
                         {option}
-                    </Label>
-                </FormGroup>
+
+                </div>
             )
         }
 
