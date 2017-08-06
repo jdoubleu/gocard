@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Button, CardTitle, FormFeedback, FormGroup, Input, Label,
+    Button, CardTitle, FormFeedback, FormGroup, Input, Label,Row, Col,
     UncontrolledTooltip
 } from "reactstrap";
 
@@ -28,22 +28,27 @@ const learnSelfValidateButtonField = ({input, content, label, disableLabel, tool
             {
                 !!input.value &&
                 <span>
-                <FormGroup check>
+
                     <h4 className="text-muted">Antwort</h4>
                     <CardTitle>
                         {content.answer}
                     </CardTitle>
-                    <Label>
-                        <Input {...input} type="radio" value={"true"}/>{' '}
+                    <Row check >
+                        <Col>
+                        <Label>
+                        <Input {...input} type="radio" value={"true"} className="ml-1"/>
                         Richtig
-                    </Label>
-                </FormGroup>
-                <FormGroup check>
+                        </Label>
+                        </Col>
+
+
+                <Col check>
                     <Label>
-                        <Input {...input} type="radio" value={"false"}/>{' '}
+                        <Input {...input} type="radio" value={"false"} className="ml-1"/>
                         Falsch
                     </Label>
-                </FormGroup>
+                </Col>
+                        </Row>
             </span>
             }
 

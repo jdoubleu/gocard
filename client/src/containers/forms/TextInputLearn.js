@@ -23,7 +23,9 @@ const TextInputLearn = ({error, submitting, card, handleSubmit, mode, handleSkip
                     {error}
                 </Alert>
             }
-
+            <CardTitle className="text-center">
+                Karteikarte Texteingabe
+            </CardTitle>
 
             <h4 className="text-muted">Frage</h4>
             <CardTitle>

@@ -10,12 +10,14 @@ const learnTextInputField = ({input, content, label, disableLabel, toolTip, type
             </h4>
         }
 
+        <h4 className="text-muted">Antwort</h4>
         {
-            <FormGroup>
+
+            <div>
                 <Label>
                     <Input {...input} name={input.name} type="text" placeholder="Gib deine Antwort ein."/>{' '}
                 </Label>
-            </FormGroup>
+            </div>
         }
 
         {

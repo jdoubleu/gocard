@@ -23,7 +23,9 @@ const MultipleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handl
                     {error}
                 </Alert>
             }
-
+            <CardTitle className="text-center">
+                Karteikarte Mutiple-Choice
+            </CardTitle>
 
             <h4 className="text-muted">Frage</h4>
             <CardTitle>
@@ -40,7 +42,7 @@ const MultipleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handl
             </CardText>
             {
                 mode === "NORMAL_MODE"&&
-                <Button color="link" disabled={submitting} onClick={handleSkip}>
+                <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
                     Überspringen
                 </Button>
             }

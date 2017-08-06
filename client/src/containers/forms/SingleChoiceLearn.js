@@ -42,7 +42,7 @@ const SingleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handleS
             </CardText>
             {
                 mode === "NORMAL_MODE"&&
-                <Button color="link" disabled={submitting} onClick={handleSkip}>
+                <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
                     Überspringen
                 </Button>
             }

@@ -14,8 +14,8 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
 
             {
                 content.options.map((option, index) =>
-                    <FormGroup check>
-                        <Label check>
+                    <div check>
+
                             <Input addon type="checkbox"
                                    onChange={(event) => input.onChange({
                                        ...input.value,
@@ -26,8 +26,8 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
                                    name={input.name} value={index}
                             />{' '}
                             {option}
-                        </Label>
-                    </FormGroup>
+
+                    </div>
                 )
             }
 

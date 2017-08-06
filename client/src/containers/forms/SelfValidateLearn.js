@@ -24,7 +24,9 @@ const SelfValidateLearn = ({error, submitting, card, handleSubmit, mode, handleS
                 </Alert>
             }
 
-
+            <CardTitle className="text-center">
+                Karteikarte Selbstkontrolle
+            </CardTitle>
             <h4 className="text-muted">Frage</h4>
             <CardTitle>
                 {card.question}
@@ -37,7 +39,7 @@ const SelfValidateLearn = ({error, submitting, card, handleSubmit, mode, handleS
             />
             {
                 mode === "NORMAL_MODE"&&
-                <Button color="link" disabled={submitting} onClick={handleSkip}>
+                <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
                     Überspringen
                 </Button>
             }
