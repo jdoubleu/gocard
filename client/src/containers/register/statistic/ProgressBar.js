@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Doughnut} from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 
-const Progress = ({good, middle, bad}) => {
+const ProgressBar = ({good, middle, bad}) => {
 
     const data = {
         datasets: [{
@@ -23,14 +23,19 @@ const Progress = ({good, middle, bad}) => {
     };
 
     const options = {
-        cutoutPercentage: 80,
         legend: false,
-        maintainAspectRatio: true
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     };
 
     if (good !== 0 || bad !== 0 || middle !== 0) {
         return (
-            <Doughnut
+            <Bar
                 options={options}
                 data={data}
             />
@@ -44,17 +49,17 @@ const Progress = ({good, middle, bad}) => {
     }
 };
 
-Progress.propTypes = {
+ProgressBar.propTypes = {
     good: PropTypes.number,
     middle: PropTypes.number,
     bad: PropTypes.number,
 };
 
-Progress.defaultProps = {
+ProgressBar.defaultProps = {
     good: 0,
     middle: 0,
     bad: 0,
 };
 
 
-export default Progress;
+export default ProgressBar;

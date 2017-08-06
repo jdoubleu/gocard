@@ -2,15 +2,15 @@ import React from "react";
 import {Card, Col, CardGroup, CardTitle, CardText, Row, CardDeck} from "reactstrap";
 import {connect} from "react-redux";
 import _ from "lodash";
-import StatisticBar from "../shared/statistics/statisticBar";
 import FeedbackCard from "./FeedbackPreviewCard";
 import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
 import {
-    makeGetCorrectCardsForResults, makeGetSkippedCardsForResults,
+    makeGetCorrectCardsForResults, makeGetSkippedCardsForResults, makeGetValueArrayByAnsweredCardIds,
     makeGetWrongCardsForResults
 } from "../../selectors/index";
+import ProgressBar from "../register/statistic/ProgressBar";
 
 const validate = values => {
     const errors = {};
@@ -18,7 +18,7 @@ const validate = values => {
     return errors
 };
 
-const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards}) => {
+const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards}) => {
 
     const matchTitle = () => {
         if (mode === "NORMAL_MODE") {
@@ -77,7 +77,8 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
                 <Card block>
                     <CardTitle>Statistik</CardTitle>
                     <CardText>
-                        <StatisticBar/>
+                        <ProgressBar good={(valuesArray.good || []).length} middle={(valuesArray.middle || []).length}
+                                      bad={(valuesArray.bad || []).length || 0}/>
                     </CardText>
                 </Card>
             </CardGroup>
@@ -159,6 +160,7 @@ const makeMapStateToProps = () => {
     const getCorrectCardsForResults = makeGetCorrectCardsForResults();
     const getWrongCorrectCardsForResults = makeGetWrongCardsForResults();
     const getSkippedCardsForResults = makeGetSkippedCardsForResults();
+    const getValueArrayByAnsweredCardIds = makeGetValueArrayByAnsweredCardIds();
     const mapStateToProps = (state, props) => {
         return {
             cardIds: state.ui.learning.allIds || [],
@@ -169,6 +171,7 @@ const makeMapStateToProps = () => {
             wrongCards: getWrongCorrectCardsForResults(state, props) || {},
             skippedCards: getSkippedCardsForResults(state, props) || {},
             valuesFeedback: getFormValues('feedback')(state),
+            valuesArray: getValueArrayByAnsweredCardIds(state, props),
         }
     };
     return mapStateToProps

@@ -7,13 +7,14 @@ import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../card/Preview";
 import BlankCard from "../card/blankCard";
 import MemberBar from "./member/Bar";
-import Progress from "./statistic/Progress";
+import ProgressDoughnut from "./statistic/ProgressDoughnut";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
 import {makeGetCardIdsByRegister, makeGetTagsByRegister, makeGetRoleByRegister} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
-import {loadAllScores} from "../../actions/score";
+
+import {makeGetValueArrayByRegister} from "../../selectors/index";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -26,8 +27,6 @@ class Detail extends React.Component {
 
     componentDidMount() {
         const {dispatch, match} = this.props;
-        console.log("UserId", this.props.userId);
-        //dispatch(loadAllScores(match.params.registerId, this.props.userId));
     }
 
     render() {
@@ -59,13 +58,13 @@ class Detail extends React.Component {
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm registerId={match.params.registerId} disabled={cardIds.length === 0} tags={tags} onSubmit={handleSubmit} initialValues={settings} />
+                        <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags} onSubmit={handleSubmit} initialValues={settings} />
                     </Card>
 
                     <Card block>
                         <CardTitle>Statistik</CardTitle>
                         <CardText>
-                            <Progress registerId={register.id}/>
+                            <ProgressDoughnut registerId={register.id}/>
                         </CardText>
                         <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
@@ -100,17 +99,16 @@ const makeMapStateToProps = (state, props) => {
     const getCardIdsByRegister = makeGetCardIdsByRegister();
     const getTagsByRegister = makeGetTagsByRegister();
     const getRoleByRegister = makeGetRoleByRegister();
-    const mapStateToProps = (state, props) => {
+    return (state, props) => {
         return {
             register: state.entities.registers.byId[registerId] || {},
             tags: getTagsByRegister(state, props) || [],
             settings: state.ui.learnSettings.byId[registerId] || {},
             userId: state.auth.userId,
             cardIds: getCardIdsByRegister(state, props) || [],
-            role: getRoleByRegister(state, props) || ''
+            role: getRoleByRegister(state, props) || '',
         }
     };
-    return mapStateToProps
 };
 
 export default connect(makeMapStateToProps)(Detail);
