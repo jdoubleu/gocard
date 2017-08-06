@@ -2,7 +2,7 @@ import React from "react";
 import {Button, CardTitle, Col, FormFeedback, FormGroup, Input, Label, Row, UncontrolledTooltip} from "reactstrap";
 
 
-const learnSelfValidateButtonField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
+const learnSelfValidateButtonField = ({input, content, label, disableLabel, toolTip, meta: {touched, error}}) => {
     return (
         <FormGroup color={touched && error && 'danger'}>
             {
@@ -14,11 +14,11 @@ const learnSelfValidateButtonField = ({input, content, label, disableLabel, tool
 
             {
                 !input.value &&
-                <FormGroup>
+                <div>
                     <Button outline block color="primary" type="submit" onClick={() => input.onChange("changed")}>
                         Antwort anzeigen
                     </Button>
-                </FormGroup>
+                </div>
 
             }
 

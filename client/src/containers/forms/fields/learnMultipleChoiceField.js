@@ -2,9 +2,9 @@ import React from "react";
 import {FormFeedback, FormGroup, Input, UncontrolledTooltip} from "reactstrap";
 import _ from "lodash";
 
-const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
+const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip, meta: {touched, error}}) => {
     const answer = _.get(input.value, 'answer', []);
-    return (<FormGroup color={touched && error && 'danger'} tag="fieldset">
+    return (<FormGroup color={touched && error && 'danger'}>
             {
                 !disableLabel &&
                 <h4 className="text-muted" id={`label-${input.name}`}>
@@ -14,8 +14,7 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
 
             {
                 content.options.map((option, index) =>
-                    <div check>
-
+                    <div>
                         <Input addon type="checkbox"
                                onChange={(event) => input.onChange({
                                    ...input.value,
@@ -26,7 +25,6 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
                                name={input.name} value={index}
                         />{' '}
                         {option}
-
                     </div>
                 )
             }

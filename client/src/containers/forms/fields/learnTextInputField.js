@@ -1,8 +1,8 @@
 import React from "react";
-import {FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
+import {FormFeedback, FormGroup, Input, UncontrolledTooltip} from "reactstrap";
 
-const learnTextInputField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => (
-    <FormGroup color={touched && error && 'danger'} tag="fieldset">
+const learnTextInputField = ({input, content, label, disableLabel, toolTip, meta: {touched, error}}) => (
+    <FormGroup color={touched && error && 'danger'}>
         {
             !disableLabel &&
             <h4 className="text-muted" id={`label-${input.name}`}>
@@ -11,14 +11,7 @@ const learnTextInputField = ({input, content, label, disableLabel, toolTip, type
         }
 
         <h4 className="text-muted">Antwort</h4>
-        {
-
-            <div>
-                <Label>
-                    <Input {...input} name={input.name} type="text" placeholder="Gib deine Antwort ein."/>{' '}
-                </Label>
-            </div>
-        }
+        <Input {...input} name={input.name} type="text" placeholder="Gib deine Antwort ein."/>
 
         {
             touched && error &&
