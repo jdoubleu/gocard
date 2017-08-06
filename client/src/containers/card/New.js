@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, Col, Row} from "reactstrap";
-import Headline from "../../components/shared/headline";
+import Headline from "../shared/headline";
 import CardForm from "../forms/Card";
 import {addCard} from "../../actions/card";
 import {connect} from "react-redux";

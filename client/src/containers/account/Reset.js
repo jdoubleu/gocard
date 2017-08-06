@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, CardGroup, CardTitle, Col, Row} from "reactstrap";
-import Logo from "../../components/shared/logo";
+import Logo from "../shared/logo";
 import ResetForm from "../forms/Reset";
 import {updatePassword} from "../../actions/user";
 

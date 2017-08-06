@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
-import Logo from "../../components/shared/logo";
+import Logo from "../shared/logo";
 import ForgottenForm from "../forms/Forgotten";
 import {requestPasswordReset} from "../../actions/user";
 import {SubmissionError} from "redux-form";

@@ -5,12 +5,12 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {Container} from "reactstrap";
 
-import NotFound from "./components/shared/errors/notFound";
+import NotFound from "./containers/shared/errors/notFound";
 import TopBar from "./containers/shared/TopBar";
-import Footer from "./components/shared/footer";
+import Footer from "./containers/shared/footer";
 import Settings from "./containers/account/Settings";
-import Legal from "./components/legal";
-import Register from "./components/register";
+import Legal from "./containers/legal";
+import Register from "./containers/register/index";
 import Registration from "./containers/account/Registration";
 import Forgotten from "./containers/account/Forgotten";
 import Reset from "./containers/account/Reset";

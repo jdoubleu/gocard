@@ -14,7 +14,7 @@ import {
 import {connect} from "react-redux";
 import {searchUsers} from "../../../../actions/user";
 import _ from "lodash";
-import Icon from "../../../../components/shared/user/icon";
+import Icon from "../../../shared/user/icon";
 import {Field} from "redux-form";
 import roleField from "./roleField";
 

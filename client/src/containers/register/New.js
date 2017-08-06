@@ -6,7 +6,7 @@ import {addMembersToRegister} from "../../actions/member";
 import moment from "moment";
 import {push} from "react-router-redux";
 import {Card, Col, Row} from "reactstrap";
-import Headline from "../../components/shared/headline";
+import Headline from "../shared/headline";
 import RegisterForm from "../forms/Register";
 import _ from "lodash";
 

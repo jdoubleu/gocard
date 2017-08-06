@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Headline from "../../components/shared/headline";
+import Headline from "../shared/headline";
 import {Card, Col, Row} from "reactstrap";
 import {deleteRegister, updateRegister} from "../../actions/register";
 import {connect} from "react-redux";

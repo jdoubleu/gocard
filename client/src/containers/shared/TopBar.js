@@ -5,7 +5,7 @@ import {push} from "react-router-redux";
 import {logoutUser} from "../../actions/auth";
 import {getUserById} from "../../actions/user";
 
-import TopBarComponent from "../../components/shared/topBar/index";
+import TopBarComponent from "./topBar/index";
 
 class TopBar extends React.Component {
     constructor(props) {
