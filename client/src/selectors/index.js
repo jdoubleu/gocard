@@ -141,6 +141,48 @@ export const makeGetCardsForResults = () => {
     );
 };
 
+export const makeGetCorrectCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let Cards = _.filter(cards, function(c) { return (_.includes(answeredIds, c.id)&& answeredCards[c.id].correct === true)});
+            if(Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
+export const makeGetWrongCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let Cards = _.filter(cards, function(c) { return (_.includes(answeredIds, c.id)&& answeredCards[c.id].correct === false)});
+            if(Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
+export const makeGetSkippedCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let Cards = _.filter(cards, function(c) { return (_.includes(answeredIds, c.id)&& answeredCards[c.id].correct === null)});
+            if(Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
 /*
  * GetNextUnaswerdCard
  */
