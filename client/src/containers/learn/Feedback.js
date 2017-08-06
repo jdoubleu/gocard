@@ -38,9 +38,9 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
         if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
             return resultCards.length;
         } else if (valuesFeedback.cards === "CORRECT_CARDS") {
-            return _.isEmpty(correctCards.length) ? 0 : correctCards.length;
+            return _.isEmpty(correctCards) ? 0 : correctCards.length;
         } else if (valuesFeedback.cards === "WRONG_CARDS") {
-            return _.isEmpty(wrongCards.length) ? 0 : wrongCards.length;
+            return _.isEmpty(wrongCards) ? 0 : wrongCards.length;
         } else if (valuesFeedback.cards === "SKIPPED_CARDS") {
             return _.isEmpty(skippedCards) ? 0 : skippedCards.length;
         }
@@ -50,7 +50,9 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
         <div>
             <CardGroup>
                 <Card block>
+                    <CardTitle className="text-muted">Name des Registers</CardTitle>
                     <CardTitle>{register.title}</CardTitle>
+                    <CardTitle className="text-muted">Verwendeten Tags</CardTitle>
                     <CardText>
                         {
                             tags.map((tag) => {
@@ -75,10 +77,8 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                 </Card>
             </CardGroup>
 
-            <Row className="mt-4 ml-3">
-                <Col>
-                    <h4>Gelernte Karten</h4>
-                </Col>
+            <Row>
+
                 <Col>
                     {
                         mode === "NORMAL_MODE" &&
@@ -109,7 +109,7 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
 
                     }
                     {
-                        mode !== "NORMAL_MODE" &&
+                        mode === "TEST_MODE" &&
                         <Field
                             name="cards"
                             component={SelectButton}
@@ -129,7 +129,12 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                                     value: "WRONG_CARDS"
                                 }
                             ]}
+
                         />
+                    }
+                    {
+                        mode === "POWER_MODE"&&
+                            <br/>
                     }
                 </Col>
             </Row>

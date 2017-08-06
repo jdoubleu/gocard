@@ -120,7 +120,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
     };
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
+        <Col>
             <Headline title={matchTitle()}>
                 {
                     currentCard != null &&
@@ -133,6 +133,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
 
             </Headline>
             <div className="text-center">Fortschritt {(countAnswers / countCards) * 100}%</div>
+            <Col sm="12" md={{size: 8, offset: 2}}>
             <Progress value={(countAnswers / countCards) * 100} className="mb-1"/>
             {currentCard !== null &&
             <Card block>
@@ -166,7 +167,9 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 }
             </Card>
 
+
             }
+            </Col>
             {
                 currentCard === null &&
                 <Feedback register={register} mode={mode} resultCards={resultCards} registerId={register.id}/>

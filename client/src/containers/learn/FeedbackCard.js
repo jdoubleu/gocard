@@ -7,7 +7,7 @@ import _ from "lodash";
 const FeedbackCard = ({card, userAnswer, handleClick}) => {
 
     return (
-        <div>
+        <div sm="12" md={{size: 8, offset: 2}}>
             <CardTitle className="text-center">
                 Feedback
             </CardTitle>
@@ -15,7 +15,7 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
             <CardTitle>
                 {card.question}
             </CardTitle>
-            <h4 className="text-muted">Antworten</h4>
+            <h4 className="text-muted">Antwort</h4>
             <CardText>
                 {
                     card.type === "single-choice" &&

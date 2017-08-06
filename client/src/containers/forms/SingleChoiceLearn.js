@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, CardText, CardTitle, Form} from "reactstrap";
+import {Alert, Button, CardText, CardTitle, Form, Col} from "reactstrap";
 import LearnSingleChoiceField from "./fields/learnSingleChoiceField";
 
 
@@ -23,32 +23,33 @@ const SingleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handleS
                     {error}
                 </Alert>
             }
-            <CardTitle className="text-center">
-                Karteikarte Single-Choice
-            </CardTitle>
 
-            <h4 className="text-muted">Frage</h4>
-            <CardTitle>
-                {card.question}
-            </CardTitle>
+                <CardTitle className="text-center">
+                    Karteikarte Single-Choice
+                </CardTitle>
 
-            <CardText>
-                <Field
-                    name="userAnswer"
-                    component={LearnSingleChoiceField}
-                    label="Antworten"
-                    content={card.content}
-                />
-            </CardText>
-            {
-                mode === "NORMAL_MODE" &&
-                <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
-                    Überspringen
+                <h4 className="text-muted">Frage</h4>
+                <CardTitle>
+                    {card.question}
+                </CardTitle>
+
+                <CardText>
+                    <Field
+                        name="userAnswer"
+                        component={LearnSingleChoiceField}
+                        label="Antworten"
+                        content={card.content}
+                    />
+                </CardText>
+                {
+                    mode === "NORMAL_MODE" &&
+                    <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
+                        Überspringen
+                    </Button>
+                }
+                <Button outline block color="primary" type="submit" disabled={submitting}>
+                    Jetzt prüfen
                 </Button>
-            }
-            <Button outline block color="primary" type="submit" disabled={submitting}>
-                Jetzt prüfen
-            </Button>
         </Form>
     )
 };
