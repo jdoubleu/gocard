@@ -13,6 +13,10 @@ const validate = values => {
         errors.email = 'Ungültige E-Mail Adresse.'
     }
 
+    if (!values.displayName) {
+        errors.displayName = 'Ein Anzeigenamen ist erforderlich.'
+    }
+
     return errors
 };
 
