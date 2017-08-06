@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, CardGroup, CardTitle, CardText, Row, CardDeck} from "reactstrap";
+import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import {connect} from "react-redux";
 import _ from "lodash";
 import FeedbackCard from "./FeedbackPreviewCard";
@@ -7,7 +7,9 @@ import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
 import {
-    makeGetCorrectCardsForResults, makeGetSkippedCardsForResults, makeGetValueArrayByAnsweredCardIds,
+    makeGetCorrectCardsForResults,
+    makeGetSkippedCardsForResults,
+    makeGetValueArrayByAnsweredCardIds,
     makeGetWrongCardsForResults
 } from "../../selectors/index";
 import ProgressBar from "../register/statistic/ProgressBar";
@@ -19,25 +21,6 @@ const validate = values => {
 };
 
 const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards}) => {
-
-    const CalcCardStatistic = (correct) => {
-        //Load stats for current card
-        //Calculate new Stats
-        //return new stats object
-    };
-    const bug = () => {
-        console.log("feedback", valuesFeedback);
-    };
-
-    const matchTitle = () => {
-        if (mode === "NORMAL_MODE") {
-            return "Normaler Modus";
-        } else if (mode === "POWER_MODE") {
-            return "Power Modus";
-        } else if ("TEST_MODE") {
-            return "Klausur Modus";
-        }
-    };
 
     const calcCards = () => {
         if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
@@ -87,7 +70,7 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     <CardTitle>Statistik</CardTitle>
                     <CardText>
                         <ProgressBar good={(valuesArray.good || []).length} middle={(valuesArray.middle || []).length}
-                                      bad={(valuesArray.bad || []).length || 0}/>
+                                     bad={(valuesArray.bad || []).length || 0}/>
                     </CardText>
                 </Card>
             </CardGroup>
@@ -148,9 +131,6 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                             ]}
                         />
                     }
-                    {
-                        bug()
-                    }
                 </Col>
             </Row>
             <CardDeck>
@@ -168,17 +148,12 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
 };
 
 const makeMapStateToProps = () => {
-    /*_.values(calcCards).map((card) =>
-     <Card block>
-     <FeedbackCard card={card} userAnswer={results[card.id].answer} />
-     </Card>
-     )*/
     const getCardsForResults = makeGetCardsForResults();
     const getCorrectCardsForResults = makeGetCorrectCardsForResults();
     const getWrongCorrectCardsForResults = makeGetWrongCardsForResults();
     const getSkippedCardsForResults = makeGetSkippedCardsForResults();
     const getValueArrayByAnsweredCardIds = makeGetValueArrayByAnsweredCardIds();
-    const mapStateToProps = (state, props) => {
+    return (state, props) => {
         return {
             cardIds: state.ui.learning.allIds || [],
             tags: state.ui.learning.misc.tags || [],
@@ -191,7 +166,6 @@ const makeMapStateToProps = () => {
             valuesArray: getValueArrayByAnsweredCardIds(state, props),
         }
     };
-    return mapStateToProps
 };
 
 function mapDispatchToProps(dispatch) {

@@ -1,12 +1,12 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, CardTitle, CardText} from "reactstrap";
+import {Alert, Button, CardText, CardTitle, Form} from "reactstrap";
 import LearnSingleChoiceField from "./fields/learnSingleChoiceField";
 
 
 const validate = values => {
     const errors = {};
-    if(values.userAnswer === undefined) {
+    if (values.userAnswer === undefined) {
         errors.userAnswer = "Bitte kreuze eine Antwort an.";
     }
     return errors
@@ -41,7 +41,7 @@ const SingleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handleS
                 />
             </CardText>
             {
-                mode === "NORMAL_MODE"&&
+                mode === "NORMAL_MODE" &&
                 <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
                     Überspringen
                 </Button>

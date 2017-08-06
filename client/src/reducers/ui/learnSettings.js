@@ -1,7 +1,5 @@
 import {combineReducers} from "redux";
-import {
-    SET_SELECTED_SETTINGS
-} from "../../actions/ui";
+import {SET_SELECTED_SETTINGS} from "../../actions/ui";
 import _ from "lodash";
 
 function addSettings(state, action) {

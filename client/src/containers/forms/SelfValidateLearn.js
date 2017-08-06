@@ -1,8 +1,7 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, CardTitle} from "reactstrap";
+import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnSelfValidateField from "./fields/learnSelfValidateButtonField";
-
 
 
 const validate = values => {
@@ -38,7 +37,7 @@ const SelfValidateLearn = ({error, submitting, card, handleSubmit, mode, handleS
                 content={card.content}
             />
             {
-                mode === "NORMAL_MODE"&&
+                mode === "NORMAL_MODE" &&
                 <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
                     Überspringen
                 </Button>

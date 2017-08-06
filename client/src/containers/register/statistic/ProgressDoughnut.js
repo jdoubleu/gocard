@@ -4,7 +4,6 @@ import {Doughnut} from "react-chartjs-2";
 import {loadAllScores} from "../../../actions/score";
 import {makeGetValueArrayByRegister} from "../../../selectors/index";
 import {connect} from "react-redux";
-import _ from "lodash";
 
 class ProgressDoughnut extends React.Component {
 
@@ -65,11 +64,11 @@ ProgressDoughnut.defaultProps = {
     progress: {good: 0, middle: 0, bad: 0}
 };
 
-const makeMapStateToProps = (state, props) => {
+const makeMapStateToProps = () => {
     const getValueArrayByRegister = makeGetValueArrayByRegister();
     return (state, props) => {
         return {
-            progress: getValueArrayByRegister(state, props) || '',
+            progress: getValueArrayByRegister(state, props) || {},
         }
     };
 };

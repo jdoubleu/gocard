@@ -6,7 +6,7 @@ import InputCheckField from "./fields/inputCheck";
 const validate = values => {
     const errors = {};
 
-    if(!values.deleteUser) {
+    if (!values.deleteUser) {
         errors.deleteUser = "Bitte bestätige, dass du das Register löschen willst."
     }
 
@@ -31,7 +31,7 @@ const DeleteRegisterForm = props => {
             />
 
             <Button outline block color="danger" type="submit" disabled={submitting}>
-                  Löschen
+                Löschen
             </Button>
         </Form>
     )

@@ -1,13 +1,12 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, CardTitle} from "reactstrap";
+import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnTextInputField from "./fields/learnTextInputField";
-
 
 
 const validate = values => {
     const errors = {};
-    if (values.userAnswer === undefined ) {
+    if (values.userAnswer === undefined) {
         errors.userAnswer = "Bitte gib eine Antwort ein.";
     }
     return errors
@@ -38,7 +37,7 @@ const TextInputLearn = ({error, submitting, card, handleSubmit, mode, handleSkip
                 content={card.content}
             />
             {
-                mode === "NORMAL_MODE"&&
+                mode === "NORMAL_MODE" &&
                 <Button color="link" disabled={submitting} onClick={handleSkip}>
                     Überspringen
                 </Button>

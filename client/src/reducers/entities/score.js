@@ -1,9 +1,5 @@
 import {combineReducers} from "redux";
-import {
-    LOAD_SCORE_SUCCESS,
-    ADD_SCORE_SUCCESS,
-    LOAD_CARDSCORE_SUCCESS
-} from "../../actions/score";
+import {ADD_SCORE_SUCCESS, LOAD_CARDSCORE_SUCCESS, LOAD_SCORE_SUCCESS} from "../../actions/score";
 import _ from "lodash";
 
 function addScoreEntry(state, action) {
@@ -45,7 +41,6 @@ function addScoreIds(state, action) {
 
     return _.union(state, _.map(response, 'id'));
 }
-
 
 
 function allScores(state = [], action) {

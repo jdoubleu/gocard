@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, FieldArray, formValueSelector, reduxForm} from "redux-form";
-import {Alert, Button, Form, Col, Row} from "reactstrap";
+import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
 import InputTagField from "./fields/inputTag/index";
 import SelectButton from "./fields/selectButton";
@@ -147,6 +147,7 @@ const CardForm = props => {
 };
 
 const selector = formValueSelector('cardForm');
+
 function mapStateToProps(state) {
     return {
         type: selector(state, 'type'),

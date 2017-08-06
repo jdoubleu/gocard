@@ -137,7 +137,6 @@ export const makeGetNextCard = () => {
             unAnsweredCards = _.sortBy(unAnsweredCards, (o) => {
                 return !((answeredCards[o.id] || {correct: true}).correct);
             });
-            console.log('unAnsweredCards', unAnsweredCards);
             if (unAnsweredCards.length > 0) {
                 return unAnsweredCards[0];
             } else {

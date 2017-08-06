@@ -9,7 +9,9 @@ import SelfValidateCardForm from "../forms/SelfValidateLearn";
 import TextInputCardForm from "../forms/TextInputLearn";
 import {
     makeGetCardIdsByTags,
-    makeGetCardsByRegister, makeGetLastScoreForCurrentCard, makeGetNextCard,
+    makeGetCardsByRegister,
+    makeGetLastScoreForCurrentCard,
+    makeGetNextCard,
     makeGetSizeOfResults,
 } from "../../selectors/index";
 import {getFormValues} from "redux-form";
@@ -30,7 +32,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
             scoreStep = -1;
         }
         if (scoreCurrentCard === null) {
-            if(scoreStep === -1){
+            if (scoreStep === -1) {
                 scoreStep = 0;
             }
             let body = {
@@ -43,7 +45,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
         } else {
             let score = _.parseInt(scoreCurrentCard.value);
             score += scoreStep;
-            if(score < 0){
+            if (score < 0) {
                 score = 0;
             }
             let body = {
@@ -130,32 +132,39 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 }
 
             </Headline>
-            <div className="text-center">Fortschritt {(countAnswers/countCards)*100}%</div>
-            <Progress value={(countAnswers/countCards)*100} className="mb-1"/>
+            <div className="text-center">Fortschritt {(countAnswers / countCards) * 100}%</div>
+            <Progress value={(countAnswers / countCards) * 100} className="mb-1"/>
             {currentCard !== null &&
-                <Card block>
-                    {
-                        currentCard && mode !== "TEST_MODE" && showResult === true &&
-                        <FeedbackCard card={currentCard} userAnswer={lastResult}
-                                      handleClick={() => {calcCardStatistic(); handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}}/>
-                    }
-                    {
-                        currentCard && currentCard.type === "single-choice" && showResult === false &&
-                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode} handleSkip={handleSkip}/>
-                    }
-                    {
-                        currentCard && currentCard.type === "multiple-choice" && showResult === false &&
-                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode} handleSkip={handleSkip}/>
-                    }
-                    {
-                        currentCard && currentCard.type === 'self-validate' && showResult === false &&
-                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode} handleSkip={handleSkip}/>
-                    }
-                    {
-                        currentCard && currentCard.type === 'text-input' && showResult === false &&
-                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode} handleSkip={handleSkip}/>
-                    }
-                </Card>
+            <Card block>
+                {
+                    currentCard && mode !== "TEST_MODE" && showResult === true &&
+                    <FeedbackCard card={currentCard} userAnswer={lastResult}
+                                  handleClick={() => {
+                                      calcCardStatistic();
+                                      handleFeedbackClick(currentCard.id, lastResult, lastCorrect)
+                                  }}/>
+                }
+                {
+                    currentCard && currentCard.type === "single-choice" && showResult === false &&
+                    <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode}
+                                          handleSkip={handleSkip}/>
+                }
+                {
+                    currentCard && currentCard.type === "multiple-choice" && showResult === false &&
+                    <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode}
+                                            handleSkip={handleSkip}/>
+                }
+                {
+                    currentCard && currentCard.type === 'self-validate' && showResult === false &&
+                    <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode}
+                                          handleSkip={handleSkip}/>
+                }
+                {
+                    currentCard && currentCard.type === 'text-input' && showResult === false &&
+                    <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode}
+                                       handleSkip={handleSkip}/>
+                }
+            </Card>
 
             }
             {

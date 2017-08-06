@@ -69,7 +69,7 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                             option = option + " ◀ Deine Antwort";
                         }
                         if (_.includes(card.content.corrects, index)) {
-                            if(!(_.includes(userAnswer, index))) {
+                            if (!(_.includes(userAnswer, index))) {
                                 option = option + " ◀ Richtige Antwort";
                             }
                             return (
@@ -122,9 +122,9 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
 
                 {
                     card.type === 'self-validate' &&
-                        <div className="mb-1">
-                            Korrekte Antwort: {card.content.answer}
-                        </div>
+                    <div className="mb-1">
+                        Korrekte Antwort: {card.content.answer}
+                    </div>
                 }
                 <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
                     Nächste karte

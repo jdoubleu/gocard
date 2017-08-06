@@ -1,7 +1,7 @@
 import {
     createCardStatistic as apiCreateCardStatistic,
-    getCardStatisticByRegisterAndUser as apiGetCardStatisticByRegisterAndUser,
-    getCardStatisticByCardAndUser as apiGetCardStatisticByCardAndUser
+    getCardStatisticByCardAndUser as apiGetCardStatisticByCardAndUser,
+    getCardStatisticByRegisterAndUser as apiGetCardStatisticByRegisterAndUser
 } from "../lib/ApiClient";
 
 
@@ -23,7 +23,7 @@ export const LOAD_SCORE_FAILURE = 'LOAD_SCORE_FAILURE';
 export function loadAllScores(registerId, userId) {
     return {
         types: [LOAD_SCORE_REQUEST, LOAD_SCORE_SUCCESS, LOAD_SCORE_FAILURE],
-        callAPI: () => apiGetCardStatisticByRegisterAndUser({register:registerId, user:userId})
+        callAPI: () => apiGetCardStatisticByRegisterAndUser({register: registerId, user: userId})
     }
 }
 
@@ -34,7 +34,7 @@ export const LOAD_CARDSCORE_FAILURE = 'LOAD_CARDSCORE_FAILURE';
 export function loadCardScore(cardId, userId) {
     return {
         types: [LOAD_CARDSCORE_REQUEST, LOAD_CARDSCORE_SUCCESS, LOAD_CARDSCORE_FAILURE],
-        callAPI: () => apiGetCardStatisticByCardAndUser({cardId:cardId, userId:userId})
+        callAPI: () => apiGetCardStatisticByCardAndUser({cardId: cardId, userId: userId})
     }
 }
 

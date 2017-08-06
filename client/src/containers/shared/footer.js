@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div className="text-center mb-3">
             <Container className="text-muted">
-                <hr />
+                <hr/>
                 <Link to="/legal/help">Hilfe</Link>
                 <span> | </span>
                 <Link to="/legal/eula">EULA</Link>

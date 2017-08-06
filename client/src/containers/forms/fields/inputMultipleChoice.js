@@ -41,10 +41,10 @@ const inputMultipleChoice = ({input, label, disableLabel, toolTip, type, meta: {
                         <InputGroup className="mb-1" key={index}>
                             <InputGroupAddon>
                                 <Input addon type="checkbox"
-                                       onChange={(event) =>  input.onChange({
-                                               ...input.value,
-                                               corrects: event.target.checked ?  _.union(corrects, [index]) : _.without(corrects, index)
-                                           })
+                                       onChange={(event) => input.onChange({
+                                           ...input.value,
+                                           corrects: event.target.checked ? _.union(corrects, [index]) : _.without(corrects, index)
+                                       })
                                        }
                                        checked={corrects.indexOf(index) >= 0}
                                 />

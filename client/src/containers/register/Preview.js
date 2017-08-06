@@ -5,7 +5,6 @@ import {Card, CardTitle, Col, Row} from "reactstrap";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 import ProgressDoughnut from "./statistic/ProgressDoughnut";
-import {makeGetValueArrayByRegister} from "../../selectors/index";
 
 const Preview = ({register, valuesArray}) => {
     return (

@@ -10,32 +10,26 @@ import MemberBar from "./member/Bar";
 import ProgressDoughnut from "./statistic/ProgressDoughnut";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister, makeGetTagsByRegister, makeGetRoleByRegister} from "../../selectors";
+import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
-
-import {makeGetValueArrayByRegister} from "../../selectors/index";
 
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, match} = this.props;
         dispatch(loadRegister(match.params.registerId));
         dispatch(loadCards(match.params.registerId));
-        //Load stats for all Cards for logged in User for current register
-
-    }
-
-    componentDidMount() {
-        const {dispatch, match} = this.props;
     }
 
     render() {
         const {register, cardIds, match, tags, settings, role} = this.props;
+
         const handleSubmit = (values, dispatch) => {
             dispatch(setSelectedSettings(register.id, values.mode, values.tags));
             dispatch(resetResults());
             return dispatch(push(`/register/${match.params.registerId}/learn`));
         };
+
         return (
             <div>
                 <Headline title={register.title}/>
@@ -53,12 +47,12 @@ class Detail extends React.Component {
                                 <Link to={`${register.id}/edit`}>Bearbeiten</Link>
                             </div>
                         }
-
                     </Card>
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags} onSubmit={handleSubmit} initialValues={settings} />
+                        <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
+                                   onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 
                     <Card block>

@@ -1,10 +1,13 @@
 import {combineReducers} from "redux";
 import {
+    ADD_CARD_RESULT,
     ADD_CURRENT_CARD,
+    INIT_CARD_RESULT,
+    SET_LAST_CARD,
+    SET_LAST_CORRECT,
     SET_LAST_RESULT,
-    SET_SHOW_RESULT,
-    SET_SELECTED_SETTINGS, ADD_CARD_RESULT, SET_LAST_CORRECT, INIT_CARD_RESULT,
-    SET_LAST_CARD
+    SET_SELECTED_SETTINGS,
+    SET_SHOW_RESULT
 } from "../../actions/ui";
 import _ from "lodash";
 
