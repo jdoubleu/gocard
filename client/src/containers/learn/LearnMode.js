@@ -28,6 +28,7 @@ const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult
         //Calculate new Stats
         //return new stats object
         let scoreStep = 0;
+
         if(lastCorrect == true) {
             scoreStep = 1;
         } else if(lastCorrect == false && lastCorrect == null) {
@@ -39,18 +40,20 @@ const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult
                 user: userId,
                 card: currentCard.id,
                 value: scoreStep,
-                date: moment().format()
+                date: moment().format(),
             };
+            console.log(body);
             createScoreForCard(currentCard.id, body);
         }else {
-            scoreStep += _.parseInt(scoreCurrentCard.value);
-
+            let score = _.parseInt(scoreCurrentCard.value);
+            score += scoreStep;
             let body = {
                 user: userId,
                 card: currentCard.id,
-                value: scoreStep,
-                date: moment().format()
+                value: score,
+                date: moment().format(),
             };
+            console.log(body);
             createScoreForCard(currentCard.id, body);
         }
 
