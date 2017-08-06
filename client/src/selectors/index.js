@@ -13,7 +13,6 @@ const getUsers = (state) => state.entities.users.byId;
 const getSelectedTags = (state, props) => state.ui.learnSettings.byId[getRegisterId(state, props)].tags;
 const getAnsweredCardsIds = (state) => state.ui.learning.allIds || [];
 const getAnsweredCards = (state) => state.ui.learning.byId || {};
-//tCard = (state) => state.ui.learning.misc.lastCard || {};
 const getAllScores = (state) => state.entities.score.byId || {};
 const getMode = (state) => state.ui.learning.misc.mode;
 
@@ -129,12 +128,16 @@ export const makeGetNextCard = () => {
         [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards, getMode],
         (cards, answeredIds, answeredCards, mode) => {
             let unAnsweredCards = _.filter(cards, function (c) {
-                if(mode !== 'POWER_MODE'){
+                if (mode !== 'POWER_MODE') {
                     return !_.includes(answeredIds, c.id)
                 }
                 return (!_.includes(answeredIds, c.id)
-                || (_.includes(answeredIds, c.id) && answeredCards[c.id].correct !== true))
+                    || (_.includes(answeredIds, c.id) && answeredCards[c.id].correct !== true))
             });
+            unAnsweredCards = _.sortBy(unAnsweredCards, (o) => {
+                return !((answeredCards[o.id] || {correct: true}).correct);
+            });
+            console.log('unAnsweredCards', unAnsweredCards);
             if (unAnsweredCards.length > 0) {
                 return unAnsweredCards[0];
             } else {
@@ -200,7 +203,7 @@ export const makeGetScoreForCurrentCard = () => {
         [makeGetScoreByUser(), makeGetNextCard()],
         (scores, card) => {
             let scoresForCurrentCard = _.filter(scores, function (s) {
-                if(card !== null) {
+                if (card !== null) {
                     return s.card === card.id
                 }
             });
@@ -234,7 +237,9 @@ export const makeGetLastScoreForCurrentCard = () => {
     return createSelector(
         [makeGetScoreForCurrentCard()],
         (scores) => {
-            let score = _.maxBy(scores, (o) => {return moment(o.date).format('X')});
+            let score = _.maxBy(scores, (o) => {
+                return moment(o.date).format('X')
+            });
             return score;
         }
     );
@@ -260,7 +265,7 @@ export const makeGetSizeOfResults = () => {
     return createSelector(
         [getAnsweredCards, getAnsweredCardsIds, getMode],
         (cards, answeredIds, mode) => {
-            if(mode !== 'POWER_MODE'){
+            if (mode !== 'POWER_MODE') {
                 return answeredIds.length;
             } else {
                 return _.size(_.filter(cards, ['correct', true]));
