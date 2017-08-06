@@ -4,9 +4,9 @@ import {
     getUserByEmail as apiGetUserByEmail,
     getUserById as apiGetUserById,
     requestPasswordReset as apiRequestPasswordReset,
+    searchUsersByName as apiSearchUsersByName,
     updatePassword as apiUpdatePassword,
-    updateUser as apiUpdateUser,
-    searchUsersByName as apiSearchUsersByName
+    updateUser as apiUpdateUser
 } from "../lib/ApiClient";
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';

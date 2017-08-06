@@ -19,6 +19,15 @@ import {Field} from "redux-form";
 import roleField from "./roleField";
 
 class InputMembers extends React.Component {
+    handleSearch = _.debounce((q) => {
+        this.props.searchUser(q).then(
+            res => {
+                this.setState({usersByKeyword: res.response});
+                this.setState({'loading': false});
+            }
+        )
+    }, 500);
+
     constructor(props) {
         super(props);
         this.state = {keyword: '', usersByKeyword: [], loading: false};
@@ -34,15 +43,6 @@ class InputMembers extends React.Component {
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
-
-    handleSearch = _.debounce((q) => {
-        this.props.searchUser(q).then(
-            res => {
-                this.setState({usersByKeyword: res.response});
-                this.setState({'loading': false});
-            }
-        )
-    }, 500);
 
     handleRoleChange(event, index) {
         let userByKeyword = this.state.usersByKeyword;

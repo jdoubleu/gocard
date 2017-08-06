@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {Card, CardTitle, Col, Row} from "reactstrap";
-import Progress from "../../containers/register/statistic/Progress";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
+import ProgressDoughnut from "./statistic/ProgressDoughnut";
 
-const Preview = ({register}) => {
+const Preview = ({register, valuesArray}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2">
@@ -17,7 +17,7 @@ const Preview = ({register}) => {
                         <MemberBar registerId={register.id} diameter={36}/>
                     </Col>
                     <Col xs="4">
-                        <Progress registerId={register.id}/>
+                        <ProgressDoughnut registerId={register.id}/>
                     </Col>
                 </Row>
                 <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Öffnen</Link>
@@ -30,10 +30,13 @@ Preview.propTypes = {
     registerId: PropTypes.number.isRequired
 };
 
-function mapStateToProps(state, props) {
-    return {
-        register: state.entities.registers.byId[props.registerId] || {},
-    }
-}
+const makeMapStateToProps = () => {
+    const mapStateToProps = (state, props) => {
+        return {
+            register: state.entities.registers.byId[props.registerId] || {},
+        }
+    };
+    return mapStateToProps
+};
 
-export default connect(mapStateToProps)(Preview);
+export default connect(makeMapStateToProps)(Preview);

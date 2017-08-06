@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
                 </Headline>
 
                 <Row>
-                    <BlankCard />
+                    <BlankCard/>
                     {
                         registersIds &&
                         registersIds.map((registerId) =>

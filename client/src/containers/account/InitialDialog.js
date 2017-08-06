@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import InitialDialogForm from "../forms/InitialDialog";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
-import {updateUser, deleteUser} from "../../actions/user";
+import {deleteUser, updateUser} from "../../actions/user";
 import {logoutUser} from "../../actions/auth";
 import Headline from "../shared/headline";
 import DeleteUserForm from "../forms/DeleteUser";

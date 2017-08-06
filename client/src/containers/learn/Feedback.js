@@ -1,190 +1,182 @@
 import React from "react";
-import "../../containers/register/Detail/Detail.css";
-import Headline from "../shared/headline";
+import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import {connect} from "react-redux";
+import _ from "lodash";
+import FeedbackCard from "./FeedbackPreviewCard";
+import {makeGetCardsForResults} from "../../selectors";
+import {Field, getFormValues, reduxForm} from "redux-form";
+import SelectButton from "../forms/fields/selectButton";
 import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardDeck,
-    CardGroup,
-    CardText,
-    CardTitle,
-    Col,
-    Form,
-    FormGroup,
-    Row
-} from "reactstrap";
-import StatisticBar from "../shared/statistics/statisticBar";
-import PreviewCardFeedback from "../../modules/cards/previewCardFeedback";
-import PropTypes from "prop-types";
-import Cards from "../../modules/dummyCards.json";
+    makeGetCorrectCardsForResults,
+    makeGetSkippedCardsForResults,
+    makeGetValueArrayByAnsweredCardIds,
+    makeGetWrongCardsForResults
+} from "../../selectors/index";
+import ProgressBar from "../register/statistic/ProgressBar";
 
-class Feedback extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            mode: 1,
-            cards: Cards,
-            check: null
-        };
-        this.displayCards = this.displayCards.bind(this);
-        this.getAllRight = this.getAllRight.bind(this);
-        this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-        this.getAllWrong = this.getAllWrong.bind(this);
-        this.getAll = this.getAll.bind(this);
-        this.check = this.check.bind(this);
-        this.getAllNotAnswered = this.getAllNotAnswered.bind(this);
-    }
+const validate = values => {
+    const errors = {};
 
-    onRadioBtnClick(mode) {
+    return errors
+};
 
-        this.setState({mode});
+const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards}) => {
 
-    }
-
-    displayCards() {
-        if (this.state.mode === 1) {
-            return (
-                this.getAll()
-            )
-        } else if (this.state.mode === 2) {
-            return (
-                this.getAllRight()
-            )
-        } else if (this.state.mode === 3) {
-            return (
-                this.getAllWrong()
-            )
-        } else if (this.state.mode === 4) {
-            return (
-                this.getAllNotAnswered()
-            )
+    const calcCards = () => {
+        if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
+            return resultCards;
+        } else if (valuesFeedback.cards === "CORRECT_CARDS") {
+            return correctCards;
+        } else if (valuesFeedback.cards === "WRONG_CARDS") {
+            return wrongCards;
+        } else if (valuesFeedback.cards === "SKIPPED_CARDS") {
+            return skippedCards;
         }
-    }
+    };
 
-    getAll() {
-        return this.state.cards.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                                   right={card.rightAnswer}
-                                                                   check={this.check(card.rightAnswer, card.userAnswer)}/>)
-    }
-
-    check(right, user) {
-        if (right === user) {
-            return true;
-        } else if (user === null) {
-            return null;
-        } else if (right !== user && user !== null) {
-            return false;
+    const calcCardCount = () => {
+        if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
+            return resultCards.length;
+        } else if (valuesFeedback.cards === "CORRECT_CARDS") {
+            return _.isEmpty(correctCards.length) ? 0 : correctCards.length;
+        } else if (valuesFeedback.cards === "WRONG_CARDS") {
+            return _.isEmpty(wrongCards.length) ? 0 : wrongCards.length;
+        } else if (valuesFeedback.cards === "SKIPPED_CARDS") {
+            return _.isEmpty(skippedCards) ? 0 : skippedCards.length;
         }
+    };
 
-    }
+    return (
+        <div>
+            <CardGroup>
+                <Card block>
+                    <CardTitle>{register.title}</CardTitle>
+                    <CardText>
+                        {
+                            tags.map((tag) => {
+                                    return (
+                                        <div className="btn btn-outline-primary p-1 ml-1">{tag}</div>
+                                    )
+                                }
+                            )
+                        }
+                        {
+                            tags.length === 0 &&
+                            <span>Es wurde mit allen Karten gelernt.</span>
+                        }
+                    </CardText>
+                </Card>
+                <Card block>
+                    <CardTitle>Statistik</CardTitle>
+                    <CardText>
+                        <ProgressBar good={(valuesArray.good || []).length} middle={(valuesArray.middle || []).length}
+                                     bad={(valuesArray.bad || []).length || 0}/>
+                    </CardText>
+                </Card>
+            </CardGroup>
 
-    getAllRight() {
-        let array = [];
-        array = this.state.cards.filter(a => {
+            <Row className="mt-4 ml-3">
+                <Col>
+                    <h4>Gelernte Karten</h4>
+                </Col>
+                <Col>
+                    {
+                        mode === "NORMAL_MODE" &&
+                        <Field
+                            name="cards"
+                            component={SelectButton}
+                            label={`${calcCardCount()} von ${resultCards.length} Karten`}
+                            toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
+                            options={[
+                                {
+                                    name: "Alle",
+                                    value: "ALL_CARDS"
+                                },
+                                {
+                                    name: "Richtig",
+                                    value: "CORRECT_CARDS"
+                                },
+                                {
+                                    name: "Falsch",
+                                    value: "WRONG_CARDS"
+                                },
+                                {
+                                    name: "Übersprungen",
+                                    value: "SKIPPED_CARDS"
+                                }
+                            ]}
+                        />
 
-            return a.userAnswer === a.rightAnswer;
-        })
+                    }
+                    {
+                        mode !== "NORMAL_MODE" &&
+                        <Field
+                            name="cards"
+                            component={SelectButton}
+                            label="Karten"
+                            toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
+                            options={[
+                                {
+                                    name: "Alle",
+                                    value: "ALL_CARDS"
+                                },
+                                {
+                                    name: "Richtig",
+                                    value: "CORRECT_CARDS"
+                                },
+                                {
+                                    name: "Falsch",
+                                    value: "WRONG_CARDS"
+                                }
+                            ]}
+                        />
+                    }
+                </Col>
+            </Row>
+            <CardDeck>
+                {
+                    resultCards &&
+                    _.values(calcCards()).map((card) =>
+                        <Card block>
+                            <FeedbackCard card={card} userAnswer={results[card.id].answer}/>
+                        </Card>
+                    )
+                }
+            </CardDeck>
+        </div>
+    );
+};
 
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={true}/>)
-    }
+const makeMapStateToProps = () => {
+    const getCardsForResults = makeGetCardsForResults();
+    const getCorrectCardsForResults = makeGetCorrectCardsForResults();
+    const getWrongCorrectCardsForResults = makeGetWrongCardsForResults();
+    const getSkippedCardsForResults = makeGetSkippedCardsForResults();
+    const getValueArrayByAnsweredCardIds = makeGetValueArrayByAnsweredCardIds();
+    return (state, props) => {
+        return {
+            cardIds: state.ui.learning.allIds || [],
+            tags: state.ui.learning.misc.tags || [],
+            results: state.ui.learning.byId || {},
+            resultCards: getCardsForResults(state, props) || {},
+            correctCards: getCorrectCardsForResults(state, props) || {},
+            wrongCards: getWrongCorrectCardsForResults(state, props) || {},
+            skippedCards: getSkippedCardsForResults(state, props) || {},
+            valuesFeedback: getFormValues('feedback')(state),
+            valuesArray: getValueArrayByAnsweredCardIds(state, props),
+        }
+    };
+};
 
-    getAllNotAnswered() {
-        let array = [];
-        array = this.state.cards.filter(a => {
+function mapDispatchToProps(dispatch) {
+    return ({
+        handleFeedbackClick: (cardId, answer, correct) => {
 
-            return a.userAnswer === null;
-        })
-
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={null}/>)
-    }
-
-    getAllWrong() {
-        let array = [];
-        array = this.state.cards.filter(a => {
-            return a.userAnswer !== a.rightAnswer && a.userAnswer !== null;
-        });
-
-        return array.map((card) => <PreviewCardFeedback question={card.question} answer={card.userAnswer}
-                                                        right={card.rightAnswer} check={false}/>)
-    }
-
-    render() {
-        return (
-            <div>
-                <Headline title="Feedback"/>
-
-                <CardGroup>
-                    <Card block>
-                        <CardTitle>{this.props.register}</CardTitle>
-                        <CardText>Beschreibung</CardText>
-                        <CardTitle>Verwendete Tags</CardTitle>
-                        <Form>
-                            <FormGroup>
-                                {this.props.tags.map((tag) => <CardText>{tag}</CardText>)}
-                            </FormGroup>
-
-                        </Form>
-
-                    </Card>
-
-                    <Card block>
-                        <CardTitle>Alte Statistik</CardTitle>
-                        <Row >
-                            <Col xs="8">
-                                <StatisticBar/>
-                            </Col>
-                        </Row>
-                        <CardTitle>Neue Statistik</CardTitle>
-                        <Row >
-                            <Col xs="8">
-                                <StatisticBar/>
-                            </Col>
-                        </Row>
-                    </Card>
-                </CardGroup>
-                <Row className="mt-4 ml-3">
-
-                    <FormGroup>
-
-                        <ButtonGroup check>
-                            <Button outline onClick={() => this.onRadioBtnClick(1)}
-                                    active={this.state.mode === 1}
-                                    color={this.state.mode === 1 ? 'primary' : 'secondary'}>Alle</Button>
-                            <Button outline onClick={() => this.onRadioBtnClick(2)}
-                                    active={this.state.mode === 2}
-                                    color={this.state.mode === 2 ? 'primary' : 'secondary'}>Richtige</Button>
-                            <Button outline onClick={() => this.onRadioBtnClick(3)}
-                                    active={this.state.mode === 3}
-                                    color={this.state.mode === 3 ? 'primary' : 'secondary'}>Falsche</Button>
-                            <Button outline onClick={() => this.onRadioBtnClick(4)}
-                                    active={this.state.mode === 4}
-                                    color={this.state.mode === 4 ? 'primary' : 'secondary'}>Keine Antwort</Button>
-                        </ButtonGroup>
-                    </FormGroup>
-
-                </Row>
-                <CardDeck>
-                    {this.displayCards()}
-                </CardDeck>
-
-
-            </div>
-        );
-    }
-
+        }
+    })
 }
-Feedback.propTypes = {
-    register: PropTypes.string,
-    tags: PropTypes.array
-}
 
-Feedback.defaultProps = {
-    register: "Feedback OOP 1",
-    tags: ["Bibbers", "Unendlich/Unendlich", "Fabian Zippi Zipproth", "Joshua leise", "Wirtschaftsexperte"]
-
-}
-
-export default Feedback;
+export default connect(makeMapStateToProps, mapDispatchToProps)(reduxForm({
+    form: 'feedback',
+    validate
+})(Feedback));

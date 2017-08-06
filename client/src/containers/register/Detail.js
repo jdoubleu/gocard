@@ -7,10 +7,12 @@ import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../card/Preview";
 import BlankCard from "../card/blankCard";
 import MemberBar from "./member/Bar";
-import Progress from "./statistic/Progress";
+import ProgressDoughnut from "./statistic/ProgressDoughnut";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister, makeGetTagsByRegister, makeGetRoleByRegister} from "../../selectors";
+import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister} from "../../selectors";
+import {resetResults, setSelectedSettings} from "../../actions/ui";
+import {push} from "react-router-redux";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -20,7 +22,14 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {register, cardIds, tags, role} = this.props;
+        const {register, cardIds, match, tags, settings, role} = this.props;
+
+        const handleSubmit = (values, dispatch) => {
+            dispatch(setSelectedSettings(register.id, values.mode, values.tags));
+            dispatch(resetResults());
+            return dispatch(push(`/register/${match.params.registerId}/learn`));
+        };
+
         return (
             <div>
                 <Headline title={register.title}/>
@@ -38,18 +47,18 @@ class Detail extends React.Component {
                                 <Link to={`${register.id}/edit`}>Bearbeiten</Link>
                             </div>
                         }
-
                     </Card>
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm tags={tags}/>
+                        <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
+                                   onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 
                     <Card block>
                         <CardTitle>Statistik</CardTitle>
                         <CardText>
-                            <Progress registerId={register.id}/>
+                            <ProgressDoughnut registerId={register.id}/>
                         </CardText>
                         <CardTitle>Benutzer des Registers</CardTitle>
                         <CardText>
@@ -82,17 +91,18 @@ Detail.propTypes = {};
 const makeMapStateToProps = (state, props) => {
     const registerId = props.match.params.registerId;
     const getCardIdsByRegister = makeGetCardIdsByRegister();
-    const getTagsByRegisterByKeyword = makeGetTagsByRegister();
+    const getTagsByRegister = makeGetTagsByRegister();
     const getRoleByRegister = makeGetRoleByRegister();
-    const mapStateToProps = (state, props) => {
+    return (state, props) => {
         return {
             register: state.entities.registers.byId[registerId] || {},
+            tags: getTagsByRegister(state, props) || [],
+            settings: state.ui.learnSettings.byId[registerId] || {},
+            userId: state.auth.userId,
             cardIds: getCardIdsByRegister(state, props) || [],
-            tags: getTagsByRegisterByKeyword(state, props) || [],
-            role: getRoleByRegister(state, props) || ''
+            role: getRoleByRegister(state, props) || '',
         }
     };
-    return mapStateToProps
 };
 
 export default connect(makeMapStateToProps)(Detail);

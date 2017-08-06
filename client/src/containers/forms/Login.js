@@ -49,7 +49,7 @@ const LoginForm = props => {
             <FormGroup>
                 <Link to="/forgotten" className="mb-4">Passwort vergessen?</Link>
             </FormGroup>
-            
+
             <Button outline block color="primary" type="submit" disabled={submitting}>
                 {
                     submitting &&

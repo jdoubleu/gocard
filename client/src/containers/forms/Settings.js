@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, Col, Row} from "reactstrap";
+import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
 import {Link} from "react-router-dom";
 
