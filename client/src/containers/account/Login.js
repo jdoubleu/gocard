@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
-import Logo from "../../components/shared/logo";
+import Logo from "../shared/logo";
 import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
 import {SubmissionError} from "redux-form";

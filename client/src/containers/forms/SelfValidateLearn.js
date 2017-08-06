@@ -14,7 +14,7 @@ const validate = values => {
 };
 
 
-const SelfValidateLearn = ({error, submitting, card, handleSubmit}) => {
+const SelfValidateLearn = ({error, submitting, card, handleSubmit, mode, handleSkip}) => {
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -35,7 +35,12 @@ const SelfValidateLearn = ({error, submitting, card, handleSubmit}) => {
                 component={LearnSelfValidateField}
                 content={card.content}
             />
-
+            {
+                mode === "NORMAL_MODE"&&
+                <Button color="link" disabled={submitting} onClick={handleSkip}>
+                    Überspringen
+                </Button>
+            }
             <Button outline block color="primary" type="submit" disabled={submitting}>
                 Weiter
             </Button>

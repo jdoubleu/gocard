@@ -14,7 +14,7 @@ const validate = values => {
 };
 
 
-const TextInputLearn = ({error, submitting, card, handleSubmit}) => {
+const TextInputLearn = ({error, submitting, card, handleSubmit, mode, handleSkip}) => {
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -35,7 +35,12 @@ const TextInputLearn = ({error, submitting, card, handleSubmit}) => {
                 component={LearnTextInputField}
                 content={card.content}
             />
-
+            {
+                mode === "NORMAL_MODE"&&
+                <Button color="link" disabled={submitting} onClick={handleSkip}>
+                    Überspringen
+                </Button>
+            }
             <Button outline block color="primary" type="submit" disabled={submitting}>
                 Jetzt prüfen
             </Button>

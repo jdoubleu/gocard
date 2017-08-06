@@ -141,7 +141,7 @@ class CardStatistic implements \JsonSerializable
             'user' => $this->user->getUid(),
             'card' => $this->card->getUid(),
             'value' => $this->value,
-            'date' => $this->value
+            'date' => $this->date
         ];
     }
 }

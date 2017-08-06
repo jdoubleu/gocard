@@ -2,15 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {loadRegisters} from "../actions/register";
-import Headline from "../components/shared/headline";
+import Headline from "./shared/headline";
 import {Row} from "reactstrap";
-import BlankCard from "../components/register/blankCard";
+import BlankCard from "./register/blankCard";
 import Preview from "./register/Preview";
+import {makeGetRegisterIds} from "../selectors/index";
+import {loadMembershipsByUser} from "../actions/member";
 
 class Dashboard extends React.Component {
     componentWillMount() {
-        const {dispatch} = this.props;
-        dispatch(loadRegisters())
+        const {dispatch, userId} = this.props;
+        dispatch(loadMembershipsByUser(userId));
+        dispatch(loadRegisters());
     }
 
     render() {
@@ -40,10 +43,14 @@ Dashboard.propTypes = {
     registersIds: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state) {
-    return {
-        registersIds: state.entities.registers.allIds || [],
-    }
-}
+const makeMapStateToProps = () => {
+    const getRegisterIds = makeGetRegisterIds();
+    return (state, props) => {
+        return {
+            userId: state.auth.userId,
+            registersIds: getRegisterIds(state, props)
+        }
+    };
+};
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(makeMapStateToProps)(Dashboard);

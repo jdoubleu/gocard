@@ -2,7 +2,7 @@ import React from "react";
 import {Field, FieldArray, reduxForm} from "redux-form";
 import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
-import InputMembers from "./fields/inputMembers/index";
+import InputMembers from "./fields/inputMembers";
 import {Link} from "react-router-dom";
 
 const validate = values => {
@@ -48,7 +48,7 @@ const RegisterForm = props => {
 
             <Row>
                 <Col>
-                    <Link className="btn btn-outline-danger btn-block" to={cancelRoute}>{cancelLabel}</Link>
+                    <Link className="btn btn-outline-secondary btn-block" to={cancelRoute}>{cancelLabel}</Link>
                 </Col>
                 <Col>
                     <Button outline block color="primary" type="submit" disabled={submitting}>

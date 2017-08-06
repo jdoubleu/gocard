@@ -1,7 +1,10 @@
 import {createSelector} from 'reselect'
 import _ from "lodash";
+import moment from "moment";
 
 const getRegisterId = (state, props) => props.registerId ? props.registerId : _.parseInt(props.match.params.registerId);
+
+const getRegisters = (state) => state.entities.registers.byId;
 const getCards = (state) => state.entities.cards.byId;
 const getUserId = (state) => state.auth.userId;
 const getMembers = (state) => state.entities.members.byId;
@@ -10,10 +13,20 @@ const getUsers = (state) => state.entities.users.byId;
 const getSelectedTags = (state, props) => state.ui.learnSettings.byId[getRegisterId(state, props)].tags;
 const getAnsweredCardsIds = (state) => state.ui.learning.allIds || [];
 const getAnsweredCards = (state) => state.ui.learning.byId || {};
-const getLastCard = (state) => state.ui.learning.misc.lastCard || {};
+//tCard = (state) => state.ui.learning.misc.lastCard || {};
 const getAllScores = (state) => state.entities.score.byId || {};
+const getMode = (state) => state.ui.learning.misc.mode;
 
-export const makeGetCardsByRegister = (state, props) => {
+export const makeGetRegisterById = () => {
+    return createSelector(
+        [getRegisterId, getRegisters, makeGetMembersByRegister()],
+        (registerId, registers, membersByRegister) => {
+            return _.assign(registers[registerId], {members: membersByRegister});
+        }
+    )
+};
+
+export const makeGetCardsByRegister = () => {
     return createSelector(
         [getRegisterId, getCards],
         (registerId, cards) => {
@@ -36,6 +49,15 @@ export const makeGetRegisterIds = () => {
         [getUserId, getMembers],
         (userId, members) => {
             return _.map(_.filter(members, {'user': userId}), 'register');
+        }
+    );
+};
+
+export const makeGetRoleByRegister = () => {
+    return createSelector(
+        [getUserId, getMembers, getRegisterId],
+        (userId, members, registerId) => {
+            return _.map(_.filter(members, {'user': userId, 'register': registerId}), 'role')[0];
         }
     );
 };
@@ -104,25 +126,12 @@ export const makeGetCardIdsByTags = () => {
 
 export const makeGetNextCard = () => {
     return createSelector(
-        [makeGetCardsByTags(), getAnsweredCardsIds],
-        (cards, answeredIds) => {
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards, getMode],
+        (cards, answeredIds, answeredCards, mode) => {
             let unAnsweredCards = _.filter(cards, function (c) {
-                return !_.includes(answeredIds, c.id)
-            });
-            if (unAnsweredCards.length > 0) {
-                return unAnsweredCards[0];
-            } else {
-                return null;
-            }
-        }
-    );
-};
-
-export const makeGetNextCardForPowerMode = () => {
-    return createSelector(
-        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
-        (cards, answeredIds, answeredCards) => {
-            let unAnsweredCards = _.filter(cards, function (c) {
+                if(mode !== 'POWER_MODE'){
+                    return !_.includes(answeredIds, c.id)
+                }
                 return (!_.includes(answeredIds, c.id)
                 || (_.includes(answeredIds, c.id) && answeredCards[c.id].correct !== true))
             });
@@ -160,7 +169,6 @@ export const makeGetScoreByUser = () => {
                 return s.user === user
             });
             if (scoresByUser.length > 0) {
-                console.log("Score by User", scoresByUser);
                 return scoresByUser;
             } else {
                 return null;
@@ -189,13 +197,14 @@ export const makeGetCorrectCardsForResults = () => {
 
 export const makeGetScoreForCurrentCard = () => {
     return createSelector(
-        [makeGetScoreByUser(), getLastCard],
+        [makeGetScoreByUser(), makeGetNextCard()],
         (scores, card) => {
             let scoresForCurrentCard = _.filter(scores, function (s) {
-                return s.card === card.id
+                if(card !== null) {
+                    return s.card === card.id
+                }
             });
             if (scoresForCurrentCard.length > 0) {
-                console.log("Score for CurrentCard", scoresForCurrentCard);
                 return scoresForCurrentCard;
             } else {
                 return null;
@@ -223,10 +232,9 @@ export const makeGetWrongCardsForResults = () => {
 
 export const makeGetLastScoreForCurrentCard = () => {
     return createSelector(
-        [makeGetScoreForCurrentCard(), getLastCard],
-        (scores, card) => {
-            let score = _.minBy(scores, 'date');
-            console.log("scoresmin", score);
+        [makeGetScoreForCurrentCard()],
+        (scores) => {
+            let score = _.maxBy(scores, (o) => {return moment(o.date).format('X')});
             return score;
         }
     );
@@ -247,7 +255,3 @@ export const makeGetSkippedCardsForResults = () => {
         }
     );
 };
-
-/*
- * GetNextUnaswerdCard
- */

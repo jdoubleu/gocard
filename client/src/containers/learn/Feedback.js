@@ -1,8 +1,8 @@
 import React from "react";
-import {Card, Col, CardGroup, CardTitle, CardText, Row, CardDeck, Button} from "reactstrap";
+import {Card, Col, CardGroup, CardTitle, CardText, Row, CardDeck} from "reactstrap";
 import {connect} from "react-redux";
 import _ from "lodash";
-import StatisticBar from "../../components/shared/statistics/statisticBar";
+import StatisticBar from "../shared/statistics/statisticBar";
 import FeedbackCard from "./FeedbackPreviewCard";
 import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
@@ -26,7 +26,7 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
         //return new stats object
     };
     const bug = () => {
-        console.log("feedback",valuesFeedback);
+        console.log("feedback", valuesFeedback);
     };
 
     const matchTitle = () => {
@@ -40,26 +40,26 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
     };
 
     const calcCards = () => {
-        if(valuesFeedback=== undefined || valuesFeedback.cards === "ALL_CARDS") {
+        if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
             return resultCards;
-        } else if(valuesFeedback.cards === "CORRECT_CARDS") {
+        } else if (valuesFeedback.cards === "CORRECT_CARDS") {
             return correctCards;
-        } else if(valuesFeedback.cards === "WRONG_CARDS") {
+        } else if (valuesFeedback.cards === "WRONG_CARDS") {
             return wrongCards;
-        } else if(valuesFeedback.cards === "SKIPPED_CARDS") {
+        } else if (valuesFeedback.cards === "SKIPPED_CARDS") {
             return skippedCards;
         }
     };
 
     const calcCardCount = () => {
-        if(valuesFeedback=== undefined || valuesFeedback.cards === "ALL_CARDS") {
+        if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
             return resultCards.length;
-        } else if(valuesFeedback.cards === "CORRECT_CARDS") {
-            return correctCards.length;
-        } else if(valuesFeedback.cards === "WRONG_CARDS") {
-            return wrongCards.length;
-        } else if(valuesFeedback.cards === "SKIPPED_CARDS") {
-            return _.isEmpty(skippedCards)? 0 : skippedCards.length;
+        } else if (valuesFeedback.cards === "CORRECT_CARDS") {
+            return _.isEmpty(correctCards.length) ? 0 : correctCards.length;
+        } else if (valuesFeedback.cards === "WRONG_CARDS") {
+            return _.isEmpty(wrongCards.length) ? 0 : wrongCards.length;
+        } else if (valuesFeedback.cards === "SKIPPED_CARDS") {
+            return _.isEmpty(skippedCards) ? 0 : skippedCards.length;
         }
     };
 
@@ -79,9 +79,7 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
                         }
                         {
                             tags.length === 0 &&
-                                <span>
-                                    Es wurde mit allen Karten gelernt.
-                                </span>
+                            <span>Es wurde mit allen Karten gelernt.</span>
                         }
                     </CardText>
                 </Card>
@@ -159,7 +157,7 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
                     resultCards &&
                     _.values(calcCards()).map((card) =>
                         <Card block>
-                            <FeedbackCard card={card} userAnswer={results[card.id].answer} />
+                            <FeedbackCard card={card} userAnswer={results[card.id].answer}/>
                         </Card>
                     )
                 }
@@ -170,10 +168,10 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
 
 const makeMapStateToProps = () => {
     /*_.values(calcCards).map((card) =>
-        <Card block>
-            <FeedbackCard card={card} userAnswer={results[card.id].answer} />
-        </Card>
-    )*/
+     <Card block>
+     <FeedbackCard card={card} userAnswer={results[card.id].answer} />
+     </Card>
+     )*/
     const getCardsForResults = makeGetCardsForResults();
     const getCorrectCardsForResults = makeGetCorrectCardsForResults();
     const getWrongCorrectCardsForResults = makeGetWrongCardsForResults();
@@ -182,7 +180,7 @@ const makeMapStateToProps = () => {
         return {
             cardIds: state.ui.learning.allIds || [],
             tags: state.ui.learning.misc.tags || [],
-            results: state.ui.learning.byId ||{},
+            results: state.ui.learning.byId || {},
             resultCards: getCardsForResults(state, props) || {},
             correctCards: getCorrectCardsForResults(state, props) || {},
             wrongCards: getWrongCorrectCardsForResults(state, props) || {},

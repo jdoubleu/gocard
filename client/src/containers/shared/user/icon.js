@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BaseIcon from "../icon";
-import {getInitials} from "../../../utils";
+import {getInitials} from "../../../utils/index";
 
 
 const Icon = ({children, ...rest}) => {
