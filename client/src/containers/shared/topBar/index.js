@@ -26,7 +26,7 @@ const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onT
 
     return (
         <Container className="top-bar">
-            <Navbar light toggleable>
+            <Navbar light toggleable className="text-center">
                 <NavbarToggler className="border-0" right onClick={onToggleTopBarDropDown}/>
                 <NavbarBrand onClick={() => onNavbarBrandClick()}>
                     <Logo/>
@@ -39,7 +39,7 @@ const TopBar = ({dropDownTopBar, dropDownUser, user, onToggleTopBarDropDown, onT
                         </span>
                         {
                             user.status === "active" &&
-                            <Nav className="ml-auto" navbar>
+                            <Nav navbar>
                                 {
                                     user.displayName &&
                                     <UserIcon>
