@@ -2,7 +2,7 @@ import React from "react";
 import {Field, FieldArray, reduxForm} from "redux-form";
 import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
-import InputMembers from "./fields/inputMembers/index";
+import InputMembers from "./fields/inputMembers";
 import {Link} from "react-router-dom";
 
 const validate = values => {

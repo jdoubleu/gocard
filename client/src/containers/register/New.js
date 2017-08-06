@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {addRegister} from "../../actions/register";
-import {updateMembersByRegister} from "../../actions/member";
+import {addMembersToRegister} from "../../actions/member";
 import moment from "moment";
 import {push} from "react-router-redux";
 import {Card, Col, Row} from "reactstrap";
 import Headline from "../../components/shared/headline";
 import RegisterForm from "../forms/Register";
+import _ from "lodash";
 
 const New = ({userId}) => {
     const handleSubmit = (values, dispatch) => {
@@ -17,11 +18,12 @@ const New = ({userId}) => {
             owner: userId,
             crdate: moment().format(),
         })).then(
-            success =>
-                dispatch(updateMembersByRegister(success.response.id, values.members)).then(
-                    success =>
-                        dispatch(push('/'))
-                )
+            success => {
+                if (!_.isEmpty(values.members)) {
+                    dispatch(addMembersToRegister(success.response.id, values.members));
+                }
+                dispatch(push('/'))
+            }
         )
     };
 

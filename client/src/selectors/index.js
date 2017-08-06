@@ -2,11 +2,23 @@ import {createSelector} from 'reselect'
 import _ from "lodash";
 
 const getRegisterId = (state, props) => props.registerId ? props.registerId : _.parseInt(props.match.params.registerId);
+
+const getRegisters = (state) => state.entities.registers.byId;
 const getCards = (state) => state.entities.cards.byId;
 const getUserId = (state) => state.auth.userId;
 const getMembers = (state) => state.entities.members.byId;
 const getKeyword = (state, props) => props.keyword;
 const getUsers = (state) => state.entities.users.byId;
+
+
+export const makeGetRegisterById = () => {
+    return createSelector(
+        [getRegisterId, getRegisters, makeGetMembersByRegister()],
+        (registerId, registers, membersByRegister) => {
+            return _.assign(registers[registerId], {members: membersByRegister});
+        }
+    )
+};
 
 export const makeGetCardsByRegister = () => {
     return createSelector(
