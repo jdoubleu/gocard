@@ -2,6 +2,8 @@ import {createSelector} from 'reselect'
 import _ from "lodash";
 
 const getRegisterId = (state, props) => props.registerId ? props.registerId : _.parseInt(props.match.params.registerId);
+
+const getRegisters = (state) => state.entities.registers.byId;
 const getCards = (state) => state.entities.cards.byId;
 const getUserId = (state) => state.auth.userId;
 const getMembers = (state) => state.entities.members.byId;
@@ -13,7 +15,16 @@ const getAnsweredCards = (state) => state.ui.learning.byId || {};
 const getLastCard = (state) => state.ui.learning.misc.lastCard || {};
 const getAllScores = (state) => state.entities.score.byId || {};
 
-export const makeGetCardsByRegister = (state, props) => {
+export const makeGetRegisterById = () => {
+    return createSelector(
+        [getRegisterId, getRegisters, makeGetMembersByRegister()],
+        (registerId, registers, membersByRegister) => {
+            return _.assign(registers[registerId], {members: membersByRegister});
+        }
+    )
+};
+
+export const makeGetCardsByRegister = () => {
     return createSelector(
         [getRegisterId, getCards],
         (registerId, cards) => {
@@ -36,6 +47,15 @@ export const makeGetRegisterIds = () => {
         [getUserId, getMembers],
         (userId, members) => {
             return _.map(_.filter(members, {'user': userId}), 'register');
+        }
+    );
+};
+
+export const makeGetRoleByRegister = () => {
+    return createSelector(
+        [getUserId, getMembers, getRegisterId],
+        (userId, members, registerId) => {
+            return _.map(_.filter(members, {'user': userId, 'register': registerId}), 'role')[0];
         }
     );
 };
@@ -247,7 +267,3 @@ export const makeGetSkippedCardsForResults = () => {
         }
     );
 };
-
-/*
- * GetNextUnaswerdCard
- */

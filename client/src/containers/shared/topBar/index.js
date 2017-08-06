@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {NavLink, Route} from "react-router-dom";
-import Breadcrumb from "../../../containers/shared/breadcrumb";
+import Breadcrumb from "../breadcrumb/index";
 import UserIcon from "../user/icon";
 import Logo from "../logo";
 import {

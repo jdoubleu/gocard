@@ -58,7 +58,7 @@ function addCardId(state, action) {
 function deleteCardId(state, action) {
     const {cardId} = action;
 
-    return _.pull(state, cardId);
+    return _.without(state, cardId);
 }
 
 function updateCardId(state, action) {

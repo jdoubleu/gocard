@@ -1,6 +1,6 @@
 import React from "react";
 import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
-import Logo from "../../components/shared/logo/index";
+import Logo from "../shared/logo/index";
 import RegistrationForm from "../../containers/forms/Registration";
 import {addUser} from "../../actions/user";
 import {SubmissionError} from "redux-form";

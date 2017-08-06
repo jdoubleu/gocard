@@ -43,7 +43,7 @@ const SettingsForm = props => {
 
             <Row>
                 <Col>
-                    <Link className="btn btn-outline-danger btn-block" to="/">Abbrechen</Link>
+                    <Link className="btn btn-outline-secondary btn-block" to="/">Abbrechen</Link>
                 </Col>
                 <Col>
                     <Button outline block color="primary" type="submit" disabled={submitting}>

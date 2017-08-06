@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {deleteUser, updateUser, updatePassword} from "../../actions/user";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
-import Headline from "../../components/shared/headline";
+import Headline from "../shared/headline";
 import SettingsForm from "../forms/Settings";
 import DeleteUserForm from "../forms/DeleteUser";
 import ResetForm from "../forms/Reset";
-import Icon from "../../components/shared/user/icon";
+import Icon from "../shared/user/icon";
 import {formValueSelector} from "redux-form";
 import {logoutUser} from "../../actions/auth";
 

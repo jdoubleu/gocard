@@ -58,7 +58,7 @@ function addUserIds(state, action) {
 function deleteUserId(state, action) {
     const {userId} = action;
 
-    return _.omit(state, userId);
+    return _.without(state, userId);
 }
 
 function updateUserId(state, action) {

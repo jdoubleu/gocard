@@ -4,7 +4,7 @@ import InitialDialogForm from "../forms/InitialDialog";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {updateUser, deleteUser} from "../../actions/user";
 import {logoutUser} from "../../actions/auth";
-import Headline from "../../components/shared/headline";
+import Headline from "../shared/headline";
 import DeleteUserForm from "../forms/DeleteUser";
 
 const InitialDialog = ({user}) => {

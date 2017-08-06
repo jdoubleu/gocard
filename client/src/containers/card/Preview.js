@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, CardText, Col} from "reactstrap";
+import {Button, Card, Col} from "reactstrap";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
-
 
 class Preview extends React.Component {
 
