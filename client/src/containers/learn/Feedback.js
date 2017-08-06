@@ -20,6 +20,15 @@ const validate = values => {
 
 const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards}) => {
 
+    const CalcCardStatistic = (correct) => {
+        //Load stats for current card
+        //Calculate new Stats
+        //return new stats object
+    };
+    const bug = () => {
+        console.log("feedback", valuesFeedback);
+    };
+
     const matchTitle = () => {
         if (mode === "NORMAL_MODE") {
             return "Normaler Modus";
@@ -139,6 +148,9 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                             ]}
                         />
                     }
+                    {
+                        bug()
+                    }
                 </Col>
             </Row>
             <CardDeck>
@@ -156,6 +168,11 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
 };
 
 const makeMapStateToProps = () => {
+    /*_.values(calcCards).map((card) =>
+     <Card block>
+     <FeedbackCard card={card} userAnswer={results[card.id].answer} />
+     </Card>
+     )*/
     const getCardsForResults = makeGetCardsForResults();
     const getCorrectCardsForResults = makeGetCorrectCardsForResults();
     const getWrongCorrectCardsForResults = makeGetWrongCardsForResults();

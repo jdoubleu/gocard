@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, CardText, CardTitle, Col, Card, CardHeader, CardBlock} from "reactstrap";
-import Headline from "../shared/headline";
+import {Button, CardText, CardTitle} from "reactstrap";
+
 import PropTypes from "prop-types";
 import _ from "lodash";
 
@@ -69,6 +69,9 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                             option = option + " ◀ Deine Antwort";
                         }
                         if (_.includes(card.content.corrects, index)) {
+                            if(!(_.includes(userAnswer, index))) {
+                                option = option + " ◀ Richtige Antwort";
+                            }
                             return (
                                 <div className="text-success">
                                     {option}
@@ -115,6 +118,13 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                         </div>
                     </div>
 
+                }
+
+                {
+                    card.type === 'self-validate' &&
+                        <div className="mb-1">
+                            Korrekte Antwort: {card.content.answer}
+                        </div>
                 }
                 <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
                     Nächste karte

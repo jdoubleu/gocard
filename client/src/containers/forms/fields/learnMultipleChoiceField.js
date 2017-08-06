@@ -1,5 +1,5 @@
 import React from "react";
-import {FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
+import {FormFeedback, FormGroup, Input,UncontrolledTooltip} from "reactstrap";
 import _ from "lodash";
 
 const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => {
@@ -14,8 +14,8 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
 
             {
                 content.options.map((option, index) =>
-                    <FormGroup check>
-                        <Label check>
+                    <div check>
+
                             <Input addon type="checkbox"
                                    onChange={(event) => input.onChange({
                                        ...input.value,
@@ -26,8 +26,8 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
                                    name={input.name} value={index}
                             />{' '}
                             {option}
-                        </Label>
-                    </FormGroup>
+
+                    </div>
                 )
             }
 

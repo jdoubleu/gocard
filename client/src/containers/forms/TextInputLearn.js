@@ -1,8 +1,8 @@
 import React from "react";
-import {Field, formValueSelector, reduxForm} from "redux-form";
-import {Alert, Button, Form, CardTitle, CardText} from "reactstrap";
+import {Field, reduxForm} from "redux-form";
+import {Alert, Button, Form, CardTitle} from "reactstrap";
 import LearnTextInputField from "./fields/learnTextInputField";
-import {connect} from "react-redux";
+
 
 
 const validate = values => {
@@ -23,7 +23,9 @@ const TextInputLearn = ({error, submitting, card, handleSubmit, mode, handleSkip
                     {error}
                 </Alert>
             }
-
+            <CardTitle className="text-center">
+                Karteikarte Texteingabe
+            </CardTitle>
 
             <h4 className="text-muted">Frage</h4>
             <CardTitle>

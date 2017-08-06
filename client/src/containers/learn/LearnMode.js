@@ -10,11 +10,11 @@ import TextInputCardForm from "../forms/TextInputLearn";
 import {
     makeGetCardIdsByTags,
     makeGetCardsByRegister, makeGetLastScoreForCurrentCard, makeGetNextCard,
-    makeGetNextCardForPowerMode, makeGetSizeOfResults,
+    makeGetSizeOfResults,
 } from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
-import {addResult, setLastCorrect, setLastResult, setShowResult, setLastCard} from "../../actions/ui";
+import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
 import {addScore} from "../../actions/score";
 import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
@@ -120,7 +120,15 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
             <Headline title={matchTitle()}>
-                Hier kannst du Lernen
+                {
+                    currentCard != null &&
+                    <p>Hier kannst du Lernen</p>
+                }
+                {
+                    currentCard === null &&
+                    <p>Hier bekommst du ein gesamt Feedback</p>
+                }
+
             </Headline>
             <div className="text-center">Fortschritt {(countAnswers/countCards)*100}%</div>
             <Progress value={(countAnswers/countCards)*100} className="mb-1"/>
