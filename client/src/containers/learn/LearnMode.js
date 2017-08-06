@@ -64,11 +64,10 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
             res = valuesSingle !== undefined && currentCard.content.correct === _.parseInt(valuesSingle.userAnswer);
             dispatch(setLastCorrect(res));
             dispatch(setLastResult(_.parseInt(valuesSingle.userAnswer)));
-
+            calcCardStatistic();
             if (mode !== "TEST_MODE") {
                 dispatch(setShowResult(true));
             } else {
-                calcCardStatistic();
                 dispatch(addResult(currentCard.id, _.parseInt(valuesSingle.userAnswer), res));
             }
         }
@@ -81,10 +80,10 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
             let res = resA && resB;
             dispatch(setLastCorrect(res));
             dispatch(setLastResult(valuesMultiple.userAnswer.answer));
+            calcCardStatistic();
             if (mode !== "TEST_MODE") {
                 dispatch(setShowResult(true));
             } else {
-                calcCardStatistic();
                 dispatch(addResult(currentCard.id, valuesMultiple.userAnswer.answer, res));
             }
         }
@@ -101,10 +100,10 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
         let res = currentCard.content.answer === lastAnswer;
         dispatch(setLastCorrect(res));
         dispatch(setLastResult(lastAnswer));
+        calcCardStatistic();
         if (mode !== "TEST_MODE") {
             dispatch(setShowResult(true));
         } else {
-            calcCardStatistic();
             dispatch(addResult(currentCard.id, lastAnswer, res));
         }
     };
@@ -132,43 +131,40 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 }
 
             </Headline>
-            <div className="text-center">Fortschritt {(countAnswers / countCards) * 100}%</div>
+            <div className="text-center">Fortschritt {((countAnswers + showResult) / countCards) * 100}%</div>
             <Col sm="12" md={{size: 8, offset: 2}}>
-            <Progress value={(countAnswers / countCards) * 100} className="mb-1"/>
-            {currentCard !== null &&
-            <Card block>
-                {
-                    currentCard && mode !== "TEST_MODE" && showResult === true &&
-                    <FeedbackCard card={currentCard} userAnswer={lastResult}
-                                  handleClick={() => {
-                                      calcCardStatistic();
-                                      handleFeedbackClick(currentCard.id, lastResult, lastCorrect)
-                                  }}/>
-                }
-                {
-                    currentCard && currentCard.type === "single-choice" && showResult === false &&
-                    <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode}
-                                          handleSkip={handleSkip}/>
-                }
-                {
-                    currentCard && currentCard.type === "multiple-choice" && showResult === false &&
-                    <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode}
-                                            handleSkip={handleSkip}/>
-                }
-                {
-                    currentCard && currentCard.type === 'self-validate' && showResult === false &&
-                    <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode}
-                                          handleSkip={handleSkip}/>
-                }
-                {
-                    currentCard && currentCard.type === 'text-input' && showResult === false &&
-                    <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode}
-                                       handleSkip={handleSkip}/>
-                }
-            </Card>
+                <Progress value={((countAnswers + showResult) / countCards) * 100} className="mb-1"/>
+                {currentCard !== null &&
+                <Card block>
+                    {
+                        currentCard && mode !== "TEST_MODE" && showResult === true &&
+                        <FeedbackCard card={currentCard} userAnswer={lastResult}
+                                      handleClick={() => {handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}}/>
+                    }
+                    {
+                        currentCard && currentCard.type === "single-choice" && showResult === false &&
+                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode}
+                                              handleSkip={handleSkip}/>
+                    }
+                    {
+                        currentCard && currentCard.type === "multiple-choice" && showResult === false &&
+                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode}
+                                                handleSkip={handleSkip}/>
+                    }
+                    {
+                        currentCard && currentCard.type === 'self-validate' && showResult === false &&
+                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode}
+                                              handleSkip={handleSkip}/>
+                    }
+                    {
+                        currentCard && currentCard.type === 'text-input' && showResult === false &&
+                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode}
+                                           handleSkip={handleSkip}/>
+                    }
+                </Card>
 
 
-            }
+                }
             </Col>
             {
                 currentCard === null &&
