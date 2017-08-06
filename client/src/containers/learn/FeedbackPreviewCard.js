@@ -1,21 +1,25 @@
 import React from "react";
-import {CardText, CardTitle, Col} from "reactstrap";
+import {CardText, CardTitle, } from "reactstrap";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
 const FeedbackCard = ({card, userAnswer}) => {
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
+        <div  xl="4" md="6" xs="12">
+
+            <h5 className="text-muted">Frage</h5>
             <CardTitle>
                 {card.question}
             </CardTitle>
+            <h5 className="text-muted">Antwort</h5>
             <CardText>
                 {
                     card.type === "single-choice" &&
                     card.content.options.map((option, index) => {
                             if (_.parseInt(userAnswer) === card.content.correct) {
                                 if (userAnswer === index) {
+                                    option = option + " ◀ Deine Antwort";
                                     return (
                                         <div className="text-success">
                                             {option}
@@ -31,12 +35,14 @@ const FeedbackCard = ({card, userAnswer}) => {
 
                             } else {
                                 if (_.parseInt(userAnswer) === index) {
+                                    option = option + " ◀ Deine Antwort";
                                     return (
                                         <div className="text-danger">
                                             {option}
                                         </div>
                                     );
                                 } else if (card.content.correct === index) {
+                                    option = option + " ◀ Richtige Antwort";
                                     return (
                                         <div className="text-success">
                                             {option}
@@ -57,9 +63,12 @@ const FeedbackCard = ({card, userAnswer}) => {
                     card.type === "multiple-choice" &&
                     card.content.options.map((option, index) => {
                         if ((_.includes(userAnswer, index))) {
-                            option = option + " ◀";
+                            option = option + " ◀ Deine Antwort";
                         }
                         if (_.includes(card.content.corrects, index)) {
+                            if (!(_.includes(userAnswer, index))) {
+                                option = option + " ◀ Richtige Antwort";
+                            }
                             return (
                                 <div className="text-success">
                                     {option}
@@ -80,18 +89,6 @@ const FeedbackCard = ({card, userAnswer}) => {
                             );
                         }
                     })
-                }
-                {
-                    card.type === "self-validate" && userAnswer === true &&
-                    <div className="text-success">
-                        Richtig
-                    </div>
-                }
-                {
-                    card.type === "self-validate" && userAnswer === false &&
-                    <div className="text-danger">
-                        Falsch
-                    </div>
                 }
                 {
                     card.type === 'text-input' &&
@@ -119,8 +116,15 @@ const FeedbackCard = ({card, userAnswer}) => {
                     </div>
 
                 }
+
+                {
+                    card.type === 'self-validate' &&
+                    <div className="mb-1">
+                        Korrekte Antwort: {card.content.answer}
+                    </div>
+                }
             </CardText>
-        </Col>
+        </div>
     );
 
 };
