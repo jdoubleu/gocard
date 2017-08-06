@@ -19,22 +19,17 @@ import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
 import moment from "moment";
 
-const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, setLastCard, scoreCurrentCard, createScoreForCard}) => {
+const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, setLastCard, scoreCurrentCard, createScoreForCard, handleSkip}) => {
 
     const calcCardStatistic = () =>{
-
         setLastCard(currentCard);
-        //Load stats for current card
-        //Calculate new Stats
-        //return new stats object
         let scoreStep = 0;
         if(lastCorrect == true) {
             scoreStep = 1;
-        } else if(lastCorrect == false && lastCorrect == null) {
+        } else if(lastCorrect == false || lastCorrect == null) {
             scoreStep = -1;
         }
         if(scoreCurrentCard === null){
-
             let body = {
                 user: userId,
                 card: currentCard.id,
@@ -44,7 +39,6 @@ const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult
             createScoreForCard(currentCard.id, body);
         }else {
             scoreStep += _.parseInt(scoreCurrentCard.value);
-
             let body = {
                 user: userId,
                 card: currentCard.id,
@@ -53,7 +47,6 @@ const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult
             };
             createScoreForCard(currentCard.id, body);
         }
-
     };
 
     const handleSubmitSingleChoice = (values, dispatch) => {
@@ -131,19 +124,19 @@ const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult
                     }
                     {
                         currentCard && currentCard.type === "single-choice" && showResult === false &&
-                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard}/>
+                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode} handleSkip={handleSkip}/>
                     }
                     {
                         currentCard && currentCard.type === "multiple-choice" && showResult === false &&
-                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard}/>
+                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode}/>
                     }
                     {
                         currentCard && currentCard.type === 'self-validate' && showResult === false &&
-                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard}/>
+                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode}/>
                     }
                     {
                         currentCard && currentCard.type === 'text-input' && showResult === false &&
-                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard}/>
+                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode}/>
                     }
 
 
@@ -186,7 +179,7 @@ const makeMapStateToProps = () => {
             showResult: state.ui.learning.misc.showResult || false,
             lastResult: state.ui.learning.misc.lastResult || -99,
             lastCorrect: state.ui.learning.misc.lastCorrect || -99,
-            scoreCurrentCard: getScoreCurrentCard(state, props) || null,
+            scoreCurrentCard: getScoreCurrentCard(state, props),
             userId: state.auth.userId
         }
     };
@@ -203,7 +196,12 @@ function mapDispatchToProps(dispatch) {
             dispatch(setLastCard(currentCard));
         },
         createScoreForCard: (currentCardId, body) => {
-          dispatch(addScore(currentCardId, body));
+            dispatch(addScore(currentCardId, body));
+        },
+        handleSkip: () => {
+            dispatch(setLastCorrect(null));
+            dispatch(setLastResult(null));
+            dispatch(setShowResult(true));
         }
     })
 }

@@ -13,7 +13,7 @@ const validate = values => {
 };
 
 
-const SingleChoiceLearn = ({error, submitting, card, handleSubmit}) => {
+const SingleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handleSkip}) => {
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -38,7 +38,12 @@ const SingleChoiceLearn = ({error, submitting, card, handleSubmit}) => {
                     content={card.content}
                 />
             </CardText>
-
+            {
+                mode === "NORMAL_MODE"&&
+                <Button outline block color="danger" disabled={submitting} onClick={handleSkip}>
+                    Überspringen
+                </Button>
+            }
             <Button outline block color="primary" type="submit" disabled={submitting}>
                 Jetzt prüfen
             </Button>
