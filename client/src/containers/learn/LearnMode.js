@@ -120,7 +120,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
     return (
         <Col sm="12" md={{size: 8, offset: 2}}>
             <Headline title={matchTitle()}>
-                Hier kannst du Lernenn
+                Hier kannst du Lernen
             </Headline>
             <div className="text-center">Fortschritt {(countAnswers/countCards)*100}%</div>
             <Progress value={(countAnswers/countCards)*100} className="mb-1"/>
