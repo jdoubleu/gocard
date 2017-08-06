@@ -5,7 +5,8 @@ import {
     getUserById as apiGetUserById,
     requestPasswordReset as apiRequestPasswordReset,
     updatePassword as apiUpdatePassword,
-    updateUser as apiUpdateUser
+    updateUser as apiUpdateUser,
+    searchUsersByName as apiSearchUsersByName
 } from "../lib/ApiClient";
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
@@ -85,10 +86,9 @@ export const SEARCH_USERS_REQUEST = 'SEARCH_USERS_REQUEST';
 export const SEARCH_USERS_SUCCESS = 'SEARCH_USERS_SUCCESS';
 export const SEARCH_USERS_FAILURE = 'SEARCH_USERS_FAILURE';
 
-export function searchUsers(search) {
+export function searchUsers(name) {
     return {
         types: [SEARCH_USERS_REQUEST, SEARCH_USERS_SUCCESS, SEARCH_USERS_FAILURE],
-        callAPI: () => apiGetUserByEmail({email: search}),
-        payload: {search}
+        callAPI: () => apiSearchUsersByName({name})
     };
 }

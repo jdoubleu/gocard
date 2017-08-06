@@ -2,15 +2,15 @@ import React from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {loadCards} from "../../actions/card";
-import Headline from "../../components/shared/headline";
-import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import Headline from "../shared/headline";
+import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../card/Preview";
-import BlankCard from "../../components/card/blankCard";
+import BlankCard from "../card/blankCard";
 import MemberBar from "./member/Bar";
 import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister, makeGetTagsByRegister} from "../../selectors";
+import {makeGetCardIdsByRegister, makeGetTagsByRegister, makeGetRoleByRegister} from "../../selectors";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -20,7 +20,7 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {register, cardIds, tags} = this.props;
+        const {register, cardIds, tags, role} = this.props;
         return (
             <div>
                 <Headline title={register.title}/>
@@ -31,8 +31,14 @@ class Detail extends React.Component {
                         <CardText>
                             {register.description}
                         </CardText>
-                        <span><hr/></span>
-                        <Link to={`${register.id}/edit`}>Bearbeiten</Link>
+                        {
+                            role === 'owner' &&
+                            <div>
+                                <span><hr/></span>
+                                <Link to={`${register.id}/edit`}>Bearbeiten</Link>
+                            </div>
+                        }
+
                     </Card>
 
                     <Card block className="border-top-primary">
@@ -57,15 +63,15 @@ class Detail extends React.Component {
                         <h4>Alle Karteikarten</h4>
                     </Col>
                 </Row>
-                <CardDeck>
+                <Row>
                     <BlankCard registerId={register.id}/>
                     {
                         cardIds &&
                         cardIds.map((cardId) =>
-                            <PreviewCard cardId={cardId}/>
+                            <PreviewCard cardId={cardId} key={cardId}/>
                         )
                     }
-                </CardDeck>
+                </Row>
             </div>
         );
     }
@@ -73,15 +79,17 @@ class Detail extends React.Component {
 
 Detail.propTypes = {};
 
-const makeMapStateToProps = () => {
+const makeMapStateToProps = (state, props) => {
+    const registerId = props.match.params.registerId;
     const getCardIdsByRegister = makeGetCardIdsByRegister();
     const getTagsByRegisterByKeyword = makeGetTagsByRegister();
+    const getRoleByRegister = makeGetRoleByRegister();
     const mapStateToProps = (state, props) => {
-        const registerId = props.match.params.registerId;
         return {
             register: state.entities.registers.byId[registerId] || {},
-            cardIds: getCardIdsByRegister(state, props),
-            tags: getTagsByRegisterByKeyword(state, props)
+            cardIds: getCardIdsByRegister(state, props) || [],
+            tags: getTagsByRegisterByKeyword(state, props) || [],
+            role: getRoleByRegister(state, props) || ''
         }
     };
     return mapStateToProps

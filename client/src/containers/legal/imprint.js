@@ -17,7 +17,7 @@ const Imprint = () => {
                         <br />
                         Telefon: +49 211 4351 0 <br />
                         Telefax: +49 211 811 4916 <br />
-                        E-Mail: feedback@5code.de<br />
+                        E-Mail: feedback@gocard.de<br />
                         <br />
                         Die Hochschule Düsseldorf ist eine Körperschaft des Öffentlichen Rechtes. Sie wird durch
                         die Präsidentin, <br /> Prof. Dr. Brigitte Grass, gesetzlich vertreten.

@@ -1,6 +1,6 @@
 import React from "react";
 import Headline from "../shared/headline";
-import {Media,Table, Card, CardBlock, CardText, CardTitle, Col, NavLink, Row, Button} from "reactstrap";
+import {Media,Table, Card, CardBlock, CardText, CardTitle, Col, NavLink, Row} from "reactstrap";
 import "./help.css";
 
 const Help = () => {
@@ -55,7 +55,7 @@ const Help = () => {
                                 Eine Karteikarte ist ein Medium zum Lernen. Dieses Medium ist meist eine zweiseitige Karte,
                                 wobei die Vorderseite mit einem Thema bzw. einer Frage ausgestattet wird. Die Rückseite ist dann mit der richtigen Antwort versehen.
                                 Bei GoCard ist eine Karteikarte auf ähnliche Weise umgesetzt. Du erstellst eine Karteikarte und gibst dazu die entsprechenden Antworten.
-                                Dies kannst du dann beliebig wiederholen, so wie du magst. Bei uns gibt vier Kartentypen die du auswählen kannsz.
+                                Dies kannst du dann beliebig wiederholen, so wie du magst. Bei uns gibt es vier Kartentypen, die du auswählen kannst.
 
 
                                 <Table responsive className="mt-2 mb-2">
@@ -87,8 +87,8 @@ const Help = () => {
                                     </tbody>
                                 </Table>
                                 Eine Karteikarte wird für dich persönlich in drei Bewertungsstufen eingeteilt, damit du
-                                deinen Lernfortschritt im Überblick behälst. Wenn du eine Karte zweimal in Folge richtig beantwortest
-                                steigst du eine Bewertungsstufe auf. Wenn du eine Karte falsch beantwortest sinkst du eine Bewertungsstufe hinab.
+                                deinen Lernfortschritt im Überblick behältst. Wenn du eine Karte zweimal in Folge richtig beantwortest,
+                                steigst du eine Bewertungsstufe auf. Wenn du eine Karte falsch beantwortest "sinkst" du eine Bewertungsstufe hinab.
                                 <br/>
                                 <Table responsive className="mt-2 mb-3">
                                     <thead>
@@ -125,7 +125,7 @@ const Help = () => {
                                 wirst du auf eine neue Seite verwiesen.
                                 <br/>
                                 Dort kannst du zunächst die Frage der Karteikarte angeben und den Typ der Karteikarte
-                                auswählen. Anhand des Ausgewählten Typs
+                                auswählen. Anhand des ausgewählten Typs
                                 erscheint ein Formular. In diesem muss du die entsprechenden Antworten angeben und du kannst einer Karteikarte beliebig viele Tags geben.
                                 Bei dem Single und Multiple Choice Formular kannst du neue Antwortmöglichkeit hinzufügen, indem du den Button "Antwortmöglichkeiten hinzufügen" betätigst.
                                 Bei den Fragetypen Selbstkontrolle und Texteingabe gibt es für die Antwort ein Textfeld.
@@ -213,7 +213,7 @@ const Help = () => {
                                     </tr>
                                     </tbody>
                                 </Table>
-                                Die Standard Rolle eines neuen Mitglieds ist Abonnent.
+                                Die "Standard" Rolle eines neuen Mitglieds ist Abonnent.
                             </CardText>
 
                             <span><hr/></span>
@@ -310,25 +310,24 @@ const Help = () => {
                                     <tr>
                                         <td>Normalmodus</td>
                                         <td>in diesem Modus werden alle ausgewählten Karten durchlaufen und du
-                                            bekommst dirket angezeigt ob die Antwort Richtig oder Falsch ist</td>
+                                            bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist.</td>
                                     </tr>
                                     <tr>
                                         <td>Powermodus</td>
                                         <td>in diesem Modus werden speziell die Karten gelernt die mit "kann ich
-                                            nicht" bewertet sind und du bekommst dirket angezeigt ob die Antwort Richtig
-                                            oder
-                                            Falsch ist</td>
+                                            nicht" bewertet sind und du bekommst direkt angezeigt, ob die Antwort "Richtig"
+                                            oder "Falsch" ist.</td>
                                     </tr>
                                     <tr>
                                         <td>Klausurmodus</td>
                                         <td>in diesem Modus werden alle ausgewählten Karten gelernt du bekommst
-                                            nur
-                                            am Ende gesagt welche Antwort Richtig oder Falsch war
+                                            nur am Ende gesagt welche Antwort "Richtig" oder "Falsch" war.
                                         </td>
                                     </tr>
                                     </tbody>
                                 </Table>
-                                Nach jedem Lerndurchlauf gibt es eine Feedback Anzeige.
+                                Nach jedem Lerndurchlauf gibt es eine Feedbackanzeige. Dort kann du alle Details wie zum Beispiel deine
+                                gegebenen Antworten und deine neue und alte Statistik sehen.
                             </CardText>
 
                             <span><hr/></span>
@@ -364,7 +363,7 @@ const Help = () => {
                             <CardText className="px-2 text-justify">
                                 Beim Account wird zwischen zwei Optionen entschieden. Zum einen gibt es den GoCard-Account.
                                 Jeder kann sich einen solchen Account erstellen indem er seine E-Mail und
-                                ein Password angibt. Der andere Account ist ein spezieller Account für die Studenten der
+                                ein Passwort angibt. Der andere Account ist ein spezieller Account für die Studenten der
                                 Hochschule Düsseldorf. Die Studenten der Hochschule Düsseldorf können sich über
                                 Shibboleth
                                 mit
@@ -382,7 +381,7 @@ const Help = () => {
                                 Beim ersten Login muss ein Anzeigename festgelegt werden. Dieser Name ist öffentlich
                                 sichtbar. Über diesen Anzeigenamen haben andere Nutzer die Möglichkeit, dich zu Registern
                                 einzuladen.
-                                Dein Anzeigename ist nicht einzigartig, auch andere Benutzer können den selben Anzeigenamen haben. Also teilst du am besten
+                                Dein Anzeigename ist nicht einzigartig, auch andere Benutzer können denselben Anzeigenamen besitzen. Also teilst du am besten
                                 den Leuten, die dich zu einem Register einladen wollen, deine E-Mail
                                 Adresse
                                 mit.
@@ -395,8 +394,7 @@ const Help = () => {
                             <CardText className="px-2 text-justify">
                                 Beim ersten Login muss sowohl die EULA dieser Seite bestätigt werden, als
                                 auch ein Anzeigename festgelegt werden. Bitte lesen sie sich die EULA vor dem
-                                bestätigen
-                                durch. Falls sie die EULA ablehnen können sie diese Seite nicht nutzen. Erst mit der
+                                Bestätigen durch. Falls sie die EULA ablehnen können sie diese Seite nicht nutzen. Erst mit der
                                 Bestätigung der EULA wird ihr Account endgültig freigegeben.
                             </CardText>
 

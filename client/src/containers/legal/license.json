@@ -1,0 +1,26 @@
+[
+  {
+    "name": "test react",
+    "webpage": "google.com",
+    "license": {
+      "name": "MIT",
+      "content": "Lorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long text",
+      "url": "http://opensourcelicense.org/MIT"
+    },
+    "authors": [
+      "John Doe <jd@gmail.com>"
+    ]
+  },
+  {
+    "name": "test react-dom",
+    "webpage": "google.com",
+    "license": {
+      "name": "MIT",
+      "content": "Lorem Ipsum... very long text Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very lo Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very lo Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very long textLorem Ipsum... very lo",
+      "url": "http://opensourcelicense.org/MIT"
+    },
+    "authors": [
+      "John Doe <jd@gmail.com>"
+    ]
+  }
+]

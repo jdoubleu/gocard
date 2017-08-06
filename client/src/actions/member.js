@@ -1,10 +1,25 @@
-import {findMembersByRegister as apiFindMembersByRegister,
-updateMembersOfRegister as apiUpdateMembersByRegister,
-addMemberToRegister as apiAddMemberToRegister,
-updateMemberByRegister as apiUpdateMemberByRegister,
-deleteMemberOfRegister as apiDeleteMemberOfRegister,
-findMemberByRegisterAndUser as apiFindMemberByRegisterAndUser,
-getMembersByUser as apiGetMembersByUser} from "../lib/ApiClient";
+import {
+    addMembersToRegister as apiAddMembersToRegister,
+    addMemberToRegister as apiAddMemberToRegister,
+    deleteMemberOfRegister as apiDeleteMemberOfRegister,
+    findMemberByRegisterAndUser as apiFindMemberByRegisterAndUser,
+    findMembersByRegister as apiFindMembersByRegister,
+    getMembersByUser as apiGetMembersByUser,
+    updateMemberByRegister as apiUpdateMemberByRegister,
+    updateMembersOfRegister as apiUpdateMembersByRegister
+} from "../lib/ApiClient";
+
+export const LOAD_MEMBER_REQUEST = 'LOAD_MEMBER_REQUEST';
+export const LOAD_MEMBER_SUCCESS = 'LOAD_MEMBER_SUCCESS';
+export const LOAD_MEMBER_FAILURE = 'LOAD_MEMBER_FAILURE';
+
+export function loadMemberByRegister(registerId, user) {
+    return {
+        types: [LOAD_MEMBER_REQUEST, LOAD_MEMBER_SUCCESS, LOAD_MEMBER_FAILURE],
+        callAPI: () => apiFindMemberByRegisterAndUser({registerId, user}),
+        payload: {registerId}
+    }
+}
 
 export const LOAD_MEMBERS_REQUEST = 'LOAD_MEMBERS_REQUEST';
 export const LOAD_MEMBERS_SUCCESS = 'LOAD_MEMBERS_SUCCESS';
@@ -18,15 +33,14 @@ export function loadMembersByRegister(registerId) {
     }
 }
 
-export const UPDATE_MEMBERS_REQUEST = 'UPDATE_MEMBERS_REQUEST';
-export const UPDATE_MEMBERS_SUCCESS = 'UPDATE_MEMBERS_SUCCESS';
-export const UPDATE_MEMBERS_FAILURE = 'UPDATE_MEMBERS_FAILURE';
+export const LOAD_MEMBERSHIPS_REQUEST = 'LOAD_MEMBERSHIPS_REQUEST';
+export const LOAD_MEMBERSHIPS_SUCCESS = 'LOAD_MEMBERSHIPS_SUCCESS';
+export const LOAD_MEMBERSHIPS_FAILURE = 'LOAD_MEMBERSHIPS_FAILURE';
 
-export function updateMembersByRegister(registerId, members) {
+export function loadMembershipsByUser(userId) {
     return {
-        types: [UPDATE_MEMBERS_REQUEST, UPDATE_MEMBERS_SUCCESS, UPDATE_MEMBERS_FAILURE],
-        callAPI: () => apiUpdateMembersByRegister({registerId, members}),
-        payload: {registerId}
+        types: [LOAD_MEMBERS_REQUEST, LOAD_MEMBERS_SUCCESS, LOAD_MEMBERS_FAILURE],
+        callAPI: () => apiGetMembersByUser({userId}),
     }
 }
 
@@ -38,6 +52,19 @@ export function addMemberToRegister(registerId, member) {
     return {
         types: [ADD_MEMBER_REQUEST, ADD_MEMBER_SUCCESS, ADD_MEMBER_FAILURE],
         callAPI: () => apiAddMemberToRegister({registerId, member}),
+        payload: {registerId}
+    }
+}
+
+
+export const ADD_MEMBERS_REQUEST = 'ADD_MEMBERS_REQUEST';
+export const ADD_MEMBERS_SUCCESS = 'ADD_MEMBERS_SUCCESS';
+export const ADD_MEMBERS_FAILURE = 'ADD_MEMBERS_FAILURE';
+
+export function addMembersToRegister(registerId, members) {
+    return {
+        types: [ADD_MEMBERS_REQUEST, ADD_MEMBERS_SUCCESS, ADD_MEMBERS_FAILURE],
+        callAPI: () => apiAddMembersToRegister({registerId, member: members}),
         payload: {registerId}
     }
 }
@@ -54,6 +81,18 @@ export function updateMemberByRegister(registerId, member) {
     }
 }
 
+export const UPDATE_MEMBERS_REQUEST = 'UPDATE_MEMBERS_REQUEST';
+export const UPDATE_MEMBERS_SUCCESS = 'UPDATE_MEMBERS_SUCCESS';
+export const UPDATE_MEMBERS_FAILURE = 'UPDATE_MEMBERS_FAILURE';
+
+export function updateMembersByRegister(registerId, members) {
+    return {
+        types: [UPDATE_MEMBERS_REQUEST, UPDATE_MEMBERS_SUCCESS, UPDATE_MEMBERS_FAILURE],
+        callAPI: () => apiUpdateMembersByRegister({registerId, members}),
+        payload: {registerId}
+    }
+}
+
 export const DELETE_MEMBER_REQUEST = 'DELETE_MEMBER_REQUEST';
 export const DELETE_MEMBER_SUCCESS = 'DELETE_MEMBER_SUCCESS';
 export const DELETE_MEMBER_FAILURE = 'DELETE_MEMBER_FAILURE';
@@ -66,26 +105,11 @@ export function deleteMemberByRegister(registerId, memberId) {
     }
 }
 
-export const LOAD_MEMBER_REQUEST = 'LOAD_MEMBER_REQUEST';
-export const LOAD_MEMBER_SUCCESS = 'LOAD_MEMBER_SUCCESS';
-export const LOAD_MEMBER_FAILURE = 'LOAD_MEMBER_FAILURE';
+export const CLEAR_MEMBERS = 'CLEAR_MEMBERS';
 
-export function loadMemberByRegister(registerId, user) {
+export function clearMembers(memberIds) {
     return {
-        types: [LOAD_MEMBER_REQUEST, LOAD_MEMBER_SUCCESS, LOAD_MEMBER_FAILURE],
-        callAPI: () => apiFindMemberByRegisterAndUser({registerId, user}),
-        payload: {registerId}
-    }
-}
-
-export const LOAD_MEMBERSHIPS_REQUEST = 'LOAD_MEMBERSHIPS_REQUEST';
-export const LOAD_MEMBERSHIPS_SUCCESS = 'LOAD_MEMBERSHIPS_SUCCESS';
-export const LOAD_MEMBERSHIPS_FAILURE = 'LOAD_MEMBERSHIPS_FAILURE';
-
-export function loadMembersByUser(userId) {
-    return {
-        types: [LOAD_MEMBERSHIPS_REQUEST, LOAD_MEMBERSHIPS_SUCCESS, LOAD_MEMBERSHIPS_FAILURE],
-        callAPI: () => apiGetMembersByUser({userId}),
-        payload: {userId}
+        type: CLEAR_MEMBERS,
+        ids: memberIds
     }
 }

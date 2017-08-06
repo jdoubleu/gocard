@@ -1,5 +1,5 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
+import {Field, FieldArray, reduxForm} from "redux-form";
 import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
 import InputMembers from "./fields/inputMembers";
@@ -40,20 +40,20 @@ const RegisterForm = props => {
                 label="Beschreibung"
             />
 
-            <Field
+            <FieldArray
                 name="members"
                 component={InputMembers}
                 label="Mitglieder"
             />
 
             <Row>
-                <Col className="pr-1">
+                <Col>
+                    <Link className="btn btn-outline-secondary btn-block" to={cancelRoute}>{cancelLabel}</Link>
+                </Col>
+                <Col>
                     <Button outline block color="primary" type="submit" disabled={submitting}>
                         {submitLabel}
                     </Button>
-                </Col>
-                <Col className="pl-1">
-                    <Link className="btn btn-outline-primary btn-block" to={cancelRoute}>{cancelLabel}</Link>
                 </Col>
             </Row>
         </Form>

@@ -1,8 +1,7 @@
 import React from "react";
-import {Card, Col} from "reactstrap";
-import Headline from "../../components/shared/headline";
+import {Card, Col, Row} from "reactstrap";
+import Headline from "../shared/headline";
 import CardForm from "../forms/Card";
-import _ from "lodash";
 import {addCard} from "../../actions/card";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -12,22 +11,29 @@ import {push} from "react-router-redux";
 const New = ({match, userId}) => {
 
     const handleSubmit = (values, dispatch) => {
-        const body = {..._.omit(values, ['content_choice', 'content_text']), content: values.content, author: userId, crdate: moment().format(),tags: values.tags};
-        console.log("body", body);
-        return dispatch(addCard(match.params.registerId, body)).then(success =>
-            dispatch(push(`/register/${match.params.registerId}`)));
+        return dispatch(addCard(match.params.registerId, {
+            ...values,
+            author: userId,
+            crdate: moment().format()
+        }))
+            .then(
+                success =>
+                    dispatch(push(`/register/${match.params.registerId}`))
+            );
     };
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
-            <Headline title="Neue Karteikarte">
-                Hier kannst du eine neue Karteikarte für Dein Register erstellen.
-            </Headline>
+        <Row>
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Headline title="Neue Karteikarte">
+                    Hier kannst du eine neue Karteikarte für Dein Register erstellen.
+                </Headline>
 
-            <Card block>
-                <CardForm onSubmit={handleSubmit} submitLabel="Erstellen"/>
-            </Card>
-        </Col>
+                <Card block>
+                    <CardForm onSubmit={handleSubmit} submitLabel="Erstellen" cancelRoute="/" cancelLabel="Abbrechen"/>
+                </Card>
+            </Col>
+        </Row>
     )
 };
 

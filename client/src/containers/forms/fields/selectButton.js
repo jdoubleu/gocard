@@ -9,7 +9,7 @@ const selectButton = ({input, options, label, disableLabel, toolTip, type, meta:
                 {label}
             </Label>
         }
-        <ButtonGroup className="form-control border-0 p-0">
+        <ButtonGroup className="form-control border-0 p-0 d-flex flex-wrap">
             {
                 options.map((option) =>
                     <Button outline color={input.value === option.value ? 'primary' : 'secondary'} key={option.value}

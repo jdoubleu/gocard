@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
-import Logo from "../../components/shared/logo";
+import Logo from "../shared/logo";
 import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
 import {SubmissionError} from "redux-form";
@@ -27,7 +27,8 @@ const Login = () => {
     return (
         <Row>
             <Col sm={12} lg={{size: 10, offset: 1}} className="pb-2">
-                <h1 className="display-4">Willkommen bei <Logo/></h1>
+                <h1 className="display-4 hidden-xs-down">Willkommen bei <Logo/></h1>
+                <h1 className="hidden-sm-up">Willkommen bei <Logo/></h1>
                 <p className="lead">
                     Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen.
                     Du kannst deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
