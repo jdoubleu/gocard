@@ -10,6 +10,8 @@ const getUsers = (state) => state.entities.users.byId;
 const getSelectedTags = (state, props) => state.ui.learnSettings.byId[getRegisterId(state, props)].tags;
 const getAnsweredCardsIds = (state) => state.ui.learning.allIds || [];
 const getAnsweredCards = (state) => state.ui.learning.byId || {};
+const getLastCard = (state) => state.ui.learning.misc.lastCard || {};
+const getAllScores = (state) => state.entities.score.byId || {};
 
 export const makeGetCardsByRegister = (state, props) => {
     return createSelector(
@@ -137,6 +139,57 @@ export const makeGetCardsForResults = () => {
             } else {
                 return null;
             }
+        }
+    );
+};
+
+
+
+export const makeGetScoreByUser = () => {
+    return createSelector(
+      [getAllScores, getUserId],
+        (scores, user) => {
+          let scoresByUser = _.filter(scores, function(s) { return s.user === user});
+          if(scoresByUser.length > 0){
+              console.log("Score by User", scoresByUser);
+              return scoresByUser;
+          }else{
+              return null;
+          }
+        }
+    );
+};
+
+export const makeGetScoreForCurrentCard = () => {
+    return createSelector(
+        [makeGetScoreByUser(), getLastCard],
+        (scores, card) => {
+            let scoresForCurrentCard = _.filter(scores, function(s) {return s.card === card.id});
+            if(scoresForCurrentCard.length >0) {
+                console.log("Score for CurrentCard", scoresForCurrentCard);
+                return scoresForCurrentCard;
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
+export const makeGetLastScoreForCurrentCard = () => {
+    return createSelector(
+        [makeGetScoreForCurrentCard(), getLastCard],
+        (scores, card) => {
+
+            /*
+            let min = 0;
+            let score = _.forEach(scores, function(s) {
+                min = s.date -date;
+                if(min)
+            });
+            */
+            let score = _.minBy(scores, 'date');
+            console.log("scoresmin", score);
+            return score;
         }
     );
 };

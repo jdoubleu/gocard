@@ -82,4 +82,13 @@ export function resetResults() {
     };
 }
 
+export const SET_LAST_CARD = 'SET_LAST_CARD';
+
+export function setLastCard(currentCard) {
+    return {
+        type: SET_LAST_CARD,
+        payload: currentCard
+    };
+}
+
 

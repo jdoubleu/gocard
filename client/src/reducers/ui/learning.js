@@ -4,7 +4,8 @@ import {
     ADD_LEARN_MODE,
     SET_LAST_RESULT,
     SET_SHOW_RESULT,
-    SET_SELECTED_SETTINGS, ADD_CARD_RESULT, SET_LAST_CORRECT, INIT_CARD_RESULT
+    SET_SELECTED_SETTINGS, ADD_CARD_RESULT, SET_LAST_CORRECT, INIT_CARD_RESULT,
+    SET_LAST_CARD
 } from "../../actions/ui";
 import _ from "lodash";
 
@@ -49,6 +50,12 @@ function resetShowResult(state, action) {
     };
 }
 
+function setLastCard(state, action) {
+    return _.assign({}, state, {
+        lastCard: action.payload
+    });
+}
+
 function misc(state = {}, action) {
     switch (action.type) {
         case ADD_CURRENT_CARD:
@@ -63,6 +70,8 @@ function misc(state = {}, action) {
             return setLastCorrect(state, action);
         case INIT_CARD_RESULT:
             return resetShowResult(state, action);
+        case SET_LAST_CARD:
+            return setLastCard(state, action);
         default:
             return state;
     }

@@ -8,21 +8,52 @@ import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
 import SelfValidateCardForm from "../forms/SelfValidateLearn";
 import TextInputCardForm from "../forms/TextInputLearn";
 import {
-    makeGetCardsByRegister, makeGetCardsForResults, makeGetNextCard,
-    makeGetNextCardForPowerMode
+    makeGetCardsByRegister, makeGetCardsForResults, makeGetLastScoreForCurrentCard, makeGetNextCard,
+    makeGetNextCardForPowerMode, makeGetScoreByCurrentCard
 } from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
-import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
+import {addResult, setLastCorrect, setLastResult, setShowResult, setLastCard} from "../../actions/ui";
+import {addScore} from "../../actions/score";
 import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
+import moment from "moment";
 
-const LearnMode = ({mode,register, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards}) => {
+const LearnMode = ({userId, mode,register, currentCard, valuesSingle, showResult, lastResult , handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, setLastCard, scoreCurrentCard, createScoreForCard}) => {
 
-    const CalcCardStatistic = (correct) =>{
+    const calcCardStatistic = () =>{
+
+        setLastCard(currentCard);
         //Load stats for current card
         //Calculate new Stats
         //return new stats object
+        let scoreStep = 0;
+        if(lastCorrect == true) {
+            scoreStep = 1;
+        } else if(lastCorrect == false && lastCorrect == null) {
+            scoreStep = -1;
+        }
+        if(scoreCurrentCard === null){
+
+            let body = {
+                user: userId,
+                card: currentCard.id,
+                value: scoreStep,
+                date: moment().format()
+            };
+            createScoreForCard(currentCard.id, body);
+        }else {
+            scoreStep += _.parseInt(scoreCurrentCard.value);
+
+            let body = {
+                user: userId,
+                card: currentCard.id,
+                value: scoreStep,
+                date: moment().format()
+            };
+            createScoreForCard(currentCard.id, body);
+        }
+
     };
 
     const handleSubmitSingleChoice = (values, dispatch) => {
@@ -35,6 +66,7 @@ const LearnMode = ({mode,register, currentCard, valuesSingle, showResult, lastRe
             if(mode !== "TEST_MODE") {
                 dispatch(setShowResult(true));
             }else {
+                calcCardStatistic();
                 dispatch(addResult(currentCard.id, _.parseInt(valuesSingle.userAnswer), res));
             }
         }
@@ -50,12 +82,14 @@ const LearnMode = ({mode,register, currentCard, valuesSingle, showResult, lastRe
             if(mode !== "TEST_MODE") {
                 dispatch(setShowResult(true));
             }else {
+                calcCardStatistic();
                 dispatch(addResult(currentCard.id, valuesMultiple.userAnswer.answer, res));
             }
         }
     };
     const handleSubmitSelfValidate = (values, dispatch) => {
         let res = valuesSelfValidate.correct === "true";
+        calcCardStatistic();
         dispatch(addResult(currentCard.id, res, res));
         valuesSelfValidate.correct = undefined;
     };
@@ -68,6 +102,7 @@ const LearnMode = ({mode,register, currentCard, valuesSingle, showResult, lastRe
         if(mode !== "TEST_MODE") {
             dispatch(setShowResult(true));
         }else {
+            calcCardStatistic();
             dispatch(addResult(currentCard.id, lastAnswer, res));
         }
     };
@@ -92,7 +127,7 @@ const LearnMode = ({mode,register, currentCard, valuesSingle, showResult, lastRe
                     {
                         currentCard && mode !== "TEST_MODE" && showResult === true &&
                         <FeedbackCard card={currentCard} userAnswer={lastResult}
-                                      handleClick={() => handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}/>
+                                      handleClick={() => {calcCardStatistic(); handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}}/>
                     }
                     {
                         currentCard && currentCard.type === "single-choice" && showResult === false &&
@@ -135,6 +170,7 @@ const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
     const getNextPowerModeCard = makeGetNextCardForPowerMode();
+    const getScoreCurrentCard = makeGetLastScoreForCurrentCard();
 
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
@@ -148,9 +184,10 @@ const makeMapStateToProps = () => {
             valuesSelfValidate: getFormValues('selfValidateLearn')(state),
             valuesTextInput: getFormValues('textInputLearn')(state),
             showResult: state.ui.learning.misc.showResult || false,
-            lastResult: state.ui.learning.misc.lastResult || -1,
-            userId: state.auth.userId,
-            lastCorrect: state.ui.learning.misc.lastCorrect || -1,
+            lastResult: state.ui.learning.misc.lastResult || -99,
+            lastCorrect: state.ui.learning.misc.lastCorrect || -99,
+            scoreCurrentCard: getScoreCurrentCard(state, props) || null,
+            userId: state.auth.userId
         }
     };
     return mapStateToProps
@@ -161,6 +198,12 @@ function mapDispatchToProps(dispatch) {
         handleFeedbackClick: (cardId, answer, correct) => {
             dispatch(setShowResult(false));
             dispatch(addResult(cardId, answer, correct));
+        },
+        setLastCard: (currentCard) => {
+            dispatch(setLastCard(currentCard));
+        },
+        createScoreForCard: (currentCardId, body) => {
+          dispatch(addScore(currentCardId, body));
         }
     })
 }

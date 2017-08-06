@@ -4,7 +4,9 @@ import {
     updateCard as apiUpdateCard,
     updateCards as apiUpdateCards,
     getCard as apiGetCard,
-    addCard as apiAddCard
+    addCard as apiAddCard,
+    createCardStatistic as apiCreateCardStatistic,
+    getCardStatisticByRegisterAndUser as apiGetCardStatisticByRegisterAndUser
 } from "../lib/ApiClient";
 import _ from "lodash";
 
@@ -75,6 +77,11 @@ export function addCard(registerId, body) {
         callAPI: () => apiAddCard({body:_.assign(body, {register: registerId})})
     }
 }
+
+
+
+
+
 
 
 

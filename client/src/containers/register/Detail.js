@@ -13,6 +13,7 @@ import {loadRegister} from "../../actions/register";
 import {makeGetCardIdsByRegister, makeGetTagsByRegister} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
+import {loadAllScores} from "../../actions/score";
 
 
 class Detail extends React.Component {
@@ -21,6 +22,13 @@ class Detail extends React.Component {
         dispatch(loadRegister(match.params.registerId));
         dispatch(loadCards(match.params.registerId));
         //Load stats for all Cards for logged in User for current register
+
+    }
+
+    componentDidMount() {
+        const {dispatch, match} = this.props;
+        console.log("UserId", this.props.userId);
+        //dispatch(loadAllScores(match.params.registerId, this.props.userId));
     }
 
     render() {
@@ -91,7 +99,9 @@ const makeMapStateToProps = () => {
             register: state.entities.registers.byId[registerId] || {},
             cardIds: getCardIdsByRegister(state, props),
             tags: getTagsByRegister(state, props),
-            settings: state.ui.learnSettings.byId[registerId] || {}
+            settings: state.ui.learnSettings.byId[registerId] || {},
+            userId: state.auth.userId
+
         }
     };
     return mapStateToProps
