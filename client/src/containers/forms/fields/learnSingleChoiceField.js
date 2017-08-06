@@ -1,5 +1,5 @@
 import React from "react";
-import {FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
+import {FormFeedback, FormGroup, Input, UncontrolledTooltip} from "reactstrap";
 
 const learnSingleChoiceField = ({input, content, label, disableLabel, toolTip, type, meta: {touched, error}}) => (
     <FormGroup color={touched && error && 'danger'} tag="fieldset">

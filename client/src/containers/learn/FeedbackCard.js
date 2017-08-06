@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, CardText, CardTitle, Col, Card, CardHeader, CardBlock} from "reactstrap";
-import Headline from "../shared/headline";
+import {Button, CardText, CardTitle} from "reactstrap";
+
 import PropTypes from "prop-types";
 import _ from "lodash";
 

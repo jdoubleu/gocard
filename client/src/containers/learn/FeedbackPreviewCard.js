@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, CardText, CardTitle, Col} from "reactstrap";
+import {CardText, CardTitle, Col} from "reactstrap";
 import PropTypes from "prop-types";
 import _ from "lodash";
 

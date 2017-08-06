@@ -10,11 +10,11 @@ import TextInputCardForm from "../forms/TextInputLearn";
 import {
     makeGetCardIdsByTags,
     makeGetCardsByRegister, makeGetLastScoreForCurrentCard, makeGetNextCard,
-    makeGetNextCardForPowerMode, makeGetSizeOfResults,
+    makeGetSizeOfResults,
 } from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
-import {addResult, setLastCorrect, setLastResult, setShowResult, setLastCard} from "../../actions/ui";
+import {addResult, setLastCorrect, setLastResult, setShowResult} from "../../actions/ui";
 import {addScore} from "../../actions/score";
 import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";

@@ -5,8 +5,6 @@ import {
     updateCards as apiUpdateCards,
     getCard as apiGetCard,
     addCard as apiAddCard,
-    createCardStatistic as apiCreateCardStatistic,
-    getCardStatisticByRegisterAndUser as apiGetCardStatisticByRegisterAndUser
 } from "../lib/ApiClient";
 import _ from "lodash";
 

@@ -1,8 +1,8 @@
 import React from "react";
-import {Field, formValueSelector, reduxForm} from "redux-form";
-import {Alert, Button, Form, CardTitle, CardText} from "reactstrap";
+import {Field, reduxForm} from "redux-form";
+import {Alert, Button, Form, CardTitle} from "reactstrap";
 import LearnTextInputField from "./fields/learnTextInputField";
-import {connect} from "react-redux";
+
 
 
 const validate = values => {

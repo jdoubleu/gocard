@@ -1,7 +1,6 @@
 import {combineReducers} from "redux";
 import {
     ADD_CURRENT_CARD,
-    ADD_LEARN_MODE,
     SET_LAST_RESULT,
     SET_SHOW_RESULT,
     SET_SELECTED_SETTINGS, ADD_CARD_RESULT, SET_LAST_CORRECT, INIT_CARD_RESULT,

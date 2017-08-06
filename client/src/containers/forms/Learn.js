@@ -3,7 +3,6 @@ import {Alert, Button, Form} from "reactstrap";
 import SelectTag from "./fields/selectTag";
 import SelectButton from "./fields/selectButton";
 import {Field, reduxForm} from "redux-form";
-import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
@@ -16,7 +15,7 @@ const validate = values => {
 };
 
 const Learn = props => {
-    const {error, handleSubmit, registerId, disabled, tags} = props;
+    const {error, handleSubmit, disabled, tags} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
