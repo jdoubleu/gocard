@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, CardText, CardTitle, Col} from "reactstrap";
+import {Button, CardText, CardTitle, Col, Card, CardHeader, CardBlock} from "reactstrap";
 import Headline from "../shared/headline";
 import PropTypes from "prop-types";
 import _ from "lodash";
@@ -7,19 +7,22 @@ import _ from "lodash";
 const FeedbackCard = ({card, userAnswer, handleClick}) => {
 
     return (
-        <Col sm="12" md={{size: 8, offset: 2}}>
-            <Headline>
+        <div>
+            <CardTitle className="text-center">
                 Feedback
-            </Headline>
+            </CardTitle>
+            <h4 className="text-muted">Frage</h4>
             <CardTitle>
                 {card.question}
             </CardTitle>
+            <h4 className="text-muted">Antworten</h4>
             <CardText>
                 {
                     card.type === "single-choice" &&
                     card.content.options.map((option, index) => {
                             if (_.parseInt(userAnswer) === card.content.correct) {
                                 if (userAnswer === index) {
+                                    option = option + " ◀ Deine Antwort";
                                     return (
                                         <div className="text-success">
                                             {option}
@@ -35,12 +38,14 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
 
                             } else {
                                 if (_.parseInt(userAnswer) === index) {
+                                    option = option + " ◀ Deine Antwort";
                                     return (
                                         <div className="text-danger">
                                             {option}
                                         </div>
                                     );
                                 } else if (card.content.correct === index) {
+                                    option = option + " ◀ Richtige Antwort";
                                     return (
                                         <div className="text-success">
                                             {option}
@@ -61,7 +66,7 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                     card.type === "multiple-choice" &&
                     card.content.options.map((option, index) => {
                         if ((_.includes(userAnswer, index))) {
-                            option = option + " ◀";
+                            option = option + " ◀ Deine Antwort";
                         }
                         if (_.includes(card.content.corrects, index)) {
                             return (
@@ -115,7 +120,7 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                     Nächste karte
                 </Button>
             </CardText>
-        </Col>
+        </div>
     );
 
 };
