@@ -24,7 +24,7 @@ const MultipleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handl
                 </Alert>
             }
             <CardTitle className="text-center">
-                Karteikarte Mutiple-Choice
+                Mutiple-Choice
             </CardTitle>
 
             <h4 className="text-muted">Frage</h4>

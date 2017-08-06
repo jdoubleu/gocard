@@ -24,7 +24,7 @@ const SelfValidateLearn = ({error, submitting, card, handleSubmit, mode, handleS
             }
 
             <CardTitle className="text-center">
-                Karteikarte Selbstkontrolle
+                Selbstkontrolle
             </CardTitle>
             <h4 className="text-muted">Frage</h4>
             <CardTitle>

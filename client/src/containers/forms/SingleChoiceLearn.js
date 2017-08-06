@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, CardText, CardTitle, Form, Col} from "reactstrap";
+import {Alert, Button, CardText, CardTitle, Form} from "reactstrap";
 import LearnSingleChoiceField from "./fields/learnSingleChoiceField";
 
 
@@ -25,7 +25,7 @@ const SingleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handleS
             }
 
                 <CardTitle className="text-center">
-                    Karteikarte Single-Choice
+                    Single-Choice
                 </CardTitle>
 
                 <h4 className="text-muted">Frage</h4>
