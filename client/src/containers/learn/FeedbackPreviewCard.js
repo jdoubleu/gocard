@@ -1,33 +1,135 @@
 import React from "react";
+import {Button, Card, CardText, CardTitle, Col} from "reactstrap";
+import Headline from "../../components/shared/headline";
 import PropTypes from "prop-types";
-import {Button, Card, CardTitle, Col, CardText} from "reactstrap";
-import {connect} from "react-redux";
-import {loadCard} from "../../actions/card";
+import _ from "lodash";
 
+const FeedbackCard = ({card, userAnswer}) => {
 
-const FeedbackPreviewCard = ({cardId, card, result}) => {
-    console.log("card", card);
-    console.log("result", result);
     return (
-        <Col xl="4" md="6" xs="12">
-            <Card block className="mb-2">
-                <CardTitle>{card.question}</CardTitle>
-                <CardText>{card.answer}</CardText>
-                <CardText>{result.answer}</CardText>
-            </Card>
+        <Col sm="12" md={{size: 8, offset: 2}}>
+            <CardTitle>
+                {card.question}
+            </CardTitle>
+            <CardText>
+                {
+                    card.type === "single-choice" &&
+                    card.content.options.map((option, index) => {
+                            if (_.parseInt(userAnswer) === card.content.correct) {
+                                if (userAnswer === index) {
+                                    return (
+                                        <div className="text-success">
+                                            {option}
+                                        </div>
+                                    );
+                                } else {
+                                    return (
+                                        <div>
+                                            {option}
+                                        </div>
+                                    );
+                                }
+
+                            } else {
+                                if (_.parseInt(userAnswer) === index) {
+                                    return (
+                                        <div className="text-danger">
+                                            {option}
+                                        </div>
+                                    );
+                                } else if (card.content.correct === index) {
+                                    return (
+                                        <div className="text-success">
+                                            {option}
+                                        </div>
+                                    );
+                                } else {
+                                    return (
+                                        <div>
+                                            {option}
+                                        </div>
+                                    );
+                                }
+                            }
+                        }
+                    )
+                }
+                {
+                    card.type === "multiple-choice" &&
+                    card.content.options.map((option, index) => {
+                        if ((_.includes(userAnswer, index))) {
+                            option = option + " ◀";
+                        }
+                        if (_.includes(card.content.corrects, index)) {
+                            return (
+                                <div className="text-success">
+                                    {option}
+                                </div>
+                            );
+                        } else if ((_.includes(userAnswer, index) && !_.includes(card.content.corrects, index))
+                            || (_.includes(card.content.corrects, index) && !_.includes(userAnswer, index))) {
+                            return (
+                                <div className="text-danger">
+                                    {option}
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div>
+                                    {option}
+                                </div>
+                            );
+                        }
+                    })
+                }
+                {
+                    card.type === "self-validate" && userAnswer === true &&
+                    <div className="text-success">
+                        Richtig
+                    </div>
+                }
+                {
+                    card.type === "self-validate" && userAnswer === false &&
+                    <div className="text-danger">
+                        Falsch
+                    </div>
+                }
+                {
+                    card.type === 'text-input' &&
+                    (card.content.answer === _.trim(userAnswer)) &&
+                    <div>
+                        <div>
+                            Korrekte Antwort: {card.content.answer}
+                        </div>
+                        <div className="text-success">
+                            Deine Antwort: {userAnswer}
+                        </div>
+                    </div>
+
+                }
+                {
+                    card.type === 'text-input' &&
+                    (card.content.answer !== _.trim(userAnswer)) &&
+                    <div>
+                        <div>
+                            Korrekte Antwort: {card.content.answer}
+                        </div>
+                        <div className="text-danger">
+                            Deine Antwort: {userAnswer}
+                        </div>
+                    </div>
+
+                }
+            </CardText>
         </Col>
     );
+
 };
 
-const mapStateToProps = (state, ownProps) => (
-    {
-        card: state.entities.cards.byId[ownProps.cardId] || {},
-        result: state.ui.learning.byId[ownProps.cardId] || {}
-    }
-);
+FeedbackCard.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    user: PropTypes.object
+};
 
-const mapDispatchToProps = (dispatch, props) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FeedbackPreviewCard);
+export default (FeedbackCard);

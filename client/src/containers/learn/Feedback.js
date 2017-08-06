@@ -3,7 +3,7 @@ import {Card, Col, CardGroup, CardTitle, CardText, Row, CardDeck, Button} from "
 import {connect} from "react-redux";
 import _ from "lodash";
 import StatisticBar from "../../components/shared/statistics/statisticBar";
-import FeedbackCard from "./FeedbackCard";
+import FeedbackCard from "./FeedbackPreviewCard";
 import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
@@ -41,7 +41,6 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
 
     const calcCards = () => {
         if(valuesFeedback=== undefined || valuesFeedback.cards === "ALL_CARDS") {
-            console.log("allCards", resultCards);
             return resultCards;
         } else if(valuesFeedback.cards === "CORRECT_CARDS") {
             return correctCards;
@@ -49,6 +48,18 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
             return wrongCards;
         } else if(valuesFeedback.cards === "SKIPPED_CARDS") {
             return skippedCards;
+        }
+    };
+
+    const calcCardCount = () => {
+        if(valuesFeedback=== undefined || valuesFeedback.cards === "ALL_CARDS") {
+            return resultCards.length;
+        } else if(valuesFeedback.cards === "CORRECT_CARDS") {
+            return correctCards.length;
+        } else if(valuesFeedback.cards === "WRONG_CARDS") {
+            return wrongCards.length;
+        } else if(valuesFeedback.cards === "SKIPPED_CARDS") {
+            return _.isEmpty(skippedCards)? 0 : skippedCards.length;
         }
     };
 
@@ -92,7 +103,7 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
                         <Field
                             name="cards"
                             component={SelectButton}
-                            label="Karten"
+                            label={`${calcCardCount()} von ${resultCards.length} Karten`}
                             toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
                             options={[
                                 {
