@@ -19,44 +19,40 @@ import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
 import moment from "moment";
 
-const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, setLastCard, scoreCurrentCard, createScoreForCard}) => {
+const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, setCard, scoreCurrentCard, createScoreForCard}) => {
 
     const calcCardStatistic = () => {
-
-        setLastCard(currentCard);
-        //Load stats for current card
-        //Calculate new Stats
-        //return new stats object
         let scoreStep = 0;
-
-        if (lastCorrect == true) {
+        if (lastCorrect === true) {
             scoreStep = 1;
-        } else if (lastCorrect == false && lastCorrect == null) {
+        } else if (lastCorrect === false || lastCorrect === null) {
             scoreStep = -1;
         }
         if (scoreCurrentCard === null) {
-
+            if(scoreStep === -1){
+                scoreStep = 0;
+            }
             let body = {
                 user: userId,
                 card: currentCard.id,
                 value: scoreStep,
                 date: moment().format(),
             };
-            console.log(body);
             createScoreForCard(currentCard.id, body);
         } else {
             let score = _.parseInt(scoreCurrentCard.value);
             score += scoreStep;
+            if(score < 0){
+                score = 0;
+            }
             let body = {
                 user: userId,
                 card: currentCard.id,
                 value: score,
                 date: moment().format(),
             };
-            console.log(body);
             createScoreForCard(currentCard.id, body);
         }
-
     };
 
     const handleSubmitSingleChoice = (values, dispatch) => {
@@ -175,7 +171,6 @@ LearnMode.propTypes = {
 const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
-    const getNextPowerModeCard = makeGetNextCardForPowerMode();
     const getScoreCurrentCard = makeGetLastScoreForCurrentCard();
 
     const mapStateToProps = (state, props) => {
@@ -183,15 +178,15 @@ const makeMapStateToProps = () => {
         return {
             register: state.entities.registers.byId[registerId] || {},
             cards: getCardsByRegister(state, props) || [],
-            currentCard: state.ui.learning.misc.mode === "POWER_MODE" ? getNextPowerModeCard(state, props) : getNextCard(state, props),
+            currentCard: getNextCard(state, props),
             mode: state.ui.learning.misc.mode || "NORMAL_MODE",
             valuesSingle: getFormValues('singleChoiceLearn')(state),
             valuesMultiple: getFormValues('multipleChoiceLearn')(state),
             valuesSelfValidate: getFormValues('selfValidateLearn')(state),
             valuesTextInput: getFormValues('textInputLearn')(state),
             showResult: state.ui.learning.misc.showResult || false,
-            lastResult: state.ui.learning.misc.lastResult || -99,
-            lastCorrect: state.ui.learning.misc.lastCorrect || -99,
+            lastResult: state.ui.learning.misc.lastResult,
+            lastCorrect: state.ui.learning.misc.lastCorrect,
             scoreCurrentCard: getScoreCurrentCard(state, props) || null,
             userId: state.auth.userId
         }
@@ -204,9 +199,6 @@ function mapDispatchToProps(dispatch) {
         handleFeedbackClick: (cardId, answer, correct) => {
             dispatch(setShowResult(false));
             dispatch(addResult(cardId, answer, correct));
-        },
-        setLastCard: (currentCard) => {
-            dispatch(setLastCard(currentCard));
         },
         createScoreForCard: (currentCardId, body) => {
             dispatch(addScore(currentCardId, body));
