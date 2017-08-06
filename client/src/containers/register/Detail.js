@@ -10,7 +10,7 @@ import MemberBar from "./member/Bar";
 import Progress from "./statistic/Progress";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister, makeGetTagsByRegister} from "../../selectors";
+import {makeGetCardIdsByRegister, makeGetTagsByRegister, makeGetRoleByRegister} from "../../selectors";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -20,7 +20,7 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {register, cardIds, tags} = this.props;
+        const {register, cardIds, tags, role} = this.props;
         return (
             <div>
                 <Headline title={register.title}/>
@@ -31,8 +31,14 @@ class Detail extends React.Component {
                         <CardText>
                             {register.description}
                         </CardText>
-                        <span><hr/></span>
-                        <Link to={`${register.id}/edit`}>Bearbeiten</Link>
+                        {
+                            role === 'owner' &&
+                            <div>
+                                <span><hr/></span>
+                                <Link to={`${register.id}/edit`}>Bearbeiten</Link>
+                            </div>
+                        }
+
                     </Card>
 
                     <Card block className="border-top-primary">
@@ -75,13 +81,15 @@ Detail.propTypes = {};
 
 const makeMapStateToProps = (state, props) => {
     const registerId = props.match.params.registerId;
-    const getCardIdsByRegister = makeGetCardIdsByRegister(registerId);
+    const getCardIdsByRegister = makeGetCardIdsByRegister();
     const getTagsByRegisterByKeyword = makeGetTagsByRegister();
+    const getRoleByRegister = makeGetRoleByRegister();
     const mapStateToProps = (state, props) => {
         return {
             register: state.entities.registers.byId[registerId] || {},
             cardIds: getCardIdsByRegister(state, props) || [],
-            tags: getTagsByRegisterByKeyword(state, props) || []
+            tags: getTagsByRegisterByKeyword(state, props) || [],
+            role: getRoleByRegister(state, props) || ''
         }
     };
     return mapStateToProps

@@ -47,6 +47,15 @@ export const makeGetRegisterIds = () => {
     );
 };
 
+export const makeGetRoleByRegister = () => {
+    return createSelector(
+        [getUserId, getMembers, getRegisterId],
+        (userId, members, registerId) => {
+            return _.map(_.filter(members, {'user': userId, 'register': registerId}), 'role')[0];
+        }
+    );
+};
+
 export const makeGetTagsByRegister = () => {
     return createSelector(
         [makeGetCardsByRegister()],
