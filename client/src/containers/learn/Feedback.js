@@ -55,9 +55,9 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
         if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
             return resultCards.length;
         } else if (valuesFeedback.cards === "CORRECT_CARDS") {
-            return correctCards.length;
+            return _.isEmpty(correctCards.length) ? 0 : correctCards.length;
         } else if (valuesFeedback.cards === "WRONG_CARDS") {
-            return wrongCards.length;
+            return _.isEmpty(wrongCards.length) ? 0 : wrongCards.length;
         } else if (valuesFeedback.cards === "SKIPPED_CARDS") {
             return _.isEmpty(skippedCards) ? 0 : skippedCards.length;
         }
@@ -79,9 +79,7 @@ const Feedback = ({register, tags, mode, cardIds, cards, results, resultCards, v
                         }
                         {
                             tags.length === 0 &&
-                            <span>
-                                    Es wurde mit allen Karten gelernt.
-                                </span>
+                            <span>Es wurde mit allen Karten gelernt.</span>
                         }
                     </CardText>
                 </Card>

@@ -19,7 +19,7 @@ import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
 import moment from "moment";
 
-const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, setCard, scoreCurrentCard, createScoreForCard}) => {
+const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, scoreCurrentCard, createScoreForCard, handleSkip}) => {
 
     const calcCardStatistic = () => {
         let scoreStep = 0;
@@ -122,34 +122,30 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 Hier kannst du Lernen
             </Headline>
             {currentCard !== null &&
-            <Card block>
-                {
-                    currentCard && mode !== "TEST_MODE" && showResult === true &&
-                    <FeedbackCard card={currentCard} userAnswer={lastResult}
-                                  handleClick={() => {
-                                      calcCardStatistic();
-                                      handleFeedbackClick(currentCard.id, lastResult, lastCorrect)
-                                  }}/>
-                }
-                {
-                    currentCard && currentCard.type === "single-choice" && showResult === false &&
-                    <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard}/>
-                }
-                {
-                    currentCard && currentCard.type === "multiple-choice" && showResult === false &&
-                    <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard}/>
-                }
-                {
-                    currentCard && currentCard.type === 'self-validate' && showResult === false &&
-                    <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard}/>
-                }
-                {
-                    currentCard && currentCard.type === 'text-input' && showResult === false &&
-                    <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard}/>
-                }
+                <Card block>
+                    {
+                        currentCard && mode !== "TEST_MODE" && showResult === true &&
+                        <FeedbackCard card={currentCard} userAnswer={lastResult}
+                                      handleClick={() => {calcCardStatistic(); handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}}/>
+                    }
+                    {
+                        currentCard && currentCard.type === "single-choice" && showResult === false &&
+                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode} handleSkip={handleSkip}/>
+                    }
+                    {
+                        currentCard && currentCard.type === "multiple-choice" && showResult === false &&
+                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode} handleSkip={handleSkip}/>
+                    }
+                    {
+                        currentCard && currentCard.type === 'self-validate' && showResult === false &&
+                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode} handleSkip={handleSkip}/>
+                    }
+                    {
+                        currentCard && currentCard.type === 'text-input' && showResult === false &&
+                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode} handleSkip={handleSkip}/>
+                    }
+                </Card>
 
-
-            </Card>
             }
             {
                 currentCard === null &&
@@ -202,6 +198,11 @@ function mapDispatchToProps(dispatch) {
         },
         createScoreForCard: (currentCardId, body) => {
             dispatch(addScore(currentCardId, body));
+        },
+        handleSkip: () => {
+            dispatch(setLastCorrect(null));
+            dispatch(setLastResult(null));
+            dispatch(setShowResult(true));
         }
     })
 }
