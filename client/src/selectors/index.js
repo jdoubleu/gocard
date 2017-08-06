@@ -255,3 +255,16 @@ export const makeGetSkippedCardsForResults = () => {
         }
     );
 };
+
+export const makeGetSizeOfResults = () => {
+    return createSelector(
+        [getAnsweredCards, getAnsweredCardsIds, getMode],
+        (cards, answeredIds, mode) => {
+            if(mode !== 'POWER_MODE'){
+                return answeredIds.length;
+            } else {
+                return _.size(_.filter(cards, ['correct', true]));
+            }
+        }
+    );
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col} from "reactstrap";
+import {Card, Col, Progress} from "reactstrap";
 import Headline from "../shared/headline";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -8,8 +8,9 @@ import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
 import SelfValidateCardForm from "../forms/SelfValidateLearn";
 import TextInputCardForm from "../forms/TextInputLearn";
 import {
+    makeGetCardIdsByTags,
     makeGetCardsByRegister, makeGetLastScoreForCurrentCard, makeGetNextCard,
-    makeGetNextCardForPowerMode,
+    makeGetNextCardForPowerMode, makeGetSizeOfResults,
 } from "../../selectors/index";
 import {getFormValues} from "redux-form";
 import _ from "lodash";
@@ -19,7 +20,7 @@ import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
 import moment from "moment";
 
-const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, scoreCurrentCard, createScoreForCard, handleSkip}) => {
+const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, scoreCurrentCard, createScoreForCard, handleSkip, countAnswers, countCards}) => {
 
     const calcCardStatistic = () => {
         let scoreStep = 0;
@@ -121,6 +122,8 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
             <Headline title={matchTitle()}>
                 Hier kannst du Lernen
             </Headline>
+            <div className="text-center">Fortschritt {(countAnswers/countCards)*100}%</div>
+            <Progress value={(countAnswers/countCards)*100} className="mb-1"/>
             {currentCard !== null &&
                 <Card block>
                     {
@@ -168,6 +171,8 @@ const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
     const getScoreCurrentCard = makeGetLastScoreForCurrentCard();
+    const getCardIdsByTags = makeGetCardIdsByTags();
+    const getSizeOfResults = makeGetSizeOfResults();
 
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
@@ -184,7 +189,9 @@ const makeMapStateToProps = () => {
             lastResult: state.ui.learning.misc.lastResult,
             lastCorrect: state.ui.learning.misc.lastCorrect,
             scoreCurrentCard: getScoreCurrentCard(state, props) || null,
-            userId: state.auth.userId
+            userId: state.auth.userId,
+            countAnswers: getSizeOfResults(state, props),
+            countCards: getCardIdsByTags(state, props).length,
         }
     };
     return mapStateToProps
