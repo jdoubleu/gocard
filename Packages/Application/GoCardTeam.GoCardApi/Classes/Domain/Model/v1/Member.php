@@ -134,4 +134,12 @@ class Member implements \JsonSerializable
             'role' => $this->getRole()
         ];
     }
+
+    /**
+     * @return string
+     */
+    function __toString()
+    {
+        return (string) $this->uid;
+    }
 }
