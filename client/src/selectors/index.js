@@ -82,10 +82,12 @@ export const makeGetCardsByTags = () => {
     return createSelector(
         [makeGetCardsByRegister(), getSelectedTags],
         (cards, selectedTags) => {
-            if(selectedTags === undefined || selectedTags.length === 0) {
+            if (selectedTags === undefined || selectedTags.length === 0) {
                 return cards;
             } else {
-                return _.filter(cards, function(c) { return _.intersectionWith(c.tags, selectedTags).length > 0});
+                return _.filter(cards, function (c) {
+                    return _.intersectionWith(c.tags, selectedTags).length > 0
+                });
             }
         }
     );
@@ -104,8 +106,10 @@ export const makeGetNextCard = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds],
         (cards, answeredIds) => {
-            let unAnsweredCards = _.filter(cards, function(c) { return !_.includes(answeredIds, c.id)});
-            if(unAnsweredCards.length > 0) {
+            let unAnsweredCards = _.filter(cards, function (c) {
+                return !_.includes(answeredIds, c.id)
+            });
+            if (unAnsweredCards.length > 0) {
                 return unAnsweredCards[0];
             } else {
                 return null;
@@ -118,9 +122,11 @@ export const makeGetNextCardForPowerMode = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
         (cards, answeredIds, answeredCards) => {
-            let unAnsweredCards = _.filter(cards, function(c) { return (!_.includes(answeredIds, c.id)
-                ||(_.includes(answeredIds, c.id)&&answeredCards[c.id].correct !== true))});
-            if(unAnsweredCards.length > 0) {
+            let unAnsweredCards = _.filter(cards, function (c) {
+                return (!_.includes(answeredIds, c.id)
+                || (_.includes(answeredIds, c.id) && answeredCards[c.id].correct !== true))
+            });
+            if (unAnsweredCards.length > 0) {
                 return unAnsweredCards[0];
             } else {
                 return null;
@@ -133,8 +139,10 @@ export const makeGetCardsForResults = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds],
         (cards, answeredIds) => {
-            let Cards = _.filter(cards, function(c) { return _.includes(answeredIds, c.id)});
-            if(Cards.length > 0) {
+            let Cards = _.filter(cards, function (c) {
+                return _.includes(answeredIds, c.id)
+            });
+            if (Cards.length > 0) {
                 return Cards;
             } else {
                 return null;
@@ -144,28 +152,49 @@ export const makeGetCardsForResults = () => {
 };
 
 
-
 export const makeGetScoreByUser = () => {
     return createSelector(
-      [getAllScores, getUserId],
+        [getAllScores, getUserId],
         (scores, user) => {
-          let scoresByUser = _.filter(scores, function(s) { return s.user === user});
-          if(scoresByUser.length > 0){
-              console.log("Score by User", scoresByUser);
-              return scoresByUser;
-          }else{
-              return null;
-          }
+            let scoresByUser = _.filter(scores, function (s) {
+                return s.user === user
+            });
+            if (scoresByUser.length > 0) {
+                console.log("Score by User", scoresByUser);
+                return scoresByUser;
+            } else {
+                return null;
+            }
         }
     );
 };
+
+export const makeGetCorrectCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let Cards = _.filter(cards, function (c) {
+                return (_.includes(answeredIds, c.id) && answeredCards[c.id].correct === true)
+            });
+            if (Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
+
+        }
+    );
+};
+
 
 export const makeGetScoreForCurrentCard = () => {
     return createSelector(
         [makeGetScoreByUser(), getLastCard],
         (scores, card) => {
-            let scoresForCurrentCard = _.filter(scores, function(s) {return s.card === card.id});
-            if(scoresForCurrentCard.length >0) {
+            let scoresForCurrentCard = _.filter(scores, function (s) {
+                return s.card === card.id
+            });
+            if (scoresForCurrentCard.length > 0) {
                 console.log("Score for CurrentCard", scoresForCurrentCard);
                 return scoresForCurrentCard;
             } else {
@@ -175,21 +204,46 @@ export const makeGetScoreForCurrentCard = () => {
     );
 };
 
+export const makeGetWrongCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let Cards = _.filter(cards, function (c) {
+                return (_.includes(answeredIds, c.id) && answeredCards[c.id].correct === false)
+            });
+            if (Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
+        }
+    );
+};
+
+
 export const makeGetLastScoreForCurrentCard = () => {
     return createSelector(
         [makeGetScoreForCurrentCard(), getLastCard],
         (scores, card) => {
-
-            /*
-            let min = 0;
-            let score = _.forEach(scores, function(s) {
-                min = s.date -date;
-                if(min)
-            });
-            */
             let score = _.minBy(scores, 'date');
             console.log("scoresmin", score);
             return score;
+        }
+    );
+};
+
+export const makeGetSkippedCardsForResults = () => {
+    return createSelector(
+        [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
+        (cards, answeredIds, answeredCards) => {
+            let Cards = _.filter(cards, function (c) {
+                return (_.includes(answeredIds, c.id) && answeredCards[c.id].correct === null)
+            });
+            if (Cards.length > 0) {
+                return Cards;
+            } else {
+                return null;
+            }
         }
     );
 };
