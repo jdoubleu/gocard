@@ -20,9 +20,13 @@ const New = ({userId}) => {
         })).then(
             success => {
                 if (!_.isEmpty(values.members)) {
-                    dispatch(addMembersToRegister(success.response.id, values.members));
+                    dispatch(addMembersToRegister(success.response.id, values.members)).then(
+                        success =>
+                            dispatch(push('/'))
+                    );
+                } else {
+                    dispatch(push('/'))
                 }
-                dispatch(push('/'))
             }
         )
     };

@@ -30,9 +30,9 @@ Preview.propTypes = {
     registerId: PropTypes.number.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state, props) {
     return {
-        register: state.entities.registers.byId[ownProps.registerId] || {},
+        register: state.entities.registers.byId[props.registerId] || {},
     }
 }
 

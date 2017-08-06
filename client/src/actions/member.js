@@ -4,6 +4,7 @@ import {
     deleteMemberOfRegister as apiDeleteMemberOfRegister,
     findMemberByRegisterAndUser as apiFindMemberByRegisterAndUser,
     findMembersByRegister as apiFindMembersByRegister,
+    getMembersByUser as apiGetMembersByUser,
     updateMemberByRegister as apiUpdateMemberByRegister,
     updateMembersOfRegister as apiUpdateMembersByRegister
 } from "../lib/ApiClient";
@@ -32,6 +33,17 @@ export function loadMembersByRegister(registerId) {
     }
 }
 
+export const LOAD_MEMBERSHIPS_REQUEST = 'LOAD_MEMBERSHIPS_REQUEST';
+export const LOAD_MEMBERSHIPS_SUCCESS = 'LOAD_MEMBERSHIPS_SUCCESS';
+export const LOAD_MEMBERSHIPS_FAILURE = 'LOAD_MEMBERSHIPS_FAILURE';
+
+export function loadMembershipsByUser(userId) {
+    return {
+        types: [LOAD_MEMBERS_REQUEST, LOAD_MEMBERS_SUCCESS, LOAD_MEMBERS_FAILURE],
+        callAPI: () => apiGetMembersByUser({userId}),
+    }
+}
+
 export const ADD_MEMBER_REQUEST = 'ADD_MEMBER_REQUEST';
 export const ADD_MEMBER_SUCCESS = 'ADD_MEMBER_SUCCESS';
 export const ADD_MEMBER_FAILURE = 'ADD_MEMBER_FAILURE';
@@ -52,7 +64,7 @@ export const ADD_MEMBERS_FAILURE = 'ADD_MEMBERS_FAILURE';
 export function addMembersToRegister(registerId, members) {
     return {
         types: [ADD_MEMBERS_REQUEST, ADD_MEMBERS_SUCCESS, ADD_MEMBERS_FAILURE],
-        callAPI: () => apiAddMembersToRegister({registerId, members}),
+        callAPI: () => apiAddMembersToRegister({registerId, member: members}),
         payload: {registerId}
     }
 }
@@ -90,5 +102,14 @@ export function deleteMemberByRegister(registerId, memberId) {
         types: [DELETE_MEMBER_REQUEST, DELETE_MEMBER_SUCCESS, DELETE_MEMBER_FAILURE],
         callAPI: () => apiDeleteMemberOfRegister({registerId, memberId}),
         payload: {registerId}
+    }
+}
+
+export const CLEAR_MEMBERS = 'CLEAR_MEMBERS';
+
+export function clearMembers(memberIds) {
+    return {
+        type: CLEAR_MEMBERS,
+        ids: memberIds
     }
 }

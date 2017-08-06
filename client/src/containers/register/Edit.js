@@ -8,6 +8,8 @@ import {push} from "react-router-redux";
 import RegisterForm from "../forms/Register";
 import DeleteRegisterForm from "../forms/DeleteRegister";
 import {makeGetRegisterById} from "../../selectors";
+import {clearMembers} from "../../actions/member";
+import _ from "lodash";
 
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
@@ -18,6 +20,7 @@ const Edit = ({register}) => {
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
+        dispatch(clearMembers( _.map(register.members, 'id')));
         return dispatch(deleteRegister(register.id)).then(
             response =>
                 dispatch(push('/'))

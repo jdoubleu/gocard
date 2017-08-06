@@ -95,7 +95,7 @@ class InputMembers extends React.Component {
                     {
                         !this.state.keyword &&
                         fields.map((user, index) =>
-                            <ListGroupItem className="p-1 px-3 justify-content-between" key={user.user}>
+                            <ListGroupItem className="p-1 px-3 justify-content-between" key={`added-${user.user}`}>
                                 <div className="col-auto">
                                     <Icon>{this.getUserByIndex(index).displayName}</Icon>
                                 </div>
@@ -123,7 +123,7 @@ class InputMembers extends React.Component {
                         this.state.keyword &&
                         !this.state.loading &&
                         this.filterExistingMembers().map((user, index) =>
-                            <ListGroupItem className="p-1 px-3 justify-content-between" key={user.id}>
+                            <ListGroupItem className="p-1 px-3 justify-content-between" key={`found-${user.id}`}>
                                 <div className="col-auto">
                                     <Icon>{user.displayName}</Icon>
                                 </div>

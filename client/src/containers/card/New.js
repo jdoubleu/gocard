@@ -2,7 +2,6 @@ import React from "react";
 import {Card, Col, Row} from "reactstrap";
 import Headline from "../../components/shared/headline";
 import CardForm from "../forms/Card";
-import _ from "lodash";
 import {addCard} from "../../actions/card";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
