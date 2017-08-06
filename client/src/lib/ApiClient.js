@@ -248,7 +248,7 @@ const Models = {
         'id': 'number',
         'user': 'number',
         'register': 'number',
-        'role': 'array',
+        'role': [ /* "owner" | "editor" | "subscriber" */ ],
     },
 
     /**
