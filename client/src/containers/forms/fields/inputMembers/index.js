@@ -60,7 +60,7 @@ class InputMembers extends React.Component {
 
     filterExistingMembers() {
         return _.filter(this.state.usersByKeyword, (a) => {
-            return _.includes(this.props.fields.getAll(), ['user', a.id]) || a.id !== this.props.userId;
+            return _.findIndex(this.props.fields.getAll(), ['user', a.id]) < 0 && a.id !== this.props.userId;
         });
     }
 
@@ -69,7 +69,7 @@ class InputMembers extends React.Component {
     }
 
     render() {
-        const {fields, label, disableLabel, toolTip, meta: {touched, error}} = this.props;
+        const {fields, label, disableLabel, toolTip, meta: {touched, error}, userId} = this.props;
         return (
             <FormGroup color={touched && error && 'danger'}>
                 {
@@ -80,11 +80,12 @@ class InputMembers extends React.Component {
                 }
 
                 <InputGroup>
-                    <Input type="text" name="keyword" placeholder="Mitglieder suchen" value={this.state.keyword} onChange={(event) => {
-                        this.handleChange(event);
-                        this.setState({'loading': true});
-                        this.handleSearch(event.target.value)
-                    }}/>
+                    <Input type="text" name="keyword" placeholder="Mitglieder suchen" value={this.state.keyword}
+                           onChange={(event) => {
+                               this.handleChange(event);
+                               this.setState({'loading': true});
+                               this.handleSearch(event.target.value)
+                           }}/>
                     <InputGroupButton>
                         <Button outline color="secondary" onClick={() => this.setState({'keyword': ''})}>x</Button>
                     </InputGroupButton>
@@ -106,10 +107,14 @@ class InputMembers extends React.Component {
                                     name={`${user}.role`}
                                     component={roleField}
                                     label="Last Name"
+                                    disabled={userId === this.getUserByIndex(index).id}
                                 />
 
                                 <Button color="danger" outline className="col-auto"
-                                        onClick={() => fields.remove(index)}>x</Button>
+                                        disabled={userId === this.getUserByIndex(index).id}
+                                        onClick={() => fields.remove(index)}>
+                                    x
+                                </Button>
                             </ListGroupItem>
                         )
                     }
