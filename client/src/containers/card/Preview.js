@@ -18,7 +18,7 @@ class Preview extends React.Component {
                     <h5>{card.question}</h5>
                     <CardText>
                         {
-                            card.tags.map((tag) =>
+                            (card.tags || []).map((tag) =>
                                 <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>
                                     {tag}
                                 </span>

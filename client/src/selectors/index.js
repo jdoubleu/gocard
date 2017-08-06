@@ -65,7 +65,7 @@ export const makeGetTagsByRegister = () => {
     return createSelector(
         [makeGetCardsByRegister()],
         (cards) => {
-            return _.uniq(_.flatMap(cards, 'tags'));
+            return _.uniq(_.flatMap(cards, 'tags')) || [];
         }
     );
 };

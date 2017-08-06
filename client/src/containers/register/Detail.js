@@ -88,12 +88,12 @@ class Detail extends React.Component {
 
 Detail.propTypes = {};
 
-const makeMapStateToProps = (state, props) => {
-    const registerId = props.match.params.registerId;
+const makeMapStateToProps = () => {
     const getCardIdsByRegister = makeGetCardIdsByRegister();
     const getTagsByRegister = makeGetTagsByRegister();
     const getRoleByRegister = makeGetRoleByRegister();
     return (state, props) => {
+        const registerId = props.match.params.registerId;
         return {
             register: state.entities.registers.byId[registerId] || {},
             tags: getTagsByRegister(state, props) || [],
