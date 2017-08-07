@@ -755,7 +755,7 @@ export function updateMemberSetOfRegister(parameters) {
  *
  * @param {object} parameters - method options and parameters
  * @param {integer} parameters.registerId - ID of the register
- * @param {} parameters.member - Member to be added
+ * @param {} parameters.members - Members to be added
  */
 export function addMembersToRegister(parameters) {
     if (parameters === undefined) {
@@ -780,12 +780,12 @@ export function addMembersToRegister(parameters) {
         return deferred.promise;
     }
 
-    if (parameters['member'] !== undefined) {
-        body = parameters['member'];
+    if (parameters['members'] !== undefined) {
+        body = parameters['members'];
     }
 
-    if (parameters['member'] === undefined) {
-        deferred.reject(new Error('Missing required  parameter: member'));
+    if (parameters['members'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: members'));
         return deferred.promise;
     }
 

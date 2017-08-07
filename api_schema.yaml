@@ -420,9 +420,9 @@ paths:
           type: integer
           format: int64
           required: true
-        - name: member
+        - name: members
           in: body
-          description: Member to be added
+          description: Members to be added
           schema:
             type: array
             items:
