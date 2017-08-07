@@ -108,28 +108,11 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
         }
     };
 
-    const matchTitle = () => {
-        if (mode === "NORMAL_MODE") {
-            return "Normaler Modus";
-        } else if (mode === "POWER_MODE") {
-            return "Power Modus";
-        } else if ("TEST_MODE") {
-            return "Klausur Modus";
-        }
-    };
-
     return (
         <Col>
-            <Headline title={matchTitle()}>
-                {
-                    currentCard != null &&
-                    <p>Hier kannst du Lernen</p>
-                }
-                {
-                    currentCard === null &&
-                    <p>Hier bekommst du ein gesamt Feedback</p>
-                }
-
+            <Headline
+                title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
+                {currentCard ? 'Hier kannst du Lernen' : 'Hier bekommst du ein gesamt Feedback'}
             </Headline>
             <div className="text-center">Fortschritt {((countAnswers + showResult) / countCards) * 100}%</div>
             <Col sm="12" md={{size: 8, offset: 2}}>
@@ -139,7 +122,9 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                     {
                         currentCard && mode !== "TEST_MODE" && showResult === true &&
                         <FeedbackCard card={currentCard} userAnswer={lastResult}
-                                      handleClick={() => {handleFeedbackClick(currentCard.id, lastResult, lastCorrect)}}/>
+                                      handleClick={() => {
+                                          handleFeedbackClick(currentCard.id, lastResult, lastCorrect)
+                                      }}/>
                     }
                     {
                         currentCard && currentCard.type === "single-choice" && showResult === false &&
@@ -176,13 +161,6 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
 
 };
 
-LearnMode.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired,
-    user: PropTypes.object
-};
-
-
 const makeMapStateToProps = () => {
     const getCardsByRegister = makeGetCardsByRegister();
     const getNextCard = makeGetNextCard();
@@ -213,21 +191,19 @@ const makeMapStateToProps = () => {
     return mapStateToProps
 };
 
-function mapDispatchToProps(dispatch) {
-    return ({
-        handleFeedbackClick: (cardId, answer, correct) => {
-            dispatch(setShowResult(false));
-            dispatch(addResult(cardId, answer, correct));
-        },
-        createScoreForCard: (currentCardId, body) => {
-            dispatch(addScore(currentCardId, body));
-        },
-        handleSkip: () => {
-            dispatch(setLastCorrect(null));
-            dispatch(setLastResult(null));
-            dispatch(setShowResult(true));
-        }
-    })
-}
+const mapDispatchToProps = dispatch => ({
+    handleFeedbackClick: (cardId, answer, correct) => {
+        dispatch(setShowResult(false));
+        dispatch(addResult(cardId, answer, correct));
+    },
+    createScoreForCard: (currentCardId, body) => {
+        dispatch(addScore(currentCardId, body));
+    },
+    handleSkip: () => {
+        dispatch(setLastCorrect(null));
+        dispatch(setLastResult(null));
+        dispatch(setShowResult(true));
+    }
+});
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(LearnMode);

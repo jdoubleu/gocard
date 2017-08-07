@@ -54,24 +54,27 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     <CardTitle className="text-muted">Name des Registers</CardTitle>
                     <CardTitle>{register.title}</CardTitle>
                     <CardTitle className="text-muted">Verwendeten Tags</CardTitle>
-                    <CardText>
-                        {
-                            tags.map((tag) => {
-                                    return (
-                                        <div className="btn btn-outline-primary p-1 ml-1">{tag}</div>
-                                    )
-                                }
-                            )
-                        }
-                        {
-                            tags.length === 0 &&
-                            <span>Es wurde mit allen Karten gelernt.</span>
-                        }
-                        <hr/>
-                        <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum
-                            Register</Link>
-                    </CardText>
+                    <div>
+                    {
+                        tags.map((tag) => {
+                                return (
+                                    <span className="btn btn-outline-primary p-1 ml-1" key={tag}>{tag}</span>
+                                )
+                            }
+                        )
+                    }
+                    </div>
+                    {
+                        tags.length === 0 &&
+                        <div>Es wurde mit allen Karten gelernt.</div>
+                    }
+                    <hr/>
+                    <div>
+                    <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum
+                        Register</Link>
+                    </div>
                 </Card>
+
                 <Card block>
                     <CardTitle>Statistik</CardTitle>
                     <CardText>
@@ -79,6 +82,7 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                                      bad={(valuesArray.bad || []).length || 0}/>
                     </CardText>
                 </Card>
+
             </CardGroup>
 
             <Row>
@@ -147,7 +151,7 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     resultCards &&
                     _.values(calcCards()).map((card) =>
                         <FeedbackCard card={card} userAnswer={results[card.id].answer}
-                                      value={(lastScores[card.id] || {}).value}/>
+                                      value={(lastScores[card.id] || {}).value} key={card.id}/>
                     )
                 }
             </Row>
@@ -178,11 +182,7 @@ const makeMapStateToProps = () => {
     };
 };
 
-function mapDispatchToProps(dispatch) {
-
-}
-
-export default connect(makeMapStateToProps, mapDispatchToProps)(reduxForm({
+export default connect(makeMapStateToProps)(reduxForm({
     form: 'feedback',
     validate
 })(Feedback));
