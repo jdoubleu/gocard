@@ -14,10 +14,12 @@ const routes = {
     'Datenschutzerklärung': /^\/legal\/privacy-policy/,
     'Impressum': /^\/legal\/imprint/,
     'Lizenz': /^\/legal\/license/,
-    'Neues Register': /^\/register\/new$/,
     'Register': /^\/register\/[^/]+?$/,
-    'Bearbeiten': /^\/register\/[^/]+?\/edit$/,
+    'Neues Register': /^\/register\/new$/,
     'Neue Karteikarte': /\/register\/\S+\/card\/new/,
+    'Register Bearbeiten': /^\/register\/[^/]+?\/edit$/,
+    'Karteikarte': /\/register\/\S+\/card\/[^/]+?$/,
+    'Karteikarte Bearbeiten': /\/register\/\S+\/card\/\S+\/edit$/,
 };
 
 const findRouteName = url => {

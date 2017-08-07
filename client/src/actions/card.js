@@ -62,6 +62,7 @@ export function deleteCard(cardId) {
     return {
         types: [DELETE_CARD_REQUEST, DELETE_CARD_SUCCESS, DELETE_CARD_FAILURE],
         callAPI: () => apiDeleteCard({cardId}),
+        payload: {cardId}
     }
 }
 

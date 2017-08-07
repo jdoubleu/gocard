@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, CardText, Col} from "reactstrap";
+import {Card, CardText, Col} from "reactstrap";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
+import {Link} from "react-router-dom";
 
 class Preview extends React.Component {
 
@@ -25,7 +26,8 @@ class Preview extends React.Component {
                             )
                         }
                     </CardText>
-                    <Button outline color="primary">Ansehen</Button>
+                    <Link to={`/register/${card.register}/card/${card.id}`}
+                          className="btn btn-outline-primary">Ansehen</Link>
                 </Card>
             </Col>
         )

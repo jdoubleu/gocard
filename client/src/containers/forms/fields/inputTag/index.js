@@ -36,7 +36,7 @@ const inputTag = ({fields, label, disableLabel, toolTip, meta: {touched, error},
             <div>
                 {
                     fields.map((tag, index) =>
-                        <span className="btn btn-sm btn-outline-primary m-1">
+                        <span className="btn btn-sm btn-outline-primary m-1" key={`added-${tag}`}>
                             <span className="mr-1">{fields.get(index)}</span>
                             <Button color="link" className="m-0 p-0" onClick={() => fields.remove(index)}>
                                 &#10008;
@@ -61,7 +61,7 @@ const inputTag = ({fields, label, disableLabel, toolTip, meta: {touched, error},
             <ListGroup>
                 {
                     tags.map((tag, index) =>
-                        <ListGroupItem className="p-0 pl-3 justify-content-between">
+                        <ListGroupItem className="p-0 pl-3 justify-content-between" key={`found-${tag}`}>
                             {tag}
                             <Button outline color="primary" className="m-1" onClick={() => addTag(fields, tag, dispatch)}>
                                 +
