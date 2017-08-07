@@ -35,31 +35,7 @@ const Login = () => {
                 </p>
             </Col>
 
-            <Col sm={12} lg={{size: 5, offset: 1}} className="mb-2">
-                <Card block className="h-100">
-                    <CardTitle>
-                        <span className="text-muted">Anmelden</span> HSD-Account
-                    </CardTitle>
-
-                    <div className="text-left pl-2">
-                        <CardText>
-                            Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem
-                            Hochschul-Account anzumelden.
-                        </CardText>
-
-                        <CardText>
-                            <a href="http://passport.hs-duesseldorf.de/default.aspx"> Passwort vergessen?</a>
-                        </CardText>
-                        <Button outline block color="primary">
-                            <a href="https://idp.fh-duesseldorf.de/idp/Authn/UserPassword">
-                                Anmelden mit HSD-Account
-                            </a>
-                        </Button>
-                    </div>
-                </Card>
-            </Col>
-
-            <Col sm={12} lg={{size: 5, offset: 0}} className="mb-2">
+            <Col lg={{size:10, offset:1}}>
                 <Card block className="h-100">
                     <CardTitle>
                         <span className="text-muted">Anmelden</span> GoCard-Account
