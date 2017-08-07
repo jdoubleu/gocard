@@ -142,17 +142,15 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     }
                 </Col>
             </Row>
-            <CardDeck>
+            <Row>
                 {
                     resultCards &&
                     _.values(calcCards()).map((card) =>
-                        <Card block>
-                            <FeedbackCard card={card} userAnswer={results[card.id].answer}
-                                          value={(lastScores[card.id] || {}).value}/>
-                        </Card>
+                        <FeedbackCard card={card} userAnswer={results[card.id].answer}
+                                      value={(lastScores[card.id] || {}).value}/>
                     )
                 }
-            </CardDeck>
+            </Row>
         </div>
     );
 };
