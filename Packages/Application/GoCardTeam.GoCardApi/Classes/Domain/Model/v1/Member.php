@@ -30,8 +30,8 @@ class Member implements \JsonSerializable
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(read|write|update)"})
-     * @ORM\Column(type="string", columnDefinition="SET('read', 'write', 'update')")
+     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(owner|editor|subscriber)"})
+     * @ORM\Column(type="string", columnDefinition="SET('owner', 'editor', 'subscriber')")
      * @var string
      */
     protected $role;
@@ -133,5 +133,13 @@ class Member implements \JsonSerializable
             'register' => $this->getRegister()->getUid(),
             'role' => $this->getRole()
         ];
+    }
+
+    /**
+     * @return string
+     */
+    function __toString()
+    {
+        return (string) $this->uid;
     }
 }

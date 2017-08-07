@@ -59,3 +59,4 @@ Neos:
     aop:
       globalObjects:
         userContext: GoCardTeam\GoCardApi\Context\v1\UserContext
+        memberContext: GoCardTeam\GoCardApi\Context\v1\MemberContext
