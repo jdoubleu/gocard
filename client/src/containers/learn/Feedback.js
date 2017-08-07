@@ -67,8 +67,9 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                             tags.length === 0 &&
                             <span>Es wurde mit allen Karten gelernt.</span>
                         }
-                        <hr />
-                        <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum Register</Link>
+                        <hr/>
+                        <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum
+                            Register</Link>
                     </CardText>
                 </Card>
                 <Card block>
@@ -136,8 +137,8 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                         />
                     }
                     {
-                        mode === "POWER_MODE"&&
-                            <br/>
+                        mode === "POWER_MODE" &&
+                        <br/>
                     }
                 </Col>
             </Row>
@@ -146,7 +147,8 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     resultCards &&
                     _.values(calcCards()).map((card) =>
                         <Card block>
-                            <FeedbackCard card={card} userAnswer={results[card.id].answer} value={lastScores[card.id].value}/>
+                            <FeedbackCard card={card} userAnswer={results[card.id].answer}
+                                          value={(lastScores[card.id] || {}).value}/>
                         </Card>
                     )
                 }

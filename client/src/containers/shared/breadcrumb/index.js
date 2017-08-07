@@ -20,6 +20,7 @@ const routes = {
     'Register Bearbeiten': /^\/register\/[^/]+?\/edit$/,
     'Karteikarte': /\/register\/\S+\/card\/[^/]+?$/,
     'Karteikarte Bearbeiten': /\/register\/\S+\/card\/\S+\/edit$/,
+    'Lernen': /\/register\/\S+\/learn$/,
 };
 
 const findRouteName = url => {
