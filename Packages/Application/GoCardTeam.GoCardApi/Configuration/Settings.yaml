@@ -6,6 +6,11 @@ GoCardTeam:
         # Lifetime (in seconds) of a newly generated access token
         lifetime: 3600
 
+    mail:
+      from:
+        name: 'GoCard'
+        address: ~
+
 # Framework settings and adjustments
 Neos:
   Flow:

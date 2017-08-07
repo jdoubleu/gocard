@@ -56,3 +56,10 @@ Neos:
 #     options:
 #       mboxPathAndFilename: '%FLOW_PATH_DATA%/Persistent/sent-mail'
 
+# GoCard configuration
+# GoCardTeam:
+#   GoCardApi:
+#     mail:
+#      from:
+#        name: 'GoCard'
+#        address: ~

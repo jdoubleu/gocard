@@ -34,3 +34,8 @@ GoCardTeam:
       accessToken:
         # 1 year lifetime
         lifetime: 31536000
+
+    mail:
+      from:
+        name: 'GoCard'
+        address: ~
