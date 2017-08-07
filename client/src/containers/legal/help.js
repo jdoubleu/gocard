@@ -407,25 +407,7 @@ const Help = () => {
                                 Dort kannst du
                                 Veränderungen an deinem Profil vornehmen.
                             </CardText>
-
-                            <span><hr/></span>
-
-                            <CardTitle>Accountoptionen</CardTitle>
-                            <CardText className="px-2 text-justify">
-                                Beim Account wird zwischen zwei Optionen entschieden. Zum einen gibt es den
-                                GoCard-Account.
-                                Jeder kann sich einen solchen Account erstellen indem er seine E-Mail und
-                                ein Passwort angibt. Der andere Account ist ein spezieller Account für die Studenten der
-                                Hochschule Düsseldorf. Die Studenten der Hochschule Düsseldorf können sich über
-                                Shibboleth
-                                mit
-                                deinem Hochschulaccount anmelden.
-                                <br/>
-                                Zwischen den beiden Accounts gibt es sonst keine Unterschiede. Es gibt keine Vorteile
-                                durch
-                                den Hochschulaccount.
-                            </CardText>
-
+                            
                             <span><hr/></span>
 
                             <CardTitle>Anzeigename</CardTitle>
