@@ -1,6 +1,5 @@
 import React from "react";
-import {Card, CardText, CardTitle, Col,} from "reactstrap";
-import PropTypes from "prop-types";
+import {Card, Col,} from "reactstrap";
 import _ from "lodash";
 
 const FeedbackCard = ({card, userAnswer, value}) => {

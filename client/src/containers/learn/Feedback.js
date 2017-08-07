@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardGroup, CardTitle, Col, Row} from "reactstrap";
 import {connect} from "react-redux";
 import _ from "lodash";
 import FeedbackCard from "./FeedbackPreviewCard";
@@ -7,7 +7,8 @@ import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
 import {
-    makeGetCorrectCardsForResults, makeGetLastScoresByAnsweredCardIds,
+    makeGetCorrectCardsForResults,
+    makeGetLastScoresByAnsweredCardIds,
     makeGetSkippedCardsForResults,
     makeGetValueArrayByAnsweredCardIds,
     makeGetWrongCardsForResults

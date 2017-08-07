@@ -282,7 +282,7 @@ export const makeGetLastScoresByAnsweredCardIds = () => {
                     return moment(o.date).format('X')
                 }) || null
             );
-            return _.keyBy(_.pullAll(lastScores, [null]),'card');
+            return _.keyBy(_.pullAll(lastScores, [null]), 'card');
         }
     );
 };
