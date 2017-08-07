@@ -22,6 +22,12 @@ Neos:
 #      doctrine:
 #        sqlLogger: 'Neos\Flow\Persistence\Doctrine\Logging\SqlLogger'
 
+  SwiftMailer:
+    transport:
+      type: 'Neos\SwiftMailer\Transport\MboxTransport'
+      options:
+        mboxPathAndFilename: '%FLOW_PATH_DATA%/Temporary/Development/SwiftMailer/sent-mail'
+
 GoCardTeam:
   GoCardApi:
     security:
