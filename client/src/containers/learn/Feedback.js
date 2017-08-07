@@ -13,6 +13,7 @@ import {
     makeGetWrongCardsForResults
 } from "../../selectors/index";
 import ProgressBar from "../register/statistic/ProgressBar";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
@@ -66,6 +67,8 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                             tags.length === 0 &&
                             <span>Es wurde mit allen Karten gelernt.</span>
                         }
+                        <hr />
+                        <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum Register</Link>
                     </CardText>
                 </Card>
                 <Card block>
