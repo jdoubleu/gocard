@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect'
 import _ from "lodash";
 import moment from "moment";
+import {calculateScoreType} from "../utils/index";
 
 const getRegisterId = (state, props) => props.registerId ? props.registerId : _.parseInt(props.match.params.registerId);
 
@@ -34,7 +35,7 @@ export const makeGetCardsByRegister = () => {
     )
 };
 
-export const makeGetCardIdsByRegister = (state, props) => {
+export const makeGetCardIdsByRegister = () => {
     return createSelector(
         [makeGetCardsByRegister()],
         (cards) => {
@@ -280,9 +281,9 @@ export const makeGetLastScoresByAnsweredCardIds = () => {
             let lastScores = _.map(cardIds, (cardId) =>
                 _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
                     return moment(o.date).format('X')
-                }) || null
+                }) || {value: null}
             );
-            return _.keyBy(_.pullAll(lastScores, [null]), 'card');
+            return _.keyBy(lastScores, 'card');
         }
     );
 };
@@ -294,11 +295,10 @@ export const makeGetValueArrayByAnsweredCardIds = () => {
             let lastScores = _.map(cardIds, (cardId) =>
                 _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
                     return moment(o.date).format('X')
-                }) || null
+                }) || {value: null}
             );
-            _.pullAll(lastScores, [null]);
             return _.groupBy(lastScores, (o) => {
-                return o.value < 3 ? 'bad' : o.value < 6 ? 'middle' : 'good';
+                return calculateScoreType(o);
             }) || {};
         }
     );
@@ -311,11 +311,10 @@ export const makeGetValueArrayByRegister = () => {
             let lastScores = _.map(cardIds, (cardId) =>
                 _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
                     return moment(o.date).format('X')
-                }) || null
+                }) || {value: null}
             );
-            _.pullAll(lastScores, [null]);
             return _.groupBy(lastScores, (o) => {
-                return o.value < 3 ? 'bad' : o.value < 6 ? 'middle' : 'good';
+                return calculateScoreType(o);
             }) || {};
         }
     );
