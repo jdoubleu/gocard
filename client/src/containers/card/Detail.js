@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
 import Headline from "../shared/headline";
-import {Card, Col, Row} from "reactstrap";
+import {Badge, Card, Col, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 import {makeGetRoleByRegister} from "../../selectors";
+import _ from "lodash";
 
 class Detail extends React.Component {
 
@@ -16,6 +17,17 @@ class Detail extends React.Component {
 
     render() {
         const {card, role} = this.props;
+        const mapCardType = () => {
+            if (card.type === "single-choice") {
+                return "Singlechoice"
+            } else if (card.type === "multiple-choice") {
+                return "Multiplechoice"
+            } else if (card.type === "self-validate") {
+                return "Selbstkontrolle"
+            } else if (card.type === "text-input") {
+                return "Texteingabe"
+            }
+        };
 
         return (
             <Row>
@@ -23,18 +35,82 @@ class Detail extends React.Component {
                     <Headline title={card.question}/>
 
                     <Card block>
-                        <h5>Fragetyp</h5>
-                        <p>{card.type}</p>
+                        <h4 className="text-muted">Fragetyp</h4>
+                        <p>{mapCardType()}</p>
 
-                        <h5>Frage</h5>
-                        <p> </p>
+                        <h4 className="text-muted">Frage</h4>
+                        <p>{card.question}</p>
 
-                        <h5>Tags</h5>
+                        {
+                            (card.type === "self-validate" || card.type === "text-input") &&
+                            <div>
+                                <h4 className="text-muted">Antwort</h4>
+                                <ListGroup className="mb-2">
+                                    <ListGroupItem className="justify-content-between">
+                                        {card.content.answer}<Badge pill>{'\u2714'}</Badge>
+                                    </ListGroupItem>
+                                </ListGroup>
+                            </div>
+                        }
+
+                        {
+                            (card.type === "multiple-choice") &&
+                                <div>
+                                    <h4 className="text-muted">Antworten</h4>
+                                    <ListGroup className="mb-2">
+                                    {card.content.options.map((option, index) => {
+                                        if (_.includes(card.content.corrects, index)) {
+                                            return (
+                                                <ListGroupItem className="justify-content-between">
+                                                    {index+1}. {option}
+                                                    <Badge pill>{'\u2714'}</Badge></ListGroupItem>
+                                            );
+                                        } else {
+                                            return (
+                                                <ListGroupItem>
+                                                    {index+1}. {option}
+                                                </ListGroupItem>
+                                            );
+                                        }
+                                    })}
+                                    </ListGroup>
+                                </div>
+                        }
+
+                        {
+                            (card.type === "single-choice") &&
+                            <div>
+                                <h4 className="text-muted">Antworten</h4>
+                                <ListGroup className="mb-2">
+                                {card.content.options.map((option, index) => {
+                                    if (card.content.correct === index) {
+                                        return (
+                                            <ListGroupItem className="justify-content-between">
+                                                {index+1}. {option}
+                                                <Badge pill>{'\u2714'}</Badge></ListGroupItem>
+                                        );
+                                    } else {
+                                        return (
+                                            <ListGroupItem>
+                                                {index+1}. {option}
+                                            </ListGroupItem>
+                                        );
+                                    }
+                                })}
+                                </ListGroup>
+                            </div>
+                        }
+
+                        <h4 className="text-muted">Tags</h4>
                         <p>
                             {
                                 (card.tags || []).map((tag) =>
-                                        <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>{tag}</span>
+                                    <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>{tag}</span>
                                 )
+                            }
+                            {
+                                card.tags.length === 0 &&
+                                <div>Es sind keine Tags vorhanden.</div>
                             }
                         </p>
 
