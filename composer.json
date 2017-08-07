@@ -9,7 +9,8 @@
     },
     "require": {
         "neos/flow": "~4.1.0",
-        "neos/welcome": "~4.1.0"
+        "neos/welcome": "~4.1.0",
+        "neos/swiftmailer": "^6.0"
     },
     "require-dev": {
         "neos/kickstarter": "~4.1.0",
