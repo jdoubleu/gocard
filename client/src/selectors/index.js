@@ -314,7 +314,7 @@ export const makeGetValueArrayByRegister = () => {
                 }) || {value: null}
             );
             return _.groupBy(lastScores, (o) => {
-                return calculateScoreType(o);
+                return calculateScoreType(o, 'bad', 'middle', 'good', 'unanswered');
             }) || {};
         }
     );
