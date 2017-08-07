@@ -280,12 +280,12 @@ export const makeGetValueArrayByAnsweredCardIds = () => {
             let lastScores = _.map(cardIds, (cardId) =>
                 _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
                     return moment(o.date).format('X')
-                }) || {}
+                }) || null
             );
-            _.pullAll(lastScores, [{}]);
+            _.pullAll(lastScores, [null]);
             return _.groupBy(lastScores, (o) => {
                 return o.value < 3 ? 'bad' : o.value < 6 ? 'middle' : 'good';
-            });
+            }) || {};
         }
     );
 };
@@ -299,7 +299,7 @@ export const makeGetValueArrayByRegister = () => {
                     return moment(o.date).format('X')
                 }) || null
             );
-            lastScores = _.pullAll(lastScores, [null]);
+            _.pullAll(lastScores, [null]);
             return _.groupBy(lastScores, (o) => {
                 return o.value < 3 ? 'bad' : o.value < 6 ? 'middle' : 'good';
             }) || {};
