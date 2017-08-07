@@ -7,9 +7,9 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
     return (<FormGroup color={touched && error && 'danger'}>
             {
                 !disableLabel &&
-                <h4 className="text-muted" id={`label-${input.name}`}>
+                <h6 className="text-muted" id={`label-${input.name}`}>
                     {label}
-                </h4>
+                </h6>
             }
 
             {

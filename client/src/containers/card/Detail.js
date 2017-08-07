@@ -16,7 +16,7 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {card, role} = this.props;
+        const {card, role, match} = this.props;
         const mapCardType = () => {
             if (card.type === "single-choice") {
                 return "Singlechoice"
@@ -119,6 +119,11 @@ class Detail extends React.Component {
                                 <Link to={`/register/${card.register}/card/${card.id}/edit`}>Bearbeiten</Link>
                             </p>
                         }
+                        <div>
+                            <hr/>
+                            <Link className="btn btn-outline-primary btn-block" to={`/register/${match.params.registerId}`}>Zurück zum
+                                Register</Link>
+                        </div>
                     </Card>
                 </Col>
             </Row>

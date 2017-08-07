@@ -28,7 +28,7 @@ const SingleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handleS
                 Single-Choice
             </CardTitle>
 
-            <h4 className="text-muted">Frage</h4>
+            <h6 className="text-muted">Frage</h6>
             <CardTitle>
                 {card.question}
             </CardTitle>

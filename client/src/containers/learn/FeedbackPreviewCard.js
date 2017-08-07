@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col,} from "reactstrap";
+import {Badge, Card, CardText, CardTitle, Col, ListGroup, ListGroupItem,} from "reactstrap";
 import _ from "lodash";
 
 const FeedbackCard = ({card, userAnswer, value}) => {
@@ -7,117 +7,141 @@ const FeedbackCard = ({card, userAnswer, value}) => {
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2" outline color={value < 3 ? 'danger' : value < 6 ? 'warning' : 'success'}>
                 <h6 className="text-muted">Frage</h6>
-                <p>{card.question}</p>
+                <CardTitle>
+                    {card.question}
+                </CardTitle>
+
                 <h6 className="text-muted">Antwort</h6>
-                {
-                    card.type === "single-choice" &&
-                    card.content.options.map((option, index) => {
-                            if (_.parseInt(userAnswer) === card.content.correct) {
-                                if (userAnswer === index) {
-                                    option = option + " ◀ Deine Antwort";
-                                    return (
-                                        <div className="text-success">
-                                            {option}
-                                        </div>
-                                    );
-                                } else {
-                                    return (
-                                        <div>
-                                            {option}
-                                        </div>
-                                    );
+                <CardText>
+                    <ListGroup className="mb-3">
+                        {
+                            card.type === "single-choice" &&
+                            card.content.options.map((option, index) => {
+                                    if (_.parseInt(userAnswer) === card.content.correct) {
+                                        //Answer correct
+                                        if (userAnswer === index) {
+                                            //Answer correct && index at correct answer position = green with tick
+                                            return (
+                                                <ListGroupItem color="success" className="justify-content-between">
+                                                    {index + 1}. {option}
+                                                    <Badge pill>{'\u2714'}</Badge>
+                                                </ListGroupItem>
+                                            );
+                                        } else {
+                                            //Answer correct && index at different position = green with X
+                                            return (
+                                                <ListGroupItem className="justify-content-between">
+                                                    {index + 1}. {option}
+                                                </ListGroupItem>
+                                            );
+                                        }
+
+                                    } else {
+                                        //Answer not correct
+                                        if (_.parseInt(userAnswer) === index) {
+                                            //Answer not correct && index at position of user Answer = red with X
+                                            return (
+                                                <ListGroupItem color="danger" className="justify-content-between">
+                                                    {index + 1}. {option}
+                                                </ListGroupItem>
+                                            );
+                                        } else if (card.content.correct === index) {
+                                            //Answer not correct && index at position of correct answer = red with tick
+                                            return (
+                                                <ListGroupItem className="justify-content-between">
+                                                    {index + 1}. {option}
+                                                    <Badge pill>{'\u2714'}</Badge>
+                                                </ListGroupItem>
+                                            );
+                                        } else {
+                                            //Answer not correct && index not at position of correct answer = red with X
+                                            return (
+                                                <ListGroupItem className="justify-content-between">
+                                                    {index + 1}. {option}
+                                                </ListGroupItem>
+                                            );
+                                        }
+                                    }
                                 }
-
-                            } else {
-                                if (_.parseInt(userAnswer) === index) {
-                                    option = option + " ◀ Deine Antwort";
-                                    return (
-                                        <div className="text-danger">
-                                            {option}
-                                        </div>
-                                    );
-                                } else if (card.content.correct === index) {
-                                    option = option + " ◀ Richtige Antwort";
-                                    return (
-                                        <div className="text-success">
-                                            {option}
-                                        </div>
-                                    );
+                            )
+                        }
+                        {
+                            card.type === "multiple-choice" &&
+                            card.content.options.map((option, index) => {
+                                if (_.includes(card.content.corrects, index)) {
+                                    //Index at answerCorrect
+                                    if (_.includes(userAnswer, index)) {
+                                        //Index at answerCorrect and userAnswer at index = green + tick
+                                        return (
+                                            <ListGroupItem color="success" className="justify-content-between">
+                                                {index + 1}. {option}
+                                                <Badge pill>{'\u2714'}</Badge>
+                                            </ListGroupItem>
+                                        );
+                                    } else {
+                                        //Index at answerCorrect but userAnswer not at index = white + tick
+                                        return (
+                                            <ListGroupItem className="justify-content-between">
+                                                {index + 1}. {option}
+                                                <Badge pill>{'\u2714'}</Badge>
+                                            </ListGroupItem>
+                                        );
+                                    }
                                 } else {
-                                    return (
-                                        <div>
-                                            {option}
-                                        </div>
-                                    );
+                                    //Index at uncorrect answer = red + X
+                                    if (_.includes(userAnswer, index)) {
+                                        //Index at uncorrect answer && userAnswer at index = red + X
+                                        return (
+                                            <ListGroupItem color="danger" className="justify-content-between">
+                                                {index + 1}. {option}
+                                            </ListGroupItem>
+                                        );
+                                    } else {
+                                        //Index at uncorrect answer && userAnswer not at index = white + X
+                                        return (
+                                            <ListGroupItem className="justify-content-between">
+                                                {index + 1}. {option}
+                                            </ListGroupItem>
+                                        );
+                                    }
                                 }
-                            }
+                            })
                         }
-                    )
-                }
-                {
-                    card.type === "multiple-choice" &&
-                    card.content.options.map((option, index) => {
-                        if ((_.includes(userAnswer, index))) {
-                            option = option + " ◀ Deine Antwort";
+                        {
+                            card.type === 'text-input' &&
+                            (card.content.answer === _.trim(userAnswer)) &&
+                            <div>
+                                <ListGroupItem color="success" className="justify-content-between">
+                                    {userAnswer}
+                                    <Badge pill>{'\u2714'}</Badge>
+                                </ListGroupItem>
+                            </div>
+
                         }
-                        if (_.includes(card.content.corrects, index)) {
-                            if (!(_.includes(userAnswer, index))) {
-                                option = option + " ◀ Richtige Antwort";
-                            }
-                            return (
-                                <div className="text-success">
-                                    {option}
-                                </div>
-                            );
-                        } else if ((_.includes(userAnswer, index) && !_.includes(card.content.corrects, index))
-                            || (_.includes(card.content.corrects, index) && !_.includes(userAnswer, index))) {
-                            return (
-                                <div className="text-danger">
-                                    {option}
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div>
-                                    {option}
-                                </div>
-                            );
+                        {
+                            card.type === 'text-input' &&
+                            (card.content.answer !== _.trim(userAnswer)) &&
+                            <div>
+                                <ListGroupItem className="justify-content-between">
+                                    {card.content.answer}
+                                    <Badge pill>{'\u2714'}</Badge>
+                                </ListGroupItem>
+                                <ListGroupItem color="danger" className="justify-content-between">
+                                    {userAnswer}
+                                </ListGroupItem>
+                            </div>
+
                         }
-                    })
-                }
-                {
-                    card.type === 'text-input' &&
-                    (card.content.answer === _.trim(userAnswer)) &&
-                    <div>
-                        <div>
-                            Korrekte Antwort: {card.content.answer}
-                        </div>
-                        <div className="text-success">
-                            Deine Antwort: {userAnswer}
-                        </div>
-                    </div>
 
-                }
-                {
-                    card.type === 'text-input' &&
-                    (card.content.answer !== _.trim(userAnswer)) &&
-                    <div>
-                        <div>
-                            Korrekte Antwort: {card.content.answer}
-                        </div>
-                        <div className="text-danger">
-                            Deine Antwort: {userAnswer}
-                        </div>
-                    </div>
-
-                }
-
-                {
-                    card.type === 'self-validate' &&
-                    <div className="mb-1">
-                        Korrekte Antwort: {card.content.answer}
-                    </div>
-                }
+                        {
+                            card.type === 'self-validate' &&
+                            <ListGroupItem className="justify-content-between">
+                                {card.content.answer}
+                                <Badge pill>{'\u2714'}</Badge>
+                            </ListGroupItem>
+                        }
+                    </ListGroup>
+                </CardText>
             </Card>
         </Col>
     );
