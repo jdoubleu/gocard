@@ -27,23 +27,21 @@ class Detail extends React.Component {
                         <p>{card.type}</p>
 
                         <h5>Frage</h5>
-                        <p></p>
+                        <p> </p>
 
                         <h5>Tags</h5>
                         <p>
                             {
                                 (card.tags || []).map((tag) =>
-                                        <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>
-                                    {tag}
-                                </span>
+                                        <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>{tag}</span>
                                 )
                             }
-                            <hr/>
                         </p>
 
                         {
                             (role === 'owner' || role === 'editor') &&
                             <p>
+                                <hr/>
                                 <Link to={`/register/${card.register}/card/${card.id}/edit`}>Bearbeiten</Link>
                             </p>
                         }
