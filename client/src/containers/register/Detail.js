@@ -37,9 +37,14 @@ class Detail extends React.Component {
                 <CardGroup>
                     <Card block>
                         <CardTitle>Beschreibung</CardTitle>
-                        <CardText>
-                            {register.description}
-                        </CardText>
+                        {
+                            !register.description &&
+                            <p className="text-muted">Keine Beschreibung vorhanden</p>
+                        }
+                        {
+                            register.description &&
+                            <p>{register.description}</p>
+                        }
                         {
                             role === 'owner' &&
                             <div>
