@@ -10,3 +10,10 @@ export function getInitials(displayName) {
         return splittedName[0].substring(0, 1).toUpperCase() + splittedName[1].substring(0, 1).toUpperCase();
     }
 }
+
+export function calculateScoreType(score){
+    if(score.value === null){
+        return 'unanswered';
+    }
+    return score.value < 3 ? 'bad' : score.value < 6 ? 'middle' : 'good';
+}
