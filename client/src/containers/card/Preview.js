@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Card, CardText, Col} from "reactstrap";
+import Title from "../shared/title";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
 import {Link} from "react-router-dom";
@@ -16,7 +17,9 @@ class Preview extends React.Component {
         return (
             <Col xl="4" md="6" xs="12">
                 <Card block className="mb-2">
-                    <h5>{card.question}</h5>
+                    <h5>
+                        <Title title={card.question}/>
+                    </h5>
                     <CardText>
                         {
                             (card.tags || []).map((tag) =>

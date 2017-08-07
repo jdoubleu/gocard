@@ -1,7 +1,8 @@
 import React from "react";
-import {Badge, Card, CardText, CardTitle, Col, ListGroup, ListGroupItem,} from "reactstrap";
+import {Badge, Card, CardText, Col, ListGroup, ListGroupItem,} from "reactstrap";
 import _ from "lodash";
 import {calculateScoreType} from "../../utils/index";
+import Title from "../shared/title";
 
 const FeedbackCard = ({card, userAnswer, value}) => {
     return (
@@ -9,9 +10,9 @@ const FeedbackCard = ({card, userAnswer, value}) => {
             <Card block className="mb-2" outline
                   color={calculateScoreType(value, 'danger', 'warning', 'success', 'secondary')}>
                 <h6 className="text-muted">Frage</h6>
-                <CardTitle>
-                    {card.question}
-                </CardTitle>
+                <h5>
+                    <Title title={card.question}/>
+                </h5>
 
                 <h6 className="text-muted">Antwort</h6>
                 <CardText>
