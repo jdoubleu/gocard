@@ -33,20 +33,12 @@ const ProgressBar = ({good, middle, bad}) => {
         }
     };
 
-    if (good !== 0 || bad !== 0 || middle !== 0) {
-        return (
-            <Bar
-                options={options}
-                data={data}
-            />
-        );
-    } else {
-        return (
-            <span>
-                Wenn du Karteikarten beantwortest, erhälst du deine Statistik.
-            </span>
-        );
-    }
+    return (
+        <Bar
+            options={options}
+            data={data}
+        />
+    )
 };
 
 ProgressBar.propTypes = {
