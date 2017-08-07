@@ -49,47 +49,6 @@ function cardsById(state = {}, action) {
 }
 
 
-function addCardId(state, action) {
-    const {response} = action;
-
-    return _.uniq(_.concat(state, response.id));
-}
-
-function deleteCardId(state, action) {
-    const {cardId} = action;
-
-    return _.without(state, cardId);
-}
-
-function updateCardId(state, action) {
-    const {cardId, response} = action;
-
-    return _.concat(_.pull(state, cardId), response.id);
-}
-
-function addCardIds(state, action) {
-    const {response} = action;
-
-    return _.union(state, _.map(response, 'id'));
-}
-
-function allCards(state = [], action) {
-    switch (action.type) {
-        case LOAD_CARD_SUCCESS:
-        case ADD_CARD_SUCCESS:
-            return addCardId(state, action);
-        case UPDATE_CARD_SUCCESS:
-            return updateCardId(state, action);
-        case DELETE_CARD_SUCCESS:
-            return deleteCardId(state, action);
-        case LOAD_CARDS_SUCCESS:
-            return addCardIds(state, action);
-        default:
-            return state;
-    }
-}
-
 export default combineReducers({
     byId: cardsById,
-    allIds: allCards
 });

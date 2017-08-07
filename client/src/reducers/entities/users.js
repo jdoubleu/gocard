@@ -44,46 +44,6 @@ function usersById(state = {}, action) {
     }
 }
 
-function addUserId(state, action) {
-    const {response} = action;
-
-    return _.concat(state, response.id);
-}
-
-function addUserIds(state, action) {
-    const {response} = action;
-    return _.union(state, _.map(response, 'id'));
-}
-
-function deleteUserId(state, action) {
-    const {userId} = action;
-
-    return _.without(state, userId);
-}
-
-function updateUserId(state, action) {
-    const {userId, response} = action;
-
-    return _.concat(_.omit(state, userId), response.id);
-}
-
-function allUsers(state = [], action) {
-    switch (action.type) {
-        case LOAD_CURRENT_USER_SUCCESS:
-        case LOAD_USER_SUCCESS:
-            return addUserId(state, action);
-        case SEARCH_USERS_SUCCESS:
-            return addUserIds(state, action);
-        case UPDATE_USER_SUCCESS:
-            return updateUserId(state, action);
-        case DELETE_USER_SUCCESS:
-            return deleteUserId(state, action);
-        default:
-            return state;
-    }
-}
-
 export default combineReducers({
     byId: usersById,
-    allIds: allUsers
 });

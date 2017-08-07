@@ -63,57 +63,6 @@ function membersById(state = {}, action) {
     }
 }
 
-function addMemberIds(state, action) {
-    const {response} = action;
-    return _.union(state, _.map(response, 'id'));
-}
-
-function addMemberId(state, action) {
-    const {response} = action;
-    return _.union(state, _.map(response, 'id'));
-}
-
-function updateMemberId(state, action) {
-    const {response} = action;
-    return _.concat(_.omit(state, response.id), response.id);
-}
-
-function updateMemberIds(state, action) {
-    const {response} = action;
-    return _.union(_.concat(state, _.map(response, 'id')));
-}
-
-function deleteMemberId(state, action) {
-    return _.without(state, action.id);
-}
-
-function deleteMemberIds(state, action) {
-    return _.without(state, ...action.ids);
-}
-
-function allMembers(state = [], action) {
-    switch (action.type) {
-        case ADD_MEMBER_SUCCESS:
-        case LOAD_MEMBER_SUCCESS:
-            return addMemberId(state, action);
-        case LOAD_MEMBERS_SUCCESS:
-        case ADD_MEMBERS_SUCCESS:
-        case LOAD_MEMBERSHIPS_SUCCESS:
-            return addMemberIds(state, action);
-        case UPDATE_MEMBERS_SUCCESS:
-            return updateMemberIds(state, action);
-        case UPDATE_MEMBER_SUCCESS:
-            return updateMemberId(state, action);
-        case DELETE_MEMBER_SUCCESS:
-            return deleteMemberId(state, action);
-        case CLEAR_MEMBERS:
-            return deleteMemberIds(state, action);
-        default:
-            return state;
-    }
-}
-
 export default combineReducers({
     byId: membersById,
-    allIds: allMembers
 });

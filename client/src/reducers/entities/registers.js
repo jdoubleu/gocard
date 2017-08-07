@@ -48,48 +48,6 @@ function registersById(state = {}, action) {
     }
 }
 
-
-function addRegisterId(state, action) {
-    const {response} = action;
-
-    return _.uniq(_.concat(state, response.id));
-}
-
-function deleteRegisterId(state, action) {
-    const {registerId} = action;
-
-    return _.without(state, registerId);
-}
-
-function updateRegisterId(state, action) {
-    const {registerId, response} = action;
-
-    return _.concat(_.pull(state, registerId), response.id);
-}
-
-function addRegisterIds(state, action) {
-    const {response} = action;
-
-    return _.union(state, _.map(response, 'id'));
-}
-
-function allRegisters(state = [], action) {
-    switch (action.type) {
-        case LOAD_REGISTER_SUCCESS:
-        case ADD_REGISTER_SUCCESS:
-            return addRegisterId(state, action);
-        case UPDATE_REGISTER_SUCCESS:
-            return updateRegisterId(state, action);
-        case DELETE_REGISTER_SUCCESS:
-            return deleteRegisterId(state, action);
-        case LOAD_REGISTERS_SUCCESS:
-            return addRegisterIds(state, action);
-        default:
-            return state;
-    }
-}
-
 export default combineReducers({
     byId: registersById,
-    allIds: allRegisters
 });
