@@ -6,7 +6,9 @@ const EULA = () => {
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>
-                <Headline title="Endnutzer Lizenz&shy;vereinbarung EULA"/>
+                <Headline title="Endnutzer Lizenz&shy;vereinbarung EULA">
+                    Hier findest Du Angaben und Richtlinien für die Nutzung von GoCard.
+                </Headline>
                 <Card block>
                     <CardTitle>Nutzung</CardTitle>
 
