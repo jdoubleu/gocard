@@ -35,6 +35,14 @@ class AccountToken
     protected $type;
 
     /**
+     * @Flow\Validate(type="NotEmpty")
+     * @Flow\Validate(type="DateTime")
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    protected $expireDate;
+
+    /**
      * @return User
      */
     public function getUser()
@@ -82,5 +90,19 @@ class AccountToken
         $this->type = $type;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getExpireDate()
+    {
+        return $this->expireDate;
+    }
 
+    /**
+     * @param \DateTime $expireDate
+     */
+    public function setExpireDate($expireDate)
+    {
+        $this->expireDate = $expireDate;
+    }
 }
