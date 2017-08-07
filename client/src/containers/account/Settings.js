@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {deleteUser, updateUser, updatePassword} from "../../actions/user";
+import {deleteUser, updatePassword, updateUser} from "../../actions/user";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import Headline from "../shared/headline";
 import SettingsForm from "../forms/Settings";

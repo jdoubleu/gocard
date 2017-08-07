@@ -15,7 +15,7 @@ const validate = values => {
 };
 
 const Learn = props => {
-    const {error, handleSubmit, submitting, tags} = props;
+    const {error, handleSubmit, disabled, tags} = props;
     return (
         <Form onSubmit={handleSubmit}>
             {
@@ -54,7 +54,7 @@ const Learn = props => {
                 ]}
             />
 
-            <Button outline block color="primary" type="submit" disabled={submitting}>
+            <Button outline block color="primary" type="submit" disabled={disabled}>
                 Lernen starten
             </Button>
         </Form>

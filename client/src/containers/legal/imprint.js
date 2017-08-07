@@ -11,29 +11,29 @@ const Imprint = () => {
                     <CardTitle>Kontakt</CardTitle>
 
                     <CardText className="px-2 text-justify">
-                        Hochschule Düsseldorf - University of Applied Science <br />
-                        Universitätsstraße Geb. 23.31/32 <br />
-                        D 40225 Düsseldorf <br />
-                        <br />
-                        Telefon: +49 211 4351 0 <br />
-                        Telefax: +49 211 811 4916 <br />
-                        E-Mail: feedback@gocard.de<br />
-                        <br />
+                        Hochschule Düsseldorf - University of Applied Science <br/>
+                        Universitätsstraße Geb. 23.31/32 <br/>
+                        D 40225 Düsseldorf <br/>
+                        <br/>
+                        Telefon: +49 211 4351 0 <br/>
+                        Telefax: +49 211 811 4916 <br/>
+                        E-Mail: feedback@gocard.de<br/>
+                        <br/>
                         Die Hochschule Düsseldorf ist eine Körperschaft des Öffentlichen Rechtes. Sie wird durch
-                        die Präsidentin, <br /> Prof. Dr. Brigitte Grass, gesetzlich vertreten.
+                        die Präsidentin, <br/> Prof. Dr. Brigitte Grass, gesetzlich vertreten.
                     </CardText>
 
                     <span><hr/></span>
 
                     <CardTitle>Zuständige Aufsichtsbehörde</CardTitle>
                     <CardText className="px-2 text-justify">
-                        Ministerium für Wissenschaft und Forschung des Landes Nordrhein-Westfalen<br />
-                        Völklinger Straße 49<br />
-                        D 40221 Düsseldorf<br />
-                        <br />
-                        Telefon: +49 211 896 04<br />
-                        Telefax: +49 211 896 4555<br />
-                        <br />
+                        Ministerium für Wissenschaft und Forschung des Landes Nordrhein-Westfalen<br/>
+                        Völklinger Straße 49<br/>
+                        D 40221 Düsseldorf<br/>
+                        <br/>
+                        Telefon: +49 211 896 04<br/>
+                        Telefax: +49 211 896 4555<br/>
+                        <br/>
                         Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz: DE-119432315
                     </CardText>
 

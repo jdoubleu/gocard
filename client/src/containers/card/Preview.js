@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Button, Card, Col} from "reactstrap";
+import {Card, CardText, Col} from "reactstrap";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
+import {Link} from "react-router-dom";
 
 class Preview extends React.Component {
 
@@ -16,7 +17,15 @@ class Preview extends React.Component {
             <Col xl="4" md="6" xs="12">
                 <Card block className="mb-2">
                     <h5>{card.question}</h5>
-                    <Button outline color="primary">Ansehen</Button>
+                    <CardText>
+                        {
+                            (card.tags || []).map((tag) =>
+                                <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>{tag}</span>
+                            )
+                        }
+                    </CardText>
+                    <Link to={`/register/${card.register}/card/${card.id}`}
+                          className="btn btn-outline-primary">Ansehen</Link>
                 </Card>
             </Col>
         )

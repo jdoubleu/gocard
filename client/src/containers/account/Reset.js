@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardGroup, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardTitle, Col, Row} from "reactstrap";
 import Logo from "../shared/logo";
 import ResetForm from "../forms/Reset";
 import {updatePassword} from "../../actions/user";
@@ -11,22 +11,21 @@ const Reset = ({match}) => {
     };
 
     return (
-        <Row>
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                <div className="pb-2">
-                    <h1 className="display-4 hidden-xs-down">Willkommen bei <Logo/></h1>
-                    <h1 className="hidden-sm-up">Willkommen bei <Logo/></h1>
-                    <p className="lead">
-                        Unserer digitalen Lernplattform. Lernen mit Karteikarten im Web war noch nie so einfach.
-                    </p>
-                </div>
+        <Row className="mt-4">
+            <Col sm="12" lg={{size: 5, offset: 1}}>
+                <h1 className="display-4 hidden-xs-down">Willkommen bei <Logo/></h1>
+                <h1 className="hidden-sm-up">Willkommen bei <Logo/></h1>
+                <p className="lead">
+                    Auf dieser Seite hast du die Möglichkeit, online mit Karteikarten zu lernen.
+                    Du kannst deine Karteikarten in Registern verwalten und deine Register mit Freunden teilen.
+                </p>
+            </Col>
 
-                <CardGroup>
-                    <Card block>
-                        <CardTitle>Passwort ändern</CardTitle>
-                        <ResetForm onSubmit={handleSubmit}/>
-                    </Card>
-                </CardGroup>
+            <Col sm="12" lg={{size: 5}}>
+                <Card block>
+                    <CardTitle>Passwort ändern</CardTitle>
+                    <ResetForm onSubmit={handleSubmit}/>
+                </Card>
             </Col>
         </Row>
     )

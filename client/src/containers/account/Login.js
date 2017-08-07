@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 import Logo from "../shared/logo";
 import LoginForm from "../forms/Login";
@@ -25,8 +25,8 @@ const Login = () => {
     };
 
     return (
-        <Row>
-            <Col sm={12} lg={{size: 10, offset: 1}} className="pb-2">
+        <Row className="mt-4">
+            <Col sm="12" lg={{size: 5, offset: 1}}>
                 <h1 className="display-4 hidden-xs-down">Willkommen bei <Logo/></h1>
                 <h1 className="hidden-sm-up">Willkommen bei <Logo/></h1>
                 <p className="lead">
@@ -35,31 +35,7 @@ const Login = () => {
                 </p>
             </Col>
 
-            <Col sm={12} lg={{size: 5, offset: 1}} className="mb-2">
-                <Card block className="h-100">
-                    <CardTitle>
-                        <span className="text-muted">Anmelden</span> HSD-Account
-                    </CardTitle>
-
-                    <div className="text-left pl-2">
-                        <CardText>
-                            Studierende der Hochschule Düsseldorf haben die Möglichkeit, sich mit ihrem
-                            Hochschul-Account anzumelden.
-                        </CardText>
-
-                        <CardText>
-                            <a href="http://passport.hs-duesseldorf.de/default.aspx"> Passwort vergessen?</a>
-                        </CardText>
-                        <Button outline block color="primary">
-                            <a href="https://idp.fh-duesseldorf.de/idp/Authn/UserPassword">
-                                Anmelden mit HSD-Account
-                            </a>
-                        </Button>
-                    </div>
-                </Card>
-            </Col>
-
-            <Col sm={12} lg={{size: 5, offset: 0}} className="mb-2">
+            <Col sm="12" lg={{size: 5}}>
                 <Card block className="h-100">
                     <CardTitle>
                         <span className="text-muted">Anmelden</span> GoCard-Account

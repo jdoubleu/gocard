@@ -1,10 +1,10 @@
 import {
+    addCard as apiAddCard,
     deleteCard as apiDeleteCard,
     findCardsByRegister as apiFindCardsByRegister,
+    getCard as apiGetCard,
     updateCard as apiUpdateCard,
     updateCards as apiUpdateCards,
-    getCard as apiGetCard,
-    addCard as apiAddCard
 } from "../lib/ApiClient";
 import _ from "lodash";
 
@@ -62,6 +62,7 @@ export function deleteCard(cardId) {
     return {
         types: [DELETE_CARD_REQUEST, DELETE_CARD_SUCCESS, DELETE_CARD_FAILURE],
         callAPI: () => apiDeleteCard({cardId}),
+        payload: {cardId}
     }
 }
 
@@ -72,9 +73,14 @@ export const ADD_CARD_FAILURE = 'ADD_CARD_FAILURE';
 export function addCard(registerId, body) {
     return {
         types: [ADD_CARD_REQUEST, ADD_CARD_SUCCESS, ADD_CARD_FAILURE],
-        callAPI: () => apiAddCard({body:_.assign(body, {register: registerId})})
+        callAPI: () => apiAddCard({body: _.assign(body, {register: registerId})})
     }
 }
+
+
+
+
+
 
 
 

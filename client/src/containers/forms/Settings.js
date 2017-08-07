@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, Form, Col, Row} from "reactstrap";
+import {Alert, Button, Col, Form, Row} from "reactstrap";
 import InputField from "./fields/input";
 import {Link} from "react-router-dom";
 
@@ -11,6 +11,10 @@ const validate = values => {
         errors.email = 'Eine E-Mail Adresse ist erforderlich.'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Ungültige E-Mail Adresse.'
+    }
+
+    if (!values.displayName) {
+        errors.displayName = 'Ein Anzeigenamen ist erforderlich.'
     }
 
     return errors

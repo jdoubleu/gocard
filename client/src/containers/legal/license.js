@@ -67,7 +67,7 @@ const License = () => {
                                     <ListGroupItemText>
                                         <ul>
                                             <li>Webseite: {license.webpage}</li>
-                                            <li>Lizenzname: {license.license.name } </li>
+                                            <li>Lizenzname: {license.license.name} </li>
                                             <li>Lizenztext: {license.license.content} </li>
                                             <li>Lizenz-URL: {license.license.url} </li>
                                             <li>Autor: {license.authors} </li>
@@ -77,7 +77,7 @@ const License = () => {
                             )
                         }
                     </ListGroup>
-                    <br />
+                    <br/>
                     <span>© copyright 2017 - GoCard Team</span>
                 </Card>
             </Col>

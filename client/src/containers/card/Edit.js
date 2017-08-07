@@ -3,41 +3,55 @@ import PropTypes from "prop-types";
 import {Card, Col, Row} from "reactstrap";
 import Headline from "../shared/headline";
 import CardForm from "../forms/Card";
+import DeleteCardForm from "../forms/DeleteCard";
 import {connect} from "react-redux";
+import {push} from "react-router-redux";
+import {deleteCard, updateCard} from "../../actions/card";
 
-class Edit extends React.Component {
-    handleSubmit = (values, dispatch) => {
-        return null;
+const Edit = ({card}) => {
+    const handleSubmit = (values, dispatch) => {
+        return dispatch(updateCard(card.id, values)).then(
+            response =>
+                dispatch(push(`/register/${card.register}/card/${card.id}`))
+        )
     };
 
-    render() {
-        const {card} = this.props;
-        return (
-            <Row>
-                <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Headline title="Karteikarte bearbeiten">
-                        Hier kannst du deine Karteikarte für Dein Register bearbeiten.
-                    </Headline>
+    const handleDeleteSubmit = (values, dispatch) => {
+        const registerId = card.register;
+        return dispatch(deleteCard(card.id)).then(
+            response =>
+                dispatch(push(`/register/${registerId}`))
+        );
+    };
 
-                    <Card block>
-                        <CardForm onSubmit={this.handleSubmit} initialValues={card} submitLabel="Speichern"/>
-                    </Card>
-                </Col>
-            </Row>
-        )
-    }
-}
+    return (
+        <Row>
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Headline title="Karteikarte bearbeiten">
+                    Hier kannst du deine Karteikarte für Dein Register bearbeiten.
+                </Headline>
 
-Edit.propTypes = {
-    cardId: PropTypes.number.isRequired
+                <Card block className="mb-3">
+                    <CardForm onSubmit={handleSubmit} initialValues={card} submitLabel="Speichern"
+                              cancelRoute={`/card/${card.id}`} cancelLabel="Abbrechen"/>
+                </Card>
+
+                <Card block>
+                    <DeleteCardForm onSubmit={handleDeleteSubmit}/>
+                </Card>
+            </Col>
+        </Row>
+    )
 };
 
-const mapStateToProps = (state, ownProps) => ({
-    card: state.entities.cards.byId[ownProps.match.params.registerId] || {},
-});
+Edit.propTypes = {
+    card: PropTypes.object.isRequired
+};
 
-const mapDispatchToProps = (dispatch) => ({
-    loadCard: dispatch()
-});
+const mapStateToProps = (state, props) => {
+    return {
+        card: state.entities.cards.byId[props.match.params.cardId] || {},
+    }
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Edit);
+export default connect(mapStateToProps)(Edit);

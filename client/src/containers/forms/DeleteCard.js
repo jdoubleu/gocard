@@ -6,14 +6,14 @@ import InputCheckField from "./fields/inputCheck";
 const validate = values => {
     const errors = {};
 
-    if (!values.deleteRegister) {
-        errors.deleteRegister = "Bitte bestätige, dass du das Register löschen willst."
+    if (!values.deleteCard) {
+        errors.deleteCard = "Bitte bestätige, dass du die Karteikarte löschen willst."
     }
 
     return errors
 };
 
-const DeleteRegisterForm = props => {
+const DeleteCardForm = props => {
     const {error, handleSubmit, submitting} = props;
     return (
         <Form onSubmit={handleSubmit}>
@@ -24,10 +24,10 @@ const DeleteRegisterForm = props => {
                 </Alert>
             }
             <Field
-                name="deleteRegister"
+                name="deleteCard"
                 type="checkbox"
                 component={InputCheckField}
-                label="Ich möchte dieses Register permanent löschen."
+                label="Ich möchte diese Karteikarte permanent löschen."
             />
 
             <Button outline block color="danger" type="submit" disabled={submitting}>
@@ -38,6 +38,6 @@ const DeleteRegisterForm = props => {
 };
 
 export default reduxForm({
-    form: 'deleteRegisterForm',
+    form: 'deleteCardForm',
     validate
-})(DeleteRegisterForm);
+})(DeleteCardForm);

@@ -38,7 +38,8 @@ const PrivacyPolicy = () => {
                     <CardTitle>Datenspeicherung</CardTitle>
                     <CardText className="px-2 text-justify">
                         Deine Accountdaten werden von uns gespeichert. Des Weiteren werden alle von deinen erstellten
-                        Inhalten vorbehalten und gespeichert. Deine persönlichen Lernleistungen werden gespeichert. Wir bemühen uns deine Daten
+                        Inhalten vorbehalten und gespeichert. Deine persönlichen Lernleistungen werden gespeichert. Wir
+                        bemühen uns deine Daten
                         zu sichern können, aber keine Datenspeicherung garantieren.
                     </CardText>
                 </Card>

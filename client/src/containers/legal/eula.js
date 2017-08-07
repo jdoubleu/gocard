@@ -14,7 +14,8 @@ const EULA = () => {
                         Die Nutzung dieser Webseite ist absolut freiwillig. Es werden keine Kosten von unser Seite
                         für die Nutzung dieser Webseite erhoben. Wir haften nicht für eventuelle Unerreichbarkeit
                         der Webseite. Falls wir mitbekommen, dass du rechtswidrige Daten hochlädst, behalten wir uns
-                        vor, deinen Account zusammen mit all deinen Daten zu löschen. Wir führen aber keine generelle Überprüfung der
+                        vor, deinen Account zusammen mit all deinen Daten zu löschen. Wir führen aber keine generelle
+                        Überprüfung der
                         Daten durch.
                     </CardText>
 
@@ -25,10 +26,12 @@ const EULA = () => {
                         Wir haften nicht für deine Daten, sowie den Inhalt den du auf dieser Seite erstellst. Wir
                         behalten uns vor deinen Account zu löschen, falls wir mitbekommen, dass sie rechtswidrige Daten
                         über diese Seite verbreiten. Für den Verlust von Daten haften wir nicht, und kommen für keinen
-                        dadurch erstandenen Schäden auf. Wir probieren unserer möglichstes um den Verlust von Daten zu verhindern.
+                        dadurch erstandenen Schäden auf. Wir probieren unserer möglichstes um den Verlust von Daten zu
+                        verhindern.
                         <br/>
                         <br/>
-                        Weiteres zu dem Thema Datenschutz in dem Bereich <a href="privacy-policy"> Datenschutzerklärung</a>.
+                        Weiteres zu dem Thema Datenschutz in dem Bereich <a href="privacy-policy">
+                        Datenschutzerklärung</a>.
                     </CardText>
 
                     <span><hr/></span>
@@ -44,7 +47,8 @@ const EULA = () => {
                     <CardTitle>Technischer Support</CardTitle>
                     <CardText className="px-2 text-justify">
                         GoCard bietet keinen technischen Support. Bei Fragen oder Problemen kannst du aber dennoch eine
-                        Mail an die im Impressum hinterlegte E-Mail Adresse senden. Für die Bearbeitung oder Beantwortung deiner
+                        Mail an die im Impressum hinterlegte E-Mail Adresse senden. Für die Bearbeitung oder
+                        Beantwortung deiner
                         Probleme gibt es jedoch keine Garantie.
                     </CardText>
                 </Card>
