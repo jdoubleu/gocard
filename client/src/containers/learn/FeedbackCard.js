@@ -100,7 +100,6 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                                     return (
                                         <ListGroupItem color="danger" className="justify-content-between">
                                             {index + 1}. {option}
-                                            <Badge pill>{'X'}</Badge>
                                         </ListGroupItem>
                                     );
                                 } else {
@@ -108,7 +107,6 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                                     return (
                                         <ListGroupItem className="justify-content-between">
                                             {index + 1}. {option}
-                                            <Badge pill>{'X'}</Badge>
                                         </ListGroupItem>
                                     );
                                 }
