@@ -7,12 +7,13 @@ import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
 import {
-    makeGetCorrectCardsForResults,
+    makeGetCorrectCardsForResults, makeGetLastScoresByAnsweredCardIds,
     makeGetSkippedCardsForResults,
     makeGetValueArrayByAnsweredCardIds,
     makeGetWrongCardsForResults
 } from "../../selectors/index";
 import ProgressBar from "../register/statistic/ProgressBar";
+import {Link} from "react-router-dom";
 
 const validate = values => {
     const errors = {};
@@ -20,7 +21,7 @@ const validate = values => {
     return errors
 };
 
-const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards}) => {
+const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards, lastScores}) => {
 
     const calcCards = () => {
         if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
@@ -66,6 +67,8 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                             tags.length === 0 &&
                             <span>Es wurde mit allen Karten gelernt.</span>
                         }
+                        <hr />
+                        <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum Register</Link>
                     </CardText>
                 </Card>
                 <Card block>
@@ -143,7 +146,7 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     resultCards &&
                     _.values(calcCards()).map((card) =>
                         <Card block>
-                            <FeedbackCard card={card} userAnswer={results[card.id].answer}/>
+                            <FeedbackCard card={card} userAnswer={results[card.id].answer} value={lastScores[card.id].value}/>
                         </Card>
                     )
                 }
@@ -158,6 +161,7 @@ const makeMapStateToProps = () => {
     const getWrongCorrectCardsForResults = makeGetWrongCardsForResults();
     const getSkippedCardsForResults = makeGetSkippedCardsForResults();
     const getValueArrayByAnsweredCardIds = makeGetValueArrayByAnsweredCardIds();
+    const getLastScoresByAnsweredCardIds = makeGetLastScoresByAnsweredCardIds();
     return (state, props) => {
         return {
             cardIds: state.ui.learning.allIds || [],
@@ -169,16 +173,13 @@ const makeMapStateToProps = () => {
             skippedCards: getSkippedCardsForResults(state, props) || {},
             valuesFeedback: getFormValues('feedback')(state),
             valuesArray: getValueArrayByAnsweredCardIds(state, props),
+            lastScores: getLastScoresByAnsweredCardIds(state, props),
         }
     };
 };
 
 function mapDispatchToProps(dispatch) {
-    return ({
-        handleFeedbackClick: (cardId, answer, correct) => {
 
-        }
-    })
 }
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(reduxForm({

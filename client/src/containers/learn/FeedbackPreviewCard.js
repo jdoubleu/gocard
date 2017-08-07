@@ -3,12 +3,17 @@ import {CardText, CardTitle, } from "reactstrap";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
-const FeedbackCard = ({card, userAnswer}) => {
+const FeedbackCard = ({card, userAnswer, value}) => {
+
+    const calcLevel = () =>{
+        return value < 3 ? 'Schlecht' : value < 6 ? 'Geht so' : 'Gut';
+    };
 
     return (
         <div  xl="4" md="6" xs="12">
 
             <h5 className="text-muted">Frage</h5>
+            <h5 className="text-muted">{calcLevel()}</h5>
             <CardTitle>
                 {card.question}
             </CardTitle>
@@ -136,3 +141,4 @@ FeedbackCard.propTypes = {
 };
 
 export default (FeedbackCard);
+

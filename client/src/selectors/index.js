@@ -273,6 +273,20 @@ export const makeGetSizeOfResults = () => {
     );
 };
 
+export const makeGetLastScoresByAnsweredCardIds = () => {
+    return createSelector(
+        [getAnsweredCardsIds, makeGetScoreByUser()],
+        (cardIds, scores) => {
+            let lastScores = _.map(cardIds, (cardId) =>
+                _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
+                    return moment(o.date).format('X')
+                }) || null
+            );
+            return _.keyBy(_.pullAll(lastScores, [null]),'card');
+        }
+    );
+};
+
 export const makeGetValueArrayByAnsweredCardIds = () => {
     return createSelector(
         [getAnsweredCardsIds, makeGetScoreByUser()],
