@@ -6,7 +6,9 @@ const Imprint = () => {
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>
-                <Headline title="Impressum"/>
+                <Headline title="Impressum">
+                    Hier findest Du alle möglichkeiten mit uns Kontakt aufzunehmen.
+                </Headline>
                 <Card block>
                     <CardTitle>Kontakt</CardTitle>
 

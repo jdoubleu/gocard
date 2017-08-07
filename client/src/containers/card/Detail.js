@@ -32,15 +32,13 @@ class Detail extends React.Component {
         return (
             <Row>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Headline title={card.question}/>
-
+                    <Headline title={card.question}>
+                        Hier hast du alle aktuellen Informationen zu Deiner Karteikarte.
+                    </Headline>
                     <Card block>
                         <h6 className="text-muted">Fragetyp</h6>
                         <p>{mapCardType()}</p>
-
-                        <h6 className="text-muted">Frage</h6>
-                        <p>{card.question}</p>
-
+                        
                         {
                             (card.type === "self-validate" || card.type === "text-input") &&
                             <div>

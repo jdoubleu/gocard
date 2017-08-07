@@ -20,8 +20,9 @@ const Help = () => {
     return (
         <div id="top" className="help">
 
-            <Headline title="Hilfe"/>
-
+            <Headline title="Hilfe">
+                Auf dieser Seite kann Dir vielleicht bei Fragen und Probleme geholfen werden.
+            </Headline>
             <Row>
 
 
