@@ -281,7 +281,7 @@ export const makeGetLastScoresByAnsweredCardIds = () => {
             let lastScores = _.map(cardIds, (cardId) =>
                 _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
                     return moment(o.date).format('X')
-                }) || {value: null}
+                }) || {card: cardId, value: null}
             );
             return _.keyBy(lastScores, 'card');
         }
@@ -295,10 +295,10 @@ export const makeGetValueArrayByAnsweredCardIds = () => {
             let lastScores = _.map(cardIds, (cardId) =>
                 _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
                     return moment(o.date).format('X')
-                }) || {value: null}
+                }) || {card: cardId, value: null}
             );
             return _.groupBy(lastScores, (o) => {
-                return calculateScoreType(o);
+                return calculateScoreType(o, 'bad', 'middle', 'good', 'unanswered');
             }) || {};
         }
     );

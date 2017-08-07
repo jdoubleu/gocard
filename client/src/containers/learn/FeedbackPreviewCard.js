@@ -1,11 +1,13 @@
 import React from "react";
 import {Badge, Card, CardText, CardTitle, Col, ListGroup, ListGroupItem,} from "reactstrap";
 import _ from "lodash";
+import {calculateScoreType} from "../../utils/index";
 
 const FeedbackCard = ({card, userAnswer, value}) => {
     return (
         <Col xl="4" md="6" xs="12">
-            <Card block className="mb-2" outline color={value < 3 ? 'danger' : value < 6 ? 'warning' : 'success'}>
+            <Card block className="mb-2" outline
+                  color={calculateScoreType(value, 'danger', 'warning', 'success', 'secondary')}>
                 <h6 className="text-muted">Frage</h6>
                 <CardTitle>
                     {card.question}

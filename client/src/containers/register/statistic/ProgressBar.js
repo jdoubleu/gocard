@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Bar} from "react-chartjs-2";
 
-const ProgressBar = ({good, middle, bad}) => {
+const ProgressBar = ({good, middle, bad, unanswered}) => {
 
     const data = {
         datasets: [{
-            data: [good, middle, bad],
+            data: [good, middle, bad, unanswered],
             backgroundColor: [
                 '#00e673',
                 '#e6b800',
-                '#e60000'
+                '#e60000',
+                '#edecee'
             ]
         }],
 
@@ -18,7 +19,8 @@ const ProgressBar = ({good, middle, bad}) => {
         labels: [
             'Gut',
             'Geht so',
-            'Schlecht'
+            'Schlecht',
+            'Unbeantwortet'
         ]
     };
 

@@ -11,9 +11,9 @@ export function getInitials(displayName) {
     }
 }
 
-export function calculateScoreType(score){
-    if(score.value === null){
-        return 'unanswered';
+export function calculateScoreType(score, case1, case2, case3, nullCase) {
+    if (score.value === null) {
+        return nullCase;
     }
-    return score.value < 3 ? 'bad' : score.value < 6 ? 'middle' : 'good';
+    return score.value < 3 ? case1 : score.value < 6 ? case2 : case3;
 }
