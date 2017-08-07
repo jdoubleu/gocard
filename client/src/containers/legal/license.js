@@ -20,7 +20,9 @@ const License = () => {
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>
-                <Headline title="Lizenz"/>
+                <Headline title="Lizenz">
+                    Was wurde für die Erstellung von GoCard verwendet?
+                </Headline>
                 <Card block>
                     <CardTitle>Bilder und Grafiken</CardTitle>
                     <CardText className="px-2 text-justify">
