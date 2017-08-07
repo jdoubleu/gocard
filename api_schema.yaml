@@ -1256,6 +1256,32 @@ paths:
       security:
         - api_key: []
         - api_key2: []
+  /users/confirm:
+    get:
+      tags:
+        - users
+      summary: Registration confirm
+      description: Action which will confirm registration
+      produces:
+        - application/json
+      parameters:
+        - name: identifier
+          in: query
+          description: Confirmation Request identifier
+          required: true
+          type: string
+        - name: token
+          in: query
+          description: Confirmation Request token
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful request
+        400:
+          description: Invalid identifier or token supplied
+        404:
+          description: Confirmation Request does not exist
   /users/passwordReset:
     post:
       tags:

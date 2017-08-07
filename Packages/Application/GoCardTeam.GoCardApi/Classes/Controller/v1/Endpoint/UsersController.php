@@ -177,4 +177,13 @@ class UsersController extends AbstractApiEndpointController
         
         $this->view->assign('value', $members);
     }
+
+    /**
+     * @param string $identifier
+     * @param string $token
+     */
+    public function confirmAction(string $identifier, string $token)
+    {
+        // TODO: implement confirm action
+    }
 }

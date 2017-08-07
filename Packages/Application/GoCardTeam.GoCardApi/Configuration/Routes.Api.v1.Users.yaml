@@ -74,3 +74,10 @@
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
   httpMethods: ['GET']
+
+-
+  name: 'confirm registration'
+  uriPattern: 'confirm'
+  defaults:
+    '@action': 'confirm'
+  httpMethods: ['GET']
