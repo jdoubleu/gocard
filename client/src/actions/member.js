@@ -64,7 +64,7 @@ export const ADD_MEMBERS_FAILURE = 'ADD_MEMBERS_FAILURE';
 export function addMembersToRegister(registerId, members) {
     return {
         types: [ADD_MEMBERS_REQUEST, ADD_MEMBERS_SUCCESS, ADD_MEMBERS_FAILURE],
-        callAPI: () => apiAddMembersToRegister({registerId, member: members}),
+        callAPI: () => apiAddMembersToRegister({registerId, members}),
         payload: {registerId}
     }
 }

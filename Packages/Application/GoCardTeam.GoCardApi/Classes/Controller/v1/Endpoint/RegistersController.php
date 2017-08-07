@@ -80,7 +80,7 @@ class RegistersController extends AbstractApiEndpointController
         try {
             $this->registerRepository->add($register);
 
-            $member = $this->memberFactory->createMember($this->userContext->getUser(), $register, 'write');
+            $member = $this->memberFactory->createMember($this->userContext->getUser(), $register, 'owner');
             $this->memberRepository->add($member);
 
             $this->persistenceManager->whitelistObject($member);
@@ -136,6 +136,10 @@ class RegistersController extends AbstractApiEndpointController
     public function updateRegisterAction(Register $register)
     {
         $this->registerRepository->update($register);
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $register);
     }
 
     /**

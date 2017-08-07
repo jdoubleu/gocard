@@ -117,7 +117,7 @@ class UsersController extends AbstractApiEndpointController
      */
     public function searchUsersByNameAction(string $name)
     {
-        $users = $this->userRepository->searchUsersByName(trim('%', $name));
+        $users = $this->userRepository->searchUsersByName(trim($name, '%'));
 
         $this->view->setConfiguration([
             'value' => [
@@ -152,6 +152,10 @@ class UsersController extends AbstractApiEndpointController
     public function updateUserAction(User $user)
     {
         $this->userRepository->update($user);
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $user);
     }
 
     /**
@@ -170,8 +174,7 @@ class UsersController extends AbstractApiEndpointController
     public function getMembersByUserAction(User $user)
     {
         $members = $this->memberRepository->findByUser($user);
-
-        // TODO: expose register property in member models
+        
         $this->view->assign('value', $members);
     }
 }

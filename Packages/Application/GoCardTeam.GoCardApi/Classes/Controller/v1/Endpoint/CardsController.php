@@ -57,6 +57,10 @@ class CardsController extends AbstractApiEndpointController
         foreach ($cards as $card) {
             $this->cardRepository->update($card);
         }
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $cards);
     }
 
     /**
@@ -88,6 +92,10 @@ class CardsController extends AbstractApiEndpointController
     public function updateCardAction(Card $card)
     {
         $this->cardRepository->update($card);
+
+        $this->persistenceManager->persistAll(true);
+
+        $this->view->assign('value', $card);
     }
 
     /**

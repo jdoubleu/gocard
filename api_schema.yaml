@@ -420,9 +420,9 @@ paths:
           type: integer
           format: int64
           required: true
-        - name: member
+        - name: members
           in: body
-          description: Member to be added
+          description: Members to be added
           schema:
             type: array
             items:
@@ -1490,14 +1490,11 @@ definitions:
         format: int64
         description: ID of the register
       role:
-        type: array
-        items:
-          type: string
-          enum:
-            - read
-            - write
-            - update
-        uniqueItems: true
+        type: string
+        enum:
+          - owner
+          - editor
+          - subscriber
     required:
       - user
       - role
