@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, CardText, CardTitle} from "reactstrap";
+import {Badge, Button, CardText, CardTitle, ListGroup, ListGroupItem} from "reactstrap";
 
 import PropTypes from "prop-types";
 import _ from "lodash";
@@ -11,51 +11,58 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
             <CardTitle className="text-center">
                 Feedback
             </CardTitle>
-            <h4 className="text-muted">Frage</h4>
+
+            <h6 className="text-muted">Frage</h6>
             <CardTitle>
                 {card.question}
             </CardTitle>
-            <h4 className="text-muted">Antwort</h4>
+
+            <h6 className="text-muted">Antwort</h6>
             <CardText>
+                <ListGroup className="mb-3">
                 {
                     card.type === "single-choice" &&
                     card.content.options.map((option, index) => {
                             if (_.parseInt(userAnswer) === card.content.correct) {
+                                //Answer correct
                                 if (userAnswer === index) {
-                                    option = option + " ◀ Deine Antwort";
+                                    //Answer correct && index at correct answer position = green with tick
                                     return (
-                                        <div className="text-success">
-                                            {option}
-                                        </div>
+                                        <ListGroupItem color="success" className="justify-content-between">
+                                            {index+1}. {option}
+                                        <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                                     );
                                 } else {
+                                    //Answer correct && index at different position = green with X
                                     return (
-                                        <div>
-                                            {option}
-                                        </div>
+                                        <ListGroupItem className="justify-content-between">
+                                            {index+1}. {option}
+                                        </ListGroupItem>
                                     );
                                 }
 
                             } else {
+                                //Answer not correct
                                 if (_.parseInt(userAnswer) === index) {
-                                    option = option + " ◀ Deine Antwort";
+                                    //Answer not correct && index at position of user Answer = red with X
                                     return (
-                                        <div className="text-danger">
-                                            {option}
-                                        </div>
+                                        <ListGroupItem color="danger" className="justify-content-between">
+                                            {index+1}. {option}
+                                        </ListGroupItem>
                                     );
                                 } else if (card.content.correct === index) {
-                                    option = option + " ◀ Richtige Antwort";
+                                    //Answer not correct && index at position of correct answer = red with tick
                                     return (
-                                        <div className="text-success">
-                                            {option}
-                                        </div>
+                                        <ListGroupItem className="justify-content-between">
+                                            {index+1}. {option}
+                                        <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                                     );
                                 } else {
+                                    //Answer not correct && index not at position of correct answer = red with X
                                     return (
-                                        <div>
-                                            {option}
-                                        </div>
+                                        <ListGroupItem className="justify-content-between">
+                                            {index+1}. {option}
+                                        </ListGroupItem>
                                     );
                                 }
                             }
@@ -73,22 +80,22 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                                 option = option + " ◀ Richtige Antwort";
                             }
                             return (
-                                <div className="text-success">
-                                    {option}
-                                </div>
+                                <ListGroupItem color="success" className="justify-content-between">
+                                    {index+1}. {option}
+                                <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                             );
                         } else if ((_.includes(userAnswer, index) && !_.includes(card.content.corrects, index))
                             || (_.includes(card.content.corrects, index) && !_.includes(userAnswer, index))) {
                             return (
-                                <div className="text-danger">
-                                    {option}
-                                </div>
+                                <ListGroupItem color="danger" className="justify-content-between">
+                                    {index+1}. {option}
+                                <Badge pill>{'X'}</Badge></ListGroupItem>
                             );
                         } else {
                             return (
-                                <div>
-                                    {option}
-                                </div>
+                                <ListGroupItem>
+                                    {index+1}. {option}
+                                </ListGroupItem>
                             );
                         }
                     })
@@ -97,12 +104,12 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                     card.type === 'text-input' &&
                     (card.content.answer === _.trim(userAnswer)) &&
                     <div>
-                        <div>
+                        <ListGroupItem>
                             Korrekte Antwort: {card.content.answer}
-                        </div>
-                        <div className="text-success">
+                        </ListGroupItem>
+                        <ListGroupItem color="success" className="justify-content-between">
                             Deine Antwort: {userAnswer}
-                        </div>
+                        <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                     </div>
 
                 }
@@ -110,22 +117,23 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                     card.type === 'text-input' &&
                     (card.content.answer !== _.trim(userAnswer)) &&
                     <div>
-                        <div>
+                        <ListGroupItem>
                             Korrekte Antwort: {card.content.answer}
-                        </div>
-                        <div className="text-danger">
+                        </ListGroupItem>
+                        <ListGroupItem color="danger" className="justify-content-between">
                             Deine Antwort: {userAnswer}
-                        </div>
+                        <Badge pill>{'X'}</Badge></ListGroupItem>
                     </div>
 
                 }
 
                 {
                     card.type === 'self-validate' &&
-                    <div className="mb-1">
+                    <ListGroupItem color="success" className="justify-content-between">
                         Korrekte Antwort: {card.content.answer}
-                    </div>
+                    <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                 }
+                </ListGroup>
                 <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
                     Nächste karte
                 </Button>
