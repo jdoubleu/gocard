@@ -65,6 +65,10 @@ class MembersController extends AbstractApiEndpointController
         $register->setMembers($members);
 
         $this->registerRepository->update($register);
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $members);
     }
     
     /**
@@ -216,6 +220,10 @@ class MembersController extends AbstractApiEndpointController
         $member->setRegister($register);
 
         $this->memberRepository->update($member);
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $member);
     }
 
     /**

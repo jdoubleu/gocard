@@ -136,6 +136,10 @@ class RegistersController extends AbstractApiEndpointController
     public function updateRegisterAction(Register $register)
     {
         $this->registerRepository->update($register);
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $register);
     }
 
     /**
