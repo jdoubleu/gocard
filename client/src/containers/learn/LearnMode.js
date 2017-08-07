@@ -2,7 +2,6 @@ import React from "react";
 import {Card, Col, Progress} from "reactstrap";
 import Headline from "../shared/headline";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
 import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
 import MultipleChoiceCardForm from "../forms/MultipleChoiceLearn";
 import SelfValidateCardForm from "../forms/SelfValidateLearn";

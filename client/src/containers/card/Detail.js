@@ -37,7 +37,7 @@ class Detail extends React.Component {
                     <Card block>
                         <h4 className="text-muted">Fragetyp</h4>
                         <p>{mapCardType()}</p>
-
+                        
                         <h4 className="text-muted">Frage</h4>
                         <p>{card.question}</p>
 

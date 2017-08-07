@@ -407,7 +407,7 @@ const Help = () => {
                                 Dort kannst du
                                 Veränderungen an deinem Profil vornehmen.
                             </CardText>
-                            
+
                             <span><hr/></span>
 
                             <CardTitle>Anzeigename</CardTitle>

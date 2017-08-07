@@ -135,7 +135,7 @@ const FeedbackCard = ({card, userAnswer, handleClick}) => {
                 }
                 </ListGroup>
                 <Button outline block color="primary" type="submit" onClick={() => handleClick()}>
-                    Nächste karte
+                    Nächste Karte
                 </Button>
             </CardText>
         </div>

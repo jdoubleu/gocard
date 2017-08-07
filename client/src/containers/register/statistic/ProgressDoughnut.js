@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 
 class ProgressDoughnut extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const {dispatch, registerId, userId} = this.props;
         dispatch(loadAllScores(registerId, userId));
     }

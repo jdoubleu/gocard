@@ -1,17 +1,14 @@
 import React from "react";
-import {Card, CardText, CardTitle, Col,} from "reactstrap";
-import PropTypes from "prop-types";
+import {Card, Col,} from "reactstrap";
 import _ from "lodash";
 
 const FeedbackCard = ({card, userAnswer, value}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2" outline color={value < 3 ? 'danger' : value < 6 ? 'warning' : 'success'}>
-                <h5 className="text-muted">Frage</h5>
-                <CardTitle>
-                    {card.question}
-                </CardTitle>
-                <h5 className="text-muted">Antwort</h5>
+                <h6 className="text-muted">Frage</h6>
+                <p>{card.question}</p>
+                <h6 className="text-muted">Antwort</h6>
                 {
                     card.type === "single-choice" &&
                     card.content.options.map((option, index) => {

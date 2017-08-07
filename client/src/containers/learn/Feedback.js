@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardDeck, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardGroup, CardTitle, Col, Row} from "reactstrap";
 import {connect} from "react-redux";
 import _ from "lodash";
 import FeedbackCard from "./FeedbackPreviewCard";
@@ -7,7 +7,8 @@ import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
 import {
-    makeGetCorrectCardsForResults, makeGetLastScoresByAnsweredCardIds,
+    makeGetCorrectCardsForResults,
+    makeGetLastScoresByAnsweredCardIds,
     makeGetSkippedCardsForResults,
     makeGetValueArrayByAnsweredCardIds,
     makeGetWrongCardsForResults
@@ -51,36 +52,37 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
         <div>
             <CardGroup>
                 <Card block>
-                    <CardTitle className="text-muted">Name des Registers</CardTitle>
+                    <h6 className="text-muted">Name des Registers</h6>
                     <CardTitle>{register.title}</CardTitle>
-                    <CardTitle className="text-muted">Verwendeten Tags</CardTitle>
+                    <h6 className="text-muted">Verwendeten Tags</h6>
                     <div>
-                    {
-                        tags.map((tag) => {
-                                return (
-                                    <span className="btn btn-outline-primary p-1 ml-1" key={tag}>{tag}</span>
-                                )
-                            }
-                        )
-                    }
+                        {
+                            tags.map((tag) => {
+                                    return (
+                                        <span className="btn btn-outline-primary p-1 ml-1" key={tag}>{tag}</span>
+                                    )
+                                }
+                            )
+                        }
                     </div>
                     {
                         tags.length === 0 &&
                         <div>Es wurde mit allen Karten gelernt.</div>
                     }
-                    <hr/>
+
                     <div>
-                    <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum
-                        Register</Link>
+                        <hr/>
+                        <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Zurück zum
+                            Register</Link>
                     </div>
                 </Card>
 
                 <Card block>
-                    <CardTitle>Statistik</CardTitle>
-                    <CardText>
+                    <h6 className="text-muted">Statistik</h6>
+                    <div>
                         <ProgressBar good={(valuesArray.good || []).length} middle={(valuesArray.middle || []).length}
                                      bad={(valuesArray.bad || []).length || 0}/>
-                    </CardText>
+                    </div>
                 </Card>
 
             </CardGroup>

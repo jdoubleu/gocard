@@ -6,7 +6,7 @@ import CardForm from "../forms/Card";
 import DeleteCardForm from "../forms/DeleteCard";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
-import {updateCard, deleteCard} from "../../actions/card";
+import {deleteCard, updateCard} from "../../actions/card";
 
 const Edit = ({card}) => {
     const handleSubmit = (values, dispatch) => {

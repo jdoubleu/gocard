@@ -6,7 +6,7 @@ import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 import ProgressDoughnut from "./statistic/ProgressDoughnut";
 
-const Preview = ({register, valuesArray}) => {
+const Preview = ({register}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2">
@@ -30,13 +30,10 @@ Preview.propTypes = {
     registerId: PropTypes.number.isRequired
 };
 
-const makeMapStateToProps = () => {
-    const mapStateToProps = (state, props) => {
-        return {
-            register: state.entities.registers.byId[props.registerId] || {},
-        }
-    };
-    return mapStateToProps
+const mapStateToProps = (state, props) => {
+    return {
+        register: state.entities.registers.byId[props.registerId] || {},
+    }
 };
 
-export default connect(makeMapStateToProps)(Preview);
+export default connect(mapStateToProps)(Preview);
