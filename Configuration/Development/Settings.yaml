@@ -38,4 +38,4 @@ GoCardTeam:
     mail:
       from:
         name: 'GoCard'
-        address: ~
+        address: 'gocard@localhost'
