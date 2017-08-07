@@ -1,15 +1,16 @@
 import React from "react";
 import {Badge, Card, CardText, CardTitle, Col, ListGroup, ListGroupItem,} from "reactstrap";
 import _ from "lodash";
+import Title from "../shared/title";
 
 const FeedbackCard = ({card, userAnswer, value}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2" outline color={value < 3 ? 'danger' : value < 6 ? 'warning' : 'success'}>
                 <h6 className="text-muted">Frage</h6>
-                <CardTitle>
-                    {card.question}
-                </CardTitle>
+                <h5>
+                        <Title title={card.question}/>
+                </h5>
 
                 <h6 className="text-muted">Antwort</h6>
                 <CardText>

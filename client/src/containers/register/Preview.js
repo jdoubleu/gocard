@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {Card, CardTitle, Col, Row} from "reactstrap";
+import {Card, Col, Row} from "reactstrap";
+import Title from "../shared/title";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 import ProgressDoughnut from "./statistic/ProgressDoughnut";
@@ -10,7 +11,9 @@ const Preview = ({register}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2">
-                <CardTitle>{register.title}</CardTitle>
+                <h5>
+                    <Title title={register.title}/>
+                </h5>
 
                 <Row className="mb-3">
                     <Col xs="8">
