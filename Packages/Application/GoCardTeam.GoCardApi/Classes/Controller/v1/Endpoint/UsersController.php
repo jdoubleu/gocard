@@ -152,6 +152,10 @@ class UsersController extends AbstractApiEndpointController
     public function updateUserAction(User $user)
     {
         $this->userRepository->update($user);
+
+        $this->persistenceManager->persistAll();
+
+        $this->view->assign('value', $user);
     }
 
     /**
