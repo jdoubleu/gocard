@@ -15,6 +15,8 @@ import {
 } from "../../selectors/index";
 import ProgressBar from "../register/statistic/ProgressBar";
 import {Link} from "react-router-dom";
+import Title from "../shared/title";
+import ClippedTag from "../shared/clippedTag";
 
 const validate = values => {
     const errors = {};
@@ -53,13 +55,13 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
             <CardGroup>
                 <Card block>
                     <h6 className="text-muted">Name des Registers</h6>
-                    <CardTitle>{register.title}</CardTitle>
+                    <CardTitle><Title title={register.title}/></CardTitle>
                     <h6 className="text-muted">Verwendeten Tags</h6>
                     <div>
                         {
                             tags.map((tag) => {
                                     return (
-                                        <span className="btn btn-outline-primary p-1 ml-1" key={tag}>{tag}</span>
+                                        <span className="btn btn-outline-primary p-1 ml-1" key={tag}><ClippedTag tag={tag}/></span>
                                     )
                                 }
                             )
