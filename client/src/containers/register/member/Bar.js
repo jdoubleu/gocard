@@ -10,7 +10,7 @@ import {makeGetUsersByRegister} from "../../../selectors";
 
 class Bar extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const {dispatch, registerId} = this.props;
         dispatch(loadMembersByRegister(registerId));
     }
@@ -26,22 +26,23 @@ class Bar extends React.Component {
                     visibleMembers && visibleMembers.length > 0 &&
                     visibleMembers.map((member) =>
                         <span key={member.id}>
-                            <UserIcon diameter={diameter} id={registerId + member.id}>
+                            <UserIcon diameter={diameter} id={`${registerId}-${member.id}`}>
                                 {member.displayName}
                             </UserIcon>
-                            <UncontrolledTooltip placement="bottom" target={registerId + member.id}>
+                            <UncontrolledTooltip placement="bottom" target={`${registerId}-${member.id}`}>
                                 {member.displayName}
                             </UncontrolledTooltip>
                         </span>
+
                     )
                 }
                 {
                     collapsedMembers && collapsedMembers.length > 0 &&
                     <span>
-                        <Icon diameter={diameter} id={registerId + '-collapsed'}>
+                        <Icon diameter={diameter} id={`${registerId}-collapsed`}>
                             {"+" + collapsedMembers.length}
                         </Icon>
-                        <UncontrolledTooltip placement="bottom" target={registerId + '-collapsed'}>
+                        <UncontrolledTooltip placement="bottom" target={`${registerId}-collapsed`}>
                             {
                                 collapsedMembers.map((member) =>
                                     <span>{member.displayName}<br/></span>
