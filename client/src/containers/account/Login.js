@@ -25,8 +25,8 @@ const Login = () => {
     };
 
     return (
-        <Row>
-            <Col sm={12} lg={{size: 10, offset: 1}} className="pb-2">
+        <Row className="mt-4">
+            <Col sm="12" lg={{size: 5, offset: 1}}>
                 <h1 className="display-4 hidden-xs-down">Willkommen bei <Logo/></h1>
                 <h1 className="hidden-sm-up">Willkommen bei <Logo/></h1>
                 <p className="lead">
@@ -35,7 +35,7 @@ const Login = () => {
                 </p>
             </Col>
 
-            <Col lg={{size:10, offset:1}}>
+            <Col sm="12" lg={{size: 5}}>
                 <Card block className="h-100">
                     <CardTitle>
                         <span className="text-muted">Anmelden</span> GoCard-Account
