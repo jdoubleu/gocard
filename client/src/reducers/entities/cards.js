@@ -7,7 +7,6 @@ import {
     UPDATE_CARD_SUCCESS
 } from "../../actions/card";
 import _ from "lodash";
-import register from "../../registerServiceWorker";
 import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
 
 function addCardEntry(state, action) {

@@ -9,7 +9,6 @@ import {
     ListGroup,
     ListGroupItem,
     ListGroupItemText,
-    Media,
     NavLink,
     Row,
     Table

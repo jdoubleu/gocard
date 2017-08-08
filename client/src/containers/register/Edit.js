@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Headline from "../shared/headline";
 import {Card, Col, Row} from "reactstrap";
 import {deleteRegister, updateRegister} from "../../actions/register";
-import {clearMembers, updateMembersByRegister} from "../../actions/member";
+import {updateMembersByRegister} from "../../actions/member";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import RegisterForm from "../forms/Register";
