@@ -10,7 +10,7 @@ import ProgressDoughnutPreview from "./statistic/ProgressDoughtnutPreview";
 const Preview = ({register}) => {
     return (
         <Col xl="4" md="6" xs="12">
-            <Card block className="mb-2">
+            <Card block className="mb-2 fade-in">
                 <h5>
                     <Title title={register.title}/>
                 </h5>
