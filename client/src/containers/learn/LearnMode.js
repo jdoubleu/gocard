@@ -23,7 +23,7 @@ import moment from "moment";
 
 const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, scoreCurrentCard, createScoreForCard, handleSkip, countAnswers, countCards}) => {
 
-    const calcCardStatistic = () => {
+    const calcCardStatistic = (lastCorrect, scoreCurrentCard) => {
         let scoreStep = 0;
         if (lastCorrect === true) {
             scoreStep = 1;
@@ -63,7 +63,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
             res = valuesSingle !== undefined && currentCard.content.correct === _.parseInt(valuesSingle.userAnswer);
             dispatch(setLastCorrect(res));
             dispatch(setLastResult(_.parseInt(valuesSingle.userAnswer)));
-            calcCardStatistic();
+            calcCardStatistic(res, scoreCurrentCard);
             if (mode !== "TEST_MODE") {
                 dispatch(setShowResult(true));
             } else {
@@ -79,7 +79,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
             let res = resA && resB;
             dispatch(setLastCorrect(res));
             dispatch(setLastResult(valuesMultiple.userAnswer.answer));
-            calcCardStatistic();
+            calcCardStatistic(res, scoreCurrentCard);
             if (mode !== "TEST_MODE") {
                 dispatch(setShowResult(true));
             } else {
@@ -89,7 +89,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
     };
     const handleSubmitSelfValidate = (values, dispatch) => {
         let res = valuesSelfValidate.correct === "true";
-        calcCardStatistic();
+        calcCardStatistic(res, scoreCurrentCard);
         dispatch(addResult(currentCard.id, res, res));
         valuesSelfValidate.correct = undefined;
     };
@@ -99,7 +99,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
         let res = currentCard.content.answer === lastAnswer;
         dispatch(setLastCorrect(res));
         dispatch(setLastResult(lastAnswer));
-        calcCardStatistic();
+        calcCardStatistic(res, scoreCurrentCard);
         if (mode !== "TEST_MODE") {
             dispatch(setShowResult(true));
         } else {
