@@ -155,7 +155,7 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                     resultCards &&
                     _.values(calcCards()).map((card) =>
                         <FeedbackCard card={card} userAnswer={results[card.id].answer}
-                                      value={(lastScores[card.id] || {})} key={card.id}/>
+                                      value={(lastScores[card.id] || {})} key={card.id} correct={results[card.id].correct}/>
                     )
                 }
             </Row>
