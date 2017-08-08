@@ -13,6 +13,7 @@ import {loadRegister} from "../../actions/register";
 import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
+import _ from "lodash";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -23,6 +24,7 @@ class Detail extends React.Component {
 
     render() {
         const {register, cardIds, match, tags, settings, role} = this.props;
+
 
         const handleSubmit = (values, dispatch) => {
             dispatch(setSelectedSettings(register.id, values.mode, values.tags));
@@ -61,7 +63,7 @@ class Detail extends React.Component {
                     <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <LearnForm registerId={register.id} disabled={false} tags={tags}
-                                   onSubmit={handleSubmit} initialValues={settings}/>
+                                   onSubmit={handleSubmit} initialValues={{...settings, tags: _.differenceWith(settings.tags, tags)}}/>
                     </Card>
 
                     <Card block className="col-sm-12 col-md-4 mb-2">
