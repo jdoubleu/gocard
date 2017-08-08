@@ -15,6 +15,7 @@ import {
     Table
 } from "reactstrap";
 
+
 const Help = () => {
     return (
         <div id="top" className="help">
@@ -105,9 +106,12 @@ const Help = () => {
                                 </ListGroup>
 
                                 Eine Karteikarte wird für dich persönlich in drei Bewertungsstufen eingeteilt, damit du
-                                deinen Lernfortschritt im Überblick behältst. Jede Karte hat einen Wert(Score).Dieser Wert
-                                gib, an wie gut du diese Karte kannst. Der Wert einer Karte verändert sich durchs Lernen.
-                                Beantwortest du eine Frage richtig, wird der Score um 1 erhöht. Beantwortest du die Karte falsch oder
+                                deinen Lernfortschritt im Überblick behältst. Jede Karte hat einen Wert(Score).Dieser
+                                Wert
+                                gib, an wie gut du diese Karte kannst. Der Wert einer Karte verändert sich durchs
+                                Lernen.
+                                Beantwortest du eine Frage richtig, wird der Score um 1 erhöht. Beantwortest du die
+                                Karte falsch oder
                                 oder überspringst die Karte, wird der Score um 1 verringert
                                 <br/>
                                 <Table responsive className="mt-2 mb-3 text-left">
@@ -121,17 +125,20 @@ const Help = () => {
                                     <tr>
                                         <td>Kann ich nicht</td>
                                         <td>Wird im Statistik Graphen rot dargestellt.
-                                        Score kleiner als 3</td>
+                                            Score kleiner als 3
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Geht so</td>
                                         <td>Wird im Statistik Graphen gelb/orange dargestellt.
-                                        Score kleiner als 6</td>
+                                            Score kleiner als 6
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Kann ich</td>
                                         <td>Wird im Statistik Graphen grün dargestellt.
-                                        Score größer als 5</td>
+                                            Score größer als 5
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </Table>
@@ -169,9 +176,12 @@ const Help = () => {
                             <CardTitle>Wie bearbeite ich eine Karteikarte?</CardTitle>
                             <CardText className="px-2 text-justify">
                                 In der Registerdetailansicht befindet sich eine Übersicht über alle Karteikarten, dort
-                                kannst du die Karteikarte anklicken und kommst zu einer detailierten Anzeige der Karte. Über den
-                                Link "Bearbeiten" kommst du zur Seite zum Bearbeiten dieser Karte. Beim bearbeiten kannst du alle
-                                Einstellungen der Karte neu definieren. Desweiteren hast du die Möglichkeit eine Karte zu löschen.
+                                kannst du die Karteikarte anklicken und kommst zu einer detailierten Anzeige der Karte.
+                                Über den
+                                Link "Bearbeiten" kommst du zur Seite zum Bearbeiten dieser Karte. Beim bearbeiten
+                                kannst du alle
+                                Einstellungen der Karte neu definieren. Desweiteren hast du die Möglichkeit eine Karte
+                                zu löschen.
                             </CardText>
 
                             <span><hr/></span>
@@ -390,17 +400,25 @@ const Help = () => {
                                 Karten. Es wird die Bewertungsstufe angegeben.
                                 <br/>
                                 <tt>
-                                Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "kann ich", 5 "Geht so" und
-                                2 "kann ich nicht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch sein.
+                                    Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "kann ich", 5 "Geht
+                                    so" und
+                                    2 "kann ich nicht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch
+                                    sein.
                                 </tt>
                                 <br/>
-                                Im unteren Bereich findest du eine Übersicht der Karteikarten, in form einer Feedbackkarte, die du gelernt hast. Die Feedbackkarten haben
-                                einen Rahmen, der Anzeigt, ob die Karteikarte richtig, falsch oder mit Überspringen beantwortet wurde.
-                                Hierbei steht ein grüner Rahmen für Richtig, ein roter für Falsch und ein grauer für Übersprungen.
-                                Auf der Feedbackkarte wird die Frage angezeigt und die Antwortmöglichkeiten. Bei den Antwortmöglichkeiten wird angezeigt, welche Antwort du
-                                gegeben hast. Die letzte Information auf der Feedbackkarte ist der Score. Dieser sagt dir, ob du diese Karte "gut, "geht so", "schlecht" oder noch nicht
+                                Im unteren Bereich findest du eine Übersicht der Karteikarten, in form einer
+                                Feedbackkarte, die du gelernt hast. Die Feedbackkarten haben
+                                einen Rahmen, der Anzeigt, ob die Karteikarte richtig, falsch oder mit Überspringen
+                                beantwortet wurde.
+                                Hierbei steht ein grüner Rahmen für Richtig, ein roter für Falsch und ein grauer für
+                                Übersprungen.
+                                Auf der Feedbackkarte wird die Frage angezeigt und die Antwortmöglichkeiten. Bei den
+                                Antwortmöglichkeiten wird angezeigt, welche Antwort du
+                                gegeben hast. Die letzte Information auf der Feedbackkarte ist der Score. Dieser sagt
+                                dir, ob du diese Karte "gut, "geht so", "schlecht" oder noch nicht
                                 beantwortest hast.
-                                Desweitern kann man je nach Lernmodus die Karteikarten filtern. Es können z.B nur richtige oder nur falsche angezeigt werden.
+                                Desweitern kann man je nach Lernmodus die Karteikarten filtern. Es können z.B nur
+                                richtige oder nur falsche angezeigt werden.
 
                             </CardText>
 
@@ -538,21 +556,76 @@ const Help = () => {
 
                             <span><hr/></span>
 
+                            <CardTitle>Ablauf Register erstellen</CardTitle>
+                            <CardText className="px-2 text-justify">
+                                1. Neues Register auswählen
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Die Ausgangsposition ist das Dashboard. Wähle hier das Feld aus, welches ein "+" hat
+                                        und den Text "Neues Register".
+                                    </Row>
+                                </Col>
+                                2. Titel festlegen
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Gebe deinem Register einen geeigneten Titel. Ein guter Titel hilft dir später dein Register schnell zu finden.
+                                        Desweitern hilft der Titel anderen, die du zu diesem Register Eingeladen hast zu verstehen, worum es in diesem
+                                        Register geht.
+                                    </Row>
+                                </Col>
+                                3. Beschreibung (optional)
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Du kannst deinem Register eine Beschreibung hinzufügen. In dieser kannst du das Themengebiet dieses Registers noch genauer
+                                        Beschreiben.
+                                    </Row>
+                                </Col>
+                                4. Mitglieder (optional)
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Hier kannst du nach Mitgliedern suchen, mit denen du das Register teilen möchtest. Du kannst Mitglieder über deren Anzeigenamen oder
+                                        deren Email suchen. An dieser Stelle kannst unter den Mitgliedern auch Rollen verteilen. Mehr zu den Rollen. <a href="role">Hier</a>.
+                                    </Row>
+                                </Col>
+                            </CardText>
+
+                            <span><hr/></span>
+
+                            <CardTitle>Ablauf Karte erstellen</CardTitle>
+                            <CardText className="px-2 text-justify">
+                                1. Register Auswählen
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte
+                                        Register
+                                        aus, indem du eine neue Karteikarte erstellen möchtest.
+                                    </Row>
+                                </Col>
+                                2. Frage festlegen
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Trage die Frage ein die für die Karteikarte beantwortet werden soll.
+                                    </Row>
+                                </Col>
+                                3. Fragetyp Auswählen
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Wähle einen der 4 Fragetypen aus. Anschließend bekommst du ein Formular, in dem du die Antworten eintragen kannst.
+                                        Mehr zum Thema Fragetypen <a href="card">Hier</a>.
+                                    </Row>
+                                </Col>
+                                4. Tags (optional)
+                                <Col className="px-4 text-justify">
+                                    <Row className="mb-1">
+                                        Tags kannst du als letztes Hinzufügen, damit du deine Karten besser Struckturien kannst. <a href="role">Hier</a>.
+                                    </Row>
+                                </Col>
+                            </CardText>
+
+                            <span><hr/></span>
+
                             <CardTitle>Ablauf Lernen</CardTitle>
                             <CardText className="px-2 text-justify">
-
-
-                                <Media className="mt-1">
-
-                                    <Media body>
-                                        Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte
-                                        Register aus, indem die Karteikarten liegen, die du lernen möchtest.
-                                    </Media>
-                                    <Media right href="#">
-                                        <Media object data-src="" alt="Das sollte eig ein BIld werden!"/>
-                                    </Media>
-                                </Media>
-
 
                                 1. Register Auswählen
                                 <Col className="px-4 text-justify">
@@ -561,11 +634,9 @@ const Help = () => {
                                         Register
                                         aus, indem die
                                         Karteikarten liegen, die du lernen möchtest.
-
-
                                     </Row>
                                 </Col>
-                                2. Tags Auswählen
+                                2. Tags Auswählen (optional)
                                 <Col className="px-4 text-justify">
                                     <Row className="mb-1">
                                         Mit der Auswahl der Tags kannst du einschränken, welche Karten du lernen willst.
@@ -578,7 +649,7 @@ const Help = () => {
                                 3. Lernvariante Auswählen
                                 <Col className="px-4 text-justify">
                                     <Row className="mb-1">
-                                        Für eine Erklärung der Lernvariante <a href="#learnmode">Hier!</a>
+                                        Für eine Erklärung der Lernvariante. <a href="learnmode">Hier</a>.
                                     </Row>
                                 </Col>
                                 4. Fragen Beantworten oder Überspringen
@@ -587,7 +658,7 @@ const Help = () => {
                                 <Col className="px-4 text-justify">
                                     <Row className="mb-1">
                                         Wenn du alle Karten durch gelernt hast, kommst du automatisch in die Feedback
-                                        Ansicht.
+                                        Ansicht. Infos zur Feedbackansicht. <a href="feedback">Hier</a>.
                                     </Row>
                                 </Col>
                             </CardText>
