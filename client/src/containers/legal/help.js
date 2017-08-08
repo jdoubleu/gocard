@@ -70,40 +70,41 @@ const Help = () => {
                                 Karteikarte und gibst dazu die entsprechenden Antworten.
                                 Dies kannst du dann beliebig wiederholen, so wie du magst. Bei uns gibt es vier
                                 Kartentypen, die du auswählen kannst.
+                            </CardText>
 
-                                <ListGroup className="text-left mt-3 mb-3">
+                            <ListGroup className="text-left mt-3 mb-3">
 
-                                    <ListGroupItem>
-                                        <ListGroupItemText>
-                                            <b>Single Choice</b> -
-                                            Es gibt mehrere Antwortmöglichkeiten, aber nur eine Antwort ist richtig.
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-                                    <ListGroupItem>
-                                        <ListGroupItemText>
-                                            <b>Multiple Choice</b> -
-                                            Es gibt mehrere Antwortmöglichkeiten und es können eine oder mehrere
-                                            Antworten richtig sein.
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-                                    <ListGroupItem>
-                                        <ListGroupItemText>
-                                            <b>Selbstkontrolle</b> -
-                                            Du beantwortest die Frage für dich selbst. Anschließend wird dir die
-                                            richtige Antwort angezeigt und du bewertest deine gegebene Antwort mit
-                                            richtig oder falsch.
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
-                                    <ListGroupItem>
-                                        <ListGroupItemText>
-                                            <b>Texteingabe</b> -
-                                            Du gibst eine Antwort in das Textfeld ein und deine Antwort wird mit der
-                                            richtigen Antwort verglichen.
-                                        </ListGroupItemText>
-                                    </ListGroupItem>
+                                <ListGroupItem>
+                                    <ListGroupItemText>
+                                        <b>Single Choice</b> -
+                                        Es gibt mehrere Antwortmöglichkeiten, aber nur eine Antwort ist richtig.
+                                    </ListGroupItemText>
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <ListGroupItemText>
+                                        <b>Multiple Choice</b> -
+                                        Es gibt mehrere Antwortmöglichkeiten und es können eine oder mehrere
+                                        Antworten richtig sein.
+                                    </ListGroupItemText>
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <ListGroupItemText>
+                                        <b>Selbstkontrolle</b> -
+                                        Du beantwortest die Frage für dich selbst. Anschließend wird dir die
+                                        richtige Antwort angezeigt und du bewertest deine gegebene Antwort mit
+                                        richtig oder falsch.
+                                    </ListGroupItemText>
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <ListGroupItemText>
+                                        <b>Texteingabe</b> -
+                                        Du gibst eine Antwort in das Textfeld ein und deine Antwort wird mit der
+                                        richtigen Antwort verglichen.
+                                    </ListGroupItemText>
+                                </ListGroupItem>
 
-                                </ListGroup>
-
+                            </ListGroup>
+                            <CardText className="px-2 text-justify">
                                 Eine Karteikarte wird für dich persönlich in drei Bewertungsstufen eingeteilt, damit du
                                 deinen Lernfortschritt im Überblick behältst. Jede Karte hat einen Wert(Score).Dieser
                                 Wert
@@ -112,36 +113,37 @@ const Help = () => {
                                 Beantwortest du eine Frage richtig, wird der Score um 1 erhöht. Beantwortest du die
                                 Karte falsch oder
                                 oder überspringst die Karte, wird der Score um 1 verringert
-                                <br/>
-                                <Table responsive className="mt-2 mb-3 text-left">
-                                    <thead>
-                                    <tr>
-                                        <th>Bewertungsstufe</th>
-                                        <th>Beschreibung</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Kann ich nicht</td>
-                                        <td>Wird im Statistik Graphen rot dargestellt.
-                                            Score kleiner als 3
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Geht so</td>
-                                        <td>Wird im Statistik Graphen gelb/orange dargestellt.
-                                            Score kleiner als 6
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kann ich</td>
-                                        <td>Wird im Statistik Graphen grün dargestellt.
-                                            Score größer als 5
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
                             </CardText>
+
+                            <Table responsive className="mt-2 mb-3 text-left">
+                                <thead>
+                                <tr>
+                                    <th>Bewertungsstufe</th>
+                                    <th>Beschreibung</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Schlecht</td>
+                                    <td>Wird im Statistik Graphen rot dargestellt.
+                                        Score kleiner als 3
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Geht so</td>
+                                    <td>Wird im Statistik Graphen gelb/orange dargestellt.
+                                        Score kleiner als 6
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gut</td>
+                                    <td>Wird im Statistik Graphen grün dargestellt.
+                                        Score größer als 5
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </Table>
+
 
                             <span><hr/></span>
 
@@ -228,33 +230,35 @@ const Help = () => {
                             <CardText className="px-2 text-justify">
                                 Über die Rolle sind die Rechte eines Mitglieds deines Registers definiert.
                                 Folgende Rechte gibt es:
-                                <Table responsive className="mt-2 mb-3 text-left">
-                                    <thead>
-                                    <tr>
-                                        <th>Rolle</th>
-                                        <th>Rechte</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Abonnent</td>
-                                        <td>Darf Karte lesen</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Redakteur</td>
-                                        <td>Darf Karte lesen, neue Karte erstellen, alle Karten bearbeiten und alle
-                                            Karten löschen
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Eigentümer</td>
-                                        <td>Darf Karte lesen, neue Karte erstellen, alle Karten bearbeiten, alle Karten
-                                            löschen, Mitglied zum Register hinzufügen und löschen und kann Mitgliedern
-                                            Rollen zuweisen.
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
+                            </CardText>
+                            <Table responsive className="mt-2 mb-3 text-left">
+                                <thead>
+                                <tr>
+                                    <th>Rolle</th>
+                                    <th>Rechte</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Abonnent</td>
+                                    <td>Darf Karte lesen</td>
+                                </tr>
+                                <tr>
+                                    <td>Redakteur</td>
+                                    <td>Darf Karte lesen, neue Karte erstellen, alle Karten bearbeiten und alle
+                                        Karten löschen
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Eigentümer</td>
+                                    <td>Darf Karte lesen, neue Karte erstellen, alle Karten bearbeiten, alle Karten
+                                        löschen, Mitglied zum Register hinzufügen und löschen und kann Mitgliedern
+                                        Rollen zuweisen.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                            <CardText className="px-2 text-justify">
                                 Die "Standard" Rolle eines neuen Mitglieds ist Abonnent.
                             </CardText>
 
@@ -352,36 +356,38 @@ const Help = () => {
                             <CardTitle id="learnmode">Was sind die Lernvarianten?</CardTitle>
                             <CardText className="px-2 text-justify">
                                 Bei GoCard gibt es drei Lernvarianten:
-                                <Table responsive className="mt-2 mb-3 text-left">
-                                    <thead>
-                                    <tr>
-                                        <th>Lernmodus</th>
-                                        <th>Beschreibung</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Normalmodus</td>
-                                        <td>in diesem Modus werden alle ausgewählten Karten durchlaufen und du
-                                            bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Powermodus</td>
-                                        <td>in diesem Modus werden speziell die Karten gelernt die mit "kann ich
-                                            nicht" bewertet sind und du bekommst direkt angezeigt, ob die Antwort
-                                            "Richtig"
-                                            oder "Falsch" ist.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Klausurmodus</td>
-                                        <td>in diesem Modus werden alle ausgewählten Karten gelernt du bekommst
-                                            nur am Ende gesagt welche Antwort "Richtig" oder "Falsch" war.
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </Table>
+                            </CardText>
+                            <Table responsive className="mt-2 mb-3 text-left">
+                                <thead>
+                                <tr>
+                                    <th>Lernmodus</th>
+                                    <th>Beschreibung</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Normalmodus</td>
+                                    <td>in diesem Modus werden alle ausgewählten Karten durchlaufen und du
+                                        bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Powermodus</td>
+                                    <td>in diesem Modus werden speziell die Karten gelernt die mit "Schlecht" oder
+                                        "Unbeantwortet" bewertet sind und du bekommst direkt angezeigt, ob die Antwort
+                                        "Richtig"
+                                        oder "Falsch" ist.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Klausurmodus</td>
+                                    <td>in diesem Modus werden alle ausgewählten Karten gelernt du bekommst
+                                        nur am Ende gesagt welche Antwort "Richtig" oder "Falsch" war.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                            <CardText>
                                 Nach jedem Lerndurchlauf gibt es eine Feedbackanzeige. Dort kann du alle Details wie zum
                                 Beispiel deine
                                 gegebenen Antworten und deine neue und alte Statistik sehen.
@@ -399,9 +405,9 @@ const Help = () => {
                                 Karten. Es wird die Bewertungsstufe angegeben.
                                 <br/>
                                 <tt>
-                                    Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "kann ich", 5 "Geht
+                                    Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "Gut", 5 "Geht
                                     so" und
-                                    2 "kann ich nicht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch
+                                    2 "Schlecht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch
                                     sein.
                                 </tt>
                                 <br/>
@@ -558,34 +564,31 @@ const Help = () => {
                             <CardTitle>Ablauf Register erstellen</CardTitle>
                             <CardText className="px-2 text-justify">
                                 1. Neues Register auswählen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Die Ausgangsposition ist das Dashboard. Wähle hier das Feld aus, welches ein "+" hat
-                                        und den Text "Neues Register".
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Die Ausgangsposition ist das Dashboard. Wähle hier das Feld aus, welches ein "+" hat
+                                und den Text "Neues Register".
+                                <br/>
                                 2. Titel festlegen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Gebe deinem Register einen geeigneten Titel. Ein guter Titel hilft dir später dein Register schnell zu finden.
-                                        Desweitern hilft der Titel anderen, die du zu diesem Register Eingeladen hast zu verstehen, worum es in diesem
-                                        Register geht.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Gebe deinem Register einen geeigneten Titel. Ein guter Titel hilft dir später dein
+                                Register schnell zu finden.
+                                Desweitern hilft der Titel anderen, die du zu diesem Register Eingeladen hast zu
+                                verstehen, worum es in diesem
+                                Register geht.
+                                <br/>
                                 3. Beschreibung (optional)
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Du kannst deinem Register eine Beschreibung hinzufügen. In dieser kannst du das Themengebiet dieses Registers noch genauer
-                                        Beschreiben.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Du kannst deinem Register eine Beschreibung hinzufügen. In dieser kannst du das
+                                Themengebiet dieses Registers noch genauer
+                                Beschreiben.
+                                <br/>
                                 4. Mitglieder (optional)
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Hier kannst du nach Mitgliedern suchen, mit denen du das Register teilen möchtest. Du kannst Mitglieder über deren Anzeigenamen oder
-                                        deren Email suchen. An dieser Stelle kannst unter den Mitgliedern auch Rollen verteilen. Mehr zu den Rollen. <a href="role">Hier</a>.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Hier kannst du nach Mitgliedern suchen, mit denen du das Register teilen möchtest. Du
+                                kannst Mitglieder über deren Anzeigenamen oder
+                                deren Email suchen. An dieser Stelle kannst unter den Mitgliedern auch Rollen verteilen.
+                                Mehr zu den Rollen. <a href="role">Hier</a>.
+                                <br/>
                             </CardText>
 
                             <span><hr/></span>
@@ -593,73 +596,58 @@ const Help = () => {
                             <CardTitle>Ablauf Karte erstellen</CardTitle>
                             <CardText className="px-2 text-justify">
                                 1. Register Auswählen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte
-                                        Register
-                                        aus, indem du eine neue Karteikarte erstellen möchtest.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte
+                                Register
+                                aus, indem du eine neue Karteikarte erstellen möchtest.
+                                <br/>
                                 2. Frage festlegen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Trage die Frage ein die für die Karteikarte beantwortet werden soll.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Trage die Frage ein die für die Karteikarte beantwortet werden soll.
+                                <br/>
                                 3. Fragetyp Auswählen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Wähle einen der 4 Fragetypen aus. Anschließend bekommst du ein Formular, in dem du die Antworten eintragen kannst.
-                                        Mehr zum Thema Fragetypen <a href="card">Hier</a>.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Wähle einen der 4 Fragetypen aus. Anschließend bekommst du ein Formular, in dem
+                                du die Antworten eintragen kannst.
+                                Mehr zum Thema Fragetypen <a href="card">Hier</a>.
+                                <br/>
                                 4. Tags (optional)
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Tags kannst du als letztes Hinzufügen, damit du deine Karten besser Struckturien kannst. <a href="role">Hier</a>.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Tags kannst du als letztes Hinzufügen, damit du deine Karten besser Struckturien
+                                kannst. <a href="role">Hier</a>.
+                                <br/>
                             </CardText>
 
                             <span><hr/></span>
 
                             <CardTitle>Ablauf Lernen</CardTitle>
                             <CardText className="px-2 text-justify">
-
                                 1. Register Auswählen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte
-                                        Register
-                                        aus, indem die
-                                        Karteikarten liegen, die du lernen möchtest.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Die Ausgangsposition ist das Dashboard. Wähle von hier aus das gewünschte
+                                Register
+                                aus, indem die
+                                Karteikarten liegen, die du lernen möchtest.
+                                <br/>
                                 2. Tags Auswählen (optional)
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Mit der Auswahl der Tags kannst du einschränken, welche Karten du lernen willst.
-                                        Nur
-                                        Karten die einen oder
-                                        mehrere der Ausgewählten Tags besitzen zum Lernen ausgewählt. Wenn du keine Tags
-                                        Angibst werden alle sich im Register befindlichen Karten gelernt.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Mit der Auswahl der Tags kannst du einschränken, welche Karten du lernen willst.
+                                Nur
+                                Karten die einen oder
+                                mehrere der Ausgewählten Tags besitzen zum Lernen ausgewählt. Wenn du keine Tags
+                                Angibst werden alle sich im Register befindlichen Karten gelernt.
+                                <br/>
                                 3. Lernvariante Auswählen
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Für eine Erklärung der Lernvariante. <a href="learnmode">Hier</a>.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Für eine Erklärung der Lernvariante. <a href="learnmode">Hier</a>.
+                                <br/>
                                 4. Fragen Beantworten oder Überspringen
                                 <br/>
                                 5. Feedback
-                                <Col className="px-4 text-justify">
-                                    <Row className="mb-1">
-                                        Wenn du alle Karten durch gelernt hast, kommst du automatisch in die Feedback
-                                        Ansicht. Infos zur Feedbackansicht. <a href="feedback">Hier</a>.
-                                    </Row>
-                                </Col>
+                                <br/>
+                                Wenn du alle Karten durch gelernt hast, kommst du automatisch in die Feedback
+                                Ansicht. Infos zur Feedbackansicht. <a href="feedback">Hier</a>.
+                                <br/>
                             </CardText>
                         </CardBlock>
                     </Card>

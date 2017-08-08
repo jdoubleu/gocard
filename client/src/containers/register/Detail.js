@@ -10,12 +10,12 @@ import MemberBar from "./member/Bar";
 import ProgressDoughnut from "./statistic/ProgressDoughnut";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister} from "../../selectors";
+import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister, makeGetMembershipByRegister} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
+import _ from "lodash";
 import LeaveRegister from "../forms/LeaveRegister";
 import {deleteMemberByRegister} from "../../actions/member";
-import {makeGetMembershipByRegister} from "../../selectors/index";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -26,6 +26,7 @@ class Detail extends React.Component {
 
     render() {
         const {register, cardIds, match, tags, settings, role, member} = this.props;
+
 
         const handleSubmit = (values, dispatch) => {
             dispatch(setSelectedSettings(register.id, values.mode, values.tags));
@@ -73,7 +74,7 @@ class Detail extends React.Component {
                     <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <LearnForm registerId={register.id} disabled={false} tags={tags}
-                                   onSubmit={handleSubmit} initialValues={settings}/>
+                                   onSubmit={handleSubmit} initialValues={{...settings, tags: _.differenceWith(settings.tags, tags)}}/>
                     </Card>
 
                     <Card block className="col-sm-12 col-md-4 mb-2">
