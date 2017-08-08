@@ -95,7 +95,10 @@ class RegistrationService
         /** @var AccountToken $requestToken */
         $requestToken = $this->accountTokenRepository->findByIdentifier($id);
         
-        if ($requestToken === null || $requestToken->getToken() != $token) {
+        if ($requestToken === null
+            || $requestToken->getToken() != $token
+            || $requestToken->getExpireDate() <= new \DateTime()
+        ) {
             return false;
         }
         
