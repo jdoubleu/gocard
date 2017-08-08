@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, CardText, CardTitle, Form} from "reactstrap";
+import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnSingleChoiceField from "./fields/learnSingleChoiceField";
 
 
