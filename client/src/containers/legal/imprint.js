@@ -1,6 +1,6 @@
 import React from "react";
 import Headline from "../shared/headline";
-import {Card, CardText, CardTitle, Col, Row, Button} from "reactstrap";
+import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 
 const Imprint = () => {
     return (
