@@ -37,6 +37,7 @@
 -
   name: 'confirm registration'
   uriPattern: 'confirm'
+  appendExceedingArguments: true
   defaults:
     '@action': 'confirm'
   httpMethods: ['GET']
