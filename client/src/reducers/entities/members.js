@@ -7,7 +7,7 @@ import {
     LOAD_MEMBERS_SUCCESS,
     LOAD_MEMBERSHIPS_SUCCESS,
     UPDATE_MEMBER_SUCCESS,
-    UPDATE_MEMBERS_SUCCESS
+    UPDATE_MEMBERS_SUCCESS, UPDATE_MEMBERSHIP_SET_SUCCESS
 } from "../../actions/member";
 
 import _ from "lodash";
@@ -59,6 +59,7 @@ function membersById(state = {}, action) {
         case LOAD_MEMBER_SUCCESS:
             return addMemberEntry(state, action);
         case LOAD_MEMBERS_SUCCESS:
+        case UPDATE_MEMBERSHIP_SET_SUCCESS:
         case ADD_MEMBERS_SUCCESS:
             return addMemberEntries(state, action);
         case UPDATE_MEMBERS_SUCCESS:
