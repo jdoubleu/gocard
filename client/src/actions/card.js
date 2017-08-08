@@ -12,11 +12,11 @@ export const LOAD_CARDS_REQUEST = 'LOAD_CARDS_REQUEST';
 export const LOAD_CARDS_SUCCESS = 'LOAD_CARDS_SUCCESS';
 export const LOAD_CARDS_FAILURE = 'LOAD_CARDS_FAILURE';
 
-export function loadCards(registerId) {
+export function loadCards(registerId, userId) {
     return {
         types: [LOAD_CARDS_REQUEST, LOAD_CARDS_SUCCESS, LOAD_CARDS_FAILURE],
         callAPI: () => apiFindCardsByRegister({registerId}),
-        payload: {registerId}
+        payload: {registerId, userId}
     }
 }
 

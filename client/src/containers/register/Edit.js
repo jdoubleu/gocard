@@ -15,7 +15,9 @@ const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateRegister(register.id, _.omit(values, 'members'))).then(
             success => {
-                dispatch(updateMembersByRegister(register.id, _.map(values.members, (o) => {return {...o, uid: o.id}}))).then(
+                dispatch(updateMembersByRegister(register.id, _.map(values.members, (o) => {
+                    return {...o, uid: o.id}
+                }))).then(
                     success =>
                         dispatch(push('/'))
                 );
@@ -24,7 +26,6 @@ const Edit = ({register}) => {
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
-        dispatch(clearMembers(_.map(register.members, 'id')));
         return dispatch(deleteRegister(register.id)).then(
             response =>
                 dispatch(push('/'))

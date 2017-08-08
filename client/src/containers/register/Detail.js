@@ -16,9 +16,9 @@ import {push} from "react-router-redux";
 
 class Detail extends React.Component {
     componentWillMount() {
-        const {dispatch, match} = this.props;
+        const {dispatch, match, userId} = this.props;
         dispatch(loadRegister(match.params.registerId));
-        dispatch(loadCards(match.params.registerId));
+        dispatch(loadCards(match.params.registerId, userId));
     }
 
     render() {
@@ -60,7 +60,7 @@ class Detail extends React.Component {
 
                     <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
+                        <LearnForm registerId={register.id} disabled={false} tags={tags}
                                    onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 

@@ -3,14 +3,17 @@ import PropTypes from "prop-types";
 import {loadAllScores} from "../../../actions/score";
 import {makeGetValueArrayByRegister} from "../../../selectors/index";
 import {connect} from "react-redux";
-
+import {loadCards} from "../../../actions/card";
 
 
 class ProgressDoughnutPreview extends React.Component {
 
     componentDidMount() {
         const {dispatch, registerId, userId} = this.props;
-        dispatch(loadAllScores(registerId, userId));
+        dispatch(loadCards(registerId, userId)).then(
+            success =>
+                dispatch(loadAllScores(registerId, userId))
+        )
     }
 
     render() {
@@ -23,18 +26,18 @@ class ProgressDoughnutPreview extends React.Component {
             unanswered: (progress.unanswered || []).length,
         };
 
-        const cards=  good + middle + bad + unanswered;
-        const percentGood = (good/cards)*100;
-        const percentMiddle = (middle/cards)*100;
-        const percentBad = (bad/cards)*100;
-        const percentUnanswered = (unanswered/cards)*100;
-        const restGood = 100-percentGood;
-        const restMiddle = 100-percentMiddle;
-        const restBad = 100-percentBad;
-        const restUnanswered = 100-percentUnanswered;
-        const offSetMiddle= 125-percentGood;
-        const offSetBad = offSetMiddle-percentMiddle;
-        const offSetUnanswered = offSetBad-percentBad;
+        const cards = good + middle + bad + unanswered;
+        const percentGood = (good / cards) * 100;
+        const percentMiddle = (middle / cards) * 100;
+        const percentBad = (bad / cards) * 100;
+        const percentUnanswered = (unanswered / cards) * 100;
+        const restGood = 100 - percentGood;
+        const restMiddle = 100 - percentMiddle;
+        const restBad = 100 - percentBad;
+        const restUnanswered = 100 - percentUnanswered;
+        const offSetMiddle = 125 - percentGood;
+        const offSetBad = offSetMiddle - percentMiddle;
+        const offSetUnanswered = offSetBad - percentBad;
 
 
         return (
@@ -65,6 +68,7 @@ const makeMapStateToProps = () => {
     return (state, props) => {
         return {
             progress: getValueArrayByRegister(state, props) || {},
+            userId: state.auth.userId
         }
     };
 };

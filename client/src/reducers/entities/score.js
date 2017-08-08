@@ -1,62 +1,64 @@
 import {combineReducers} from "redux";
-import {ADD_SCORE_SUCCESS, LOAD_CARDSCORE_SUCCESS, LOAD_SCORE_SUCCESS} from "../../actions/score";
+import {ADD_SCORE_SUCCESS, LOAD_SCORES_SUCCESS} from "../../actions/score";
 import _ from "lodash";
+import {DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS} from "../../actions/card";
+import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
+import {DELETE_USER_SUCCESS} from "../../actions/user";
 
 function addScoreEntry(state, action) {
-    const {response} = action;
-    return _.assign({}, state, {[response.id]: response});
+    const {response, registerId} = action;
+    return _.assign({}, state, {[response.id]: {...response, register: registerId}});
 }
 
 function loadScoreEntries(state, action) {
-    const {response} = action;
-    return _.assign({}, state, _.keyBy(response, 'id'));
+    const {response, userId, registerId} = action;
+    return _.assign({}, _.omitBy(state, {'user': userId, 'register': registerId}), _.keyBy(_.map(response, (o) => {
+        return {...o, 'register': registerId}
+    }), 'id'));
 }
 
-function loadScoreEntry(state, action) {
-    const {response} = action;
-    return _.assign({}, state, {[response.id]: response});
+function deleteScoreEntriesByCard(state, action) {
+    const {cardId} = action;
+    return _.omitBy(state, {'card': cardId});
+}
+
+function loadScoreEntriesByCard(state, action) {
+    const {response, registerId, userId} = action;
+    const cardIds = _.uniq(_.map(response, 'id'));
+    return _.omitBy(state, (o) => {
+        return !_.includes(cardIds, o.card) && o.user === userId && o.register === registerId
+    });
+}
+
+function deleteScoreEntriesByRegister(state, action) {
+    const {registerId} = action;
+    return _.omitBy(state, ['register', registerId]);
+}
+
+function deleteScoreEntriesByUser(state, action) {
+    const {userId} = action;
+    return _.omitBy(state, ['user', userId]);
 }
 
 function scoreById(state = {}, action) {
     switch (action.type) {
         case ADD_SCORE_SUCCESS:
             return addScoreEntry(state, action);
-        case LOAD_SCORE_SUCCESS:
+        case LOAD_SCORES_SUCCESS:
             return loadScoreEntries(state, action);
-        case LOAD_CARDSCORE_SUCCESS:
-            return loadScoreEntry(state, action);
-        default:
-            return state;
-    }
-}
-
-function addScoreId(state, action) {
-    const {response} = action;
-
-    return _.uniq(_.concat(state, response.id));
-}
-
-function addScoreIds(state, action) {
-    const {response} = action;
-
-    return _.union(state, _.map(response, 'id'));
-}
-
-
-function allScores(state = [], action) {
-    switch (action.type) {
-        case ADD_SCORE_SUCCESS:
-        case LOAD_CARDSCORE_SUCCESS:
-            return addScoreId(state, action);
-        case LOAD_SCORE_SUCCESS:
-            return addScoreIds(state, action);
-
+        case DELETE_CARD_SUCCESS:
+            return deleteScoreEntriesByCard(state, action);
+        case LOAD_CARDS_SUCCESS:
+            return loadScoreEntriesByCard(state, action);
+        case DELETE_REGISTER_SUCCESS:
+            return deleteScoreEntriesByRegister(state, action);
+        case DELETE_USER_SUCCESS:
+            return deleteScoreEntriesByUser(state, action);
         default:
             return state;
     }
 }
 
 export default combineReducers({
-    byId: scoreById, // {} 1=>1,20,2
-    allIds: allScores // [1]
+    byId: scoreById,
 });

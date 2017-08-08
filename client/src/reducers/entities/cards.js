@@ -7,6 +7,8 @@ import {
     UPDATE_CARD_SUCCESS
 } from "../../actions/card";
 import _ from "lodash";
+import register from "../../registerServiceWorker";
+import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
 
 function addCardEntry(state, action) {
     const {response} = action;
@@ -27,9 +29,14 @@ function deleteCardEntry(state, action) {
 }
 
 function addCardEntries(state, action) {
-    const {response} = action;
+    const {response, registerId} = action;
 
-    return _.assign({}, state, _.keyBy(response, 'id'));
+    return _.assign({}, _.omitBy(state, ['register', registerId]), _.keyBy(response, 'id'));
+}
+
+function deleteCardEntriesByRegister(state, action) {
+    const {registerId} = action;
+    return _.omitBy(state, ['register', registerId]);
 }
 
 function cardsById(state = {}, action) {
@@ -43,53 +50,14 @@ function cardsById(state = {}, action) {
             return deleteCardEntry(state, action);
         case LOAD_CARDS_SUCCESS:
             return addCardEntries(state, action);
+        case DELETE_REGISTER_SUCCESS:
+            return deleteCardEntriesByRegister(state, action);
         default:
             return state;
     }
 }
 
-
-function addCardId(state, action) {
-    const {response} = action;
-
-    return _.uniq(_.concat(state, response.id));
-}
-
-function deleteCardId(state, action) {
-    const {cardId} = action;
-
-    return _.without(state, cardId);
-}
-
-function updateCardId(state, action) {
-    const {cardId, response} = action;
-
-    return _.concat(_.pull(state, cardId), response.id);
-}
-
-function addCardIds(state, action) {
-    const {response} = action;
-
-    return _.union(state, _.map(response, 'id'));
-}
-
-function allCards(state = [], action) {
-    switch (action.type) {
-        case LOAD_CARD_SUCCESS:
-        case ADD_CARD_SUCCESS:
-            return addCardId(state, action);
-        case UPDATE_CARD_SUCCESS:
-            return updateCardId(state, action);
-        case DELETE_CARD_SUCCESS:
-            return deleteCardId(state, action);
-        case LOAD_CARDS_SUCCESS:
-            return addCardIds(state, action);
-        default:
-            return state;
-    }
-}
 
 export default combineReducers({
     byId: cardsById,
-    allIds: allCards
 });

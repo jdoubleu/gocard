@@ -10,7 +10,7 @@ const learnTextInputField = ({input, content, label, disableLabel, toolTip, meta
             </h6>
         }
 
-        <h4 className="text-muted">Antwort</h4>
+        <h6 className="text-muted">Antwort</h6>
         <Input {...input} name={input.name} type="text" placeholder="Gib deine Antwort ein."/>
 
         {

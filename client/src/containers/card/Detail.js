@@ -38,7 +38,7 @@ class Detail extends React.Component {
                     <Card block>
                         <h6 className="text-muted">Fragetyp</h6>
                         <p>{mapCardType()}</p>
-                        
+
                         {
                             (card.type === "self-validate" || card.type === "text-input") &&
                             <div>
@@ -53,26 +53,26 @@ class Detail extends React.Component {
 
                         {
                             (card.type === "multiple-choice") &&
-                                <div>
-                                    <h6 className="text-muted">Antworten</h6>
-                                    <ListGroup className="mb-2">
+                            <div>
+                                <h6 className="text-muted">Antworten</h6>
+                                <ListGroup className="mb-2">
                                     {card.content.options.map((option, index) => {
                                         if (_.includes(card.content.corrects, index)) {
                                             return (
                                                 <ListGroupItem className="justify-content-between">
-                                                    {index+1}. {option}
+                                                    {index + 1}. {option}
                                                     <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                                             );
                                         } else {
                                             return (
                                                 <ListGroupItem>
-                                                    {index+1}. {option}
+                                                    {index + 1}. {option}
                                                 </ListGroupItem>
                                             );
                                         }
                                     })}
-                                    </ListGroup>
-                                </div>
+                                </ListGroup>
+                            </div>
                         }
 
                         {
@@ -80,21 +80,21 @@ class Detail extends React.Component {
                             <div>
                                 <h6 className="text-muted">Antworten</h6>
                                 <ListGroup className="mb-2">
-                                {card.content.options.map((option, index) => {
-                                    if (card.content.correct === index) {
-                                        return (
-                                            <ListGroupItem className="justify-content-between">
-                                                {index+1}. {option}
-                                                <Badge pill>{'\u2714'}</Badge></ListGroupItem>
-                                        );
-                                    } else {
-                                        return (
-                                            <ListGroupItem>
-                                                {index+1}. {option}
-                                            </ListGroupItem>
-                                        );
-                                    }
-                                })}
+                                    {card.content.options.map((option, index) => {
+                                        if (card.content.correct === index) {
+                                            return (
+                                                <ListGroupItem className="justify-content-between">
+                                                    {index + 1}. {option}
+                                                    <Badge pill>{'\u2714'}</Badge></ListGroupItem>
+                                            );
+                                        } else {
+                                            return (
+                                                <ListGroupItem>
+                                                    {index + 1}. {option}
+                                                </ListGroupItem>
+                                            );
+                                        }
+                                    })}
                                 </ListGroup>
                             </div>
                         }
@@ -121,7 +121,8 @@ class Detail extends React.Component {
                         }
                         <div>
                             <hr/>
-                            <Link className="btn btn-outline-primary btn-block" to={`/register/${match.params.registerId}`}>Zurück zum
+                            <Link className="btn btn-outline-primary btn-block"
+                                  to={`/register/${match.params.registerId}`}>Zurück zum
                                 Register</Link>
                         </div>
                     </Card>

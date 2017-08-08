@@ -40,7 +40,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 value: scoreStep,
                 date: moment().format(),
             };
-            createScoreForCard(currentCard.id, body);
+            createScoreForCard(currentCard.id, body, register.id);
         } else {
             let score = _.parseInt(scoreCurrentCard.value);
             score += scoreStep;
@@ -53,7 +53,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 value: score,
                 date: moment().format(),
             };
-            createScoreForCard(currentCard.id, body);
+            createScoreForCard(currentCard.id, body, register.id);
         }
     };
 
@@ -113,9 +113,15 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
                 {currentCard ? 'Hier kannst du Lernen.' : 'Hier bekommst du ein gesamt Feedback.'}
             </Headline>
-            <div className="text-center">Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
+            {
+                mode !== 'POWER_MODE' &&
+                <div className="text-center">Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
+            }
             <Col sm="12" md={{size: 8, offset: 2}}>
-                <Progress value={((countAnswers + showResult) / countCards) * 100} className="mb-1"/>
+                {
+                    mode !== 'POWER_MODE' &&
+                    <Progress value={((countAnswers + showResult) / countCards) * 100} className="mb-1"/>
+                }
                 {currentCard !== null &&
                 <Card block>
                     {
@@ -167,6 +173,7 @@ const makeMapStateToProps = () => {
     const getCardIdsByTags = makeGetCardIdsByTags();
     const getSizeOfResults = makeGetSizeOfResults();
 
+
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
         return {
@@ -195,8 +202,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setShowResult(false));
         dispatch(addResult(cardId, answer, correct));
     },
-    createScoreForCard: (currentCardId, body) => {
-        dispatch(addScore(currentCardId, body));
+    createScoreForCard: (currentCardId, body, registerId) => {
+        dispatch(addScore(currentCardId, body, registerId));
     },
     handleSkip: () => {
         dispatch(setLastCorrect(null));
