@@ -14,6 +14,7 @@ use Neos\Flow\I18n\Translator;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Mvc\Routing\UriBuilder;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
+use Neos\Flow\Security\Cryptography\HashService;
 use Neos\SwiftMailer\Message;
 
 /**
@@ -82,6 +83,59 @@ class PasswordManagementService
      * @var string
      */
     protected $tokenLifetime = 'P1D';
+
+    /**
+     * @Flow\Inject
+     * @var HashService
+     */
+    protected $hashService;
+
+    /**
+     * @param string $id
+     * @param string $token
+     * @param string $oldPassword
+     * @param string $newPassword
+     * @param string $newPasswordRepeated
+     * @return bool
+     */
+    public function processPasswordReset(string $id, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated): bool
+    {
+        /** @var AccountToken $requestToken */
+        $requestToken = $this->accountTokenRepository->findByIdentifier($id);
+
+        if ($requestToken === null
+            || $requestToken->getToken() != $token
+            || $requestToken->getExpireDate() <= new \DateTime()
+        ) {
+            return false;
+        }
+
+        $account = $requestToken->getUser()->getAccount();
+
+        if ($account === null) {
+            $this->hashService->validatePassword($oldPassword, 'bcrypt=>$2a$14$DummySaltToPreventTim,.ingAttacksOnThisProvider');
+            return false;
+        }
+
+        if (!$this->hashService->validatePassword($oldPassword, $account->getCredentialsSource())) {
+            return false;
+        }
+
+        if ($newPassword != $newPasswordRepeated) {
+            return false;
+        }
+
+        $account->setCredentialsSource($this->hashService->hashPassword($newPasswordRepeated));
+
+        $this->accountRepository->update($account);
+        $this->accountTokenRepository->remove($requestToken);
+
+        $this->persistenceManager->whitelistObject($account);
+        $this->persistenceManager->whitelistObject($requestToken);
+        $this->persistenceManager->persistAll(true);
+
+        return true;
+    }
 
     /**
      * @param string $email
