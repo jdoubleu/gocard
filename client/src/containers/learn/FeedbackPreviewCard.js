@@ -157,9 +157,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                 </ListGroup>
                 <h6 className="text-muted">Score</h6>
                 <div>
-                    <span className="rounded-circle" style={{'backgroundColor': `${scoreColor}`}}>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
+                    <span className="rounded px-3" style={{'backgroundColor': `${scoreColor}`}}></span>
                     <span className="ml-2">
                         {calculateScoreType(value, 'schlecht', 'geht so', 'gut', 'unbeantwortet')}
                     </span>

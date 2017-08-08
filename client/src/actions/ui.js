@@ -43,19 +43,6 @@ export function setSelectedSettings(registerId, mode, tags) {
     };
 }
 
-export const ADD_REGISTER_REQUEST = 'ADD_REGISTER_REQUEST';
-export const ADD_REGISTER_SUCCESS = 'ADD_REGISTER_SUCCESS';
-export const ADD_REGISTER_FAILURE = 'ADD_REGISTER_FAILURE';
-
-/*
-export function addRegister(body) {
-    return {
-        types: [ADD_REGISTER_REQUEST, ADD_REGISTER_SUCCESS, ADD_REGISTER_FAILURE],
-        callAPI: () => apiAddRegister({body})
-    }
-}
-*/
-
 export const ADD_CARD_RESULT = 'ADD_CARD_RESULT';
 
 export function addResult(cardId, answer, correct) {

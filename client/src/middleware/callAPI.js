@@ -1,5 +1,7 @@
 import API from "../lib/ApiClient";
 import {logoutUser} from "../actions/auth";
+import _ from "lodash";
+import moment from "moment";
 
 export class RequestError {
     constructor(statusCode, body, message) {
@@ -16,6 +18,7 @@ export default function ({dispatch, getState}) {
             types,
             callAPI,
             shouldCallAPI = () => true,
+            shouldInvalidate = false,
             payload = {},
             access_token = getState().auth.token.access_token || null
         } = action;
@@ -38,7 +41,7 @@ export default function ({dispatch, getState}) {
         }
 
         if (!shouldCallAPI(getState())) {
-            return
+            return Promise.resolve();
         }
 
         if (!!access_token) {
@@ -52,11 +55,16 @@ export default function ({dispatch, getState}) {
             type: requestType
         });
 
+        const invalidate = moment().add(5, 'minutes').format();
+
         return callAPI().then(
             response =>
                 dispatch({
                     ...payload,
-                    response: response.body,
+                    response: shouldInvalidate ? _.isArray(response.body) ? _.map(response.body, (o) => ({
+                        ...o,
+                        invalidate
+                    })) : ({...response.body, invalidate}) : response.body,
                     type: successType
                 }),
             error => {

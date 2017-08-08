@@ -1,3 +1,6 @@
+import moment from "moment";
+import _ from "lodash";
+
 export function getInitials(displayName) {
     if (!displayName)
         return "";
@@ -17,3 +20,16 @@ export function calculateScoreType(score, case1, case2, case3, nullCase) {
     }
     return score.value < 3 ? case1 : score.value < 6 ? case2 : case3;
 }
+
+export function isStateInvalidated(state) {
+    return moment((state || {}).invalidate).isAfter(moment())
+}
+
+export function areStatesInvalidated(state) {
+    _.forOwn(state, (value) => {
+        if(isStateInvalidated(value)) {
+            return true;
+        }
+    });
+}
+

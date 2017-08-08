@@ -1,13 +1,13 @@
 import {
     addUser as apiAddUser,
     deleteUser as apiDeleteUser,
-    getUserByEmail as apiGetUserByEmail,
     getUserById as apiGetUserById,
     requestPasswordReset as apiRequestPasswordReset,
     searchUsersByName as apiSearchUsersByName,
     updatePassword as apiUpdatePassword,
     updateUser as apiUpdateUser
 } from "../lib/ApiClient";
+import {isStateInvalidated} from "../utils/index";
 
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
@@ -16,14 +16,9 @@ export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
 export function getUserById(userId) {
     return {
         types: [LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE],
+        shouldInvalidate: true,
+        shouldCallAPI: (state) => isStateInvalidated(state.entities.users.byId[userId]),
         callAPI: () => apiGetUserById({userId})
-    };
-}
-
-export function getUserByEmail(email) {
-    return {
-        types: [LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAILURE],
-        callAPI: () => apiGetUserByEmail({email})
     };
 }
 
@@ -34,6 +29,7 @@ export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
 export function addUser(body) {
     return {
         types: [ADD_USER_REQUEST, ADD_USER_SUCCESS, ADD_USER_FAILURE],
+        shouldInvalidate: true,
         callAPI: () => apiAddUser({body: {...body, status: 'new'}})
     };
 }
@@ -45,6 +41,7 @@ export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 export function updateUser(userId, body) {
     return {
         types: [UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS, UPDATE_USER_FAILURE],
+        shouldInvalidate: true,
         callAPI: () => apiUpdateUser({userId, body})
     };
 }
@@ -56,6 +53,7 @@ export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
 export function deleteUser(userId) {
     return {
         types: [DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE],
+        shouldInvalidate: true,
         callAPI: () => apiDeleteUser({userId}),
         payload: {userId}
     };
@@ -90,6 +88,7 @@ export const SEARCH_USERS_FAILURE = 'SEARCH_USERS_FAILURE';
 export function searchUsers(name) {
     return {
         types: [SEARCH_USERS_REQUEST, SEARCH_USERS_SUCCESS, SEARCH_USERS_FAILURE],
+        shouldInvalidate: true,
         callAPI: () => apiSearchUsersByName({name})
     };
 }
