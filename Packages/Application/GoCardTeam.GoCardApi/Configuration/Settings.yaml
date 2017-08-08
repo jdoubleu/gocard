@@ -17,6 +17,7 @@ Neos:
       routes:
         'GoCardTeam.GoCardApi':
           position: 'start'
+        'Neos.Flow': FALSE
 
     security:
       authentication:
