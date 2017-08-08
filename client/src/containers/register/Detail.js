@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {loadCards} from "../../actions/card";
 import Headline from "../shared/headline";
-import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../card/Preview";
 import BlankCard from "../card/blankCard";
 import MemberBar from "./member/Bar";
@@ -38,8 +38,8 @@ class Detail extends React.Component {
                     Im unteren Bereich findest Du alle Karten, die sich im Register befinden.
                 </Headline>
 
-                <Row className="p-2">
-                    <Card block className="col-12 col-md-4">
+                <CardGroup>
+                    <Card block className="col-sm-12 col-md-4 mb-2">
                         <CardTitle>Beschreibung</CardTitle>
                         {
                             !register.description &&
@@ -58,13 +58,13 @@ class Detail extends React.Component {
                         }
                     </Card>
 
-                    <Card block className="col-12 col-md-4 border-top-primary">
+                    <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
                                    onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 
-                    <Card block className="col-12 col-md-4">
+                    <Card block className="col-sm-12 col-md-4 mb-2">
                         <CardTitle>Statistik</CardTitle>
                         <CardText>
                             <ProgressDoughnut registerId={register.id}/>
@@ -74,7 +74,7 @@ class Detail extends React.Component {
                             <MemberBar registerId={register.id}/>
                         </CardText>
                     </Card>
-                </Row>
+                </CardGroup>
 
                 <Row className="mt-4 ml-3">
                     <Col>

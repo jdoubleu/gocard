@@ -52,6 +52,7 @@ class ProgressDoughnut extends React.Component {
             <Doughnut
                 options={options}
                 data={data}
+                height={125}
             />
         );
     }
