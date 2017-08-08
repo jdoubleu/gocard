@@ -45,7 +45,7 @@ class ProgressDoughnutPreview extends React.Component {
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#00e673" strokeWidth="4" strokeDasharray={`${percentGood} ${restGood}`} strokeDashoffset="25"></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#e6b800" strokeWidth="4" strokeDasharray={`${percentMiddle} ${restMiddle}`} strokeDashoffset={offSetMiddle}></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#e60000" strokeWidth="4" strokeDasharray={`${percentBad} ${restBad}`} strokeDashoffset={offSetBad}></circle>
-                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#edecee" strokeWidth="4" strokeDasharray={`${percentUnanswered} ${restUnanswered}`} strokeDashoffset={offSetUnanswered}></circle>
+                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#edecee" strokeWidth="4.1" strokeDasharray={`${percentUnanswered} ${restUnanswered}`} strokeDashoffset={offSetUnanswered}></circle>
             </svg>
         );
     }
