@@ -36,7 +36,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                     if (userAnswer === index) {
                                         //Answer correct && index at correct answer position = green with tick
                                         return (
-                                            <ListGroupItem color="success" className="justify-content-between">
+                                            <ListGroupItem color="success" className="justify-content-between" key={index}>
                                                 {index + 1}. {option}
                                                 <Badge pill>{'\u2714'}</Badge>
                                             </ListGroupItem>
@@ -44,7 +44,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                     } else {
                                         //Answer correct && index at different position = green with X
                                         return (
-                                            <ListGroupItem className="justify-content-between">
+                                            <ListGroupItem className="justify-content-between" key={index}>
                                                 {index + 1}. {option}
                                             </ListGroupItem>
                                         );
@@ -55,14 +55,14 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                     if (_.parseInt(userAnswer) === index) {
                                         //Answer not correct && index at position of user Answer = red with X
                                         return (
-                                            <ListGroupItem color="danger" className="justify-content-between">
+                                            <ListGroupItem color="danger" className="justify-content-between" key={index}>
                                                 {index + 1}. {option}
                                             </ListGroupItem>
                                         );
                                     } else if (card.content.correct === index) {
                                         //Answer not correct && index at position of correct answer = red with tick
                                         return (
-                                            <ListGroupItem className="justify-content-between">
+                                            <ListGroupItem className="justify-content-between" key={index}>
                                                 {index + 1}. {option}
                                                 <Badge pill>{'\u2714'}</Badge>
                                             </ListGroupItem>
@@ -70,7 +70,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                     } else {
                                         //Answer not correct && index not at position of correct answer = red with X
                                         return (
-                                            <ListGroupItem className="justify-content-between">
+                                            <ListGroupItem className="justify-content-between" key={index}>
                                                 {index + 1}. {option}
                                             </ListGroupItem>
                                         );
@@ -87,7 +87,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                 if (_.includes(userAnswer, index)) {
                                     //Index at answerCorrect and userAnswer at index = green + tick
                                     return (
-                                        <ListGroupItem color="success" className="justify-content-between">
+                                        <ListGroupItem color="success" className="justify-content-between" key={index}>
                                             {index + 1}. {option}
                                             <Badge pill>{'\u2714'}</Badge>
                                         </ListGroupItem>
@@ -95,7 +95,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                 } else {
                                     //Index at answerCorrect but userAnswer not at index = white + tick
                                     return (
-                                        <ListGroupItem className="justify-content-between">
+                                        <ListGroupItem className="justify-content-between" key={index}>
                                             {index + 1}. {option}
                                             <Badge pill>{'\u2714'}</Badge>
                                         </ListGroupItem>
@@ -106,14 +106,14 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                                 if (_.includes(userAnswer, index)) {
                                     //Index at uncorrect answer && userAnswer at index = red + X
                                     return (
-                                        <ListGroupItem color="danger" className="justify-content-between">
+                                        <ListGroupItem color="danger" className="justify-content-between" key={index}>
                                             {index + 1}. {option}
                                         </ListGroupItem>
                                     );
                                 } else {
                                     //Index at uncorrect answer && userAnswer not at index = white + X
                                     return (
-                                        <ListGroupItem className="justify-content-between">
+                                        <ListGroupItem className="justify-content-between" key={index}>
                                             {index + 1}. {option}
                                         </ListGroupItem>
                                     );

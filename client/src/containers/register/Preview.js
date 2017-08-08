@@ -11,12 +11,11 @@ const Preview = ({register}) => {
     return (
         <Col xl="4" md="6" xs="12">
             <Card block className="mb-2 fade-in">
-                <h5>
-                    <Title title={register.title}/>
-                </h5>
-
                 <Row className="mb-3">
                     <Col xs="8">
+                        <h5>
+                            <Title title={register.title} cutOff={25} />
+                        </h5>
                         <MemberBar registerId={register.id} diameter={36}/>
                     </Col>
                     <Col xs="4">
