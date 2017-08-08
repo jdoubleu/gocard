@@ -5,7 +5,7 @@ import {Card, Col, Row} from "reactstrap";
 import Title from "../shared/title";
 import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
-import ProgressDoughnut from "./statistic/ProgressDoughnut";
+import ProgressDoughnutPreview from "./statistic/ProgressDoughtnutPreview";
 
 const Preview = ({register}) => {
     return (
@@ -20,7 +20,7 @@ const Preview = ({register}) => {
                         <MemberBar registerId={register.id} diameter={36}/>
                     </Col>
                     <Col xs="4">
-                        <ProgressDoughnut registerId={register.id}/>
+                        <ProgressDoughnutPreview registerId={register.id}/>
                     </Col>
                 </Row>
                 <Link className="btn btn-outline-primary" to={`/register/${register.id}`}>Öffnen</Link>
