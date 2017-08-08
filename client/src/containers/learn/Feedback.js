@@ -7,6 +7,7 @@ import {makeGetCardsForResults} from "../../selectors";
 import {Field, getFormValues, reduxForm} from "redux-form";
 import SelectButton from "../forms/fields/selectButton";
 import {
+    makeGetCardsByResults,
     makeGetCorrectCardsForResults,
     makeGetLastScoresByAnsweredCardIds,
     makeGetSkippedCardsForResults,
@@ -24,10 +25,12 @@ const validate = values => {
     return errors
 };
 
-const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards, lastScores}) => {
+const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards, lastScores, cardsPowerMode}) => {
 
     const calcCards = () => {
-        if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
+        if(mode === 'POWER_MODE') {
+            return cardsPowerMode;
+        }else if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
             return resultCards;
         } else if (valuesFeedback.cards === "CORRECT_CARDS") {
             return correctCards;
@@ -166,6 +169,7 @@ const makeMapStateToProps = () => {
     const getSkippedCardsForResults = makeGetSkippedCardsForResults();
     const getValueArrayByAnsweredCardIds = makeGetValueArrayByAnsweredCardIds();
     const getLastScoresByAnsweredCardIds = makeGetLastScoresByAnsweredCardIds();
+    const getCardsByResults = makeGetCardsByResults();
     return (state, props) => {
         return {
             cardIds: state.ui.learning.allIds || [],
@@ -178,6 +182,7 @@ const makeMapStateToProps = () => {
             valuesFeedback: getFormValues('feedback')(state),
             valuesArray: getValueArrayByAnsweredCardIds(state, props),
             lastScores: getLastScoresByAnsweredCardIds(state, props),
+            cardsPowerMode: getCardsByResults(state, props),
         }
     };
 };
