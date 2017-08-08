@@ -13,6 +13,9 @@ import {loadRegister} from "../../actions/register";
 import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
+import LeaveRegister from "../forms/LeaveRegister";
+import {deleteMemberByRegister} from "../../actions/member";
+import {makeGetMembershipByRegister} from "../../selectors/index";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -22,12 +25,19 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {register, cardIds, match, tags, settings, role} = this.props;
+        const {register, cardIds, match, tags, settings, role, member} = this.props;
 
         const handleSubmit = (values, dispatch) => {
             dispatch(setSelectedSettings(register.id, values.mode, values.tags));
             dispatch(resetResults());
             return dispatch(push(`/register/${match.params.registerId}/learn`));
+        };
+
+        const handleLeaveRegister = (values, dispatch) => {
+            dispatch(deleteMemberByRegister(member.register,member.id)).then(
+                success =>
+                    dispatch(push("/"))
+            );
         };
 
         return (
@@ -56,6 +66,8 @@ class Detail extends React.Component {
                                 <Link to={`${register.id}/edit`}>Bearbeiten</Link>
                             </div>
                         }
+                        <span><hr/></span>
+                        <LeaveRegister onSubmit={handleLeaveRegister}/>
                     </Card>
 
                     <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
@@ -101,6 +113,7 @@ const makeMapStateToProps = () => {
     const getCardIdsByRegister = makeGetCardIdsByRegister();
     const getTagsByRegister = makeGetTagsByRegister();
     const getRoleByRegister = makeGetRoleByRegister();
+    const getMembershipByRegister = makeGetMembershipByRegister();
     return (state, props) => {
         const registerId = props.match.params.registerId;
         return {
@@ -110,6 +123,7 @@ const makeMapStateToProps = () => {
             userId: state.auth.userId,
             cardIds: getCardIdsByRegister(state, props) || [],
             role: getRoleByRegister(state, props) || '',
+            member: getMembershipByRegister(state, props) || {},
         }
     };
 };

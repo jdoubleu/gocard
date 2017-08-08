@@ -54,9 +54,18 @@ export const makeGetRegisterIds = () => {
 
 export const makeGetRoleByRegister = () => {
     return createSelector(
+        [makeGetMembershipByRegister()],
+        (membership) => {
+            return membership.role;
+        }
+    );
+};
+
+export const makeGetMembershipByRegister = () => {
+    return createSelector(
         [getUserId, getMembers, getRegisterId],
         (userId, members, registerId) => {
-            return _.map(_.filter(members, {'user': userId, 'register': registerId}), 'role')[0];
+            return _.toArray(_.filter(members, {'user': userId, 'register': registerId}))[0] || {};
         }
     );
 };

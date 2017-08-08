@@ -17,7 +17,7 @@ class Preview extends React.Component {
         const {card} = this.props;
         return (
             <Col xl="4" md="6" xs="12">
-                <Card block className="mb-2">
+                <Card block className="mb-2 fade-in">
                     <h5>
                         <Title title={card.question}/>
                     </h5>

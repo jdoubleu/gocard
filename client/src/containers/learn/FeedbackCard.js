@@ -7,7 +7,7 @@ import _ from "lodash";
 const FeedbackCard = ({card, userAnswer, handleClick}) => {
 
     return (
-        <div sm="12" md={{size: 8, offset: 2}}>
+        <div sm="12" md={{size: 8, offset: 2}} className="fade-in">
             <CardTitle className="text-center">
                 Feedback
             </CardTitle>
