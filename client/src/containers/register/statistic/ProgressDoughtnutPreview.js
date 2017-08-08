@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {loadAllScores} from "../../../actions/score";
 import {makeGetValueArrayByRegister} from "../../../selectors/index";
 import {connect} from "react-redux";
-import {PieChart} from "react-easy-chart-mghadley/npmdist/index";
+
 
 
 class ProgressDoughnutPreview extends React.Component {
