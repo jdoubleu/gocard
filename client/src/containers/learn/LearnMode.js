@@ -108,73 +108,76 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
     };
 
     const calcHeadline = () => {
-        if(currentCard === null) {
+        if (currentCard === null) {
             return 'Hier bekommst du ein gesamt Feedback.';
-        } else if(mode === 'POWER_MODE') {
+        } else if (mode === 'POWER_MODE') {
             return 'Im Powermodus werden speziell die Karten gelernt die nicht mit "Gut" bewertet sind und du bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist. ' +
                 'Der Durchlauf ist beendet sobald du alle Karten einmal richtig beantwortet hast.';
-        } else if(mode === 'NORMAL_MODE') {
+        } else if (mode === 'NORMAL_MODE') {
             return 'Im Normalmodus werden alle ausgewählten Karten durchlaufen und du bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist. Wenn du mal nicht weiter weißt, kann du die Frage auch überspringen.'
-        } else if(mode === 'TEST_MODE') {
+        } else if (mode === 'TEST_MODE') {
             return 'Im Klausurmodus werden alle ausgewählten Karten gelernt. Du bekommst erst am Ende des Lerndurchlaufs angezeigt, welche Antwort "Richtig" oder "Falsch" war.'
         }
     };
 
     return (
         <Row>
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                <Headline
-                    title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
-                    {calcHeadline()}
-                </Headline>
-                {
-                    mode !== 'POWER_MODE' &&
-                    <div className="text-center">
-                        Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
-                }
-            </Col>
-            <Col sm="12" md={{size: 8, offset: 2}}>
-                {
-                    mode !== 'POWER_MODE' &&
-                    <Progress value={((countAnswers + showResult) / countCards) * 100} className="mb-1"/>
-                }
-                {currentCard !== null &&
-                <Card block>
+            {
+                currentCard !== null &&
+                <Col sm="12" md={{size: 8, offset: 2}}>
+                    <Headline
+                        title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
+                        {calcHeadline()}
+                    </Headline>
                     {
-                        currentCard && mode !== "TEST_MODE" && showResult === true &&
-                        <FeedbackCard card={currentCard} userAnswer={lastResult}
-                                      handleClick={() => {
-                                          handleFeedbackClick(currentCard.id, lastResult, lastCorrect)
-                                      }}/>
+                        mode !== 'POWER_MODE' &&
+                        <div className="text-center">
+                            Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
                     }
                     {
-                        currentCard && currentCard.type === "single-choice" && showResult === false &&
-                        <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode}
-                                              handleSkip={handleSkip}/>
+                        mode !== 'POWER_MODE' &&
+                        <Progress value={((countAnswers + showResult) / countCards) * 100} className="mb-1"/>
                     }
-                    {
-                        currentCard && currentCard.type === "multiple-choice" && showResult === false &&
-                        <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode}
-                                                handleSkip={handleSkip}/>
-                    }
-                    {
-                        currentCard && currentCard.type === 'self-validate' && showResult === false &&
-                        <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode}
-                                              handleSkip={handleSkip}/>
-                    }
-                    {
-                        currentCard && currentCard.type === 'text-input' && showResult === false &&
-                        <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode}
-                                           handleSkip={handleSkip}/>
-                    }
-                </Card>
-
-
-                }
-            </Col>
+                    <Card block>
+                        {
+                            currentCard && mode !== "TEST_MODE" && showResult === true &&
+                            <FeedbackCard card={currentCard} userAnswer={lastResult}
+                                          handleClick={() => {
+                                              handleFeedbackClick(currentCard.id, lastResult, lastCorrect)
+                                          }}/>
+                        }
+                        {
+                            currentCard && currentCard.type === "single-choice" && showResult === false &&
+                            <SingleChoiceCardForm onSubmit={handleSubmitSingleChoice} card={currentCard} mode={mode}
+                                                  handleSkip={handleSkip}/>
+                        }
+                        {
+                            currentCard && currentCard.type === "multiple-choice" && showResult === false &&
+                            <MultipleChoiceCardForm onSubmit={handleSubmitMultipleChoice} card={currentCard} mode={mode}
+                                                    handleSkip={handleSkip}/>
+                        }
+                        {
+                            currentCard && currentCard.type === 'self-validate' && showResult === false &&
+                            <SelfValidateCardForm onSubmit={handleSubmitSelfValidate} card={currentCard} mode={mode}
+                                                  handleSkip={handleSkip}/>
+                        }
+                        {
+                            currentCard && currentCard.type === 'text-input' && showResult === false &&
+                            <TextInputCardForm onSubmit={handleSubmitTextInput} card={currentCard} mode={mode}
+                                               handleSkip={handleSkip}/>
+                        }
+                    </Card>
+                </Col>
+            }
             {
                 currentCard === null &&
-                <Feedback register={register} mode={mode} resultCards={resultCards} registerId={register.id}/>
+                <Col sm="12">
+                    <Headline
+                        title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
+                        {calcHeadline()}
+                    </Headline>
+                    <Feedback register={register} mode={mode} resultCards={resultCards} registerId={register.id}/>
+                </Col>
             }
 
         </Row>
