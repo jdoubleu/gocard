@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Headline from "../shared/headline";
 import {Card, Col, Row} from "reactstrap";
 import {deleteRegister, updateRegister} from "../../actions/register";
-import {clearMembers, updateMembersByRegister} from "../../actions/member";
+import {updateMemberSetByRegister} from "../../actions/member";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import RegisterForm from "../forms/Register";
@@ -15,8 +15,8 @@ const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateRegister(register.id, _.omit(values, 'members'))).then(
             success => {
-                dispatch(updateMembersByRegister(register.id, _.map(values.members, (o) => {
-                    return {...o, uid: o.id}
+                dispatch(updateMemberSetByRegister(register.id, _.map(values.members, (o) => {
+                    return _.omit({...o, uid: o.id}, 'id')
                 }))).then(
                     success =>
                         dispatch(push('/'))

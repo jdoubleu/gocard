@@ -5,7 +5,7 @@ import {
     findMemberByRegisterAndUser as apiFindMemberByRegisterAndUser,
     findMembersByRegister as apiFindMembersByRegister,
     getMembersByUser as apiGetMembersByUser,
-    updateMemberByRegister as apiUpdateMemberByRegister,
+    updateMemberByRegister as apiUpdateMemberByRegister, updateMemberSetOfRegister,
     updateMembersOfRegister as apiUpdateMembersByRegister
 } from "../lib/ApiClient";
 
@@ -39,7 +39,7 @@ export const LOAD_MEMBERSHIPS_FAILURE = 'LOAD_MEMBERSHIPS_FAILURE';
 
 export function loadMembershipsByUser(userId) {
     return {
-        types: [LOAD_MEMBERS_REQUEST, LOAD_MEMBERS_SUCCESS, LOAD_MEMBERS_FAILURE],
+        types: [LOAD_MEMBERSHIPS_REQUEST, LOAD_MEMBERSHIPS_SUCCESS, LOAD_MEMBERSHIPS_FAILURE],
         callAPI: () => apiGetMembersByUser({userId}),
         payload: {userId}
     }
@@ -90,6 +90,17 @@ export function updateMembersByRegister(registerId, members) {
     return {
         types: [UPDATE_MEMBERS_REQUEST, UPDATE_MEMBERS_SUCCESS, UPDATE_MEMBERS_FAILURE],
         callAPI: () => apiUpdateMembersByRegister({registerId, members}),
+        payload: {registerId}
+    }
+}
+export const UPDATE_MEMBERSHIP_SET_REQUEST = 'UPDATE_MEMBERSHIP_SET_REQUEST';
+export const UPDATE_MEMBERSHIP_SET_SUCCESS = 'UPDATE_MEMBERSHIP_SET_SUCCESS';
+export const UPDATE_MEMBERSHIP_SET_FAILURE = 'UPDATE_MEMBERSHIP_SET_FAILURE';
+
+export function updateMemberSetByRegister(registerId, members) {
+    return {
+        types: [UPDATE_MEMBERSHIP_SET_REQUEST, UPDATE_MEMBERSHIP_SET_SUCCESS, UPDATE_MEMBERSHIP_SET_FAILURE],
+        callAPI: () => updateMemberSetOfRegister({registerId, member: members}),
         payload: {registerId}
     }
 }
