@@ -35,6 +35,14 @@
   httpMethods: ['GET']
 
 -
+  name: 'confirm registration'
+  uriPattern: 'confirm'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'confirm'
+  httpMethods: ['GET']
+
+-
   name: 'find user'
   uriPattern: '{userId}'
   defaults:

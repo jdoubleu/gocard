@@ -1800,6 +1800,52 @@ export function searchUsersByName(parameters) {
 }
 
 /**
+ * Action which will confirm registration
+ *
+ * @param {object} parameters - method options and parameters
+ * @param {string} parameters.identifier - Confirmation Request identifier
+ * @param {string} parameters.token - Confirmation Request token
+ */
+export function getUsersConfirm(parameters) {
+    if (parameters === undefined) {
+        parameters = {};
+    }
+    let deferred = Q.defer();
+    let domain = client.domain,
+        path = '/users/confirm';
+    let body = {},
+        queryParameters = {},
+        headers = {},
+        form = {};
+
+    headers['Accept'] = ['application/json'];
+
+    if (parameters['identifier'] !== undefined) {
+        queryParameters['identifier'] = parameters['identifier'];
+    }
+
+    if (parameters['identifier'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: identifier'));
+        return deferred.promise;
+    }
+
+    if (parameters['token'] !== undefined) {
+        queryParameters['token'] = parameters['token'];
+    }
+
+    if (parameters['token'] === undefined) {
+        deferred.reject(new Error('Missing required  parameter: token'));
+        return deferred.promise;
+    }
+
+    queryParameters = mergeQueryParams(parameters, queryParameters);
+
+    client.request('getUsersConfirm', 'GET', domain + path, parameters, body, headers, queryParameters, form, deferred);
+
+    return deferred.promise;
+}
+
+/**
  * Generates a link with a temporary reset token which will be send to
 the users email address.
 

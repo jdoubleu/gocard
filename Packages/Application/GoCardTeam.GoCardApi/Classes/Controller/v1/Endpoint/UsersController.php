@@ -7,6 +7,7 @@ use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
+use GoCardTeam\GoCardApi\Domain\Service\v1\RegistrationService;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
@@ -47,6 +48,12 @@ class UsersController extends AbstractApiEndpointController
     protected $memberRepository;
 
     /**
+     * @Flow\Inject
+     * @var RegistrationService
+     */
+    protected $registrationService;
+
+    /**
      * Allows property modification for update action.
      * By default it is not allowed to modify a persisted object.
      */
@@ -55,6 +62,7 @@ class UsersController extends AbstractApiEndpointController
         $userConfiguration = $this->arguments->getArgument('user')->getPropertyMappingConfiguration();
         $userConfiguration->allowAllProperties()->skipProperties('uid', 'accountType');
         $userConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        $this->registrationService->setRequest($this->request);
     }
 
     /**
@@ -65,18 +73,8 @@ class UsersController extends AbstractApiEndpointController
      */
     public function addUserAction(User $user, string $password)
     {
-        $account = $this->accountService->createNewLocalAccount($user->getEmail(), $password);
-
         try {
-            $this->accountRepository->add($account);
-
-            $user->setAccount($account);
-
-            $this->userRepository->add($user);
-
-            $this->persistenceManager->whitelistObject($account);
-            $this->persistenceManager->whitelistObject($user);
-            $this->persistenceManager->persistAll(true);
+            $user = $this->registrationService->createNewAccount($user, $password);
         } catch (KnownObjectException | UniqueConstraintViolationException $e) {
             $this->throwStatus(409);
         }
@@ -176,5 +174,28 @@ class UsersController extends AbstractApiEndpointController
         $members = $this->memberRepository->findByUser($user);
         
         $this->view->assign('value', $members);
+    }
+
+    /**
+     * Prepare registration service for confirm action
+     */
+    public function initializeConfirmAction()
+    {
+        $this->registrationService->setRequest($this->request);
+    }
+
+    /**
+     * @param string $identifier
+     * @param string $token
+     */
+    public function confirmAction(string $identifier, string $token)
+    {
+        if ($this->registrationService->confirmRegistrationAndUpdate($identifier, $token)) {
+            $status = 'success';
+        } else {
+            $status = 'error';
+        }
+
+        $this->forward('index', 'Standard', null, ['confirmation' => $status]);
     }
 }
