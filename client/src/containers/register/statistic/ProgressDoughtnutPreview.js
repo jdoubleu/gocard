@@ -32,7 +32,7 @@ class ProgressDoughnutPreview extends React.Component {
         const restMiddle = 100-percentMiddle;
         const restBad = 100-percentBad;
         const restUnanswered = 100-percentUnanswered;
-        const offSetMiddle= 100-percentGood;
+        const offSetMiddle= 125-percentGood;
         const offSetBad = offSetMiddle-percentMiddle;
         const offSetUnanswered = offSetBad-percentBad;
 
@@ -42,7 +42,7 @@ class ProgressDoughnutPreview extends React.Component {
                 <circle cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFFFFF" strokeWidth="5"></circle>
 
-                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#00e673" strokeWidth="4" strokeDasharray={`${percentGood} ${restGood}`} strokeDashoffset="0"></circle>
+                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#00e673" strokeWidth="4" strokeDasharray={`${percentGood} ${restGood}`} strokeDashoffset="25"></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#e6b800" strokeWidth="4" strokeDasharray={`${percentMiddle} ${restMiddle}`} strokeDashoffset={offSetMiddle}></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#e60000" strokeWidth="4" strokeDasharray={`${percentBad} ${restBad}`} strokeDashoffset={offSetBad}></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#edecee" strokeWidth="4" strokeDasharray={`${percentUnanswered} ${restUnanswered}`} strokeDashoffset={offSetUnanswered}></circle>
