@@ -105,10 +105,10 @@ const Help = () => {
                                 </ListGroup>
 
                                 Eine Karteikarte wird für dich persönlich in drei Bewertungsstufen eingeteilt, damit du
-                                deinen Lernfortschritt im Überblick behältst. Wenn du eine Karte zweimal in Folge
-                                richtig beantwortest,
-                                steigst du eine Bewertungsstufe auf. Wenn du eine Karte falsch beantwortest "sinkst" du
-                                eine Bewertungsstufe hinab.
+                                deinen Lernfortschritt im Überblick behältst. Jede Karte hat einen Wert(Score).Dieser Wert
+                                gib, an wie gut du diese Karte kannst. Der Wert einer Karte verändert sich durchs Lernen.
+                                Beantwortest du eine Frage richtig, wird der Score um 1 erhöht. Beantwortest du die Karte falsch oder
+                                oder überspringst die Karte, wird der Score um 1 verringert
                                 <br/>
                                 <Table responsive className="mt-2 mb-3 text-left">
                                     <thead>
@@ -120,16 +120,18 @@ const Help = () => {
                                     <tbody>
                                     <tr>
                                         <td>Kann ich nicht</td>
-                                        <td>Wird im Statistik Graphen rot dargestellt.</td>
+                                        <td>Wird im Statistik Graphen rot dargestellt.
+                                        Score kleiner als 3</td>
                                     </tr>
                                     <tr>
                                         <td>Geht so</td>
-                                        <td>Wird im Statistik Graphen gelb/orange dargestellt.</td>
+                                        <td>Wird im Statistik Graphen gelb/orange dargestellt.
+                                        Score kleiner als 6</td>
                                     </tr>
                                     <tr>
                                         <td>Kann ich</td>
                                         <td>Wird im Statistik Graphen grün dargestellt.
-                                        </td>
+                                        Score größer als 5</td>
                                     </tr>
                                     </tbody>
                                 </Table>
@@ -167,9 +169,9 @@ const Help = () => {
                             <CardTitle>Wie bearbeite ich eine Karteikarte?</CardTitle>
                             <CardText className="px-2 text-justify">
                                 In der Registerdetailansicht befindet sich eine Übersicht über alle Karteikarten, dort
-                                kannst du die Karteikarte anklicken die du bearbeiten möchtest. Anschießend hast du das
-                                gleiche Formular, wie bei der Erstellung einer Karteikarte.
-                                Du kannst nun Änderungen vornehmen und diese mit "Speichern" bestätigen.
+                                kannst du die Karteikarte anklicken und kommst zu einer detailierten Anzeige der Karte. Über den
+                                Link "Bearbeiten" kommst du zur Seite zum Bearbeiten dieser Karte. Beim bearbeiten kannst du alle
+                                Einstellungen der Karte neu definieren. Desweiteren hast du die Möglichkeit eine Karte zu löschen.
                             </CardText>
 
                             <span><hr/></span>
@@ -384,10 +386,22 @@ const Help = () => {
                                 sieht du die Beschreibung
                                 des Registers und die in diesem Lerndurchlauf verwendeten Tags. In dem anderen Segment
                                 befindet sich ein Statistikgraph.
-                                Der sowohl die alte Statistik, als auch die neue Statistik anzeigt.
-                                Darunter befindet sich eine Übersicht der verwendeten Karten. Diese Übersicht kann durch
-                                die Buttons
-                                "Richtige", "Falsche" und "keine Antwort" gefiltert werden.
+                                Der Statistikgraph liefert dir Informationen zu den in diesem Lerndurchlauf verwendeten
+                                Karten. Es wird die Bewertungsstufe angegeben.
+                                <br/>
+                                <tt>
+                                Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "kann ich", 5 "Geht so" und
+                                2 "kann ich nicht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch sein.
+                                </tt>
+                                <br/>
+                                Im unteren Bereich findest du eine Übersicht der Karteikarten, in form einer Feedbackkarte, die du gelernt hast. Die Feedbackkarten haben
+                                einen Rahmen, der Anzeigt, ob die Karteikarte richtig, falsch oder mit Überspringen beantwortet wurde.
+                                Hierbei steht ein grüner Rahmen für Richtig, ein roter für Falsch und ein grauer für Übersprungen.
+                                Auf der Feedbackkarte wird die Frage angezeigt und die Antwortmöglichkeiten. Bei den Antwortmöglichkeiten wird angezeigt, welche Antwort du
+                                gegeben hast. Die letzte Information auf der Feedbackkarte ist der Score. Dieser sagt dir, ob du diese Karte "gut, "geht so", "schlecht" oder noch nicht
+                                beantwortest hast.
+                                Desweitern kann man je nach Lernmodus die Karteikarten filtern. Es können z.B nur richtige oder nur falsche angezeigt werden.
+
                             </CardText>
 
                             <hr/>
