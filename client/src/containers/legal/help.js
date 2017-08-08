@@ -124,7 +124,7 @@ const Help = () => {
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Kann ich nicht</td>
+                                    <td>Schlecht</td>
                                     <td>Wird im Statistik Graphen rot dargestellt.
                                         Score kleiner als 3
                                     </td>
@@ -136,7 +136,7 @@ const Help = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Kann ich</td>
+                                    <td>Gut</td>
                                     <td>Wird im Statistik Graphen grün dargestellt.
                                         Score größer als 5
                                     </td>
@@ -373,8 +373,8 @@ const Help = () => {
                                 </tr>
                                 <tr>
                                     <td>Powermodus</td>
-                                    <td>in diesem Modus werden speziell die Karten gelernt die mit "kann ich
-                                        nicht" bewertet sind und du bekommst direkt angezeigt, ob die Antwort
+                                    <td>in diesem Modus werden speziell die Karten gelernt die mit "Schlecht" oder
+                                        "Unbeantwortet" bewertet sind und du bekommst direkt angezeigt, ob die Antwort
                                         "Richtig"
                                         oder "Falsch" ist.
                                     </td>
@@ -405,9 +405,9 @@ const Help = () => {
                                 Karten. Es wird die Bewertungsstufe angegeben.
                                 <br/>
                                 <tt>
-                                    Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "kann ich", 5 "Geht
+                                    Bsp: Du hast 10 Karteikarten im Lerndurchlauf verwendet. 3 davon "Gut", 5 "Geht
                                     so" und
-                                    2 "kann ich nicht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch
+                                    2 "Schlecht". Das Balkendiagramm würde dann grün 3, gelb 5 und rot 2 hoch
                                     sein.
                                 </tt>
                                 <br/>
