@@ -83,7 +83,7 @@ class RegistrationService
     /**
      * @var string
      */
-    protected $tokenLifetime = 'PT1H';
+    protected $tokenLifetime = 'P1D';
 
     /**
      * @param string $id
