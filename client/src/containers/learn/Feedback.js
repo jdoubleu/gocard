@@ -87,11 +87,9 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                                      unanswered={(valuesArray.unanswered || []).length}/>
                     </div>
                 </Card>
-
             </CardGroup>
 
             <Row>
-
                 <Col>
                     {
                         mode === "NORMAL_MODE" &&
@@ -122,11 +120,11 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
 
                     }
                     {
-                        mode !== "NORMAL_MODE" &&
+                        mode === "TEST_MODE" &&
                         <Field
                             name="cards"
                             component={SelectButton}
-                            label="Karten"
+                            label={`${calcCardCount()} von ${resultCards.length} Karten`}
                             toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
                             options={[
                                 {
