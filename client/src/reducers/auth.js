@@ -30,15 +30,13 @@ function auth(state = initialState, action) {
                 ...state,
                 isFetching: false,
                 isAuthenticated: false,
-                token: action.response,
-                error: null
+                token: action.response
             };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                isAuthenticated: false,
-                error: action.error
+                isAuthenticated: false
             };
         case LOGOUT_REQUEST:
             return {
@@ -52,7 +50,6 @@ function auth(state = initialState, action) {
         case LOGOUT_FAILURE:
             return {
                 ...initialState,
-                error: action.error
             };
         case LOAD_CURRENT_USER_SUCCESS:
             return {
@@ -63,7 +60,6 @@ function auth(state = initialState, action) {
         case LOAD_CURRENT_USER_FAILURE:
             return {
                 ...initialState,
-                message: action.error
             };
         default:
             return state;

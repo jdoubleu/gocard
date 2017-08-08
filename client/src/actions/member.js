@@ -39,7 +39,7 @@ export const LOAD_MEMBERSHIPS_FAILURE = 'LOAD_MEMBERSHIPS_FAILURE';
 
 export function loadMembershipsByUser(userId) {
     return {
-        types: [LOAD_MEMBERS_REQUEST, LOAD_MEMBERS_SUCCESS, LOAD_MEMBERS_FAILURE],
+        types: [LOAD_MEMBERSHIPS_REQUEST, LOAD_MEMBERSHIPS_SUCCESS, LOAD_MEMBERSHIPS_FAILURE],
         callAPI: () => apiGetMembersByUser({userId}),
         payload: {userId}
     }
