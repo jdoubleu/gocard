@@ -81,6 +81,11 @@ class RegistrationService
     protected $mailSettings;
 
     /**
+     * @var string
+     */
+    protected $tokenLifetime = 'PT1H';
+
+    /**
      * @param string $id
      * @param string $token
      * @return bool
@@ -144,6 +149,7 @@ class RegistrationService
         $requestToken = new AccountToken();
         $requestToken->setUser($user);
         $requestToken->setType('registration');
+        $requestToken->setExpireDate((new \DateTime())->add(new \DateInterval($this->tokenLifetime)));
         $requestToken->setToken(AuthUtility::generateAccessToken());
 
         $this->accountTokenRepository->add($requestToken);
