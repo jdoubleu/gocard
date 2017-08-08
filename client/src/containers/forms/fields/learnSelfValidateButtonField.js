@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, CardTitle, Col, FormFeedback, FormGroup, Input, Label, Row, UncontrolledTooltip} from "reactstrap";
+import {Button, CardTitle, FormFeedback, FormGroup, Input, Label, UncontrolledTooltip} from "reactstrap";
 
 
 const learnSelfValidateButtonField = ({input, content, label, disableLabel, toolTip, meta: {touched, error}}) => {
@@ -25,28 +25,17 @@ const learnSelfValidateButtonField = ({input, content, label, disableLabel, tool
             {
                 !!input.value &&
                 <span>
-
                     <h6 className="text-muted">Antwort</h6>
                     <CardTitle>
                         {content.answer}
                     </CardTitle>
-                    <Row check>
-                        <Col>
-                        <Label>
-                        <Input {...input} type="radio" value={"true"} className="ml-1"/>
-                        Richtig
-                        </Label>
-                        </Col>
-
-
-                <Col check>
-                    <Label>
-                        <Input {...input} type="radio" value={"false"} className="ml-1"/>
-                        Falsch
+                    <Label check>
+                        <Input {...input} type="radio" value={"true"} className="ml-1"/>{' '}Richtig
                     </Label>
-                </Col>
-                        </Row>
-            </span>
+                    <Label check>
+                        <Input {...input} type="radio" value={"false"} className="ml-1"/>{' '}Falsch
+                    </Label>
+                </span>
             }
 
             {

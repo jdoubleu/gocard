@@ -4,7 +4,8 @@ import _ from "lodash";
 
 const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip, meta: {touched, error}}) => {
     const answer = _.get(input.value, 'answer', []);
-    return (<FormGroup color={touched && error && 'danger'}>
+    return (
+        <FormGroup color={touched && error && 'danger'}>
             {
                 !disableLabel &&
                 <h6 className="text-muted" id={`label-${input.name}`}>
@@ -14,7 +15,7 @@ const learnMultipleChoiceField = ({input, content, label, disableLabel, toolTip,
 
             {
                 content.options.map((option, index) =>
-                    <div>
+                    <div key={index}>
                         <Input addon type="checkbox"
                                onChange={(event) => input.onChange({
                                    ...input.value,

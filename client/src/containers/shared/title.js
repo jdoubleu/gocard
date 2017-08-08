@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 
 class Title extends React.Component {
     fitTitle() {
-        if ((this.props.title || '').length <= 35) {
+        const {cutOff} = this.props;
+        if ((this.props.title || '').length <= cutOff) {
             return this.props.title
         } else {
-            let clippedTitle = this.props.title.substring(0, 30);
+            let clippedTitle = this.props.title.substring(0, (cutOff-5));
             return clippedTitle + "...";
         }
     }
@@ -24,6 +25,10 @@ class Title extends React.Component {
 
 Title.propTypes = {
     title: PropTypes.string
+};
+
+Title.defaultProps = {
+    cutOff: 35
 };
 
 export default (Title);

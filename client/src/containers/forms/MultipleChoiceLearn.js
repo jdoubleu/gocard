@@ -1,6 +1,6 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Alert, Button, CardText, CardTitle, Form} from "reactstrap";
+import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnMultipleChoiceField from "./fields/learnMultipleChoiceField";
 
 
@@ -32,14 +32,13 @@ const MultipleChoiceLearn = ({error, submitting, card, handleSubmit, mode, handl
                 {card.question}
             </CardTitle>
 
-            <CardText>
-                <Field
-                    name="userAnswer"
-                    component={LearnMultipleChoiceField}
-                    label="Antworten"
-                    content={card.content}
-                />
-            </CardText>
+            <Field
+                name="userAnswer"
+                component={LearnMultipleChoiceField}
+                label="Antworten"
+                content={card.content}
+            />
+
             {
                 mode === "NORMAL_MODE" &&
                 <Button color="link" disabled={submitting} onClick={handleSkip} className="mb-1">
