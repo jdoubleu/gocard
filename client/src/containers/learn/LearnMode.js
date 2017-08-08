@@ -111,7 +111,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
         <Col>
             <Headline
                 title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
-                {currentCard ? 'Hier kannst du Lernen' : 'Hier bekommst du ein gesamt Feedback'}
+                {currentCard ? 'Hier kannst du Lernen.' : 'Hier bekommst du ein gesamt Feedback.'}
             </Headline>
             <div className="text-center">Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
             <Col sm="12" md={{size: 8, offset: 2}}>

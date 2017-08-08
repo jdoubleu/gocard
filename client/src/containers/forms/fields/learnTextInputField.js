@@ -5,9 +5,9 @@ const learnTextInputField = ({input, content, label, disableLabel, toolTip, meta
     <FormGroup color={touched && error && 'danger'}>
         {
             !disableLabel &&
-            <h4 className="text-muted" id={`label-${input.name}`}>
+            <h6 className="text-muted" id={`label-${input.name}`}>
                 {label}
-            </h4>
+            </h6>
         }
 
         <h4 className="text-muted">Antwort</h4>

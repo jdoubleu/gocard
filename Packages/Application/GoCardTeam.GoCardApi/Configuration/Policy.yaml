@@ -87,7 +87,7 @@ roles:
         permission: DENY
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction'
-        permission: DENY
+        permission: GRANT
       -
         privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions'
         permission: DENY

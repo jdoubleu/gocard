@@ -3,19 +3,23 @@ import PropTypes from "prop-types";
 import Headline from "../shared/headline";
 import {Card, Col, Row} from "reactstrap";
 import {deleteRegister, updateRegister} from "../../actions/register";
+import {clearMembers, updateMembersByRegister} from "../../actions/member";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import RegisterForm from "../forms/Register";
 import DeleteRegisterForm from "../forms/DeleteRegister";
 import {makeGetRegisterById} from "../../selectors";
-import {clearMembers} from "../../actions/member";
 import _ from "lodash";
 
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateRegister(register.id, values)).then(
-            response =>
-                dispatch(push('/'))
+        return dispatch(updateRegister(register.id, _.omit(values, 'members'))).then(
+            success => {
+                dispatch(updateMembersByRegister(register.id, _.map(values.members, (o) => {return {...o, uid: o.id}}))).then(
+                    success =>
+                        dispatch(push('/'))
+                );
+            }
         )
     };
 

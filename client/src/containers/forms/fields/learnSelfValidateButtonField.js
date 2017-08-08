@@ -7,9 +7,9 @@ const learnSelfValidateButtonField = ({input, content, label, disableLabel, tool
         <FormGroup color={touched && error && 'danger'}>
             {
                 !disableLabel &&
-                <h4 className="text-muted" id={`label-${input.name}`}>
+                <h6 className="text-muted" id={`label-${input.name}`}>
                     {label}
-                </h4>
+                </h6>
             }
 
             {
@@ -26,7 +26,7 @@ const learnSelfValidateButtonField = ({input, content, label, disableLabel, tool
                 !!input.value &&
                 <span>
 
-                    <h4 className="text-muted">Antwort</h4>
+                    <h6 className="text-muted">Antwort</h6>
                     <CardTitle>
                         {content.answer}
                     </CardTitle>

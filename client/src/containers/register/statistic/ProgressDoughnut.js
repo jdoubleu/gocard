@@ -15,19 +15,21 @@ class ProgressDoughnut extends React.Component {
     render() {
         const {progress} = this.props;
 
-        const {good, middle, bad} = {
+        const {good, middle, bad, unanswered} = {
             good: (progress.good || []).length,
             middle: (progress.middle || []).length,
-            bad: (progress.bad || []).length
+            bad: (progress.bad || []).length,
+            unanswered: (progress.unanswered || []).length,
         };
 
         const data = {
             datasets: [{
-                data: [good, middle, bad],
+                data: [good, middle, bad, unanswered],
                 backgroundColor: [
                     '#00e673',
                     '#e6b800',
-                    '#e60000'
+                    '#e60000',
+                    '#edecee',
                 ]
             }],
 
@@ -35,7 +37,8 @@ class ProgressDoughnut extends React.Component {
             labels: [
                 'Gut',
                 'Geht so',
-                'Schlecht'
+                'Schlecht',
+                'Unbeantwortet'
             ]
         };
 

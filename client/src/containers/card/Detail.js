@@ -16,7 +16,7 @@ class Detail extends React.Component {
     }
 
     render() {
-        const {card, role} = this.props;
+        const {card, role, match} = this.props;
         const mapCardType = () => {
             if (card.type === "single-choice") {
                 return "Singlechoice"
@@ -32,19 +32,17 @@ class Detail extends React.Component {
         return (
             <Row>
                 <Col sm="12" md={{size: 8, offset: 2}}>
-                    <Headline title={card.question}/>
-
+                    <Headline title={card.question}>
+                        Hier hast du alle aktuellen Informationen zu Deiner Karteikarte.
+                    </Headline>
                     <Card block>
-                        <h4 className="text-muted">Fragetyp</h4>
+                        <h6 className="text-muted">Fragetyp</h6>
                         <p>{mapCardType()}</p>
                         
-                        <h4 className="text-muted">Frage</h4>
-                        <p>{card.question}</p>
-
                         {
                             (card.type === "self-validate" || card.type === "text-input") &&
                             <div>
-                                <h4 className="text-muted">Antwort</h4>
+                                <h6 className="text-muted">Antwort</h6>
                                 <ListGroup className="mb-2">
                                     <ListGroupItem className="justify-content-between">
                                         {card.content.answer}<Badge pill>{'\u2714'}</Badge>
@@ -56,7 +54,7 @@ class Detail extends React.Component {
                         {
                             (card.type === "multiple-choice") &&
                                 <div>
-                                    <h4 className="text-muted">Antworten</h4>
+                                    <h6 className="text-muted">Antworten</h6>
                                     <ListGroup className="mb-2">
                                     {card.content.options.map((option, index) => {
                                         if (_.includes(card.content.corrects, index)) {
@@ -80,7 +78,7 @@ class Detail extends React.Component {
                         {
                             (card.type === "single-choice") &&
                             <div>
-                                <h4 className="text-muted">Antworten</h4>
+                                <h6 className="text-muted">Antworten</h6>
                                 <ListGroup className="mb-2">
                                 {card.content.options.map((option, index) => {
                                     if (card.content.correct === index) {
@@ -101,7 +99,7 @@ class Detail extends React.Component {
                             </div>
                         }
 
-                        <h4 className="text-muted">Tags</h4>
+                        <h6 className="text-muted">Tags</h6>
                         <p>
                             {
                                 (card.tags || []).map((tag) =>
@@ -121,6 +119,11 @@ class Detail extends React.Component {
                                 <Link to={`/register/${card.register}/card/${card.id}/edit`}>Bearbeiten</Link>
                             </p>
                         }
+                        <div>
+                            <hr/>
+                            <Link className="btn btn-outline-primary btn-block" to={`/register/${match.params.registerId}`}>Zurück zum
+                                Register</Link>
+                        </div>
                     </Card>
                 </Col>
             </Row>

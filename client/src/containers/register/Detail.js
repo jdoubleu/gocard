@@ -32,14 +32,22 @@ class Detail extends React.Component {
 
         return (
             <div>
-                <Headline title={register.title}/>
+                <Headline title={register.title}>
+                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du Einstellungen für das Lernen vornehmen.
+                    Im unteren Bereich findest Du alle Karten, die sich im Register befinden.
+                </Headline>
 
                 <CardGroup>
                     <Card block>
                         <CardTitle>Beschreibung</CardTitle>
-                        <CardText>
-                            {register.description}
-                        </CardText>
+                        {
+                            !register.description &&
+                            <p className="text-muted">Keine Beschreibung vorhanden</p>
+                        }
+                        {
+                            register.description &&
+                            <p>{register.description}</p>
+                        }
                         {
                             role === 'owner' &&
                             <div>
