@@ -26,7 +26,7 @@ Neos:
     transport:
       type: 'Neos\SwiftMailer\Transport\MboxTransport'
       options:
-        mboxPathAndFilename: '%FLOW_PATH_DATA%/Temporary/Development/SwiftMailer/sent-mail'
+        mboxPathAndFilename: '%FLOW_PATH_DATA%/Temporary/Development/sent-mail'
 
 GoCardTeam:
   GoCardApi:
