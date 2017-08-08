@@ -6,7 +6,6 @@ import {
     updateRegister as apiUpdateRegister
 } from "../lib/ApiClient";
 import {isStateInvalidated} from "../utils/index";
-import _ from "lodash";
 
 export const LOAD_REGISTERS_REQUEST = 'LOAD_REGISTERS_REQUEST';
 export const LOAD_REGISTERS_SUCCESS = 'LOAD_REGISTERS_SUCCESS';

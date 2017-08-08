@@ -14,7 +14,7 @@ const Preview = ({register}) => {
                 <Row className="mb-3">
                     <Col xs="8">
                         <h5>
-                            <Title title={register.title} cutOff={25} />
+                            <Title title={register.title} cutOff={25}/>
                         </h5>
                         <MemberBar registerId={register.id} diameter={36}/>
                     </Col>

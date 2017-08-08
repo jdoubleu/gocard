@@ -5,7 +5,8 @@ import {
     findMemberByRegisterAndUser as apiFindMemberByRegisterAndUser,
     findMembersByRegister as apiFindMembersByRegister,
     getMembersByUser as apiGetMembersByUser,
-    updateMemberByRegister as apiUpdateMemberByRegister, updateMemberSetOfRegister,
+    updateMemberByRegister as apiUpdateMemberByRegister,
+    updateMemberSetOfRegister,
     updateMembersOfRegister as apiUpdateMembersByRegister
 } from "../lib/ApiClient";
 import {areStatesInvalidated} from "../utils/index";
@@ -46,7 +47,7 @@ export function loadMembershipsByUser(userId) {
     return {
         types: [LOAD_MEMBERSHIPS_REQUEST, LOAD_MEMBERSHIPS_SUCCESS, LOAD_MEMBERSHIPS_FAILURE],
         shouldInvalidate: true,
-        shouldCallAPI: (state) => areStatesInvalidated(_.filter(state.entities.cards.byId, ['user', userId])),
+        shouldCallAPI: (state) => areStatesInvalidated(_.filter(state.entities.members.byId, ['user', userId])),
         callAPI: () => apiGetMembersByUser({userId}),
         payload: {userId}
     }
@@ -104,6 +105,7 @@ export function updateMembersByRegister(registerId, members) {
         payload: {registerId}
     }
 }
+
 export const UPDATE_MEMBERSHIP_SET_REQUEST = 'UPDATE_MEMBERSHIP_SET_REQUEST';
 export const UPDATE_MEMBERSHIP_SET_SUCCESS = 'UPDATE_MEMBERSHIP_SET_SUCCESS';
 export const UPDATE_MEMBERSHIP_SET_FAILURE = 'UPDATE_MEMBERSHIP_SET_FAILURE';

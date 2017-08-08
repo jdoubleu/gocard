@@ -7,7 +7,7 @@ class Title extends React.Component {
         if ((this.props.title || '').length <= cutOff) {
             return this.props.title
         } else {
-            let clippedTitle = this.props.title.substring(0, (cutOff-5));
+            let clippedTitle = this.props.title.substring(0, (cutOff - 5));
             return clippedTitle + "...";
         }
     }

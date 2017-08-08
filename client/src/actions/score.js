@@ -27,7 +27,10 @@ export function loadAllScores(registerId, userId) {
     return {
         types: [LOAD_SCORES_REQUEST, LOAD_SCORES_SUCCESS, LOAD_SCORES_FAILURE],
         shouldInvalidate: true,
-        shouldCallAPI: (state) => areStatesInvalidated(_.filter(state.entities.members.byId, {'register': registerId, 'user': userId})),
+        shouldCallAPI: (state) => areStatesInvalidated(_.filter(state.entities.members.byId, {
+            'register': registerId,
+            'user': userId
+        })),
         callAPI: () => apiGetCardStatisticByRegisterAndUser({register: registerId, user: userId}),
         payload: {userId, registerId}
     }

@@ -55,7 +55,7 @@ export default function ({dispatch, getState}) {
             type: requestType
         });
 
-        const invalidate = moment().add(5, 'minutes').format();
+        const invalidate = moment().add(10, 'minutes').format();
 
         return callAPI().then(
             response =>

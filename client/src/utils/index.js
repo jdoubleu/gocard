@@ -22,14 +22,17 @@ export function calculateScoreType(score, case1, case2, case3, nullCase) {
 }
 
 export function isStateInvalidated(state) {
-    return moment((state || {}).invalidate).isAfter(moment())
+    if (_.isEmpty(state))
+        return true;
+    return moment().isAfter(moment(state.invalidate))
 }
 
 export function areStatesInvalidated(state) {
-    _.forOwn(state, (value) => {
-        if(isStateInvalidated(value)) {
-            return true;
-        }
-    });
+    if (_.isEmpty(state))
+        return true;
+
+    return _.filter(state, (value) => {
+        return isStateInvalidated(value);
+    }).length > 0;
 }
 
