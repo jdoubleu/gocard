@@ -7,12 +7,14 @@ use GoCardTeam\GoCardApi\Controller\v1\AbstractApiEndpointController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
+use GoCardTeam\GoCardApi\Domain\Service\v1\PasswordManagementService;
 use GoCardTeam\GoCardApi\Domain\Service\v1\RegistrationService;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\KnownObjectException;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
+use Neos\Flow\Validation\Validator\EmailAddressValidator;
 
 /**
  * Class UsersController
@@ -52,6 +54,12 @@ class UsersController extends AbstractApiEndpointController
      * @var RegistrationService
      */
     protected $registrationService;
+
+    /**
+     * @Flow\Inject
+     * @var PasswordManagementService
+     */
+    protected $passwordManagementService;
 
     /**
      * Allows property modification for update action.
@@ -197,5 +205,29 @@ class UsersController extends AbstractApiEndpointController
         }
 
         $this->forward('index', 'Standard', null, ['confirmation' => $status]);
+    }
+
+    /**
+     * Prepare password reset request
+     */
+    public function initializeRequestPasswordResetAction()
+    {
+        $this->passwordManagementService->setRequest($this->request);
+    }
+
+    /**
+     * @param string $email
+     * @return string
+     */
+    public function requestPasswordResetAction(string $email)
+    {
+        $emailValidator = new EmailAddressValidator();
+        if (($result = $emailValidator->validate($email)) && $result->hasErrors()) {
+            return $this->${$this->errorMethodName}($result);
+        }
+
+        $this->passwordManagementService->processPasswordResetRequest($email);
+
+        return null;
     }
 }

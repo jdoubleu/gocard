@@ -43,6 +43,13 @@
   httpMethods: ['GET']
 
 -
+  name: 'request password reset'
+  uriPattern: 'passwordReset'
+  defaults:
+    '@action': 'requestPasswordReset'
+  httpMethods: ['POST']
+
+-
   name: 'find user'
   uriPattern: '{userId}'
   defaults:
