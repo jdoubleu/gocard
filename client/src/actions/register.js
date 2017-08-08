@@ -26,7 +26,7 @@ export const LOAD_REGISTER_FAILURE = 'LOAD_REGISTER_FAILURE';
 export function loadRegister(registerId) {
     return {
         types: [LOAD_REGISTER_REQUEST, LOAD_REGISTER_SUCCESS, LOAD_REGISTER_FAILURE],
-        shouldCallAPI: (state) => isStateInvalidated(state.entities.cards.byId[registerId]),
+        shouldCallAPI: (state) => isStateInvalidated(state.entities.registers.byId[registerId]),
         shouldInvalidate: true,
         callAPI: () => apiFindRegisterById({registerId})
     }

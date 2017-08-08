@@ -24,9 +24,9 @@ import {deleteMemberByRegister} from "../../actions/member";
 
 class Detail extends React.Component {
     componentWillMount() {
-        const {dispatch, match, userId} = this.props;
-        dispatch(loadRegister(match.params.registerId));
-        dispatch(loadCards(match.params.registerId, userId));
+        const {dispatch, match, userId, registerId} = this.props;
+        dispatch(loadRegister(registerId));
+        dispatch(loadCards(registerId, userId));
     }
 
     render() {
@@ -122,8 +122,9 @@ const makeMapStateToProps = () => {
     const getRoleByRegister = makeGetRoleByRegister();
     const getMembershipByRegister = makeGetMembershipByRegister();
     return (state, props) => {
-        const registerId = props.match.params.registerId;
+        const registerId = _.parseInt(props.match.params.registerId);
         return {
+            registerId,
             register: state.entities.registers.byId[registerId] || {},
             tags: getTagsByRegister(state, props) || [],
             settings: state.ui.learnSettings.byId[registerId] || {},
