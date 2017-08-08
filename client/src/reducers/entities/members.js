@@ -35,7 +35,7 @@ function updateMemberEntries(state, action) {
 }
 
 function deleteMemberEntry(state, action) {
-    return _.omit(state, action.id);
+    return _.omit(state, action.memberId);
 }
 
 function addMembershipEntries(state, action) {
