@@ -326,3 +326,12 @@ export const makeGetValueArrayByRegister = () => {
         }
     );
 };
+
+export const makeGetCardsByResults = () => {
+    return createSelector(
+        [getCards, getAnsweredCardsIds],
+        (cards, answeredCardIds) => {
+            return _.filter(cards, function(c) { return _.includes(answeredCardIds, c.id)});
+        }
+    );
+};
