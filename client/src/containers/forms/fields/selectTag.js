@@ -1,4 +1,5 @@
 import React from "react";
+import Title from "../../shared/title";
 import {Button, FormFeedback, FormGroup, Label, UncontrolledTooltip} from "reactstrap";
 import _ from "lodash";
 
@@ -26,7 +27,7 @@ const selectTag = ({input, options, label, disableLabel, toolTip, type, meta: {t
                     <Button outline size="sm" className="mr-1 mb-1" key={option}
                             onClick={() => input.onChange(toggleTags(input.value, option))}
                             color={_.includes(input.value, option) ? 'primary' : 'secondary'}>
-                        {option} {_.includes(input.value, option) ? '\u2714' : ''}
+                        <Title title={option} cutOff={25}/> {_.includes(input.value, option) ? '\u2714' : ''}
                     </Button>
                 )
             }
