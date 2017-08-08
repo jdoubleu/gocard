@@ -191,9 +191,11 @@ class UsersController extends AbstractApiEndpointController
     public function confirmAction(string $identifier, string $token)
     {
         if ($this->registrationService->confirmRegistrationAndUpdate($identifier, $token)) {
-            $this->view->assign('value', []);
+            $status = 'success';
         } else {
-            $this->throwStatus('500');
+            $status = 'error';
         }
+
+        $this->forward('index', 'Standard', null, ['confirmation' => $status]);
     }
 }
