@@ -1,6 +1,5 @@
 import {createSelector} from 'reselect'
 import _ from "lodash";
-import moment from "moment";
 import {calculateScoreType} from "../utils/index";
 
 const getRegisterId = (state, props) => props.registerId ? props.registerId : _.parseInt(props.match.params.registerId);
@@ -102,12 +101,15 @@ export const makeGetUsersByRegister = () => {
 
 export const makeGetCardsByTags = () => {
     return createSelector(
-        [makeGetCardsByRegister(), getSelectedTags],
-        (cards, selectedTags) => {
+        [makeGetCardsByRegister(), getSelectedTags, makeGetScoreByUser(), getMode],
+        (cards, selectedTags, allScores, userId, mode) => {
+            const cardsByMode = _.filter(cards, (o) => {
+                return mode === 'POWER_MODE' ? _.parseInt((_.maxBy(_.filter(allScores, {'card': o.id}), 'id') || {value: 0}).value) < 6 : false;
+            });
             if (selectedTags === undefined || selectedTags.length === 0) {
-                return cards;
+                return cardsByMode;
             } else {
-                return _.filter(cards, function (c) {
+                return _.filter(cardsByMode, function (c) {
                     return _.intersectionWith(c.tags, selectedTags).length > 0
                 });
             }
@@ -132,6 +134,7 @@ export const makeGetNextCard = () => {
                 if (mode !== 'POWER_MODE') {
                     return !_.includes(answeredIds, c.id)
                 }
+
                 return (!_.includes(answeredIds, c.id)
                     || (_.includes(answeredIds, c.id) && answeredCards[c.id].correct !== true))
             });
@@ -237,10 +240,7 @@ export const makeGetLastScoreForCurrentCard = () => {
     return createSelector(
         [makeGetScoreForCurrentCard()],
         (scores) => {
-            let score = _.maxBy(scores, (o) => {
-                return moment(o.date).format('X')
-            });
-            return score;
+            return _.maxBy(scores, 'id');
         }
     );
 };
@@ -278,11 +278,10 @@ export const makeGetLastScoresByAnsweredCardIds = () => {
     return createSelector(
         [getAnsweredCardsIds, makeGetScoreByUser()],
         (cardIds, scores) => {
-            let lastScores = _.map(cardIds, (cardId) =>
-                _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
-                    return moment(o.date).format('X')
-                }) || {card: cardId, value: null}
-            );
+            let lastScores = _.map(cardIds, (cardId) => {
+                let filteredScore = _.filter(scores, {'card': cardId});
+                return _.maxBy(filteredScore, 'id') || {card: cardId, value: null}
+            });
             return _.keyBy(lastScores, 'card');
         }
     );
@@ -292,11 +291,10 @@ export const makeGetValueArrayByAnsweredCardIds = () => {
     return createSelector(
         [getAnsweredCardsIds, makeGetScoreByUser()],
         (cardIds, scores) => {
-            let lastScores = _.map(cardIds, (cardId) =>
-                _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
-                    return moment(o.date).format('X')
-                }) || {card: cardId, value: null}
-            );
+            let lastScores = _.map(cardIds, (cardId) => {
+                let filteredScore = _.filter(scores, {'card': cardId});
+                return _.maxBy(filteredScore, 'id') || {card: cardId, value: null}
+            });
             return _.groupBy(lastScores, (o) => {
                 return calculateScoreType(o, 'bad', 'middle', 'good', 'unanswered');
             }) || {};
@@ -309,9 +307,7 @@ export const makeGetValueArrayByRegister = () => {
         [makeGetCardIdsByRegister(), makeGetScoreByUser()],
         (cardIds, scores) => {
             let lastScores = _.map(cardIds, (cardId) =>
-                _.maxBy(_.filter(scores, ['card', cardId]), (o) => {
-                    return moment(o.date).format('X')
-                }) || {value: null}
+                _.maxBy(_.filter(scores, {'card': cardId}), 'id') || {value: null}
             );
             return _.groupBy(lastScores, (o) => {
                 return calculateScoreType(o, 'bad', 'middle', 'good', 'unanswered');

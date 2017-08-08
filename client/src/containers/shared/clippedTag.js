@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 class ClippedTag extends React.Component {
     fitTitle() {
         if (this.props.tag.length <= 35) {
@@ -9,6 +10,7 @@ class ClippedTag extends React.Component {
             return clippedTitle + "...";
         }
     }
+
     render() {
         const {tag} = this.props;
         const newTag = this.fitTitle(tag);
@@ -25,5 +27,4 @@ ClippedTag.propTypes = {
 };
 
 
-
-export default(ClippedTag);
+export default (ClippedTag);

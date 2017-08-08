@@ -15,7 +15,9 @@ const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateRegister(register.id, _.omit(values, 'members'))).then(
             success => {
-                dispatch(updateMembersByRegister(register.id, _.map(values.members, (o) => {return {...o, uid: o.id}}))).then(
+                dispatch(updateMembersByRegister(register.id, _.map(values.members, (o) => {
+                    return {...o, uid: o.id}
+                }))).then(
                     success =>
                         dispatch(push('/'))
                 );

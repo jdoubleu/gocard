@@ -72,6 +72,7 @@ const makeMapStateToProps = () => {
     return (state, props) => {
         return {
             progress: getValueArrayByRegister(state, props) || {},
+            userId: state.auth.userId
         }
     };
 };

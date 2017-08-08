@@ -16,7 +16,7 @@ class Bar extends React.Component {
         const {dispatch, registerId, memberships} = this.props;
         dispatch(loadMembersByRegister(registerId));
         _.forEach(memberships, (membership) => {
-           dispatch(getUserById(membership.user));
+            dispatch(getUserById(membership.user));
         });
     }
 
@@ -34,11 +34,11 @@ class Bar extends React.Component {
                             <UserIcon diameter={diameter} id={`member-bar-${registerId}-${member.id}`}>
                                 {member.displayName}
                             </UserIcon>
-                            <UncontrolledTooltip delay={0} placement="bottom" target={`member-bar-${registerId}-${member.id}`}>
+                            <UncontrolledTooltip delay={0} placement="bottom"
+                                                 target={`member-bar-${registerId}-${member.id}`}>
                                 {member.displayName}
                             </UncontrolledTooltip>
                         </span>
-
                     )
                 }
                 {

@@ -16,9 +16,9 @@ import {push} from "react-router-redux";
 
 class Detail extends React.Component {
     componentWillMount() {
-        const {dispatch, match} = this.props;
+        const {dispatch, match, userId} = this.props;
         dispatch(loadRegister(match.params.registerId));
-        dispatch(loadCards(match.params.registerId));
+        dispatch(loadCards(match.params.registerId, userId));
     }
 
     render() {
@@ -33,7 +33,8 @@ class Detail extends React.Component {
         return (
             <div>
                 <Headline title={register.title}>
-                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du Einstellungen für das Lernen vornehmen.
+                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du
+                    Einstellungen für das Lernen vornehmen.
                     Im unteren Bereich findest Du alle Karten, die sich im Register befinden.
                 </Headline>
 

@@ -23,10 +23,10 @@ function deleteScoreEntriesByCard(state, action) {
 }
 
 function loadScoreEntriesByCard(state, action) {
-    const {response, registerId} = action;
-    const cardIds = _.map(response, 'card');
+    const {response, registerId, userId} = action;
+    const cardIds = _.uniq(_.map(response, 'id'));
     return _.omitBy(state, (o) => {
-        return !_.includes(cardIds, o.card) && o.register === registerId;
+        return !_.includes(cardIds, o.card) && o.user === userId && o.register === registerId
     });
 }
 
