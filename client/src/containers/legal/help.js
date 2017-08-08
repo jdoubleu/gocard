@@ -14,7 +14,6 @@ import {
     Row,
     Table
 } from "reactstrap";
-import "./help.css";
 
 const Help = () => {
     return (

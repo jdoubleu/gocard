@@ -33,12 +33,13 @@ class Detail extends React.Component {
         return (
             <div>
                 <Headline title={register.title}>
-                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du Einstellungen für das Lernen vornehmen.
+                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du
+                    Einstellungen für das Lernen vornehmen.
                     Im unteren Bereich findest Du alle Karten, die sich im Register befinden.
                 </Headline>
 
                 <CardGroup>
-                    <Card block>
+                    <Card block className="col-sm-12 col-md-4 mb-2">
                         <CardTitle>Beschreibung</CardTitle>
                         {
                             !register.description &&
@@ -57,13 +58,13 @@ class Detail extends React.Component {
                         }
                     </Card>
 
-                    <Card block className="border-top-primary">
+                    <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
                                    onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 
-                    <Card block>
+                    <Card block className="col-sm-12 col-md-4 mb-2">
                         <CardTitle>Statistik</CardTitle>
                         <CardText>
                             <ProgressDoughnut registerId={register.id}/>

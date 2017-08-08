@@ -4,6 +4,23 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.card-group .border-top-primary {
+.card.card-block.border-top-primary {
     border-top: 5px solid #0275d8;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 25%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+.fadeIn {
+    animation: fadeIn .5s;
 }
