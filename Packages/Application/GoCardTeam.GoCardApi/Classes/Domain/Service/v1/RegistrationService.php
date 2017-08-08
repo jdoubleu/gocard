@@ -132,9 +132,9 @@ class RegistrationService
 
         $this->persistenceManager->whitelistObject($account);
         $this->persistenceManager->whitelistObject($user);
-        $this->persistenceManager->persistAll(true);
 
         $registrationRequestToken = $this->addAccountRegistrationRequest($user);
+        $this->persistenceManager->persistAll(true);
         $this->sendConfirmationMail($registrationRequestToken);
 
         return $user;
@@ -155,7 +155,6 @@ class RegistrationService
         $this->accountTokenRepository->add($requestToken);
 
         $this->persistenceManager->whitelistObject($requestToken);
-        $this->persistenceManager->persistAll(true);
 
         return $requestToken;
     }
