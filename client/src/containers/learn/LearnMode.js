@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, Col, Progress} from "reactstrap";
+import {Card, Col, Progress, Row} from "reactstrap";
 import Headline from "../shared/headline";
 import {connect} from "react-redux";
 import SingleChoiceCardForm from "../forms/SingleChoiceLearn";
@@ -107,16 +107,32 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
         }
     };
 
+    const calcHeadline = () => {
+        if(currentCard === null) {
+            return 'Hier bekommst du ein gesamt Feedback.';
+        } else if(mode === 'POWER_MODE') {
+            return 'Im Powermodus werden speziell die Karten gelernt die nicht mit "Gut" bewertet sind und du bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist. ' +
+                'Der Durchlauf ist beendet sobald du alle Karten einmal richtig beantwortet hast.';
+        } else if(mode === 'NORMAL_MODE') {
+            return 'Im Normalmodus werden alle ausgewählten Karten durchlaufen und du bekommst direkt angezeigt, ob die Antwort "Richtig" oder "Falsch" ist. Wenn du mal nicht weiter weißt, kann du die Frage auch überspringen.'
+        } else if(mode === 'TEST_MODE') {
+            return 'Im Klausurmodus werden alle ausgewählten Karten gelernt. Du bekommst erst am Ende des Lerndurchlaufs angezeigt, welche Antwort "Richtig" oder "Falsch" war.'
+        }
+    };
+
     return (
-        <Col>
-            <Headline
-                title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
-                {currentCard ? 'Hier kannst du Lernen.' : 'Hier bekommst du ein gesamt Feedback.'}
-            </Headline>
-            {
-                mode !== 'POWER_MODE' &&
-                <div className="text-center">Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
-            }
+        <Row>
+            <Col sm="12" md={{size: 8, offset: 2}}>
+                <Headline
+                    title={mode === "NORMAL_MODE" ? "Normaler Modus" : mode === "POWER_MODE" ? "Power Modus" : "Klausur Modus"}>
+                    {calcHeadline()}
+                </Headline>
+                {
+                    mode !== 'POWER_MODE' &&
+                    <div className="text-center">
+                        Fortschritt {(((countAnswers + showResult) / countCards) * 100).toFixed()}%</div>
+                }
+            </Col>
             <Col sm="12" md={{size: 8, offset: 2}}>
                 {
                     mode !== 'POWER_MODE' &&
@@ -161,7 +177,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 <Feedback register={register} mode={mode} resultCards={resultCards} registerId={register.id}/>
             }
 
-        </Col>
+        </Row>
     );
 
 };
@@ -172,7 +188,6 @@ const makeMapStateToProps = () => {
     const getScoreCurrentCard = makeGetLastScoreForCurrentCard();
     const getCardIdsByTags = makeGetCardIdsByTags();
     const getSizeOfResults = makeGetSizeOfResults();
-
 
     const mapStateToProps = (state, props) => {
         const registerId = props.match.params.registerId;
