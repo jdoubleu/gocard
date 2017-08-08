@@ -11,7 +11,7 @@ privilegeTargets:
     # General API endpoint action targets
     #
     'GoCardTeam.GoCardApi:UsersController.restrictedActions':
-      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(?!(initialize)?(?i)(addUser|confirm|requestPasswordReset|error))(.*)(?<!initialize)Action())'
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(?!(initialize)?(?i)(addUser|confirm|requestPasswordReset|updatePassword|error))(.*)(?<!initialize)Action())'
     'GoCardTeam.GoCardApi:RegistersController.restrictedActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\RegistersController->.*Action())'
     'GoCardTeam.GoCardApi:CardsController.restrictedActions':

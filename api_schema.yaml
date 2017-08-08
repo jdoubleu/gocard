@@ -1282,6 +1282,8 @@ paths:
           description: Invalid identifier or token supplied
         404:
           description: Confirmation Request does not exist
+        500:
+          description: Error while processing
   /users/passwordReset:
     post:
       tags:
@@ -1317,12 +1319,16 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: resetToken
+        - name: identifier
           in: query
-          description: Token to change a password
+          description: Confirmation Request identifier
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: token
+          in: query
+          description: Confirmation Request token
+          required: true
+          type: string
         - in: body
           name: body
           description: Password data

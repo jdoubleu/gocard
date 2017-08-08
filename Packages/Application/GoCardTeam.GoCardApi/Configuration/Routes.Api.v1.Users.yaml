@@ -50,6 +50,14 @@
   httpMethods: ['POST']
 
 -
+  name: 'confirm password reset'
+  uriPattern: 'password'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'updatePassword'
+  httpMethods: ['PUT']
+
+-
   name: 'find user'
   uriPattern: '{userId}'
   defaults:

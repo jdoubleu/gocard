@@ -228,7 +228,30 @@ class UsersController extends AbstractApiEndpointController
 
         if (!$this->passwordManagementService->processPasswordResetRequest($email)) {
             $this->throwStatus(500);
+        }
 
         return null;
+    }
+
+    /**
+     * Prepare password change action
+     */
+    public function initializeUpdatePasswordAction()
+    {
+        $this->passwordManagementService->setRequest($this->request);
+    }
+
+    /**
+     * @param string $identifier
+     * @param string $token
+     * @param string $oldPassword
+     * @param string $newPassword
+     * @param string $newPasswordRepeated
+     */
+    public function updatePasswordAction(string $identifier, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated)
+    {
+        if (!$this->passwordManagementService->processPasswordReset($identifier, $token, $oldPassword, $newPassword, $newPasswordRepeated)) {
+            $this->throwStatus(400);
+        }
     }
 }
