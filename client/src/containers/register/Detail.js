@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {loadCards} from "../../actions/card";
 import Headline from "../shared/headline";
-import {Card, CardGroup, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import PreviewCard from "../card/Preview";
 import BlankCard from "../card/blankCard";
 import MemberBar from "./member/Bar";
@@ -33,12 +33,13 @@ class Detail extends React.Component {
         return (
             <div>
                 <Headline title={register.title}>
-                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du Einstellungen für das Lernen vornehmen.
+                    Auf dieser Seite findest du alle Informationen zum Register. In dem Bereich "Lernen" kannst Du
+                    Einstellungen für das Lernen vornehmen.
                     Im unteren Bereich findest Du alle Karten, die sich im Register befinden.
                 </Headline>
 
-                <CardGroup>
-                    <Card block>
+                <Row className="p-2">
+                    <Card block className="col-12 col-md-4">
                         <CardTitle>Beschreibung</CardTitle>
                         {
                             !register.description &&
@@ -57,13 +58,13 @@ class Detail extends React.Component {
                         }
                     </Card>
 
-                    <Card block className="border-top-primary">
+                    <Card block className="col-12 col-md-4 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
                                    onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 
-                    <Card block>
+                    <Card block className="col-12 col-md-4">
                         <CardTitle>Statistik</CardTitle>
                         <CardText>
                             <ProgressDoughnut registerId={register.id}/>
@@ -73,7 +74,7 @@ class Detail extends React.Component {
                             <MemberBar registerId={register.id}/>
                         </CardText>
                     </Card>
-                </CardGroup>
+                </Row>
 
                 <Row className="mt-4 ml-3">
                     <Col>
