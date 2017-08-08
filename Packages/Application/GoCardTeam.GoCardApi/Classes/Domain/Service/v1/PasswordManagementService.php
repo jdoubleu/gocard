@@ -1,6 +1,8 @@
 <?php
 
 namespace GoCardTeam\GoCardApi\Domain\Service\v1;
+
+use Neos\Flow\Annotations as Flow;
 use GoCardTeam\GoCardApi\Domain\Model\v1\AccountToken;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\AccountTokenRepository;
