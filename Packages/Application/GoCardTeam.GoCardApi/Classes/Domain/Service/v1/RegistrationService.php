@@ -81,6 +81,7 @@ class RegistrationService
     protected $mailSettings;
 
     /**
+     * @Flow\InjectConfiguration("security.registrationToken.lifetime")
      * @var string
      */
     protected $tokenLifetime = 'P1D';
@@ -152,7 +153,7 @@ class RegistrationService
         $requestToken = new AccountToken();
         $requestToken->setUser($user);
         $requestToken->setType('registration');
-        $requestToken->setExpireDate((new \DateTime())->add(new \DateInterval($this->tokenLifetime)));
+        $requestToken->setExpireDate((new \DateTime())->add(new \DateInterval('PT' . $this->tokenLifetime . 'S')));
         $requestToken->setToken(AuthUtility::generateAccessToken());
 
         $this->accountTokenRepository->add($requestToken);

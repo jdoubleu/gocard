@@ -5,6 +5,9 @@ GoCardTeam:
       accessToken:
         # Lifetime (in seconds) of a newly generated access token
         lifetime: 3600
+      registrationToken:
+        # Lifetime (in seconds) of an confirmation token for user registration
+        lifetime: 86400
 
     mail:
       from:
