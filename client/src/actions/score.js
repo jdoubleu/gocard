@@ -1,6 +1,5 @@
 import {
     createCardStatistic as apiCreateCardStatistic,
-    getCardStatisticByCardAndUser as apiGetCardStatisticByCardAndUser,
     getCardStatisticByRegisterAndUser as apiGetCardStatisticByRegisterAndUser
 } from "../lib/ApiClient";
 
@@ -9,34 +8,26 @@ export const ADD_SCORE_REQUEST = 'ADD_SCORE_REQUEST';
 export const ADD_SCORE_SUCCESS = 'ADD_SCORE_SUCCESS';
 export const ADD_SCORE_FAILURE = 'ADD_SCORE_FAILURE';
 
-export function addScore(cardId, body) {
+export function addScore(cardId, body, registerId) {
     return {
         types: [ADD_SCORE_REQUEST, ADD_SCORE_SUCCESS, ADD_SCORE_FAILURE],
-        callAPI: () => apiCreateCardStatistic({cardId: cardId, body: body})
+        callAPI: () => apiCreateCardStatistic({cardId: cardId, body: body}),
+        payload: {registerId}
     }
 }
 
-export const LOAD_SCORE_REQUEST = 'LOAD_SCORE_REQUEST';
-export const LOAD_SCORE_SUCCESS = 'LOAD_SCORE_SUCCESS';
-export const LOAD_SCORE_FAILURE = 'LOAD_SCORE_FAILURE';
+export const LOAD_SCORES_REQUEST = 'LOAD_SCORES_REQUEST';
+export const LOAD_SCORES_SUCCESS = 'LOAD_SCORES_SUCCESS';
+export const LOAD_SCORES_FAILURE = 'LOAD_SCORES_FAILURE';
 
 export function loadAllScores(registerId, userId) {
     return {
-        types: [LOAD_SCORE_REQUEST, LOAD_SCORE_SUCCESS, LOAD_SCORE_FAILURE],
-        callAPI: () => apiGetCardStatisticByRegisterAndUser({register: registerId, user: userId})
+        types: [LOAD_SCORES_REQUEST, LOAD_SCORES_SUCCESS, LOAD_SCORES_FAILURE],
+        callAPI: () => apiGetCardStatisticByRegisterAndUser({register: registerId, user: userId}),
+        payload: {userId, registerId}
     }
 }
 
-export const LOAD_CARDSCORE_REQUEST = 'LOAD_CARDSCORE_REQUEST';
-export const LOAD_CARDSCORE_SUCCESS = 'LOAD_CARDSCORE_SUCCESS';
-export const LOAD_CARDSCORE_FAILURE = 'LOAD_CARDSCORE_FAILURE';
-
-export function loadCardScore(cardId, userId) {
-    return {
-        types: [LOAD_CARDSCORE_REQUEST, LOAD_CARDSCORE_SUCCESS, LOAD_CARDSCORE_FAILURE],
-        callAPI: () => apiGetCardStatisticByCardAndUser({cardId: cardId, userId: userId})
-    }
-}
 
 
 

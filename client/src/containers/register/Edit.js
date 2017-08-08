@@ -24,7 +24,6 @@ const Edit = ({register}) => {
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
-        dispatch(clearMembers(_.map(register.members, 'id')));
         return dispatch(deleteRegister(register.id)).then(
             response =>
                 dispatch(push('/'))

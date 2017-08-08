@@ -2,7 +2,6 @@ import {combineReducers} from "redux";
 import {
     ADD_MEMBER_SUCCESS,
     ADD_MEMBERS_SUCCESS,
-    CLEAR_MEMBERS,
     DELETE_MEMBER_SUCCESS,
     LOAD_MEMBER_SUCCESS,
     LOAD_MEMBERS_SUCCESS,
@@ -12,6 +11,8 @@ import {
 } from "../../actions/member";
 
 import _ from "lodash";
+import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
+import {DELETE_USER_SUCCESS} from "../../actions/user";
 
 function addMemberEntry(state, action) {
     const {response} = action;
@@ -19,8 +20,8 @@ function addMemberEntry(state, action) {
 }
 
 function addMemberEntries(state, action) {
-    const {response} = action;
-    return _.assign({}, state, _.keyBy(response, 'id'));
+    const {response, registerId} = action;
+    return _.assign({}, _.omitBy(state, {'register': registerId}), _.keyBy(response, 'id'));
 }
 
 function updateMemberEntry(state, action) {
@@ -29,16 +30,27 @@ function updateMemberEntry(state, action) {
 }
 
 function updateMemberEntries(state, action) {
-    const {response} = action;
-    return _.assign({}, state, _.keyBy(response, 'id'));
+    const {response, registerId} = action;
+    return _.assign({}, _.omitBy(state, ['register', registerId]), _.keyBy(response, 'id'));
 }
 
 function deleteMemberEntry(state, action) {
     return _.omit(state, action.id);
 }
 
-function deleteMemberEntries(state, action) {
-    return _.omit(state, action.ids);
+function addMembershipEntries(state, action) {
+    const {response, userId} = action;
+    return _.assign({}, _.omitBy(state, ['user', userId]), _.keyBy(response, 'id'));
+}
+
+function deleteMemberEntriesByRegister(state, action) {
+    const {registerId} = action;
+    return _.omitBy(state, ['register', registerId]);
+}
+
+function deleteMemberEntriesByUser(state, action) {
+    const {userId} = action;
+    return _.omitBy(state, ['user', userId]);
 }
 
 function membersById(state = {}, action) {
@@ -48,7 +60,6 @@ function membersById(state = {}, action) {
             return addMemberEntry(state, action);
         case LOAD_MEMBERS_SUCCESS:
         case ADD_MEMBERS_SUCCESS:
-        case LOAD_MEMBERSHIPS_SUCCESS:
             return addMemberEntries(state, action);
         case UPDATE_MEMBERS_SUCCESS:
             return updateMemberEntries(state, action);
@@ -56,8 +67,12 @@ function membersById(state = {}, action) {
             return updateMemberEntry(state, action);
         case DELETE_MEMBER_SUCCESS:
             return deleteMemberEntry(state, action);
-        case CLEAR_MEMBERS:
-            return deleteMemberEntries(state, action);
+        case LOAD_MEMBERSHIPS_SUCCESS:
+            return addMembershipEntries(state, action);
+        case DELETE_REGISTER_SUCCESS:
+            return deleteMemberEntriesByRegister(state, action);
+        case DELETE_USER_SUCCESS:
+            return deleteMemberEntriesByUser(state, action);
         default:
             return state;
     }

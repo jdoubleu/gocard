@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 class Title extends React.Component {
     fitTitle() {
-        if (this.props.title.length <= 35) {
+        if ((this.props.title || '').length <= 35) {
             return this.props.title
         } else {
             let clippedTitle = this.props.title.substring(0, 30);
             return clippedTitle + "...";
         }
     }
+
     render() {
         const {title} = this.props;
         const newTitle = this.fitTitle(title);
@@ -21,9 +23,7 @@ class Title extends React.Component {
 }
 
 Title.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string
 };
 
-
-
-export default(Title);
+export default (Title);

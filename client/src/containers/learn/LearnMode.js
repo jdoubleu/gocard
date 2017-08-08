@@ -40,7 +40,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 value: scoreStep,
                 date: moment().format(),
             };
-            createScoreForCard(currentCard.id, body);
+            createScoreForCard(currentCard.id, body, register.id);
         } else {
             let score = _.parseInt(scoreCurrentCard.value);
             score += scoreStep;
@@ -53,7 +53,7 @@ const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResul
                 value: score,
                 date: moment().format(),
             };
-            createScoreForCard(currentCard.id, body);
+            createScoreForCard(currentCard.id, body, register.id);
         }
     };
 
@@ -195,8 +195,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setShowResult(false));
         dispatch(addResult(cardId, answer, correct));
     },
-    createScoreForCard: (currentCardId, body) => {
-        dispatch(addScore(currentCardId, body));
+    createScoreForCard: (currentCardId, body, registerId) => {
+        dispatch(addScore(currentCardId, body, registerId));
     },
     handleSkip: () => {
         dispatch(setLastCorrect(null));

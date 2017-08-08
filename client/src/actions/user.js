@@ -56,7 +56,8 @@ export const DELETE_USER_FAILURE = 'DELETE_USER_FAILURE';
 export function deleteUser(userId) {
     return {
         types: [DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE],
-        callAPI: () => apiDeleteUser({userId})
+        callAPI: () => apiDeleteUser({userId}),
+        payload: {userId}
     };
 }
 

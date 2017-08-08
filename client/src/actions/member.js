@@ -41,6 +41,7 @@ export function loadMembershipsByUser(userId) {
     return {
         types: [LOAD_MEMBERS_REQUEST, LOAD_MEMBERS_SUCCESS, LOAD_MEMBERS_FAILURE],
         callAPI: () => apiGetMembersByUser({userId}),
+        payload: {userId}
     }
 }
 
@@ -101,15 +102,6 @@ export function deleteMemberByRegister(registerId, memberId) {
     return {
         types: [DELETE_MEMBER_REQUEST, DELETE_MEMBER_SUCCESS, DELETE_MEMBER_FAILURE],
         callAPI: () => apiDeleteMemberOfRegister({registerId, memberId}),
-        payload: {registerId}
-    }
-}
-
-export const CLEAR_MEMBERS = 'CLEAR_MEMBERS';
-
-export function clearMembers(memberIds) {
-    return {
-        type: CLEAR_MEMBERS,
-        ids: memberIds
+        payload: {registerId, memberId}
     }
 }
