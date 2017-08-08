@@ -44,7 +44,7 @@ class Detail extends React.Component {
                             <div>
                                 <h6 className="text-muted">Antwort</h6>
                                 <ListGroup className="mb-2">
-                                    <ListGroupItem className="justify-content-between">
+                                    <ListGroupItem className="justify-content-between" >
                                         {card.content.answer}<Badge pill>{'\u2714'}</Badge>
                                     </ListGroupItem>
                                 </ListGroup>
@@ -59,13 +59,13 @@ class Detail extends React.Component {
                                     {card.content.options.map((option, index) => {
                                         if (_.includes(card.content.corrects, index)) {
                                             return (
-                                                <ListGroupItem className="justify-content-between">
+                                                <ListGroupItem className="justify-content-between" key={index}>
                                                     {index + 1}. {option}
-                                                    <Badge pill>{'\u2714'}</Badge></ListGroupItem>
+                                                    <Badge pill key={index}>{'\u2714'}</Badge></ListGroupItem>
                                             );
                                         } else {
                                             return (
-                                                <ListGroupItem>
+                                                <ListGroupItem key={index}>
                                                     {index + 1}. {option}
                                                 </ListGroupItem>
                                             );
@@ -83,13 +83,13 @@ class Detail extends React.Component {
                                     {card.content.options.map((option, index) => {
                                         if (card.content.correct === index) {
                                             return (
-                                                <ListGroupItem className="justify-content-between">
+                                                <ListGroupItem className="justify-content-between" key={index}>
                                                     {index + 1}. {option}
                                                     <Badge pill>{'\u2714'}</Badge></ListGroupItem>
                                             );
                                         } else {
                                             return (
-                                                <ListGroupItem>
+                                                <ListGroupItem key={index}>
                                                     {index + 1}. {option}
                                                 </ListGroupItem>
                                             );
@@ -102,28 +102,29 @@ class Detail extends React.Component {
                         <h6 className="text-muted">Tags</h6>
                         <p>
                             {
-                                (card.tags || []).map((tag) =>
+                                (
+                                    card.tags || []).map((tag) =>
                                     <span className="btn btn-outline-secondary mr-1 mb-1 btn-sm" key={tag}>{tag}</span>
                                 )
                             }
                             {
                                 card.tags.length === 0 &&
-                                <div>Es sind keine Tags vorhanden.</div>
+                                <span>Es sind keine Tags vorhanden.</span>
                             }
                         </p>
 
                         {
                             (role === 'owner' || role === 'editor') &&
-                            <p>
+                            <div className="mb-4">
                                 <hr/>
                                 <Link to={`/register/${card.register}/card/${card.id}/edit`}>Bearbeiten</Link>
-                            </p>
+                            </div>
                         }
                         <div>
-                            <hr/>
                             <Link className="btn btn-outline-primary btn-block"
-                                  to={`/register/${match.params.registerId}`}>Zurück zum
-                                Register</Link>
+                                  to={`/register/${match.params.registerId}`}>
+                                Zurück zum Register
+                            </Link>
                         </div>
                     </Card>
                 </Col>
