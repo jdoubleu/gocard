@@ -102,9 +102,11 @@ export const makeGetUsersByRegister = () => {
 export const makeGetCardsByTags = () => {
     return createSelector(
         [makeGetCardsByRegister(), getSelectedTags, makeGetScoreByUser(), getMode],
-        (cards, selectedTags, allScores, userId, mode) => {
+        (cards, selectedTags, allScores, mode) => {
             const cardsByMode = _.filter(cards, (o) => {
-                return mode === 'POWER_MODE' ? _.parseInt((_.maxBy(_.filter(allScores, {'card': o.id}), 'id') || {value: 0}).value) < 6 : false;
+                const filteredScores = _.filter(allScores, {'card': o.id});
+                const lastScore = _.maxBy(filteredScores, 'id') || {value: 0};
+                return mode === 'POWER_MODE' ? _.parseInt(lastScore.value) < 6 : true;
             });
             if (selectedTags === undefined || selectedTags.length === 0) {
                 return cardsByMode;

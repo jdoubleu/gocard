@@ -26,7 +26,6 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                     <Title title={card.question}/>
                 </h5>
 
-
                 <h6 className="text-muted">Antwort</h6>
                 <ListGroup className="mb-3">
                     {
@@ -158,7 +157,7 @@ const FeedbackCard = ({card, userAnswer, value, correct}) => {
                 </ListGroup>
                 <h6 className="text-muted">Score</h6>
                 <div>
-                    <span className="rounded-circle" style={{'background-color': `${scoreColor}`}}>
+                    <span className="rounded-circle" style={{'backgroundColor': `${scoreColor}`}}>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                     <span className="ml-2">

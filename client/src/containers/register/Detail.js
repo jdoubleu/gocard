@@ -60,7 +60,7 @@ class Detail extends React.Component {
 
                     <Card block className="border-top-primary">
                         <CardTitle>Lernen</CardTitle>
-                        <LearnForm registerId={register.id} disabled={cardIds.length === 0} tags={tags}
+                        <LearnForm registerId={register.id} disabled={false} tags={tags}
                                    onSubmit={handleSubmit} initialValues={settings}/>
                     </Card>
 
