@@ -85,16 +85,23 @@ class PasswordManagementService
 
     /**
      * @param string $email
+     * @return bool
      */
     public function processPasswordResetRequest(string $email)
     {
         $user = $this->userRepository->findOneByEmail($email, false, false);
+
+        if ($user === null) {
+            return false;
+        }
 
         $token = $this->addPasswordResetToken($user);
 
         $this->persistenceManager->persistAll(true);
 
         $this->sendConfirmationMail($token);
+
+        return true;
     }
 
     /**

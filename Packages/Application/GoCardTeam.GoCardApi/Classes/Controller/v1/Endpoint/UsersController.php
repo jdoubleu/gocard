@@ -226,7 +226,8 @@ class UsersController extends AbstractApiEndpointController
             return $this->${$this->errorMethodName}($result);
         }
 
-        $this->passwordManagementService->processPasswordResetRequest($email);
+        if (!$this->passwordManagementService->processPasswordResetRequest($email)) {
+            $this->throwStatus(500);
 
         return null;
     }
