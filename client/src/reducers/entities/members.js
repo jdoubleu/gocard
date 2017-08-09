@@ -10,10 +10,14 @@ import {
     UPDATE_MEMBERS_SUCCESS,
     UPDATE_MEMBERSHIP_SET_SUCCESS
 } from "../../actions/member";
-
 import _ from "lodash";
 import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
 import {DELETE_USER_SUCCESS} from "../../actions/user";
+
+/**
+ * Reducer for redux to handle member entities
+ * Methods to update, add, delete member entities into state
+ */
 
 function addMemberEntry(state, action) {
     const {response} = action;

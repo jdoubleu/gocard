@@ -1,6 +1,9 @@
 import moment from "moment";
 import _ from "lodash";
 
+/**
+ * Calculates the initial letters for a given displayName of a user
+ */
 export function getInitials(displayName) {
     if (!displayName)
         return "";
@@ -14,6 +17,9 @@ export function getInitials(displayName) {
     }
 }
 
+/**
+ * Calculates which case to chose by a given score object.
+ */
 export function calculateScoreType(score, case1, case2, case3, nullCase) {
     if (score.value === null) {
         return nullCase;
@@ -21,12 +27,17 @@ export function calculateScoreType(score, case1, case2, case3, nullCase) {
     return score.value < 3 ? case1 : score.value < 6 ? case2 : case3;
 }
 
+/**
+ * Calculates if an object needs to be loaded again or if it is valid.
+ */
 export function isStateInvalidated(state) {
     if (_.isEmpty(state))
         return true;
     return moment().isAfter(moment(state.invalidate))
 }
-
+/**
+ * Calculates if an object needs to be loaded again or if it is valid.
+ */
 export function areStatesInvalidated(state) {
     if (_.isEmpty(state))
         return true;

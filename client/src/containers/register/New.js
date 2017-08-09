@@ -9,6 +9,8 @@ import {Card, Col, Row} from "reactstrap";
 import Headline from "../shared/headline";
 import RegisterForm from "../forms/Register";
 import _ from "lodash";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 /**
  * Form that creates a new Register.
@@ -30,6 +32,12 @@ const New = ({userId}) => {
                     dispatch(loadMembersByRegister(success.response.id));
                 } else {
                     dispatch(push('/'))
+                }
+            }
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
                 }
             }
         )

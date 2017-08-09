@@ -21,6 +21,8 @@ import {push} from "react-router-redux";
 import _ from "lodash";
 import LeaveRegister from "../forms/LeaveRegister";
 import {deleteMemberByRegister} from "../../actions/member";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 /**
  * Detail for Register. Information of the Register. Information to all cards, statistic for all cards and overview Tags.
@@ -43,9 +45,17 @@ class Detail extends React.Component {
         };
 
         const handleLeaveRegister = (values, dispatch) => {
-            dispatch(deleteMemberByRegister(member.register, member.id)).then(
+            dispatch(
+                deleteMemberByRegister(member.register, member.id)
+            ).then(
                 success =>
                     dispatch(push("/"))
+            ).catch(
+                error => {
+                    if (error instanceof RequestError) {
+                        throw new SubmissionError({_error: error.message})
+                    }
+                }
             );
         };
 

@@ -5,6 +5,11 @@ import {DELETE_CARD_SUCCESS, LOAD_CARDS_SUCCESS} from "../../actions/card";
 import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
 import {DELETE_USER_SUCCESS} from "../../actions/user";
 
+/**
+ * Reducer for redux to handle score entities
+ * Methods to update, add, delete score entities into state
+ */
+
 function addScoreEntry(state, action) {
     const {response, registerId} = action;
     return _.assign({}, state, {[response.id]: {...response, register: registerId}});
