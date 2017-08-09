@@ -6,7 +6,9 @@ import ClippedTag from "../shared/clippedTag";
 import {connect} from "react-redux";
 import {loadCard} from "../../actions/card";
 import {Link} from "react-router-dom";
-
+/**
+ * The preview Card is a small compressed version of your Card.
+ */
 class Preview extends React.Component {
 
     componentWillMount() {

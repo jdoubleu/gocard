@@ -14,7 +14,9 @@ import {
     Table
 } from "reactstrap";
 
-
+/**
+ * Help text that should answer questions that the User might have.
+ */
 const Help = () => {
     return (
         <div id="top" className="help">

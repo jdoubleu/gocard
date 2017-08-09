@@ -22,6 +22,9 @@ import _ from "lodash";
 import LeaveRegister from "../forms/LeaveRegister";
 import {deleteMemberByRegister} from "../../actions/member";
 
+/**
+ * Detail for Register. Information of the Register. Information to all cards, statistic for all cards and overview Tags.
+ */
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, userId, registerId} = this.props;

@@ -11,6 +11,9 @@ import DeleteRegisterForm from "../forms/DeleteRegister";
 import {makeGetRegisterById} from "../../selectors";
 import _ from "lodash";
 
+/**
+ * Form in that you can Change the information of your register.
+ */
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateRegister(register.id, _.omit(values, 'members'))).then(

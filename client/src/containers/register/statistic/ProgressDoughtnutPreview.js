@@ -5,7 +5,9 @@ import {makeGetValueArrayByRegister} from "../../../selectors/index";
 import {connect} from "react-redux";
 import {loadCards} from "../../../actions/card";
 
-
+/**
+ * Is used in Dashborad. Provides information of all cards in register.
+ */
 class ProgressDoughnutPreview extends React.Component {
 
     componentDidMount() {

@@ -2,6 +2,9 @@ import React from "react";
 import Headline from "../shared/headline";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 
+/**
+ * Information about the organisation and the developers of this Application
+ */
 const Imprint = () => {
     return (
         <Row>

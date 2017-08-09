@@ -5,6 +5,9 @@ import {loadAllScores} from "../../../actions/score";
 import {makeGetValueArrayByRegister} from "../../../selectors/index";
 import {connect} from "react-redux";
 
+/**
+ * Is used in detail Register. Provides information of all cards in register.
+ */
 class ProgressDoughnut extends React.Component {
 
     componentDidMount() {

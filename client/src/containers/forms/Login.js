@@ -4,6 +4,9 @@ import {Alert, Button, Form, FormGroup} from "reactstrap";
 import InputField from "./fields/input";
 import {Link} from "react-router-dom";
 
+/**
+ * Redux from for Login.
+ */
 const validate = values => {
     const errors = {};
 

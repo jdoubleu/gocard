@@ -10,6 +10,9 @@ import Headline from "../shared/headline";
 import RegisterForm from "../forms/Register";
 import _ from "lodash";
 
+/**
+ * Form that creates a new Register.
+ */
 const New = ({userId}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(addRegister({

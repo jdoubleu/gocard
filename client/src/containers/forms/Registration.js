@@ -4,6 +4,9 @@ import {Alert, Button, CardText, Form} from "reactstrap";
 import InputField from "./fields/input";
 import {Link} from "react-router-dom";
 
+/**
+ * Redux from for new Account.
+ */
 const validate = values => {
     const errors = {};
 

@@ -3,6 +3,9 @@ import {Field, reduxForm} from "redux-form";
 import {Alert, Button, Form} from "reactstrap";
 import InputField from "./fields/input";
 
+/**
+ * Redux from for password reset.
+ */
 const validate = values => {
     const errors = {};
 

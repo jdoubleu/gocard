@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Bar} from "react-chartjs-2";
 
+/**
+ * Used in Feedback BarChart that provides information about the Cards score.
+ */
 const ProgressBar = ({good, middle, bad, unanswered}) => {
 
     const data = {

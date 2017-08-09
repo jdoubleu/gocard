@@ -11,6 +11,10 @@ import Icon from "../shared/user/icon";
 import {formValueSelector} from "redux-form";
 import {logoutUser} from "../../actions/auth";
 
+/**
+ * Form for Usersettings. This form has subforms SettingFrom, PasswordChangeForm and DeleteUserFrom. Each Form triggers a
+ * different submit.
+ */
 const Settings = ({user, displayName}) => {
 
     const handleSubmit = (values, dispatch) => {

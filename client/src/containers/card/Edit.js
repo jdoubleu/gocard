@@ -7,7 +7,9 @@ import DeleteCardForm from "../forms/DeleteCard";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import {deleteCard, updateCard} from "../../actions/card";
-
+/**
+ * Form that allows you to change content of your Card.
+ */
 const Edit = ({card}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateCard(card.id, values)).then(

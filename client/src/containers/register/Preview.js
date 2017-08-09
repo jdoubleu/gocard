@@ -7,6 +7,9 @@ import MemberBar from "../../containers/register/member/Bar";
 import {connect} from "react-redux";
 import ProgressDoughnutPreview from "./statistic/ProgressDoughtnutPreview";
 
+/**
+ * Perviewcard in dashboard that shows compressed version of a Register
+ */
 const Preview = ({register}) => {
     return (
         <Col xl="4" md="6" xs="12">

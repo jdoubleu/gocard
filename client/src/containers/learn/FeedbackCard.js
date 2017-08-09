@@ -2,6 +2,9 @@ import React from "react";
 import {Badge, Button, CardTitle, ListGroup, ListGroupItem} from "reactstrap";
 import _ from "lodash";
 
+/**
+ * FeedbackCard tells you whether you answered a card right or wrong.
+ */
 const FeedbackCard = ({card, userAnswer, handleClick}) => {
 
     return (

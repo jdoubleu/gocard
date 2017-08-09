@@ -4,6 +4,9 @@ import _ from "lodash";
 import {calculateScoreType} from "../../utils/index";
 import Title from "../shared/title";
 
+/**
+ * Used in Feedback. Same information as in Feedback but also tells you the status of your card.
+ */
 const FeedbackCard = ({card, userAnswer, value, correct}) => {
     const calcColor = () => {
         if (userAnswer === null) {
