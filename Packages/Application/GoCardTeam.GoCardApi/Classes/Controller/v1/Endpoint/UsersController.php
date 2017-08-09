@@ -9,6 +9,7 @@ use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
 use GoCardTeam\GoCardApi\Domain\Service\v1\PasswordManagementService;
 use GoCardTeam\GoCardApi\Domain\Service\v1\RegistrationService;
+use GoCardTeam\GoCardApi\Domain\Service\v1\UserManagementService;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
 use Neos\Error\Messages\Error;
@@ -62,6 +63,12 @@ class UsersController extends AbstractApiEndpointController
      * @var PasswordManagementService
      */
     protected $passwordManagementService;
+
+    /**
+     * @Flow\Inject
+     * @var UserManagementService
+     */
+    protected $userManagement;
 
     /**
      * Allows property modification for update action.
@@ -173,7 +180,7 @@ class UsersController extends AbstractApiEndpointController
      */
     public function deleteUserAction(User $user)
     {
-        $this->userRepository->remove($user);
+        $this->userManagement->deleteUser($user);
     }
 
     /**
