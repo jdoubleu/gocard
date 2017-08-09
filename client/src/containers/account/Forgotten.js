@@ -4,7 +4,9 @@ import Logo from "../shared/logo";
 import ForgottenForm from "../forms/Forgotten";
 import {requestPasswordReset} from "../../actions/user";
 import {SubmissionError} from "redux-form";
-
+/**
+ * Form for Password reset. And dispatch for Password reset request.
+ */
 const Forgotten = () => {
 
     const handleSubmit = (values, dispatch) => {

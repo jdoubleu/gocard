@@ -5,7 +5,9 @@ import {
 import {areStatesInvalidated} from "../utils/index";
 import _ from "lodash";
 
-
+/**
+ * Actions for Score. Load and Add.
+ */
 export const ADD_SCORE_REQUEST = 'ADD_SCORE_REQUEST';
 export const ADD_SCORE_SUCCESS = 'ADD_SCORE_SUCCESS';
 export const ADD_SCORE_FAILURE = 'ADD_SCORE_FAILURE';

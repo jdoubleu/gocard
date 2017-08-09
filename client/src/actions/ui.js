@@ -1,3 +1,6 @@
+/**
+ * Actions for Ui State. Ui State is used for learing
+ */
 export const ADD_CURRENT_CARD = 'ADD_CURRENT_CARD';
 
 export function addCurrentCard(card) {

@@ -7,6 +7,9 @@ import {
 } from "../lib/ApiClient";
 import {isStateInvalidated} from "../utils/index";
 
+/**
+ * Actions for Register. Actions to Load, Update, Delete, Add.
+ */
 export const LOAD_REGISTERS_REQUEST = 'LOAD_REGISTERS_REQUEST';
 export const LOAD_REGISTERS_SUCCESS = 'LOAD_REGISTERS_SUCCESS';
 export const LOAD_REGISTERS_FAILURE = 'LOAD_REGISTERS_FAILURE';

@@ -12,6 +12,9 @@ import {
 import {areStatesInvalidated} from "../utils/index";
 import _ from "lodash";
 
+/**
+ * Actions for Members. Actions to Load, Update, Delete and Add
+ */
 export const LOAD_MEMBER_REQUEST = 'LOAD_MEMBER_REQUEST';
 export const LOAD_MEMBER_SUCCESS = 'LOAD_MEMBER_SUCCESS';
 export const LOAD_MEMBER_FAILURE = 'LOAD_MEMBER_FAILURE';
