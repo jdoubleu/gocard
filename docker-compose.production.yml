@@ -8,7 +8,9 @@ services:
   ####################
 
   php:
-    build: .docker/Production/php
+    build:
+      context: .
+      dockerfile: .docker/Production/php/Dockerfile
     volumes:
       - ./:/var/www/html
     environment:

@@ -15,7 +15,7 @@ RUN set -xe \
 	&& apk del .phpize-deps
 
 ### Configure xdebug
-COPY apc.ini igbinary.ini opcache.ini /usr/local/etc/php/conf.d/
+COPY .docker/Production/php/apc.ini .docker/Production/php/igbinary.ini .docker/Production/php/opcache.ini /usr/local/etc/php/conf.d/
 
 ## Set environment variables for runtime
 ENV FLOW_CONTEXT=Production
@@ -26,6 +26,6 @@ VOLUME ["/var/www/html/Data/Logs"]
 VOLUME ["/var/www/html/Data/Persistent"]
 
 ## Execution
-COPY run setup.php /usr/local/bin/
+COPY .docker/Production/php/run .docker/Production/php/setup.php /usr/local/bin/
 
 CMD ["/usr/local/bin/run"]
