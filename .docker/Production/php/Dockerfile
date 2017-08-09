@@ -21,8 +21,8 @@ COPY apc.ini igbinary.ini opcache.ini /usr/local/etc/php/conf.d/
 ENV FLOW_CONTEXT=Production
 
 ## Define volumes
-VOLUME ["/var/www/htl/Data/Logs"]
-VOLUME ["/var/www/htl/Data/Persistent"]
+VOLUME ["/var/www/html/Data/Logs"]
+VOLUME ["/var/www/html/Data/Persistent"]
 
 ## Execution
 COPY run setup.php /usr/local/bin/
