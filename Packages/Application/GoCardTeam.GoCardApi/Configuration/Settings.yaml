@@ -1,0 +1,74 @@
+# Package specific settings
+GoCardTeam:
+  GoCardApi:
+    security:
+      accessToken:
+        # Lifetime (in seconds) of a newly generated access token
+        lifetime: 3600
+      registrationToken:
+        # Lifetime (in seconds) of an confirmation token for user registration
+        lifetime: 86400
+      passwordResetToken:
+        # Lifetime (in seconds) of a password reset token
+        lifetime: 3600
+
+    mail:
+      from:
+        name: 'GoCard'
+        address: ~
+
+# Framework settings and adjustments
+Neos:
+  Flow:
+    core:
+      applicationPackageKey: 'GoCardTeam.GoCardApi'
+      applicationName: 'GoCard'
+
+    mvc:
+      routes:
+        'GoCardTeam.GoCardApi':
+          position: 'start'
+        'Neos.Flow': FALSE
+
+    security:
+      authentication:
+        providers:
+          'LocalAuthenticationProvider':
+            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\PersistedEmailPasswordProvider'
+            requestPatterns:
+              'GoCardTeam.GoCardApi:ApiAccessRequest':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\v1\LocalAccountAuthenticationController'
+          'AccessTokenAuthenticationProvider':
+            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\AccessTokenProvider'
+            providerOptions:
+              localAccountProviderName: 'LocalAuthenticationProvider'
+            requestPatterns:
+              'GoCardTeam.GoCardApi:ApiAccess':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\v1\Endpoint\.*'
+
+      firewall:
+       filters:
+        'Neos.Flow:CsrfProtection':
+          pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\DeadLockedRequestPattern'
+          patternOptions:
+            'result': false
+
+    persistence:
+      doctrine:
+        dbal:
+          mappingTypes:
+            'enum':
+              dbType: 'enum'
+              className: 'Doctrine\DBAL\Types\StringType'
+            'consistent_bigint':
+              dbType: 'bigint'
+              className: 'GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\v1\BigIntType'
+
+    aop:
+      globalObjects:
+        userContext: GoCardTeam\GoCardApi\Context\v1\UserContext
+        memberContext: GoCardTeam\GoCardApi\Context\v1\MemberContext

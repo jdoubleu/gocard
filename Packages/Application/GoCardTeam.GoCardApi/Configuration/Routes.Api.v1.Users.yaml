@@ -1,0 +1,99 @@
+# Users API Routes
+# Special routes only for the users api endpoint
+
+-
+  name: 'create new user'
+  uriPattern: ''
+  defaults:
+    '@action': 'addUser'
+  routeParts:
+    user:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'user login'
+  uriPattern: 'login'
+  defaults:
+    '@controller': 'v1\LocalAccountAuthentication'
+    '@action': 'authenticate'
+  httpMethods: ['POST']
+
+-
+  name: 'find user by email'
+  uriPattern: 'findByEmail'
+  defaults:
+    '@action': 'getUserByEmail'
+  httpMethods: ['GET']
+
+-
+  name: 'search users'
+  uriPattern: 'search'
+  defaults:
+    '@action': 'searchUsersByName'
+  httpMethods: ['GET']
+
+-
+  name: 'confirm registration'
+  uriPattern: 'confirm'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'confirm'
+  httpMethods: ['GET']
+
+-
+  name: 'request password reset'
+  uriPattern: 'passwordReset'
+  defaults:
+    '@action': 'requestPasswordReset'
+  httpMethods: ['POST']
+
+-
+  name: 'confirm password reset'
+  uriPattern: 'password'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'updatePassword'
+  httpMethods: ['PUT']
+
+-
+  name: 'find user'
+  uriPattern: '{userId}'
+  defaults:
+    '@action': 'getUserById'
+  httpMethods: ['GET']
+
+-
+  name: 'update user'
+  uriPattern: '{user}'
+  defaults:
+    '@action': 'updateUser'
+  routeParts:
+    user:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'delete user'
+  uriPattern: '{user}'
+  defaults:
+    '@action': 'deleteUser'
+  routeParts:
+    user:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+  httpMethods: ['DELETE']
+
+-
+  name: 'get members of user'
+  uriPattern: '{user}/memberships'
+  defaults:
+    '@action': 'getMembersByUser'
+  routeParts:
+    user:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\User'
+  httpMethods: ['GET']

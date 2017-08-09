@@ -1,0 +1,50 @@
+# API Routes
+# This file contains generic routes for all api endpoints
+
+-
+  name: 'users routes'
+  uriPattern: 'users/<UsersSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Users'
+    '@format':     'json'
+  subRoutes:
+    'UsersSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.Users'
+
+-
+  name: 'registers routes'
+  uriPattern: 'registers/<RegistersSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Registers'
+    '@format':     'json'
+  subRoutes:
+    'RegistersSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.Registers'
+
+-
+  name: 'cards routes'
+  uriPattern: 'cards/<CardsSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Cards'
+    '@format':     'json'
+  subRoutes:
+    'CardsSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.Cards'
+
+-
+  name: 'activities routes'
+  uriPattern: 'activities/<ActivitiesSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Activities'
+    '@format':     'json'
+  subRoutes:
+    'ActivitiesSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.Activities'

@@ -1,0 +1,35 @@
+{
+    "name": "gocardteam/gocard",
+    "description": "GoCard is an interactive learning web application",
+    "license": "proprietary",
+    "type": "project",
+    "version": "0.1.0",
+    "config": {
+        "vendor-dir": "Packages/Libraries",
+        "bin-dir": "bin"
+    },
+    "require": {
+        "neos/flow": "~4.1.0",
+        "neos/welcome": "~4.1.0",
+        "neos/swiftmailer": "^6.0"
+    },
+    "require-dev": {
+        "neos/kickstarter": "~4.1.0",
+        "neos/buildessentials": "~4.1.0",
+        "neos/behat": "dev-master",
+        "phpunit/phpunit": "~6.0.0",
+        "mikey179/vfsstream": "~1.6"
+    },
+    "replace": {
+        "typo3/flow-base-distribution": "4.1.0"
+    },
+    "suggest": {
+        "ext-pdo_sqlite": "For running functional tests out-of-the-box this is required"
+    },
+    "scripts": {
+        "post-update-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
+        "post-install-cmd": "Neos\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
+        "post-package-update": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "post-package-install": "Neos\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
+    }
+}

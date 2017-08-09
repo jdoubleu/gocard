@@ -1,0 +1,83 @@
+# Members API Routes
+# Special routes only for the members api endpoint
+
+-
+  name: 'get all members of register'
+  uriPattern: ''
+  defaults:
+    '@action': 'findMembersByRegister'
+  httpMethods: ['GET']
+
+-
+  name: 'add new member to register'
+  uriPattern: ''
+  defaults:
+    '@action': 'addMemberToRegister'
+  routeParts:
+    member:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'update member set'
+  uriPattern: ''
+  defaults:
+    '@action': 'updateMemberSetOfRegister'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']
+
+-
+  name: 'add multiple members'
+  uriPattern: 'multiple'
+  defaults:
+    '@action': 'addMembersToRegister'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'update members of register'
+  uriPattern: 'multiple'
+  defaults:
+    '@action': 'updateMembersOfRegister'
+  routeParts:
+    members:
+      objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['PUT']
+
+-
+  name: 'update member'
+  uriPattern: '{member}'
+  defaults:
+    '@action': 'updateMemberByRegister'
+  routeParts:
+    member:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'delete member'
+  uriPattern: '{member}'
+  defaults:
+    '@action': 'deleteMemberOfRegister'
+  routeParts:
+    member:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
+  httpMethods: ['DELETE']
+
+-
+  name: 'find member of register by user'
+  uriPattern: 'findByUser'
+  defaults:
+    '@action': 'findMemberByRegisterAndUser'
+  httpMethods: ['GET']

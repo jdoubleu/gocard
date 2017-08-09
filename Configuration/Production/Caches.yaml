@@ -1,0 +1,9 @@
+# Caches configuration
+
+# Core Caches
+Flow_Mvc_Routing_Route:
+  backend: Neos\Cache\Backend\NullBackend
+Flow_Mvc_Routing_Resolve:
+  backend: Neos\Cache\Backend\NullBackend
+Flow_Persistence_Doctrine_Results:
+  backend: Neos\Cache\Backend\NullBackend

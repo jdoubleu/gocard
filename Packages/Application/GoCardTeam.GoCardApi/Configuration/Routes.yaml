@@ -1,0 +1,34 @@
+-
+  name: 'Application Entrypoint'
+  uriPattern: ''
+  appendExceedingArguments: true
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'Standard'
+    '@action':     'index'
+    '@format':     'html'
+
+-
+  name: 'Client Subroutes'
+  uriPattern: '<ClientSubroutes>'
+  appendExceedingArguments: true
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'Standard'
+    '@action':     'index'
+    '@format':     'html'
+  subRoutes:
+    'ClientSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Client.v1'
+
+-
+  name: 'API routes'
+  uriPattern: 'api/v1/<APISubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@format':     'json'
+  subRoutes:
+    'APISubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1'

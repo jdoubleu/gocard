@@ -1,0 +1,744 @@
+{
+  "ajv@4.11.8": {
+    "licenses": "MIT",
+    "repository": "https://github.com/epoberezkin/ajv",
+    "publisher": "Evgeny Poberezkin",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\ajv\\LICENSE"
+  },
+  "asap@2.0.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/kriskowal/asap"
+  },
+  "asn1@0.2.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mcavage/node-asn1",
+    "publisher": "Mark Cavage",
+    "email": "mcavage@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\asn1\\LICENSE"
+  },
+  "assert-plus@0.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mcavage/node-assert-plus",
+    "publisher": "Mark Cavage",
+    "email": "mcavage@gmail.com"
+  },
+  "assert-plus@1.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mcavage/node-assert-plus",
+    "publisher": "Mark Cavage",
+    "email": "mcavage@gmail.com"
+  },
+  "asynckit@0.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/alexindigo/asynckit",
+    "publisher": "Alex Indigo",
+    "email": "iam@alexindigo.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\asynckit\\LICENSE"
+  },
+  "aws-sign2@0.6.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/mikeal/aws-sign",
+    "publisher": "Mikeal Rogers",
+    "email": "mikeal.rogers@gmail.com",
+    "url": "http://www.futurealoof.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\aws-sign2\\LICENSE"
+  },
+  "aws4@1.6.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mhart/aws4",
+    "publisher": "Michael Hart",
+    "email": "michael.hart.au@gmail.com",
+    "url": "http://github.com/mhart",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\aws4\\LICENSE"
+  },
+  "bcrypt-pbkdf@1.0.1": {
+    "licenses": "BSD-3-Clause"
+  },
+  "boom@2.10.1": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/hapijs/boom",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\boom\\LICENSE"
+  },
+  "bootstrap@4.0.0-alpha.6": {
+    "licenses": "MIT",
+    "repository": "https://github.com/twbs/bootstrap",
+    "publisher": "The Bootstrap Authors",
+    "url": "https://github.com/twbs/bootstrap/graphs/contributors",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\bootstrap\\LICENSE"
+  },
+  "caseless@0.12.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/mikeal/caseless",
+    "publisher": "Mikeal Rogers",
+    "email": "mikeal.rogers@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\caseless\\LICENSE"
+  },
+  "chain-function@1.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jquense/chain-function",
+    "publisher": "jquense"
+  },
+  "chart.js@2.6.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/chartjs/Chart.js"
+  },
+  "chartjs-color-string@0.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/harthur/color-string",
+    "publisher": "Heather Arthur",
+    "email": "fayearthur@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\chartjs-color-string\\LICENSE"
+  },
+  "chartjs-color@2.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/chartjs/chartjs-color",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\chartjs-color\\LICENSE"
+  },
+  "classnames@2.2.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/JedWatson/classnames",
+    "publisher": "Jed Watson",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\classnames\\LICENSE"
+  },
+  "co@4.6.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/tj/co",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\co\\LICENSE"
+  },
+  "color-convert@0.5.3": {
+    "licenses": "MIT*",
+    "repository": "https://github.com/harthur/color-convert",
+    "publisher": "Heather Arthur",
+    "email": "fayearthur@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\chartjs-color\\node_modules\\color-convert\\LICENSE"
+  },
+  "color-name@1.1.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/dfcreative/color-name",
+    "publisher": "DY",
+    "email": "dfcreative@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\color-name\\LICENSE"
+  },
+  "combined-stream@1.0.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/felixge/node-combined-stream",
+    "publisher": "Felix Geisend├Ârfer",
+    "email": "felix@debuggable.com",
+    "url": "http://debuggable.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\combined-stream\\License"
+  },
+  "core-js@1.2.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/zloirock/core-js",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\fbjs\\node_modules\\core-js\\LICENSE"
+  },
+  "create-react-class@15.6.0": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/facebook/react",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\create-react-class\\LICENSE.txt"
+  },
+  "cryptiles@2.0.5": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/hapijs/cryptiles",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\cryptiles\\LICENSE"
+  },
+  "dashdash@1.14.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/trentm/node-dashdash",
+    "publisher": "Trent Mick",
+    "email": "trentm@gmail.com",
+    "url": "http://trentm.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\dashdash\\LICENSE.txt"
+  },
+  "deep-equal@1.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/substack/node-deep-equal",
+    "publisher": "James Halliday",
+    "email": "mail@substack.net",
+    "url": "http://substack.net",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\deep-equal\\LICENSE"
+  },
+  "delayed-stream@1.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/felixge/node-delayed-stream",
+    "publisher": "Felix Geisend├Ârfer",
+    "email": "felix@debuggable.com",
+    "url": "http://debuggable.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\delayed-stream\\License"
+  },
+  "dom-helpers@3.2.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jquense/dom-helpers",
+    "publisher": "Jason Quense",
+    "email": "monastic.panic@gmail.com"
+  },
+  "ecc-jsbn@0.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/quartzjer/ecc-jsbn",
+    "publisher": "Jeremie Miller",
+    "email": "jeremie@jabber.org",
+    "url": "http://jeremie.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\ecc-jsbn\\LICENSE"
+  },
+  "encoding@0.1.12": {
+    "licenses": "MIT",
+    "repository": "https://github.com/andris9/encoding",
+    "publisher": "Andris Reinman",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\encoding\\LICENSE"
+  },
+  "es6-error@4.0.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/bjyoungblood/es6-error",
+    "publisher": "Ben Youngblood"
+  },
+  "extend@3.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/justmoon/node-extend",
+    "publisher": "Stefan Thomas",
+    "email": "justmoon@members.fsf.org",
+    "url": "http://www.justmoon.net",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\extend\\LICENSE"
+  },
+  "extsprintf@1.0.2": {
+    "licenses": "MIT*",
+    "repository": "https://github.com/davepacheco/node-extsprintf",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\extsprintf\\LICENSE"
+  },
+  "fbjs@0.8.12": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/facebook/fbjs",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\fbjs\\LICENSE"
+  },
+  "forever-agent@0.6.1": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/mikeal/forever-agent",
+    "publisher": "Mikeal Rogers",
+    "email": "mikeal.rogers@gmail.com",
+    "url": "http://www.futurealoof.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\forever-agent\\LICENSE"
+  },
+  "form-data@2.1.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/form-data/form-data",
+    "publisher": "Felix Geisend├Ârfer",
+    "email": "felix@debuggable.com",
+    "url": "http://debuggable.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\form-data\\License"
+  },
+  "getpass@0.1.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/arekinath/node-getpass",
+    "publisher": "Alex Wilson",
+    "email": "alex.wilson@joyent.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\getpass\\LICENSE"
+  },
+  "gocard@0.1.0": {
+    "licenses": "UNLICENSED",
+    "private": true,
+    "publisher": "GoCard Team",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\README.md"
+  },
+  "har-schema@1.0.5": {
+    "licenses": "ISC",
+    "repository": "https://github.com/ahmadnassri/har-schema",
+    "publisher": "Ahmad Nassri",
+    "email": "ahmad@ahmadnassri.com",
+    "url": "https://www.ahmadnassri.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\har-schema\\LICENSE"
+  },
+  "har-validator@4.2.1": {
+    "licenses": "ISC",
+    "repository": "https://github.com/ahmadnassri/har-validator",
+    "publisher": "Ahmad Nassri",
+    "email": "ahmad@ahmadnassri.com",
+    "url": "https://www.ahmadnassri.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\har-validator\\LICENSE"
+  },
+  "hawk@3.1.3": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/hueniverse/hawk",
+    "publisher": "Eran Hammer",
+    "email": "eran@hammer.io",
+    "url": "http://hueniverse.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\hawk\\LICENSE"
+  },
+  "history@4.6.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/ReactTraining/history",
+    "publisher": "Michael Jackson"
+  },
+  "hoek@2.16.3": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/hapijs/hoek",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\hoek\\LICENSE"
+  },
+  "hoist-non-react-statics@1.2.0": {
+    "licenses": "BSD",
+    "repository": "https://github.com/mridgway/hoist-non-react-statics",
+    "publisher": "Michael Ridgway",
+    "email": "mridgway@yahoo-inc.com"
+  },
+  "hoist-non-react-statics@2.2.0": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/mridgway/hoist-non-react-statics",
+    "publisher": "Michael Ridgway",
+    "email": "mcridgway@gmail.com"
+  },
+  "http-signature@1.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/joyent/node-http-signature",
+    "publisher": "Joyent, Inc",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\http-signature\\LICENSE"
+  },
+  "iconv-lite@0.4.18": {
+    "licenses": "MIT",
+    "repository": "https://github.com/ashtuchkin/iconv-lite",
+    "publisher": "Alexander Shtuchkin",
+    "email": "ashtuchkin@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\iconv-lite\\LICENSE"
+  },
+  "invariant@2.2.2": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/zertosh/invariant",
+    "publisher": "Andres Suarez",
+    "email": "zertosh@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\invariant\\LICENSE"
+  },
+  "is-promise@2.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/then/is-promise",
+    "publisher": "ForbesLindesay",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\is-promise\\LICENSE"
+  },
+  "is-stream@1.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/sindresorhus/is-stream",
+    "publisher": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\is-stream\\license"
+  },
+  "is-typedarray@1.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/hughsk/is-typedarray",
+    "publisher": "Hugh Kennedy",
+    "email": "hughskennedy@gmail.com",
+    "url": "http://hughsk.io/"
+  },
+  "isarray@0.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/juliangruber/isarray",
+    "publisher": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "isomorphic-fetch@2.2.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/matthew-andrews/isomorphic-fetch",
+    "publisher": "Matt Andrews",
+    "email": "matt@mattandre.ws",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\isomorphic-fetch\\LICENSE"
+  },
+  "isstream@0.1.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/rvagg/isstream",
+    "publisher": "Rod Vagg",
+    "email": "rod@vagg.org"
+  },
+  "jquery@3.2.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jquery/jquery",
+    "publisher": "JS Foundation and other contributors",
+    "url": "https://github.com/jquery/jquery/blob/3.2.1/AUTHORS.txt",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\jquery\\LICENSE.txt"
+  },
+  "js-tokens@3.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lydell/js-tokens",
+    "publisher": "Simon Lydell",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\js-tokens\\LICENSE"
+  },
+  "jsbn@0.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/andyperlitch/jsbn",
+    "publisher": "Tom Wu",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\jsbn\\LICENSE"
+  },
+  "json-schema@0.2.3": {
+    "licenses": [
+      "AFLv2.1",
+      "BSD"
+    ],
+    "repository": "https://github.com/kriszyp/json-schema",
+    "publisher": "Kris Zyp"
+  },
+  "json-stable-stringify@1.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/substack/json-stable-stringify",
+    "publisher": "James Halliday",
+    "email": "mail@substack.net",
+    "url": "http://substack.net",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\json-stable-stringify\\LICENSE"
+  },
+  "json-stringify-safe@5.0.1": {
+    "licenses": "ISC",
+    "repository": "https://github.com/isaacs/json-stringify-safe",
+    "publisher": "Isaac Z. Schlueter",
+    "email": "i@izs.me",
+    "url": "http://blog.izs.me",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\json-stringify-safe\\LICENSE"
+  },
+  "jsonify@0.0.0": {
+    "licenses": "Public Domain",
+    "repository": "https://github.com/substack/jsonify",
+    "publisher": "Douglas Crockford",
+    "url": "http://crockford.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\jsonify\\README.markdown"
+  },
+  "jsprim@1.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/joyent/node-jsprim",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\jsprim\\LICENSE"
+  },
+  "lodash-es@4.17.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash-es\\LICENSE"
+  },
+  "lodash.isequal@4.5.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash.isequal\\LICENSE"
+  },
+  "lodash.isfunction@3.0.8": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash.isfunction\\LICENSE"
+  },
+  "lodash.isobject@3.0.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash.isobject\\LICENSE.txt"
+  },
+  "lodash.omit@4.5.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash.omit\\LICENSE"
+  },
+  "lodash.tonumber@4.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash.tonumber\\LICENSE"
+  },
+  "lodash@4.17.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lodash/lodash",
+    "publisher": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\lodash\\LICENSE"
+  },
+  "loose-envify@1.3.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/zertosh/loose-envify",
+    "publisher": "Andres Suarez",
+    "email": "zertosh@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\loose-envify\\LICENSE"
+  },
+  "mime-db@1.27.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jshttp/mime-db",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\mime-db\\LICENSE"
+  },
+  "mime-types@2.1.15": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jshttp/mime-types",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\mime-types\\LICENSE"
+  },
+  "moment@2.18.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/moment/moment",
+    "publisher": "Iskren Ivov Chernev",
+    "email": "iskren.chernev@gmail.com",
+    "url": "https://github.com/ichernev",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\moment\\LICENSE"
+  },
+  "node-fetch@1.7.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/bitinn/node-fetch",
+    "publisher": "David Frank"
+  },
+  "oauth-sign@0.8.2": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/mikeal/oauth-sign",
+    "publisher": "Mikeal Rogers",
+    "email": "mikeal.rogers@gmail.com",
+    "url": "http://www.futurealoof.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\oauth-sign\\LICENSE"
+  },
+  "object-assign@4.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/sindresorhus/object-assign",
+    "publisher": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\object-assign\\license"
+  },
+  "path-to-regexp@1.7.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/pillarjs/path-to-regexp",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\path-to-regexp\\LICENSE"
+  },
+  "performance-now@0.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/meryn/performance-now",
+    "publisher": "Meryn Stol",
+    "email": "merynstol@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\performance-now\\license.txt"
+  },
+  "promise@7.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/then/promise",
+    "publisher": "ForbesLindesay",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\promise\\LICENSE"
+  },
+  "prop-types@15.5.10": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/reactjs/prop-types",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\prop-types\\LICENSE"
+  },
+  "punycode@1.4.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/bestiejs/punycode.js",
+    "publisher": "Mathias Bynens",
+    "url": "https://mathiasbynens.be/"
+  },
+  "q@1.5.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/kriskowal/q",
+    "publisher": "Kris Kowal",
+    "email": "kris@cixar.com",
+    "url": "https://github.com/kriskowal",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\q\\LICENSE"
+  },
+  "qs@6.4.0": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/ljharb/qs",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\qs\\LICENSE"
+  },
+  "react-chartjs-2@2.1.0": {
+    "licenses": "UNKNOWN",
+    "repository": "https://github.com/gor181/react-chartjs-2",
+    "publisher": "Goran Udosic"
+  },
+  "react-dom@15.6.1": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/facebook/react",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\react-dom\\LICENSE"
+  },
+  "react-redux@5.0.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/reactjs/react-redux",
+    "publisher": "Dan Abramov",
+    "email": "dan.abramov@me.com",
+    "url": "http://github.com/gaearon"
+  },
+  "react-router-dom@4.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/ReactTraining/react-router"
+  },
+  "react-router-redux@5.0.0-alpha.6": {
+    "licenses": "MIT",
+    "repository": "https://github.com/ReactTraining/react-router"
+  },
+  "react-router@4.1.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/ReactTraining/react-router"
+  },
+  "react-transition-group@1.2.0": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/reactjs/react-transition-group"
+  },
+  "react@15.6.1": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/facebook/react",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\react\\LICENSE"
+  },
+  "reactstrap-tether@1.3.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/HubSpot/tether",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\reactstrap-tether\\LICENSE"
+  },
+  "reactstrap@4.6.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/reactstrap/reactstrap",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\reactstrap\\LICENSE"
+  },
+  "redux-form@7.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/erikras/redux-form",
+    "publisher": "Erik Rasmussen",
+    "email": "rasmussenerik@gmail.com",
+    "url": "http://github.com/erikras",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\redux-form\\LICENSE"
+  },
+  "redux-offline@2.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jevakallio/redux-offline",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\redux-offline\\LICENSE"
+  },
+  "redux-persist@4.8.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/rt2zz/redux-persist",
+    "publisher": "rt2zz",
+    "email": "zack@root-two.com"
+  },
+  "redux-thunk@2.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/gaearon/redux-thunk",
+    "publisher": "Dan Abramov",
+    "email": "dan.abramov@me.com"
+  },
+  "redux@3.7.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/reactjs/redux"
+  },
+  "request@2.81.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/request/request",
+    "publisher": "Mikeal Rogers",
+    "email": "mikeal.rogers@gmail.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\request\\LICENSE"
+  },
+  "reselect@3.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/reactjs/reselect",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\reselect\\LICENSE"
+  },
+  "resolve-pathname@2.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mjackson/resolve-pathname",
+    "publisher": "Michael Jackson"
+  },
+  "safe-buffer@5.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/feross/safe-buffer",
+    "publisher": "Feross Aboukhadijeh",
+    "email": "feross@feross.org",
+    "url": "http://feross.org",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\safe-buffer\\LICENSE"
+  },
+  "setimmediate@1.0.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/YuzuJS/setImmediate",
+    "publisher": "YuzuJS",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\setimmediate\\LICENSE.txt"
+  },
+  "sntp@1.0.9": {
+    "licenses": "BSD",
+    "repository": "https://github.com/hueniverse/sntp",
+    "publisher": "Eran Hammer",
+    "email": "eran@hammer.io",
+    "url": "http://hueniverse.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\sntp\\LICENSE"
+  },
+  "sshpk@1.13.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/arekinath/node-sshpk",
+    "publisher": "Joyent, Inc",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\sshpk\\LICENSE"
+  },
+  "stringstream@0.0.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mhart/StringStream",
+    "publisher": "Michael Hart",
+    "email": "michael.hart.au@gmail.com",
+    "url": "http://github.com/mhart",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\stringstream\\LICENSE.txt"
+  },
+  "symbol-observable@1.0.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/blesh/symbol-observable",
+    "publisher": "Ben Lesh",
+    "email": "ben@benlesh.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\symbol-observable\\license"
+  },
+  "tether@1.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/HubSpot/tether",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\tether\\LICENSE"
+  },
+  "tough-cookie@2.3.2": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/salesforce/tough-cookie",
+    "publisher": "Jeremy Stashewsky",
+    "email": "jstashewsky@salesforce.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\tough-cookie\\LICENSE"
+  },
+  "tunnel-agent@0.6.0": {
+    "licenses": "Apache-2.0",
+    "repository": "https://github.com/mikeal/tunnel-agent",
+    "publisher": "Mikeal Rogers",
+    "email": "mikeal.rogers@gmail.com",
+    "url": "http://www.futurealoof.com",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\tunnel-agent\\LICENSE"
+  },
+  "tweetnacl@0.14.5": {
+    "licenses": "Unlicense",
+    "repository": "https://github.com/dchest/tweetnacl-js",
+    "publisher": "TweetNaCl-js contributors",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\tweetnacl\\LICENSE"
+  },
+  "ua-parser-js@0.7.12": {
+    "licenses": "(GPL-2.0 OR MIT)",
+    "repository": "https://github.com/faisalman/ua-parser-js",
+    "publisher": "Faisal Salman",
+    "email": "fyzlman@gmail.com",
+    "url": "http://faisalman.com"
+  },
+  "uuid@3.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/kelektiv/node-uuid"
+  },
+  "value-equal@0.2.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mjackson/value-equal",
+    "publisher": "Michael Jackson"
+  },
+  "verror@1.3.6": {
+    "licenses": "MIT*",
+    "repository": "https://github.com/davepacheco/node-verror",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\verror\\LICENSE"
+  },
+  "warning@3.0.0": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/BerkeleyTrue/warning",
+    "publisher": "Berkeley Martinez",
+    "email": "berkeley@r3dm.com",
+    "url": "http://www.freecodecamp.com"
+  },
+  "whatwg-fetch@2.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/github/fetch",
+    "licenseFile": "C:\\Users\\max\\Repos\\SS17-IP1-LernZ\\node_modules\\whatwg-fetch\\LICENSE"
+  }
+}
+

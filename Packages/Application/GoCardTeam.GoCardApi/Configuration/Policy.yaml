@@ -1,0 +1,100 @@
+privilegeTargets:
+
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    # GoCard API
+    # PrivilegeTargets for the API
+
+    # API v1
+
+    #
+    # General API endpoint action targets
+    #
+    'GoCardTeam.GoCardApi:UsersController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(?!(initialize)?(?i)(addUser|confirm|requestPasswordReset|updatePassword|error))(.*)(?<!initialize)Action())'
+    'GoCardTeam.GoCardApi:RegistersController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\RegistersController->.*Action())'
+    'GoCardTeam.GoCardApi:CardsController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardsController->.*Action())'
+    'GoCardTeam.GoCardApi:MembersController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\MembersController->.*Action())'
+    'GoCardTeam.GoCardApi:ActivitiesController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\ActivitiesController->.*Action())'
+    'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\CardStatisticsController->.*Action())'
+
+    #
+    # Users Endpoint
+    #
+    'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByEmailAction(email != current.userContext.user.email))'
+    'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->getUserByIdAction(userId != current.userContext.user.uid))'
+    'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions':
+      matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(update|delete|getMembersBy)UserAction(user != current.userContext.user))'
+
+  'GoCardTeam\GoCardApi\Security\Authorization\Privilege\Entity\Doctrine\v1\EntityPrivilege':
+
+    # GoCard API
+    # PrivilegeTargets for the API
+
+    # API v1
+
+    #
+    # Register Endpoint
+    #
+    'GoCardTeam.GoCardApi:Register.currentUserIsMember':
+      matcher: 'isType("GoCardTeam\GoCardApi\Domain\Model\v1\Register") && !(memberOfRegister("current.userContext.user"))'
+
+
+roles:
+
+  'Neos.Flow:AuthenticatedUser':
+    privileges:
+
+      # GoCard API
+      # PrivilegeTargets for the API
+
+      # API v1
+
+      #
+      # General API endpoint action targets
+      #
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:RegistersController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:CardsController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:MembersController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:ActivitiesController.restrictedActions'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:CardStatisticsController.restrictedActions'
+        permission: GRANT
+
+      #
+      # Users Endpoint
+      #
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByEmail'
+        permission: DENY
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.getUserByIdAction'
+        permission: GRANT
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions'
+        permission: DENY
+
+      #
+      # Register Endpoint
+      #
+      -
+        privilegeTarget: 'GoCardTeam.GoCardApi:Register.currentUserIsMember'
+        permission: DENY

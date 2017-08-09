@@ -1,0 +1,82 @@
+# Registers API Routes
+# Special routes only for the registers api endpoint and all sub-routes with their endpoints
+
+-
+  name: 'get all registers'
+  uriPattern: ''
+  defaults:
+    '@action': 'findAllRegisters'
+  httpMethods: ['GET']
+
+-
+  name: 'create new register'
+  uriPattern: ''
+  defaults:
+    '@action': 'addRegister'
+  routeParts:
+    register:
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'find register'
+  uriPattern: '{registerId}'
+  defaults:
+    '@action': 'findRegisterById'
+  httpMethods: ['GET']
+
+-
+  name: 'update register'
+  uriPattern: '{register}'
+  defaults:
+    '@action': 'updateRegister'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+      mapAdditionalPropertiesFromBody: true
+  httpMethods: ['POST']
+
+-
+  name: 'delete register'
+  uriPattern: '{register}'
+  defaults:
+    '@action': 'deleteRegister'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+  httpMethods: ['DELETE']
+
+-
+  name: 'member routes'
+  uriPattern: '{register}/members/<MembersSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Members'
+    '@format':     'json'
+  subRoutes:
+    'MembersSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.Members'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
+
+-
+  name: 'register cards routes'
+  uriPattern: '{register}/cards/<RegisterCardsSubroutes>'
+  defaults:
+    '@package':    'GoCardTeam.GoCardApi'
+    '@controller': 'v1\Endpoint\Cards'
+    '@format':     'json'
+  subRoutes:
+    'RegisterCardsSubroutes':
+      package: 'GoCardTeam.GoCardApi'
+      suffix:  'Api.v1.RegisterCards'
+  routeParts:
+    register:
+      uriPattern: ''
+      objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
