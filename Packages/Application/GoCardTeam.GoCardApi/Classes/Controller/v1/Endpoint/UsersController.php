@@ -225,7 +225,7 @@ class UsersController extends AbstractApiEndpointController
     {
         $emailValidator = new EmailAddressValidator();
         if (($result = $emailValidator->validate($email)) && $result->hasErrors()) {
-            return $this->${$this->errorMethodName}($result);
+            return $this->{$this->errorMethodName}($result);
         }
 
         if (!$this->passwordManagementService->processPasswordResetRequest($email)) {
