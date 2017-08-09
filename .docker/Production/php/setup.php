@@ -89,7 +89,7 @@ function getConnection()
 function setupFlow()
 {
     global $flow_bin;
-    Utility::exec("{$flow_bin} flow:core:setfilepermissions \${USER:-`whoami`} \${USER:-`whoami`} \${USER:-`whoami`}");
+    Utility::exec("{$flow_bin} flow:core:setfilepermissions \${USER:-`whoami`} www-data www-data");
 }
 
 function migrate()
