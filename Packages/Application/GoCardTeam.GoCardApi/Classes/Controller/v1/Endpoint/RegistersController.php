@@ -9,6 +9,7 @@ use GoCardTeam\GoCardApi\Domain\Factory\v1\MemberFactory;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
+use GoCardTeam\GoCardApi\Domain\Service\v1\RegisterManagementService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\KnownObjectException;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
@@ -42,6 +43,12 @@ class RegistersController extends AbstractApiEndpointController
      * @var UserContext
      */
     protected $userContext;
+
+    /**
+     * @Flow\Inject
+     * @var RegisterManagementService
+     */
+    protected $registerManagement;
 
     /**
      * Retrieves all registers
@@ -149,6 +156,6 @@ class RegistersController extends AbstractApiEndpointController
      */
     public function deleteRegisterAction(Register $register)
     {
-        $this->registerRepository->remove($register);
+        $this->registerManagement->deleteRegister($register);
     }
 }
