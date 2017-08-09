@@ -3,6 +3,11 @@ import {DELETE_USER_SUCCESS, LOAD_USER_SUCCESS, SEARCH_USERS_SUCCESS, UPDATE_USE
 import {LOAD_CURRENT_USER_SUCCESS} from "../../actions/auth";
 import _ from "lodash";
 
+/**
+ * Reducer for redux to handle user entities
+ * Methods to update, add, delete user entities into state
+ */
+
 function addUserEntry(state, action) {
     const {response} = action;
 
@@ -26,7 +31,6 @@ function deleteUserEntry(state, action) {
 
     return _.omit(state, userId);
 }
-
 
 function usersById(state = {}, action) {
     switch (action.type) {

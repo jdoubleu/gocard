@@ -8,6 +8,11 @@ import {
 } from "../../actions/register";
 import _ from "lodash";
 
+/**
+ * Reducer for redux to handle register entities
+ * Methods to update, add, delete register entities into state
+ */
+
 function addRegisterEntry(state, action) {
     const {response} = action;
 
