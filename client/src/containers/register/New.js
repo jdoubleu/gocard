@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {addRegister} from "../../actions/register";
-import {addMembersToRegister} from "../../actions/member";
+import {addMembersToRegister, loadMembersByRegister} from "../../actions/member";
 import moment from "moment";
 import {push} from "react-router-redux";
 import {Card, Col, Row} from "reactstrap";
@@ -24,6 +24,7 @@ const New = ({userId}) => {
                         success =>
                             dispatch(push('/'))
                     );
+                    dispatch(loadMembersByRegister(success.response.id));
                 } else {
                     dispatch(push('/'))
                 }

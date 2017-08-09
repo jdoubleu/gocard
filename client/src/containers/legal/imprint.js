@@ -61,35 +61,36 @@ const Imprint = () => {
 
                     <CardTitle>Entwickler Team</CardTitle>
                     <CardText className="px-2 text-justify">
-                    Für das Gestaltung, Design und technische Betreuung des Webportals sind folgende Entwickler verantwortlich:
-                        <br />
+                        Für das Gestaltung, Design und technische Betreuung des Webportals sind folgende Entwickler
+                        verantwortlich:
+                        <br/>
 
                     </CardText>
                     <CardText className="px-2 text-justify ml-auto mr-auto">
 
                         <svg width="150" height="150">
-                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white" />
+                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white"/>
                             <text x="35" y="80" fill="grey">Philipp Doll</text>
                         </svg>
 
                         <svg width="150" height="150">
-                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white" />
+                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white"/>
                             <text x="30" y="80" fill="grey">Timo Ribbers</text>
                         </svg>
 
                         <svg width="150" height="150">
-                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white" />
+                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white"/>
                             <text x="20" y="80" fill="grey">Max van Aerssen</text>
                         </svg>
 
                         <svg width="150" height="150">
-                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white" />
+                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white"/>
                             <text x="50" y="70" fill="grey">Joshua</text>
                             <text x="35" y="90" fill="grey">Westerheide</text>
                         </svg>
 
                         <svg width="150" height="150">
-                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white" />
+                            <circle cx="75" cy="75" r="70" stroke="grey" strokeWidth="3" fill="white"/>
                             <text x="20" y="80" fill="grey">Fabian Zipproth</text>
                         </svg>
 

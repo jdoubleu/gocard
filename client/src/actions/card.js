@@ -30,8 +30,8 @@ export const LOAD_CARD_FAILURE = 'LOAD_CARD_FAILURE';
 export function loadCard(cardId) {
     return {
         types: [LOAD_CARD_REQUEST, LOAD_CARD_SUCCESS, LOAD_CARD_FAILURE],
-        shouldCallAPI: (state) => isStateInvalidated(state.entities.cards.byId[cardId]),
         shouldInvalidate: true,
+        shouldCallAPI: (state) => isStateInvalidated(state.entities.cards.byId[cardId]),
         callAPI: () => apiGetCard({cardId}),
     }
 }

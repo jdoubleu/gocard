@@ -10,7 +10,12 @@ import MemberBar from "./member/Bar";
 import ProgressDoughnut from "./statistic/ProgressDoughnut";
 import LearnForm from "../forms/Learn";
 import {loadRegister} from "../../actions/register";
-import {makeGetCardIdsByRegister, makeGetRoleByRegister, makeGetTagsByRegister, makeGetMembershipByRegister} from "../../selectors";
+import {
+    makeGetCardIdsByRegister,
+    makeGetMembershipByRegister,
+    makeGetRoleByRegister,
+    makeGetTagsByRegister
+} from "../../selectors";
 import {resetResults, setSelectedSettings} from "../../actions/ui";
 import {push} from "react-router-redux";
 import _ from "lodash";
@@ -19,9 +24,9 @@ import {deleteMemberByRegister} from "../../actions/member";
 
 class Detail extends React.Component {
     componentWillMount() {
-        const {dispatch, match, userId} = this.props;
-        dispatch(loadRegister(match.params.registerId));
-        dispatch(loadCards(match.params.registerId, userId));
+        const {dispatch, match, userId, registerId} = this.props;
+        dispatch(loadRegister(registerId));
+        dispatch(loadCards(registerId, userId));
     }
 
     render() {
@@ -35,7 +40,7 @@ class Detail extends React.Component {
         };
 
         const handleLeaveRegister = (values, dispatch) => {
-            dispatch(deleteMemberByRegister(member.register,member.id)).then(
+            dispatch(deleteMemberByRegister(member.register, member.id)).then(
                 success =>
                     dispatch(push("/"))
             );
@@ -74,7 +79,8 @@ class Detail extends React.Component {
                     <Card block className="col-sm-12 col-md-4 mb-2 border-top-primary">
                         <CardTitle>Lernen</CardTitle>
                         <LearnForm registerId={register.id} disabled={false} tags={tags}
-                                   onSubmit={handleSubmit} initialValues={{...settings, tags: _.differenceWith(settings.tags, tags)}}/>
+                                   onSubmit={handleSubmit}
+                                   initialValues={{...settings, tags: _.differenceWith(settings.tags, tags)}}/>
                     </Card>
 
                     <Card block className="col-sm-12 col-md-4 mb-2">
@@ -116,8 +122,9 @@ const makeMapStateToProps = () => {
     const getRoleByRegister = makeGetRoleByRegister();
     const getMembershipByRegister = makeGetMembershipByRegister();
     return (state, props) => {
-        const registerId = props.match.params.registerId;
+        const registerId = _.parseInt(props.match.params.registerId);
         return {
+            registerId,
             register: state.entities.registers.byId[registerId] || {},
             tags: getTagsByRegister(state, props) || [],
             settings: state.ui.learnSettings.byId[registerId] || {},
