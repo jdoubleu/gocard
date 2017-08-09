@@ -58,7 +58,7 @@ class Utility
         Utility::log(implode("\n", $buffer));
 
         if ($code != 0) {
-            Utility::err("Failed to execute `$ex`");
+            Utility::err("Failed to execute `$ex`. Output:\n\n" . implode("\n", $buffer));
             exit(1);
         }
     }
