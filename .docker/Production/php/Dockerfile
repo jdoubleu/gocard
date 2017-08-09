@@ -21,6 +21,9 @@ COPY .docker/Production/php/apc.ini .docker/Production/php/igbinary.ini .docker/
 ENV FLOW_CONTEXT=Production
 ENV FLOW_BIN=/var/www/html/flow
 
+## Copy sources
+COPY Configuration/ Packages/ Web/ /var/www/html/
+
 ## Define volumes
 VOLUME ["/var/www/html/Data/Logs"]
 VOLUME ["/var/www/html/Data/Persistent"]
