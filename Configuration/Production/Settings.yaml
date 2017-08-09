@@ -1,0 +1,55 @@
+#                                                                        #
+# Example Settings                                                       #
+#                                                                        #
+# This file contains settings for various parts of the application.      #
+# Copy this file to Settings.yaml, and adjust as necessary.              #
+#                                                                        #
+# Please refer to the default settings file(s) or the manuals for        #
+# possible configuration options.                                        #
+#                                                                        #
+
+Neos:
+  Flow:
+    core:
+      # optional list of variables (key: value) that will be set for all Flow CLI sub requests
+      subRequestEnvironmentVariables:
+        DATABASE_HOST: '%env:DATABASE_HOST%'
+        DATABASE_NAME: '%env:DATABASE_NAME%'
+        DATABASE_USER: '%env:DATABASE_USER%'
+        DATABASE_PASSWORD: '%env:DATABASE_PASSWORD%'
+        DATABASE_PORT: '%env:DATABASE_PORT%'
+        BASE_URI: '%env:BASE_URI%'
+
+    persistence:
+      backendOptions:
+        host: '%env:DATABASE_HOST%'
+        dbname: '%env:DATABASE_NAME%'       # adjust to your database name
+        user: '%env:DATABASE_USER%'             # adjust to your database user
+        password: '%env:DATABASE_PASSWORD%'         # adjust to your database password
+        port: '%env:DATABASE_PORT%'         # adjust to your database password
+
+    http:
+      baseUri: '%env:BASE_URI%'
+
+  SwiftMailer:
+    transport:
+      type: 'Swift_SmtpTransport'
+      options:
+        options:
+        host: '%env:SMTP_HOST%'
+        port: '%env:SMTP_PORT%'
+        username: '%env:SMTP_USER%'
+        password: '%env:SMTP_PASSWORD%'
+        localDomain: '%env:SMTP_DOMAIN%'
+
+GoCardTeam:
+  GoCardApi:
+    security:
+      accessToken:
+        # 1 hour lifetime
+        lifetime: 3600
+
+    mail:
+      from:
+        name: 'GoCard'
+        address: '%env:SMTP_ADDRESS%'

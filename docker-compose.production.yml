@@ -1,0 +1,46 @@
+# Production Docker Compose setup
+version: '3'
+
+services:
+
+  ####################
+  # Application
+  ####################
+
+  php:
+    build:
+      context: .
+      dockerfile: .docker/Production/php/Dockerfile
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_USER=gocard
+      - DATABASE_PASSWORD=rU74vovk5IFDIWVsrLAlRs2Q
+      - DATABASE_NAME=gocard
+      - BASE_URI=http://localhost/
+      - SMTP_HOST=localhost
+      - SMTP_PORT=465
+      - SMTP_USER=
+      - SMTP_PASSWORD=
+      - SMTP_DOMAIN=localhost
+
+  apache:
+    build:
+      context: .
+      dockerfile: .docker/Production/apache/Dockerfile
+    ports:
+      - 80:80
+
+  mysql:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=q7fMP2AmGOJ5xwILICUHPBAi
+      - MYSQL_USER=gocard
+      - MYSQL_PASSWORD=rU74vovk5IFDIWVsrLAlRs2Q
+      - MYSQL_DATABASE=gocard
+    volumes:
+      - database_production:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  database_production:
