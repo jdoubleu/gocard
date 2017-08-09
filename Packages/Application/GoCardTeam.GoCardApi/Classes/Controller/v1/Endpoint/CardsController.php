@@ -87,7 +87,7 @@ class CardsController extends AbstractApiEndpointController
         $cardConfiguration->allowAllProperties()->skipProperties('uid');
         $cardConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_MODIFICATION_ALLOWED, true);
         $contentConfiguration = $cardConfiguration->forProperty('content');
-        $contentConfiguration->allowAllProperties();
+        $contentConfiguration->allowAllProperties()->skipUnknownProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
         $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
@@ -136,7 +136,7 @@ class CardsController extends AbstractApiEndpointController
         $singleCardConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         $singleCardConfiguration->forProperty('content')->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         $contentConfiguration = $singleCardConfiguration->forProperty('content');
-        $contentConfiguration->allowAllProperties();
+        $contentConfiguration->allowAllProperties()->skipUnknownProperties();
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_IDENTITY_CREATION_ALLOWED, true);
         $contentConfiguration->setTypeConverterOption(PersistentObjectConverter::class, PersistentObjectConverter::CONFIGURATION_OVERRIDE_TARGET_TYPE_ALLOWED, true);
         $contentConfiguration->setMapping('correct', 'correctAnswer')->setMapping('answer', 'correctAnswer')->setMapping('corrects', 'correctAnswers');
