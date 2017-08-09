@@ -5,6 +5,17 @@ GoCardTeam:
       accessToken:
         # Lifetime (in seconds) of a newly generated access token
         lifetime: 3600
+      registrationToken:
+        # Lifetime (in seconds) of an confirmation token for user registration
+        lifetime: 86400
+      passwordResetToken:
+        # Lifetime (in seconds) of a password reset token
+        lifetime: 3600
+
+    mail:
+      from:
+        name: 'GoCard'
+        address: ~
 
 # Framework settings and adjustments
 Neos:
@@ -17,6 +28,7 @@ Neos:
       routes:
         'GoCardTeam.GoCardApi':
           position: 'start'
+        'Neos.Flow': FALSE
 
     security:
       authentication:

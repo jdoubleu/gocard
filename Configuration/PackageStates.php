@@ -219,6 +219,23 @@ return array (
       array (
       ),
     ),
+    'swiftmailer/swiftmailer' => 
+    array (
+      'state' => 'active',
+      'packageKey' => 'swiftmailer.swiftmailer',
+      'packagePath' => 'Libraries/swiftmailer/swiftmailer/',
+      'composerName' => 'swiftmailer/swiftmailer',
+      'autoloadConfiguration' => 
+      array (
+        'files' => 
+        array (
+          0 => 'lib/swift_required.php',
+        ),
+      ),
+      'packageClassInformation' => 
+      array (
+      ),
+    ),
     'sebastian/code-unit-reverse-lookup' => 
     array (
       'state' => 'active',
@@ -1137,6 +1154,23 @@ return array (
       array (
         'className' => 'Neos\\Flow\\Package',
         'pathAndFilename' => 'Classes/Package.php',
+      ),
+    ),
+    'neos/swiftmailer' => 
+    array (
+      'state' => 'active',
+      'packageKey' => 'Neos.SwiftMailer',
+      'packagePath' => 'Application/Neos.SwiftMailer/',
+      'composerName' => 'neos/swiftmailer',
+      'autoloadConfiguration' => 
+      array (
+        'psr-4' => 
+        array (
+          'Neos\\SwiftMailer\\' => 'Classes',
+        ),
+      ),
+      'packageClassInformation' => 
+      array (
       ),
     ),
     'neos/welcome' => 
