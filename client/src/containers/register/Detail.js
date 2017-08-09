@@ -21,6 +21,8 @@ import {push} from "react-router-redux";
 import _ from "lodash";
 import LeaveRegister from "../forms/LeaveRegister";
 import {deleteMemberByRegister} from "../../actions/member";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 class Detail extends React.Component {
     componentWillMount() {
@@ -40,9 +42,17 @@ class Detail extends React.Component {
         };
 
         const handleLeaveRegister = (values, dispatch) => {
-            dispatch(deleteMemberByRegister(member.register, member.id)).then(
+            dispatch(
+                deleteMemberByRegister(member.register, member.id)
+            ).then(
                 success =>
                     dispatch(push("/"))
+            ).catch(
+                error => {
+                    if (error instanceof RequestError) {
+                        throw new SubmissionError({_error: error.message})
+                    }
+                }
             );
         };
 

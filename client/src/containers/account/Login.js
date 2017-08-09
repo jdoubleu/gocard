@@ -6,7 +6,9 @@ import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
 import {SubmissionError} from "redux-form";
 import {RequestError} from "../../middleware/callAPI";
-
+/**
+ * Form for Login. Dispatches loginUser if the User has an Account.
+ */
 const Login = () => {
 
     const handleSubmit = (values, dispatch) => {

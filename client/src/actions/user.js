@@ -9,6 +9,9 @@ import {
 } from "../lib/ApiClient";
 import {isStateInvalidated} from "../utils/index";
 
+/**
+ * Actions for Users. Action to Load, Update, Delete and Add. Aswell as Password Actions.
+ */
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
@@ -63,10 +66,10 @@ export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
 export const UPDATE_PASSWORD_FAILURE = 'UPDATE_PASSWORD_FAILURE';
 
-export function updatePassword(resetToken, body) {
+export function updatePassword(token, identifier, body) {
     return {
         types: [UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_FAILURE],
-        callAPI: () => apiUpdatePassword({resetToken, body})
+        callAPI: () => apiUpdatePassword({token, identifier, body})
     };
 }
 

@@ -5,7 +5,9 @@ import RegistrationForm from "../../containers/forms/Registration";
 import {addUser} from "../../actions/user";
 import {SubmissionError} from "redux-form";
 import {RequestError} from "../../middleware/callAPI";
-
+/**
+ * Form for Registration. In this form the User can Create a new Account. If the values are corrects the user will be added.
+ */
 const Registration = () => {
 
     const handleSubmit = (values, dispatch) => {

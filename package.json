@@ -13,6 +13,7 @@
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "q": "^1.5.0",
+    "query-string": "^5.0.0",
     "react": "^15.5.4",
     "react-chartjs-2": "^2.1.0",
     "react-dom": "^15.5.4",

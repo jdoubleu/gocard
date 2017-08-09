@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import moment from "moment";
 import {push} from "react-router-redux";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 const New = ({match, userId}) => {
 
@@ -15,11 +17,16 @@ const New = ({match, userId}) => {
             ...values,
             author: userId,
             crdate: moment().format()
-        }))
-            .then(
-                success =>
-                    dispatch(push(`/register/${match.params.registerId}`))
-            );
+        })).then(
+            success =>
+                dispatch(push(`/register/${match.params.registerId}`))
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     return (

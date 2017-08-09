@@ -9,6 +9,9 @@ import {
 import _ from "lodash";
 import {areStatesInvalidated, isStateInvalidated} from "../utils/index";
 
+/**
+ * Actions for Cards. Actions to Laod, Updates, Delete and Add.
+ */
 export const LOAD_CARDS_REQUEST = 'LOAD_CARDS_REQUEST';
 export const LOAD_CARDS_SUCCESS = 'LOAD_CARDS_SUCCESS';
 export const LOAD_CARDS_FAILURE = 'LOAD_CARDS_FAILURE';

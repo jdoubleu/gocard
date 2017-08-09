@@ -10,10 +10,14 @@ import RegisterForm from "../forms/Register";
 import DeleteRegisterForm from "../forms/DeleteRegister";
 import {makeGetRegisterById} from "../../selectors";
 import _ from "lodash";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateRegister(register.id, _.omit(values, 'members'))).then(
+        return dispatch(
+            updateRegister(register.id, _.omit(values, 'members'))
+        ).then(
             success => {
                 dispatch(updateMemberSetByRegister(register.id, _.map(values.members, (o) => {
                     return _.omit({...o, uid: o.id}, 'id')
@@ -22,6 +26,12 @@ const Edit = ({register}) => {
                         dispatch(push('/'))
                 );
             }
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
         )
     };
 
@@ -29,6 +39,12 @@ const Edit = ({register}) => {
         return dispatch(deleteRegister(register.id)).then(
             response =>
                 dispatch(push('/'))
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
         );
     };
 

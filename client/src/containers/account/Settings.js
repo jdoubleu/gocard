@@ -1,30 +1,56 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {deleteUser, updatePassword, updateUser} from "../../actions/user";
+import {deleteUser, requestPasswordReset, updateUser} from "../../actions/user";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import Headline from "../shared/headline";
 import SettingsForm from "../forms/Settings";
 import DeleteUserForm from "../forms/DeleteUser";
-import ResetForm from "../forms/Reset";
+import PasswordChangeRequest from "../forms/PasswordChangeRequest";
 import Icon from "../shared/user/icon";
-import {formValueSelector} from "redux-form";
+import {formValueSelector, SubmissionError} from "redux-form";
 import {logoutUser} from "../../actions/auth";
+import {RequestError} from "../../middleware/callAPI";
 
-const Settings = ({user, displayName, resetToken}) => {
+const Settings = ({user, displayName}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser(user.id, values));
-    };
-
-    const handleDeleteSubmit = (values, dispatch) => {
-        return dispatch(deleteUser(user.id)).then(
-            dispatch(logoutUser())
+        return dispatch(
+            updateUser(user.id, values)
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
         );
     };
 
-    const handleResetSubmit = (values, dispatch) => {
-        return dispatch(updatePassword(resetToken, values));
+    const handleDeleteSubmit = (values, dispatch) => {
+        return dispatch(
+            deleteUser(user.id)
+        ).then(
+            success =>
+                dispatch(logoutUser())
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
+    };
+
+    const handleChangeRequestSubmit = (values, dispatch) => {
+        return dispatch(
+            requestPasswordReset(user.email)
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     return (
@@ -49,7 +75,7 @@ const Settings = ({user, displayName, resetToken}) => {
                     <Card block className="mb-3">
                         <CardTitle>Passwort ändern</CardTitle>
                         <CardText>Hiermit kannst du dein Passwort für dein lokalen GoCard-Account ändern.</CardText>
-                        <ResetForm onSubmit={handleResetSubmit}/>
+                        <PasswordChangeRequest disableMail onSubmit={handleChangeRequestSubmit}/>
                     </Card>
                 }
 
@@ -73,7 +99,6 @@ const selector = formValueSelector('settingsForm');
 function mapStateToProps(state) {
     return {
         user: state.entities.users.byId[state.auth.userId] || {},
-        resetToken: state.auth.token.resetToken || '',
         displayName: selector(state, 'displayName')
     }
 }
