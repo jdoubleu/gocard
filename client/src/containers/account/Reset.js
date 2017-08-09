@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, CardTitle, Col, Row} from "reactstrap";
 import Logo from "../shared/logo";
-import ResetForm from "../forms/Reset";
+import ResetForm from "../forms/ResetForgotten";
 import {updatePassword} from "../../actions/user";
 
 const Reset = ({match}) => {
