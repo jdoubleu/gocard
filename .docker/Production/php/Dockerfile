@@ -9,6 +9,7 @@ RUN cd /usr/local/etc/php \
 
 ## Install runtime dependencies
 RUN set -xe \
+    && adduser -u 83 -D -S -G www-data cli-user \
     && apk add --no-cache \
         bash \
         sudo
