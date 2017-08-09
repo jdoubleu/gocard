@@ -25,7 +25,7 @@ class PasswordManagementService extends AbstractSecurityManagement
      * @Flow\InjectConfiguration("security.passwordResetToken.lifetime")
      * @var string
      */
-    protected $tokenLifetime = 'P1D';
+    protected $tokenLifetime = null;
 
     /**
      * @Flow\Inject

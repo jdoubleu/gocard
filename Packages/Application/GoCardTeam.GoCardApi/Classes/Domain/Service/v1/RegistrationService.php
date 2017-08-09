@@ -27,7 +27,7 @@ class RegistrationService extends AbstractSecurityManagement
      * @Flow\InjectConfiguration("security.registrationToken.lifetime")
      * @var string
      */
-    protected $tokenLifetime = 'P1D';
+    protected $tokenLifetime = null;
 
     /**
      * @Flow\Inject

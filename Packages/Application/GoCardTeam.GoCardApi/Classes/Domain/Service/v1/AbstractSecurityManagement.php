@@ -55,9 +55,11 @@ abstract class AbstractSecurityManagement
     protected $userRepository;
 
     /**
+     * Needs to be overwritten in subclasses
+     *
      * @var string
      */
-    protected $tokenLifetime = '';
+    protected $tokenLifetime = null;
 
     /**
      * @Flow\Inject
