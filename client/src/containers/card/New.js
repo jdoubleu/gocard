@@ -1,3 +1,6 @@
+/**
+ * In this form you can create a new Card.
+ */
 import React from "react";
 import {Card, Col, Row} from "reactstrap";
 import Headline from "../shared/headline";
@@ -9,13 +12,24 @@ import moment from "moment";
 import {push} from "react-router-redux";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
+import _ from "lodash";
 
-/**
- * In this form you can create a new Card.
- */
 const New = ({match, userId}) => {
 
     const handleSubmit = (values, dispatch) => {
+        if(values.type === 'single-choice'){
+            values = _.omit(values, ['content.answer', 'content.corrects']);
+        }
+        if(values.type === 'multiple-choice'){
+            values = _.omit(values, ['content.answer', 'content.correct']);
+        }
+        if(values.type === 'self-validate'){
+            values = _.omit(values, ['content.corrects', 'content.correct', 'content.options']);
+        }
+        if(values.type === 'text-input'){
+            values = _.omit(values, ['content.corrects', 'content.correct', 'content.options']);
+        }
+
         return dispatch(addCard(match.params.registerId, {
             ...values,
             author: userId,

@@ -1,3 +1,6 @@
+/**
+ * Form that allows you to change content of your Card.
+ */
 import React from "react";
 import PropTypes from "prop-types";
 import {Card, Col, Row} from "reactstrap";
@@ -9,12 +12,24 @@ import {push} from "react-router-redux";
 import {deleteCard, updateCard} from "../../actions/card";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
+import _ from "lodash";
 
-/**
- * Form that allows you to change content of your Card.
- */
+
 const Edit = ({card}) => {
     const handleSubmit = (values, dispatch) => {
+        if(values.type === 'single-choice'){
+            values = _.omit(values, ['content.answer', 'content.corrects']);
+        }
+        if(values.type === 'multiple-choice'){
+            values = _.omit(values, ['content.answer', 'content.correct']);
+        }
+        if(values.type === 'self-validate'){
+            values = _.omit(values, ['content.corrects', 'content.correct', 'content.options']);
+        }
+        if(values.type === 'text-input'){
+            values = _.omit(values, ['content.corrects', 'content.correct', 'content.options']);
+        }
+
         return dispatch(
             updateCard(card.id, values)
         ).then(
