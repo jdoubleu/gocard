@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Initial startup/setup file
