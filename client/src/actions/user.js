@@ -63,10 +63,10 @@ export const UPDATE_PASSWORD_REQUEST = 'UPDATE_PASSWORD_REQUEST';
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS';
 export const UPDATE_PASSWORD_FAILURE = 'UPDATE_PASSWORD_FAILURE';
 
-export function updatePassword(resetToken, body) {
+export function updatePassword(token, identifier, body) {
     return {
         types: [UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_FAILURE],
-        callAPI: () => apiUpdatePassword({resetToken, body})
+        callAPI: () => apiUpdatePassword({token, identifier, body})
     };
 }
 
