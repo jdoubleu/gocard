@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Usericon a circle with two initials
+ */
 const Icon = ({diameter, children, ...rest}) => {
     return (
         <svg className="ml-auto mr-auto" height={diameter} width={diameter} {...rest}>

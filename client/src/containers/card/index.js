@@ -4,7 +4,9 @@ import {Route, Switch} from "react-router-dom";
 import DetailRegister from "./Detail";
 import EditCard from "./Edit";
 import NewCard from "./New";
-
+/**
+ * Router for Cards.
+ */
 const Register = () => {
     return (
         <Switch>

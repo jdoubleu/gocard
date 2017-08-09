@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Class that clipps the title after a certain length.
+ */
 class Title extends React.Component {
     fitTitle() {
         const {cutOff} = this.props;

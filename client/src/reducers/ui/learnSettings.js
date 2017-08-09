@@ -2,6 +2,11 @@ import {combineReducers} from "redux";
 import {SET_SELECTED_SETTINGS} from "../../actions/ui";
 import _ from "lodash";
 
+/**
+ * Reducer for redux to store settings for registers
+ * Stores settings for all registers (tags, mode)
+ */
+
 function addSettings(state, action) {
     return _.assign({}, state, {
         [action.payload.registerId]: {

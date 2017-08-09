@@ -7,7 +7,9 @@ import {Badge, Card, Col, ListGroup, ListGroupItem, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 import {makeGetRoleByRegister} from "../../selectors";
 import _ from "lodash";
-
+/**
+ * Reactclass for detail view for one Card. Detail gives you an overview of your Card.
+ */
 class Detail extends React.Component {
 
     componentWillMount() {

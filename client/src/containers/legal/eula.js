@@ -2,6 +2,9 @@ import React from "react";
 import Headline from "../shared/headline";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 
+/**
+ * EULA End-User-Licence-Agreement. Provides information of the do's and don'ts for this Application
+ */
 const EULA = () => {
     return (
         <Row>

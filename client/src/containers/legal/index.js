@@ -7,6 +7,9 @@ import EULA from "./eula";
 import PrivacyPolicy from "./privacyPolicy";
 import License from "./license";
 
+/**
+ * Router for Legal
+ */
 const Legal = () => {
     return (
         <Switch>

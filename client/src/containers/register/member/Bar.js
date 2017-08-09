@@ -10,6 +10,9 @@ import {makeGetUsersByRegister} from "../../../selectors";
 import {getUserById} from "../../../actions/user";
 import {makeGetMembersByRegister} from "../../../selectors/index";
 
+/**
+ * Bar that visualizes the Members of a register.
+ */
 class Bar extends React.Component {
 
     componentDidMount() {

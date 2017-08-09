@@ -13,6 +13,9 @@ import _ from "lodash";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
 
+/**
+ * Form in that you can Change the information of your register.
+ */
 const Edit = ({register}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(

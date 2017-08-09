@@ -9,6 +9,9 @@ import Preview from "./register/Preview";
 import {makeGetRegisterIds} from "../selectors/index";
 import {loadMembershipsByUser} from "../actions/member";
 
+/**
+ * Dashboard has preview of all registers
+ */
 class Dashboard extends React.Component {
     componentWillMount() {
         const {dispatch, userId} = this.props;

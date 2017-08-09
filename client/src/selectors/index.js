@@ -16,6 +16,9 @@ const getAnsweredCards = (state) => state.ui.learning.byId || {};
 const getAllScores = (state) => state.entities.score.byId || {};
 const getMode = (state) => state.ui.learning.misc.mode;
 
+/**
+ * Gets a registers by a given id.
+ */
 export const makeGetRegisterById = () => {
     return createSelector(
         [getRegisterId, getRegisters, makeGetMembersByRegister()],
@@ -25,6 +28,9 @@ export const makeGetRegisterById = () => {
     )
 };
 
+/**
+ * Gets all cards by current register.
+ */
 export const makeGetCardsByRegister = () => {
     return createSelector(
         [getRegisterId, getCards],
@@ -34,6 +40,9 @@ export const makeGetCardsByRegister = () => {
     )
 };
 
+/**
+ * Get all cardIds by current register.
+ */
 export const makeGetCardIdsByRegister = () => {
     return createSelector(
         [makeGetCardsByRegister()],
@@ -43,6 +52,9 @@ export const makeGetCardIdsByRegister = () => {
     );
 };
 
+/**
+ * Get all registerIds by current locked in user.
+ */
 export const makeGetRegisterIds = () => {
     return createSelector(
         [getUserId, getMembers],
@@ -52,6 +64,9 @@ export const makeGetRegisterIds = () => {
     );
 };
 
+/**
+ * Get role for locked in user by current register.
+ */
 export const makeGetRoleByRegister = () => {
     return createSelector(
         [makeGetMembershipByRegister()],
@@ -61,6 +76,9 @@ export const makeGetRoleByRegister = () => {
     );
 };
 
+/**
+ * Get membership for locked in user by current register.
+ */
 export const makeGetMembershipByRegister = () => {
     return createSelector(
         [getUserId, getMembers, getRegisterId],
@@ -70,6 +88,9 @@ export const makeGetMembershipByRegister = () => {
     );
 };
 
+/**
+ * Get all tags of all cards by current register.
+ */
 export const makeGetTagsByRegister = () => {
     return createSelector(
         [makeGetCardsByRegister()],
@@ -79,6 +100,9 @@ export const makeGetTagsByRegister = () => {
     );
 };
 
+/**
+ * Get all tags by current register which include a given keyword.
+ */
 export const makeGetTagsByRegisterByKeyword = () => {
     return createSelector(
         [makeGetTagsByRegister(), getKeyword],
@@ -88,6 +112,9 @@ export const makeGetTagsByRegisterByKeyword = () => {
     );
 };
 
+/**
+ * Get all memberships by current register.
+ */
 export const makeGetMembersByRegister = () => {
     return createSelector(
         [getRegisterId, getMembers],
@@ -108,6 +135,9 @@ export const makeGetUsersByRegister = () => {
     );
 };
 
+/**
+ * Get all cards for current register by selected tags.
+ */
 export const makeGetCardsByTags = () => {
     return createSelector(
         [makeGetCardsByRegister(), getSelectedTags, makeGetScoreByUser(), getMode],
@@ -128,6 +158,9 @@ export const makeGetCardsByTags = () => {
     );
 };
 
+/**
+ * Get all cardIds for current register by selected tags.
+ */
 export const makeGetCardIdsByTags = () => {
     return createSelector(
         [makeGetCardsByTags()],
@@ -137,6 +170,10 @@ export const makeGetCardIdsByTags = () => {
     );
 };
 
+/**
+ * Gets a card for current learning session, depending on mode, score
+ * anf if it is answered or not.
+ */
 export const makeGetNextCard = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards, getMode],
@@ -161,6 +198,9 @@ export const makeGetNextCard = () => {
     );
 };
 
+/**
+ * Get all cards which where answered in the current learning session.
+ */
 export const makeGetCardsForResults = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds],
@@ -177,7 +217,9 @@ export const makeGetCardsForResults = () => {
     );
 };
 
-
+/**
+ * Get all scores for current locked in user.
+ */
 export const makeGetScoreByUser = () => {
     return createSelector(
         [getAllScores, getUserId],
@@ -194,6 +236,9 @@ export const makeGetScoreByUser = () => {
     );
 };
 
+/**
+ * Get all correctly answered cards by the results.
+ */
 export const makeGetCorrectCardsForResults = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
@@ -211,7 +256,9 @@ export const makeGetCorrectCardsForResults = () => {
     );
 };
 
-
+/**
+ * Get all scores for the currentCard.
+ */
 export const makeGetScoreForCurrentCard = () => {
     return createSelector(
         [makeGetScoreByUser(), makeGetNextCard()],
@@ -230,6 +277,9 @@ export const makeGetScoreForCurrentCard = () => {
     );
 };
 
+/**
+ * Get all wrongly answered cards by the results.
+ */
 export const makeGetWrongCardsForResults = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
@@ -246,7 +296,9 @@ export const makeGetWrongCardsForResults = () => {
     );
 };
 
-
+/**
+ * Get last score for currentCard.
+ */
 export const makeGetLastScoreForCurrentCard = () => {
     return createSelector(
         [makeGetScoreForCurrentCard()],
@@ -256,6 +308,9 @@ export const makeGetLastScoreForCurrentCard = () => {
     );
 };
 
+/**
+ * Get all skipped cards by the results.
+ */
 export const makeGetSkippedCardsForResults = () => {
     return createSelector(
         [makeGetCardsByTags(), getAnsweredCardsIds, getAnsweredCards],
@@ -272,6 +327,9 @@ export const makeGetSkippedCardsForResults = () => {
     );
 };
 
+/**
+ * Get the number of answered cards in current learning session.
+ */
 export const makeGetSizeOfResults = () => {
     return createSelector(
         [getAnsweredCards, getAnsweredCardsIds, getMode],
@@ -285,6 +343,9 @@ export const makeGetSizeOfResults = () => {
     );
 };
 
+/**
+ * Get all last scores for each card inside results.
+ */
 export const makeGetLastScoresByAnsweredCardIds = () => {
     return createSelector(
         [getAnsweredCardsIds, makeGetScoreByUser()],
@@ -298,6 +359,9 @@ export const makeGetLastScoresByAnsweredCardIds = () => {
     );
 };
 
+/**
+ * Get number of good, middle, bad, unanswered cards by results.
+ */
 export const makeGetValueArrayByAnsweredCardIds = () => {
     return createSelector(
         [getAnsweredCardsIds, makeGetScoreByUser()],
@@ -313,6 +377,9 @@ export const makeGetValueArrayByAnsweredCardIds = () => {
     );
 };
 
+/**
+ * Get number of good, middle, bad, unanswered cards by current register.
+ */
 export const makeGetValueArrayByRegister = () => {
     return createSelector(
         [makeGetCardIdsByRegister(), makeGetScoreByUser()],
@@ -327,6 +394,9 @@ export const makeGetValueArrayByRegister = () => {
     );
 };
 
+/**
+ * Get all cards by results.
+ */
 export const makeGetCardsByResults = () => {
     return createSelector(
         [getCards, getAnsweredCardsIds],

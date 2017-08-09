@@ -2,6 +2,9 @@ import React from "react";
 import {CardText, Col} from "reactstrap";
 import {Link} from "react-router-dom";
 
+/**
+ * This Card is a Card without content which has the function of a Link.
+ */
 const BlankCard = ({registerId}) => {
     return (
         <Col xl="4" md="6" xs="12" className="fade-in">

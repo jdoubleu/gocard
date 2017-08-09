@@ -3,7 +3,9 @@ import {Field, reduxForm} from "redux-form";
 import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnSingleChoiceField from "./fields/learnSingleChoiceField";
 
-
+/**
+ * Redux from for singleChoice card.
+ */
 const validate = values => {
     const errors = {};
     if (values.userAnswer === undefined) {

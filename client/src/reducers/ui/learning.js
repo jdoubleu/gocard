@@ -11,6 +11,11 @@ import {
 } from "../../actions/ui";
 import _ from "lodash";
 
+/**
+ * Reducer for redux to store data for learning
+ * Stores data for current learning session (answered Cards, tags, mode)
+ */
+
 function addCurrentCard(state, action) {
     return {
         ...state,

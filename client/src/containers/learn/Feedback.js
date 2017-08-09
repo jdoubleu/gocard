@@ -19,6 +19,9 @@ import {Link} from "react-router-dom";
 import Title from "../shared/title";
 import ClippedTag from "../shared/clippedTag";
 
+/**
+ * Feedback From. Overview of all Cards that were learned in this session. Gives you a statistic for this Cards.
+ */
 const validate = values => {
     const errors = {};
 

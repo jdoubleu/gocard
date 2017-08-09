@@ -7,6 +7,9 @@ import EditRegister from "../register/Edit";
 import Learn from "../learn/LearnMode";
 import CardRoutes from "../card/index";
 
+/**
+ * Router for Register
+ */
 const Register = () => {
     return (
         <Switch>

@@ -12,6 +12,9 @@ import _ from "lodash";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
 
+/**
+ * Form that creates a new Register.
+ */
 const New = ({userId}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(addRegister({

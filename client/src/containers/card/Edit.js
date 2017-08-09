@@ -10,6 +10,9 @@ import {deleteCard, updateCard} from "../../actions/card";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
 
+/**
+ * Form that allows you to change content of your Card.
+ */
 const Edit = ({card}) => {
     const handleSubmit = (values, dispatch) => {
         return dispatch(

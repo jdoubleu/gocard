@@ -9,6 +9,11 @@ import {
     LOGOUT_SUCCESS
 } from "../actions/auth";
 
+/**
+ * Reducer for redux to store data for authentication
+ * Stores data for currently locked in user
+ */
+
 const initialState = {
     isFetching: false,
     isAuthenticated: false,

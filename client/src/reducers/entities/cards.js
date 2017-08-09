@@ -9,6 +9,11 @@ import {
 import _ from "lodash";
 import {DELETE_REGISTER_SUCCESS} from "../../actions/register";
 
+/**
+ * Reducer for redux to handle card entities
+ * Methods to update, add, delete card entities into state
+ */
+
 function addCardEntry(state, action) {
     const {response} = action;
 

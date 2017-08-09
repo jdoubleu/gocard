@@ -4,9 +4,11 @@ import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import {logoutUser} from "../../actions/auth";
 import {getUserById} from "../../actions/user";
-
 import TopBarComponent from "./topBar/index";
 
+/**
+ * The goCard Icon the UserIcon and the Menü for Usersetting and logout.
+ */
 class TopBar extends React.Component {
     constructor(props) {
         super(props);

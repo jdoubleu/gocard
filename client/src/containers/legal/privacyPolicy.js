@@ -2,6 +2,9 @@ import React from "react";
 import Headline from "../shared/headline";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 
+/**
+ * Provides information of what happens to the users Data
+ */
 const PrivacyPolicy = () => {
     return (
         <Row>
