@@ -93,7 +93,7 @@ class CardsController extends AbstractApiEndpointController
     {
         $this->cardRepository->update($card);
 
-        $this->persistenceManager->persistAll(true);
+        $this->persistenceManager->persistAll();
 
         $this->view->assign('value', $card);
     }
