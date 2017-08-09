@@ -9,6 +9,9 @@ import {
 } from "../lib/ApiClient";
 import {isStateInvalidated} from "../utils/index";
 
+/**
+ * Actions for Users. Action to Load, Update, Delete and Add. Aswell as Password Actions.
+ */
 export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';

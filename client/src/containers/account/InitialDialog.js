@@ -6,7 +6,10 @@ import {deleteUser, updateUser} from "../../actions/user";
 import {logoutUser} from "../../actions/auth";
 import Headline from "../shared/headline";
 import DeleteUserForm from "../forms/DeleteUser";
-
+/**
+ * Form for Initial Dialog. The Initial Dialog appears when a User logs in for the first time.
+ * If the user accepts the Eula he will be updated else he will be deleted.
+ */
 const InitialDialog = ({user}) => {
 
     const handleSubmit = (values, dispatch) => {
