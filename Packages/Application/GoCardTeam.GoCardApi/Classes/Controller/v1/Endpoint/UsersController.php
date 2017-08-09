@@ -206,7 +206,7 @@ class UsersController extends AbstractApiEndpointController
             $status = 'error';
         }
 
-        $this->forward('index', 'Standard', null, ['confirmation' => $status]);
+        $this->redirect('index', 'Standard', null, ['confirmation' => $status], 0, 302, 'html');
     }
 
     /**
