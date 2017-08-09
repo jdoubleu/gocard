@@ -74,6 +74,7 @@ build:bundle:
       - Packages/
       - Web/
       - flow
+      - docker-compose.production.yml
 
 build_docker:
   image: docker:latest
