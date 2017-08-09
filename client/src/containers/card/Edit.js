@@ -15,7 +15,7 @@ import {SubmissionError} from "redux-form";
 import _ from "lodash";
 
 
-const Edit = ({card}) => {
+const Edit = ({card, match}) => {
     const handleSubmit = (values, dispatch) => {
         if(values.type === 'single-choice'){
             values = _.omit(values, ['content.answer', 'content.corrects']);
@@ -69,7 +69,7 @@ const Edit = ({card}) => {
 
                 <Card block className="mb-3">
                     <CardForm onSubmit={handleSubmit} initialValues={card} submitLabel="Speichern"
-                              cancelRoute={`/card/${card.id}`} cancelLabel="Abbrechen"/>
+                              cancelRoute={`/register/${match.params.registerId}/card/${card.id}`} cancelLabel="Abbrechen"/>
                 </Card>
 
                 <Card block>
@@ -80,13 +80,9 @@ const Edit = ({card}) => {
     )
 };
 
-Edit.propTypes = {
-    card: PropTypes.object.isRequired
-};
-
 const mapStateToProps = (state, props) => {
     return {
-        card: state.entities.cards.byId[props.match.params.cardId] || {},
+        card: state.entities.cards.byId[props.match.params.cardId] || {}
     }
 };
 

@@ -110,7 +110,7 @@ class Detail extends React.Component {
                                 )
                             }
                             {
-                                card.tags.length === 0 &&
+                                card.tags === undefined && card.tags.length === 0 &&
                                 <span>Es sind keine Tags vorhanden.</span>
                             }
                         </p>
