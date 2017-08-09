@@ -117,7 +117,6 @@ class FlatPropertyMappingAspect
      * @param array $source
      * @param array $target
      * @param ClassSchema $classSchema
-     * @Flow\CompileStatic
      */
     protected static function keepDataByClass(array $source, array &$target, ClassSchema $classSchema)
     {
