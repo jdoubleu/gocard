@@ -1,13 +1,15 @@
 import React from "react";
 import {Card, CardTitle, Col, Row} from "reactstrap";
 import Logo from "../shared/logo";
-import ResetForm from "../forms/ResetForgotten";
+import ResetForm from "../forms/Reset";
 import {updatePassword} from "../../actions/user";
+import queryString from "query-string";
 
-const Reset = ({match}) => {
+const Reset = ({location}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updatePassword(match.params.resetToken, values));
+        const query = queryString.parse(location.search || '');
+        return dispatch(updatePassword(query.token, query.identifier, values));
     };
 
     return (

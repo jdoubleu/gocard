@@ -11,8 +11,8 @@ import {
     ListGroupItemText,
     Row
 } from "reactstrap";
-import externalLicense from "./license.json";
-
+import backendLicenses from "./backend_licenses.json";
+import frontendLicenses from "./frontend_licenses.json";
 
 const License = () => {
 
@@ -59,20 +59,28 @@ const License = () => {
                     <span><hr/></span>
 
                     <CardTitle>Externe Lizenzen</CardTitle>
-
-
                     <ListGroup>
                         {
-                            externalLicense.map((license) =>
-                                <ListGroupItem key={license.name}>
-                                    <ListGroupItemHeading>{license.name}</ListGroupItemHeading>
+                            Object.keys(backendLicenses.dependencies).map((key) =>
+                                <ListGroupItem key={key}>
+                                    <ListGroupItemHeading>{key}</ListGroupItemHeading>
                                     <ListGroupItemText>
                                         <ul>
-                                            <li>Webseite: {license.webpage}</li>
-                                            <li>Lizenzname: {license.license.name} </li>
-                                            <li>Lizenztext: {license.license.content} </li>
-                                            <li>Lizenz-URL: {license.license.url} </li>
-                                            <li>Autor: {license.authors} </li>
+                                            <li>Lizenz: {backendLicenses.dependencies[key].license[0]} </li>
+                                            <li>Version: {backendLicenses.dependencies[key].version} </li>
+                                        </ul>
+                                    </ListGroupItemText>
+                                </ListGroupItem>
+                            )
+                        }
+                        {
+                            Object.keys(frontendLicenses).map((key) =>
+                                <ListGroupItem key={key}>
+                                    <ListGroupItemHeading>{key}</ListGroupItemHeading>
+                                    <ListGroupItemText>
+                                        <ul>
+                                            <li>Lizenz: {frontendLicenses[key].licenses} </li>
+                                            <li>Publisher: {frontendLicenses[key].publisher} </li>
                                         </ul>
                                     </ListGroupItemText>
                                 </ListGroupItem>

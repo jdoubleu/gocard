@@ -6,13 +6,9 @@ import InputField from "./fields/input";
 const validate = values => {
     const errors = {};
 
-    if (!values.oldPassword) {
-        errors.oldPassword = 'Dein altes Passwort ist erforderlich.'
-    }
-
     if (!values.newPassword) {
         errors.newPassword = 'Ein Passwort ist erforderlich.'
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,}$/i.test(values.password)) {
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{8,}$/i.test(values.newPassword)) {
         errors.newPassword = 'Dein Passwort muss eine Ziffer, einen Kleinbuchstaben, einen Großbuchstaben und mindestens 8 Zeichen beinhalten'
     }
 
@@ -35,14 +31,6 @@ const ResetForm = props => {
                     {error}
                 </Alert>
             }
-
-            <Field
-                name="oldPassword"
-                type="password"
-                component={InputField}
-                label="Altes Password"
-                disableLabel
-            />
 
             <Field
                 name="newPassword"

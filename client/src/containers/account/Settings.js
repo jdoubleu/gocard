@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {deleteUser, updatePassword, updateUser} from "../../actions/user";
+import {deleteUser, requestPasswordReset, updateUser} from "../../actions/user";
 import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import Headline from "../shared/headline";
 import SettingsForm from "../forms/Settings";
 import DeleteUserForm from "../forms/DeleteUser";
-import ResetForm from "../forms/Reset";
+import PasswordChangeRequest from "../forms/PasswordChangeRequest";
 import Icon from "../shared/user/icon";
 import {formValueSelector} from "redux-form";
 import {logoutUser} from "../../actions/auth";
 
-const Settings = ({user, displayName, resetToken}) => {
+const Settings = ({user, displayName}) => {
 
     const handleSubmit = (values, dispatch) => {
         return dispatch(updateUser(user.id, values));
@@ -23,8 +23,8 @@ const Settings = ({user, displayName, resetToken}) => {
         );
     };
 
-    const handleResetSubmit = (values, dispatch) => {
-        return dispatch(updatePassword(resetToken, values));
+    const handleChangeRequestSubmit = (values, dispatch) => {
+        return dispatch(requestPasswordReset(user.email));
     };
 
     return (
@@ -49,7 +49,7 @@ const Settings = ({user, displayName, resetToken}) => {
                     <Card block className="mb-3">
                         <CardTitle>Passwort ändern</CardTitle>
                         <CardText>Hiermit kannst du dein Passwort für dein lokalen GoCard-Account ändern.</CardText>
-                        <ResetForm onSubmit={handleResetSubmit}/>
+                        <PasswordChangeRequest disableMail onSubmit={handleChangeRequestSubmit}/>
                     </Card>
                 }
 
@@ -69,11 +69,9 @@ Settings.propTypes = {
 };
 
 const selector = formValueSelector('settingsForm');
-
 function mapStateToProps(state) {
     return {
         user: state.entities.users.byId[state.auth.userId] || {},
-        resetToken: state.auth.token.resetToken || '',
         displayName: selector(state, 'displayName')
     }
 }
