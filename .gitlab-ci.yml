@@ -14,8 +14,6 @@ variables:
 build:client:
   image: node
   stage: build
-  variables:
-    CI: 'false'
   tags:
     - docker
   only:
@@ -26,6 +24,7 @@ build:client:
       - node_modules/
   before_script:
     - yarn install
+    - export CI=false
   script:
     - yarn run build
     - |
