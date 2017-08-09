@@ -94,11 +94,11 @@ build_docker:
   services:
     - docker:dind
   before_script:
-    - apk add --no-cache curl
+    - apk add --no-cache curl bash
     - curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     - chmod +x /usr/local/bin/docker-compose
   script:
-    - /usr/local/bin/docker-compose -f .docker-compose.production.yml build
+    - /bin/bash -c '/usr/local/bin/docker-compose -f .docker-compose.production.yml build'
     - for img in $(docker images | grep ${PWD##*/} | awk '{ print $1 }'); do docker save $img -o image_$img; done;
   artifacts:
     name: '${CI_JOB_NAME}_${CI_COMMIT_REF_NAME}'
