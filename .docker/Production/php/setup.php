@@ -58,7 +58,7 @@ class Utility
         Utility::log(implode("\n", $buffer));
 
         if ($code != 0) {
-            Utility::err("Failed to update database schema using typo3cms");
+            Utility::err("Failed to execute \`$ex\`");
             exit(1);
         }
     }
