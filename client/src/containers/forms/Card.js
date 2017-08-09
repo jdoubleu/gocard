@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 /**
- * Redux from for new Card.
+ * Redux form for new Card.
  */
 const validate = values => {
     const errors = {};

@@ -5,7 +5,7 @@ import InputField from "./fields/input";
 import InputCheckField from "./fields/inputCheck";
 
 /**
- * Redux from for initial Dialog.
+ * Redux form for initial Dialog.
  */
 const validate = values => {
     const errors = {};
