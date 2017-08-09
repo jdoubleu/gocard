@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file original="" source-language="en" target-language="de" datatype="plaintext">
+		<body>
+			<trans-unit id="mail.subject" xml:space="preserve">
+				<target>GoCard - Registrierung</target>
+			</trans-unit>
+            <trans-unit id="mail.body" xml:space="preserve">
+				<target>Herzlich Willkommen,
+
+das GoCard Team möchte dich auf deinem Karteikarten-Lernsystem begrüßen.
+Bei uns kannst du online mit Karteikarten lernen und deinen Wissenszustand abfragen.
+
+Mit Karteikarten zu lernen ist eine beliebte und effiziente Lernvariante unter Studenten,
+daher solltest du keine Zeit verlieren und direkt rein klicken. Wir warten auf dich.
+
+
+{0}
+
+
+Falls du Fragen zu Verwendung des Portals hast, helfen wir dir gerne in der HILFE weiter.
+
+Mit freundlichen Grüßen
+Dein GoCard Team</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
+

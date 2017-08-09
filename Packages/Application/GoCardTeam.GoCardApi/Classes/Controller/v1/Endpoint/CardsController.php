@@ -8,6 +8,7 @@ use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\CardRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
+use GoCardTeam\GoCardApi\Domain\Service\v1\RegisterManagementService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManager;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
@@ -29,6 +30,12 @@ class CardsController extends AbstractApiEndpointController
      * @var RegisterRepository
      */
     protected $registerRepository;
+
+    /**
+     * @Flow\Inject
+     * @var RegisterManagementService
+     */
+    protected $registerManagement;
 
     /**
      * Allows property modification for update action.
@@ -93,7 +100,7 @@ class CardsController extends AbstractApiEndpointController
     {
         $this->cardRepository->update($card);
 
-        $this->persistenceManager->persistAll(true);
+        $this->persistenceManager->persistAll();
 
         $this->view->assign('value', $card);
     }
@@ -103,7 +110,7 @@ class CardsController extends AbstractApiEndpointController
      */
     public function deleteCardAction(Card $card)
     {
-        $this->cardRepository->remove($card);
+        $this->registerManagement->deleteCard($card);
     }
 
     /**

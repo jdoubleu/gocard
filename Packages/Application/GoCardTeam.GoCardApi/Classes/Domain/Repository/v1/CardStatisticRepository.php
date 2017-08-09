@@ -32,6 +32,47 @@ class CardStatisticRepository extends Repository
     }
 
     /**
+     * @param Card $card
+     * @return CardStatistic[]
+     */
+    public function findByCard(Card $card)
+    {
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->equals('card', $card->getUid())
+        )->execute()->toArray();
+    }
+
+    /**
+     * @param Register $register
+     * @return CardStatistic[]
+     */
+    public function findByRegister(Register $register)
+    {
+        $cardIds = array_map(function($card) {
+            /** @var Card $card */
+            return $card->getUid();
+        }, $register->getCards()->toArray());
+
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->in('card', $cardIds)
+        )->execute()->toArray();
+    }
+
+    /**
+     * @param User $user
+     * @return CardStatistic[]
+     */
+    public function findByUser(User $user)
+    {
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->equals('user', $user->getUid())
+        )->execute()->toArray();
+    }
+
+    /**
      * @param Register $register
      * @param User $user
      * @return CardStatistic[]

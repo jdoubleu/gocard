@@ -87,7 +87,7 @@ class MemberOfRegisterConditionGenerator implements SqlGeneratorInterface
         }
 
         if (!$target instanceof User) {
-            throw new InvalidPolicyException(sprintf('The "memberOfRegister" command only accepts User objects! Got %s."', gettype($user)), 1501941186);
+            throw new InvalidPolicyException(sprintf('The "memberOfRegister" command only accepts User objects! Got %s."', gettype($target)), 1501941186);
         }
 
         /** @var QuoteStrategy $quoteStrategy */
