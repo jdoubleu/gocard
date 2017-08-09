@@ -13,6 +13,8 @@ variables:
 build:client:
   image: node
   stage: build
+  tags:
+    - docker
   only:
 #    - master
   before_script:
@@ -23,6 +25,8 @@ build:client:
 build:flow:
   image: composer
   stage: build
+  tags:
+    - docker
   only:
 #    - master
   before_script:
@@ -33,6 +37,8 @@ build:flow:
 build_docker:
   image: docker:latest
   stage: dockerBuild
+  tags:
+    - docker
   only:
 #    - master
   services:
