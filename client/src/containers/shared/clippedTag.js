@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Class that clippes the Tag after a certain length
+ */
 class ClippedTag extends React.Component {
     fitTitle() {
         if (this.props.tag.length <= 35) {

@@ -10,6 +10,9 @@ import {push} from "react-router-redux";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
 
+/**
+ * In this form you can create a new Card.
+ */
 const New = ({match, userId}) => {
 
     const handleSubmit = (values, dispatch) => {

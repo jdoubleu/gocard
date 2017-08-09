@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+/**
+ * Headline provides title of the site
+ */
 const Headline = ({title, children, ...rest}) => {
     return (
         <div {...rest}>

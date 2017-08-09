@@ -24,6 +24,9 @@ import {deleteMemberByRegister} from "../../actions/member";
 import {RequestError} from "../../middleware/callAPI";
 import {SubmissionError} from "redux-form";
 
+/**
+ * Detail for Register. Information of the Register. Information to all cards, statistic for all cards and overview Tags.
+ */
 class Detail extends React.Component {
     componentWillMount() {
         const {dispatch, userId, registerId} = this.props;

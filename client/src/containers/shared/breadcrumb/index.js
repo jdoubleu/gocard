@@ -3,7 +3,9 @@ import {Link, Route} from "react-router-dom";
 import {Breadcrumb as BreadcrumbComponent, BreadcrumbItem} from "reactstrap";
 
 import "./breadcrumb.css";
-
+/**
+ * Breadcrum that creates a path the user took to get to the current site
+ */
 const routes = {
     'Dashboard': /^\/$/,
     'Registieren': /^\/registration$/,

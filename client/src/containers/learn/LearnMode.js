@@ -21,6 +21,9 @@ import FeedbackCard from "../../containers/learn/FeedbackCard";
 import Feedback from "../../containers/learn/Feedback";
 import moment from "moment";
 
+/**
+ * LearnMode takes care of your learning. It provides you the next Card and Calculates the score for each card.
+ */
 const LearnMode = ({userId, mode, register, currentCard, valuesSingle, showResult, lastResult, handleFeedbackClick, valuesMultiple, lastCorrect, valuesSelfValidate, valuesTextInput, resultCards, scoreCurrentCard, createScoreForCard, handleSkip, countAnswers, countCards}) => {
 
     const calcCardStatistic = (lastCorrect, scoreCurrentCard) => {

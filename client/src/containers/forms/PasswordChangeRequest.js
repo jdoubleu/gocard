@@ -2,6 +2,9 @@ import React from "react";
 import {reduxForm} from "redux-form";
 import {Alert, Button, CardText, Form} from "reactstrap";
 
+/**
+ * Redux from for password change.
+ */
 const ForgottenForm = props => {
     const {error, handleSubmit, submitting, submitSucceeded} = props;
     return !submitSucceeded ? (

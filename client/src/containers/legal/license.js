@@ -14,9 +14,10 @@ import {
 import backendLicenses from "./backend_licenses.json";
 import frontendLicenses from "./frontend_licenses.json";
 
+/**
+ * Provides Information about the Licences that were used for this Application
+ */
 const License = () => {
-
-
     return (
         <Row>
             <Col sm={12} md={{size: 10, offset: 1}}>

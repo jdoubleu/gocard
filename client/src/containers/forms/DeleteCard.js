@@ -3,6 +3,9 @@ import {Field, reduxForm} from "redux-form";
 import {Alert, Button, Form} from "reactstrap";
 import InputCheckField from "./fields/inputCheck";
 
+/**
+ * Redux from for delete Card.
+ */
 const validate = values => {
     const errors = {};
 

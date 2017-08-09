@@ -2,6 +2,9 @@ import React from "react";
 import {CardText, Col} from "reactstrap";
 import {Link} from "react-router-dom";
 
+/**
+ * Is used as Link for new Register.
+ */
 const BlankCard = () => {
     return (
         <Col xl="4" md="6" xs="12" className="fade-in">

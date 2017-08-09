@@ -9,7 +9,9 @@ import InputMultipleChoice from "./fields/inputMultipleChoice";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
-
+/**
+ * Redux from for new Card.
+ */
 const validate = values => {
     const errors = {};
     if (!values.question) {

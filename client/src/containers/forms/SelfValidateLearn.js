@@ -3,7 +3,9 @@ import {Field, reduxForm} from "redux-form";
 import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnSelfValidateField from "./fields/learnSelfValidateButtonField";
 
-
+/**
+ * Redux from for selfValidate card.
+ */
 const validate = values => {
     const errors = {};
     if (values.correct === undefined || values.correct === "changed") {
