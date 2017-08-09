@@ -62,6 +62,8 @@ build:flow:
 build:bundle:
   image: alpine
   stage: bundle
+  tags:
+    - docker
   dependencies:
     - build:client
     - build:flow
