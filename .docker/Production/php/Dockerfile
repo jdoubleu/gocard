@@ -7,6 +7,12 @@ RUN cd /usr/local/etc/php \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-enable opcache
 
+## Install runtime dependencies
+RUN set -xe \
+    && apk add --no-cache \
+        bash \
+        sudo
+
 ## Install additional extensions
 RUN set -xe \
 	&& apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS \
