@@ -5,7 +5,7 @@ import InputField from "./fields/input";
 import {Link} from "react-router-dom";
 
 /**
- * Redux from for User settings.
+ * Redux form for User settings.
  */
 const validate = values => {
     const errors = {};

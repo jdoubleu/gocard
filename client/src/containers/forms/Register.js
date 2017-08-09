@@ -6,7 +6,7 @@ import InputMembers from "./fields/inputMembers";
 import {Link} from "react-router-dom";
 
 /**
- * Redux from for Register detail.
+ * Redux form for Register detail.
  */
 const validate = values => {
     const errors = {};

@@ -4,7 +4,7 @@ import {Alert, Button, Form} from "reactstrap";
 import InputCheckField from "./fields/inputCheck";
 
 /**
- * Redux from for leave Register.
+ * Redux form for leave Register.
  */
 const validate = values => {
     const errors = {};

@@ -4,7 +4,7 @@ import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnSelfValidateField from "./fields/learnSelfValidateButtonField";
 
 /**
- * Redux from for selfValidate card.
+ * Redux form for selfValidate card.
  */
 const validate = values => {
     const errors = {};
