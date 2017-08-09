@@ -10,7 +10,7 @@ GoCardTeam:
         lifetime: 86400
       passwordResetToken:
         # Lifetime (in seconds) of a password reset token
-        lifetime: 86400
+        lifetime: 3600
 
     mail:
       from:
