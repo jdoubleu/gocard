@@ -5,7 +5,7 @@ import SelectButton from "./fields/selectButton";
 import {Field, reduxForm} from "redux-form";
 
 /**
- * Redux from for settings Learnmode.
+ * Redux form for settings Learnmode.
  */
 const validate = values => {
     const errors = {};

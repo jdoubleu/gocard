@@ -4,7 +4,7 @@ import {Alert, Button, CardTitle, Form} from "reactstrap";
 import LearnTextInputField from "./fields/learnTextInputField";
 
 /**
- * Redux from for textInput card.
+ * Redux form for textInput card.
  */
 const validate = values => {
     const errors = {};
