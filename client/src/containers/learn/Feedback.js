@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardGroup, CardTitle, Col, Row} from "reactstrap";
+import {Card, CardGroup, CardTitle, Row} from "reactstrap";
 import {connect} from "react-redux";
 import _ from "lodash";
 import FeedbackCard from "./FeedbackPreviewCard";
@@ -28,9 +28,9 @@ const validate = values => {
 const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valuesFeedback, correctCards, wrongCards, skippedCards, lastScores, cardsPowerMode}) => {
 
     const calcCards = () => {
-        if(mode === 'POWER_MODE') {
+        if (mode === 'POWER_MODE') {
             return cardsPowerMode;
-        }else if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
+        } else if (valuesFeedback === undefined || valuesFeedback.cards === "ALL_CARDS") {
             return resultCards;
         } else if (valuesFeedback.cards === "CORRECT_CARDS") {
             return correctCards;
@@ -92,62 +92,60 @@ const Feedback = ({register, tags, mode, valuesArray, results, resultCards, valu
                 </Card>
             </CardGroup>
 
-            <Row>
-                <Col>
-                    {
-                        mode === "NORMAL_MODE" &&
-                        <Field
-                            name="cards"
-                            component={SelectButton}
-                            label={`${calcCardCount()} von ${resultCards.length} Karten`}
-                            toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
-                            options={[
-                                {
-                                    name: "Alle",
-                                    value: "ALL_CARDS"
-                                },
-                                {
-                                    name: "Richtig",
-                                    value: "CORRECT_CARDS"
-                                },
-                                {
-                                    name: "Falsch",
-                                    value: "WRONG_CARDS"
-                                },
-                                {
-                                    name: "Übersprungen",
-                                    value: "SKIPPED_CARDS"
-                                }
-                            ]}
-                        />
+            <div className="m-2">
+                {
+                    mode === "NORMAL_MODE" &&
+                    <Field
+                        name="cards"
+                        component={SelectButton}
+                        label={`${calcCardCount()} von ${resultCards.length} Karten`}
+                        toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
+                        options={[
+                            {
+                                name: "Alle",
+                                value: "ALL_CARDS"
+                            },
+                            {
+                                name: "Richtig",
+                                value: "CORRECT_CARDS"
+                            },
+                            {
+                                name: "Falsch",
+                                value: "WRONG_CARDS"
+                            },
+                            {
+                                name: "Übersprungen",
+                                value: "SKIPPED_CARDS"
+                            }
+                        ]}
+                    />
 
-                    }
-                    {
-                        mode === "TEST_MODE" &&
-                        <Field
-                            name="cards"
-                            component={SelectButton}
-                            label={`${calcCardCount()} von ${resultCards.length} Karten`}
-                            toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
-                            options={[
-                                {
-                                    name: "Alle",
-                                    value: "ALL_CARDS"
-                                },
-                                {
-                                    name: "Richtig",
-                                    value: "CORRECT_CARDS"
-                                },
-                                {
-                                    name: "Falsch",
-                                    value: "WRONG_CARDS"
-                                }
-                            ]}
+                }
+                {
+                    mode === "TEST_MODE" &&
+                    <Field
+                        name="cards"
+                        component={SelectButton}
+                        label={`${calcCardCount()} von ${resultCards.length} Karten`}
+                        toolTip="Du kannst die Karteikarten nach den Ergebnissen filtern."
+                        options={[
+                            {
+                                name: "Alle",
+                                value: "ALL_CARDS"
+                            },
+                            {
+                                name: "Richtig",
+                                value: "CORRECT_CARDS"
+                            },
+                            {
+                                name: "Falsch",
+                                value: "WRONG_CARDS"
+                            }
+                        ]}
 
-                        />
-                    }
-                </Col>
-            </Row>
+                    />
+                }
+            </div>
             <Row>
                 {
                     resultCards &&

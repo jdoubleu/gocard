@@ -1,15 +1,16 @@
 import React from "react";
-import {Card, CardText, CardTitle, Col, Row} from "reactstrap";
+import {Alert, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 import Logo from "../shared/logo";
 import LoginForm from "../forms/Login";
 import {loginUser} from "../../actions/auth";
 import {SubmissionError} from "redux-form";
 import {RequestError} from "../../middleware/callAPI";
+import queryString from "query-string";
 /**
  * Form for Login. Dispatches loginUser if the User has an Account.
  */
-const Login = () => {
+const Login = ({location}) => {
 
     const handleSubmit = (values, dispatch) => {
         return dispatch(
@@ -25,6 +26,10 @@ const Login = () => {
             }
         );
     };
+
+    const query = queryString.parse(location.search || '');
+    const confirmation = query.confirmation || false;
+
 
     return (
         <Row className="mt-4">
@@ -48,6 +53,12 @@ const Login = () => {
                             <br/>
                             <Link to="/registration">GoCard-Account erstellen</Link>
                         </CardText>
+                        {
+                            confirmation &&
+                            <Alert color="success">
+                                E-Mail wurde verifiziert. <b>Du kannst dich jetzt anmelden!</b>
+                            </Alert>
+                        }
                         <LoginForm onSubmit={handleSubmit}/>
                     </div>
                 </Card>
