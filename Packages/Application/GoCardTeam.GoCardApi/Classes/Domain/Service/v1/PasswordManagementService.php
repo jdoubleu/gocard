@@ -117,7 +117,7 @@ class PasswordManagementService extends AbstractSecurityManagement
     {
         $uriBuilder = $this->prepareReferLink($token);
         return $uriBuilder
-            ->setFormat('json')
-            ->uriFor('updatePassword', $uriBuilder->getArguments(), 'v1\Endpoint\Users', 'GoCardTeam.GoCardApi');
+            ->setFormat('html')
+            ->uriFor('index', $uriBuilder->getArguments(), 'Standard', 'GoCardTeam.GoCardApi');
     }
 }
