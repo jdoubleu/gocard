@@ -4,12 +4,22 @@ import Logo from "../shared/logo";
 import ResetForm from "../forms/Reset";
 import {updatePassword} from "../../actions/user";
 import queryString from "query-string";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 const Reset = ({location}) => {
 
     const handleSubmit = (values, dispatch) => {
         const query = queryString.parse(location.search || '');
-        return dispatch(updatePassword(query.token, query.identifier, values));
+        return dispatch(
+            updatePassword(query.token, query.identifier, values)
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     return (

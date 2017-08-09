@@ -6,6 +6,8 @@ import {deleteUser, updateUser} from "../../actions/user";
 import {logoutUser} from "../../actions/auth";
 import Headline from "../shared/headline";
 import DeleteUserForm from "../forms/DeleteUser";
+import {SubmissionError} from "redux-form";
+import {RequestError} from "../../middleware/callAPI";
 /**
  * Form for Initial Dialog. The Initial Dialog appears when a User logs in for the first time.
  * If the user accepts the Eula he will be updated else he will be deleted.
@@ -13,7 +15,15 @@ import DeleteUserForm from "../forms/DeleteUser";
 const InitialDialog = ({user}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser(user.id, {...values, status: "active"}));
+        return dispatch(
+            updateUser(user.id, {...values, status: "active"})
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
@@ -22,6 +32,12 @@ const InitialDialog = ({user}) => {
         ).then(
             response =>
                 dispatch(logoutUser())
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
         );
     };
 

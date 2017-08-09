@@ -7,20 +7,38 @@ import DeleteCardForm from "../forms/DeleteCard";
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import {deleteCard, updateCard} from "../../actions/card";
+import {RequestError} from "../../middleware/callAPI";
+import {SubmissionError} from "redux-form";
 
 const Edit = ({card}) => {
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateCard(card.id, values)).then(
+        return dispatch(
+            updateCard(card.id, values)
+        ).then(
             response =>
                 dispatch(push(`/register/${card.register}/card/${card.id}`))
-        )
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
         const registerId = card.register;
-        return dispatch(deleteCard(card.id)).then(
+        return dispatch(
+            deleteCard(card.id)
+        ).then(
             response =>
                 dispatch(push(`/register/${registerId}`))
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
         );
     };
 

@@ -4,17 +4,23 @@ import Logo from "../shared/logo";
 import ForgottenForm from "../forms/Forgotten";
 import {requestPasswordReset} from "../../actions/user";
 import {SubmissionError} from "redux-form";
+import {RequestError} from "../../middleware/callAPI";
+
 /**
  * Form for Password reset. And dispatch for Password reset request.
  */
 const Forgotten = () => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(requestPasswordReset(values.email)).catch(error => {
-            if (error instanceof SubmissionError) {
-                throw error;
+        return dispatch(
+            requestPasswordReset(values.email)
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
             }
-        });
+        );
     };
 
     return (

@@ -8,23 +8,49 @@ import SettingsForm from "../forms/Settings";
 import DeleteUserForm from "../forms/DeleteUser";
 import PasswordChangeRequest from "../forms/PasswordChangeRequest";
 import Icon from "../shared/user/icon";
-import {formValueSelector} from "redux-form";
+import {formValueSelector, SubmissionError} from "redux-form";
 import {logoutUser} from "../../actions/auth";
+import {RequestError} from "../../middleware/callAPI";
 
 const Settings = ({user, displayName}) => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(updateUser(user.id, values));
+        return dispatch(
+            updateUser(user.id, values)
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     const handleDeleteSubmit = (values, dispatch) => {
-        return dispatch(deleteUser(user.id)).then(
-            dispatch(logoutUser())
+        return dispatch(
+            deleteUser(user.id)
+        ).then(
+            success =>
+                dispatch(logoutUser())
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
         );
     };
 
     const handleChangeRequestSubmit = (values, dispatch) => {
-        return dispatch(requestPasswordReset(user.email));
+        return dispatch(
+            requestPasswordReset(user.email)
+        ).catch(
+            error => {
+                if (error instanceof RequestError) {
+                    throw new SubmissionError({_error: error.message})
+                }
+            }
+        );
     };
 
     return (
@@ -69,6 +95,7 @@ Settings.propTypes = {
 };
 
 const selector = formValueSelector('settingsForm');
+
 function mapStateToProps(state) {
     return {
         user: state.entities.users.byId[state.auth.userId] || {},
