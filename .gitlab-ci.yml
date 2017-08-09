@@ -24,7 +24,10 @@ build:client:
       - node_modules/
   before_script:
     - yarn install
+    - |
+        sed -i 's/host:.*/host: "gocard.jdoubleu.de"/'
   script:
+    - yarn run api-gen
     - CI= yarn run build
     - |
         sed 's/>/>\n/g' Packages/Application/GoCardTeam.GoCardApi/Resources/Public/index.html | sed -r "s/_Resources\/Static\/Packages\/(.+\.[^\/\\\"]+)\/(.+?)\\\"(.+\".+\")/\{f\:uri\.resource(path\: '\2'\)}\\\"\3/" > Packages/Application/GoCardTeam.GoCardApi/Resources/Private/Templates/Standard/Index.html
