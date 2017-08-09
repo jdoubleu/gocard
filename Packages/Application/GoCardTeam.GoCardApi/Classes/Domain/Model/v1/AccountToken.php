@@ -28,8 +28,8 @@ class AccountToken
 
     /**
      * @Flow\Validate(type="NotEmpty")
-     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(registration|password_reset)"})
-     * @ORM\Column(type="string", columnDefinition="SET('registration', 'password_reset')")
+     * @Flow\Validate(type="RegularExpression", options={"regularExpression"="(registration|password_reset|password_change)"})
+     * @ORM\Column(type="string", columnDefinition="SET('registration', 'password_reset', 'password_change')")
      * @var string
      */
     protected $type;

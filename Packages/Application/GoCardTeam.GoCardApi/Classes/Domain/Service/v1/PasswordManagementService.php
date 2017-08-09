@@ -2,6 +2,7 @@
 
 namespace GoCardTeam\GoCardApi\Domain\Service\v1;
 
+use GoCardTeam\GoCardApi\Context\v1\UserContext;
 use Neos\Error\Messages\Error;
 use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;
@@ -34,14 +35,20 @@ class PasswordManagementService extends AbstractSecurityManagement
     protected $hashService;
 
     /**
+     * @Flow\Inject
+     * @var UserContext
+     */
+    protected $userContext;
+
+    /**
      * @param string $id
      * @param string $token
-     * @param string $oldPassword
      * @param string $newPassword
      * @param string $newPasswordRepeated
+     *
      * @return Result
      */
-    public function processPasswordReset(string $id, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated)
+    public function processPasswordReset(string $id, string $token, string $newPassword, string $newPasswordRepeated, $oldPassword = null)
     {
         $result = new Result();
 
@@ -64,7 +71,7 @@ class PasswordManagementService extends AbstractSecurityManagement
             return $result;
         }
 
-        if (!$this->hashService->validatePassword($oldPassword, $account->getCredentialsSource())) {
+        if ($requestToken->getType() == 'password_change' && !$this->hashService->validatePassword($oldPassword, $account->getCredentialsSource())) {
             $result->forProperty('oldPassword')->addError(new Error('The password does not match!'));
             return $result;
         }
@@ -98,7 +105,7 @@ class PasswordManagementService extends AbstractSecurityManagement
             return false;
         }
 
-        $token = $this->generateTokenForUser($user, 'password_reset');
+        $token = $this->generateTokenForUser($user, $this->userContext->getUser() === null ? 'password_reset' : 'password_change');
 
         $this->persistenceManager->persistAll(true);
 
