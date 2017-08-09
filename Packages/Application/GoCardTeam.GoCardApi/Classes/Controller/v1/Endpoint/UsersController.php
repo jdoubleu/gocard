@@ -251,18 +251,17 @@ class UsersController extends AbstractApiEndpointController
     }
 
     /**
-     * @Flow\Validate(argumentName="oldPassword", type="NotEmpty")
      * @Flow\Validate(argumentName="newPassword", type="NotEmpty")
      * @Flow\Validate(argumentName="newPasswordRepeated", type="NotEmpty")
      *
      * @param string $identifier
      * @param string $token
-     * @param string $oldPassword
      * @param string $newPassword
      * @param string $newPasswordRepeated
+     * @param string $oldPassword
      * @return null
      */
-    public function updatePasswordAction(string $identifier, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated)
+    public function updatePasswordAction(string $identifier, string $token, string $newPassword, string $newPasswordRepeated, $oldPassword = null)
     {
         $result = new Result();
 
@@ -271,7 +270,7 @@ class UsersController extends AbstractApiEndpointController
             return $this->{$this->errorMethodName}($result);
         }
 
-        $result->merge($this->passwordManagementService->processPasswordReset($identifier, $token, $oldPassword, $newPassword, $newPasswordRepeated));
+        $result->merge($this->passwordManagementService->processPasswordReset($identifier, $token, $newPassword, $newPasswordRepeated, $oldPassword));
         if ($result->hasErrors()) {
             return $this->{$this->errorMethodName}($result);
         }
