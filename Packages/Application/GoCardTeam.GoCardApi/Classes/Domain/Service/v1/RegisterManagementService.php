@@ -4,6 +4,7 @@ namespace GoCardTeam\GoCardApi\Domain\Service\v1;
 
 use GoCardTeam\GoCardApi\Context\v1\MemberContext;
 use GoCardTeam\GoCardApi\Context\v1\UserContext;
+use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Member;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\ActivityRepository;
@@ -125,6 +126,24 @@ class RegisterManagementService
         $this->persistenceManager->whitelistObject($userMemberInCurrentRegister);
 
         $this->persistenceManager->persistAll(true);
+    }
+
+    /**
+     * @param Card $card
+     */
+    public function deleteCard(Card $card)
+    {
+        $statistics = $this->statisticsRepository->findByCard($card);
+
+        foreach ($statistics as $statistic) {
+            $this->cardRepository->remove($statistic);
+            $this->persistenceManager->whitelistObject($statistic);
+        }
+
+        $this->persistenceManager->persistAll(true);
+
+        $this->cardRepository->remove($card);
+        $this->persistenceManager->persistAll();
     }
 
     /**
