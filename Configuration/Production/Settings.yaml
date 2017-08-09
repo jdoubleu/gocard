@@ -10,6 +10,15 @@
 
 Neos:
   Flow:
+    core:
+      # optional list of variables (key: value) that will be set for all Flow CLI sub requests
+      subRequestEnvironmentVariables:
+        DATABASE_NAME: '%env:DATABASE_NAME%'
+        DATABASE_USER: '%env:DATABASE_USER%'
+        DATABASE_PASSWORD: '%env:DATABASE_PASSWORD%'
+        DATABASE_PORT: '%env:DATABASE_PORT%'
+        BASE_URI: '%env:BASE_URI%'
+
     persistence:
       backendOptions:
         dbname: '%env:DATABASE_NAME%'       # adjust to your database name
