@@ -11,6 +11,8 @@ use GoCardTeam\GoCardApi\Domain\Service\v1\PasswordManagementService;
 use GoCardTeam\GoCardApi\Domain\Service\v1\RegistrationService;
 use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
 use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use Neos\Error\Messages\Error;
+use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\KnownObjectException;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
@@ -242,16 +244,31 @@ class UsersController extends AbstractApiEndpointController
     }
 
     /**
+     * @Flow\Validate(argumentName="oldPassword", type="NotEmpty")
+     * @Flow\Validate(argumentName="newPassword", type="NotEmpty")
+     * @Flow\Validate(argumentName="newPasswordRepeated", type="NotEmpty")
+     *
      * @param string $identifier
      * @param string $token
      * @param string $oldPassword
      * @param string $newPassword
      * @param string $newPasswordRepeated
+     * @return null
      */
     public function updatePasswordAction(string $identifier, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated)
     {
-        if (!$this->passwordManagementService->processPasswordReset($identifier, $token, $oldPassword, $newPassword, $newPasswordRepeated)) {
-            $this->throwStatus(400);
+        $result = new Result();
+
+        if ($newPasswordRepeated !== $newPassword) {
+            $result->forProperty('newPassword')->addError(new Error('The passwords do not match. Please make sure \'newPassword\' and \'newPasswordRepeated\' are equal.'));
+            return $this->{$this->errorMethodName}($result);
         }
+
+        $result->merge($this->passwordManagementService->processPasswordReset($identifier, $token, $oldPassword, $newPassword, $newPasswordRepeated));
+        if ($result->hasErrors()) {
+            return $this->{$this->errorMethodName}($result);
+        }
+
+        return null;
     }
 }

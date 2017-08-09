@@ -2,6 +2,8 @@
 
 namespace GoCardTeam\GoCardApi\Domain\Service\v1;
 
+use Neos\Error\Messages\Error;
+use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;
 use GoCardTeam\GoCardApi\Domain\Model\v1\AccountToken;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
@@ -96,10 +98,12 @@ class PasswordManagementService
      * @param string $oldPassword
      * @param string $newPassword
      * @param string $newPasswordRepeated
-     * @return bool
+     * @return Result
      */
-    public function processPasswordReset(string $id, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated): bool
+    public function processPasswordReset(string $id, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated)
     {
+        $result = new Result();
+
         /** @var AccountToken $requestToken */
         $requestToken = $this->accountTokenRepository->findByIdentifier($id);
 
@@ -107,22 +111,26 @@ class PasswordManagementService
             || $requestToken->getToken() != $token
             || $requestToken->getExpireDate() <= new \DateTime()
         ) {
-            return false;
+            $result->forProperty('token')->addError(new Error('The token does not exist or might be expired.'));
+            return $result;
         }
 
         $account = $requestToken->getUser()->getAccount();
 
         if ($account === null) {
             $this->hashService->validatePassword($oldPassword, 'bcrypt=>$2a$14$DummySaltToPreventTim,.ingAttacksOnThisProvider');
-            return false;
+            $result->forProperty('token')->getErrors(new Error('Wrong token supplied'));
+            return $result;
         }
 
         if (!$this->hashService->validatePassword($oldPassword, $account->getCredentialsSource())) {
-            return false;
+            $result->forProperty('oldPassword')->addError(new Error('The password does not match!'));
+            return $result;
         }
 
         if ($newPassword != $newPasswordRepeated) {
-            return false;
+            $result->forProperty('newPassword')->addError(new Error('The passwords do not match. Please make sure \'newPassword\' and \'newPasswordRepeated\' are equal.'));
+            return $result;
         }
 
         $account->setCredentialsSource($this->hashService->hashPassword($newPasswordRepeated));
@@ -134,7 +142,7 @@ class PasswordManagementService
         $this->persistenceManager->whitelistObject($requestToken);
         $this->persistenceManager->persistAll(true);
 
-        return true;
+        return $result;
     }
 
     /**
