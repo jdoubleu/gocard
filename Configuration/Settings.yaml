@@ -26,7 +26,7 @@ Neos:
     # application and/or create custom routes.
     mvc:
       routes:
-        'Neos.Flow': TRUE
+        'Neos.Flow': FALSE
 
     http:
       applicationToken: 'Off'
@@ -36,3 +36,30 @@ Neos:
 #    core:
 #      phpBinaryPathAndFilename: 'C:/path/to/php.exe'
 
+# Example settings for sending emails via SMTP / SSL:
+#
+# SwiftMailer:
+#   transport:
+#     type: 'Swift_SmtpTransport'
+#     options:
+#       host: 'smtp.example.com'
+#       port: 465
+#       username: 'myaccount@example.com'
+#       password: '5js9j1lkjs8'
+#       localDomain: 'example.com'
+
+# Example settings for "sending" emails to an mbox file:
+#
+# SwiftMailer:
+#   transport:
+#     type: 'Neos\SwiftMailer\Transport\MboxTransport'
+#     options:
+#       mboxPathAndFilename: '%FLOW_PATH_DATA%/Persistent/sent-mail'
+
+# GoCard configuration
+# GoCardTeam:
+#   GoCardApi:
+#     mail:
+#      from:
+#        name: 'GoCard'
+#        address: ~

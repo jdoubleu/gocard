@@ -1,6 +1,7 @@
 -
   name: 'Application Entrypoint'
   uriPattern: ''
+  appendExceedingArguments: true
   defaults:
     '@package':    'GoCardTeam.GoCardApi'
     '@controller': 'Standard'

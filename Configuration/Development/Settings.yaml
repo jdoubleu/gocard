@@ -22,9 +22,20 @@ Neos:
 #      doctrine:
 #        sqlLogger: 'Neos\Flow\Persistence\Doctrine\Logging\SqlLogger'
 
+  SwiftMailer:
+    transport:
+      type: 'Neos\SwiftMailer\Transport\MboxTransport'
+      options:
+        mboxPathAndFilename: '%FLOW_PATH_DATA%/Temporary/Development/sent-mail'
+
 GoCardTeam:
   GoCardApi:
     security:
       accessToken:
         # 1 year lifetime
         lifetime: 31536000
+
+    mail:
+      from:
+        name: 'GoCard'
+        address: 'gocard@localhost'

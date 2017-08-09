@@ -35,6 +35,29 @@
   httpMethods: ['GET']
 
 -
+  name: 'confirm registration'
+  uriPattern: 'confirm'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'confirm'
+  httpMethods: ['GET']
+
+-
+  name: 'request password reset'
+  uriPattern: 'passwordReset'
+  defaults:
+    '@action': 'requestPasswordReset'
+  httpMethods: ['POST']
+
+-
+  name: 'confirm password reset'
+  uriPattern: 'password'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'updatePassword'
+  httpMethods: ['PUT']
+
+-
   name: 'find user'
   uriPattern: '{userId}'
   defaults:
