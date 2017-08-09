@@ -1346,7 +1346,6 @@ paths:
                 type: string
                 description: Repeat the new password
             required:
-              - oldPassword
               - newPassword
               - newPasswordRepeated
       responses:
@@ -1358,9 +1357,6 @@ paths:
             $ref: '#/definitions/ValidationResponse'
         '403':
           description: Invalid reset token
-      security:
-        - api_key: []
-        - api_key2: []
 definitions:
   Register:
     type: object

@@ -1906,8 +1906,6 @@ export function updatePassword(parameters) {
         headers = {},
         form = {};
 
-    headers = client.setAuthHeaders(headers);
-    queryParameters = client.setAuthQueryParams(queryParameters);
     headers['Accept'] = ['application/json'];
 
     if (parameters['identifier'] !== undefined) {
