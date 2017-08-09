@@ -395,6 +395,18 @@ const Help = () => {
 
                             <span><hr/></span>
 
+                            <CardTitle id="feedback">Anzeige der Antwort</CardTitle>
+                            <CardText className="px-2 text-justify">
+                                Im Power und Normalmodus bekommst du ein direktes Feedback. Das Feedback
+                                unterscheidet sich je nach Karten Typ. Beim Single Choice werden alle Antworten angezeigt.
+                                Die richtige Antwort wird durch einen Haken gekennzeichnet. Deine Antwort wird mit rot oder grün
+                                hinterlegt. Die Ausgabe beim Multiple Choice funltioniert nach dem selben Prinzip. Bei der Texteingabe
+                                wird deine Antwort Angezeigt und mit grün oder rot hinterlegt. Bei der Selbstkontrolle gibt es nur ein Feedback, wenn man die
+                                Frage überspringt.
+                            </CardText>
+
+                            <span><hr/></span>
+
                             <CardTitle id="feedback">Was sehe ich auf dem Feedback?</CardTitle>
                             <CardText className="px-2 text-justify">
                                 Der obere Bereich des Feedbacks ist in zwei Segmente aufgeteilt. In dem ersten Segment

@@ -24,7 +24,7 @@ import {deleteMemberByRegister} from "../../actions/member";
 
 class Detail extends React.Component {
     componentWillMount() {
-        const {dispatch, match, userId, registerId} = this.props;
+        const {dispatch, userId, registerId} = this.props;
         dispatch(loadRegister(registerId));
         dispatch(loadCards(registerId, userId));
     }
