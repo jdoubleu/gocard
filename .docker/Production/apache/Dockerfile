@@ -13,7 +13,7 @@ RUN cd /usr/local/apache2/conf \
     && sed -i '1,/AllowOverride None/s/AllowOverride None/AllowOverride All/' httpd.conf \
     # add vhost
     && echo 'Include conf/extra/app.conf' >> httpd.conf
-COPY http.conf /usr/local/apache2/conf/extra/app.conf
+COPY .docker/Production/apache/http.conf /usr/local/apache2/conf/extra/app.conf
 
 # Set workdir
 WORKDIR /var/www/html
