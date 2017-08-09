@@ -92,3 +92,4 @@ build_docker:
     - chmod +x /usr/local/bin/docker-compose
   script:
     - docker-compose -f .docker-compose.production.yml build
+    - docker volume ls | grep ${PWD##*/}
