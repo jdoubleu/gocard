@@ -25,7 +25,7 @@ build:client:
   before_script:
     - yarn install
     - |
-        sed -i 's/host:.*/host: "gocard.jdoubleu.de"/'
+        sed -i 's/host:.*/host: "gocard.jdoubleu.de"/' api_schema.yaml
   script:
     - yarn run api-gen
     - CI= yarn run build
