@@ -33,6 +33,23 @@ class CardStatisticRepository extends Repository
 
     /**
      * @param Register $register
+     * @return CardStatistic[]
+     */
+    public function findByRegister(Register $register)
+    {
+        $cardIds = array_map(function($card) {
+            /** @var Card $card */
+            return $card->getUid();
+        }, $register->getCards()->toArray());
+
+        $query = $this->createQuery();
+        return $query->matching(
+            $query->in('card', $cardIds)
+        )->execute()->toArray();
+    }
+
+    /**
+     * @param Register $register
      * @param User $user
      * @return CardStatistic[]
      */
