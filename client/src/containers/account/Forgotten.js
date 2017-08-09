@@ -8,7 +8,7 @@ import {SubmissionError} from "redux-form";
 const Forgotten = () => {
 
     const handleSubmit = (values, dispatch) => {
-        return dispatch(requestPasswordReset(values)).catch(error => {
+        return dispatch(requestPasswordReset(values.email)).catch(error => {
             if (error instanceof SubmissionError) {
                 throw error;
             }
