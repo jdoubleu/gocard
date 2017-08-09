@@ -40,7 +40,7 @@ class User implements \JsonSerializable
     protected $email;
 
     /**
-     * @ORM\OneToOne()
+     * @ORM\OneToOne(orphanRemoval=true)
      * @var Account
      */
     protected $account;
