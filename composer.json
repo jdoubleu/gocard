@@ -3,6 +3,7 @@
     "description": "GoCard is an interactive learning web application",
     "license": "proprietary",
     "type": "project",
+    "version": "0.1.0",
     "config": {
         "vendor-dir": "Packages/Libraries",
         "bin-dir": "bin"
