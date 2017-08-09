@@ -17,4 +17,12 @@ class StandardController extends ActionController
     {
     }
 
+    /**
+     * Alias of index action
+     * Necessary for password-reset route and uri builder
+     */
+    public function passwordResetAction()
+    {
+        $this->indexAction();
+    }
 }

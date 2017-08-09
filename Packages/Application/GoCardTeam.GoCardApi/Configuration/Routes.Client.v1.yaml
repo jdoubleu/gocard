@@ -1,0 +1,11 @@
+# Possible client subroutes
+#
+# They may be necessary for route resolving (e.g. used in uri builder).
+# Pay attention to other routes for overwriting!
+
+-
+  name: 'Password Reset'
+  uriPattern: 'reset'
+  appendExceedingArguments: true
+  defaults:
+    '@action': 'passwordReset'
