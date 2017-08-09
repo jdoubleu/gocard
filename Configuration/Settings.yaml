@@ -31,6 +31,9 @@ Neos:
     http:
       applicationToken: 'Off'
 
+    i18n:
+      defaultLocale: de
+
   # You might need to uncomment the following lines and specify
   # the location of the PHP binary manually.
 #    core:
