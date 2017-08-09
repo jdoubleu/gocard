@@ -62,7 +62,7 @@ const InitialDialogForm = props => {
                     verhindern.
                     <br/>
                     <br/>
-                    Weiteres zu dem Thema Datenschutz in dem Bereich <a href="privacy-policy">
+                    Weiteres zu dem Thema Datenschutz in dem Bereich <a href="/legal/privacy-policy">
                     Datenschutzerklärung</a>.
                 </CardText>
 
