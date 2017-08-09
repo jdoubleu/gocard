@@ -17,3 +17,6 @@ COPY .docker/Production/apache/http.conf /usr/local/apache2/conf/extra/app.conf
 
 # Set workdir
 WORKDIR /var/www/html
+
+## Copy sources
+COPY Configuration/ Packages/ Web/ /var/www/html/
