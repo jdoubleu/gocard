@@ -14,6 +14,8 @@ variables:
 build:client:
   image: node
   stage: build
+  variables:
+    CI: false
   tags:
     - docker
   only:
@@ -25,7 +27,7 @@ build:client:
   before_script:
     - yarn install
   script:
-    - CI=false yarn run build
+    - yarn run build
     - |
         sed -r 's/_Resources\/Static\/Packages\/(.+\.[^\/"]+)\/(.+?)"/\{f\:uri\.resource(path\: \"\2\"\)}"/' Packages/Application/GoCardTeam.GoCardApi/Resources/Public/index.html > Packages/Application/GoCardTeam.GoCardApi/Resources/Private/Templates/Standard/Index.html
   artifacts:
