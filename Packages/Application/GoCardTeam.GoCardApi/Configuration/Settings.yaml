@@ -8,6 +8,9 @@ GoCardTeam:
       registrationToken:
         # Lifetime (in seconds) of an confirmation token for user registration
         lifetime: 86400
+      passwordResetToken:
+        # Lifetime (in seconds) of a password reset token
+        lifetime: 86400
 
     mail:
       from:

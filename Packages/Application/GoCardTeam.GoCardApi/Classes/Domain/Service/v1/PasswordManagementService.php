@@ -1,0 +1,248 @@
+<?php
+
+namespace GoCardTeam\GoCardApi\Domain\Service\v1;
+
+use Neos\Error\Messages\Error;
+use Neos\Error\Messages\Result;
+use Neos\Flow\Annotations as Flow;
+use GoCardTeam\GoCardApi\Domain\Model\v1\AccountToken;
+use GoCardTeam\GoCardApi\Domain\Model\v1\User;
+use GoCardTeam\GoCardApi\Domain\Repository\v1\AccountTokenRepository;
+use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
+use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use GoCardTeam\GoCardApi\Utility\v1\AuthUtility;
+use Neos\Flow\I18n\Translator;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\Routing\UriBuilder;
+use Neos\Flow\Persistence\PersistenceManagerInterface;
+use Neos\Flow\Security\Cryptography\HashService;
+use Neos\SwiftMailer\Message;
+
+/**
+ * Domain service for password management (e.g. password reset)
+ *
+ * @Flow\Scope("singleton")
+ */
+class PasswordManagementService
+{
+
+    /**
+     * @Flow\Inject
+     * @var PersistenceManagerInterface
+     */
+    protected $persistenceManager;
+
+    /**
+     * @Flow\Inject
+     * @var LocalAccountService
+     */
+    protected $localAccountService;
+
+    /**
+     * @Flow\Inject
+     * @var AccountRepository
+     */
+    protected $accountRepository;
+
+    /**
+     * @Flow\Inject
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * @Flow\Inject
+     * @var AccountTokenRepository
+     */
+    protected $accountTokenRepository;
+
+    /**
+     * @Flow\Inject
+     * @var Translator
+     */
+    protected $translator;
+
+    /**
+     * @var ActionRequest
+     */
+    protected $request;
+
+    /**
+     * @Flow\Inject
+     * @var UriBuilder
+     */
+    protected $uriBuilder;
+
+    /**
+     * @Flow\InjectConfiguration("mail")
+     * @var array
+     */
+    protected $mailSettings;
+
+    /**
+     * @Flow\InjectConfiguration("security.passwordResetToken.lifetime")
+     * @var string
+     */
+    protected $tokenLifetime = 'P1D';
+
+    /**
+     * @Flow\Inject
+     * @var HashService
+     */
+    protected $hashService;
+
+    /**
+     * @param string $id
+     * @param string $token
+     * @param string $oldPassword
+     * @param string $newPassword
+     * @param string $newPasswordRepeated
+     * @return Result
+     */
+    public function processPasswordReset(string $id, string $token, string $oldPassword, string $newPassword, string $newPasswordRepeated)
+    {
+        $result = new Result();
+
+        /** @var AccountToken $requestToken */
+        $requestToken = $this->accountTokenRepository->findByIdentifier($id);
+
+        if ($requestToken === null
+            || $requestToken->getToken() != $token
+            || $requestToken->getExpireDate() <= new \DateTime()
+        ) {
+            $result->forProperty('token')->addError(new Error('The token does not exist or might be expired.'));
+            return $result;
+        }
+
+        $account = $requestToken->getUser()->getAccount();
+
+        if ($account === null) {
+            $this->hashService->validatePassword($oldPassword, 'bcrypt=>$2a$14$DummySaltToPreventTim,.ingAttacksOnThisProvider');
+            $result->forProperty('token')->getErrors(new Error('Wrong token supplied'));
+            return $result;
+        }
+
+        if (!$this->hashService->validatePassword($oldPassword, $account->getCredentialsSource())) {
+            $result->forProperty('oldPassword')->addError(new Error('The password does not match!'));
+            return $result;
+        }
+
+        if ($newPassword != $newPasswordRepeated) {
+            $result->forProperty('newPassword')->addError(new Error('The passwords do not match. Please make sure \'newPassword\' and \'newPasswordRepeated\' are equal.'));
+            return $result;
+        }
+
+        $account->setCredentialsSource($this->hashService->hashPassword($newPasswordRepeated));
+
+        $this->accountRepository->update($account);
+        $this->accountTokenRepository->remove($requestToken);
+
+        $this->persistenceManager->whitelistObject($account);
+        $this->persistenceManager->whitelistObject($requestToken);
+        $this->persistenceManager->persistAll(true);
+
+        return $result;
+    }
+
+    /**
+     * @param string $email
+     * @return bool
+     */
+    public function processPasswordResetRequest(string $email)
+    {
+        $user = $this->userRepository->findOneByEmail($email, false, false);
+
+        if ($user === null) {
+            return false;
+        }
+
+        $token = $this->addPasswordResetToken($user);
+
+        $this->persistenceManager->persistAll(true);
+
+        $this->sendConfirmationMail($token);
+
+        return true;
+    }
+
+    /**
+     * @param User $user
+     * @return AccountToken
+     */
+    public function addPasswordResetToken(User $user)
+    {
+        $requestToken = new AccountToken();
+        $requestToken->setUser($user);
+        $requestToken->setType('password_reset');
+        $requestToken->setExpireDate((new \DateTime())->add(new \DateInterval('PT' . $this->tokenLifetime . 'S')));
+        $requestToken->setToken(AuthUtility::generateAccessToken());
+
+        $this->accountTokenRepository->add($requestToken);
+
+        $this->persistenceManager->whitelistObject($requestToken);
+
+        return $requestToken;
+    }
+
+    /**
+     * @param AccountToken $requestToken
+     */
+    protected function sendConfirmationMail(AccountToken $requestToken)
+    {
+        $user = $requestToken->getUser();
+
+        $mail = new Message($this->getTranslation('mail.subject'));
+
+        $mail
+            ->setFrom([$this->mailSettings['from']['address'] => $this->mailSettings['from']['name']])
+            ->setTo([$user->getEmail() => $user->getDisplayName()]);
+
+        $mail->setBody($this->getTranslation('mail.body', [$this->generateConfirmationLink($requestToken)]), 'text/plain');
+
+        $mail->send();
+    }
+
+    /**
+     * Generates a link to the confirmation action
+     *
+     * @param AccountToken $requestToken
+     * @return string the URI of the confirmation page
+     */
+    protected function generateConfirmationLink(AccountToken $requestToken): string
+    {
+        $confirmArgs = [
+            'identifier' => $this->persistenceManager->getIdentifierByObject($requestToken),
+            'token' => $requestToken->getToken()
+        ];
+
+        $this->uriBuilder->setRequest($this->request);
+
+        return $this->uriBuilder
+            ->setCreateAbsoluteUri(true)
+            ->setFormat('json')
+            ->uriFor('updatePassword', $confirmArgs, 'v1\Endpoint\Users', 'GoCardTeam.GoCardApi');
+    }
+
+    /**
+     * Gets the actual translation of the label.
+     * Automatically emits the locale and sets the correct source.
+     *
+     * @param string $label
+     * @param array $arguments
+     * @param mixed|null $quantity
+     * @return string
+     */
+    protected function getTranslation(string $label, array $arguments = [], $quantity = null)
+    {
+        return $this->translator->translateById($label, $arguments, $quantity, null, 'Mail/PasswordReset', 'GoCardTeam.GoCardApi');
+    }
+
+    /**
+     * @param ActionRequest $request
+     */
+    public function setRequest(ActionRequest $request)
+    {
+        $this->request = $request;
+    }
+}
