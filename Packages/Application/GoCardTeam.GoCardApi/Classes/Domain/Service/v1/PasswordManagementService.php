@@ -19,7 +19,7 @@ class PasswordManagementService extends AbstractSecurityManagement
     /**
      * translation file
      */
-    const TRANSLATION_FILE = 'Mail/Registration';
+    const TRANSLATION_FILE = 'Mail/PasswordReset';
 
     /**
      * @Flow\InjectConfiguration("security.passwordResetToken.lifetime")
