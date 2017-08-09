@@ -21,6 +21,8 @@ build:client:
     - yarn install
   script:
     - yarn run build
+    - |
+        sed -r 's/_Resources\/Static\/Packages\/(.+\.[^\/"]+)\/(.+?)"/\{f\:uri\.resource(path\: \"\2\"\)}"/' Packages/Application/GoCardTeam.GoCardApi/Resources/Public/index.html > Packages/Application/GoCardTeam.GoCardApi/Resources/Private/Templates/Standard/Index.html
 
 build:flow:
   image: composer
