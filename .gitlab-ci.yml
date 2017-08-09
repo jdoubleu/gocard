@@ -4,6 +4,7 @@ stages:
   - lint
   - test
   - build
+  - bundle
   - dockerBuild
 
 variables:
@@ -60,7 +61,7 @@ build:flow:
 
 build:bundle:
   image: alpine
-  stage: build
+  stage: bundle
   dependencies:
     - build:client
     - build:flow
