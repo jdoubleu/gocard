@@ -136,7 +136,7 @@ class RegisterManagementService
         $statistics = $this->statisticsRepository->findByCard($card);
 
         foreach ($statistics as $statistic) {
-            $this->cardRepository->remove($statistic);
+            $this->statisticsRepository->remove($statistic);
             $this->persistenceManager->whitelistObject($statistic);
         }
 

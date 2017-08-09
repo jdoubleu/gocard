@@ -2,7 +2,7 @@
 FROM php:7.1-fpm-alpine
 
 ## Development settings, flow requirements
-ADD https://raw.githubusercontent.com/php/php-src/master/php.ini-development /usr/local/etc/php/php.ini
+ADD https://raw.githubusercontent.com/php/php-src/PHP-7.1/php.ini-development /usr/local/etc/php/php.ini
 RUN cd /usr/local/etc/php \
     && sed -i 's/memory_limit\ =.*/memory_limit\ =\ 250M/g' php.ini \
     && sed -i 's/max_execution_time\ =.*/max_execution_time\ =\ 60/g' php.ini \

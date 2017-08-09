@@ -113,8 +113,7 @@ const Help = () => {
                                 gib, an wie gut du diese Karte kannst. Der Wert einer Karte verändert sich durchs
                                 Lernen.
                                 Beantwortest du eine Frage richtig, wird der Score um 1 erhöht. Beantwortest du die
-                                Karte falsch oder
-                                oder überspringst die Karte, wird der Score um 1 verringert
+                                Karte falsch, wird der Score um 1 verringert. Überspringst du die Karte bleibt der Score unverändert.
                             </CardText>
 
                             <Table responsive className="mt-2 mb-3 text-left">

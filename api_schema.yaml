@@ -1305,6 +1305,9 @@ paths:
       responses:
         default:
           description: Successful request
+      security:
+        - api_key: []
+        - api_key2: []
   /users/password:
     put:
       tags:

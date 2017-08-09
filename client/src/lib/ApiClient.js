@@ -1865,6 +1865,8 @@ export function requestPasswordReset(parameters) {
         headers = {},
         form = {};
 
+    headers = client.setAuthHeaders(headers);
+    queryParameters = client.setAuthQueryParams(queryParameters);
     headers['Accept'] = ['application/json'];
 
     if (parameters['email'] !== undefined) {

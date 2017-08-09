@@ -71,11 +71,6 @@ class PasswordManagementService extends AbstractSecurityManagement
             return $result;
         }
 
-        if ($requestToken->getType() == 'password_change' && !$this->hashService->validatePassword($oldPassword, $account->getCredentialsSource())) {
-            $result->forProperty('oldPassword')->addError(new Error('The password does not match!'));
-            return $result;
-        }
-
         if ($newPassword != $newPasswordRepeated) {
             $result->forProperty('newPassword')->addError(new Error('The passwords do not match. Please make sure \'newPassword\' and \'newPasswordRepeated\' are equal.'));
             return $result;
