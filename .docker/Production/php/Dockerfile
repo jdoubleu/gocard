@@ -22,7 +22,10 @@ ENV FLOW_CONTEXT=Production
 ENV FLOW_BIN=/var/www/html/flow
 
 ## Copy sources
-COPY Configuration/ Packages/ Web/ /var/www/html/
+COPY flow /var/www/html/
+COPY Configuration /var/www/html/Configuration
+COPY Packages /var/www/html/Packages
+COPY Web /var/www/html/Web
 
 ## Define volumes
 VOLUME ["/var/www/html/Data/Logs"]

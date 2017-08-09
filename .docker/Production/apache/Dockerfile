@@ -19,4 +19,6 @@ COPY .docker/Production/apache/http.conf /usr/local/apache2/conf/extra/app.conf
 WORKDIR /var/www/html
 
 ## Copy sources
-COPY Configuration/ Packages/ Web/ /var/www/html/
+COPY Configuration /var/www/html/Configuration
+COPY Packages /var/www/html/Packages
+COPY Web /var/www/html/Web
