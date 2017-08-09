@@ -19,6 +19,7 @@ COPY apc.ini igbinary.ini opcache.ini /usr/local/etc/php/conf.d/
 
 ## Set environment variables for runtime
 ENV FLOW_CONTEXT=Production
+ENV FLOW_BIN=/var/www/html/flow
 
 ## Define volumes
 VOLUME ["/var/www/html/Data/Logs"]
