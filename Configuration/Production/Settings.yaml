@@ -35,7 +35,6 @@ Neos:
     transport:
       type: 'Swift_SmtpTransport'
       options:
-        options:
         host: '%env:SMTP_HOST%'
         port: '%env:SMTP_PORT%'
         username: '%env:SMTP_USER%'
