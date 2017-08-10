@@ -5,7 +5,7 @@ stages:
   - test
   - build
   - bundle
-  - dockerBuild
+  - docker
 
 variables:
   GIT_STRATEGY: clone
@@ -89,9 +89,9 @@ build:bundle:
       - flow
       - docker-compose.production.yml
 
-build_docker:
+build:docker:
   image: docker:latest
-  stage: dockerBuild
+  stage: docker
   tags:
     - docker
   only:
