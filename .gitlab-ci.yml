@@ -10,6 +10,8 @@ stages:
 variables:
   GIT_STRATEGY: clone
   DOCKER_DRIVER: overlay
+  DOCKER_COMPOSE_VERSION: 1.15.0
+  API_HOST: gocard.jdoubleu.de
 
 build:client:
   image: node
@@ -25,7 +27,7 @@ build:client:
   before_script:
     - yarn install
     - |
-        sed -i 's/host:.*/host: "gocard.jdoubleu.de"/' api_schema.yaml
+        sed -i "s/host:.*/host: \"${API_HOST}\"/" api_schema.yaml
   script:
     - yarn run api-gen
     - CI= yarn run build
@@ -95,7 +97,7 @@ build_docker:
     - docker:dind
   before_script:
     - apk add --no-cache curl bash
-    - curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     - chmod +x /usr/local/bin/docker-compose
   script:
     - /bin/bash -c '/usr/local/bin/docker-compose -f .docker-compose.production.yml build'
