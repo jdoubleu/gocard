@@ -13,6 +13,7 @@ variables:
   DOCKER_COMPOSE_VERSION: 1.15.0
   API_HOST: gocard.jdoubleu.de
   API_SCHEMA: https
+  DOCKER_DRIVER: overlay
 
 build:client:
   image: node
