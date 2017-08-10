@@ -22,6 +22,7 @@ services:
       - SMTP_USER=
       - SMTP_PASSWORD=
       - SMTP_DOMAIN=localhost
+      - SMTP_ADDRESS=noreply@localhost
 
   apache:
     build:

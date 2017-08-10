@@ -3,7 +3,9 @@ info:
   description: GoCard API
   version: 1.0.0
   title: GoCard API
-host: "localhost"
+host: "gocard.jdoubleu.de"
+schemes:
+  - "http"
 basePath: /api/v1
 tags:
   - name: registers
@@ -20,8 +22,6 @@ tags:
     description: Members are users having access to registers
   - name: activity
     description: Activity or log of register and card actions
-schemes:
-  - http
 securityDefinitions:
   api_key:
     description: Access Token/Api Key for authorization
