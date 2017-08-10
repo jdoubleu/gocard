@@ -12,6 +12,7 @@ variables:
   DOCKER_DRIVER: overlay
   DOCKER_COMPOSE_VERSION: 1.15.0
   API_HOST: gocard.jdoubleu.de
+  API_SCHEMA: https
 
 build:client:
   image: node
@@ -28,6 +29,8 @@ build:client:
     - yarn install
     - |
         sed -i "s/host:.*/host: \"${API_HOST}\"/" api_schema.yaml
+    - |
+        sed -i "s/  - \"http\"*/  - \"${API_SCHEMA}\"/" api_schema.yaml
   script:
     - yarn run api-gen
     - CI= yarn run build
