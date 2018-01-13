@@ -59,7 +59,7 @@ const License = () => {
 
                     <span><hr/></span>
 
-                    <CardTitle>Externe Lizenzen</CardTitle>
+                    <CardTitle>Lizenzen verwendter Libraries</CardTitle>
                     <ListGroup>
                         {
                             Object.keys(backendLicenses.dependencies).map((key) =>

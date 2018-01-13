@@ -20,8 +20,6 @@
 /Web/_Resources/*
 !/Web/_Resources/.htaccess
 /bin/
-/Readme.rst
-/Upgrading.rst
 /flow
 /flow.bat
 /node_modules/
