@@ -26,4 +26,5 @@
 yarn-error.log
 npm-debug.log
 /.idea/
-/.ddev/docker-compose.yaml
+/.ddev/*
+!/.ddev/config.yaml
