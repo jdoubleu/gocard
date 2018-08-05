@@ -833,16 +833,16 @@
         },
         {
             "name": "neos/flow",
-            "version": "4.1.0",
+            "version": "4.1.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/neos/flow.git",
-                "reference": "ac3d9ecfaeb50ecf4a1aa994a5c1677ac4a7a2c7"
+                "reference": "0666a7bbd1c2b2eb719586951940611fd1eb4846"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neos/flow/zipball/ac3d9ecfaeb50ecf4a1aa994a5c1677ac4a7a2c7",
-                "reference": "ac3d9ecfaeb50ecf4a1aa994a5c1677ac4a7a2c7",
+                "url": "https://api.github.com/repos/neos/flow/zipball/0666a7bbd1c2b2eb719586951940611fd1eb4846",
+                "reference": "0666a7bbd1c2b2eb719586951940611fd1eb4846",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +904,7 @@
             ],
             "description": "Flow Application Framework",
             "homepage": "http://flow.neos.io",
-            "time": "2017-04-27T13:25:46+00:00"
+            "time": "2018-08-02T09:23:03+00:00"
         },
         {
             "name": "neos/fluid-adaptor",
