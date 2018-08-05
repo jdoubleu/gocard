@@ -28,3 +28,5 @@ npm-debug.log
 /.idea/
 /.ddev/*
 !/.ddev/config.yaml
+!/.ddev/docker-compose.debugproxy.yaml
+!/.ddev/php

@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    links:
+      - debugproxy:debugproxy
+  debugproxy:
+    container_name: ddev-${DDEV_SITENAME}-debugproxy
+    build: https://github.com/jdoubleu/flow-debugproxy.git
+    restart: "always"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+      com.ddev.app-url: $DDEV_URL
+    expose:
+      - "9000"
+    volumes:
+      - "../:/var/www/html:cached"
+    working_dir: /var/www/html
+    command: ["flow-debugproxy", "--framework", "flow", "--xdebug", "debugproxy:9000", "--ide", "host.docker.internal:9000"]
