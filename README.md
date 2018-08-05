@@ -1,6 +1,8 @@
 # GoCard
 GoCard is a learning platform based on an indexed cards system.
 
+![](preview.png)
+
 ## State
 This project is in development and **should not** be used in production!
 There are many things todo, yet.
