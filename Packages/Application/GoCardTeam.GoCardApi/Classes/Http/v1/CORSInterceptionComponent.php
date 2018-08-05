@@ -22,10 +22,16 @@ class CORSInterceptionComponent implements ComponentInterface
      */
     public function handle(ComponentContext $componentContext)
     {
+        $response = $componentContext->getHttpResponse();
+
+        // Add general CORS headers to all requests
+        $response->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+        $response->setHeader('Access-Control-Allow-Methods', 'POST, GET, DELETE, PUT');
+        $response->setHeader('Access-Control-Allow-Headers', 'Content-type, origin, accept');
+
+        // Handle CORS preflight request
         if($componentContext->getHttpRequest()->getMethod() == 'OPTIONS') {
-            // Received CORS OPTIONS request
             // Respond with a 200 to allow the request to pass
-            $response = $componentContext->getHttpResponse();
             $response->setStatus(200);
 
             // Disable all further processing
