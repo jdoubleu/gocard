@@ -16,5 +16,4 @@
   routeParts:
     cardStatistic:
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\CardStatistic'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
