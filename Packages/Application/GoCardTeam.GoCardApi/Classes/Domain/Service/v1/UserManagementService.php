@@ -2,15 +2,15 @@
 
 namespace GoCardTeam\GoCardApi\Domain\Service\v1;
 
-use GoCardTeam\GoCardApi\Context\v1\UserContext;
+use GoCardTeam\GoCardApi\Context\UserContext;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\ActivityRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\CardStatisticRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\RegisterRepository;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
-use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
-use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Security\AccountFactory;
+use GoCardTeam\GoCardApi\Security\AccountRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 

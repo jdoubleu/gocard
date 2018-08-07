@@ -1,8 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\v1;
+namespace GoCardTeam\GoCardApi\Security;
 
-use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use GoCardTeam\GoCardApi\Service\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountRepository as DefaultAccountRepository;

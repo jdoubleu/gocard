@@ -5,9 +5,9 @@ namespace GoCardTeam\GoCardApi\Command;
  * This file is part of the GoCardTeam.GoCardApi package.
  */
 
-use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
-use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
-use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use GoCardTeam\GoCardApi\Security\AccountFactory;
+use GoCardTeam\GoCardApi\Security\AccountRepository;
+use GoCardTeam\GoCardApi\Service\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\Persistence\QueryResultInterface;
@@ -16,7 +16,7 @@ use Neos\Flow\Security\Account;
 /**
  * @Flow\Scope("singleton")
  */
-class Apiv1AccountManageCommandController extends CommandController
+class ManageAccountCommandController extends CommandController
 {
 
     /**

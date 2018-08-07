@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authorization\Privilege\Functional\v1;
+namespace GoCardTeam\GoCardApi\Security\Authorization\Privilege\Functional;
 
 use Neos\Flow\Aop\JoinPointInterface;
 

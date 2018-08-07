@@ -6,4 +6,4 @@ Neos:
           chain:
             'CORSInterception':
               position: 'before routing'
-              component: 'GoCardTeam\GoCardApi\Http\v1\CORSInterceptionComponent'
+              component: 'GoCardTeam\GoCardApi\Http\CORSInterceptionComponent'

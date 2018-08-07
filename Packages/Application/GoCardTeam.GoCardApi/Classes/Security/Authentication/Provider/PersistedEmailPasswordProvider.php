@@ -1,8 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authentication\Provider\v1;
+namespace GoCardTeam\GoCardApi\Security\Authentication\Provider;
 
-use GoCardTeam\GoCardApi\Security\Authentication\Token\v1\EmailPassword;
+use GoCardTeam\GoCardApi\Security\Authentication\Token\EmailPassword;
 use Neos\Flow\Security\Authentication\Provider\PersistedUsernamePasswordProvider;
 
 /**

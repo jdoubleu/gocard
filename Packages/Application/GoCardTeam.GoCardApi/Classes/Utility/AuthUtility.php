@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Utility\v1;
+namespace GoCardTeam\GoCardApi\Utility;
 
 /**
  * Class AuthUtility

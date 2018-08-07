@@ -1,7 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Context\v1;
+namespace GoCardTeam\GoCardApi\Context;
 
+use GoCardTeam\GoCardApi\Context\UserContext;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Member;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\MemberRepository;
 use Neos\Flow\Annotations as Flow;

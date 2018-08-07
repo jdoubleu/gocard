@@ -2,8 +2,8 @@
 
 namespace GoCardTeam\GoCardApi\Controller\v1;
 
-use GoCardTeam\GoCardApi\Context\v1\UserContext;
-use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
+use GoCardTeam\GoCardApi\Context\UserContext;
+use GoCardTeam\GoCardApi\Security\AccountFactory;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Http\Response;
 use Neos\Flow\Mvc\ActionRequest;

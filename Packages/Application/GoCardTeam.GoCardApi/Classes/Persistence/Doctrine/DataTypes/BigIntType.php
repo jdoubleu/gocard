@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\v1;
+namespace GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\BigIntType as DoctrineBigIntType;

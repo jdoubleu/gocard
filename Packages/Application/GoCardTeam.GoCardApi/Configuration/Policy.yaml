@@ -33,7 +33,7 @@ privilegeTargets:
     'GoCardTeam.GoCardApi:UsersController.currentUser.editUserActions':
       matcher: 'method(GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController->(update|delete|getMembersBy)UserAction(user != current.userContext.user))'
 
-  'GoCardTeam\GoCardApi\Security\Authorization\Privilege\Entity\Doctrine\v1\EntityPrivilege':
+  'GoCardTeam\GoCardApi\Security\Authorization\Privilege\Entity\Doctrine\EntityPrivilege':
 
     # GoCard API
     # PrivilegeTargets for the API

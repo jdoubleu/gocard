@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Http\v1;
+namespace GoCardTeam\GoCardApi\Http;
 
 use Neos\Flow\Http\Component\ComponentChain;
 use Neos\Flow\Http\Component\ComponentContext;

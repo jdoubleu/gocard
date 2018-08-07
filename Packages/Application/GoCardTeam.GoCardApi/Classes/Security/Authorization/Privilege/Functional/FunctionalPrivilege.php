@@ -1,7 +1,8 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authorization\Privilege\Functional\v1;
+namespace GoCardTeam\GoCardApi\Security\Authorization\Privilege\Functional;
 
+use GoCardTeam\GoCardApi\Security\Authorization\Privilege\Functional\FunctionalEvaluatorInterface;
 use Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege;
 use Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilegeSubject;
 use Neos\Flow\Security\Authorization\Privilege\PrivilegeSubjectInterface;

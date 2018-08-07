@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Property\TypeConverter\v1;
+namespace GoCardTeam\GoCardApi\Property\TypeConverter;
 
 use Neos\Flow\Property\PropertyMappingConfigurationInterface;
 use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;

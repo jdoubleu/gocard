@@ -1,9 +1,9 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Service\v1;
+namespace GoCardTeam\GoCardApi\Service;
 
-use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
-use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Security\AccountFactory;
+use GoCardTeam\GoCardApi\Security\AccountRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 

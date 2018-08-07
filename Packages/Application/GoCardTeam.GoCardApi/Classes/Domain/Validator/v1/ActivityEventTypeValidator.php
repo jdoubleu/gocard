@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Validation\Validator\v1;
+namespace GoCardTeam\GoCardApi\Domain\Validator\v1;
 
 use Neos\Flow\Validation\Validator\RegularExpressionValidator;
 

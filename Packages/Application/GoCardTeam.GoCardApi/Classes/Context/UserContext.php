@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Context\v1;
+namespace GoCardTeam\GoCardApi\Context;
 
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;

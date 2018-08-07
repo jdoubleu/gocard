@@ -1,6 +1,6 @@
 <?php
 
-namespace GoCardTeam\GoCardApi\Security\Authentication\Token\v1;
+namespace GoCardTeam\GoCardApi\Security\Authentication\Token;
 
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Mvc\Exception\NoSuchArgumentException;
