@@ -15,12 +15,12 @@ use Neos\Flow\Annotations as Flow;
  * E.g.:
  * <code>
  *   'SomePackage:SomeRequestPattern':
- *     pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\DeadLockedRequestPattern'
+ *     pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\FixedValueRequestPattern'
  *     patternOptions:
  *       'result': false
  * </code>
  */
-class DeadLockedRequestPattern implements RequestPatternInterface
+class FixedValueRequestPattern implements RequestPatternInterface
 {
 
     /**

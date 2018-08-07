@@ -53,7 +53,7 @@ Neos:
       firewall:
        filters:
         'Neos.Flow:CsrfProtection':
-          pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\DeadLockedRequestPattern'
+          pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\FixedValueRequestPattern'
           patternOptions:
             'result': false
 
