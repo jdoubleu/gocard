@@ -60,7 +60,6 @@ class Apiv1AccountManageCommandController extends CommandController
         $account = $this->accountRepository->findByIdentifier($email);
         $accessToken = $this->accountFactory->obtainAccessTokenForAccount($account);
 
-        $this->accountRepository->add($accessToken);
         $this->outputLine('Successfully created access token for user %s: ', [$account->getAccountIdentifier(), $accessToken->getAccountIdentifier()]);
     }
 
