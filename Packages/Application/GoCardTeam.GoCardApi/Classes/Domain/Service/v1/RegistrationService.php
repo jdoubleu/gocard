@@ -6,7 +6,7 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use GoCardTeam\GoCardApi\Controller\v1\Endpoint\UsersController;
 use GoCardTeam\GoCardApi\Domain\Model\v1\AccountToken;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
-use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use GoCardTeam\GoCardApi\Service\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\KnownObjectException;
 

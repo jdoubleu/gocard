@@ -39,6 +39,37 @@ abstract class AbstractApiEndpointController extends ActionController
     protected $view;
 
     /**
+     * Skip default properties
+     */
+    public function initializeAction()
+    {
+        $argument = $this->getFirstArgumentOfAction();
+        $argument->getPropertyMappingConfiguration()
+            ->skipProperties('q', 'access_token');
+    }
+
+    /**
+     * Maps all arguments from the request body to the first parameter of the action.
+     * If there are more or less than one parameter in the action, the default mapping is applied.
+     *
+     * @see AbstractController::mapRequestArgumentsToControllerArguments()
+     *
+     * @throws \Neos\Flow\Mvc\Exception\RequiredArgumentMissingException
+     */
+    protected function mapRequestArgumentsToControllerArguments()
+    {
+        if (count($this->arguments) != 1) {
+            parent::mapRequestArgumentsToControllerArguments();
+
+            return;
+        }
+
+        $argument = $this->getFirstArgumentOfAction();
+        $argument->setValue($this->request->getArguments());
+    }
+
+
+    /**
      * Generates output for when validation has failed according to the api spec.
      *
      * @param Result $errors
@@ -99,5 +130,14 @@ abstract class AbstractApiEndpointController extends ActionController
 
             return $subResults;
         }
+    }
+
+    /**
+     * Returns the first argument of the current controller action
+     * @return Argument
+     */
+    private function getFirstArgumentOfAction(): Argument
+    {
+        return $this->arguments[$this->arguments->getArgumentNames()[0]];
     }
 }

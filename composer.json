@@ -10,13 +10,11 @@
     },
     "require": {
         "neos/flow": "~4.1.0",
-        "neos/welcome": "~4.1.0",
         "neos/swiftmailer": "^6.0"
     },
     "require-dev": {
         "neos/kickstarter": "~4.1.0",
         "neos/buildessentials": "~4.1.0",
-        "neos/behat": "dev-master",
         "phpunit/phpunit": "~6.0.0",
         "mikey179/vfsstream": "~1.6"
     },

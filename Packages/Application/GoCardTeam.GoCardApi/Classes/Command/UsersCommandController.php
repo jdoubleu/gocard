@@ -2,12 +2,12 @@
 
 namespace GoCardTeam\GoCardApi\Command;
 
-use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use GoCardTeam\GoCardApi\Service\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
 use GoCardTeam\GoCardApi\Domain\Repository\v1\UserRepository;
-use GoCardTeam\GoCardApi\Security\v1\AccountFactory;
-use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Security\AccountFactory;
+use GoCardTeam\GoCardApi\Security\AccountRepository;
 use Neos\Flow\Cli\CommandController;
 
 /**

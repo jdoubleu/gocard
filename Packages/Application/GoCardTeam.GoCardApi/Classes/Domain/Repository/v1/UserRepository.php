@@ -3,7 +3,7 @@
 namespace GoCardTeam\GoCardApi\Domain\Repository\v1;
 
 use GoCardTeam\GoCardApi\Domain\Model\v1\User;
-use GoCardTeam\GoCardApi\Security\v1\AccountRepository;
+use GoCardTeam\GoCardApi\Security\AccountRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\Exception\InvalidClassException;
 use Neos\Flow\Persistence\Repository;

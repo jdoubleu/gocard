@@ -2,7 +2,7 @@
 
 namespace GoCardTeam\GoCardApi\Domain\Service\v1;
 
-use GoCardTeam\GoCardApi\Context\v1\UserContext;
+use GoCardTeam\GoCardApi\Context\UserContext;
 use Neos\Error\Messages\Error;
 use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;

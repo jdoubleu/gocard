@@ -34,14 +34,14 @@ Neos:
       authentication:
         providers:
           'LocalAuthenticationProvider':
-            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\PersistedEmailPasswordProvider'
+            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\PersistedEmailPasswordProvider'
             requestPatterns:
               'GoCardTeam.GoCardApi:ApiAccessRequest':
                 pattern: 'ControllerObjectName'
                 patternOptions:
                   'controllerObjectNamePattern': 'GoCardTeam\GoCardApi\Controller\v1\LocalAccountAuthenticationController'
           'AccessTokenAuthenticationProvider':
-            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\v1\AccessTokenProvider'
+            provider: 'GoCardTeam\GoCardApi\Security\Authentication\Provider\AccessTokenProvider'
             providerOptions:
               localAccountProviderName: 'LocalAuthenticationProvider'
             requestPatterns:
@@ -53,7 +53,7 @@ Neos:
       firewall:
        filters:
         'Neos.Flow:CsrfProtection':
-          pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\DeadLockedRequestPattern'
+          pattern: 'GoCardTeam\GoCardApi\Security\RequestPattern\FixedValueRequestPattern'
           patternOptions:
             'result': false
 
@@ -66,9 +66,9 @@ Neos:
               className: 'Doctrine\DBAL\Types\StringType'
             'consistent_bigint':
               dbType: 'bigint'
-              className: 'GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\v1\BigIntType'
+              className: 'GoCardTeam\GoCardApi\Persistence\Doctrine\DataTypes\BigIntType'
 
     aop:
       globalObjects:
-        userContext: GoCardTeam\GoCardApi\Context\v1\UserContext
-        memberContext: GoCardTeam\GoCardApi\Context\v1\MemberContext
+        userContext: GoCardTeam\GoCardApi\Context\UserContext
+        memberContext: GoCardTeam\GoCardApi\Context\MemberContext

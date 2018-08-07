@@ -1,7 +1,6 @@
 /Build/
 /Configuration/*
 !/Configuration/*.yaml
-!/Configuration/PackageStates.php
 !/Configuration/Production/
 /Configuration/Production/*.example
 !/Configuration/Testing/
@@ -20,8 +19,6 @@
 /Web/_Resources/*
 !/Web/_Resources/.htaccess
 /bin/
-/Readme.rst
-/Upgrading.rst
 /flow
 /flow.bat
 /node_modules/
@@ -29,5 +26,7 @@
 yarn-error.log
 npm-debug.log
 /.idea/
-/.env
-/.docker-sync/
+/.ddev/*
+!/.ddev/config.yaml
+!/.ddev/docker-compose.debugproxy.yaml
+!/.ddev/php

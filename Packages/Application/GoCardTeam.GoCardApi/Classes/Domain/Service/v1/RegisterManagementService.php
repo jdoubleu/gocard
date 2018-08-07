@@ -2,8 +2,8 @@
 
 namespace GoCardTeam\GoCardApi\Domain\Service\v1;
 
-use GoCardTeam\GoCardApi\Context\v1\MemberContext;
-use GoCardTeam\GoCardApi\Context\v1\UserContext;
+use GoCardTeam\GoCardApi\Context\MemberContext;
+use GoCardTeam\GoCardApi\Context\UserContext;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Card;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Member;
 use GoCardTeam\GoCardApi\Domain\Model\v1\Register;

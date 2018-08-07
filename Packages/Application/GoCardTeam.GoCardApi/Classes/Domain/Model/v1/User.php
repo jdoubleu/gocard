@@ -6,7 +6,7 @@ namespace GoCardTeam\GoCardApi\Domain\Model\v1;
  */
 
 use Doctrine\ORM\Mapping as ORM;
-use GoCardTeam\GoCardApi\Service\v1\LocalAccountService;
+use GoCardTeam\GoCardApi\Service\LocalAccountService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
 
