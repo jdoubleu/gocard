@@ -16,7 +16,6 @@
   routeParts:
     register:
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
 
 -
@@ -35,7 +34,6 @@
     register:
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Register'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
 
 -

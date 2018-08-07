@@ -16,7 +16,6 @@
   routeParts:
     member:
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
 
 -
@@ -27,7 +26,6 @@
   routeParts:
     members:
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
 
 -
@@ -38,7 +36,6 @@
   routeParts:
     members:
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
 
 -
@@ -49,7 +46,6 @@
   routeParts:
     members:
       objectType: 'Doctrine\Common\Collections\ArrayCollection<GoCardTeam\GoCardApi\Domain\Model\v1\Member>'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['PUT']
 
 -
@@ -61,7 +57,6 @@
     member:
       uriPattern: ''
       objectType: 'GoCardTeam\GoCardApi\Domain\Model\v1\Member'
-      mapAdditionalPropertiesFromBody: true
   httpMethods: ['POST']
 
 -
